@@ -42,8 +42,9 @@ public class InputTests {
 		await Activate(frame, text);
 		Assert.True(UIActionSimulator.Text("hello"));
 		await Probe(() => keys.Count > 0);
+		// Caps Lock, which some screen readers use as their key, can leave it on, and makes it HELLO.
 		try {
-			await Gui.WaitUntil(() => text.Value == "hello", Wait);
+			await Gui.WaitUntil(() => string.Equals(text.Value, "hello", StringComparison.OrdinalIgnoreCase), Wait);
 		} catch (TimeoutException) {
 			Assert.Fail($"The text control has \"{text.Value}\", after keys {string.Join(", ", keys)}.");
 		}
