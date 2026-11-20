@@ -41,6 +41,8 @@ On Windows, a Native AOT publish needs Visual Studio's C++ tools, as any Native 
 
 The bindings are generated from wxWidgets's own headers: windows and the common controls, list, tree, and data view controls, toolbars, sizers, menus, the standard dialogs, drawing, images, validators, and the clipboard, with events and async support. Members C# overrides, such as a virtual list's rows and a self-drawn control's description for screen readers, call into .NET. An application only links the classes it uses.
 
+An application translates its text with gettext, as wxWidgets does its own: mark strings with `_`, `_n`, `_p`, and `_pn` from `WxKit.Gettext`, extract them with `dotnet build -t:WxKitExtract`, and put each language's catalog in `po`, such as `po/de.po`. The build compiles and embeds them, with wxWidgets' own catalogs for the same languages, so stock button labels follow the application's language. The repository's [translating guide](https://github.com/trypsynth/wxkit/blob/master/docs/translating.md) describes it.
+
 ## Packages
 
 This package is the managed library. It brings in a native package for each runtime, such as `WxKit.Native.win-x64`, which holds wxWidgets and WxKit's shim, as a shared library and as the static libraries Native AOT links.

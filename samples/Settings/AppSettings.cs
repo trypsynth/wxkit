@@ -1,16 +1,19 @@
 using System.Globalization;
 using WxKit;
+using static WxKit.Gettext;
 
 namespace Settings;
 
 // What the sample remembers, as lines of key=value in a file of its own.
 internal sealed class AppSettings {
-	public static readonly string[] Themes = ["Match the system", "Light", "Dark"];
+	// The themes' names, in the current language, which the file stores the position of.
+	public static string[] Themes => [_("Match the system"), _("Light"), _("Dark")];
 
-	public static readonly string[] Events = [
-		"A file is saved", "A file is changed elsewhere", "An update is ready", "A backup finishes",
-		"A backup fails", "A download finishes", "Someone shares a file", "A comment is added",
-		"A reminder is due", "The disk is nearly full", "The battery is low", "A sync conflict is found",
+	// The events' names, in the current language, which the file stores the positions of.
+	public static string[] Events => [
+		_("A file is saved"), _("A file is changed elsewhere"), _("An update is ready"), _("A backup finishes"),
+		_("A backup fails"), _("A download finishes"), _("Someone shares a file"), _("A comment is added"),
+		_("A reminder is due"), _("The disk is nearly full"), _("The battery is low"), _("A sync conflict is found"),
 	];
 
 	public static string DefaultPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WxKit Settings sample", "settings.txt");
@@ -31,8 +34,11 @@ internal sealed class AppSettings {
 
 	public bool StartWithSystem { get; set; }
 
-	// The events in Events to be notified of.
-	public HashSet<string> Notifications { get; } = [Events[0], Events[2], Events[4]];
+	// The language, such as de, or empty for the user's preferred language that there is a catalog for.
+	public string Language { get; set; } = string.Empty;
+
+	// The indexes in Events of the events to be notified of.
+	public HashSet<int> Notifications { get; } = [0, 2, 4];
 
 	// Reads the settings, or gives the defaults when there are none yet or the file cannot be read.
 	public static AppSettings Load(string path) {
@@ -55,9 +61,12 @@ internal sealed class AppSettings {
 		if (values.TryGetValue("recentFiles", out string? recent) && int.TryParse(recent, CultureInfo.InvariantCulture, out int count)) settings.RecentFiles = count;
 		if (values.TryGetValue("documents", out string? documents)) settings.DocumentsFolder = documents;
 		if (values.TryGetValue("startWithSystem", out string? start)) settings.StartWithSystem = start == "true";
+		if (values.TryGetValue("language", out string? language)) settings.Language = language;
 		if (values.TryGetValue("notifications", out string? notifications)) {
 			settings.Notifications.Clear();
-			settings.Notifications.UnionWith(notifications.Split('|', StringSplitOptions.RemoveEmptyEntries).Where(Events.Contains));
+			foreach (string item in notifications.Split('|', StringSplitOptions.RemoveEmptyEntries)) {
+				if (int.TryParse(item, CultureInfo.InvariantCulture, out int index) && index >= 0 && index < Events.Length) settings.Notifications.Add(index);
+			}
 		}
 		return settings;
 	}
@@ -72,7 +81,8 @@ internal sealed class AppSettings {
 			$"recentFiles={RecentFiles.ToString(CultureInfo.InvariantCulture)}",
 			$"documents={DocumentsFolder}",
 			$"startWithSystem={(StartWithSystem ? "true" : "false")}",
-			$"notifications={string.Join('|', Events.Where(Notifications.Contains))}",
+			$"language={Language}",
+			$"notifications={string.Join('|', Notifications.Order().Select(static index => index.ToString(CultureInfo.InvariantCulture)))}",
 		]);
 	}
 }

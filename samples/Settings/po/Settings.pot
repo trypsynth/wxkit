@@ -1,0 +1,239 @@
+# The strings of Settings to translate, which its build extracts from its source. Each
+# language's catalog, such as de.po, is made from this template with msginit and updated from it
+# with msgmerge.
+msgid ""
+msgstr ""
+"Project-Id-Version: Settings\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: AppSettings.cs:10
+msgid "Match the system"
+msgstr ""
+
+#: AppSettings.cs:10
+msgid "Light"
+msgstr ""
+
+#: AppSettings.cs:10
+msgid "Dark"
+msgstr ""
+
+#: AppSettings.cs:14
+msgid "A file is saved"
+msgstr ""
+
+#: AppSettings.cs:14
+msgid "A file is changed elsewhere"
+msgstr ""
+
+#: AppSettings.cs:14
+msgid "An update is ready"
+msgstr ""
+
+#: AppSettings.cs:14
+msgid "A backup finishes"
+msgstr ""
+
+#: AppSettings.cs:15
+msgid "A backup fails"
+msgstr ""
+
+#: AppSettings.cs:15
+msgid "A download finishes"
+msgstr ""
+
+#: AppSettings.cs:15
+msgid "Someone shares a file"
+msgstr ""
+
+#: AppSettings.cs:15
+msgid "A comment is added"
+msgstr ""
+
+#: AppSettings.cs:16
+msgid "A reminder is due"
+msgstr ""
+
+#: AppSettings.cs:16
+msgid "The disk is nearly full"
+msgstr ""
+
+#: AppSettings.cs:16
+msgid "The battery is low"
+msgstr ""
+
+#: AppSettings.cs:16
+msgid "A sync conflict is found"
+msgstr ""
+
+#: MainFrame.cs:11
+#: MainFrame.cs:50
+msgid "Settings sample"
+msgstr ""
+
+#. TRANSLATORS: Keep the tab and the shortcut after it, which the menu shows and the keyboard uses.
+#: MainFrame.cs:20
+msgid "&Settings...\tCtrl+,"
+msgstr ""
+
+#: MainFrame.cs:22
+msgid "&File"
+msgstr ""
+
+#: MainFrame.cs:23
+msgid "&Edit"
+msgstr ""
+
+#: MainFrame.cs:27
+msgid "&Current settings:"
+msgstr ""
+
+#: MainFrame.cs:29
+msgid "&Change settings..."
+msgstr ""
+
+#: MainFrame.cs:50
+#, csharp-format
+msgid "The settings could not be saved. {0}"
+msgstr ""
+
+#: MainFrame.cs:72
+msgid "the default"
+msgstr ""
+
+#: MainFrame.cs:73
+msgid "none"
+msgstr ""
+
+#: MainFrame.cs:74
+msgid "the system's"
+msgstr ""
+
+#: MainFrame.cs:76
+#, csharp-format
+msgid "Name: {0}"
+msgstr ""
+
+#: MainFrame.cs:77
+#, csharp-format
+msgid "Theme: {0}"
+msgstr ""
+
+#: MainFrame.cs:78
+#, csharp-format
+msgid "Accent color: red {0}, green {1}, blue {2}"
+msgstr ""
+
+#: MainFrame.cs:79
+#, csharp-format
+msgid "Font: {0}"
+msgstr ""
+
+#: MainFrame.cs:80
+#, csharp-format
+msgid "Recent files remembered: {0}"
+msgstr ""
+
+#: MainFrame.cs:81
+#, csharp-format
+msgid "Documents folder: {0}"
+msgstr ""
+
+#: MainFrame.cs:82
+#, csharp-format
+msgid "Language: {0}"
+msgstr ""
+
+#: MainFrame.cs:83
+#, csharp-format
+msgid "Start when you sign in: {0}"
+msgstr ""
+
+#: MainFrame.cs:83
+msgid "yes"
+msgstr ""
+
+#: MainFrame.cs:83
+msgid "no"
+msgstr ""
+
+#: MainFrame.cs:84
+#, csharp-format
+msgid "Notify when: {0}"
+msgstr ""
+
+#: MainFrame.cs:90
+#, csharp-format
+msgid "{0}, {1} point"
+msgid_plural "{0}, {1} points"
+msgstr[0] ""
+msgstr[1] ""
+
+#: SettingsDialog.cs:20
+#: SettingsDialog.cs:115
+msgid "Settings"
+msgstr ""
+
+#: SettingsDialog.cs:28
+msgid "&Name:"
+msgstr ""
+
+#: SettingsDialog.cs:30
+msgid "&Theme:"
+msgstr ""
+
+#: SettingsDialog.cs:32
+msgid "&Accent color:"
+msgstr ""
+
+#: SettingsDialog.cs:34
+msgid "&Font:"
+msgstr ""
+
+#: SettingsDialog.cs:35
+msgid "&Recent files to remember:"
+msgstr ""
+
+#: SettingsDialog.cs:40
+msgid "&Language:"
+msgstr ""
+
+#: SettingsDialog.cs:40
+msgid "The system's language"
+msgstr ""
+
+#: SettingsDialog.cs:42
+msgid "&Start when I sign in"
+msgstr ""
+
+#: SettingsDialog.cs:48
+msgid "General"
+msgstr ""
+
+#: SettingsDialog.cs:52
+msgid "&Documents folder:"
+msgstr ""
+
+#: SettingsDialog.cs:53
+msgid "Choose the documents folder"
+msgstr ""
+
+#: SettingsDialog.cs:56
+msgid "Folders"
+msgstr ""
+
+#: SettingsDialog.cs:60
+msgid "Notify me when"
+msgstr ""
+
+#: SettingsDialog.cs:70
+msgid "Notifications"
+msgstr ""
+
+#: SettingsDialog.cs:115
+msgid "Enter a name, which the application shows as yours."
+msgstr ""

@@ -15,34 +15,18 @@ This document lists the design decisions made so far, and the ones still open. E
 - XRC is the last optional library to be bound.
 - `Timer` keeps its name. WxKit's MSBuild targets alias it with `global using Timer = WxKit.Timer;` when implicit usings are on, so it does not clash with `System.Threading.Timer`, and `WxKitTimerAlias=false` turns that off.
 - Tests use xUnit v3 with a custom entry point that runs them on the main thread, with a runner of WxKit's own as the fallback. See [Testing](testing.md).
+- Translations use gettext through wxWidgets' own `wxTranslations`, so an application's text and wxWidgets' follow one setting, with `Translations` and the shortcuts `_`, `_n`, `_p`, and `_pn`. Catalogs are compiled with GNU gettext's `msgfmt` on each build and embedded in the application, with wxWidgets' catalogs for the languages it has, which the WxKit package carries one copy of. Fuzzy entries are left out, as gettext leaves them out. WxKit's own extractor reads C#, Visual Basic, and F#, which neither `xgettext` nor GetText.NET.Extractor reads all of. See [Translating an application](../translating.md).
 - Names follow .NET conventions. Package IDs and namespaces are Pascal case and dotted: `WxKit` for the managed library, and `WxKit.Native.*` packages for native files. The GitHub repository is `trypsynth/wxkit`, and the native library is `wxkitnative`, because on Windows a native `wxkit.dll` would have the same file name as the managed `WxKit.dll`.
 
 ## Open
 
 ### Order of the optional libraries
 
-Beyond the core libraries, wxWidgets has AUI docking, the styled text control, the property grid, the web view, rich text, the ribbon, OpenGL, the media control, and HTML help. Recommendation: the styled text control and AUI first, since editors and tool windows use them most, then the web view and the property grid.
+Beyond the core libraries, wxWidgets has AUI docking, the styled text control, the property grid, the web view, rich text, the ribbon, OpenGL, the media control, and HTML help. The styled text control is bound, and an application that doesn't use it doesn't link it. Recommendation: AUI next, since tool windows use it most, then the web view and the property grid.
 
 ### Custom accessibility on Windows
 
 wxWidgets lets a custom-drawn control describe itself to screen readers on Windows through `wxAccessible`. This needs a director with many virtual methods, and only works on Windows. Recommendation: include it right after virtual list controls, since custom controls are where accessibility usually breaks.
-
-### Localization
-
-WxKit does not bind any of wxWidgets' localization yet. Until an application sets a language and loads wxWidgets' message catalogs, the text wxWidgets supplies itself, such as stock button labels and the strings in its own dialogs, stays in English. wxWidgets has translations for 46 languages, as `.po` files in `native/wxWidgets/locale`, and they have to be compiled to `.mo` files before they can ship.
-
-wxWidgets translates with gettext, and its support covers applications' own strings too. `wxTranslations` loads `.mo` catalogs for several domains, picks the best language from the user's preferred languages, and falls back to the original strings, and `wxGetTranslation` handles plural forms and contexts. An application that uses it gets its own strings and wxWidgets' strings in the same language from one setting, with no second translation system to keep in step. Translators work in `.po` files, which are plain text that any editor or gettext tool can open.
-
-Recommendation:
-
-- Bind `wxUILocale`, `wxTranslations`, which wxWidgets recommends over `wxLocale` for new code, and `wxGetTranslation` in its singular, plural, and context forms, under .NET names. Applications choose the language themselves, as they do with wxWidgets.
-- Add shortcuts with the usual gettext names: `_` for a string, `_n` for plural forms, `_p` for a string in a context, and `_pn` for both. The full names stay the API for every language. Neither Visual Basic nor F# accepts `_` alone as a name, but both can use `_n`, `_p`, and `_pn`.
-- Add the application's `locale` folder as a lookup prefix, so catalogs are found at `locale/<language>/<domain>.mo`. wxWidgets also looks in `<language>/LC_MESSAGES` and in its standard places.
-- Compile wxWidgets' catalogs when the native library is built, ship them in the native packages, and have WxKit's MSBuild targets copy them to `locale/<language>/wxstd.mo` in the output.
-- Use the GNU gettext tools to compile and merge catalogs: [mlocati's build](https://github.com/mlocati/gettext-iconv-windows) on Windows (`winget install mlocati.GetText`), Homebrew's `gettext` on macOS, and the distribution's `gettext` package on Linux. Building the native library needs `msgfmt`. An application needs the tools only if it translates its own strings.
-- Extract strings from C# with [GetText.NET.Extractor](https://github.com/perpetualKid/GetText.NET), with the shortcuts as its aliases, as [SIC!](https://github.com/Oire/sic) does.
-
-Still open: neither GNU `xgettext` nor GetText.NET.Extractor reads F# or Visual Basic, so those two languages have no way to extract strings yet.
 
 ### Package split
 

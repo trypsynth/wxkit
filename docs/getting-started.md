@@ -354,7 +354,8 @@ internal sealed record TodoItem(string Title, DateTime Added);
 ## Next steps
 
 - The [text editor sample](../samples/Editor/EditorFrame.cs) is a fuller application: a frame of its own class, files opened and saved without blocking, find and replace, fonts, and word wrap.
-- The [settings sample](../samples/Settings/SettingsDialog.cs) is a settings dialog: a notebook of pages, a form laid out with a grid bag sizer, color, font, and folder pickers, a page that scrolls, and OK and Cancel with a validator.
+- The [settings sample](../samples/Settings/SettingsDialog.cs) is a settings dialog: a notebook of pages, a form laid out with a grid bag sizer, color, font, folder, and language pickers, a page that scrolls, and OK and Cancel with a validator. It's translated into German.
+- [Translating an application](translating.md) shows how to translate an application's text, and have wxWidgets' own text follow the same language.
 - The [checklist sample](../samples/Checklist/ChecklistControl.cs) is a control that draws itself, described to screen readers on Windows, macOS, and Linux.
 - The [managed API](design/managed-api.md) explains how WxKit maps wxWidgets to C#: naming, object lifetimes, events, threading, data views, and accessibility.
 - [Building and packaging](design/building-and-packaging.md) covers Native AOT, static linking, and macOS app bundles in depth.
