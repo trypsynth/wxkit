@@ -61,13 +61,14 @@ public class InputTests {
 		TextCtrl text = new(frame);
 		bool typed = false;
 		text.KeyDown += (_, e) => {
-			typed = true;
+			typed |= e.KeyCode == KeyCode.Right && e.Modifiers.HasFlag(KeyModifiers.Control);
 			e.Skip();
 		};
 		await Activate(frame, text);
-		// A key the text control receives shows that input arrives, before the shortcut, which the
-		// menu bar takes before the control sees it.
-		Assert.True(UIActionSimulator.Char(KeyCode.Right));
+		// A key with Ctrl held, which the text control receives, shows that input arrives with its
+		// modifiers, as it does not under WSLg, before the shortcut, which the menu bar takes before
+		// the control sees it.
+		Assert.True(UIActionSimulator.Char(KeyCode.Right, KeyModifiers.Control));
 		await Probe(() => typed);
 		Assert.True(UIActionSimulator.Char((KeyCode)'M', KeyModifiers.Control));
 		await Gui.WaitUntil(() => chosen == 1, Wait);
