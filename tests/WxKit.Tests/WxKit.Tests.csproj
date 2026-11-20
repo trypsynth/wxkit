@@ -45,4 +45,9 @@
 		<Using Include="Xunit" />
 	</ItemGroup>
 
+	<!-- The tests run against the native build, which a fresh clone does not have until the build script makes it. -->
+	<Target Name="_WxKitCheckTestNativeLibrary" BeforeTargets="BeforeBuild" Condition="!Exists('$(WxKitNativeRoot)/$(WxKitTestRuntime)/shared')">
+		<Error Text="The tests need WxKit's native libraries for '$(WxKitTestRuntime)', which are not built yet: there is no $(WxKitNativeRoot)/$(WxKitTestRuntime)/shared. From the root of the WxKit repository, run ./scripts/build-native.ps1 -Runtimes $(WxKitTestRuntime), which takes 10 to 20 minutes the first time, and run the tests again." />
+	</Target>
+
 </Project>

@@ -15,18 +15,8 @@
 		<!-- On macOS, the app bundle is named after the title and known by the identifier. -->
 		<ApplicationTitle>Checklist</ApplicationTitle>
 		<ApplicationId>io.github.trypsynth.wxkit.checklist</ApplicationId>
-		<WxKitNativeDirectory>$(WxKitNativeRoot)/$(RuntimeIdentifier)/static/</WxKitNativeDirectory>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\..\src\WxKit\WxKit.csproj" />
-	</ItemGroup>
-
-	<!-- A package reference brings these in on its own. A project reference has to ask. -->
-	<Import Project="..\..\src\WxKit\build\WxKit.targets" />
-
-	<ItemGroup>
-		<None Include="$(WxKitNativeRoot)/$(RuntimeIdentifier)/shared/*.dll;$(WxKitNativeRoot)/$(RuntimeIdentifier)/shared/*.so;$(WxKitNativeRoot)/$(RuntimeIdentifier)/shared/*.dylib" Link="%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
-	</ItemGroup>
+	<!-- WxKit comes from its source or from its package, as samples/Directory.Build.targets says. -->
 
 </Project>

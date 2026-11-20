@@ -6,7 +6,7 @@ WxKit is a preview: it works for trying out and small applications, its API will
 
 ## Building
 
-The samples and tests use the native libraries `./scripts/build-native.ps1` builds, so run it once before building them. Without it, a build fails and says to. To use WxKit without building it, add the [package](#packages) to a project of your own instead.
+The samples build with WxKit's own source and the native libraries `./scripts/build-native.ps1` builds, once there are ones for the machine's runtime. Until then, they use the released WxKit package from nuget.org, so a fresh clone can run one at once, such as with `dotnet run --project samples/Editor`. A sample that uses something newer than the release needs the native build. The tests always do, and fail with a message that says so without it.
 
 On Windows, you need the following:
 

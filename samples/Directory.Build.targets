@@ -1,0 +1,28 @@
+<Project>
+
+	<!--
+		The samples build with WxKit's own source and the native libraries scripts/build-native.ps1
+		builds, when there are ones for the runtime. A fresh clone has none, so the samples use the
+		released WxKit package from nuget.org instead, which has them. A sample that uses something
+		newer than that release needs the native build. Set WxKitSamplesFromSource to false to use
+		the package anyway, or WxKitPackageVersion to use another release.
+	-->
+	<PropertyGroup>
+		<WxKitSamplesFromSource Condition="'$(WxKitSamplesFromSource)' == '' and Exists('$(WxKitNativeRoot)/$(RuntimeIdentifier)')">true</WxKitSamplesFromSource>
+		<WxKitPackageVersion Condition="'$(WxKitPackageVersion)' == ''">0.1.0-preview.4</WxKitPackageVersion>
+		<WxKitNativeDirectory Condition="'$(WxKitSamplesFromSource)' == 'true'">$(WxKitNativeRoot)/$(RuntimeIdentifier)/static/</WxKitNativeDirectory>
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(WxKitSamplesFromSource)' == 'true'">
+		<ProjectReference Include="$(MSBuildThisFileDirectory)../src/WxKit/WxKit.csproj" />
+		<None Include="$(WxKitNativeRoot)/$(RuntimeIdentifier)/shared/*.dll;$(WxKitNativeRoot)/$(RuntimeIdentifier)/shared/*.so;$(WxKitNativeRoot)/$(RuntimeIdentifier)/shared/*.dylib" Link="%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(WxKitSamplesFromSource)' != 'true'">
+		<PackageReference Include="WxKit" Version="$(WxKitPackageVersion)" />
+	</ItemGroup>
+
+	<!-- A package reference brings these in on its own. A project reference has to ask. -->
+	<Import Project="$(MSBuildThisFileDirectory)../src/WxKit/build/WxKit.targets" Condition="'$(WxKitSamplesFromSource)' == 'true'" />
+
+</Project>
