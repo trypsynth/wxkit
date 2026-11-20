@@ -421,6 +421,61 @@ WXK_FUNCTION(wxk_Object*) wxk_ManagedPrintout_new(const char16_t* title, size_t 
 // preview could not be made. The preview takes the printouts, and deletes them when it closes.
 WXK_FUNCTION(wxk_Window*) wxk_PrintPreview_Show(wxk_Object* printout, wxk_Object* printoutForPrinting, wxk_Object* data, wxk_Window* parent, const char16_t* title, size_t titleLength, wxk_Size size) WXK_NOEXCEPT;
 
+// Translations
+
+typedef struct wxk_Translations wxk_Translations;
+// Where a loader puts the catalog it found, through wxk_CatalogSink_Supply.
+typedef struct wxk_CatalogSink wxk_CatalogSink;
+
+// The callbacks every managed translations loader calls, with the userdata its wxk_Translations was
+// made with. loadCatalog takes the strings it is given, and supplies the catalog to the sink, or
+// nothing when it has none, so that a file is looked for. availableTranslations adds the languages
+// it has to the array.
+typedef struct wxk_TranslationsLoaderCallbacks {
+	void (*loadCatalog)(void* userdata, wxk_String* domain, wxk_String* language, wxk_CatalogSink* sink);
+	void (*availableTranslations)(void* userdata, wxk_String* domain, wxk_StringArray* languages);
+	void (*onFree)(void* userdata);
+} wxk_TranslationsLoaderCallbacks;
+
+// A language, as wxLanguageInfo describes it. The strings are the caller's to free.
+typedef struct wxk_LanguageInfo {
+	int32_t language;
+	wxk_String* canonicalName;
+	wxk_String* localeTag;
+	wxk_String* description;
+	wxk_String* descriptionNative;
+	int32_t layoutDirection;
+} wxk_LanguageInfo;
+
+WXK_FUNCTION(void) wxk_TranslationsLoader_SetCallbacks(const wxk_TranslationsLoaderCallbacks* callbacks) WXK_NOEXCEPT;
+// Gives the sink a catalog read from the bytes of a .mo file, and returns whether they were one.
+WXK_FUNCTION(uint8_t) wxk_CatalogSink_Supply(wxk_CatalogSink* sink, const uint8_t* data, size_t length) WXK_NOEXCEPT;
+// Makes a wxTranslations whose loader asks .NET first, and frees the userdata when it is deleted.
+WXK_FUNCTION(wxk_Translations*) wxk_Translations_new(void* loaderUserdata) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Translations_delete(wxk_Translations* translations) WXK_NOEXCEPT;
+// Makes translations the global one, which wxWidgets then owns, and deletes the one before it.
+WXK_FUNCTION(void) wxk_Translations_SetCurrent(wxk_Translations* translations) WXK_NOEXCEPT;
+// Sets the language, or the user's preferred languages when language is null.
+WXK_FUNCTION(void) wxk_Translations_SetLanguage(wxk_Translations* translations, const char16_t* language, size_t languageLength) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Translations_AddStdCatalog(wxk_Translations* translations) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Translations_AddCatalog(wxk_Translations* translations, const char16_t* domain, size_t domainLength) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Translations_IsLoaded(wxk_Translations* translations, const char16_t* domain, size_t domainLength) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_StringArray*) wxk_Translations_GetAvailableTranslations(wxk_Translations* translations, const char16_t* domain, size_t domainLength) WXK_NOEXCEPT;
+// The best language there is a catalog for, or null when there is none.
+WXK_FUNCTION(wxk_String*) wxk_Translations_GetBestTranslation(wxk_Translations* translations, const char16_t* domain, size_t domainLength) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_String*) wxk_Translations_GetHeaderValue(wxk_Translations* translations, const char16_t* header, size_t headerLength, const char16_t* domain, size_t domainLength) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Translations_AddCatalogLookupPathPrefix(const char16_t* prefix, size_t prefixLength) WXK_NOEXCEPT;
+// The global translations' translation of text, in context when it is not empty, from any catalog,
+// or null when there is none.
+WXK_FUNCTION(wxk_String*) wxk_Translations_GetString(const char16_t* text, size_t textLength, const char16_t* context, size_t contextLength) WXK_NOEXCEPT;
+// The same for the plural form for n of the string whose singular is singular.
+WXK_FUNCTION(wxk_String*) wxk_Translations_GetPluralString(const char16_t* singular, size_t singularLength, uint32_t n, const char16_t* context, size_t contextLength) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_UILocale_UseDefault(void) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_String*) wxk_UILocale_GetCurrentName(void) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_StringArray*) wxk_UILocale_GetPreferredUILanguages(void) WXK_NOEXCEPT;
+// Fills info for a locale such as "de" or "pt-BR", and returns whether wxWidgets knows it.
+WXK_FUNCTION(uint8_t) wxk_LanguageInfo_Find(const char16_t* locale, size_t localeLength, wxk_LanguageInfo* info) WXK_NOEXCEPT;
+
 // The About box
 
 // What an About box shows. Each string is the shim's to free, and a null one, or a null list,

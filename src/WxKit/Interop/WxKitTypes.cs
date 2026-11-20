@@ -43,6 +43,29 @@ public unsafe struct WxkPrintoutCallbacks {
 	public delegate* unmanaged[Cdecl]<void*, void> OnFree;
 }
 
+/// <summary>A wxTranslations.</summary>
+public struct WxkTranslations;
+
+/// <summary>Where a translations loader puts the catalog it found.</summary>
+public struct WxkCatalogSink;
+
+/// <summary>The callbacks every managed translations loader calls, as the shim's wxk_TranslationsLoaderCallbacks lays them out.</summary>
+public unsafe struct WxkTranslationsLoaderCallbacks {
+	public delegate* unmanaged[Cdecl]<void*, WxkString*, WxkString*, WxkCatalogSink*, void> LoadCatalog;
+	public delegate* unmanaged[Cdecl]<void*, WxkString*, WxkStringArray*, void> AvailableTranslations;
+	public delegate* unmanaged[Cdecl]<void*, void> OnFree;
+}
+
+/// <summary>A language, as the shim's wxk_LanguageInfo lays it out.</summary>
+public unsafe struct WxkLanguageInfo {
+	public int Language;
+	public WxkString* CanonicalName;
+	public WxkString* LocaleTag;
+	public WxkString* Description;
+	public WxkString* DescriptionNative;
+	public int LayoutDirection;
+}
+
 /// <summary>What an About box shows, as the shim's wxk_AboutInfo lays it out.</summary>
 public unsafe struct WxkAboutInfo {
 	public WxkString* Name;

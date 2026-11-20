@@ -458,6 +458,84 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte UIActionSimulatorSelect(char* text, nuint textLength);
 
+	// Translations
+
+	[LibraryImport(Library, EntryPoint = "wxk_TranslationsLoader_SetCallbacks")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TranslationsLoaderSetCallbacks(WxkTranslationsLoaderCallbacks* callbacks);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CatalogSink_Supply")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte CatalogSinkSupply(WxkCatalogSink* sink, byte* data, nuint length);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Translations_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkTranslations* TranslationsNew(void* loaderUserdata);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Translations_delete")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TranslationsDelete(WxkTranslations* translations);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Translations_SetCurrent")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TranslationsSetCurrent(WxkTranslations* translations);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Translations_SetLanguage")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TranslationsSetLanguage(WxkTranslations* translations, char* language, nuint languageLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Translations_AddStdCatalog")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte TranslationsAddStdCatalog(WxkTranslations* translations);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Translations_AddCatalog")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte TranslationsAddCatalog(WxkTranslations* translations, char* domain, nuint domainLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Translations_IsLoaded")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte TranslationsIsLoaded(WxkTranslations* translations, char* domain, nuint domainLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Translations_GetAvailableTranslations")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkStringArray* TranslationsGetAvailableTranslations(WxkTranslations* translations, char* domain, nuint domainLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Translations_GetBestTranslation")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* TranslationsGetBestTranslation(WxkTranslations* translations, char* domain, nuint domainLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Translations_GetHeaderValue")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* TranslationsGetHeaderValue(WxkTranslations* translations, char* header, nuint headerLength, char* domain, nuint domainLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Translations_AddCatalogLookupPathPrefix")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TranslationsAddCatalogLookupPathPrefix(char* prefix, nuint prefixLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Translations_GetString")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* TranslationsGetString(char* text, nuint textLength, char* context, nuint contextLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Translations_GetPluralString")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* TranslationsGetPluralString(char* singular, nuint singularLength, uint n, char* context, nuint contextLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_UILocale_UseDefault")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte UILocaleUseDefault();
+
+	[LibraryImport(Library, EntryPoint = "wxk_UILocale_GetCurrentName")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* UILocaleGetCurrentName();
+
+	[LibraryImport(Library, EntryPoint = "wxk_UILocale_GetPreferredUILanguages")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkStringArray* UILocaleGetPreferredUILanguages();
+
+	[LibraryImport(Library, EntryPoint = "wxk_LanguageInfo_Find")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte LanguageInfoFind(char* locale, nuint localeLength, WxkLanguageInfo* info);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Printout_SetCallbacks")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void PrintoutSetCallbacks(WxkPrintoutCallbacks* callbacks);

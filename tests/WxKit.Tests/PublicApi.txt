@@ -1382,6 +1382,11 @@ enum WxKit.DuplexMode : int
     Horizontal = 1
     Simplex = 0
     Vertical = 2
+sealed class WxKit.EmbeddedTranslationsLoader : TranslationsLoader
+    EmbeddedTranslationsLoader()
+    EmbeddedTranslationsLoader(IEnumerable<Assembly> assemblies)
+    override IEnumerable<string> GetAvailableTranslations(string domain)
+    override byte[]? LoadCatalog(string domain, string language)
 class WxKit.EraseEvent : Event
 class WxKit.Event : EventArgs
     EventCategory EventCategory { get; }
@@ -2031,6 +2036,15 @@ class WxKit.Gauge : Control
     Smooth = 32
     Text = 64
     Vertical = 8
+static class WxKit.Gettext
+    static string _(string text)
+    static string _(string text, params object?[] args)
+    static string _n(string singular, string plural, long n)
+    static string _n(string singular, string plural, long n, params object?[] args)
+    static string _p(string context, string text)
+    static string _p(string context, string text, params object?[] args)
+    static string _pn(string context, string singular, string plural, long n)
+    static string _pn(string context, string singular, string plural, long n, params object?[] args)
 class WxKit.GridBagSizer : FlexGridSizer
     GridBagSizer(int vgap = 0, int hgap = 0)
     GridPosition GetItemPosition(Sizer sizer)
@@ -2487,6 +2501,21 @@ class WxKit.KeyEvent : Event
     None = 0
     Shift = 4
     Win = 8
+sealed record WxKit.LanguageInfo : IEquatable<LanguageInfo>
+    LanguageInfo(string Code, string Tag, string Name, string NativeName, LayoutDirection LayoutDirection)
+    LayoutDirection LayoutDirection { get; init; }
+    bool Equals(LanguageInfo? other)
+    override bool Equals(object? obj)
+    override int GetHashCode()
+    override string ToString()
+    static LanguageInfo? Find(string locale)
+    static bool op_Equality(LanguageInfo? left, LanguageInfo? right)
+    static bool op_Inequality(LanguageInfo? left, LanguageInfo? right)
+    string Code { get; init; }
+    string Name { get; init; }
+    string NativeName { get; init; }
+    string Tag { get; init; }
+    void Deconstruct(out string Code, out string Tag, out string Name, out string NativeName, out LayoutDirection LayoutDirection)
 enum WxKit.LayoutDirection : int
     Default = 0
     LeftToRight = 1
@@ -7983,6 +8012,28 @@ class WxKit.TopLevelWindow : Window
     void SetMinSize(Size size)
     void SetRepresentedFilename(string filename)
     void ShowWithoutActivating()
+sealed class WxKit.Translations : IDisposable
+    IReadOnlyList<string> GetAvailableTranslations(string domain)
+    Translations()
+    Translations(TranslationsLoader loader)
+    bool AddCatalog(string domain)
+    bool AddStdCatalog()
+    bool IsLoaded(string domain)
+    static Translations Use(string domain, string? language = null)
+    static Translations? Current { get; set; }
+    static string Translate(string text)
+    static string TranslateInContext(string context, string text)
+    static string TranslatePlural(string singular, string plural, long n)
+    static string TranslatePluralInContext(string context, string singular, string plural, long n)
+    static void AddCatalogLookupPathPrefix(string folder)
+    string? GetBestTranslation(string domain)
+    string? GetHeaderValue(string header, string domain = "")
+    string? Language { get; set; }
+    void Dispose()
+abstract class WxKit.TranslationsLoader
+    abstract IEnumerable<string> GetAvailableTranslations(string domain)
+    abstract byte[]? LoadCatalog(string domain, string language)
+    protected TranslationsLoader()
 class WxKit.TreeCtrl : Control
     Color? GetItemBackgroundColor(TreeItemId item)
     Color? GetItemTextColor(TreeItemId item)
@@ -8145,6 +8196,10 @@ static class WxKit.UIActionSimulator
     static bool MouseUp(MouseButton button = MouseButton.Left)
     static bool Select(string text)
     static bool Text(string text)
+static class WxKit.UILocale
+    static IReadOnlyList<string> PreferredLanguages { get; }
+    static bool UseDefault()
+    static string CurrentName { get; }
 class WxKit.UpdateUIEvent : CommandEvent
     CheckBoxState ThreeStateValue { get; set; }
     bool Checked { get; }
