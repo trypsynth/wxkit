@@ -5,6 +5,7 @@
 		<Project Path="src/WxKit.Native/WxKit.Native.csproj" />
 	</Folder>
 	<Folder Name="/tests/">
+		<Project Path="tests/WxKit.Build.Tests/WxKit.Build.Tests.csproj" />
 		<Project Path="tests/WxKit.Generator.Tests/WxKit.Generator.Tests.csproj" />
 		<Project Path="tests/WxKit.Tests/WxKit.Tests.csproj" />
 	</Folder>

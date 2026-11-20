@@ -45,7 +45,7 @@ public sealed class WxKitStdCatalogs : Task {
 		return true;
 	}
 
-	private static string? Match(string language, List<string> available) {
+	internal static string? Match(string language, List<string> available) {
 		string? exact = available.FirstOrDefault(name => string.Equals(name, language, StringComparison.OrdinalIgnoreCase));
 		if (exact is not null) return exact;
 		string baseLanguage = language.Split('_', '@')[0];

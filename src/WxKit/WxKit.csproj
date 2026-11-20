@@ -28,7 +28,7 @@
 		<!-- The repository's README is for working on WxKit. The package's is for using it. -->
 		<None Include="PACKAGE.md" Pack="true" PackagePath="README.md" />
 		<None Include="../../LICENSE" Pack="true" PackagePath="/" />
-		<None Include="build/WxKit.targets;build/wxkit.manifest;build/WxKitMergeResources.cs;build/WxKitStdCatalogs.cs" Pack="true" PackagePath="buildTransitive/" />
+		<None Include="build/WxKit.targets;build/wxkit.manifest;build/WxKitMergeResources.cs;build/WxKitStdCatalogs.cs;build/WxKitCheckCatalogs.cs;build/WxKitExtractStrings.cs" Pack="true" PackagePath="buildTransitive/" />
 	</ItemGroup>
 
 	<!-- The package depends on a native package for each runtime, which scripts/pack.ps1 packs first and passes as WxKitRuntimes, joined with plus signs. Building WxKit itself does not need them. -->

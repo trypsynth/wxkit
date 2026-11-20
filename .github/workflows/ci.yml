@@ -83,6 +83,11 @@ jobs:
         if: matrix.runtime == 'win-x64'
         run: dotnet test --project tests/WxKit.Generator.Tests -c Release
 
+      # The build tasks' extractor and checks are the same on every runtime, but the tasks run on
+      # each, so each tests them.
+      - name: Test the build tasks
+        run: dotnet test --project tests/WxKit.Build.Tests -c Release
+
       # The generated bindings are checked in, so they have to match what the script makes from the
       # pinned wxWidgets. This runs before the native build, so a stale binding fails in a minute.
       - name: Check the generated bindings are current

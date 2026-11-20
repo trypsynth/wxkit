@@ -65,11 +65,22 @@
 		Translations.Use. msgfmt checks that each translation formats as its original does, and
 		leaves out entries marked fuzzy, as gettext does, until a translator reviews them. Set
 		WxKitMsgfmt to msgfmt's path when it is not on the PATH. Without msgfmt, the build warns and
-		embeds no catalogs, so the application's text stays in English.
+		embeds no catalogs, so the application's text stays in English. Each catalog compiled is
+		checked too, for translations that lose or add an accelerator or a shortcut, as warnings
+		WXKIT1001 to WXKIT1005.
 	-->
 	<PropertyGroup>
 		<WxKitMsgfmt Condition="'$(WxKitMsgfmt)' == ''">msgfmt</WxKitMsgfmt>
 	</PropertyGroup>
+
+	<UsingTask TaskName="WxKitCheckCatalogs" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)/Microsoft.Build.Tasks.Core.dll">
+		<ParameterGroup>
+			<Catalogs ParameterType="Microsoft.Build.Framework.ITaskItem[]" />
+		</ParameterGroup>
+		<Task>
+			<Code Type="Class" Language="cs" Source="$(MSBuildThisFileDirectory)WxKitCheckCatalogs.cs" />
+		</Task>
+	</UsingTask>
 
 	<Target Name="_WxKitResolveCatalogs">
 		<PropertyGroup>
@@ -95,6 +106,7 @@
 	</Target>
 
 	<Target Name="_WxKitCompileCatalogs" DependsOnTargets="_WxKitResolveCatalogs" Inputs="@(_WxKitCatalog)" Outputs="%(_WxKitCatalog.Compiled)" Condition="'@(_WxKitCatalog)' != ''">
+		<WxKitCheckCatalogs Catalogs="@(_WxKitCatalog)" />
 		<MakeDir Directories="$([System.IO.Path]::GetDirectoryName('%(_WxKitCatalog.Compiled)'))" />
 		<Exec Command="&quot;$(WxKitMsgfmt)&quot; --check-format --output-file=&quot;%(_WxKitCatalog.Compiled)&quot; &quot;%(_WxKitCatalog.FullPath)&quot;" />
 	</Target>
@@ -105,6 +117,50 @@
 			<EmbeddedResource Include="@(_WxKitCatalog->'%(Compiled)')" LogicalName="%(_WxKitCatalog.LogicalName)" WithCulture="false" />
 			<FileWrites Include="@(_WxKitCatalog->'%(Compiled)')" />
 		</ItemGroup>
+	</Target>
+
+	<!--
+		WxKitExtract extracts the strings the application passes to Gettext's shortcuts, _, _n, _p,
+		and _pn, and to Translations' lookups, such as Translations.Translate, into the gettext
+		template po/<domain>.pot, which each language's catalog is made from, with msginit, as in
+		msginit -i po/MyApp.pot -o po/de.po -l de. WxKitUpdateCatalogs extracts them and updates each
+		catalog in po from the template with msgmerge, which marks strings that changed as fuzzy, for a
+		translator to review. Run them with dotnet build -t:WxKitExtract or -t:WxKitUpdateCatalogs. Set
+		WxKitMsgmerge to msgmerge's path when it is not on the PATH.
+	-->
+	<PropertyGroup>
+		<WxKitMsgmerge Condition="'$(WxKitMsgmerge)' == ''">msgmerge</WxKitMsgmerge>
+	</PropertyGroup>
+
+	<UsingTask TaskName="WxKitExtractStrings" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)/Microsoft.Build.Tasks.Core.dll">
+		<ParameterGroup>
+			<Sources ParameterType="Microsoft.Build.Framework.ITaskItem[]" />
+			<ProjectDirectory ParameterType="System.String" Required="true" />
+			<Output ParameterType="System.String" Required="true" />
+			<Domain ParameterType="System.String" Required="true" />
+		</ParameterGroup>
+		<Task>
+			<Code Type="Class" Language="cs" Source="$(MSBuildThisFileDirectory)WxKitExtractStrings.cs" />
+		</Task>
+	</UsingTask>
+
+	<!-- The project's own sources, not the ones its build generates, such as its assembly attributes. -->
+	<Target Name="WxKitExtract" DependsOnTargets="_WxKitResolveCatalogs">
+		<PropertyGroup>
+			<_WxKitIntermediate>$([System.IO.Path]::GetFullPath('$(BaseIntermediateOutputPath)'))</_WxKitIntermediate>
+			<_WxKitTemplate>$([System.IO.Path]::GetFullPath('$(WxKitPoDirectory)/$(_WxKitTranslationDomain).pot'))</_WxKitTemplate>
+		</PropertyGroup>
+		<ItemGroup>
+			<_WxKitSource Include="@(Compile)" Condition="!$([System.String]::Copy('%(Compile.FullPath)').StartsWith('$(_WxKitIntermediate)'))" />
+		</ItemGroup>
+		<WxKitExtractStrings Sources="@(_WxKitSource)" ProjectDirectory="$(MSBuildProjectDirectory)" Output="$(_WxKitTemplate)" Domain="$(_WxKitTranslationDomain)" />
+	</Target>
+
+	<Target Name="WxKitUpdateCatalogs" DependsOnTargets="WxKitExtract">
+		<ItemGroup>
+			<_WxKitCatalogToUpdate Include="$(WxKitPoDirectory)/*.po" />
+		</ItemGroup>
+		<Exec Command="&quot;$(WxKitMsgmerge)&quot; --update --backup=none --quiet &quot;%(_WxKitCatalogToUpdate.FullPath)&quot; &quot;$(_WxKitTemplate)&quot;" Condition="'@(_WxKitCatalogToUpdate)' != ''" />
 	</Target>
 
 	<!-- The native package imports the link targets too, when it comes first, since NuGet does not say in which order packages' targets are imported. -->
