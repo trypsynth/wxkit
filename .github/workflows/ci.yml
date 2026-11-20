@@ -53,16 +53,29 @@ jobs:
           dotnet-version: 10.0.x
 
       # wxGTK builds against GTK 3, and the tests and the smoke test need a display, which Xvfb gives.
-      - name: Install GTK 3 and Xvfb
+      # gettext's msgfmt compiles wxWidgets' catalogs, on every runner.
+      - name: Install GTK 3, Xvfb, and gettext
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq libgtk-3-dev ninja-build xvfb
+          sudo apt-get install -y -qq libgtk-3-dev ninja-build xvfb gettext
 
       # Xcode, its clang, and a window server come with the runner.
-      - name: Install CMake and Ninja
+      - name: Install CMake, Ninja, and gettext
         if: runner.os == 'macOS'
-        run: brew install cmake ninja
+        run: brew install cmake ninja gettext
+
+      # mlocati's static build of gettext, pinned by its hash, which runs on Arm64 Windows too.
+      - name: Install gettext
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $archive = Join-Path $env:RUNNER_TEMP "gettext.zip"
+          Invoke-WebRequest "https://github.com/mlocati/gettext-iconv-windows/releases/download/v1.0-v1.19/gettext1.0-iconv1.19-static-64.zip" -OutFile $archive
+          if ((Get-FileHash $archive -Algorithm SHA256).Hash -ne "2B999BC37B56FA052FF98578E9CB188152009F634E3A66AA8FF263A016E9C466") { throw "The gettext archive is not the one pinned." }
+          $gettext = Join-Path $env:RUNNER_TEMP "gettext"
+          Expand-Archive $archive $gettext
+          Add-Content $env:GITHUB_PATH (Join-Path $gettext "bin")
 
       # The generator, the generated bindings, and the formatting are the same on every runtime, so
       # one runtime checks them.

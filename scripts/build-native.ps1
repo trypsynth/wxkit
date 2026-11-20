@@ -3,6 +3,8 @@
 #   static: the shim's static library, every wxWidgets library it needs, and on Windows wxkit.res,
 #           for Native AOT to link into the application, with a WxKit.Native.targets naming each of them.
 #   shared: wxkitnative.dll or libwxkitnative.so, with wxWidgets linked into it, for everything else.
+#   locale: wxWidgets' own translations, as locale/<language>/wxstd.mo, compiled with GNU gettext's
+#           msgfmt, which the WxKit package carries one copy of, since they are the same for every runtime.
 # A Windows runtime builds on Windows, for any architecture, a Linux runtime on Linux, for the
 # machine's own, and a macOS runtime on macOS, for either, since Apple's clang builds for both.
 param(
@@ -27,6 +29,25 @@ $windowsLibraries = @("kernel32.lib", "user32.lib", "gdi32.lib", "gdiplus.lib", 
 
 function Invoke-Checked([string]$description) {
 	if ($LASTEXITCODE -ne 0) { throw "$description failed." }
+}
+
+# A build without msgfmt still works, with wxWidgets' text in English, but CI's has to have them,
+# since the package takes them from it.
+function Build-Catalogs([string]$output) {
+	$catalogs = Join-Path $output "locale"
+	Remove-Item -Recurse -Force $catalogs -ErrorAction SilentlyContinue
+	$msgfmt = Get-Command msgfmt -ErrorAction SilentlyContinue
+	if (-not $msgfmt) {
+		if ($env:CI) { throw "msgfmt, from GNU gettext, is not installed, so wxWidgets' catalogs cannot be compiled." }
+		Write-Warning "msgfmt, from GNU gettext, is not installed, so wxWidgets' catalogs are not compiled, and its own text, such as stock button labels, stays in English. Install gettext and run this script again to compile them."
+		return
+	}
+	foreach ($catalog in Get-ChildItem (Join-Path $wxWidgets "locale") -Filter *.po) {
+		$directory = Join-Path $catalogs $catalog.BaseName
+		New-Item -ItemType Directory -Force $directory | Out-Null
+		& $msgfmt.Source --output-file (Join-Path $directory "wxstd.mo") $catalog.FullName
+		Invoke-Checked "Compiling $($catalog.Name)"
+	}
 }
 
 function Get-VisualStudio {
@@ -102,6 +123,7 @@ function Build-Linux([string]$runtime) {
 	$items = @($libraries | Sort-Object { Get-LinkRank $_.Name } | ForEach-Object { "<NativeLibrary Include=`"`$(MSBuildThisFileDirectory)$($_.Name)`" />" })
 	$items += $needed | ForEach-Object { "<NativeLibrary Include=`"-l:$_`" />" }
 	Write-Targets $static $items
+	Build-Catalogs $output
 	Write-Host "Built $runtime into $output"
 }
 
@@ -135,6 +157,7 @@ function Build-Mac([string]$runtime) {
 	$items = @($libraries | Sort-Object { Get-LinkRank $_.Name } | ForEach-Object { "<NativeLibrary Include=`"`$(MSBuildThisFileDirectory)$($_.Name)`" />" })
 	$items += $system | Select-Object -Unique | ForEach-Object { "<NativeLibrary Include=`"$_`" />" }
 	Write-Targets $static $items
+	Build-Catalogs $output
 	Write-Host "Built $runtime into $output"
 }
 
@@ -181,5 +204,6 @@ foreach ($runtime in $Runtimes) {
 	Copy-Item (Join-Path $build "shared/wxkitnative.dll") $shared
 	$symbols = Join-Path $build "shared/wxkitnative.pdb"
 	if (Test-Path $symbols) { Copy-Item $symbols $shared }
+	Build-Catalogs $output
 	Write-Host "Built $runtime into $output"
 }

@@ -76,6 +76,22 @@ public class TranslationsTests {
 		Assert.Null(LanguageInfo.Find("not a language"));
 	});
 
+	// The test project embeds wxWidgets' German catalog, as an application with po/de.po would.
+	[Fact]
+	public Task TranslatesWxWidgetsOwnTextFromTheEmbeddedCatalog() => Gui.WithFrame(frame => {
+		Assert.Contains("de", new EmbeddedTranslationsLoader().GetAvailableTranslations("wxstd"));
+		Translations translations = new() { Language = "de" };
+		try {
+			Assert.True(translations.AddStdCatalog());
+			Translations.Current = translations;
+			Assert.Equal("Ab&brechen", _("&Cancel"));
+			Button cancel = new(frame, id: StandardId.Cancel);
+			Assert.Equal("Abbrechen", cancel.LabelText);
+		} finally {
+			translations.Dispose();
+		}
+	});
+
 	[Fact]
 	public void CountsForPluralRulesKeepTheirLastDigits() {
 		Assert.Equal(1u, Translations.PluralCount(-1));

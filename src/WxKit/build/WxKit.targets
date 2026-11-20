@@ -20,6 +20,43 @@
 		<Using Include="WxKit.Timer" Alias="Timer" />
 	</ItemGroup>
 
+	<!--
+		wxWidgets' own text, such as stock button labels and the text of its dialogs, is translated
+		from its catalogs, which are embedded for each language the application has, so that it
+		follows the application's language. The languages are the WxKitLanguage items, which are by
+		default the names of the application's catalogs in its po folder, such as de for po/de.po. Set
+		WxKitStdCatalogs to all to embed all 46 of wxWidgets' catalogs, about 6 MB, or to none to embed
+		none. A project that builds WxKit itself sets WxKitStdCatalogDirectory to its native build's.
+	-->
+	<PropertyGroup>
+		<WxKitPoDirectory Condition="'$(WxKitPoDirectory)' == ''">po</WxKitPoDirectory>
+		<WxKitStdCatalogDirectory Condition="'$(WxKitStdCatalogDirectory)' == ''">$(MSBuildThisFileDirectory)../locale/</WxKitStdCatalogDirectory>
+	</PropertyGroup>
+
+	<UsingTask TaskName="WxKitStdCatalogs" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)/Microsoft.Build.Tasks.Core.dll">
+		<ParameterGroup>
+			<Directory ParameterType="System.String" Required="true" />
+			<Languages ParameterType="Microsoft.Build.Framework.ITaskItem[]" />
+			<All ParameterType="System.Boolean" />
+			<Catalogs ParameterType="Microsoft.Build.Framework.ITaskItem[]" Output="true" />
+		</ParameterGroup>
+		<Task>
+			<Code Type="Class" Language="cs" Source="$(MSBuildThisFileDirectory)WxKitStdCatalogs.cs" />
+		</Task>
+	</UsingTask>
+
+	<!-- Resources are sorted by culture in AssignTargetPaths' dependents, so the catalogs are added before it. -->
+	<Target Name="_WxKitEmbedStdCatalogs" BeforeTargets="AssignTargetPaths" Condition="'$(WxKitStdCatalogs)' != 'none' and ('$(OutputType)' == 'Exe' or '$(OutputType)' == 'WinExe')">
+		<ItemGroup>
+			<_WxKitPoFile Include="$(WxKitPoDirectory)/*.po" />
+			<_WxKitLanguage Include="@(WxKitLanguage)" />
+			<_WxKitLanguage Include="@(_WxKitPoFile->'%(Filename)')" Condition="'@(WxKitLanguage)' == ''" />
+		</ItemGroup>
+		<WxKitStdCatalogs Directory="$(WxKitStdCatalogDirectory)" Languages="@(_WxKitLanguage)" All="$([System.String]::Equals('$(WxKitStdCatalogs)', 'all'))">
+			<Output TaskParameter="Catalogs" ItemName="EmbeddedResource" />
+		</WxKitStdCatalogs>
+	</Target>
+
 	<!-- The native package imports the link targets too, when it comes first, since NuGet does not say in which order packages' targets are imported. -->
 	<Import Project="$(_WxKitLinkTargets)" Condition="'$(WxKitStaticLink)' == 'true' and '$(WxKitNativeDirectory)' != '' and '$(_WxKitLinkTargetsImported)' != 'true' and Exists('$(_WxKitLinkTargets)')" />
 

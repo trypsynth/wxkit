@@ -12,6 +12,7 @@
 		<WxKitSamplesFromSource Condition="'$(WxKitSamplesFromSource)' == '' and Exists('$(WxKitNativeRoot)/$(RuntimeIdentifier)')">true</WxKitSamplesFromSource>
 		<WxKitPackageVersion Condition="'$(WxKitPackageVersion)' == ''">*-*</WxKitPackageVersion>
 		<WxKitNativeDirectory Condition="'$(WxKitSamplesFromSource)' == 'true'">$(WxKitNativeRoot)/$(RuntimeIdentifier)/static/</WxKitNativeDirectory>
+		<WxKitStdCatalogDirectory Condition="'$(WxKitSamplesFromSource)' == 'true'">$(WxKitNativeRoot)/$(RuntimeIdentifier)/locale/</WxKitStdCatalogDirectory>
 	</PropertyGroup>
 
 	<ItemGroup Condition="'$(WxKitSamplesFromSource)' == 'true'">

@@ -28,7 +28,7 @@
 		<!-- The repository's README is for working on WxKit. The package's is for using it. -->
 		<None Include="PACKAGE.md" Pack="true" PackagePath="README.md" />
 		<None Include="../../LICENSE" Pack="true" PackagePath="/" />
-		<None Include="build/WxKit.targets;build/wxkit.manifest;build/WxKitMergeResources.cs" Pack="true" PackagePath="buildTransitive/" />
+		<None Include="build/WxKit.targets;build/wxkit.manifest;build/WxKitMergeResources.cs;build/WxKitStdCatalogs.cs" Pack="true" PackagePath="buildTransitive/" />
 	</ItemGroup>
 
 	<!-- The package depends on a native package for each runtime, which scripts/pack.ps1 packs first and passes as WxKitRuntimes, joined with plus signs. Building WxKit itself does not need them. -->
@@ -37,6 +37,19 @@
 		<!-- Nothing is private, so the native package's targets reach the application, which links with them. -->
 		<PackageReference Include="@(_WxKitRuntime->'WxKit.Native.%(Identity)')" Version="$(Version)" PrivateAssets="none" />
 	</ItemGroup>
+
+	<!-- wxWidgets' catalogs are the same for every runtime, so the package has one copy, from one of their builds. -->
+	<Target Name="_WxKitPackStdCatalogs" BeforeTargets="_GetPackageFiles" Condition="'$(WxKitPacking)' == 'true'">
+		<PropertyGroup>
+			<_WxKitCatalogRuntime>%(_WxKitRuntime.Identity)</_WxKitCatalogRuntime>
+		</PropertyGroup>
+		<ItemGroup>
+			<_WxKitStdCatalog Include="$(WxKitNativeRoot)/$(_WxKitCatalogRuntime)/locale/**/wxstd.mo" />
+			<!-- NuGet adds the folder each catalog is in, below locale, by itself. -->
+			<None Include="@(_WxKitStdCatalog)" Pack="true" PackagePath="locale/" />
+		</ItemGroup>
+		<Error Condition="'@(_WxKitStdCatalog)' == ''" Text="The native build for $(_WxKitCatalogRuntime) has no catalogs in $(WxKitNativeRoot)/$(_WxKitCatalogRuntime)/locale. Install GNU gettext, and run scripts/build-native.ps1 again." />
+	</Target>
 
 	<ItemGroup>
 		<InternalsVisibleTo Include="WxKit.Tests" />

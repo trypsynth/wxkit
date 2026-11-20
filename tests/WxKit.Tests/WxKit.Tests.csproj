@@ -14,7 +14,13 @@
 		<_WxKitTestArchitecture Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64'">arm64</_WxKitTestArchitecture>
 		<_WxKitTestArchitecture Condition="'$(_WxKitTestArchitecture)' == ''">x64</_WxKitTestArchitecture>
 		<WxKitTestRuntime Condition="'$(WxKitTestRuntime)' == ''">$(_WxKitTestSystem)-$(_WxKitTestArchitecture)</WxKitTestRuntime>
+		<WxKitStdCatalogDirectory>$(WxKitNativeRoot)/$(WxKitTestRuntime)/locale/</WxKitStdCatalogDirectory>
 	</PropertyGroup>
+
+	<!-- wxWidgets' German catalog, embedded as an application's is, which TranslationsTests uses. -->
+	<ItemGroup>
+		<WxKitLanguage Include="de" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="xunit.v3" Version="4.0.3" />
