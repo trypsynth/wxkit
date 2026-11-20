@@ -3,13 +3,14 @@
 	<!--
 		The samples build with WxKit's own source and the native libraries scripts/build-native.ps1
 		builds, when there are ones for the runtime. A fresh clone has none, so the samples use the
-		released WxKit package from nuget.org instead, which has them. A sample that uses something
-		newer than that release needs the native build. Set WxKitSamplesFromSource to false to use
-		the package anyway, or WxKitPackageVersion to use another release.
+		newest WxKit package from nuget.org instead, which has them, as the floating version *-*
+		finds it, so the samples follow each release without a change here. A sample that uses
+		something newer than that release needs the native build. Set WxKitSamplesFromSource to
+		false to use the package anyway, or WxKitPackageVersion to use a particular release.
 	-->
 	<PropertyGroup>
 		<WxKitSamplesFromSource Condition="'$(WxKitSamplesFromSource)' == '' and Exists('$(WxKitNativeRoot)/$(RuntimeIdentifier)')">true</WxKitSamplesFromSource>
-		<WxKitPackageVersion Condition="'$(WxKitPackageVersion)' == ''">0.1.0-preview.4</WxKitPackageVersion>
+		<WxKitPackageVersion Condition="'$(WxKitPackageVersion)' == ''">*-*</WxKitPackageVersion>
 		<WxKitNativeDirectory Condition="'$(WxKitSamplesFromSource)' == 'true'">$(WxKitNativeRoot)/$(RuntimeIdentifier)/static/</WxKitNativeDirectory>
 	</PropertyGroup>
 
