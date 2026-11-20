@@ -2198,8 +2198,10 @@ class WxKit.Image : NativeObject
     bool HasOption(string name)
     bool IsOk { get; }
     bool IsTransparent(int x, int y)
+    bool LoadFile(Stream stream, BitmapType type = BitmapType.Any, int index = -1)
     bool LoadFile(string name, BitmapType type = BitmapType.Any, int index = -1)
     bool LoadFile(string name, string mimetype, int index = -1)
+    bool SaveFile(Stream stream, BitmapType type)
     bool SaveFile(string name)
     bool SaveFile(string name, BitmapType type)
     bool SaveFile(string name, string mimetype)

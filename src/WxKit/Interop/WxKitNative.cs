@@ -458,6 +458,16 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte UIActionSimulatorSelect(char* text, nuint textLength);
 
+	// Images in memory
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_LoadData")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ImageLoadData(WxkObject* image, byte* data, nuint length, int type, int index);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_SaveData")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte* ImageSaveData(WxkObject* image, int type, nuint* size);
+
 	// One running copy
 
 	[LibraryImport(Library, EntryPoint = "wxk_SingleInstanceChecker_new")]

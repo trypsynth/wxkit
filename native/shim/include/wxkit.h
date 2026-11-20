@@ -421,6 +421,15 @@ WXK_FUNCTION(wxk_Object*) wxk_ManagedPrintout_new(const char16_t* title, size_t 
 // preview could not be made. The preview takes the printouts, and deletes them when it closes.
 WXK_FUNCTION(wxk_Window*) wxk_PrintPreview_Show(wxk_Object* printout, wxk_Object* printoutForPrinting, wxk_Object* data, wxk_Window* parent, const char16_t* title, size_t titleLength, wxk_Size size) WXK_NOEXCEPT;
 
+// Images in memory
+
+// Loads an image from the bytes of a file in a format whose handler was added, and returns whether
+// it could. A failure is not logged.
+WXK_FUNCTION(uint8_t) wxk_Image_LoadData(wxk_Object* image, const uint8_t* data, size_t length, int32_t type, int32_t index) WXK_NOEXCEPT;
+// The image as the bytes of a file in a format, which the caller frees with wxk_Bytes_Free, or null
+// when it cannot be saved in it. A failure is not logged.
+WXK_FUNCTION(uint8_t*) wxk_Image_SaveData(wxk_Object* image, int32_t type, size_t* size) WXK_NOEXCEPT;
+
 // One running copy
 
 typedef struct wxk_SingleInstanceChecker wxk_SingleInstanceChecker;
