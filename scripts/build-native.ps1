@@ -28,12 +28,26 @@ function Invoke-Checked([string]$description) {
 	if ($LASTEXITCODE -ne 0) { throw "$description failed." }
 }
 
-function Get-WindowsGenerator {
-	# CMake falls back to Ninja on some setups, which cannot take -A, so the newest Visual Studio
-	# with the C++ tools is looked up and named explicitly.
+function Get-VisualStudio {
 	$vswhere = Join-Path ${env:ProgramFiles(x86)} "Microsoft Visual Studio/Installer/vswhere.exe"
 	$studio = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -format json | ConvertFrom-Json | Select-Object -First 1
 	if (-not $studio) { throw "No Visual Studio with the C++ tools was found." }
+	return $studio
+}
+
+function Get-WindowsCMake($studio) {
+	# Visual Studio's C++ tools install a CMake of their own, which is only on PATH in a developer
+	# shell, so it is used when no other CMake is.
+	$command = Get-Command cmake -ErrorAction SilentlyContinue
+	if ($command) { return $command.Source }
+	$bundled = Join-Path $studio.installationPath "Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/cmake.exe"
+	if (-not (Test-Path $bundled)) { throw "CMake is not on PATH, and Visual Studio has none of its own. Install CMake, or Visual Studio's C++ CMake tools." }
+	return $bundled
+}
+
+function Get-WindowsGenerator($studio) {
+	# CMake falls back to Ninja on some setups, which cannot take -A, so the newest Visual Studio
+	# with the C++ tools is named explicitly.
 	$years = @{ "16" = "2019"; "17" = "2022"; "18" = "2026" }
 	$major = $studio.installationVersion.Split(".")[0]
 	if (-not $years.ContainsKey($major)) { throw "Visual Studio $major is not one this script knows the CMake generator for." }
@@ -123,7 +137,7 @@ function Build-Mac([string]$runtime) {
 	Write-Host "Built $runtime into $output"
 }
 
-$generator = $null
+$studio = $null
 foreach ($runtime in $Runtimes) {
 	if ($linuxArchitectures.ContainsKey($runtime)) {
 		Build-Linux $runtime
@@ -134,12 +148,16 @@ foreach ($runtime in $Runtimes) {
 		continue
 	}
 	if (-not $windowsArchitectures.ContainsKey($runtime)) { throw "$runtime is not a runtime this script can build yet." }
-	$generator ??= Get-WindowsGenerator
+	if (-not $studio) {
+		$studio = Get-VisualStudio
+		$generator = Get-WindowsGenerator $studio
+		$cmake = Get-WindowsCMake $studio
+	}
 	$build = Join-Path $root "artifacts/native-build/$runtime"
 	$output = Join-Path $root "artifacts/native/$runtime"
-	cmake -S $source -B $build -G $generator -A $windowsArchitectures[$runtime] "-DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded"
+	& $cmake -S $source -B $build -G $generator -A $windowsArchitectures[$runtime] "-DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded"
 	Invoke-Checked "Configuring $runtime"
-	cmake --build $build --config $Configuration --parallel --target wxkitnative_static wxkitnative wxkit_resources
+	& $cmake --build $build --config $Configuration --parallel --target wxkitnative_static wxkitnative wxkit_resources
 	Invoke-Checked "Building $runtime"
 	$static = Join-Path $output "static"
 	$shared = Join-Path $output "shared"

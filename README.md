@@ -12,7 +12,7 @@ On Windows, you need the following:
 
 - The .NET 10 SDK.
 - Visual Studio 2022 or newer, or its Build Tools, with the C++ tools. Building for ARM64 also needs their ARM64 build tools, which the Visual Studio Installer lists as "MSVC ARM64/ARM64EC build tools".
-- CMake.
+- CMake. Without one on `PATH`, the build script uses the one Visual Studio installs with its C++ CMake tools.
 - PowerShell 7.
 
 wxWidgets is a git submodule, built with CMake. The build script builds it, and WxKit's native shim, for the runtimes you give it, and defaults to `win-x64`. Give it `-Runtimes win-x64, win-arm64` for both. An x64 machine can build for ARM64, but only an ARM64 machine can run what it builds. The first build of each runtime takes 10 to 20 minutes.

@@ -19,7 +19,7 @@ Output goes to `artifacts/native/<runtime>/static` and `artifacts/native/<runtim
 
 ### Windows
 
-- wxWidgets and the shim are built with the static C runtime, `/MT`, because that is what Native AOT links. The script finds the newest Visual Studio with the C++ tools and names its CMake generator explicitly.
+- wxWidgets and the shim are built with the static C runtime, `/MT`, because that is what Native AOT links. The script finds the newest Visual Studio with the C++ tools and names its CMake generator explicitly. Without a CMake on `PATH`, it uses the one that Visual Studio installs, which is only on `PATH` in a developer shell.
 - `win-arm64` builds on an x64 machine as well as an ARM64 one, with Visual Studio's ARM64 build tools, and Native AOT publishes for it from either. Only an ARM64 machine can run what it makes, so CI tests it on one.
 - The static link lists the Windows libraries that wxMSW uses, such as `comctl32`, `uxtheme`, `oleacc`, `gdiplus`, `shlwapi`, and `version`.
 - wxMSW needs version 6 of the common controls for themed controls, and wants per-monitor DPI awareness. Both come from the application manifest. The package's targets set `ApplicationManifest` to WxKit's own manifest, which declares both, unless the application sets its own. The compiler embeds it in the managed assembly, as it would any manifest, and Native AOT copies it into the executable from there.
