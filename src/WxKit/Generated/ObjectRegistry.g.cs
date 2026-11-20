@@ -78,6 +78,7 @@ internal static unsafe partial class ObjectRegistry {
 		["wxStaticLine"] = static native => new StaticLine((WxkWindow*)native),
 		["wxStaticText"] = static native => new StaticText((WxkWindow*)native),
 		["wxStatusBar"] = static native => new StatusBar((WxkWindow*)native),
+		["wxStyledTextCtrl"] = static native => new StyledTextCtrl((WxkWindow*)native),
 		["wxTaskBarIcon"] = static native => new TaskBarIcon((WxkEvtHandler*)native),
 		["wxTextCtrl"] = static native => new TextCtrl((WxkWindow*)native),
 		["wxTextEntryDialog"] = static native => new TextEntryDialog((WxkWindow*)native),

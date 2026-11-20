@@ -29,11 +29,13 @@ internal static partial class HeaderConstants {
 	// constant cannot: an enum value inside an #if, or one that follows such a value without an
 	// initializer, as wxCURSOR_ARROWWAIT follows wxGTK's wxCURSOR_DEFAULT, and a #define written
 	// more than one way, as wxTR_DEFAULT_STYLE is for each platform.
-	public static HeaderValues ReadValues(string includeDirectory) {
+	// The headers of each directory, but not its subdirectories, which hold the ports' own headers,
+	// whose values would differ.
+	public static HeaderValues ReadValues(params string[] includeDirectories) {
 		Dictionary<string, string> values = new(StringComparer.Ordinal);
 		HashSet<string> conditional = new(StringComparer.Ordinal);
 		Dictionary<string, string> defines = new(StringComparer.Ordinal);
-		foreach (string header in Directory.EnumerateFiles(includeDirectory, "*.h")) {
+		foreach (string header in includeDirectories.SelectMany(static directory => Directory.EnumerateFiles(directory, "*.h"))) {
 			string text = ContinuationPattern().Replace(CommentPattern().Replace(File.ReadAllText(header), " "), " ");
 			foreach (Match define in DefinePattern().Matches(text)) {
 				string name = define.Groups[1].Value;

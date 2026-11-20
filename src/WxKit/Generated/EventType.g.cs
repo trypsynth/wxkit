@@ -1230,6 +1230,244 @@ public static unsafe partial class EventType {
 		public static readonly EventType<SplitterEvent> Value = new(WxKitNative.EventTypeSplitterUnsplit, static native => new SplitterEvent((WxkEvent*)native));
 	}
 
+	/// <summary>Wraps wxEVT_STC_AUTOCOMP_CANCELLED.</summary>
+	public static EventType<StyledTextEvent> StcAutocompCancelled => StcAutocompCancelledType.Value;
+
+	private static class StcAutocompCancelledType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcAutocompCancelled, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_AUTOCOMP_CHAR_DELETED.</summary>
+	public static EventType<StyledTextEvent> StcAutocompCharDeleted => StcAutocompCharDeletedType.Value;
+
+	private static class StcAutocompCharDeletedType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcAutocompCharDeleted, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_AUTOCOMP_COMPLETED.</summary>
+	public static EventType<StyledTextEvent> StcAutocompCompleted => StcAutocompCompletedType.Value;
+
+	private static class StcAutocompCompletedType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcAutocompCompleted, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_AUTOCOMP_SELECTION.</summary>
+	public static EventType<StyledTextEvent> StcAutocompSelection => StcAutocompSelectionType.Value;
+
+	private static class StcAutocompSelectionType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcAutocompSelection, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_AUTOCOMP_SELECTION_CHANGE.</summary>
+	public static EventType<StyledTextEvent> StcAutocompSelectionChange => StcAutocompSelectionChangeType.Value;
+
+	private static class StcAutocompSelectionChangeType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcAutocompSelectionChange, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_CALLTIP_CLICK.</summary>
+	public static EventType<StyledTextEvent> StcCalltipClick => StcCalltipClickType.Value;
+
+	private static class StcCalltipClickType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcCalltipClick, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_CHANGE.</summary>
+	public static EventType<StyledTextEvent> StcChange => StcChangeType.Value;
+
+	private static class StcChangeType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcChange, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_CHARADDED.</summary>
+	public static EventType<StyledTextEvent> StcCharadded => StcCharaddedType.Value;
+
+	private static class StcCharaddedType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcCharadded, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_CLIPBOARD_COPY.</summary>
+	public static EventType<StyledTextEvent> StcClipboardCopy => StcClipboardCopyType.Value;
+
+	private static class StcClipboardCopyType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcClipboardCopy, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_CLIPBOARD_PASTE.</summary>
+	public static EventType<StyledTextEvent> StcClipboardPaste => StcClipboardPasteType.Value;
+
+	private static class StcClipboardPasteType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcClipboardPaste, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_DO_DROP.</summary>
+	public static EventType<StyledTextEvent> StcDoDrop => StcDoDropType.Value;
+
+	private static class StcDoDropType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcDoDrop, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_DOUBLECLICK.</summary>
+	public static EventType<StyledTextEvent> StcDoubleclick => StcDoubleclickType.Value;
+
+	private static class StcDoubleclickType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcDoubleclick, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_DRAG_OVER.</summary>
+	public static EventType<StyledTextEvent> StcDragOver => StcDragOverType.Value;
+
+	private static class StcDragOverType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcDragOver, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_DWELLEND.</summary>
+	public static EventType<StyledTextEvent> StcDwellend => StcDwellendType.Value;
+
+	private static class StcDwellendType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcDwellend, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_DWELLSTART.</summary>
+	public static EventType<StyledTextEvent> StcDwellstart => StcDwellstartType.Value;
+
+	private static class StcDwellstartType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcDwellstart, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_HOTSPOT_CLICK.</summary>
+	public static EventType<StyledTextEvent> StcHotspotClick => StcHotspotClickType.Value;
+
+	private static class StcHotspotClickType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcHotspotClick, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_HOTSPOT_DCLICK.</summary>
+	public static EventType<StyledTextEvent> StcHotspotDclick => StcHotspotDclickType.Value;
+
+	private static class StcHotspotDclickType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcHotspotDclick, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_HOTSPOT_RELEASE_CLICK.</summary>
+	public static EventType<StyledTextEvent> StcHotspotReleaseClick => StcHotspotReleaseClickType.Value;
+
+	private static class StcHotspotReleaseClickType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcHotspotReleaseClick, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_INDICATOR_CLICK.</summary>
+	public static EventType<StyledTextEvent> StcIndicatorClick => StcIndicatorClickType.Value;
+
+	private static class StcIndicatorClickType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcIndicatorClick, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_INDICATOR_RELEASE.</summary>
+	public static EventType<StyledTextEvent> StcIndicatorRelease => StcIndicatorReleaseType.Value;
+
+	private static class StcIndicatorReleaseType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcIndicatorRelease, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_MACRORECORD.</summary>
+	public static EventType<StyledTextEvent> StcMacrorecord => StcMacrorecordType.Value;
+
+	private static class StcMacrorecordType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcMacrorecord, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_MARGIN_RIGHT_CLICK.</summary>
+	public static EventType<StyledTextEvent> StcMarginRightClick => StcMarginRightClickType.Value;
+
+	private static class StcMarginRightClickType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcMarginRightClick, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_MARGINCLICK.</summary>
+	public static EventType<StyledTextEvent> StcMarginclick => StcMarginclickType.Value;
+
+	private static class StcMarginclickType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcMarginclick, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_MODIFIED.</summary>
+	public static EventType<StyledTextEvent> StcModified => StcModifiedType.Value;
+
+	private static class StcModifiedType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcModified, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_NEEDSHOWN.</summary>
+	public static EventType<StyledTextEvent> StcNeedshown => StcNeedshownType.Value;
+
+	private static class StcNeedshownType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcNeedshown, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_PAINTED.</summary>
+	public static EventType<StyledTextEvent> StcPainted => StcPaintedType.Value;
+
+	private static class StcPaintedType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcPainted, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_ROMODIFYATTEMPT.</summary>
+	public static EventType<StyledTextEvent> StcRomodifyattempt => StcRomodifyattemptType.Value;
+
+	private static class StcRomodifyattemptType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcRomodifyattempt, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_SAVEPOINTLEFT.</summary>
+	public static EventType<StyledTextEvent> StcSavepointleft => StcSavepointleftType.Value;
+
+	private static class StcSavepointleftType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcSavepointleft, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_SAVEPOINTREACHED.</summary>
+	public static EventType<StyledTextEvent> StcSavepointreached => StcSavepointreachedType.Value;
+
+	private static class StcSavepointreachedType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcSavepointreached, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_START_DRAG.</summary>
+	public static EventType<StyledTextEvent> StcStartDrag => StcStartDragType.Value;
+
+	private static class StcStartDragType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcStartDrag, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_STYLENEEDED.</summary>
+	public static EventType<StyledTextEvent> StcStyleneeded => StcStyleneededType.Value;
+
+	private static class StcStyleneededType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcStyleneeded, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_UPDATEUI.</summary>
+	public static EventType<StyledTextEvent> StcUpdateui => StcUpdateuiType.Value;
+
+	private static class StcUpdateuiType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcUpdateui, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_USERLISTSELECTION.</summary>
+	public static EventType<StyledTextEvent> StcUserlistselection => StcUserlistselectionType.Value;
+
+	private static class StcUserlistselectionType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcUserlistselection, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_ZOOM.</summary>
+	public static EventType<StyledTextEvent> StcZoom => StcZoomType.Value;
+
+	private static class StcZoomType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcZoom, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
 	/// <summary>Wraps wxEVT_SYS_COLOUR_CHANGED.</summary>
 	public static EventType<SysColorChangedEvent> SysColorChanged => SysColorChangedType.Value;
 

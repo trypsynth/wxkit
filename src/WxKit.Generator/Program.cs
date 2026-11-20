@@ -16,7 +16,9 @@ foreach ((string name, string value) in HeaderConstants.ReadDeprecatedGuiConstan
 // The real headers are what the shim compiles against, so their enum values win. The interface
 // headers leave some out, such as wxTextValidatorStyle's flags, and Doxygen cuts others short at a
 // continued line, such as wxEVT_CATEGORY_ALL.
-HeaderValues header = HeaderConstants.ReadValues(Path.Combine(root, "native", "wxWidgets", "include", "wx"));
+// The styled text control's headers, in wx/stc, define its constants.
+string include = Path.Combine(root, "native", "wxWidgets", "include", "wx");
+HeaderValues header = HeaderConstants.ReadValues(include, Path.Combine(include, "stc"));
 foreach ((string name, string value) in header.Values) constants[name] = value;
 // A constant whose value depends on the platform has no one value to give a C# constant, so it is
 // left out, and the C++ default applies where it would have been one.

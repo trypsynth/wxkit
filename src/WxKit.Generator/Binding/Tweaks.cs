@@ -49,6 +49,15 @@ internal sealed class Tweaks {
 	/// <param name="exclude">Values left out, such as the bounds of the ids wxWidgets assigns itself.</param>
 	public void ConstantClass(string cppName, string managedName, params string[] exclude) => ConstantClasses[cppName] = new ConstantClassTweak(managedName, new HashSet<string>(exclude, StringComparer.Ordinal));
 
+	/// <summary>
+	/// Constants wxWidgets defines one by one with a shared prefix, bound as a static class of int
+	/// constants, as the styled text control's wxSTC_ ones are Stc, since they are too many, in too
+	/// many groups, to be enums.
+	/// </summary>
+	public Dictionary<string, string> PrefixConstantClasses { get; } = new(StringComparer.Ordinal);
+
+	public void ConstantClassOf(string managedName, string prefix) => PrefixConstantClasses[prefix] = managedName;
+
 	/// <summary>Classes wxWidgets makes from a template, such as wxScrolledWindow from wxScrolled&lt;wxPanel&gt;, which the interface headers only give as the template.</summary>
 	public List<TemplateInstanceTweak> TemplateInstances { get; } = [];
 
@@ -195,6 +204,17 @@ internal sealed class ClassTweak(string name) {
 
 	public ClassTweak Wrappable() {
 		IsWrappable = true;
+		return this;
+	}
+
+	/// <summary>
+	/// Mixins the interface headers name differently from the real ones, and the real base the shim
+	/// casts to for their members, as wxStyledTextCtrl's wxTextEntry is wxTextEntryBase there.
+	/// </summary>
+	public Dictionary<string, string> MixinBases { get; } = new(StringComparer.Ordinal);
+
+	public ClassTweak MixinBase(string mixin, string realBase) {
+		MixinBases[mixin] = realBase;
 		return this;
 	}
 

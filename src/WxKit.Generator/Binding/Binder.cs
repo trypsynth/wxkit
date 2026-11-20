@@ -61,6 +61,14 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 			if (EnumFor(cppName) is null) throw new InvalidOperationException($"A tweak binds the enum {cppName}, which the interface headers do not have.");
 		}
 		foreach (ConstantEnumTweak group in tweaks.ConstantEnums) BindConstantEnum(group);
+		foreach ((string prefix, string managedName) in tweaks.PrefixConstantClasses) {
+			// Only the ones the real headers define, which leaves out those they keep for compatibility,
+			// such as wxSTC_INDIC0_MASK, and those they mark deprecated.
+			List<string> names = [.. api.Constants.Keys.Where(name => name.StartsWith(prefix, StringComparison.Ordinal) && api.HeaderDefines.TryGetValue(name, out string? defined) && !defined.Contains("DEPRECATED", StringComparison.Ordinal)).Order(StringComparer.Ordinal)];
+			if (names.Count == 0) throw new InvalidOperationException($"A tweak binds the constants named {prefix}*, which the headers do not define.");
+			DoxygenEnum source = new($"{prefix}*", [.. names.Select(static name => new DoxygenEnumValue(name, string.Empty))]);
+			_enums[$"{prefix}* constants"] = new BoundEnum(managedName, source.Name, EnumMembers(source.Name, source, memberPrefix: null)) { IsConstantClass = true };
+		}
 		foreach ((string cppName, ConstantClassTweak constants) in tweaks.ConstantClasses) {
 			if (!api.Enums.TryGetValue(cppName, out DoxygenEnum? source)) throw new InvalidOperationException($"A tweak binds the enum {cppName} as constants, which the interface headers do not have.");
 			DoxygenEnum kept = source with { Values = [.. source.Values.Where(value => !constants.Exclude.Contains(value.Name)).DistinctBy(static value => value.Name)] };

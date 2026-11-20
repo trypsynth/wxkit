@@ -85,6 +85,7 @@
 #include <wx/statline.h>
 #include <wx/stattext.h>
 #include <wx/statusbr.h>
+#include <wx/stc/stc.h>
 #include <wx/taskbar.h>
 #include <wx/textctrl.h>
 #include <wx/textdlg.h>

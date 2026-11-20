@@ -21,7 +21,8 @@ $macArchitectures = @{ "osx-arm64" = "arm64"; "osx-x64" = "x86_64" }
 $macDeploymentTarget = "12.0"
 # GNU ld reads each static library once, in order, so each comes before the ones it uses: the
 # shim, wxWidgets's core, its base, and then the libraries they build in.
-$linuxLinkOrder = @("wxkitnative", "core", "base", "tiff", "jpeg", "png", "webpdemux", "webp", "sharpyuv", "regex", "expat", "zlib")
+# The styled text control is wxWidgets's layer over Scintilla and Lexilla, so it comes before them.
+$linuxLinkOrder = @("wxkitnative", "stc", "scintilla", "lexilla", "core", "base", "tiff", "jpeg", "png", "webpdemux", "webp", "sharpyuv", "regex", "expat", "zlib")
 $windowsLibraries = @("kernel32.lib", "user32.lib", "gdi32.lib", "gdiplus.lib", "msimg32.lib", "comdlg32.lib", "winspool.lib", "winmm.lib", "shell32.lib", "shlwapi.lib", "comctl32.lib", "ole32.lib", "oleaut32.lib", "uuid.lib", "rpcrt4.lib", "advapi32.lib", "version.lib", "ws2_32.lib", "wininet.lib", "oleacc.lib", "uxtheme.lib", "imm32.lib", "dwmapi.lib", "usp10.lib")
 
 function Invoke-Checked([string]$description) {

@@ -7562,6 +7562,3246 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* StdDialogButtonSizerGetHelpButton(WxkSizer* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* StyledTextCtrlNew(WxkWindow* parent, int id, Point position, Size size, long style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AddText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAddText(WxkWindow* self, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_InsertText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlInsertText(WxkWindow* self, int position, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ChangeInsertion")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlChangeInsertion(WxkWindow* self, int length, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ClearAll")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlClearAll(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DeleteRange")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlDeleteRange(WxkWindow* self, int start, int lengthDelete);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ClearDocumentStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlClearDocumentStyle(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetCharAt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetCharAt(WxkWindow* self, int position);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetStyleAt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetStyleAt(WxkWindow* self, int position);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetSavePoint")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetSavePoint(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlGetLine(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetTextRange")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlGetTextRange(WxkWindow* self, int startPos, int endPos);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ReplaceSelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlReplaceSelection(WxkWindow* self, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AppendText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAppendText(WxkWindow* self, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_Allocate")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAllocate(WxkWindow* self, int bytes);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ReleaseAllExtendedStyles")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlReleaseAllExtendedStyles(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AllocateExtendedStyles")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAllocateExtendedStyles(WxkWindow* self, int numberStyles);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_FindText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlFindText(WxkWindow* self, int minPos, int maxPos, char* text, nuint textLength, int flags);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetTargetRange")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetTargetRange(WxkWindow* self, int start, int end);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_TargetFromSelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlTargetFromSelection(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_TargetWholeDocument")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlTargetWholeDocument(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ReplaceTarget")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlReplaceTarget(WxkWindow* self, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ReplaceTargetRE")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlReplaceTargetRE(WxkWindow* self, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SearchInTarget")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlSearchInTarget(WxkWindow* self, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetTag")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlGetTag(WxkWindow* self, int tagNumber);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SearchAnchor")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSearchAnchor(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SearchNext")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlSearchNext(WxkWindow* self, int searchFlags, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SearchPrev")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlSearchPrev(WxkWindow* self, int searchFlags, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_Cut")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCut(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_Copy")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCopy(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_Paste")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlPaste(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_Clear")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlClear(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CopyRange")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCopyRange(WxkWindow* self, int start, int end);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CopyText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCopyText(WxkWindow* self, int length, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CopyAllowLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCopyAllowLine(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_Redo")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlRedo(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_BeginUndoAction")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlBeginUndoAction(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EndUndoAction")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlEndUndoAction(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EmptyUndoBuffer")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlEmptyUndoBuffer(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_Undo")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlUndo(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AddUndoAction")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAddUndoAction(WxkWindow* self, int token, int flags);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SelectAll")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSelectAll(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_PositionFromPoint")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlPositionFromPoint(WxkWindow* self, Point point);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_PositionFromPointClose")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlPositionFromPointClose(WxkWindow* self, int x, int y);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GotoLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlGotoLine(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GotoPos")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlGotoPos(WxkWindow* self, int caret);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetColumn")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetColumn(WxkWindow* self, int position);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CountCharacters")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlCountCharacters(WxkWindow* self, int start, int end);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLineEndPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetLineEndPosition(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetEmptySelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetEmptySelection(WxkWindow* self, int caret);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_HideSelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlHideSelection(WxkWindow* self, byte hide);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_PointFromPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial Point StyledTextCtrlPointFromPosition(WxkWindow* self, int position);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineFromPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlLineFromPosition(WxkWindow* self, int position);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_PositionFromLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlPositionFromLine(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_TextWidth")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlTextWidth(WxkWindow* self, int style, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_TextHeight")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlTextHeight(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MoveCaretInsideView")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMoveCaretInsideView(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineLength")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlLineLength(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LinesOnScreen")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlLinesOnScreen(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SelectionIsRectangle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlSelectionIsRectangle(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ChooseCaretX")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlChooseCaretX(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_PositionBefore")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlPositionBefore(WxkWindow* self, int position);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_PositionAfter")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlPositionAfter(WxkWindow* self, int position);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_PositionRelative")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlPositionRelative(WxkWindow* self, int position, int relative);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLineSelStartPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetLineSelStartPosition(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLineSelEndPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetLineSelEndPosition(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_FindColumn")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlFindColumn(WxkWindow* self, int line, int column);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CharPositionFromPoint")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlCharPositionFromPoint(WxkWindow* self, int x, int y);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CharPositionFromPointClose")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlCharPositionFromPointClose(WxkWindow* self, int x, int y);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MoveSelectedLinesUp")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMoveSelectedLinesUp(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MoveSelectedLinesDown")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMoveSelectedLinesDown(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ClearSelections")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlClearSelections(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AddSelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAddSelection(WxkWindow* self, int caret, int anchor);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DropSelectionN")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlDropSelectionN(WxkWindow* self, int selection);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetSelectionNCaret")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetSelectionNCaret(WxkWindow* self, int selection, int caret);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelectionNCaret")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetSelectionNCaret(WxkWindow* self, int selection);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetSelectionNAnchor")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetSelectionNAnchor(WxkWindow* self, int selection, int anchor);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelectionNAnchor")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetSelectionNAnchor(WxkWindow* self, int selection);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetSelectionNCaretVirtualSpace")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetSelectionNCaretVirtualSpace(WxkWindow* self, int selection, int space);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelectionNCaretVirtualSpace")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetSelectionNCaretVirtualSpace(WxkWindow* self, int selection);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetSelectionNAnchorVirtualSpace")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetSelectionNAnchorVirtualSpace(WxkWindow* self, int selection, int space);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelectionNAnchorVirtualSpace")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetSelectionNAnchorVirtualSpace(WxkWindow* self, int selection);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetSelectionNStart")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetSelectionNStart(WxkWindow* self, int selection, int anchor);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelectionNStart")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetSelectionNStart(WxkWindow* self, int selection);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetSelectionNEnd")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetSelectionNEnd(WxkWindow* self, int selection, int caret);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelectionNEnd")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetSelectionNEnd(WxkWindow* self, int selection);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetAdditionalSelForeground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetAdditionalSelForeground(WxkWindow* self, WxkColor fore);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetAdditionalSelBackground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetAdditionalSelBackground(WxkWindow* self, WxkColor back);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_RotateSelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlRotateSelection(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SwapMainAnchorCaret")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSwapMainAnchorCaret(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MultipleSelectAddNext")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMultipleSelectAddNext(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MultipleSelectAddEach")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMultipleSelectAddEach(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineScroll")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLineScroll(WxkWindow* self, int columns, int lines);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EnsureCaretVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlEnsureCaretVisible(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ScrollRange")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlScrollRange(WxkWindow* self, int secondary, int primary);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetVisiblePolicy")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetVisiblePolicy(WxkWindow* self, int visiblePolicy, int visibleSlop);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetXCaretPolicy")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetXCaretPolicy(WxkWindow* self, int caretPolicy, int caretSlop);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetYCaretPolicy")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetYCaretPolicy(WxkWindow* self, int caretPolicy, int caretSlop);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetWhitespaceForeground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetWhitespaceForeground(WxkWindow* self, byte useSetting, WxkColor fore);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetWhitespaceBackground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetWhitespaceBackground(WxkWindow* self, byte useSetting, WxkColor back);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ConvertEOLs")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlConvertEOLs(WxkWindow* self, int eolMode);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_WordStartPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlWordStartPosition(WxkWindow* self, int position, byte onlyWordCharacters);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_WordEndPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlWordEndPosition(WxkWindow* self, int position, byte onlyWordCharacters);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IsRangeWord")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlIsRangeWord(WxkWindow* self, int start, int end);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetCharsDefault")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetCharsDefault(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StartStyling")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStartStyling(WxkWindow* self, int start);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetStyling")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetStyling(WxkWindow* self, int length, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetLineState")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetLineState(WxkWindow* self, int line, int state);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLineState")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetLineState(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleClearAll")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStyleClearAll(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleSetForeground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStyleSetForeground(WxkWindow* self, int style, WxkColor fore);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleSetBackground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStyleSetBackground(WxkWindow* self, int style, WxkColor back);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleSetBold")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStyleSetBold(WxkWindow* self, int style, byte bold);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleSetItalic")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStyleSetItalic(WxkWindow* self, int style, byte italic);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleSetSize")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStyleSetSize(WxkWindow* self, int style, int sizePoints);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleSetFaceName")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStyleSetFaceName(WxkWindow* self, int style, char* fontName, nuint fontNameLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleSetEOLFilled")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStyleSetEOLFilled(WxkWindow* self, int style, byte eolFilled);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleResetDefault")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStyleResetDefault(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleSetUnderline")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStyleSetUnderline(WxkWindow* self, int style, byte underline);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleGetForeground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor StyledTextCtrlStyleGetForeground(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleGetBackground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor StyledTextCtrlStyleGetBackground(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleGetBold")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlStyleGetBold(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleGetItalic")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlStyleGetItalic(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleGetSize")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlStyleGetSize(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleGetFaceName")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlStyleGetFaceName(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleGetEOLFilled")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlStyleGetEOLFilled(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleGetUnderline")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlStyleGetUnderline(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleGetCase")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlStyleGetCase(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleGetCharacterSet")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlStyleGetCharacterSet(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleGetVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlStyleGetVisible(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleGetChangeable")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlStyleGetChangeable(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleGetHotSpot")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlStyleGetHotSpot(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleSetCase")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStyleSetCase(WxkWindow* self, int style, int caseVisible);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleSetSizeFractional")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStyleSetSizeFractional(WxkWindow* self, int style, int sizeHundredthPoints);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleGetSizeFractional")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlStyleGetSizeFractional(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleSetWeight")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStyleSetWeight(WxkWindow* self, int style, int weight);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleGetWeight")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlStyleGetWeight(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleSetCharacterSet")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStyleSetCharacterSet(WxkWindow* self, int style, int characterSet);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleSetHotSpot")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStyleSetHotSpot(WxkWindow* self, int style, byte hotspot);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleSetVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStyleSetVisible(WxkWindow* self, int style, byte visible);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleSetChangeable")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStyleSetChangeable(WxkWindow* self, int style, byte changeable);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetSelForeground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetSelForeground(WxkWindow* self, byte useSetting, WxkColor fore);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetSelBackground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetSelBackground(WxkWindow* self, byte useSetting, WxkColor back);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetHotspotActiveForeground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetHotspotActiveForeground(WxkWindow* self, byte useSetting, WxkColor fore);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetHotspotActiveBackground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetHotspotActiveBackground(WxkWindow* self, byte useSetting, WxkColor back);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ToggleCaretSticky")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlToggleCaretSticky(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetRepresentation")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetRepresentation(WxkWindow* self, char* encodedCharacter, nuint encodedCharacterLength, char* representation, nuint representationLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetRepresentation")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlGetRepresentation(WxkWindow* self, char* encodedCharacter, nuint encodedCharacterLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ClearRepresentation")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlClearRepresentation(WxkWindow* self, char* encodedCharacter, nuint encodedCharacterLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMarginType")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetMarginType(WxkWindow* self, int margin, int marginType);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMarginType")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetMarginType(WxkWindow* self, int margin);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMarginWidth")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetMarginWidth(WxkWindow* self, int margin, int pixelWidth);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMarginWidth")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetMarginWidth(WxkWindow* self, int margin);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMarginMask")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetMarginMask(WxkWindow* self, int margin, int mask);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMarginMask")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetMarginMask(WxkWindow* self, int margin);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMarginSensitive")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetMarginSensitive(WxkWindow* self, int margin, byte sensitive);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMarginSensitive")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetMarginSensitive(WxkWindow* self, int margin);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMarginCursor")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetMarginCursor(WxkWindow* self, int margin, int cursor);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMarginCursor")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetMarginCursor(WxkWindow* self, int margin);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMarginBackground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetMarginBackground(WxkWindow* self, int margin, WxkColor back);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMarginBackground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor StyledTextCtrlGetMarginBackground(WxkWindow* self, int margin);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetFoldMarginColour")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetFoldMarginColour(WxkWindow* self, byte useSetting, WxkColor back);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetFoldMarginHiColour")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetFoldMarginHiColour(WxkWindow* self, byte useSetting, WxkColor fore);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarginSetText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMarginSetText(WxkWindow* self, int line, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarginGetText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlMarginGetText(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarginSetStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMarginSetStyle(WxkWindow* self, int line, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarginGetStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlMarginGetStyle(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarginSetStyles")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMarginSetStyles(WxkWindow* self, int line, char* styles, nuint stylesLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarginGetStyles")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlMarginGetStyles(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarginTextClearAll")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMarginTextClearAll(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarginSetStyleOffset")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMarginSetStyleOffset(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarginGetStyleOffset")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlMarginGetStyleOffset(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationSetText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAnnotationSetText(WxkWindow* self, int line, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationGetText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlAnnotationGetText(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationSetStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAnnotationSetStyle(WxkWindow* self, int line, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationGetStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAnnotationGetStyle(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationSetStyles")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAnnotationSetStyles(WxkWindow* self, int line, char* styles, nuint stylesLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationGetStyles")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlAnnotationGetStyles(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationGetLines")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAnnotationGetLines(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationClearAll")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAnnotationClearAll(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationSetVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAnnotationSetVisible(WxkWindow* self, int visible);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationGetVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAnnotationGetVisible(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationSetStyleOffset")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAnnotationSetStyleOffset(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationGetStyleOffset")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAnnotationGetStyleOffset(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarkerHandleFromLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlMarkerHandleFromLine(WxkWindow* self, int line, int which);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarkerNumberFromLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlMarkerNumberFromLine(WxkWindow* self, int line, int which);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CountCodeUnits")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlCountCodeUnits(WxkWindow* self, int start, int end);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_FoldDisplayTextGetStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlFoldDisplayTextGetStyle(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineReverse")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLineReverse(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_BraceMatchNext")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlBraceMatchNext(WxkWindow* self, int position, int startPos);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMultiEdgeColumn")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetMultiEdgeColumn(WxkWindow* self, int which);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_PositionRelativeCodeUnits")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlPositionRelativeCodeUnits(WxkWindow* self, int position, int relative);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelectionNStartVirtualSpace")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetSelectionNStartVirtualSpace(WxkWindow* self, int selection);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelectionNEndVirtualSpace")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetSelectionNEndVirtualSpace(WxkWindow* self, int selection);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EOLAnnotationSetText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlEOLAnnotationSetText(WxkWindow* self, int line, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EOLAnnotationGetText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlEOLAnnotationGetText(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EOLAnnotationSetStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlEOLAnnotationSetStyle(WxkWindow* self, int line, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EOLAnnotationGetStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlEOLAnnotationGetStyle(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EOLAnnotationClearAll")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlEOLAnnotationClearAll(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EOLAnnotationSetVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlEOLAnnotationSetVisible(WxkWindow* self, int visible);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EOLAnnotationGetVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlEOLAnnotationGetVisible(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EOLAnnotationSetStyleOffset")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlEOLAnnotationSetStyleOffset(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EOLAnnotationGetStyleOffset")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlEOLAnnotationGetStyleOffset(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_NameOfStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlNameOfStyle(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_TagsOfStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlTagsOfStyle(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DescriptionOfStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlDescriptionOfStyle(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_BraceHighlight")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlBraceHighlight(WxkWindow* self, int posA, int posB);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_BraceHighlightIndicator")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlBraceHighlightIndicator(WxkWindow* self, byte useSetting, int indicator);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_BraceBadLight")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlBraceBadLight(WxkWindow* self, int position);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_BraceBadLightIndicator")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlBraceBadLightIndicator(WxkWindow* self, byte useSetting, int indicator);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_BraceMatch")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlBraceMatch(WxkWindow* self, int position, int maxReStyle);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ClearTabStops")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlClearTabStops(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AddTabStop")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAddTabStop(WxkWindow* self, int line, int x);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetNextTabStop")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetNextTabStop(WxkWindow* self, int line, int x);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetLineIndentation")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetLineIndentation(WxkWindow* self, int line, int indentation);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLineIndentation")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetLineIndentation(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLineIndentPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetLineIndentPosition(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarkerLineFromHandle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlMarkerLineFromHandle(WxkWindow* self, int markerHandle);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarkerDeleteHandle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMarkerDeleteHandle(WxkWindow* self, int markerHandle);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarkerDefine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMarkerDefine(WxkWindow* self, int markerNumber, int markerSymbol, WxkColor foreground, WxkColor background);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarkerSetForeground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMarkerSetForeground(WxkWindow* self, int markerNumber, WxkColor fore);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarkerSetBackground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMarkerSetBackground(WxkWindow* self, int markerNumber, WxkColor back);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarkerSetBackgroundSelected")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMarkerSetBackgroundSelected(WxkWindow* self, int markerNumber, WxkColor back);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarkerEnableHighlight")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMarkerEnableHighlight(WxkWindow* self, byte enabled);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarkerAdd")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlMarkerAdd(WxkWindow* self, int line, int markerNumber);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarkerDelete")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMarkerDelete(WxkWindow* self, int line, int markerNumber);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarkerDeleteAll")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMarkerDeleteAll(WxkWindow* self, int markerNumber);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarkerGet")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlMarkerGet(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarkerNext")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlMarkerNext(WxkWindow* self, int lineStart, int markerMask);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarkerPrevious")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlMarkerPrevious(WxkWindow* self, int lineStart, int markerMask);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarkerAddSet")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMarkerAddSet(WxkWindow* self, int line, int markerSet);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarkerSetAlpha")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMarkerSetAlpha(WxkWindow* self, int markerNumber, int alpha);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMarkerSymbolDefined")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetMarkerSymbolDefined(WxkWindow* self, int markerNumber);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_RGBAImageSetWidth")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlRGBAImageSetWidth(WxkWindow* self, int width);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_RGBAImageSetHeight")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlRGBAImageSetHeight(WxkWindow* self, int height);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_RGBAImageSetScale")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlRGBAImageSetScale(WxkWindow* self, int scalePercent);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorSetStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlIndicatorSetStyle(WxkWindow* self, int indicator, int indicatorStyle);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorGetStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlIndicatorGetStyle(WxkWindow* self, int indicator);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorSetForeground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlIndicatorSetForeground(WxkWindow* self, int indicator, WxkColor fore);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorGetForeground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor StyledTextCtrlIndicatorGetForeground(WxkWindow* self, int indicator);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorSetUnder")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlIndicatorSetUnder(WxkWindow* self, int indicator, byte under);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorGetUnder")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlIndicatorGetUnder(WxkWindow* self, int indicator);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorSetHoverStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlIndicatorSetHoverStyle(WxkWindow* self, int indicator, int indicatorStyle);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorGetHoverStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlIndicatorGetHoverStyle(WxkWindow* self, int indicator);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorSetHoverForeground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlIndicatorSetHoverForeground(WxkWindow* self, int indicator, WxkColor fore);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorGetHoverForeground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor StyledTextCtrlIndicatorGetHoverForeground(WxkWindow* self, int indicator);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorSetFlags")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlIndicatorSetFlags(WxkWindow* self, int indicator, int flags);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorGetFlags")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlIndicatorGetFlags(WxkWindow* self, int indicator);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorFillRange")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlIndicatorFillRange(WxkWindow* self, int start, int lengthFill);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorClearRange")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlIndicatorClearRange(WxkWindow* self, int start, int lengthClear);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorAllOnFor")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlIndicatorAllOnFor(WxkWindow* self, int position);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorValueAt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlIndicatorValueAt(WxkWindow* self, int indicator, int position);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorStart")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlIndicatorStart(WxkWindow* self, int indicator, int position);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorEnd")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlIndicatorEnd(WxkWindow* self, int indicator, int position);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorSetAlpha")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlIndicatorSetAlpha(WxkWindow* self, int indicator, int alpha);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorGetAlpha")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlIndicatorGetAlpha(WxkWindow* self, int indicator);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorSetOutlineAlpha")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlIndicatorSetOutlineAlpha(WxkWindow* self, int indicator, int alpha);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IndicatorGetOutlineAlpha")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlIndicatorGetOutlineAlpha(WxkWindow* self, int indicator);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompShow")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompShow(WxkWindow* self, int lengthEntered, char* itemList, nuint itemListLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompCancel")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompCancel(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompActive")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlAutoCompActive(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompPosStart")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAutoCompPosStart(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompComplete")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompComplete(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompStops")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompStops(WxkWindow* self, char* characterSet, nuint characterSetLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetSeparator")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetSeparator(WxkWindow* self, int separatorCharacter);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetSeparator")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAutoCompGetSeparator(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSelect")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSelect(WxkWindow* self, char* select, nuint selectLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetCancelAtStart")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetCancelAtStart(WxkWindow* self, byte cancel);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetCancelAtStart")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlAutoCompGetCancelAtStart(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetFillUps")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetFillUps(WxkWindow* self, char* characterSet, nuint characterSetLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetChooseSingle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetChooseSingle(WxkWindow* self, byte chooseSingle);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetChooseSingle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlAutoCompGetChooseSingle(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetIgnoreCase")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetIgnoreCase(WxkWindow* self, byte ignoreCase);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetIgnoreCase")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlAutoCompGetIgnoreCase(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetAutoHide")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetAutoHide(WxkWindow* self, byte autoHide);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetAutoHide")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlAutoCompGetAutoHide(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetDropRestOfWord")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetDropRestOfWord(WxkWindow* self, byte dropRestOfWord);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetDropRestOfWord")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlAutoCompGetDropRestOfWord(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ClearRegisteredImages")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlClearRegisteredImages(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetTypeSeparator")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAutoCompGetTypeSeparator(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetTypeSeparator")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetTypeSeparator(WxkWindow* self, int separatorCharacter);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetMaxWidth")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetMaxWidth(WxkWindow* self, int characterCount);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetMaxWidth")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAutoCompGetMaxWidth(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetMaxHeight")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetMaxHeight(WxkWindow* self, int rowCount);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetMaxHeight")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAutoCompGetMaxHeight(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetCurrent")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAutoCompGetCurrent(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetCurrentText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlAutoCompGetCurrentText(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetCaseInsensitiveBehaviour")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetCaseInsensitiveBehaviour(WxkWindow* self, int behavior);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetCaseInsensitiveBehaviour")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAutoCompGetCaseInsensitiveBehaviour(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetMulti")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetMulti(WxkWindow* self, int multi);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetMulti")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAutoCompGetMulti(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetOrder")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetOrder(WxkWindow* self, int order);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetOrder")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAutoCompGetOrder(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_UserListShow")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlUserListShow(WxkWindow* self, int listType, char* itemList, nuint itemListLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CallTipShow")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCallTipShow(WxkWindow* self, int position, char* definition, nuint definitionLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CallTipCancel")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCallTipCancel(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CallTipActive")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlCallTipActive(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CallTipPosAtStart")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlCallTipPosAtStart(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CallTipSetPosAtStart")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCallTipSetPosAtStart(WxkWindow* self, int posStart);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CallTipSetHighlight")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCallTipSetHighlight(WxkWindow* self, int highlightStart, int highlightEnd);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CallTipSetBackground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCallTipSetBackground(WxkWindow* self, WxkColor back);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CallTipSetForeground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCallTipSetForeground(WxkWindow* self, WxkColor fore);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CallTipSetForegroundHighlight")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCallTipSetForegroundHighlight(WxkWindow* self, WxkColor fore);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CallTipUseStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCallTipUseStyle(WxkWindow* self, int tabSize);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CallTipSetPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCallTipSetPosition(WxkWindow* self, byte above);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineDownExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLineDownExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineUpExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLineUpExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CharLeft")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCharLeft(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CharLeftExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCharLeftExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CharRight")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCharRight(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CharRightExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCharRightExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_WordLeft")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlWordLeft(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_WordLeftExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlWordLeftExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_WordRight")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlWordRight(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_WordRightExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlWordRightExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_Home")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlHome(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_HomeExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlHomeExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineEnd")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLineEnd(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineEndExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLineEndExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DocumentStart")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlDocumentStart(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DocumentStartExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlDocumentStartExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DocumentEnd")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlDocumentEnd(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DocumentEndExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlDocumentEndExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_PageUpExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlPageUpExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_PageDownExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlPageDownExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EditToggleOvertype")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlEditToggleOvertype(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_Cancel")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCancel(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DeleteBack")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlDeleteBack(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_Tab")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlTab(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_BackTab")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlBackTab(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_NewLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlNewLine(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_FormFeed")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlFormFeed(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_VCHome")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlVCHome(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_VCHomeExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlVCHomeExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DelWordLeft")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlDelWordLeft(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DelWordRight")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlDelWordRight(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DelWordRightEnd")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlDelWordRightEnd(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineCut")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLineCut(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineDelete")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLineDelete(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineTranspose")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLineTranspose(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineDuplicate")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLineDuplicate(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LowerCase")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLowerCase(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_UpperCase")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlUpperCase(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineScrollDown")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLineScrollDown(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineScrollUp")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLineScrollUp(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DeleteBackNotLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlDeleteBackNotLine(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_HomeDisplay")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlHomeDisplay(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_HomeDisplayExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlHomeDisplayExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineEndDisplay")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLineEndDisplay(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineEndDisplayExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLineEndDisplayExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_HomeWrap")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlHomeWrap(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_HomeWrapExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlHomeWrapExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineEndWrap")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLineEndWrap(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineEndWrapExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLineEndWrapExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_VCHomeWrap")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlVCHomeWrap(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_VCHomeWrapExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlVCHomeWrapExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineCopy")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLineCopy(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_WordPartLeft")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlWordPartLeft(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_WordPartLeftExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlWordPartLeftExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_WordPartRight")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlWordPartRight(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_WordPartRightExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlWordPartRightExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DelLineLeft")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlDelLineLeft(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DelLineRight")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlDelLineRight(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ParaDown")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlParaDown(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ParaDownExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlParaDownExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ParaUp")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlParaUp(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ParaUpExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlParaUpExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineDownRectExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLineDownRectExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineUpRectExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLineUpRectExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CharLeftRectExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCharLeftRectExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CharRightRectExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCharRightRectExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_HomeRectExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlHomeRectExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_VCHomeRectExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlVCHomeRectExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineEndRectExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLineEndRectExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_PageUpRectExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlPageUpRectExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_PageDownRectExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlPageDownRectExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StutteredPageUp")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStutteredPageUp(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StutteredPageUpExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStutteredPageUpExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StutteredPageDown")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStutteredPageDown(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StutteredPageDownExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStutteredPageDownExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_WordLeftEnd")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlWordLeftEnd(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_WordLeftEndExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlWordLeftEndExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_WordRightEnd")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlWordRightEnd(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_WordRightEndExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlWordRightEndExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SelectionDuplicate")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSelectionDuplicate(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_VerticalCentreCaret")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlVerticalCentreCaret(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ScrollToStart")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlScrollToStart(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ScrollToEnd")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlScrollToEnd(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_VCHomeDisplay")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlVCHomeDisplay(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_VCHomeDisplayExtend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlVCHomeDisplayExtend(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CmdKeyAssign")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCmdKeyAssign(WxkWindow* self, int key, int modifiers, int cmd);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CmdKeyClear")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCmdKeyClear(WxkWindow* self, int key, int modifiers);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CmdKeyClearAll")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCmdKeyClearAll(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_UsePopUp")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlUsePopUp(WxkWindow* self, int popUpMode);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StartRecord")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStartRecord(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StopRecord")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStopRecord(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_FormatRange")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlFormatRange(WxkWindow* self, byte doDraw, int startPos, int endPos, WxkObject* draw, WxkObject* target, Rect renderRect, Rect pageRect);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_VisibleFromDocLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlVisibleFromDocLine(WxkWindow* self, int docLine);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DocLineFromVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlDocLineFromVisible(WxkWindow* self, int displayLine);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetFoldLevel")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetFoldLevel(WxkWindow* self, int line, int level);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetFoldLevel")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetFoldLevel(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLastChild")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetLastChild(WxkWindow* self, int line, int level);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetFoldParent")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetFoldParent(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ShowLines")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlShowLines(WxkWindow* self, int lineStart, int lineEnd);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_HideLines")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlHideLines(WxkWindow* self, int lineStart, int lineEnd);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLineVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetLineVisible(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetFoldExpanded")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetFoldExpanded(WxkWindow* self, int line, byte expanded);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetFoldExpanded")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetFoldExpanded(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ToggleFold")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlToggleFold(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ToggleFoldShowText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlToggleFoldShowText(WxkWindow* self, int line, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_FoldDisplayTextSetStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlFoldDisplayTextSetStyle(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_FoldLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlFoldLine(WxkWindow* self, int line, int action);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_FoldChildren")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlFoldChildren(WxkWindow* self, int line, int action);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ExpandChildren")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlExpandChildren(WxkWindow* self, int line, int level);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_FoldAll")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlFoldAll(WxkWindow* self, int action);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EnsureVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlEnsureVisible(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetFoldFlags")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetFoldFlags(WxkWindow* self, int flags);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EnsureVisibleEnforcePolicy")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlEnsureVisibleEnforcePolicy(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ContractedFoldNext")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlContractedFoldNext(WxkWindow* self, int lineStart);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_WrapCount")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlWrapCount(WxkWindow* self, int docLine);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LinesJoin")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLinesJoin(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LinesSplit")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLinesSplit(WxkWindow* self, int pixelWidth);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ZoomIn")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlZoomIn(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ZoomOut")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlZoomOut(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MultiEdgeAddLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMultiEdgeAddLine(WxkWindow* self, int column, WxkColor edgeColor);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MultiEdgeClearAll")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMultiEdgeClearAll(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ChangeLexerState")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlChangeLexerState(WxkWindow* self, int start, int end);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_Colourise")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlColourise(WxkWindow* self, int start, int end);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetProperty")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetProperty(WxkWindow* self, char* key, nuint keyLength, char* value, nuint valueLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetKeyWords")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetKeyWords(WxkWindow* self, int keyWordSet, char* keyWords, nuint keyWordsLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LoadLexerLibrary")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlLoadLexerLibrary(WxkWindow* self, char* path, nuint pathLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetProperty")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlGetProperty(WxkWindow* self, char* key, nuint keyLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetPropertyExpanded")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlGetPropertyExpanded(WxkWindow* self, char* key, nuint keyLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetPropertyInt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetPropertyInt(WxkWindow* self, char* key, nuint keyLength, int defaultValue);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_PropertyNames")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlPropertyNames(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_PropertyType")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlPropertyType(WxkWindow* self, char* name, nuint nameLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DescribeProperty")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlDescribeProperty(WxkWindow* self, char* name, nuint nameLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DescribeKeyWordSets")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlDescribeKeyWordSets(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AllocateSubStyles")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAllocateSubStyles(WxkWindow* self, int styleBase, int numberStyles);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSubStylesStart")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetSubStylesStart(WxkWindow* self, int styleBase);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSubStylesLength")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetSubStylesLength(WxkWindow* self, int styleBase);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetStyleFromSubStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetStyleFromSubStyle(WxkWindow* self, int subStyle);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetPrimaryStyleFromStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetPrimaryStyleFromStyle(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_FreeSubStyles")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlFreeSubStyles(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetIdentifiers")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetIdentifiers(WxkWindow* self, int style, char* identifiers, nuint identifiersLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DistanceToSecondaryStyles")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlDistanceToSecondaryStyles(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleSetSpec")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStyleSetSpec(WxkWindow* self, int styleNum, char* spec, nuint specLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleGetFont")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* StyledTextCtrlStyleGetFont(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleSetFont")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStyleSetFont(WxkWindow* self, int styleNum, WxkObject* font);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleSetFontAttr")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStyleSetFontAttr(WxkWindow* self, int styleNum, int size, char* faceName, nuint faceNameLength, byte bold, byte italic, byte underline, int encoding);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_StyleSetFontEncoding")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlStyleSetFontEncoding(WxkWindow* self, int style, int encoding);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CmdKeyExecute")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCmdKeyExecute(WxkWindow* self, int cmd);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMargins_IntInt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetMarginsIntInt(WxkWindow* self, int left, int right);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ScrollToLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlScrollToLine(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ScrollToColumn")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlScrollToColumn(WxkWindow* self, int column);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetVScrollBar")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetVScrollBar(WxkWindow* self, WxkWindow* bar);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetHScrollBar")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetHScrollBar(WxkWindow* self, WxkWindow* bar);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SaveFile")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlSaveFile(WxkWindow* self, char* filename, nuint filenameLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LoadFile")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlLoadFile(WxkWindow* self, char* filename, nuint filenameLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DoDragEnter")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlDoDragEnter(WxkWindow* self, int x, int y, int defaultRes);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DoDragOver")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlDoDragOver(WxkWindow* self, int x, int y, int defaultRes);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DoDragLeave")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlDoDragLeave(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DoDropText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlDoDropText(WxkWindow* self, long x, long y, char* data, nuint dataLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationClearLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAnnotationClearLine(WxkWindow* self, int line);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarkerDefineBitmap")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMarkerDefineBitmap(WxkWindow* self, int markerNumber, WxkObject* bitmap);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_RegisterImage")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlRegisterImage(WxkWindow* self, int type, WxkObject* bitmap);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_WriteText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlWriteText(WxkWindow* self, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_Remove")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlRemove(WxkWindow* self, long from, long to);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_Replace")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlReplace(WxkWindow* self, long from, long to, char* value, nuint valueLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetSelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetSelection(WxkWindow* self, long from, long to);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SelectNone")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSelectNone(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlGetSelection(WxkWindow* self, long* from, long* to);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLineLength")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetLineLength(WxkWindow* self, long lineNo);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLineText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlGetLineText(WxkWindow* self, long lineNo);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarkDirty")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMarkDirty(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DiscardEdits")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlDiscardEdits(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_XYToPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial long StyledTextCtrlXYToPosition(WxkWindow* self, long x, long y);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_PositionToXY")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlPositionToXY(WxkWindow* self, long position, long* x, long* y);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ShowPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlShowPosition(WxkWindow* self, long position);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_HitTest")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlHitTest(WxkWindow* self, Point point, long* position);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMirrorCtrl")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetMirrorCtrl(WxkWindow* self, WxkWindow* mirrorCtrl);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetCustomDrawn")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetCustomDrawn(WxkWindow* self, byte customDrawn);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoComplete")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlAutoComplete(WxkWindow* self, WxkStringArray* choices);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompleteFileNames")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlAutoCompleteFileNames(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompleteDirectories")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlAutoCompleteDirectories(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ChangeValue")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlChangeValue(WxkWindow* self, char* value, nuint valueLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ForceUpper")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlForceUpper(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetRange")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlGetRange(WxkWindow* self, long from, long to);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetInsertionPointEnd")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetInsertionPointEnd(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMaxLength")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetMaxLength(WxkWindow* self, nuint len);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetReadOnly")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetReadOnly(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetReadOnly")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetReadOnly(WxkWindow* self, byte readOnly);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlGetText(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetText(WxkWindow* self, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetTargetStart")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetTargetStart(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetTargetStart")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetTargetStart(WxkWindow* self, int start);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetTargetEnd")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetTargetEnd(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetTargetEnd")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetTargetEnd(WxkWindow* self, int end);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetTargetText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlGetTargetText(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSearchFlags")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetSearchFlags(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetSearchFlags")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetSearchFlags(WxkWindow* self, int searchFlags);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetOvertype")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetOvertype(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetOvertype")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetOvertype(WxkWindow* self, byte overType);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CanPaste")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlCanPaste(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetPasteConvertEndings")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetPasteConvertEndings(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetPasteConvertEndings")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetPasteConvertEndings(WxkWindow* self, byte convert);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetStatus")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetStatus(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetStatus")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetStatus(WxkWindow* self, int status);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CanRedo")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlCanRedo(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetUndoCollection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetUndoCollection(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetUndoCollection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetUndoCollection(WxkWindow* self, byte collectUndo);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CanUndo")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlCanUndo(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLength")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetLength(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetCurrentPos")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetCurrentPos(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetCurrentPos")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetCurrentPos(WxkWindow* self, int caret);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetAnchor")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetAnchor(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetAnchor")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetAnchor(WxkWindow* self, int anchor);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetCurLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlGetCurLine(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelectionStart")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetSelectionStart(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetSelectionStart")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetSelectionStart(WxkWindow* self, int anchor);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelectionEnd")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetSelectionEnd(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetSelectionEnd")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetSelectionEnd(WxkWindow* self, int caret);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLineCount")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetLineCount(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetModify")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetModify(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelectedText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlGetSelectedText(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetTextLength")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetTextLength(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelectionMode")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetSelectionMode(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetSelectionMode")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetSelectionMode(WxkWindow* self, int selectionMode);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMouseSelectionRectangularSwitch")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetMouseSelectionRectangularSwitch(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMouseSelectionRectangularSwitch")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetMouseSelectionRectangularSwitch(WxkWindow* self, byte mouseSelectionRectangularSwitch);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMultiPaste")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetMultiPaste(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMultiPaste")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetMultiPaste(WxkWindow* self, int multiPaste);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMultipleSelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetMultipleSelection(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMultipleSelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetMultipleSelection(WxkWindow* self, byte multipleSelection);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetAdditionalSelectionTyping")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetAdditionalSelectionTyping(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetAdditionalSelectionTyping")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetAdditionalSelectionTyping(WxkWindow* self, byte additionalSelectionTyping);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetAdditionalCaretsBlink")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetAdditionalCaretsBlink(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetAdditionalCaretsBlink")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetAdditionalCaretsBlink(WxkWindow* self, byte additionalCaretsBlink);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetAdditionalCaretsVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetAdditionalCaretsVisible(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetAdditionalCaretsVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetAdditionalCaretsVisible(WxkWindow* self, byte additionalCaretsVisible);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelections")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetSelections(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelectionEmpty")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetSelectionEmpty(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMainSelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetMainSelection(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMainSelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetMainSelection(WxkWindow* self, int selection);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetRectangularSelectionCaret")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetRectangularSelectionCaret(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetRectangularSelectionCaret")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetRectangularSelectionCaret(WxkWindow* self, int caret);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetRectangularSelectionAnchor")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetRectangularSelectionAnchor(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetRectangularSelectionAnchor")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetRectangularSelectionAnchor(WxkWindow* self, int anchor);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetRectangularSelectionCaretVirtualSpace")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetRectangularSelectionCaretVirtualSpace(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetRectangularSelectionCaretVirtualSpace")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetRectangularSelectionCaretVirtualSpace(WxkWindow* self, int space);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetRectangularSelectionAnchorVirtualSpace")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetRectangularSelectionAnchorVirtualSpace(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetRectangularSelectionAnchorVirtualSpace")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetRectangularSelectionAnchorVirtualSpace(WxkWindow* self, int space);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetVirtualSpaceOptions")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetVirtualSpaceOptions(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetVirtualSpaceOptions")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetVirtualSpaceOptions(WxkWindow* self, int virtualSpaceOptions);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetRectangularSelectionModifier")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetRectangularSelectionModifier(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetRectangularSelectionModifier")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetRectangularSelectionModifier(WxkWindow* self, int modifier);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetAdditionalSelAlpha")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetAdditionalSelAlpha(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetAdditionalSelAlpha")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetAdditionalSelAlpha(WxkWindow* self, int alpha);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetAdditionalCaretForeground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor StyledTextCtrlGetAdditionalCaretForeground(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetAdditionalCaretForeground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetAdditionalCaretForeground(WxkWindow* self, WxkColor fore);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetUseHorizontalScrollBar")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetUseHorizontalScrollBar(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetUseHorizontalScrollBar")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetUseHorizontalScrollBar(WxkWindow* self, byte visible);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetFirstVisibleLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetFirstVisibleLine(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetFirstVisibleLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetFirstVisibleLine(WxkWindow* self, int displayLine);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetScrollWidth")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetScrollWidth(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetScrollWidth")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetScrollWidth(WxkWindow* self, int pixelWidth);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetScrollWidthTracking")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetScrollWidthTracking(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetScrollWidthTracking")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetScrollWidthTracking(WxkWindow* self, byte tracking);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetEndAtLastLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetEndAtLastLine(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetEndAtLastLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetEndAtLastLine(WxkWindow* self, byte endAtLastLine);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetUseVerticalScrollBar")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetUseVerticalScrollBar(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetUseVerticalScrollBar")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetUseVerticalScrollBar(WxkWindow* self, byte visible);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetXOffset")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetXOffset(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetXOffset")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetXOffset(WxkWindow* self, int xOffset);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetViewWhiteSpace")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetViewWhiteSpace(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetViewWhiteSpace")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetViewWhiteSpace(WxkWindow* self, int viewWS);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetTabDrawMode")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetTabDrawMode(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetTabDrawMode")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetTabDrawMode(WxkWindow* self, int tabDrawMode);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetWhitespaceSize")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetWhitespaceSize(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetWhitespaceSize")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetWhitespaceSize(WxkWindow* self, int size);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetExtraAscent")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetExtraAscent(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetExtraAscent")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetExtraAscent(WxkWindow* self, int extraAscent);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetExtraDescent")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetExtraDescent(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetExtraDescent")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetExtraDescent(WxkWindow* self, int extraDescent);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSTCCursor")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetSTCCursor(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetSTCCursor")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetSTCCursor(WxkWindow* self, int cursorType);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMouseDownCaptures")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetMouseDownCaptures(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMouseDownCaptures")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetMouseDownCaptures(WxkWindow* self, byte captures);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMouseWheelCaptures")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetMouseWheelCaptures(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMouseWheelCaptures")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetMouseWheelCaptures(WxkWindow* self, byte captures);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetEOLMode")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetEOLMode(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetEOLMode")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetEOLMode(WxkWindow* self, int eolMode);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetViewEOL")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetViewEOL(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetViewEOL")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetViewEOL(WxkWindow* self, byte visible);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLineEndTypesAllowed")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetLineEndTypesAllowed(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetLineEndTypesAllowed")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetLineEndTypesAllowed(WxkWindow* self, int lineEndBitSet);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLineEndTypesActive")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetLineEndTypesActive(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLineEndTypesSupported")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetLineEndTypesSupported(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetWordChars")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlGetWordChars(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetWordChars")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetWordChars(WxkWindow* self, char* characters, nuint charactersLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetWhitespaceChars")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlGetWhitespaceChars(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetWhitespaceChars")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetWhitespaceChars(WxkWindow* self, char* characters, nuint charactersLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetPunctuationChars")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlGetPunctuationChars(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetPunctuationChars")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetPunctuationChars(WxkWindow* self, char* characters, nuint charactersLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetEndStyled")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetEndStyled(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMaxLineState")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetMaxLineState(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetIdleStyling")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetIdleStyling(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetIdleStyling")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetIdleStyling(WxkWindow* self, int idleStyling);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelAlpha")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetSelAlpha(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetSelAlpha")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetSelAlpha(WxkWindow* self, int alpha);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelEOLFilled")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetSelEOLFilled(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetSelEOLFilled")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetSelEOLFilled(WxkWindow* self, byte filled);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetCaretPeriod")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetCaretPeriod(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetCaretPeriod")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetCaretPeriod(WxkWindow* self, int periodMilliseconds);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetCaretLineVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetCaretLineVisible(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetCaretLineVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetCaretLineVisible(WxkWindow* self, byte show);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetCaretLineBackground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor StyledTextCtrlGetCaretLineBackground(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetCaretLineBackground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetCaretLineBackground(WxkWindow* self, WxkColor back);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetCaretForeground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor StyledTextCtrlGetCaretForeground(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetCaretForeground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetCaretForeground(WxkWindow* self, WxkColor fore);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetCaretWidth")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetCaretWidth(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetCaretWidth")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetCaretWidth(WxkWindow* self, int pixelWidth);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetHotspotActiveForeground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor StyledTextCtrlGetHotspotActiveForeground(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetHotspotActiveBackground")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor StyledTextCtrlGetHotspotActiveBackground(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetHotspotActiveUnderline")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetHotspotActiveUnderline(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetHotspotActiveUnderline")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetHotspotActiveUnderline(WxkWindow* self, byte underline);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetHotspotSingleLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetHotspotSingleLine(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetHotspotSingleLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetHotspotSingleLine(WxkWindow* self, byte singleLine);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetCaretSticky")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetCaretSticky(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetCaretSticky")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetCaretSticky(WxkWindow* self, int useCaretStickyBehavior);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetCaretLineBackAlpha")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetCaretLineBackAlpha(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetCaretLineBackAlpha")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetCaretLineBackAlpha(WxkWindow* self, int alpha);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetCaretStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetCaretStyle(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetCaretStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetCaretStyle(WxkWindow* self, int caretStyle);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetCaretLineVisibleAlways")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetCaretLineVisibleAlways(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetCaretLineVisibleAlways")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetCaretLineVisibleAlways(WxkWindow* self, byte alwaysVisible);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetControlCharSymbol")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetControlCharSymbol(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetControlCharSymbol")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetControlCharSymbol(WxkWindow* self, int symbol);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMarginCount")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetMarginCount(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMarginCount")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetMarginCount(WxkWindow* self, int margins);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMarginLeft")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetMarginLeft(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMarginLeft")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetMarginLeft(WxkWindow* self, int pixelWidth);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMarginRight")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetMarginRight(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMarginRight")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetMarginRight(WxkWindow* self, int pixelWidth);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMarginOptions")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetMarginOptions(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMarginOptions")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetMarginOptions(WxkWindow* self, int marginOptions);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetBufferedDraw")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetBufferedDraw(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetBufferedDraw")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetBufferedDraw(WxkWindow* self, byte buffered);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetTabMinimumWidth")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetTabMinimumWidth(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetTabMinimumWidth")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetTabMinimumWidth(WxkWindow* self, int pixels);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetIMEInteraction")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetIMEInteraction(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetIMEInteraction")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetIMEInteraction(WxkWindow* self, int imeInteraction);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetCharacterCategoryOptimization")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetCharacterCategoryOptimization(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetCharacterCategoryOptimization")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetCharacterCategoryOptimization(WxkWindow* self, int countCharacters);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetCaretLineFrame")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetCaretLineFrame(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetCaretLineFrame")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetCaretLineFrame(WxkWindow* self, int width);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetCodePage")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetCodePage(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetCodePage")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetCodePage(WxkWindow* self, int codePage);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetTargetStartVirtualSpace")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetTargetStartVirtualSpace(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetTargetStartVirtualSpace")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetTargetStartVirtualSpace(WxkWindow* self, int space);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetTargetEndVirtualSpace")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetTargetEndVirtualSpace(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetTargetEndVirtualSpace")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetTargetEndVirtualSpace(WxkWindow* self, int space);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetDefaultFoldDisplayText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlGetDefaultFoldDisplayText(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetDefaultFoldDisplayText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetDefaultFoldDisplayText(WxkWindow* self, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetPhasesDraw")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetPhasesDraw(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetPhasesDraw")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetPhasesDraw(WxkWindow* self, int phases);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetFontQuality")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetFontQuality(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetFontQuality")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetFontQuality(WxkWindow* self, int fontQuality);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetAccessibility")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetAccessibility(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetAccessibility")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetAccessibility(WxkWindow* self, int accessibility);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetDocumentOptions")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetDocumentOptions(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetCommandEvents")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetCommandEvents(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetCommandEvents")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetCommandEvents(WxkWindow* self, byte commandEvents);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSTCFocus")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetSTCFocus(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetSTCFocus")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetSTCFocus(WxkWindow* self, byte focus);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMoveExtendsSelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetMoveExtendsSelection(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetTechnology")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetTechnology(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetTechnology")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetTechnology(WxkWindow* self, int technology);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetNamedStyles")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetNamedStyles(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetTabWidth")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetTabWidth(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetTabWidth")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetTabWidth(WxkWindow* self, int tabWidth);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetIndent")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetIndent(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetIndent")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetIndent(WxkWindow* self, int indentSize);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetUseTabs")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetUseTabs(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetUseTabs")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetUseTabs(WxkWindow* self, byte useTabs);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetIndentationGuides")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetIndentationGuides(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetIndentationGuides")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetIndentationGuides(WxkWindow* self, int indentView);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetHighlightGuide")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetHighlightGuide(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetHighlightGuide")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetHighlightGuide(WxkWindow* self, int column);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetTabIndents")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetTabIndents(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetTabIndents")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetTabIndents(WxkWindow* self, byte tabIndents);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetBackSpaceUnIndents")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetBackSpaceUnIndents(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetBackSpaceUnIndents")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetBackSpaceUnIndents(WxkWindow* self, byte bsUnIndents);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetIndicatorCurrent")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetIndicatorCurrent(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetIndicatorCurrent")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetIndicatorCurrent(WxkWindow* self, int indicator);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetIndicatorValue")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetIndicatorValue(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetIndicatorValue")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetIndicatorValue(WxkWindow* self, int value);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetPrintMagnification")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetPrintMagnification(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetPrintMagnification")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetPrintMagnification(WxkWindow* self, int magnification);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetPrintColourMode")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetPrintColourMode(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetPrintColourMode")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetPrintColourMode(WxkWindow* self, int mode);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetPrintWrapMode")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetPrintWrapMode(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetPrintWrapMode")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetPrintWrapMode(WxkWindow* self, int wrapMode);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetGapPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetGapPosition(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetAllLinesVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetAllLinesVisible(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetAutomaticFold")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetAutomaticFold(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetAutomaticFold")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetAutomaticFold(WxkWindow* self, int automaticFold);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetWrapMode")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetWrapMode(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetWrapMode")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetWrapMode(WxkWindow* self, int wrapMode);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetWrapVisualFlags")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetWrapVisualFlags(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetWrapVisualFlags")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetWrapVisualFlags(WxkWindow* self, int wrapVisualFlags);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetWrapVisualFlagsLocation")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetWrapVisualFlagsLocation(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetWrapVisualFlagsLocation")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetWrapVisualFlagsLocation(WxkWindow* self, int wrapVisualFlagsLocation);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetWrapStartIndent")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetWrapStartIndent(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetWrapStartIndent")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetWrapStartIndent(WxkWindow* self, int indent);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetWrapIndentMode")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetWrapIndentMode(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetWrapIndentMode")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetWrapIndentMode(WxkWindow* self, int wrapIndentMode);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLayoutCache")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetLayoutCache(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetLayoutCache")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetLayoutCache(WxkWindow* self, int cacheMode);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetPositionCacheSize")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetPositionCacheSize(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetPositionCacheSize")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetPositionCacheSize(WxkWindow* self, int size);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetZoom")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetZoom(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetZoom")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetZoom(WxkWindow* self, int zoomInPoints);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetEdgeColumn")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetEdgeColumn(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetEdgeColumn")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetEdgeColumn(WxkWindow* self, int column);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetEdgeMode")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetEdgeMode(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetEdgeMode")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetEdgeMode(WxkWindow* self, int edgeMode);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetEdgeColour")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor StyledTextCtrlGetEdgeColour(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetEdgeColour")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetEdgeColour(WxkWindow* self, WxkColor edgeColor);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLexer")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetLexer(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetLexer")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetLexer(WxkWindow* self, int lexer);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLexerLanguage")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlGetLexerLanguage(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetLexerLanguage")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetLexerLanguage(WxkWindow* self, char* language, nuint languageLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSubStyleBases")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlGetSubStyleBases(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMouseDwellTime")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetMouseDwellTime(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMouseDwellTime")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetMouseDwellTime(WxkWindow* self, int periodMilliseconds);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetModEventMask")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetModEventMask(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetModEventMask")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetModEventMask(WxkWindow* self, int eventMask);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetIdentifier")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetIdentifier(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetIdentifier")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetIdentifier(WxkWindow* self, int identifier);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetCurrentLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetCurrentLine(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetDisplayLineCount")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetDisplayLineCount(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLastKeydownProcessed")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetLastKeydownProcessed(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetLastKeydownProcessed")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetLastKeydownProcessed(WxkWindow* self, byte val);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetUseAntiAliasing")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetUseAntiAliasing(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetUseAntiAliasing")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetUseAntiAliasing(WxkWindow* self, byte useAA);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetInsertionPoint")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial long StyledTextCtrlGetInsertionPoint(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetInsertionPoint")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetInsertionPoint(WxkWindow* self, long position);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLastPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial long StyledTextCtrlGetLastPosition(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IsEditable")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlIsEditable(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetEditable")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetEditable(WxkWindow* self, byte editable);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetNumberOfLines")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetNumberOfLines(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IsModified")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlIsModified(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CanCopy")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlCanCopy(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CanCut")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlCanCut(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetStringSelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlGetStringSelection(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetValue")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlGetValue(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetValue")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetValue(WxkWindow* self, char* value, nuint valueLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IsEmpty")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlIsEmpty(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetHint")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlGetHint(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetHint")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlSetHint(WxkWindow* self, char* hint, nuint hintLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMargins")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial Point StyledTextCtrlGetMargins(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMargins_Point")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlSetMarginsPoint(WxkWindow* self, Point point);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetAnnotationLinesAdded")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetAnnotationLinesAdded(WxkEvent* self, int val);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetAlt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextEventGetAlt(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetAnnotationsLinesAdded")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetAnnotationsLinesAdded(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetControl")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextEventGetControl(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetDragFlags")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetDragFlags(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetDragFlags")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetDragFlags(WxkEvent* self, int flags);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetDragResult")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetDragResult(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetDragResult")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetDragResult(WxkEvent* self, int val);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetFoldLevelNow")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetFoldLevelNow(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetFoldLevelNow")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetFoldLevelNow(WxkEvent* self, int val);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetFoldLevelPrev")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetFoldLevelPrev(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetFoldLevelPrev")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetFoldLevelPrev(WxkEvent* self, int val);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetKey")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetKey(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetKey")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetKey(WxkEvent* self, int k);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetLength")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetLength(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetLength")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetLength(WxkEvent* self, int len);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetLine(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetLine")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetLine(WxkEvent* self, int val);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetLinesAdded")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetLinesAdded(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetLinesAdded")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetLinesAdded(WxkEvent* self, int num);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetListCompletionMethod")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetListCompletionMethod(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetListCompletionMethod")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetListCompletionMethod(WxkEvent* self, int val);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetListType")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetListType(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetListType")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetListType(WxkEvent* self, int val);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetLParam")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetLParam(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetLParam")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetLParam(WxkEvent* self, int val);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetMargin")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetMargin(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetMargin")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetMargin(WxkEvent* self, int val);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetMessage")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetMessage(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetMessage")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetMessage(WxkEvent* self, int val);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetModificationType")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetModificationType(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetModificationType")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetModificationType(WxkEvent* self, int t);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetModifiers")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetModifiers(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetModifiers")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetModifiers(WxkEvent* self, int m);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetPosition(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetPosition(WxkEvent* self, int position);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetShift")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextEventGetShift(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetToken")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetToken(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetToken")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetToken(WxkEvent* self, int val);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetUpdated")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetUpdated(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetUpdated")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetUpdated(WxkEvent* self, int val);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetWParam")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetWParam(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetWParam")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetWParam(WxkEvent* self, int val);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetX")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetX(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetX")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetX(WxkEvent* self, int val);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetY")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetY(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetY")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextEventSetY(WxkEvent* self, int val);
+
 	[LibraryImport(Library, EntryPoint = "wxk_SystemSettings_GetColour")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkColor SystemSettingsGetColour(int index);
@@ -10681,6 +13921,142 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_SplitterUnsplit")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeSplitterUnsplit();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcAutocompCancelled")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcAutocompCancelled();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcAutocompCharDeleted")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcAutocompCharDeleted();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcAutocompCompleted")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcAutocompCompleted();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcAutocompSelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcAutocompSelection();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcAutocompSelectionChange")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcAutocompSelectionChange();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcCalltipClick")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcCalltipClick();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcChange")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcChange();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcCharadded")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcCharadded();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcClipboardCopy")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcClipboardCopy();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcClipboardPaste")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcClipboardPaste();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcDoDrop")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcDoDrop();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcDoubleclick")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcDoubleclick();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcDragOver")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcDragOver();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcDwellend")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcDwellend();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcDwellstart")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcDwellstart();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcHotspotClick")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcHotspotClick();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcHotspotDclick")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcHotspotDclick();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcHotspotReleaseClick")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcHotspotReleaseClick();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcIndicatorClick")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcIndicatorClick();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcIndicatorRelease")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcIndicatorRelease();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcMacrorecord")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcMacrorecord();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcMarginRightClick")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcMarginRightClick();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcMarginclick")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcMarginclick();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcModified")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcModified();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcNeedshown")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcNeedshown();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcPainted")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcPainted();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcRomodifyattempt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcRomodifyattempt();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcSavepointleft")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcSavepointleft();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcSavepointreached")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcSavepointreached();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcStartDrag")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcStartDrag();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcStyleneeded")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcStyleneeded();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcUpdateui")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcUpdateui();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcUserlistselection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcUserlistselection();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcZoom")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeStcZoom();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_SysColorChanged")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

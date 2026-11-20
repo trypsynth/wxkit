@@ -281,7 +281,9 @@ internal static class ManagedEmitter {
 		writer.Open($"public static partial class {constants.Name}");
 		foreach (BoundStyle member in constants.Members) {
 			Summary(writer, member.Description.Length > 0 ? $"{Sentence(member.Description)}Wraps {member.Constant}." : $"Wraps {member.Constant}.");
-			writer.Line($"public const int {member.Name} = {member.Value};");
+			// A mask with the top bit set, such as wxSTC_MASK_FOLDERS, keeps its bits as a negative int.
+			string value = member.Value > int.MaxValue ? $"unchecked((int){member.Value}L)" : member.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+			writer.Line($"public const int {member.Name} = {value};");
 		}
 		writer.Close();
 		return writer.ToString();

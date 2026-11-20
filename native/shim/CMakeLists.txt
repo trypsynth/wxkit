@@ -114,7 +114,7 @@ set(WXK_SOURCES
 # Windows file names ignore case, and wxkit.dll would collide with the managed WxKit.dll.
 add_library(wxkitnative_static STATIC ${WXK_SOURCES})
 target_include_directories(wxkitnative_static PUBLIC include)
-target_link_libraries(wxkitnative_static PUBLIC wx::core wx::base)
+target_link_libraries(wxkitnative_static PUBLIC wx::stc wx::core wx::base)
 target_precompile_headers(wxkitnative_static PRIVATE generated/includes.h)
 set_target_properties(wxkitnative_static PROPERTIES
 	OUTPUT_NAME wxkitnative
@@ -124,7 +124,7 @@ set_target_properties(wxkitnative_static PROPERTIES
 add_library(wxkitnative SHARED ${WXK_SOURCES})
 target_include_directories(wxkitnative PUBLIC include)
 target_compile_definitions(wxkitnative PRIVATE WXK_BUILDING_SHARED)
-target_link_libraries(wxkitnative PRIVATE wx::core wx::base)
+target_link_libraries(wxkitnative PRIVATE wx::stc wx::core wx::base)
 target_precompile_headers(wxkitnative PRIVATE generated/includes.h)
 set_target_properties(wxkitnative PROPERTIES
 	RUNTIME_OUTPUT_DIRECTORY $<1:${CMAKE_BINARY_DIR}/shared>
