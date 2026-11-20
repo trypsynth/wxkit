@@ -421,6 +421,17 @@ WXK_FUNCTION(wxk_Object*) wxk_ManagedPrintout_new(const char16_t* title, size_t 
 // preview could not be made. The preview takes the printouts, and deletes them when it closes.
 WXK_FUNCTION(wxk_Window*) wxk_PrintPreview_Show(wxk_Object* printout, wxk_Object* printoutForPrinting, wxk_Object* data, wxk_Window* parent, const char16_t* title, size_t titleLength, wxk_Size size) WXK_NOEXCEPT;
 
+// One running copy
+
+typedef struct wxk_SingleInstanceChecker wxk_SingleInstanceChecker;
+
+// Makes a wxSingleInstanceChecker for name, with its lock file in path on Unix, or wxWidgets'
+// default folder when path is null, and returns null when it cannot be made. It needs no
+// application, so it can run before wxk_App_Run.
+WXK_FUNCTION(wxk_SingleInstanceChecker*) wxk_SingleInstanceChecker_new(const char16_t* name, size_t nameLength, const char16_t* path, size_t pathLength) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_SingleInstanceChecker_IsAnotherRunning(wxk_SingleInstanceChecker* checker) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_SingleInstanceChecker_delete(wxk_SingleInstanceChecker* checker) WXK_NOEXCEPT;
+
 // Translations
 
 typedef struct wxk_Translations wxk_Translations;

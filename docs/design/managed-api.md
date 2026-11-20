@@ -325,6 +325,30 @@ tray.Menu = menu;
 
 A window that calls `DragAcceptFiles(true)` raises `DropFiles` when files are dropped on it, with their paths in the event's `Files`. A text control that handles it opens nothing on its own, so a handler decides what a dropped file does, as the Editor sample opens it. Dragging other data, and dragging from the application, are not bound yet.
 
+## One running copy
+
+`SingleInstance.Claim` keeps an application to one running copy, and hands what a second copy was started with, such as files to open, to the first, as the [doorbell](https://github.com/accessware/doorbell) crate does for Rust. Call it at the start of `Main`, before `Application.Run`:
+
+```csharp
+string[] files = [.. args.Select(Path.GetFullPath)];
+using SingleInstance? instance = SingleInstance.Claim("myapp", files);
+// Another copy has the files, so this one is done.
+if (instance is null) return 0;
+return Application.Run(() => {
+	MainFrame frame = new();
+	instance.MessageReceived += (_, e) => {
+		if (e.Message.Count == 0) {
+			if (frame.IsIconized) frame.Iconize(false);
+			frame.Raise();
+		}
+		foreach (string file in e.Message) frame.Open(file);
+	};
+	frame.Show();
+});
+```
+
+`MessageReceived` is raised on the GUI thread, and messages that come before a handler is added wait for one. It builds on `SingleInstanceChecker`, which wraps `wxSingleInstanceChecker`: a named mutex on Windows, and a lock file with its process's ID on Linux and macOS, so a copy that crashed never blocks the next one. On Linux and macOS, wxWidgets counts a lock its own process holds as no other copy, so two checkers in one process do not see each other. The copies talk over a named pipe that only the same user can open on Windows, and a Unix socket in a folder only the user can open elsewhere: `$XDG_RUNTIME_DIR` where there is one, and a folder of WxKit's own in the temporary folder otherwise. A message is a list of strings, up to 1 MB, and a second copy waits a few seconds at most for the first to take it. On Windows, the second copy lets the first bring its window to the front, which Windows otherwise refuses to a process the user is not using.
+
 ## Simulated input
 
 `UIActionSimulator` sends mouse and keyboard input as if the user had given it, for an application's own tests of its user interface: `MouseMove`, `MouseClick`, `Char`, such as `Char((KeyCode)'S', KeyModifiers.Control)`, `Text`, and the rest. It wraps `wxUIActionSimulator`, which is not a `wxObject`, so it is written by hand. The input goes where the system sends real input, which must be a window that is shown and active, and arrives as the event loop runs. On macOS, the application needs permission to control the computer.

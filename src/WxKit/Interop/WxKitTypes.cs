@@ -43,6 +43,9 @@ public unsafe struct WxkPrintoutCallbacks {
 	public delegate* unmanaged[Cdecl]<void*, void> OnFree;
 }
 
+/// <summary>A wxSingleInstanceChecker.</summary>
+public struct WxkSingleInstanceChecker;
+
 /// <summary>A wxTranslations.</summary>
 public struct WxkTranslations;
 

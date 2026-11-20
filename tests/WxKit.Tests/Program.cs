@@ -11,6 +11,9 @@ namespace WxKit.Tests;
 
 internal static class Program {
 	public static int Main(string[] args) {
+		// SingleInstanceTests runs this as another copy of an application, before any GUI, as an
+		// application's Main would.
+		if (args is [SingleInstanceTests.AnotherCopy, ..]) return SingleInstanceTests.RunAsAnotherCopy(args[1..]);
 		int result = 1;
 		int exitCode = Application.Run(() => {
 			Gui.Start();

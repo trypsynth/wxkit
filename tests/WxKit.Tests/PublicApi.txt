@@ -3667,6 +3667,17 @@ class WxKit.SingleChoiceDialog : Dialog
     Center = 1
     None = 0
     Ok = 4
+sealed class WxKit.SingleInstance : IDisposable
+    event EventHandler<SingleInstanceMessageEventArgs>? MessageReceived
+    static SingleInstance? Claim(string name, IEnumerable<string> message)
+    void Dispose()
+sealed class WxKit.SingleInstanceChecker : IDisposable
+    SingleInstanceChecker(string name, string? folder = null)
+    bool IsAnotherRunning { get; }
+    void Dispose()
+sealed class WxKit.SingleInstanceMessageEventArgs : EventArgs
+    IReadOnlyList<string> Message { get; }
+    SingleInstanceMessageEventArgs(IReadOnlyList<string> message)
 readonly record struct WxKit.Size : IEquatable<Size>
     Size(int Width, int Height)
     bool Equals(Size other)

@@ -458,6 +458,20 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte UIActionSimulatorSelect(char* text, nuint textLength);
 
+	// One running copy
+
+	[LibraryImport(Library, EntryPoint = "wxk_SingleInstanceChecker_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkSingleInstanceChecker* SingleInstanceCheckerNew(char* name, nuint nameLength, char* path, nuint pathLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_SingleInstanceChecker_IsAnotherRunning")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte SingleInstanceCheckerIsAnotherRunning(WxkSingleInstanceChecker* checker);
+
+	[LibraryImport(Library, EntryPoint = "wxk_SingleInstanceChecker_delete")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void SingleInstanceCheckerDelete(WxkSingleInstanceChecker* checker);
+
 	// Translations
 
 	[LibraryImport(Library, EntryPoint = "wxk_TranslationsLoader_SetCallbacks")]
