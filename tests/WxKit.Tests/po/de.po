@@ -1,0 +1,28 @@
+# The test project's German catalog, which its build compiles and embeds, as an application's.
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Hello from the test catalog"
+msgstr "Hallo aus dem Testkatalog"
+
+#, csharp-format
+msgid "Hello, {0}"
+msgstr "Hallo, {0}"
+
+msgctxt "state"
+msgid "Open"
+msgstr "Geöffnet"
+
+#, csharp-format
+msgid "{0} file"
+msgid_plural "{0} files"
+msgstr[0] "{0} Datei"
+msgstr[1] "{0} Dateien"
+
+# A machine translation no one has reviewed, which gettext leaves out.
+#, fuzzy
+msgid "Not reviewed yet"
+msgstr "Noch nicht geprüft"

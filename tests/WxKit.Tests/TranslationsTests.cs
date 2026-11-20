@@ -76,14 +76,23 @@ public class TranslationsTests {
 		Assert.Null(LanguageInfo.Find("not a language"));
 	});
 
-	// The test project embeds wxWidgets' German catalog, as an application with po/de.po would.
+	// The test project's build compiles and embeds its po/de.po, and wxWidgets' German catalog with
+	// it, as an application's does. A machine without gettext's msgfmt builds without them, and
+	// skips this, but CI has it.
 	[Fact]
-	public Task TranslatesWxWidgetsOwnTextFromTheEmbeddedCatalog() => Gui.WithFrame(frame => {
-		Assert.Contains("de", new EmbeddedTranslationsLoader().GetAvailableTranslations("wxstd"));
-		Translations translations = new() { Language = "de" };
+	public Task TranslatesFromTheApplicationsEmbeddedCatalogs() => Gui.WithFrame(frame => {
+		EmbeddedTranslationsLoader embedded = new();
+		Assert.SkipWhen(!embedded.GetAvailableTranslations("WxKit.Tests").Any() && Environment.GetEnvironmentVariable("CI") is null, "The catalogs are not compiled without GNU gettext's msgfmt.");
+		Assert.Contains("de", embedded.GetAvailableTranslations("WxKit.Tests"));
+		Assert.Contains("de", embedded.GetAvailableTranslations("wxstd"));
+		Translations translations = Translations.Use("WxKit.Tests", "de");
 		try {
-			Assert.True(translations.AddStdCatalog());
-			Translations.Current = translations;
+			Assert.Equal("Hallo aus dem Testkatalog", _("Hello from the test catalog"));
+			Assert.Equal("Hallo, Welt", _("Hello, {0}", "Welt"));
+			Assert.Equal("Geöffnet", _p("state", "Open"));
+			Assert.Equal("1 Datei", _n("{0} file", "{0} files", 1, 1));
+			Assert.Equal("4 Dateien", _n("{0} file", "{0} files", 4, 4));
+			Assert.Equal("Not reviewed yet", _("Not reviewed yet"));
 			Assert.Equal("Ab&brechen", _("&Cancel"));
 			Button cancel = new(frame, id: StandardId.Cancel);
 			Assert.Equal("Abbrechen", cancel.LabelText);

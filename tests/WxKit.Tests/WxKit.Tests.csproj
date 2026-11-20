@@ -17,10 +17,6 @@
 		<WxKitStdCatalogDirectory>$(WxKitNativeRoot)/$(WxKitTestRuntime)/locale/</WxKitStdCatalogDirectory>
 	</PropertyGroup>
 
-	<!-- wxWidgets' German catalog, embedded as an application's is, which TranslationsTests uses. -->
-	<ItemGroup>
-		<WxKitLanguage Include="de" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="xunit.v3" Version="4.0.3" />

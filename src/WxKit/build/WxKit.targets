@@ -57,6 +57,56 @@
 		</WxKitStdCatalogs>
 	</Target>
 
+	<!--
+		The application's own catalogs, the .po files in its po folder, such as po/de.po, are compiled
+		with GNU gettext's msgfmt on each build that changes them, and embedded as
+		locale/<language>/<domain>.mo, where EmbeddedTranslationsLoader finds them. The domain is
+		WxKitTranslationDomain, the assembly's name by default, which the application passes to
+		Translations.Use. msgfmt checks that each translation formats as its original does, and
+		leaves out entries marked fuzzy, as gettext does, until a translator reviews them. Set
+		WxKitMsgfmt to msgfmt's path when it is not on the PATH. Without msgfmt, the build warns and
+		embeds no catalogs, so the application's text stays in English.
+	-->
+	<PropertyGroup>
+		<WxKitMsgfmt Condition="'$(WxKitMsgfmt)' == ''">msgfmt</WxKitMsgfmt>
+	</PropertyGroup>
+
+	<Target Name="_WxKitResolveCatalogs">
+		<PropertyGroup>
+			<_WxKitTranslationDomain>$(WxKitTranslationDomain)</_WxKitTranslationDomain>
+			<_WxKitTranslationDomain Condition="'$(_WxKitTranslationDomain)' == ''">$(AssemblyName)</_WxKitTranslationDomain>
+			<_WxKitCompiledCatalogs>$([System.IO.Path]::GetFullPath('$(IntermediateOutputPath)wxkit-locale'))</_WxKitCompiledCatalogs>
+		</PropertyGroup>
+		<!-- Metadata in a target cannot name its own item's file name, so the catalogs are made from another item. -->
+		<ItemGroup>
+			<_WxKitCatalogSource Include="$(WxKitPoDirectory)/*.po" />
+			<_WxKitCatalog Include="@(_WxKitCatalogSource)">
+				<Compiled>$(_WxKitCompiledCatalogs)/%(_WxKitCatalogSource.Filename)/$(_WxKitTranslationDomain).mo</Compiled>
+				<LogicalName>locale/$([System.String]::Copy('%(_WxKitCatalogSource.Filename)').Replace('-', '_'))/$(_WxKitTranslationDomain).mo</LogicalName>
+			</_WxKitCatalog>
+		</ItemGroup>
+		<Exec Command="&quot;$(WxKitMsgfmt)&quot; --version" Condition="'@(_WxKitCatalog)' != ''" IgnoreExitCode="true" IgnoreStandardErrorWarningFormat="true" StandardOutputImportance="low" StandardErrorImportance="low" EchoOff="true">
+			<Output TaskParameter="ExitCode" PropertyName="_WxKitMsgfmtExitCode" />
+		</Exec>
+		<Warning Condition="'@(_WxKitCatalog)' != '' and '$(_WxKitMsgfmtExitCode)' != '0'" Text="msgfmt, from GNU gettext, is not installed, so the catalogs in $(WxKitPoDirectory) are not compiled, and the application's text stays in English. Install gettext: on Windows, winget install mlocati.GetText, on macOS, brew install gettext, and on Linux, the distribution's gettext package. Or set WxKitMsgfmt to msgfmt's path." />
+		<ItemGroup Condition="'$(_WxKitMsgfmtExitCode)' != '0'">
+			<_WxKitCatalog Remove="@(_WxKitCatalog)" />
+		</ItemGroup>
+	</Target>
+
+	<Target Name="_WxKitCompileCatalogs" DependsOnTargets="_WxKitResolveCatalogs" Inputs="@(_WxKitCatalog)" Outputs="%(_WxKitCatalog.Compiled)" Condition="'@(_WxKitCatalog)' != ''">
+		<MakeDir Directories="$([System.IO.Path]::GetDirectoryName('%(_WxKitCatalog.Compiled)'))" />
+		<Exec Command="&quot;$(WxKitMsgfmt)&quot; --check-format --output-file=&quot;%(_WxKitCatalog.Compiled)&quot; &quot;%(_WxKitCatalog.FullPath)&quot;" />
+	</Target>
+
+	<!-- A target of its own, so the catalogs are embedded when the compile is skipped as up to date. The compile's condition is checked before its dependencies run, so this resolves the catalogs first. -->
+	<Target Name="_WxKitEmbedCatalogs" BeforeTargets="AssignTargetPaths" DependsOnTargets="_WxKitResolveCatalogs;_WxKitCompileCatalogs">
+		<ItemGroup>
+			<EmbeddedResource Include="@(_WxKitCatalog->'%(Compiled)')" LogicalName="%(_WxKitCatalog.LogicalName)" WithCulture="false" />
+			<FileWrites Include="@(_WxKitCatalog->'%(Compiled)')" />
+		</ItemGroup>
+	</Target>
+
 	<!-- The native package imports the link targets too, when it comes first, since NuGet does not say in which order packages' targets are imported. -->
 	<Import Project="$(_WxKitLinkTargets)" Condition="'$(WxKitStaticLink)' == 'true' and '$(WxKitNativeDirectory)' != '' and '$(_WxKitLinkTargetsImported)' != 'true' and Exists('$(_WxKitLinkTargets)')" />
 
