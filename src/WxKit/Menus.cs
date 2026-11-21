@@ -31,6 +31,18 @@ public sealed unsafe class Menu : EvtHandler {
 
 	public MenuItem AppendSeparator() => MenuItem.Wrap(this, WxKitNative.MenuAppendSeparator(Native));
 
+	/// <summary>Adds a submenu, which this menu then owns, as an item that opens it.</summary>
+	public MenuItem AppendSubMenu(Menu submenu, string text, string help = "") {
+		ArgumentNullException.ThrowIfNull(submenu);
+		ArgumentNullException.ThrowIfNull(text);
+		ArgumentNullException.ThrowIfNull(help);
+		Application.VerifyAccess();
+		fixed (char* itemText = text)
+		fixed (char* helpText = help) {
+			return MenuItem.Wrap(this, WxKitNative.MenuAppendSubMenu(Native, submenu.Native, itemText, NativeString.Length(text), helpText, NativeString.Length(help)));
+		}
+	}
+
 	private static WxkEvtHandler* Create() {
 		Application.VerifyAccess();
 		return (WxkEvtHandler*)WxKitNative.MenuNew();
@@ -48,6 +60,43 @@ public sealed unsafe class MenuItem {
 
 	/// <summary>The item's id, which wxWidgets picks when the item was added with <see cref="StandardId.Any"/>.</summary>
 	public int Id { get; }
+
+	/// <summary>Whether the user can choose the item. A disabled one is grayed out, and screen readers say it is unavailable.</summary>
+	public bool Enabled {
+		get {
+			Application.VerifyAccess();
+			return WxKitNative.MenuIsEnabled(Menu.Native, Id) != 0;
+		}
+		set {
+			Application.VerifyAccess();
+			WxKitNative.MenuEnable(Menu.Native, Id, value ? (byte)1 : (byte)0);
+		}
+	}
+
+	/// <summary>Whether a check or radio item is checked.</summary>
+	public bool Checked {
+		get {
+			Application.VerifyAccess();
+			return WxKitNative.MenuIsChecked(Menu.Native, Id) != 0;
+		}
+		set {
+			Application.VerifyAccess();
+			WxKitNative.MenuCheck(Menu.Native, Id, value ? (byte)1 : (byte)0);
+		}
+	}
+
+	/// <summary>The item's text, with its accelerator's ampersand, and its shortcut after a tab.</summary>
+	public string Label {
+		get {
+			Application.VerifyAccess();
+			return NativeString.Take(WxKitNative.MenuGetLabel(Menu.Native, Id));
+		}
+		set {
+			ArgumentNullException.ThrowIfNull(value);
+			Application.VerifyAccess();
+			fixed (char* text = value) WxKitNative.MenuSetLabel(Menu.Native, Id, text, NativeString.Length(value));
+		}
+	}
 
 	/// <summary>Raised when the user chooses the item.</summary>
 	public event EventHandler<CommandEvent>? Click {

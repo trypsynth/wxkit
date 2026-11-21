@@ -18,6 +18,40 @@ public class MenuTests {
 	});
 
 	[Fact]
+	public Task EnablesChecksAndRelabelsItems() => Gui.WithFrame(frame => {
+		Menu menu = new();
+		MenuItem open = menu.Append(StandardId.Any, "&Open	Ctrl+O");
+		MenuItem wrap = menu.Append(StandardId.Any, "&Wrap", kind: MenuItemKind.Check);
+		MenuBar bar = new();
+		bar.Append(menu, "&File");
+		frame.MenuBar = bar;
+		Assert.True(open.Enabled);
+		open.Enabled = false;
+		Assert.False(open.Enabled);
+		Assert.False(wrap.Checked);
+		wrap.Checked = true;
+		Assert.True(wrap.Checked);
+		Assert.Equal("&Open	Ctrl+O", open.Label);
+		open.Label = "&Open...	Ctrl+O";
+		Assert.Equal("&Open...	Ctrl+O", open.Label);
+	});
+
+	[Fact]
+	public Task ReachesItemsInASubmenu() => Gui.WithFrame(frame => {
+		Menu presets = new();
+		MenuItem empty = presets.Append(StandardId.Any, "No presets yet");
+		Menu convert = new();
+		MenuItem submenu = convert.AppendSubMenu(presets, "&Presets");
+		MenuBar bar = new();
+		bar.Append(convert, "&Convert");
+		frame.MenuBar = bar;
+		empty.Enabled = false;
+		Assert.False(empty.Enabled);
+		Assert.False(convert.Append(StandardId.Any, "x").Id == submenu.Id);
+		Assert.Equal("&Presets", submenu.Label);
+	});
+
+	[Fact]
 	public Task GivesTheMenuBarToItsFrame() => Gui.Run(async () => {
 		Frame frame = new(null, "Menus");
 		Menu menu = new();

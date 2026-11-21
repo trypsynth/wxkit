@@ -2770,6 +2770,7 @@ sealed class WxKit.Menu : EvtHandler
     Menu()
     MenuItem Append(int id, string text = "", string help = "", MenuItemKind kind = MenuItemKind.Normal)
     MenuItem AppendSeparator()
+    MenuItem AppendSubMenu(Menu submenu, string text, string help = "")
 class WxKit.MenuBar : Window
     Frame? Frame { get; }
     Menu? GetMenu(int menuIndex)
@@ -2806,8 +2807,11 @@ class WxKit.MenuEvent : Event
     int MenuId { get; }
 sealed class WxKit.MenuItem
     Menu Menu { get; }
+    bool Checked { get; set; }
+    bool Enabled { get; set; }
     event EventHandler<CommandEvent>? Click
     int Id { get; }
+    string Label { get; set; }
 enum WxKit.MenuItemKind : int
     Check = 1
     Normal = 0
