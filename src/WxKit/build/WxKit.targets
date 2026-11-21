@@ -50,7 +50,8 @@
 		<ItemGroup>
 			<_WxKitPoFile Include="$(WxKitPoDirectory)/*.po" />
 			<_WxKitLanguage Include="@(WxKitLanguage)" />
-			<_WxKitLanguage Include="@(_WxKitPoFile->'%(Filename)')" Condition="'@(WxKitLanguage)' == ''" />
+			<_WxKitLanguage Include="@(_WxKitPoFile->'%(Filename)')" Condition="'@(WxKitLanguage)' == '' and '@(WxKitCatalog)' == ''" />
+			<_WxKitLanguage Include="@(WxKitCatalog->'%(Language)')" Condition="'@(WxKitLanguage)' == ''" />
 		</ItemGroup>
 		<WxKitStdCatalogs Directory="$(WxKitStdCatalogDirectory)" Languages="@(_WxKitLanguage)" All="$([System.String]::Equals('$(WxKitStdCatalogs)', 'all'))">
 			<Output TaskParameter="Catalogs" ItemName="EmbeddedResource" />
@@ -58,7 +59,9 @@
 	</Target>
 
 	<!--
-		The application's own catalogs, the .po files in its po folder, such as po/de.po, are compiled
+		The application's own catalogs, the .po files in its po folder, such as po/de.po, or its
+		WxKitCatalog items, for catalogs laid out otherwise, each with the language in its Language
+		metadata, as in <WxKitCatalog Include="locale/de/MyApp.po" Language="de" />, are compiled
 		with GNU gettext's msgfmt on each build that changes them, and embedded as
 		locale/<language>/<domain>.mo, where EmbeddedTranslationsLoader finds them. The domain is
 		WxKitTranslationDomain, the assembly's name by default, which the application passes to
@@ -90,10 +93,12 @@
 		</PropertyGroup>
 		<!-- Metadata in a target cannot name its own item's file name, so the catalogs are made from another item. -->
 		<ItemGroup>
-			<_WxKitCatalogSource Include="$(WxKitPoDirectory)/*.po" />
+			<_WxKitCatalogSource Include="@(WxKitCatalog)" />
+			<_WxKitPoCatalog Include="$(WxKitPoDirectory)/*.po" Condition="'@(WxKitCatalog)' == ''" />
+			<_WxKitCatalogSource Include="@(_WxKitPoCatalog)" Language="%(_WxKitPoCatalog.Filename)" />
 			<_WxKitCatalog Include="@(_WxKitCatalogSource)">
-				<Compiled>$(_WxKitCompiledCatalogs)/%(_WxKitCatalogSource.Filename)/$(_WxKitTranslationDomain).mo</Compiled>
-				<LogicalName>locale/$([System.String]::Copy('%(_WxKitCatalogSource.Filename)').Replace('-', '_'))/$(_WxKitTranslationDomain).mo</LogicalName>
+				<Compiled>$(_WxKitCompiledCatalogs)/%(_WxKitCatalogSource.Language)/$(_WxKitTranslationDomain).mo</Compiled>
+				<LogicalName>locale/$([System.String]::Copy('%(_WxKitCatalogSource.Language)').Replace('-', '_'))/$(_WxKitTranslationDomain).mo</LogicalName>
 			</_WxKitCatalog>
 		</ItemGroup>
 		<Exec Command="&quot;$(WxKitMsgfmt)&quot; --version" Condition="'@(_WxKitCatalog)' != ''" IgnoreExitCode="true" IgnoreStandardErrorWarningFormat="true" StandardOutputImportance="low" StandardErrorImportance="low" EchoOff="true">

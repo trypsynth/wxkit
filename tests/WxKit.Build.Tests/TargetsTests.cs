@@ -42,6 +42,36 @@ public class TargetsTests {
 		}
 	}
 
+	// The catalogs a build compiles, from po by default, or from WxKitCatalog items laid out otherwise.
+	[Theory]
+	[InlineData(false)]
+	[InlineData(true)]
+	public void FindsAProjectsCatalogs(bool laidOutOtherwise) {
+		string project = Directory.CreateTempSubdirectory("wxkit-catalogs-").FullName;
+		try {
+			string items = laidOutOtherwise ? "<ItemGroup><WxKitCatalog Include=\"locale/pt-BR/App.po\" Language=\"pt-BR\" /></ItemGroup>" : string.Empty;
+			File.WriteAllText(Path.Combine(project, "App.csproj"), $"""
+				<Project Sdk="Microsoft.NET.Sdk">
+					<PropertyGroup>
+						<OutputType>Exe</OutputType>
+						<TargetFramework>net10.0</TargetFramework>
+					</PropertyGroup>
+					{items}
+					<Import Project="{TargetsFile}" />
+				</Project>
+				""");
+			string catalog = laidOutOtherwise ? Path.Combine(project, "locale", "pt-BR", "App.po") : Path.Combine(project, "po", "pt-BR.po");
+			Directory.CreateDirectory(Path.GetDirectoryName(catalog)!);
+			File.WriteAllText(catalog, "msgid \"\"\nmsgstr \"\"\n");
+			// dotnet --version stands in for msgfmt --version, so the catalogs are found without gettext.
+			(int exitCode, string output) = Run(project, "msbuild", "-t:_WxKitResolveCatalogs", "-getItem:_WxKitCatalog", "-p:WxKitMsgfmt=dotnet", "-nologo");
+			Assert.True(exitCode == 0, output);
+			Assert.Contains("\"LogicalName\": \"locale/pt_BR/App.mo\"", output);
+		} finally {
+			Directory.Delete(project, true);
+		}
+	}
+
 	private static (int ExitCode, string Output) Run(string directory, params string[] arguments) {
 		ProcessStartInfo start = new("dotnet") { WorkingDirectory = directory, RedirectStandardOutput = true, RedirectStandardError = true };
 		foreach (string argument in arguments) start.ArgumentList.Add(argument);
