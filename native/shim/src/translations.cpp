@@ -1,5 +1,6 @@
 #include "shim.h"
 
+#include <wx/app.h>
 #include <wx/translation.h>
 #include <wx/uilocale.h>
 
@@ -19,7 +20,9 @@ wxTranslations* Unwrap(wxk_Translations* translations) {
 }
 
 // A loader that asks .NET for each catalog first, as the bytes of a .mo file, such as one embedded
-// in the application, and looks for a file when .NET has none.
+// in the application, and looks for a file when .NET has none. Before the application starts,
+// it looks for no file, since wxWidgets' file loader asks wxStandardPaths for its folders, which
+// reads the application's name and vendor from wxTheApp.
 class ManagedTranslationsLoader final : public wxTranslationsLoader {
 public:
 	explicit ManagedTranslationsLoader(void* userdata) : _userdata(userdata) {}
@@ -31,11 +34,12 @@ public:
 	wxMsgCatalog* LoadCatalog(const wxString& domain, const wxString& lang) override {
 		wxk_CatalogSink sink{domain};
 		if (callbacks.loadCatalog != nullptr) callbacks.loadCatalog(_userdata, wxk::ToUtf16(domain), wxk::ToUtf16(lang), &sink);
-		return sink.catalog != nullptr ? sink.catalog : _files.LoadCatalog(domain, lang);
+		if (sink.catalog != nullptr || wxTheApp == nullptr) return sink.catalog;
+		return _files.LoadCatalog(domain, lang);
 	}
 
 	wxArrayString GetAvailableTranslations(const wxString& domain) const override {
-		wxArrayString languages = _files.GetAvailableTranslations(domain);
+		wxArrayString languages = wxTheApp != nullptr ? _files.GetAvailableTranslations(domain) : wxArrayString();
 		if (callbacks.availableTranslations != nullptr) callbacks.availableTranslations(_userdata, wxk::ToUtf16(domain), wxk::Wrap(&languages));
 		languages.Sort();
 		for (size_t index = languages.size(); index > 1; index--) {

@@ -26,7 +26,9 @@ namespace WxKit;
 /// </para>
 /// <para>
 /// Looking strings up, as <see cref="Translate"/> and <see cref="Gettext"/>'s shortcuts do, works
-/// from any thread. Everything else is for the GUI thread.
+/// from any thread. Everything else is for the GUI thread while the application runs. Before it
+/// runs, as in Main or a command-line mode that never starts it, translations can be set up on the
+/// thread that does, so that its text is translated too.
 /// </para>
 /// </remarks>
 public sealed unsafe class Translations : IDisposable {
@@ -42,7 +44,7 @@ public sealed unsafe class Translations : IDisposable {
 	/// <summary>Makes translations whose catalogs come from a loader, or from files when it has none.</summary>
 	public Translations(TranslationsLoader loader) {
 		ArgumentNullException.ThrowIfNull(loader);
-		Application.VerifyAccess();
+		Application.VerifyAccessOrNotRunning();
 		SetUp();
 		// The native loader holds the managed one strongly, and frees the handle when it is deleted.
 		GCHandle handle = GCHandle.Alloc(loader);
@@ -63,7 +65,7 @@ public sealed unsafe class Translations : IDisposable {
 			lock (Gate) return _current;
 		}
 		set {
-			Application.VerifyAccess();
+			Application.VerifyAccessOrNotRunning();
 			if (value is not null) _ = value.Native;
 			lock (Gate) {
 				if (ReferenceEquals(value, _current)) return;
@@ -83,7 +85,7 @@ public sealed unsafe class Translations : IDisposable {
 	public string? Language {
 		get => _language;
 		set {
-			Application.VerifyAccess();
+			Application.VerifyAccessOrNotRunning();
 			fixed (char* text = value) WxKitNative.TranslationsSetLanguage(Native, text, value is null ? 0 : NativeString.Length(value));
 			_language = value;
 		}
@@ -115,7 +117,7 @@ public sealed unsafe class Translations : IDisposable {
 
 	/// <summary>Adds wxWidgets' own catalog, and returns whether there was one for the language.</summary>
 	public bool AddStdCatalog() {
-		Application.VerifyAccess();
+		Application.VerifyAccessOrNotRunning();
 		return WxKitNative.TranslationsAddStdCatalog(Native) != 0;
 	}
 
@@ -125,21 +127,21 @@ public sealed unsafe class Translations : IDisposable {
 	/// </summary>
 	public bool AddCatalog(string domain) {
 		ArgumentException.ThrowIfNullOrEmpty(domain);
-		Application.VerifyAccess();
+		Application.VerifyAccessOrNotRunning();
 		fixed (char* text = domain) return WxKitNative.TranslationsAddCatalog(Native, text, NativeString.Length(domain)) != 0;
 	}
 
 	/// <summary>Whether the catalog of a domain was added.</summary>
 	public bool IsLoaded(string domain) {
 		ArgumentException.ThrowIfNullOrEmpty(domain);
-		Application.VerifyAccess();
+		Application.VerifyAccessOrNotRunning();
 		fixed (char* text = domain) return WxKitNative.TranslationsIsLoaded(Native, text, NativeString.Length(domain)) != 0;
 	}
 
 	/// <summary>The languages there are catalogs of a domain for, such as for a language picker.</summary>
 	public IReadOnlyList<string> GetAvailableTranslations(string domain) {
 		ArgumentException.ThrowIfNullOrEmpty(domain);
-		Application.VerifyAccess();
+		Application.VerifyAccessOrNotRunning();
 		fixed (char* text = domain) return NativeStringArray.Take(WxKitNative.TranslationsGetAvailableTranslations(Native, text, NativeString.Length(domain)));
 	}
 
@@ -149,7 +151,7 @@ public sealed unsafe class Translations : IDisposable {
 	/// </summary>
 	public string? GetBestTranslation(string domain) {
 		ArgumentException.ThrowIfNullOrEmpty(domain);
-		Application.VerifyAccess();
+		Application.VerifyAccessOrNotRunning();
 		fixed (char* text = domain) {
 			WxkString* best = WxKitNative.TranslationsGetBestTranslation(Native, text, NativeString.Length(domain));
 			return best is null ? null : NativeString.Take(best);
@@ -162,7 +164,7 @@ public sealed unsafe class Translations : IDisposable {
 	public string? GetHeaderValue(string header, string domain = "") {
 		ArgumentException.ThrowIfNullOrEmpty(header);
 		ArgumentNullException.ThrowIfNull(domain);
-		Application.VerifyAccess();
+		Application.VerifyAccessOrNotRunning();
 		fixed (char* headerText = header)
 		fixed (char* domainText = domain) {
 			WxkString* value = WxKitNative.TranslationsGetHeaderValue(Native, headerText, NativeString.Length(header), domainText, NativeString.Length(domain));
@@ -176,7 +178,7 @@ public sealed unsafe class Translations : IDisposable {
 	/// </summary>
 	public static void AddCatalogLookupPathPrefix(string folder) {
 		ArgumentException.ThrowIfNullOrEmpty(folder);
-		Application.VerifyAccess();
+		Application.VerifyAccessOrNotRunning();
 		fixed (char* text = folder) WxKitNative.TranslationsAddCatalogLookupPathPrefix(text, NativeString.Length(folder));
 	}
 
@@ -206,7 +208,7 @@ public sealed unsafe class Translations : IDisposable {
 
 	/// <summary>Deletes the translations, and when they are current, leaves none.</summary>
 	public void Dispose() {
-		Application.VerifyAccess();
+		Application.VerifyAccessOrNotRunning();
 		if (ReferenceEquals(Current, this)) {
 			Current = null;
 			return;
@@ -360,7 +362,7 @@ public sealed record LanguageInfo(string Code, string Tag, string Name, string N
 	/// <summary>The language a locale such as de, pt_BR, or pt-BR names, or null when wxWidgets does not know it.</summary>
 	public static unsafe LanguageInfo? Find(string locale) {
 		ArgumentException.ThrowIfNullOrEmpty(locale);
-		Application.VerifyAccess();
+		Application.VerifyAccessOrNotRunning();
 		WxkLanguageInfo info;
 		fixed (char* text = locale) {
 			if (WxKitNative.LanguageInfoFind(text, NativeString.Length(locale), &info) == 0) return null;
@@ -385,7 +387,7 @@ public static unsafe class UILocale {
 	/// <summary>The languages the user prefers, most preferred first, such as de-DE.</summary>
 	public static IReadOnlyList<string> PreferredLanguages {
 		get {
-			Application.VerifyAccess();
+			Application.VerifyAccessOrNotRunning();
 			return NativeStringArray.Take(WxKitNative.UILocaleGetPreferredUILanguages());
 		}
 	}

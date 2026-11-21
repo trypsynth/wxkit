@@ -101,6 +101,14 @@ public class TranslationsTests {
 		}
 	});
 
+	// A command-line mode, or Main, sets translations up before Application.Run, or without it.
+	[Fact]
+	public Task SetsUpBeforeTheApplicationRuns() => Gui.Run(async () => {
+		Assert.SkipWhen(!new EmbeddedTranslationsLoader().GetAvailableTranslations("WxKit.Tests").Any() && Environment.GetEnvironmentVariable("CI") is null, "The catalogs are not compiled without GNU gettext's msgfmt.");
+		(int _, string output) = await SingleInstanceTests.RunAnotherProcess("translate", "de", "Hello from the test catalog");
+		Assert.Equal("Hallo aus dem Testkatalog", output);
+	});
+
 	[Fact]
 	public void CountsForPluralRulesKeepTheirLastDigits() {
 		Assert.Equal(1u, Translations.PluralCount(-1));

@@ -76,6 +76,14 @@ public unsafe class Application {
 		return false;
 	}
 
+	// For what wxWidgets can do before its application starts, such as translations, which a
+	// command-line mode or Main sets up: on the GUI thread while an application runs, and on any
+	// thread while none does.
+	internal static void VerifyAccessOrNotRunning() {
+		if (_guiThreadId == 0) return;
+		VerifyAccess();
+	}
+
 	internal static void VerifyAccess() {
 		if (_guiThreadId == Environment.CurrentManagedThreadId) return;
 		throw new InvalidOperationException(_guiThreadId == 0

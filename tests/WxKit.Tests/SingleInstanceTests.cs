@@ -3,7 +3,8 @@ using System.Diagnostics;
 namespace WxKit.Tests;
 
 // The other copies are this test application run again, as a process of its own, since
-// wxWidgets counts a lock its own process holds as no other copy on Linux and macOS.
+// wxWidgets counts a lock its own process holds as no other copy on Linux and macOS. Other tests
+// run it the same way, for what an application does before Application.Run.
 public class SingleInstanceTests {
 	internal const string AnotherCopy = "--wxkit-another-copy";
 	private const int Delivered = 10;
@@ -66,6 +67,18 @@ public class SingleInstanceTests {
 		Assert.Equal(First, await RunAnotherCopy("claim", name));
 	});
 
+	// As macOS's temporary folder is, which made the whole path longer than a socket's can be.
+	[Fact]
+	public void ShortensASocketPathThatWouldBeTooLong() {
+		string folder = "/var/folders/20/jp1_0n3n7kndh6rnbqb5344m0000gn/T/wxkit-runner";
+		Assert.Equal($"{folder}/short.sock", SingleInstance.SocketPath(folder, "short").Replace(Path.DirectorySeparatorChar, '/'));
+		string hashed = SingleInstance.SocketPath(folder, "wxkit-test-50ed0038d6ba4deb85a6bdac46c41f0b").Replace(Path.DirectorySeparatorChar, '/');
+		Assert.StartsWith(folder + "/", hashed);
+		Assert.True(hashed.Length <= 100, hashed);
+		Assert.Equal(hashed, SingleInstance.SocketPath(folder, "wxkit-test-50ed0038d6ba4deb85a6bdac46c41f0b").Replace(Path.DirectorySeparatorChar, '/'));
+		Assert.Throws<IOException>(() => SingleInstance.SocketPath(new string('x', 95), "name"));
+	}
+
 	[Fact]
 	public void RejectsBadNamesAndMessages() {
 		Assert.Throws<ArgumentException>(() => SingleInstance.Claim("my app", []));
@@ -88,9 +101,15 @@ public class SingleInstanceTests {
 		Assert.Null(SingleInstance.Decode([0xFF, 0xFF, 0xFF, 0x7F]));
 	}
 
-	// The other copy: check name folder, or claim name message..., which exits with what it found.
+	// The other copy: check name folder, or claim name message..., which exits with what it found,
+	// or translate language text, which writes the translation.
 	internal static int RunAsAnotherCopy(string[] args) {
 		try {
+			if (args is ["translate", string language, string text]) {
+				using Translations translations = Translations.Use("WxKit.Tests", language);
+				Console.Out.Write(Translations.Translate(text));
+				return Delivered;
+			}
 			if (args is ["check", string name, string folder]) {
 				using SingleInstanceChecker checker = new(name, folder.Length == 0 ? null : folder);
 				return checker.IsAnotherRunning ? Running : NotRunning;
@@ -105,18 +124,21 @@ public class SingleInstanceTests {
 		return Failed;
 	}
 
-	private static async Task<int> RunAnotherCopy(params string[] args) {
+	private static async Task<int> RunAnotherCopy(params string[] args) => (await RunAnotherProcess(args)).ExitCode;
+
+	internal static async Task<(int ExitCode, string Output)> RunAnotherProcess(params string[] args) {
 		string path = Environment.ProcessPath!;
-		ProcessStartInfo start = new(path) { RedirectStandardError = true };
+		ProcessStartInfo start = new(path) { RedirectStandardError = true, RedirectStandardOutput = true, StandardOutputEncoding = System.Text.Encoding.UTF8 };
 		// Run as dotnet WxKit.Tests.dll, the other copy needs the assembly too.
 		if (Path.GetFileNameWithoutExtension(path) == "dotnet") start.ArgumentList.Add(typeof(SingleInstanceTests).Assembly.Location);
 		start.ArgumentList.Add(AnotherCopy);
 		foreach (string arg in args) start.ArgumentList.Add(arg);
 		using Process process = Process.Start(start)!;
 		Task<string> errors = process.StandardError.ReadToEndAsync();
+		Task<string> output = process.StandardOutput.ReadToEndAsync();
 		await process.WaitForExitAsync().WaitAsync(Gui.Timeout);
 		Assert.True(process.ExitCode != Failed, await errors);
-		return process.ExitCode;
+		return (process.ExitCode, await output);
 	}
 
 	private static string UniqueName() => $"wxkit-test-{Guid.NewGuid():N}";

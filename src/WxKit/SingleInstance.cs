@@ -4,6 +4,7 @@ using System.IO.Pipes;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
+using System.Security.Cryptography;
 using System.Text;
 using WxKit.Interop;
 
@@ -131,14 +132,14 @@ public sealed partial class SingleInstance : IDisposable {
 			SingleInstanceChecker checker = new(id, folder);
 			if (!checker.IsAnotherRunning) {
 				try {
-					return OperatingSystem.IsWindows() ? new SingleInstance(checker, CreatePipe(id), null, null) : CreateSocket(checker, Path.Combine(folder!, $"{name}.sock"));
+					return OperatingSystem.IsWindows() ? new SingleInstance(checker, CreatePipe(id), null, null) : CreateSocket(checker, SocketPath(folder!, name));
 				} catch {
 					checker.Dispose();
 					throw;
 				}
 			}
 			checker.Dispose();
-			bool delivered = OperatingSystem.IsWindows() ? DeliverToPipe(id, frame) : DeliverToSocket(Path.Combine(folder!, $"{name}.sock"), frame);
+			bool delivered = OperatingSystem.IsWindows() ? DeliverToPipe(id, frame) : DeliverToSocket(SocketPath(folder!, name), frame);
 			if (delivered) return null;
 		}
 		throw new IOException($"Another copy of {name} is running, but could not be reached.");
@@ -225,6 +226,17 @@ public sealed partial class SingleInstance : IDisposable {
 			socket.Dispose();
 			throw;
 		}
+	}
+
+	// A socket's path can be at most 104 bytes on macOS and 108 on Linux, and macOS's temporary
+	// folder is long, so a name that would make it longer is shortened to a hash of it.
+	internal static string SocketPath(string folder, string name) {
+		const int MaxBytes = 100;
+		string path = Path.Combine(folder, $"{name}.sock");
+		if (Encoding.UTF8.GetByteCount(path) <= MaxBytes) return path;
+		string hashed = Path.Combine(folder, $"{Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(name)))[..16]}.sock");
+		if (Encoding.UTF8.GetByteCount(hashed) <= MaxBytes) return hashed;
+		throw new IOException($"{folder} is too long a path for the socket the copies talk over.");
 	}
 
 	// $XDG_RUNTIME_DIR where there is one, which only the user can open. Elsewhere, such as on macOS,
