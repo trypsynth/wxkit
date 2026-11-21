@@ -119,12 +119,14 @@ A window's text is translated when the window is made. To change the language wh
 
 ## Right-to-left languages
 
-Hebrew, Arabic, and Persian are written from right to left, and windows in them lay out from the right. Set each top-level window's `LayoutDirection` before you make its contents:
+Hebrew, Arabic, and Persian are written from right to left, and windows in them lay out from the right. Windows follow the user's locale, so an application whose language is a setting of its own sets the direction itself. Set `Application.LayoutDirection` after `Translations.Use`, before you make any windows:
 
 ```csharp
 string language = Translations.Current?.GetBestTranslation("MyApp") ?? "en";
-if (LanguageInfo.Find(language)?.LayoutDirection == LayoutDirection.RightToLeft) LayoutDirection = LayoutDirection.RightToLeft;
+Application.LayoutDirection = LanguageInfo.Find(language)?.LayoutDirection ?? LayoutDirection.Default;
 ```
+
+New windows with no parent, and message boxes, are laid out in that direction, and a window with a parent takes its parent's. Windows that are already open keep theirs. To change the language while the application runs, set `Application.LayoutDirection` again, and set each open top-level window's `LayoutDirection` before you make its contents again. On macOS, Cocoa takes the direction from the languages the application is localized in, not from WxKit.
 
 ## Use Visual Basic or F\#
 

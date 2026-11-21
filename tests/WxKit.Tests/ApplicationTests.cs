@@ -19,6 +19,37 @@ public class ApplicationTests {
 		Assert.Equal(!OperatingSystem.IsMacOS(), elsewhere);
 	}
 
+	// Nothing awaits between setting the direction and setting it back, so no other test's windows see it.
+	[Fact]
+	public async Task LaysOutWindowsWithNoParentInItsDirection() {
+		Assert.SkipWhen(OperatingSystem.IsMacOS(), "Cocoa takes its direction from the application's localization.");
+		(LayoutDirection frame, LayoutDirection child, LayoutDirection after) = await Gui.Run(() => {
+			Application.LayoutDirection = LayoutDirection.RightToLeft;
+			try {
+				Frame mirrored = new(null, "Mirrored");
+				Dialog owned = new(mirrored, "Owned");
+				LayoutDirection directions = mirrored.LayoutDirection;
+				LayoutDirection ownedDirection = owned.LayoutDirection;
+				owned.Destroy();
+				mirrored.Destroy();
+				Application.LayoutDirection = LayoutDirection.Default;
+				Frame plain = new(null, "Plain");
+				LayoutDirection plainDirection = plain.LayoutDirection;
+				plain.Destroy();
+				return (directions, ownedDirection, plainDirection);
+			} finally {
+				Application.LayoutDirection = LayoutDirection.Default;
+			}
+		});
+		Assert.Equal(LayoutDirection.RightToLeft, frame);
+		Assert.Equal(LayoutDirection.RightToLeft, child);
+		Assert.NotEqual(LayoutDirection.RightToLeft, after);
+		Assert.Equal(LayoutDirection.Default, Application.LayoutDirection);
+	}
+
+	[Fact]
+	public void RefusesADirectionThatIsNotOne() => Assert.Throws<ArgumentOutOfRangeException>(() => Application.LayoutDirection = (LayoutDirection)7);
+
 	[Fact]
 	public async Task KnowsWhichThreadIsTheGuiThread() {
 		Assert.False(Application.IsGuiThread);

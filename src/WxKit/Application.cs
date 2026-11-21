@@ -11,6 +11,7 @@ namespace WxKit;
 /// </summary>
 public unsafe class Application {
 	private static int _guiThreadId;
+	private static LayoutDirection _layoutDirection = LayoutDirection.Default;
 	private ExceptionDispatchInfo? _failure;
 
 	/// <summary>
@@ -28,6 +29,25 @@ public unsafe class Application {
 
 	/// <summary>The version of wxWidgets that WxKit is built with, such as "wxWidgets 3.3.4".</summary>
 	public static string WxWidgetsVersion => NativeString.Take(WxKitNative.VersionGetString());
+
+	/// <summary>
+	/// The direction that windows with nothing to take one from are laid out in: new frames and
+	/// dialogs with no parent, and message boxes with no window under them. A window with a parent
+	/// takes its parent's. <see cref="LayoutDirection.Default"/>, the default, follows the UI locale,
+	/// so an application whose language is its own setting, such as Hebrew on an English system,
+	/// sets it to that language's <see cref="LanguageInfo.LayoutDirection"/>. Windows already open
+	/// keep theirs. This decides the direction on Windows and Linux. Set it on the GUI thread, or
+	/// before the application runs.
+	/// </summary>
+	public static LayoutDirection LayoutDirection {
+		get => _layoutDirection;
+		set {
+			if (!Enum.IsDefined(value)) throw new ArgumentOutOfRangeException(nameof(value));
+			VerifyAccessOrNotRunning();
+			WxKitNative.AppSetLayoutDirection((int)value);
+			_layoutDirection = value;
+		}
+	}
 
 	/// <summary>Runs an application whose startup is <paramref name="onInit"/>, and returns its exit code.</summary>
 	public static int Run(Action onInit) {

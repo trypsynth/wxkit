@@ -6,8 +6,31 @@
 #ifdef __WXOSX__
 	#include <pthread.h>
 #endif
+#ifdef __WXGTK__
+// The shim is built without GTK's headers, so the calls it makes are declared here. A
+// GtkTextDirection is none, left to right, or right to left.
+extern "C" {
+int gtk_widget_get_default_direction(void);
+void gtk_widget_set_default_direction(int direction);
+}
+#endif
 
 namespace {
+
+// The direction the application gives what has no window to take it from, such as a new frame or
+// a message box with no parent, or wxLayout_Default to follow the UI locale.
+wxLayoutDirection layoutDirection = wxLayout_Default;
+#ifdef __WXGTK__
+// GTK's own default, from its translations, which wxLayout_Default goes back to.
+int gtkDirection = 0;
+
+// GTK lays out a window it makes, such as a message box, in its default direction. It is set
+// once GTK has started.
+void ApplyGtkDirection() {
+	if (gtkDirection == 0) gtkDirection = gtk_widget_get_default_direction();
+	gtk_widget_set_default_direction(layoutDirection == wxLayout_RightToLeft ? 2 : layoutDirection == wxLayout_LeftToRight ? 1 : gtkDirection);
+}
+#endif
 
 class App final : public wxApp {
 public:
@@ -15,7 +38,14 @@ public:
 
 	// wxApp::OnInit parses the command line, which belongs to .NET, so it is not called.
 	bool OnInit() override {
+#ifdef __WXGTK__
+		if (layoutDirection != wxLayout_Default) ApplyGtkDirection();
+#endif
 		return _onInit(_userdata) != 0;
+	}
+
+	wxLayoutDirection GetLayoutDirection() const override {
+		return layoutDirection != wxLayout_Default ? layoutDirection : wxApp::GetLayoutDirection();
 	}
 
 private:
@@ -68,6 +98,15 @@ WXK_FUNCTION(uint8_t) wxk_App_CallAfter(wxk_Callback callback, void* userdata) n
 WXK_FUNCTION(void) wxk_App_ExitMainLoop(void) noexcept {
 	wxk::Guard([] {
 		if (wxTheApp != nullptr) wxTheApp->ExitMainLoop();
+	});
+}
+
+WXK_FUNCTION(void) wxk_App_SetLayoutDirection(int32_t direction) noexcept {
+	wxk::Guard([direction] {
+		layoutDirection = static_cast<wxLayoutDirection>(direction);
+#ifdef __WXGTK__
+		if (wxTheApp != nullptr) ApplyGtkDirection();
+#endif
 	});
 }
 

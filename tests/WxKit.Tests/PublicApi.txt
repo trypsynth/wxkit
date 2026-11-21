@@ -260,6 +260,7 @@ class WxKit.Application
     int Run()
     protected virtual bool OnInit()
     static Application? Current { get; }
+    static LayoutDirection LayoutDirection { get; set; }
     static bool IsGuiThread { get; }
     static event EventHandler<ApplicationExceptionEventArgs>? UnhandledException
     static int Run(Action onInit)

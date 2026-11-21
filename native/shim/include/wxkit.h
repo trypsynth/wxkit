@@ -174,6 +174,10 @@ WXK_FUNCTION(uint8_t) wxk_App_CallAfter(wxk_Callback callback, void* userdata) W
 
 WXK_FUNCTION(void) wxk_App_ExitMainLoop(void) WXK_NOEXCEPT;
 
+// Sets the direction, a wxLayoutDirection, that windows with nothing to take one from are laid
+// out in, such as new frames and message boxes with no parent. wxLayout_Default follows the UI locale.
+WXK_FUNCTION(void) wxk_App_SetLayoutDirection(int32_t direction) WXK_NOEXCEPT;
+
 // The wxWidgets version, such as "wxWidgets 3.3.4".
 WXK_FUNCTION(wxk_String*) wxk_Version_GetString(void) WXK_NOEXCEPT;
 
