@@ -6,7 +6,7 @@ namespace WxKit.Tests;
 // a probe and is skipped, rather than failed, when nothing arrives. Once input is shown to arrive,
 // the event the test is for must too. macOS only lets an application send input with a permission
 // CI does not have.
-public class InputTests {
+public partial class InputTests {
 	// The waits add up to less than a test's own timeout, so a test fails at the wait that did not hold.
 	private static readonly TimeSpan ActivateWait = TimeSpan.FromSeconds(2);
 	private static readonly TimeSpan ProbeWait = TimeSpan.FromSeconds(2);
@@ -83,11 +83,19 @@ public class InputTests {
 		frame.Raise();
 		focus.SetFocus();
 		try {
-			await Gui.WaitUntil(() => frame.IsActive && Window.FindFocus() == focus, ActivateWait);
+			await Gui.WaitUntil(() => frame.IsActive && Window.FindFocus() == focus && IsInFront(frame), ActivateWait);
 		} catch (TimeoutException) {
 			Assert.Skip("The system did not make the test's window active, so input would go elsewhere.");
 		}
 	}
+
+	// Simulated input goes to the foreground window, whichever application's it is, so a test
+	// sends none unless that is its own. On Windows, a window can be its thread's active one while
+	// another application's is in front, which IsActive alone cannot tell.
+	private static bool IsInFront(Frame frame) => !OperatingSystem.IsWindows() || GetForegroundWindow() == frame.NativeHandle;
+
+	[System.Runtime.InteropServices.LibraryImport("user32.dll")]
+	private static partial nint GetForegroundWindow();
 
 	// Skips the test when no simulated input arrived at all, as on a machine that does not deliver it.
 	private static async Task Probe(Func<bool> arrived) {
