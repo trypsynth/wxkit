@@ -86,6 +86,7 @@ set(WXK_SOURCES
 	src/numbers.cpp
 	src/printing.cpp
 	src/imagedata.cpp
+	src/liveregion.cpp
 	src/singleinstance.cpp
 	src/translations.cpp
 	src/handlers/png.cpp

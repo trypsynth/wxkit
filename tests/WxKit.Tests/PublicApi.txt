@@ -240,6 +240,10 @@ enum WxKit.Alignment : int
     Not = 0
     Right = 512
     Top = 0
+enum WxKit.AnnouncementPriority : int
+    High = 2
+    Low = 0
+    Medium = 1
 class WxKit.AnyButton : Control
     Bitmap? Bitmap { get; }
     Bitmap? BitmapCurrent { get; set; }
@@ -2752,6 +2756,10 @@ class WxKit.Listbook : BookCtrlBase
     None = 0
     Right = 128
     Top = 16
+sealed class WxKit.LiveRegion : StaticText
+    LiveRegion(Window parent)
+    bool Announce(string message, AnnouncementPriority priority = AnnouncementPriority.High)
+    bool Prepare()
 enum WxKit.MappingMode : int
     Lometric = 3
     Metric = 2

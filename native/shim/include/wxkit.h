@@ -421,6 +421,15 @@ WXK_FUNCTION(wxk_Object*) wxk_ManagedPrintout_new(const char16_t* title, size_t 
 // preview could not be made. The preview takes the printouts, and deletes them when it closes.
 WXK_FUNCTION(wxk_Window*) wxk_PrintPreview_Show(wxk_Object* printout, wxk_Object* printoutForPrinting, wxk_Object* data, wxk_Window* parent, const char16_t* title, size_t titleLength, wxk_Size size) WXK_NOEXCEPT;
 
+// Live regions
+
+// Gets a window ready to announce through, and returns whether announcements can work, which on
+// Windows gives it a UI Automation provider of its own.
+WXK_FUNCTION(uint8_t) wxk_LiveRegion_Prepare(wxk_Window* window) WXK_NOEXCEPT;
+// Has screen readers speak a message, at priority 0, 1, or 2, for low, medium, and high, and
+// returns whether one could be told, which on Windows is false when no UI Automation client listens.
+WXK_FUNCTION(uint8_t) wxk_LiveRegion_Announce(wxk_Window* window, const char16_t* message, size_t messageLength, int32_t priority) WXK_NOEXCEPT;
+
 // Images in memory
 
 // Loads an image from the bytes of a file in a format whose handler was added, and returns whether

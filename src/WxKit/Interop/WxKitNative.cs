@@ -458,6 +458,16 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte UIActionSimulatorSelect(char* text, nuint textLength);
 
+	// Live regions
+
+	[LibraryImport(Library, EntryPoint = "wxk_LiveRegion_Prepare")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte LiveRegionPrepare(WxkWindow* window);
+
+	[LibraryImport(Library, EntryPoint = "wxk_LiveRegion_Announce")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte LiveRegionAnnounce(WxkWindow* window, char* message, nuint messageLength, int priority);
+
 	// Images in memory
 
 	[LibraryImport(Library, EntryPoint = "wxk_Image_LoadData")]

@@ -325,6 +325,16 @@ tray.Menu = menu;
 
 A window that calls `DragAcceptFiles(true)` raises `DropFiles` when files are dropped on it, with their paths in the event's `Files`. A text control that handles it opens nothing on its own, so a handler decides what a dropped file does, as the Editor sample opens it. Dragging other data, and dragging from the application, are not bound yet.
 
+## Announcements
+
+A `LiveRegion` is an empty label that a window has screen readers speak through, for news that has no control of its own to land on, such as a status that changed. `Announce` takes the message and a priority, as in `region.Announce("Preset applied: Blog")`, and returns whether a screen reader could be told. It follows the [live-region](https://github.com/accessware/live-region) crate for wxDragon, which was tested against NVDA, VoiceOver, and Orca:
+
+- On Windows, it raises a UI Automation notification, which a screen reader speaks without moving the focus. Raising one needs a provider of the window's own: the one `UiaHostProviderFromHwnd` gives raises it to no client, and says nothing. So the label's window is subclassed to answer `WM_GETOBJECT` with a provider that leaves every property to the host provider. The priorities are the notification's processing: low is `All`, which queues, medium is `CurrentThenMostRecent`, and high is `ImportantMostRecent`, which interrupts. `Announce` returns false while no UI Automation client is listening.
+- On macOS, it posts VoiceOver an `AXAnnouncementRequested`, with the priority, on the next pass of the run loop, so speech the current pass makes does not drown it out. VoiceOver queues announcements unreliably, which the `AnnouncementPriority` documentation describes.
+- On Linux, it emits ATK's `notification` signal, polite for low and medium and assertive for high, or before ATK 2.50 its `announcement` signal, which has no priority.
+
+Each message is made one line of at most 512 characters, without control characters, and an empty one is not announced. A UI Automation client, such as one built with .NET's `System.Windows.Automation` listening for `AutomationElement.NotificationEvent`, hears each announcement with its text and processing, which is how the Windows backend was checked. WxKit's own tests can't do that, since they target `net10.0` rather than the Windows desktop runtime that client needs.
+
 ## One running copy
 
 `SingleInstance.Claim` keeps an application to one running copy, and hands what a second copy was started with, such as files to open, to the first, as the [doorbell](https://github.com/accessware/doorbell) crate does for Rust. Call it at the start of `Main`, before `Application.Run`:
