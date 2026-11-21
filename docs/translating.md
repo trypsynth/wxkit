@@ -87,7 +87,7 @@ When your strings change, update every catalog with the following command:
 dotnet build -t:WxKitUpdateCatalogs
 ```
 
-This extracts the strings again, and merges each catalog in `po` with the template, with `msgmerge`. A string that changed keeps the translation of the string it was, marked fuzzy, for a translator to review. As gettext does, the build leaves fuzzy entries out until a translator removes the `fuzzy` flag, so their strings stay in English until then.
+This extracts the strings again, and merges each of your catalogs with the template, with `msgmerge`. A string that changed keeps the translation of the string it was, marked fuzzy, for a translator to review. As gettext does, the build leaves fuzzy entries out until a translator removes the `fuzzy` flag, so their strings stay in English until then.
 
 ## Check the translations
 
@@ -144,6 +144,8 @@ Set these MSBuild properties and items in the project file:
 
 - `WxKitTranslationDomain`: the name of the application's catalogs. The default is the assembly's name.
 - `WxKitPoDirectory`: the folder of the application's catalogs. The default is `po`.
+- `WxKitCatalog` items: catalogs laid out other than in the catalogs' folder, each with its language in `Language`, as in `<WxKitCatalog Include="locale/de/MyApp.po" Language="de" />`. When there are any, the build compiles and updates only these.
+- `WxKitTranslationTemplate`: the template's path. The default is the domain's name in the catalogs' folder, as in `po/MyApp.pot`.
 - `WxKitLanguage` items: the languages to embed wxWidgets' catalogs for, in place of the names of the catalogs in `po`.
 - `WxKitStdCatalogs`: `all` to embed all of wxWidgets' catalogs, or `none` to embed none.
 - `WxKitMsgfmt` and `WxKitMsgmerge`: the paths of `msgfmt` and `msgmerge`, when they aren't on the `PATH`.

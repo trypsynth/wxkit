@@ -72,6 +72,46 @@ public class TargetsTests {
 		}
 	}
 
+	// The catalogs updated are the ones the build compiles, so catalogs laid out otherwise are too.
+	[Fact]
+	public void UpdatesCatalogsLaidOutOtherwise() {
+		Assert.SkipUnless(HasMsgmerge(), "msgmerge, from GNU gettext, is not installed.");
+		string project = Directory.CreateTempSubdirectory("wxkit-update-").FullName;
+		try {
+			File.WriteAllText(Path.Combine(project, "App.csproj"), $"""
+				<Project Sdk="Microsoft.NET.Sdk">
+					<PropertyGroup>
+						<OutputType>Exe</OutputType>
+						<TargetFramework>net10.0</TargetFramework>
+						<WxKitTranslationTemplate>locale/messages.pot</WxKitTranslationTemplate>
+					</PropertyGroup>
+					<ItemGroup><WxKitCatalog Include="locale/de/App.po" Language="de" /></ItemGroup>
+					<Import Project="{TargetsFile}" />
+				</Project>
+				""");
+			File.WriteAllText(Path.Combine(project, "Program.cs"), "string title = _(\"Hello\");");
+			string catalog = Path.Combine(project, "locale", "de", "App.po");
+			Directory.CreateDirectory(Path.GetDirectoryName(catalog)!);
+			File.WriteAllText(catalog, "msgid \"\"\nmsgstr \"Content-Type: text/plain; charset=UTF-8\\n\"\n");
+			(int exitCode, string output) = Run(project, "msbuild", "-t:WxKitUpdateCatalogs", "-nologo");
+			Assert.True(exitCode == 0, output);
+			Assert.True(File.Exists(Path.Combine(project, "locale", "messages.pot")), output);
+			Assert.Contains("msgid \"Hello\"", File.ReadAllText(catalog));
+		} finally {
+			Directory.Delete(project, true);
+		}
+	}
+
+	private static bool HasMsgmerge() {
+		try {
+			using Process process = Process.Start(new ProcessStartInfo("msgmerge", "--version") { RedirectStandardOutput = true, RedirectStandardError = true })!;
+			process.WaitForExit();
+			return process.ExitCode == 0;
+		} catch (System.ComponentModel.Win32Exception) {
+			return false;
+		}
+	}
+
 	private static (int ExitCode, string Output) Run(string directory, params string[] arguments) {
 		ProcessStartInfo start = new("dotnet") { WorkingDirectory = directory, RedirectStandardOutput = true, RedirectStandardError = true };
 		foreach (string argument in arguments) start.ArgumentList.Add(argument);

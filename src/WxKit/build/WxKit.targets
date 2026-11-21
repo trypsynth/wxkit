@@ -127,11 +127,12 @@
 	<!--
 		WxKitExtract extracts the strings the application passes to Gettext's shortcuts, _, _n, _p,
 		and _pn, and to Translations' lookups, such as Translations.Translate, into the gettext
-		template po/<domain>.pot, which each language's catalog is made from, with msginit, as in
-		msginit -i po/MyApp.pot -o po/de.po -l de. WxKitUpdateCatalogs extracts them and updates each
-		catalog in po from the template with msgmerge, which marks strings that changed as fuzzy, for a
-		translator to review. Run them with dotnet build -t:WxKitExtract or -t:WxKitUpdateCatalogs. Set
-		WxKitMsgmerge to msgmerge's path when it is not on the PATH.
+		template po/<domain>.pot, or WxKitTranslationTemplate, which each language's catalog is made
+		from, with msginit, as in msginit -i po/MyApp.pot -o po/de.po -l de. WxKitUpdateCatalogs
+		extracts them and updates each of the application's catalogs, the ones the build compiles, from
+		the template with msgmerge, which marks strings that changed as fuzzy, for a translator to
+		review. Run them with dotnet build -t:WxKitExtract or -t:WxKitUpdateCatalogs. Set WxKitMsgmerge
+		to msgmerge's path when it is not on the PATH.
 	-->
 	<PropertyGroup>
 		<WxKitMsgmerge Condition="'$(WxKitMsgmerge)' == ''">msgmerge</WxKitMsgmerge>
@@ -153,7 +154,9 @@
 	<Target Name="WxKitExtract" DependsOnTargets="_WxKitResolveCatalogs">
 		<PropertyGroup>
 			<_WxKitIntermediate>$([System.IO.Path]::GetFullPath('$(BaseIntermediateOutputPath)'))</_WxKitIntermediate>
-			<_WxKitTemplate>$([System.IO.Path]::GetFullPath('$(WxKitPoDirectory)/$(_WxKitTranslationDomain).pot'))</_WxKitTemplate>
+			<_WxKitTemplate>$(WxKitTranslationTemplate)</_WxKitTemplate>
+			<_WxKitTemplate Condition="'$(_WxKitTemplate)' == ''">$(WxKitPoDirectory)/$(_WxKitTranslationDomain).pot</_WxKitTemplate>
+			<_WxKitTemplate>$([System.IO.Path]::GetFullPath('$(_WxKitTemplate)'))</_WxKitTemplate>
 		</PropertyGroup>
 		<ItemGroup>
 			<_WxKitSource Include="@(Compile)" Condition="!$([System.String]::Copy('%(Compile.FullPath)').StartsWith('$(_WxKitIntermediate)'))" />
@@ -163,7 +166,7 @@
 
 	<Target Name="WxKitUpdateCatalogs" DependsOnTargets="WxKitExtract">
 		<ItemGroup>
-			<_WxKitCatalogToUpdate Include="$(WxKitPoDirectory)/*.po" />
+			<_WxKitCatalogToUpdate Include="@(_WxKitCatalogSource)" />
 		</ItemGroup>
 		<Exec Command="&quot;$(WxKitMsgmerge)&quot; --update --backup=none --quiet &quot;%(_WxKitCatalogToUpdate.FullPath)&quot; &quot;$(_WxKitTemplate)&quot;" Condition="'@(_WxKitCatalogToUpdate)' != ''" />
 	</Target>
