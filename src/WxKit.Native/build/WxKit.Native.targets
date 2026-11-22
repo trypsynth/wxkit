@@ -9,6 +9,25 @@
 		<WxKitNativeDirectory>$(MSBuildThisFileDirectory)../native/$(_WxKitPackageRuntime)/</WxKitNativeDirectory>
 	</PropertyGroup>
 
+	<!--
+		On Linux, the shared library leaves the web view out, since WebKitGTK would otherwise be needed
+		by every application, and the package carries one built with it as well, which an application
+		that sets WxKitWebView gets in its place, with the same name.
+	-->
+	<Target Name="_WxKitUseWebViewLibrary" AfterTargets="ResolvePackageAssets" Condition="'$(WxKitWebView)' == 'true' and $(_WxKitPackageRuntime.StartsWith('linux'))">
+		<PropertyGroup>
+			<_WxKitWebViewLibrary>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)../native/$(_WxKitPackageRuntime)/webview/libwxkitnative.so'))</_WxKitWebViewLibrary>
+		</PropertyGroup>
+		<ItemGroup>
+			<_WxKitPlainLibrary Include="@(NativeCopyLocalItems)" Condition="'%(Filename)%(Extension)' == 'libwxkitnative.so' and '%(NuGetPackageId)' == 'WxKit.Native.$(_WxKitPackageRuntime)'" />
+			<NativeCopyLocalItems Remove="@(_WxKitPlainLibrary)" />
+			<NativeCopyLocalItems Include="@(_WxKitPlainLibrary->'$(_WxKitWebViewLibrary)')" />
+			<_WxKitPlainRuntimeLibrary Include="@(RuntimeTargetsCopyLocalItems)" Condition="'%(Filename)%(Extension)' == 'libwxkitnative.so' and '%(NuGetPackageId)' == 'WxKit.Native.$(_WxKitPackageRuntime)'" />
+			<RuntimeTargetsCopyLocalItems Remove="@(_WxKitPlainRuntimeLibrary)" />
+			<RuntimeTargetsCopyLocalItems Include="@(_WxKitPlainRuntimeLibrary->'$(_WxKitWebViewLibrary)')" />
+		</ItemGroup>
+	</Target>
+
 	<!-- WxKit's own targets import the link targets too, when they come after this file. Whichever comes second finds them imported already. -->
 	<Import Project="$(WxKitNativeDirectory)WxKit.Native.targets" Condition="'$(RuntimeIdentifier)' == '$(_WxKitPackageRuntime)' and '$(_WxKitLinkTargetsImported)' != 'true' and ('$(WxKitStaticLink)' == 'true' or ('$(WxKitStaticLink)' == '' and '$(PublishAot)' == 'true')) and Exists('$(WxKitNativeDirectory)WxKit.Native.targets')" />
 

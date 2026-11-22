@@ -19,7 +19,8 @@ The packages are `WxKit`, the managed library and its targets, and `WxKit.Native
 Each runtime has one CMake build in `artifacts/native-build/<runtime>`, which takes 10 to 20 minutes cold on a desktop machine. The shim's `CMakeLists.txt` fixes the wxWidgets options, as [Native layer](native-layer.md) describes, including the built-in copies of zlib, libpng, and the other image libraries on every platform. The build's output goes to `artifacts/native/<runtime>`:
 
 - `static`, for Native AOT: the shim and the wxWidgets libraries as static libraries, and a `WxKit.Native.targets` file that lists everything the final link needs, so platform details stay out of the package's own targets.
-- `shared`, for everything else: `wxkitnative.dll`, `libwxkitnative.dylib`, or `libwxkitnative.so`, with wxWidgets linked in, exporting only the shim's `wxk_` functions.
+- `shared`, for everything else: `wxkitnative.dll`, `libwxkitnative.dylib`, or `libwxkitnative.so`, with wxWidgets linked in, exporting only the shim's `wxk_` functions. On Linux, it leaves the web view out, and `shared/webview` has one built with it, which an application that sets `WxKitWebView` gets in its place, so applications without a web view never need WebKitGTK.
+- `licenses`: the licenses of what the build brings in itself, such as the WebView2 SDK's loader on Windows, which the native package carries.
 - `locale`: wxWidgets' own translations, compiled with GNU gettext's `msgfmt`. Without `msgfmt` the script warns and leaves them out, but in CI it fails, since the `WxKit` package takes them from this build. See [Translating](../translating.md).
 
 On Windows:
@@ -27,6 +28,7 @@ On Windows:
 - Everything uses the static C runtime, `/MT`, because Native AOT links it. The script finds the newest Visual Studio with the C++ tools, and its CMake when none is on `PATH`. CI builds with Visual Studio 2022, since MSVC links libraries from an older toolset but not a newer one. `win-arm64` builds on x64 too, but CI tests it on ARM64.
 - WxKit's targets set `ApplicationManifest` to `wxkit.manifest`, which declares version 6 of the common controls and per-monitor DPI awareness, unless the application has its own manifest.
 - wxMSW's resources from `wx.rc` are compiled to `wxkit.res`. The linker takes one set of Win32 resources, so a static link sets `IlcGenerateWin32Resources` to false, and a build task merges the application's resources with WxKit's, the application's winning where both have one.
+- The web view is Edge's WebView2, whose SDK wxWidgets downloads from nuget.org while configuring, checked against its SHA-256 hash. Its static loader is linked in, so nothing ships beside the application, and the link targets put its folder on the linker's path, since wxWidgets names it with a `#pragma`.
 - In the Visual Studio 2026 Build Tools, `vcvarsall.bat` runs `vswhere.exe` by name, so a Native AOT link fails unless `%ProgramFiles(x86)%\Microsoft Visual Studio\Installer` is on `PATH`, as `scripts/test-aot.ps1` arranges.
 
 On macOS:
@@ -37,7 +39,7 @@ On macOS:
 
 On Linux:
 
-- wxGTK is built against GTK 3 with CMake and Ninja, and needs GTK 3's development files, such as Ubuntu's `libgtk-3-dev`, and PowerShell 7. CI builds on Ubuntu 22.04, so the packages work with its glibc and anything newer.
+- wxGTK is built against GTK 3 with CMake and Ninja, and needs the development files of GTK 3 and WebKitGTK 4.1, such as Ubuntu's `libgtk-3-dev` and `libwebkit2gtk-4.1-dev`, and PowerShell 7. The link targets list WebKitGTK's libraries, and on macOS WebKit, only for an application that sets `WxKitWebView`. CI builds on Ubuntu 22.04, so the packages work with its glibc and anything newer.
 - Features that need a system library beyond GTK's are left out: web requests, the secret store, sound, libnotify notifications, and spell checking. Everything is position independent, since Native AOT links position-independent executables, and the shared library hides wxWidgets's symbols with `--exclude-libs`.
 - The link targets name the system libraries that `readelf` finds the shared library needs by soname, such as `-l:libgtk-3.so.0`, so an application's build machine needs GTK but not its development files. GNU ld reads static libraries once, in order, so each is listed before the ones it uses. A Native AOT publish also needs `clang` and zlib's development files.
 - `wxAccessible` is Windows only, so `Accessible` does nothing on Linux, where GTK describes its controls through ATK.

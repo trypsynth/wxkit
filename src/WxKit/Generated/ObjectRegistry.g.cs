@@ -89,6 +89,7 @@ internal static unsafe partial class ObjectRegistry {
 		["wxTopLevelWindow"] = static native => new TopLevelWindow((WxkWindow*)native),
 		["wxTreeCtrl"] = static native => new TreeCtrl((WxkWindow*)native),
 		["wxTreebook"] = static native => new Treebook((WxkWindow*)native),
+		["wxWebView"] = static native => new WebView((WxkWindow*)native),
 		["wxWindow"] = static native => new Window((WxkWindow*)native),
 	};
 }

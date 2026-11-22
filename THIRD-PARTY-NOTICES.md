@@ -51,6 +51,12 @@ The native packages, such as `WxKit.Native.win-x64`, also contain wxWidgets and 
 - Website: https://github.com/memononen/nanosvg
 - License: the zlib license, in `licenses/nanosvg/LICENSE.txt`.
 
+## WebView2 loader
+
+- Version: the WebView2 SDK 1.0.3485.44, in the Windows packages only, whose static loader the web view links. An application links it only when it uses `WebView`.
+- Website: https://learn.microsoft.com/microsoft-edge/webview2/
+- License: Microsoft's BSD 3-clause license, in `licenses/webview2/LICENSE.txt`, with the third-party notices in `licenses/webview2/NOTICE.txt`.
+
 ## Scintilla and Lexilla
 
 - Versions: Scintilla 5.0.0 and Lexilla 5.5.4, as wxWidgets' styled text control bundles them. An application links them only when it uses `StyledTextCtrl`.

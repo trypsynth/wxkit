@@ -2443,6 +2443,85 @@ public enum UserAttention {
 	Error = 2,
 }
 
+/// <summary>Wraps wxWebViewBrowsingDataTypes.</summary>
+[Flags]
+public enum WebViewBrowsingDataTypes {
+	/// <summary>All stored and session cookies. Wraps wxWEBVIEW_BROWSING_DATA_COOKIES.</summary>
+	Cookies = 1,
+	/// <summary>Cached data from disk and memory. Wraps wxWEBVIEW_BROWSING_DATA_CACHE.</summary>
+	Cache = 2,
+	/// <summary>All DOM Storage: File Systems, Indexed DB, Local Storage, Web SQL, Cache Storage. Wraps wxWEBVIEW_BROWSING_DATA_DOM_STORAGE.</summary>
+	DomStorage = 4,
+	/// <summary>Other browsing data like history, settings, auto fill, passwords, etc. Wraps wxWEBVIEW_BROWSING_DATA_OTHER.</summary>
+	Other = 8,
+	/// <summary>All browsing data, including data corresponding to all the other constants. Wraps wxWEBVIEW_BROWSING_DATA_ALL.</summary>
+	All = 15,
+}
+
+/// <summary>Wraps wxWebViewFindFlags.</summary>
+public enum WebViewFindFlags {
+	/// <summary>Causes the search to restart when end or beginning reached. Wraps wxWEBVIEW_FIND_WRAP.</summary>
+	Wrap = 1,
+	/// <summary>Matches an entire word when searching. Wraps wxWEBVIEW_FIND_ENTIRE_WORD.</summary>
+	EntireWord = 2,
+	/// <summary>Match case, i.e. Wraps wxWEBVIEW_FIND_MATCH_CASE.</summary>
+	MatchCase = 4,
+	/// <summary>Highlights the search results. Wraps wxWEBVIEW_FIND_HIGHLIGHT_RESULT.</summary>
+	HighlightResult = 8,
+	/// <summary>Searches for phrase in backward direction. Wraps wxWEBVIEW_FIND_BACKWARDS.</summary>
+	Backwards = 16,
+	/// <summary>The default flag, which is simple searching. Wraps wxWEBVIEW_FIND_DEFAULT.</summary>
+	Default = 0,
+}
+
+/// <summary>Wraps wxWebViewNavigationActionFlags.</summary>
+public enum WebViewNavigationActionFlags {
+	/// <summary>No navigation action. Wraps wxWEBVIEW_NAV_ACTION_NONE.</summary>
+	None = 0,
+	/// <summary>The navigation was started by the user. Wraps wxWEBVIEW_NAV_ACTION_USER.</summary>
+	User = 1,
+	/// <summary>The navigation was started but not by the user. Wraps wxWEBVIEW_NAV_ACTION_OTHER.</summary>
+	Other = 2,
+}
+
+/// <summary>Wraps wxWebViewReloadFlags.</summary>
+public enum WebViewReloadFlags {
+	/// <summary>Default reload, will access cache. Wraps wxWEBVIEW_RELOAD_DEFAULT.</summary>
+	Default = 0,
+	/// <summary>Reload the current view without accessing the cache. Wraps wxWEBVIEW_RELOAD_NO_CACHE.</summary>
+	NoCache = 1,
+}
+
+/// <summary>Wraps wxWebViewUserScriptInjectionTime.</summary>
+public enum WebViewUserScriptInjectionTime {
+	/// <summary>Insert the code of the user script at the beginning of loaded documents. Wraps wxWEBVIEW_INJECT_AT_DOCUMENT_START.</summary>
+	Start = 0,
+	/// <summary>Insert the code of the user script at the end of the loaded documents. Wraps wxWEBVIEW_INJECT_AT_DOCUMENT_END.</summary>
+	End = 1,
+}
+
+/// <summary>Wraps wxWebViewZoom.</summary>
+public enum WebViewZoom {
+	/// <summary>Wraps wxWEBVIEW_ZOOM_TINY.</summary>
+	Tiny = 0,
+	/// <summary>Wraps wxWEBVIEW_ZOOM_SMALL.</summary>
+	Small = 1,
+	/// <summary>default size. Wraps wxWEBVIEW_ZOOM_MEDIUM.</summary>
+	Medium = 2,
+	/// <summary>Wraps wxWEBVIEW_ZOOM_LARGE.</summary>
+	Large = 3,
+	/// <summary>Wraps wxWEBVIEW_ZOOM_LARGEST.</summary>
+	Largest = 4,
+}
+
+/// <summary>Wraps wxWebViewZoomType.</summary>
+public enum WebViewZoomType {
+	/// <summary>The entire layout scales when zooming, including images. Wraps wxWEBVIEW_ZOOM_TYPE_LAYOUT.</summary>
+	Layout = 0,
+	/// <summary>Only the text changes in size when zooming, images and other layout elements retain their initial size. Wraps wxWEBVIEW_ZOOM_TYPE_TEXT.</summary>
+	Text = 1,
+}
+
 /// <summary>Wraps wxDateTime::WeekDay.</summary>
 public enum WeekDay {
 	/// <summary>Wraps Sun.</summary>

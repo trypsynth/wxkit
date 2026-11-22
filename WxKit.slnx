@@ -13,6 +13,7 @@
 		<Project Path="samples/Checklist/Checklist.csproj" />
 		<Project Path="samples/Editor/Editor.csproj" />
 		<Project Path="samples/Settings/Settings.csproj" />
+		<Project Path="samples/Browser/Browser.csproj" />
 		<Project Path="samples/Hello/Hello.csproj" />
 		<Project Path="samples/HelloFSharp/HelloFSharp.fsproj" />
 	</Folder>

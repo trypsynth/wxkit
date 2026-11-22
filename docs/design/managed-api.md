@@ -175,6 +175,15 @@ return Application.Run(() => {
 
 It builds on `SingleInstanceChecker`, which wraps `wxSingleInstanceChecker` and needs no running application: a named mutex on Windows, and a lock file with its process's ID on Linux and macOS, so a copy that crashed never blocks the next one. On Linux and macOS, two checkers in one process don't see each other. The copies talk over a named pipe on Windows, and a Unix socket elsewhere, in `$XDG_RUNTIME_DIR` or else a folder of WxKit's own in the temporary folder. Only the same user can open either.
 
+## Web views
+
+`WebView` shows pages with the system's browser engine: Edge's WebView2 on Windows, WebKit on macOS, and WebKitGTK on Linux, whose pages screen readers read as in a browser. An application sets `<WxKitWebView>true</WxKitWebView>`, which becomes a runtime switch the constructor checks, and on Linux gives it the shared library built with the web view and links WebKitGTK when it publishes with Native AOT. `WebView.IsAvailable` says whether the system has the engine, which on Windows is the WebView2 runtime.
+
+- `Navigate`, `NavigateToString`, and `Source` show pages, and `Navigating`, which a handler can veto, `Navigated`, `Loaded`, and `NavigationFailed` say how it goes.
+- `ExecuteScriptAsync` runs a script and gives its result as text, or throws `InvalidOperationException` when it fails. `AddScriptMessageHandler("name")` lets a page call `window.name.postMessage(text)`, which raises `ScriptMessageReceived`.
+- On Windows, the engine starts after the control is created, and raises `Created` when it is ready. Pages and scripts given before then wait for it, but other members fail until then.
+- Edge keeps its data, such as cookies, beside the executable unless told otherwise, so WxKit gives it `%LOCALAPPDATA%\<application>\WebView2`. `WebView.DataFolder` sets another.
+
 ## Simulated input
 
 `UIActionSimulator` sends mouse and keyboard input as if the user gave it, for an application's tests of its user interface: `MouseMove`, `MouseClick`, `Char`, as in `Char((KeyCode)'S', KeyModifiers.Control)`, `Text`, and the rest. The input goes where the system sends real input, which must be a window that is shown and active, and arrives as the event loop runs. On macOS, the application needs permission to control the computer. [Testing](testing.md#real-input) describes how WxKit's own tests use it.

@@ -4,9 +4,9 @@ These are the design questions still open. Each has a recommendation, which the 
 
 ## Order of the optional libraries
 
-Beyond the core, wxWidgets has AUI docking, the property grid, the web view, rich text, the grid, HTML, the ribbon, OpenGL, the media control, and XRC. The styled text control is bound, and an application that doesn't use it doesn't link it.
+Beyond the core, wxWidgets has AUI docking, the property grid, rich text, the grid, HTML, the ribbon, OpenGL, the media control, and XRC. The styled text control and the web view are bound, and an application that doesn't use one doesn't link it.
 
-Recommendation: the web view next, whose content browser engines make accessible to screen readers, for help viewers and rich text. AUI and the property grid draw their own controls, which screen readers can't read yet, so they wait until they can, or until WxKit describes them itself, as it can a control that draws itself. XRC comes last.
+Recommendation: AUI, the property grid, the grid, and rich text draw their own controls, which screen readers can't read yet, so they wait until they can, or until WxKit describes them itself, as it can a control that draws itself. Until then, the core's gaps come first, such as dragging data other than files. XRC comes last.
 
 ## Native libraries an application can't link
 

@@ -99,5 +99,6 @@
 #include <wx/treectrl.h>
 #include <wx/validate.h>
 #include <wx/valtext.h>
+#include <wx/webview.h>
 #include <wx/window.h>
 #include <wx/wrapsizer.h>

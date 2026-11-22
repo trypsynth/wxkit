@@ -62,12 +62,12 @@ A call goes down the layers: `button.Label = "Save"` pins the string and calls `
 - `src/WxKit.Native`: the native packages.
 - `src/WxKit.Generator`: the generator, which is not packed.
 - `tests/WxKit.Tests`, `tests/WxKit.Generator.Tests`, and `tests/WxKit.Build.Tests`: the tests of the managed API, the generator, and the MSBuild targets.
-- `samples`: Hello, its F# counterpart HelloFSharp, a text editor, a translated settings dialog, and a checklist control that draws itself.
+- `samples`: Hello, its F# counterpart HelloFSharp, a text editor, a translated settings dialog, a checklist control that draws itself, and a browser around a web view.
 - `scripts`: building the native libraries, generating, packing, and testing the packages and Native AOT.
 - `docs`: the guides, these design documents, and each release's notes, in `docs/releases`.
 
 ## What is left
 
-- Optional libraries beyond the styled text control, in the order [Open questions](open-questions.md) suggests, and XRC last.
+- Optional libraries beyond the styled text control and the web view, in the order [Open questions](open-questions.md) suggests, and XRC last.
 - Dragging data other than files.
 - Disk images and notarization as part of a macOS publish, which the docs give the commands for today.

@@ -1683,6 +1683,20 @@ static class WxKit.EventType
     static EventType<TreeEvent> TreeSetInfo { get; }
     static EventType<TreeEvent> TreeStateImageClick { get; }
     static EventType<UpdateUIEvent> UpdateUi { get; }
+    static EventType<WebViewEvent> WebviewBrowsingDataCleared { get; }
+    static EventType<WebViewEvent> WebviewCreated { get; }
+    static EventType<WebViewEvent> WebviewError { get; }
+    static EventType<WebViewEvent> WebviewFullScreenChanged { get; }
+    static EventType<WebViewEvent> WebviewLoaded { get; }
+    static EventType<WebViewEvent> WebviewNavigated { get; }
+    static EventType<WebViewEvent> WebviewNavigating { get; }
+    static EventType<WebViewEvent> WebviewNewwindow { get; }
+    static EventType<WebViewEvent> WebviewNewwindowFeatures { get; }
+    static EventType<WebViewEvent> WebviewPdfSaved { get; }
+    static EventType<WebViewEvent> WebviewScriptMessageReceived { get; }
+    static EventType<WebViewEvent> WebviewScriptResult { get; }
+    static EventType<WebViewEvent> WebviewTitleChanged { get; }
+    static EventType<WebViewEvent> WebviewWindowCloseRequested { get; }
 sealed class WxKit.EventType`1<TEvent>
     int Value { get; }
 abstract class WxKit.EvtHandler
@@ -8272,6 +8286,117 @@ class WxKit.Validator : NativeObject
     bool Validate(Window parent)
     static bool IsSilent { get; }
     static void SuppressBellOnError(bool suppress = true)
+class WxKit.WebView : Control
+    Task<string> ExecuteScriptAsync(string script)
+    Uri? Source { get; set; }
+    WebView(Window parent, string url = "about:blank", int id = -1, Point? position = null, Size? size = null)
+    WebViewZoom Zoom { get; set; }
+    WebViewZoomType ZoomType { get; set; }
+    bool AddScriptMessageHandler(string name)
+    bool AddUserScript(string javascript, WebViewUserScriptInjectionTime injectionTime = WebViewUserScriptInjectionTime.Start)
+    bool AreBrowserAcceleratorKeysEnabled { get; set; }
+    bool CanCopy { get; }
+    bool CanCut { get; }
+    bool CanGoBack { get; }
+    bool CanGoForward { get; }
+    bool CanPaste { get; }
+    bool CanRedo { get; }
+    bool CanSetZoomType(WebViewZoomType type)
+    bool CanUndo { get; }
+    bool ClearBrowsingData(WebViewBrowsingDataTypes types = WebViewBrowsingDataTypes.All)
+    bool HasSelection { get; }
+    bool IsAccessToDevToolsEnabled { get; set; }
+    bool IsBusy { get; }
+    bool IsContextMenuEnabled { get; set; }
+    bool IsEditable { get; set; }
+    bool PrintToPdf(string filePath)
+    bool PrintToPdf(string filePath, PrintData printData)
+    bool RemoveScriptMessageHandler(string name)
+    bool SetProxy(string proxy)
+    bool ShowDevTools()
+    event EventHandler<WebViewEvent>? BrowsingDataCleared
+    event EventHandler<WebViewEvent>? Created
+    event EventHandler<WebViewEvent>? FullScreenChanged
+    event EventHandler<WebViewEvent>? Loaded
+    event EventHandler<WebViewEvent>? Navigated
+    event EventHandler<WebViewEvent>? Navigating
+    event EventHandler<WebViewEvent>? NavigationFailed
+    event EventHandler<WebViewEvent>? NewWindowFeatures
+    event EventHandler<WebViewEvent>? NewWindowRequested
+    event EventHandler<WebViewEvent>? PdfSaved
+    event EventHandler<WebViewEvent>? ScriptMessageReceived
+    event EventHandler<WebViewEvent>? ScriptResult
+    event EventHandler<WebViewEvent>? TitleChanged
+    event EventHandler<WebViewEvent>? WindowCloseRequested
+    float ZoomFactor { get; set; }
+    long Find(string text, WebViewFindFlags flags = WebViewFindFlags.Default)
+    static bool IsAvailable { get; }
+    static string? DataFolder { get; set; }
+    string PageSource { get; }
+    string PageText { get; }
+    string SelectedSource { get; }
+    string SelectedText { get; }
+    string Title { get; }
+    string UserAgent { get; set; }
+    void ClearHistory()
+    void ClearSelection()
+    void Copy()
+    void Cut()
+    void DeleteSelection()
+    void EnableHistory(bool enable = true)
+    void GoBack()
+    void GoForward()
+    void Navigate(Uri address)
+    void Navigate(string url)
+    void NavigateToString(string html, string baseUrl = "")
+    void Paste()
+    void Print()
+    void Print(PrintData printData, int flags = 1)
+    void Redo()
+    void Reload(WebViewReloadFlags flags = WebViewReloadFlags.Default)
+    void RemoveAllUserScripts()
+    void SelectAll()
+    void Stop()
+    void Undo()
+[Flags] enum WxKit.WebViewBrowsingDataTypes : int
+    All = 15
+    Cache = 2
+    Cookies = 1
+    DomStorage = 4
+    Other = 8
+class WxKit.WebViewEvent : NotifyEvent
+    WebViewNavigationActionFlags NavigationAction { get; }
+    bool IsError { get; }
+    bool IsTargetMainFrame { get; }
+    string MessageHandler { get; }
+    string Target { get; }
+    string Url { get; }
+enum WxKit.WebViewFindFlags : int
+    Backwards = 16
+    Default = 0
+    EntireWord = 2
+    HighlightResult = 8
+    MatchCase = 4
+    Wrap = 1
+enum WxKit.WebViewNavigationActionFlags : int
+    None = 0
+    Other = 2
+    User = 1
+enum WxKit.WebViewReloadFlags : int
+    Default = 0
+    NoCache = 1
+enum WxKit.WebViewUserScriptInjectionTime : int
+    End = 1
+    Start = 0
+enum WxKit.WebViewZoom : int
+    Large = 3
+    Largest = 4
+    Medium = 2
+    Small = 1
+    Tiny = 0
+enum WxKit.WebViewZoomType : int
+    Layout = 0
+    Text = 1
 enum WxKit.WeekDay : int
     Fri = 5
     InvWeekDay = 7

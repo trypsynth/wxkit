@@ -14,6 +14,8 @@
 		<_WxKitTestArchitecture Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64'">arm64</_WxKitTestArchitecture>
 		<_WxKitTestArchitecture Condition="'$(_WxKitTestArchitecture)' == ''">x64</_WxKitTestArchitecture>
 		<WxKitTestRuntime Condition="'$(WxKitTestRuntime)' == ''">$(_WxKitTestSystem)-$(_WxKitTestArchitecture)</WxKitTestRuntime>
+		<!-- The tests create web views. -->
+		<WxKitWebView>true</WxKitWebView>
 		<WxKitStdCatalogDirectory>$(WxKitNativeRoot)/$(WxKitTestRuntime)/locale/</WxKitStdCatalogDirectory>
 	</PropertyGroup>
 
@@ -30,7 +32,8 @@
 	<Import Project="..\..\src\WxKit\build\WxKit.targets" />
 
 	<ItemGroup>
-		<None Include="$(WxKitNativeRoot)/$(WxKitTestRuntime)/shared/*.dll;$(WxKitNativeRoot)/$(WxKitTestRuntime)/shared/*.dylib;$(WxKitNativeRoot)/$(WxKitTestRuntime)/shared/*.so" Link="%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+		<!-- The tests create web views, so on Linux they take the shared library built with one. -->
+		<None Include="$(WxKitNativeRoot)/$(WxKitTestRuntime)/shared/*.dll;$(WxKitNativeRoot)/$(WxKitTestRuntime)/shared/*.dylib;$(WxKitNativeRoot)/$(WxKitTestRuntime)/shared/webview/*.so" Link="%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -2,7 +2,7 @@
 
 .NET bindings to [wxWidgets](https://wxwidgets.org), for native desktop applications on Windows, macOS, and Linux. WxKit works with Native AOT, and links wxWidgets into the executable so that an application ships as one file.
 
-WxKit is a preview. It works for trying out and for small applications, its API will change before 1.0, and parts of wxWidgets are not bound yet. It runs on Windows, Linux, and macOS, each on x64 and ARM64, from C# or F#. The bindings are generated from wxWidgets's own headers, and cover windows and the common controls, list, tree, and data view controls, the styled text control, toolbars, sizers, menus, the standard dialogs, drawing, images, the clipboard, translations, and accessibility, including for controls that draw themselves.
+WxKit is a preview. It works for trying out and for small applications, its API will change before 1.0, and parts of wxWidgets are not bound yet. It runs on Windows, Linux, and macOS, each on x64 and ARM64, from C# or F#. The bindings are generated from wxWidgets's own headers, and cover windows and the common controls, list, tree, and data view controls, the styled text control, the web view, toolbars, sizers, menus, the standard dialogs, drawing, images, the clipboard, translations, and accessibility, including for controls that draw themselves.
 
 To write a first application, follow [Getting started](docs/getting-started.md). The samples show more:
 
@@ -10,6 +10,7 @@ To write a first application, follow [Getting started](docs/getting-started.md).
 - [Editor](samples/Editor/EditorFrame.cs) is a text editor, with menus, files, find and replace, fonts, and printing.
 - [Settings](samples/Settings/SettingsDialog.cs) is a settings dialog, with pages, a form, pickers, and a validator, translated into German as [Translating an application](docs/translating.md) describes.
 - [Checklist](samples/Checklist/ChecklistControl.cs) is a control that draws itself, which screen readers read on all three platforms.
+- [Browser](samples/Browser/Program.cs) is a small web browser, with an address, Back, Forward, and Reload, around a web view.
 
 How WxKit is built is in the [design overview](docs/design/overview.md), and what is still undecided in [Open questions](docs/design/open-questions.md).
 
@@ -34,7 +35,7 @@ dotnet test --project tests/WxKit.Tests
 ./scripts/test-aot.ps1
 ```
 
-On Linux, you need CMake, Ninja, PowerShell 7, the .NET 10 SDK, GTK 3's development files, such as Ubuntu's `libgtk-3-dev`, and, for Native AOT, `clang` and zlib's development files, such as `zlib1g-dev`. The same commands build and test, and the build script defaults to the machine's own runtime, such as `linux-x64`.
+On Linux, you need CMake, Ninja, PowerShell 7, the .NET 10 SDK, the development files of GTK 3 and WebKitGTK 4.1, such as Ubuntu's `libgtk-3-dev` and `libwebkit2gtk-4.1-dev`, and, for Native AOT, `clang` and zlib's development files, such as `zlib1g-dev`. The same commands build and test, and the build script defaults to the machine's own runtime, such as `linux-x64`.
 
 On macOS, you need Xcode, the .NET 10 SDK, PowerShell 7, and CMake and Ninja, such as from Homebrew. A Mac with Apple Silicon builds both `osx-arm64` and `osx-x64`, and runs the latter through Rosetta.
 

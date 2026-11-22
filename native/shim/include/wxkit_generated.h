@@ -3506,6 +3506,75 @@ WXK_FUNCTION(void) wxk_Validator_SuppressBellOnError(uint8_t suppress) WXK_NOEXC
 WXK_FUNCTION(wxk_Window*) wxk_Validator_GetWindow(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Validator_IsSilent(void) WXK_NOEXCEPT;
 
+// wxWebView
+
+WXK_FUNCTION(uint8_t) wxk_WebView_AddScriptMessageHandler(wxk_Window* self, const char16_t* name, size_t nameLength) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_RemoveScriptMessageHandler(wxk_Window* self, const char16_t* name, size_t nameLength) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_AddUserScript(wxk_Window* self, const char16_t* javascript, size_t javascriptLength, int32_t injectionTime) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_RemoveAllUserScripts(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_Copy(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_Cut(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_Paste(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_ShowDevTools(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_ClearHistory(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_EnableHistory(wxk_Window* self, uint8_t enable) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_GoBack(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_GoForward(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_ClearSelection(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_DeleteSelection(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_SelectAll(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_Redo(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_Undo(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(int64_t) wxk_WebView_Find(wxk_Window* self, const char16_t* text, size_t textLength, int32_t flags) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_CanSetZoomType(wxk_Window* self, int32_t type) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_Print_Default(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_Print_PrintDataInt(wxk_Window* self, const wxk_Object* printData, int32_t flags) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_PrintToPDF_String(wxk_Window* self, const char16_t* filePath, size_t filePathLength) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_PrintToPDF_StringPrintData(wxk_Window* self, const char16_t* filePath, size_t filePathLength, const wxk_Object* printData) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_Reload(wxk_Window* self, int32_t flags) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_Stop(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_SetProxy(wxk_Window* self, const char16_t* proxy, size_t proxyLength) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_ClearBrowsingData(wxk_Window* self, int32_t types) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_String*) wxk_WebView_GetCurrentTitle(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_IsContextMenuEnabled(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_EnableContextMenu(wxk_Window* self, uint8_t enable) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_IsAccessToDevToolsEnabled(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_EnableAccessToDevTools(wxk_Window* self, uint8_t enable) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_AreBrowserAcceleratorKeysEnabled(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_EnableBrowserAcceleratorKeys(wxk_Window* self, uint8_t enable) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_CanCopy(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_CanCut(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_CanPaste(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_CanGoBack(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_CanGoForward(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_String*) wxk_WebView_GetSelectedSource(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_String*) wxk_WebView_GetSelectedText(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_HasSelection(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_CanRedo(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_CanUndo(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_WebView_GetZoom(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_SetZoom(wxk_Window* self, int32_t zoom) WXK_NOEXCEPT;
+WXK_FUNCTION(float) wxk_WebView_GetZoomFactor(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_SetZoomFactor(wxk_Window* self, float zoom) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_WebView_GetZoomType(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_SetZoomType(wxk_Window* self, int32_t zoomType) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_String*) wxk_WebView_GetPageSource(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_String*) wxk_WebView_GetPageText(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_IsBusy(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_IsEditable(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_SetEditable(wxk_Window* self, uint8_t enable) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_String*) wxk_WebView_GetUserAgent(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebView_SetUserAgent(wxk_Window* self, const char16_t* userAgent, size_t userAgentLength) WXK_NOEXCEPT;
+
+// wxWebViewEvent
+
+WXK_FUNCTION(wxk_String*) wxk_WebViewEvent_GetTarget(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_String*) wxk_WebViewEvent_GetURL(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_WebViewEvent_GetNavigationAction(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_String*) wxk_WebViewEvent_GetMessageHandler(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebViewEvent_IsError(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_WebViewEvent_IsTargetMainFrame(wxk_Event* self) WXK_NOEXCEPT;
+
 // wxWindow
 
 WXK_FUNCTION(uint8_t) wxk_Window_AcceptsFocus(wxk_Window* self) WXK_NOEXCEPT;
@@ -4053,3 +4122,17 @@ WXK_FUNCTION(int32_t) wxk_EventType_TreebookNodeExpanded(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_TreebookPageChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_TreebookPageChanging(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_UpdateUi(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewBrowsingDataCleared(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewCreated(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewError(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewFullScreenChanged(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewLoaded(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewNavigated(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewNavigating(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewNewwindow(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewNewwindowFeatures(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewPdfSaved(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewScriptMessageReceived(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewScriptResult(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewTitleChanged(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewWindowCloseRequested(void) WXK_NOEXCEPT;

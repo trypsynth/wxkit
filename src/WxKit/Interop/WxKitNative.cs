@@ -476,6 +476,36 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte LiveRegionAnnounce(WxkWindow* window, char* message, nuint messageLength, int priority);
 
+	// Web views
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_IsAvailable")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewIsAvailable();
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* WebViewNew(WxkWindow* parent, int id, char* url, nuint urlLength, Point position, Size size, long style, char* dataPath, nuint dataPathLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_LoadURL")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewLoadURL(WxkWindow* self, char* url, nuint urlLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_GetCurrentURL")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* WebViewGetCurrentURL(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_SetPage")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewSetPage(WxkWindow* self, char* html, nuint htmlLength, char* baseUrl, nuint baseUrlLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_RunScriptAsync")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewRunScriptAsync(WxkWindow* self, char* script, nuint scriptLength, long request);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebViewEvent_GetRequest")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial long WebViewEventGetRequest(WxkEvent* @event);
+
 	// Images in memory
 
 	[LibraryImport(Library, EntryPoint = "wxk_Image_LoadData")]

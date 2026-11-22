@@ -15,6 +15,16 @@
 		<DirectPInvoke Include="wxkitnative" />
 	</ItemGroup>
 
+	<!--
+		WxKitWebView set to true lets the application create a WebView, through a runtime switch that
+		WebView checks. On Linux, it also links WebKitGTK: the native package's targets give the
+		application the shared library built with the web view, and a Native AOT publish links
+		WebKitGTK's libraries. Elsewhere, the browser engine is part of the system.
+	-->
+	<ItemGroup Condition="'$(WxKitWebView)' == 'true'">
+		<RuntimeHostConfigurationOption Include="WxKit.WebView" Value="true" Trim="true" />
+	</ItemGroup>
+
 	<!-- Implicit usings import System.Threading, whose Timer makes WxKit's ambiguous. An alias wins over an imported namespace, so this makes a bare Timer mean WxKit's. Set WxKitTimerAlias to false to leave it out. The project's extension stands in for its language, which the SDK has not set yet when a project imports this file itself. -->
 	<ItemGroup Condition="'$(WxKitTimerAlias)' != 'false' and '$(MSBuildProjectExtension)' == '.csproj' and ('$(ImplicitUsings)' == 'true' or '$(ImplicitUsings)' == 'enable')">
 		<Using Include="WxKit.Timer" Alias="Timer" />

@@ -1824,4 +1824,102 @@ public static unsafe partial class EventType {
 	private static class UpdateUiType {
 		public static readonly EventType<UpdateUIEvent> Value = new(WxKitNative.EventTypeUpdateUi, static native => new UpdateUIEvent((WxkEvent*)native));
 	}
+
+	/// <summary>Wraps wxEVT_WEBVIEW_BROWSING_DATA_CLEARED.</summary>
+	public static EventType<WebViewEvent> WebviewBrowsingDataCleared => WebviewBrowsingDataClearedType.Value;
+
+	private static class WebviewBrowsingDataClearedType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewBrowsingDataCleared, static native => new WebViewEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_WEBVIEW_CREATED.</summary>
+	public static EventType<WebViewEvent> WebviewCreated => WebviewCreatedType.Value;
+
+	private static class WebviewCreatedType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewCreated, static native => new WebViewEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_WEBVIEW_ERROR.</summary>
+	public static EventType<WebViewEvent> WebviewError => WebviewErrorType.Value;
+
+	private static class WebviewErrorType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewError, static native => new WebViewEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_WEBVIEW_FULLSCREEN_CHANGED.</summary>
+	public static EventType<WebViewEvent> WebviewFullScreenChanged => WebviewFullScreenChangedType.Value;
+
+	private static class WebviewFullScreenChangedType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewFullScreenChanged, static native => new WebViewEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_WEBVIEW_LOADED.</summary>
+	public static EventType<WebViewEvent> WebviewLoaded => WebviewLoadedType.Value;
+
+	private static class WebviewLoadedType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewLoaded, static native => new WebViewEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_WEBVIEW_NAVIGATED.</summary>
+	public static EventType<WebViewEvent> WebviewNavigated => WebviewNavigatedType.Value;
+
+	private static class WebviewNavigatedType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewNavigated, static native => new WebViewEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_WEBVIEW_NAVIGATING.</summary>
+	public static EventType<WebViewEvent> WebviewNavigating => WebviewNavigatingType.Value;
+
+	private static class WebviewNavigatingType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewNavigating, static native => new WebViewEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_WEBVIEW_NEWWINDOW.</summary>
+	public static EventType<WebViewEvent> WebviewNewwindow => WebviewNewwindowType.Value;
+
+	private static class WebviewNewwindowType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewNewwindow, static native => new WebViewEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_WEBVIEW_NEWWINDOW_FEATURES.</summary>
+	public static EventType<WebViewEvent> WebviewNewwindowFeatures => WebviewNewwindowFeaturesType.Value;
+
+	private static class WebviewNewwindowFeaturesType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewNewwindowFeatures, static native => new WebViewEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_WEBVIEW_PDF_SAVED.</summary>
+	public static EventType<WebViewEvent> WebviewPdfSaved => WebviewPdfSavedType.Value;
+
+	private static class WebviewPdfSavedType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewPdfSaved, static native => new WebViewEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_WEBVIEW_SCRIPT_MESSAGE_RECEIVED.</summary>
+	public static EventType<WebViewEvent> WebviewScriptMessageReceived => WebviewScriptMessageReceivedType.Value;
+
+	private static class WebviewScriptMessageReceivedType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewScriptMessageReceived, static native => new WebViewEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_WEBVIEW_SCRIPT_RESULT.</summary>
+	public static EventType<WebViewEvent> WebviewScriptResult => WebviewScriptResultType.Value;
+
+	private static class WebviewScriptResultType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewScriptResult, static native => new WebViewEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_WEBVIEW_TITLE_CHANGED.</summary>
+	public static EventType<WebViewEvent> WebviewTitleChanged => WebviewTitleChangedType.Value;
+
+	private static class WebviewTitleChangedType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewTitleChanged, static native => new WebViewEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_WEBVIEW_WINDOW_CLOSE_REQUESTED.</summary>
+	public static EventType<WebViewEvent> WebviewWindowCloseRequested => WebviewWindowCloseRequestedType.Value;
+
+	private static class WebviewWindowCloseRequestedType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewWindowCloseRequested, static native => new WebViewEvent((WxkEvent*)native));
+	}
 }

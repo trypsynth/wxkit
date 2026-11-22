@@ -12118,6 +12118,258 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ValidatorIsSilent();
 
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_AddScriptMessageHandler")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewAddScriptMessageHandler(WxkWindow* self, char* name, nuint nameLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_RemoveScriptMessageHandler")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewRemoveScriptMessageHandler(WxkWindow* self, char* name, nuint nameLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_AddUserScript")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewAddUserScript(WxkWindow* self, char* javascript, nuint javascriptLength, int injectionTime);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_RemoveAllUserScripts")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewRemoveAllUserScripts(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_Copy")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewCopy(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_Cut")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewCut(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_Paste")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewPaste(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_ShowDevTools")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewShowDevTools(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_ClearHistory")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewClearHistory(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_EnableHistory")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewEnableHistory(WxkWindow* self, byte enable);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_GoBack")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewGoBack(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_GoForward")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewGoForward(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_ClearSelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewClearSelection(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_DeleteSelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewDeleteSelection(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_SelectAll")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewSelectAll(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_Redo")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewRedo(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_Undo")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewUndo(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_Find")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial long WebViewFind(WxkWindow* self, char* text, nuint textLength, int flags);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_CanSetZoomType")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewCanSetZoomType(WxkWindow* self, int type);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_Print_Default")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewPrintDefault(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_Print_PrintDataInt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewPrintPrintDataInt(WxkWindow* self, WxkObject* printData, int flags);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_PrintToPDF_String")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewPrintToPDFString(WxkWindow* self, char* filePath, nuint filePathLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_PrintToPDF_StringPrintData")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewPrintToPDFStringPrintData(WxkWindow* self, char* filePath, nuint filePathLength, WxkObject* printData);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_Reload")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewReload(WxkWindow* self, int flags);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_Stop")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewStop(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_SetProxy")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewSetProxy(WxkWindow* self, char* proxy, nuint proxyLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_ClearBrowsingData")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewClearBrowsingData(WxkWindow* self, int types);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_GetCurrentTitle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* WebViewGetCurrentTitle(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_IsContextMenuEnabled")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewIsContextMenuEnabled(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_EnableContextMenu")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewEnableContextMenu(WxkWindow* self, byte enable);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_IsAccessToDevToolsEnabled")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewIsAccessToDevToolsEnabled(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_EnableAccessToDevTools")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewEnableAccessToDevTools(WxkWindow* self, byte enable);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_AreBrowserAcceleratorKeysEnabled")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewAreBrowserAcceleratorKeysEnabled(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_EnableBrowserAcceleratorKeys")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewEnableBrowserAcceleratorKeys(WxkWindow* self, byte enable);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_CanCopy")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewCanCopy(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_CanCut")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewCanCut(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_CanPaste")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewCanPaste(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_CanGoBack")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewCanGoBack(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_CanGoForward")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewCanGoForward(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_GetSelectedSource")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* WebViewGetSelectedSource(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_GetSelectedText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* WebViewGetSelectedText(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_HasSelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewHasSelection(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_CanRedo")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewCanRedo(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_CanUndo")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewCanUndo(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_GetZoom")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int WebViewGetZoom(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_SetZoom")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewSetZoom(WxkWindow* self, int zoom);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_GetZoomFactor")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial float WebViewGetZoomFactor(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_SetZoomFactor")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewSetZoomFactor(WxkWindow* self, float zoom);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_GetZoomType")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int WebViewGetZoomType(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_SetZoomType")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewSetZoomType(WxkWindow* self, int zoomType);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_GetPageSource")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* WebViewGetPageSource(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_GetPageText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* WebViewGetPageText(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_IsBusy")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewIsBusy(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_IsEditable")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewIsEditable(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_SetEditable")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WebViewSetEditable(WxkWindow* self, byte enable);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_GetUserAgent")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* WebViewGetUserAgent(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_SetUserAgent")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewSetUserAgent(WxkWindow* self, char* userAgent, nuint userAgentLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebViewEvent_GetTarget")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* WebViewEventGetTarget(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebViewEvent_GetURL")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* WebViewEventGetURL(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebViewEvent_GetNavigationAction")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int WebViewEventGetNavigationAction(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebViewEvent_GetMessageHandler")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* WebViewEventGetMessageHandler(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebViewEvent_IsError")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewEventIsError(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WebViewEvent_IsTargetMainFrame")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WebViewEventIsTargetMainFrame(WxkEvent* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Window_AcceptsFocus")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte WindowAcceptsFocus(WxkWindow* self);
@@ -14261,4 +14513,60 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_UpdateUi")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeUpdateUi();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewBrowsingDataCleared")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeWebviewBrowsingDataCleared();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewCreated")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeWebviewCreated();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewError")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeWebviewError();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewFullScreenChanged")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeWebviewFullScreenChanged();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewLoaded")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeWebviewLoaded();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewNavigated")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeWebviewNavigated();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewNavigating")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeWebviewNavigating();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewNewwindow")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeWebviewNewwindow();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewNewwindowFeatures")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeWebviewNewwindowFeatures();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewPdfSaved")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeWebviewPdfSaved();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewScriptMessageReceived")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeWebviewScriptMessageReceived();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewScriptResult")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeWebviewScriptResult();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewTitleChanged")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeWebviewTitleChanged();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewWindowCloseRequested")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeWebviewWindowCloseRequested();
 }

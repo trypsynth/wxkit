@@ -355,6 +355,34 @@ internal static class Core {
 			.AddEvent("EVT_STC_USERLISTSELECTION", "wxEVT_STC_USERLISTSELECTION", "wxStyledTextEvent", "UserListSelected")
 			.AddEvent("EVT_STC_ZOOM", "wxEVT_STC_ZOOM", "wxStyledTextEvent", "Zoomed"));
 		tweaks.Class("wxStyledTextEvent");
+		// The web view, the system's browser engine, linked only by an application that uses it. It
+		// is created in two steps, with a configuration that says where its data goes, and pages
+		// and scripts are given to it through members of WebView's own, which WebView.cs has.
+		tweaks.Class("wxWebView", web => web
+			.NoConstructors()
+			.Ignore("New", "Create", "NewConfiguration", "RegisterFactory", "GetBackendVersionInfo", "IsBackendAvailable", "LoadURL", "GetCurrentURL", "SetPage", "RunScript", "RunScriptAsync", "GetNativeBackend", "RegisterHandler")
+			.Property("Title", "GetCurrentTitle")
+			.Property("IsContextMenuEnabled", "IsContextMenuEnabled", "EnableContextMenu")
+			.Property("IsAccessToDevToolsEnabled", "IsAccessToDevToolsEnabled", "EnableAccessToDevTools")
+			.Property("AreBrowserAcceleratorKeysEnabled", "AreBrowserAcceleratorKeysEnabled", "EnableBrowserAcceleratorKeys")
+			.Rename("PrintToPDF", "PrintToPdf")
+			.ParameterEnum("ClearBrowsingData", "types", "WebViewBrowsingDataTypes")
+			.Event("EVT_WEBVIEW_CREATED", "Created")
+			.Event("EVT_WEBVIEW_NAVIGATING", "Navigating")
+			.Event("EVT_WEBVIEW_NAVIGATED", "Navigated")
+			.Event("EVT_WEBVIEW_LOADED", "Loaded")
+			.Event("EVT_WEBVIEW_ERROR", "NavigationFailed")
+			.Event("EVT_WEBVIEW_NEWWINDOW", "NewWindowRequested")
+			.Event("EVT_WEBVIEW_NEWWINDOW_FEATURES", "NewWindowFeatures")
+			.Event("EVT_WEBVIEW_WINDOW_CLOSE_REQUESTED", "WindowCloseRequested")
+			.Event("EVT_WEBVIEW_TITLE_CHANGED", "TitleChanged")
+			.Event("EVT_WEBVIEW_FULLSCREEN_CHANGED", "FullScreenChanged")
+			.Event("EVT_WEBVIEW_SCRIPT_MESSAGE_RECEIVED", "ScriptMessageReceived")
+			.Event("EVT_WEBVIEW_SCRIPT_RESULT", "ScriptResult")
+			.AddEvent("EVT_WEBVIEW_BROWSING_DATA_CLEARED", "wxEVT_WEBVIEW_BROWSING_DATA_CLEARED", "wxWebViewEvent", "BrowsingDataCleared")
+			.Event("EVT_WEBVIEW_PDF_SAVED", "PdfSaved"));
+		tweaks.Class("wxWebViewEvent", e => e.Ignore("GetTargetWindowFeatures").Rename("GetURL", "Url"));
+		tweaks.Enum("wxWebViewBrowsingDataTypes", "WebViewBrowsingDataTypes", isFlags: true);
 		// Printing. The data and dialogs are objects the application owns, and so is a printout,
 		// whose virtual members are written by hand, since GetPageInfo answers through pointers, and
 		// whose DC is only lent to it for each page. A preview, which takes its printouts, is too.

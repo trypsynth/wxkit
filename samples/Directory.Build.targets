@@ -17,7 +17,10 @@
 
 	<ItemGroup Condition="'$(WxKitSamplesFromSource)' == 'true'">
 		<ProjectReference Include="$(MSBuildThisFileDirectory)../src/WxKit/WxKit.csproj" />
-		<None Include="$(WxKitNativeRoot)/$(RuntimeIdentifier)/shared/*.dll;$(WxKitNativeRoot)/$(RuntimeIdentifier)/shared/*.so;$(WxKitNativeRoot)/$(RuntimeIdentifier)/shared/*.dylib" Link="%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+		<None Include="$(WxKitNativeRoot)/$(RuntimeIdentifier)/shared/*.dll;$(WxKitNativeRoot)/$(RuntimeIdentifier)/shared/*.dylib" Link="%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+		<!-- On Linux, a sample with a web view takes the shared library built with one. -->
+		<None Include="$(WxKitNativeRoot)/$(RuntimeIdentifier)/shared/*.so" Condition="'$(WxKitWebView)' != 'true'" Link="%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+		<None Include="$(WxKitNativeRoot)/$(RuntimeIdentifier)/shared/webview/*.so" Condition="'$(WxKitWebView)' == 'true'" Link="%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(WxKitSamplesFromSource)' != 'true'">

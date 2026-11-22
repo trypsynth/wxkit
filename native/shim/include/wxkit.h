@@ -440,6 +440,22 @@ WXK_FUNCTION(uint8_t) wxk_LiveRegion_Prepare(wxk_Window* window) WXK_NOEXCEPT;
 // returns whether one could be told, which on Windows is false when no UI Automation client listens.
 WXK_FUNCTION(uint8_t) wxk_LiveRegion_Announce(wxk_Window* window, const char16_t* message, size_t messageLength, int32_t priority) WXK_NOEXCEPT;
 
+// Web views
+
+// Whether the system has the browser engine a web view needs, such as Edge's WebView2 runtime.
+WXK_FUNCTION(uint8_t) wxk_WebView_IsAvailable(void) WXK_NOEXCEPT;
+// Creates a web view showing url, whose browser engine keeps its data in dataPath, or where it
+// chooses when that is empty. Returns null when the engine could not start.
+WXK_FUNCTION(wxk_Window*) wxk_WebView_new(wxk_Window* parent, int32_t id, const char16_t* url, size_t urlLength, wxk_Point position, wxk_Size size, int64_t style, const char16_t* dataPath, size_t dataPathLength) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WebView_LoadURL(wxk_Window* self, const char16_t* url, size_t urlLength) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_String*) wxk_WebView_GetCurrentURL(wxk_Window* self) WXK_NOEXCEPT;
+// Shows html, whose relative links are resolved against baseUrl.
+WXK_FUNCTION(void) wxk_WebView_SetPage(wxk_Window* self, const char16_t* html, size_t htmlLength, const char16_t* baseUrl, size_t baseUrlLength) WXK_NOEXCEPT;
+// Runs a script, whose result comes in a script result event, with request as its client data.
+WXK_FUNCTION(void) wxk_WebView_RunScriptAsync(wxk_Window* self, const char16_t* script, size_t scriptLength, int64_t request) WXK_NOEXCEPT;
+// The request a script result event answers.
+WXK_FUNCTION(int64_t) wxk_WebViewEvent_GetRequest(wxk_Event* event) WXK_NOEXCEPT;
+
 // Images in memory
 
 // Loads an image from the bytes of a file in a format whose handler was added, and returns whether
