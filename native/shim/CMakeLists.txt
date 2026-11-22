@@ -97,6 +97,7 @@ set(WXK_SOURCES
 	src/dataview.cpp
 	src/desktop.cpp
 	src/display.cpp
+	src/dragdrop.cpp
 	src/dropfiles.cpp
 	src/event.cpp
 	src/gridbag.cpp

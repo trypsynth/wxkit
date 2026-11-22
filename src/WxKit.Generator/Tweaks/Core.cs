@@ -406,6 +406,8 @@ internal static class Core {
 			.ParameterEnum("GetBackgroundMode", "return", "BrushStyle")
 			.Property("AreAutomaticBoundingBoxUpdatesEnabled", "AreAutomaticBoundingBoxUpdatesEnabled"));
 		tweaks.ConstantEnumOf("DragFlags", isFlags: true, "wxDrag_CopyOnly", "wxDrag_AllowMove", "wxDrag_DefaultMove");
+		// What a drag did, such as DragResult.Copy, without the type's name again.
+		tweaks.Enum("wxDragResult", "DragResult", memberPrefix: "wxDrag");
 		tweaks.Class("wxDataViewEvent").ParameterEnum("SetDragFlags", "flags", "DragFlags").ParameterEnum("GetDragFlags", "return", "DragFlags");
 		tweaks.Class("wxSplitterWindow").ParameterEnum("SetSplitMode", "mode", "SplitMode");
 		tweaks.ConstantEnumOf("StatusBarFieldStyle", isFlags: false, "wxSB_NORMAL", "wxSB_FLAT", "wxSB_RAISED", "wxSB_SUNKEN");

@@ -181,6 +181,17 @@ public unsafe struct WxkAccessibleCallbacks {
 /// <summary>Clipboard content in several formats, which <see cref="WxKitNative.ClipboardSetContent"/> takes ownership of.</summary>
 public struct WxkClipboardContent;
 
+/// <summary>Data a drag carries, which a drop target's handler reads while it runs.</summary>
+public struct WxkDropData;
+
+/// <summary>The callbacks every drop target calls, as the shim's wxk_DropTargetCallbacks lays them out.</summary>
+public unsafe struct WxkDropTargetCallbacks {
+	public delegate* unmanaged[Cdecl]<void*, int, int, int, int, int, char*, nuint, int> OnDrag;
+	public delegate* unmanaged[Cdecl]<void*, void> OnLeave;
+	public delegate* unmanaged[Cdecl]<void*, int, int, int, int, char*, nuint, WxkDropData*, int> OnDrop;
+	public delegate* unmanaged[Cdecl]<void*, void> OnFree;
+}
+
 /// <summary>The standard clipboard formats, as the shim numbers them.</summary>
 public enum WxkClipboardFormat {
 	Text = 0,

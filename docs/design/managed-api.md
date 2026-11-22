@@ -137,6 +137,18 @@ Image file formats work the same way. Images can always load and save BMP, and a
 
 `Clipboard` is a static class with a getter, a setter, and a check for each format: text, bitmaps, lists of files, HTML, and formats the application names, which hold bytes, as in `Clipboard.GetData("MyApp.Shape")`. Each setter replaces everything on the clipboard. To offer one thing in several formats, set a `ClipboardContent`, as in `Clipboard.SetContent(new ClipboardContent { Text = "Bold text", Html = "<b>Bold</b> text" })`. Each call opens and closes the clipboard, and a setter returns false when another application has it open. A getter returns null when the clipboard doesn't have its format. On Windows, what an application put on the clipboard goes when it exits, unless it calls `Clipboard.Flush`.
 
+## Drag and drop
+
+`DragDrop.DoDragDrop(source, content, flags)` drags a `ClipboardContent`, the same content the clipboard takes, so each target takes a format it understands. Call it when the mouse moves with a button held, such as from a list's `BeginDrag`. It returns once the content is dropped or the drag is cancelled, with what the target did. When that is `DragResult.Move`, which `DragFlags.AllowMove` permits, remove what was dragged from the source.
+
+A `DropTarget` makes a window take content dropped on it, in the formats it names: `DataFormat.Text`, `Html`, `Bitmap`, `Files`, or `DataFormat.Named("MyApp.Shape")`. Content that has several arrives in the first of these the target takes. Its events are:
+
+- `DragEnter` and `DragOver`, as a drag comes in and moves over the window, with its `Position`, the `Format` it would arrive in, and the `Effect` to show, which a handler sets to `DragResult.None` to refuse it.
+- `DragLeave`, when it leaves without a drop.
+- `Drop`, with the content as `Text`, `Html`, `Bitmap`, `Files`, or the named format's `Data`, and the `Effect` that says what was done with it.
+
+The window keeps the target until it is destroyed, given another, or `Remove` takes it away. A window that only takes files can use `DragAcceptFiles` and its `DropFiles` event instead. Dragging needs a mouse, so give every drag a keyboard equivalent, such as Cut and Paste, or Move Up and Move Down.
+
 ## Composite dialogs and controls
 
 wxWidgets makes some dialogs and controls out of standard controls, which screen readers already read:

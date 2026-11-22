@@ -601,17 +601,17 @@ public enum DragFlags {
 /// <summary>Wraps wxDragResult.</summary>
 public enum DragResult {
 	/// <summary>Error prevented the D&amp;D operation from completing. Wraps wxDragError.</summary>
-	DragError = 0,
+	Error = 0,
 	/// <summary>Drag target didn't accept the data. Wraps wxDragNone.</summary>
-	DragNone = 1,
+	None = 1,
 	/// <summary>The data was successfully copied. Wraps wxDragCopy.</summary>
-	DragCopy = 2,
+	Copy = 2,
 	/// <summary>The data was successfully moved (MSW only). Wraps wxDragMove.</summary>
-	DragMove = 3,
+	Move = 3,
 	/// <summary>Operation is a drag-link. Wraps wxDragLink.</summary>
-	DragLink = 4,
+	Link = 4,
 	/// <summary>The operation was cancelled by user (not an error). Wraps wxDragCancel.</summary>
-	DragCancel = 5,
+	Cancel = 5,
 }
 
 /// <summary>Wraps wxDuplexMode.</summary>

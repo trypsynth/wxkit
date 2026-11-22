@@ -1065,6 +1065,19 @@ class WxKit.DC : NativeObject
     void SetLogicalScale(double x, double y)
     void SetUserScale(double xScale, double yScale)
     void StartPage()
+readonly record struct WxKit.DataFormat : IEquatable<DataFormat>
+    bool Equals(DataFormat other)
+    override bool Equals(object obj)
+    override int GetHashCode()
+    override string ToString()
+    static DataFormat Bitmap { get; }
+    static DataFormat Files { get; }
+    static DataFormat Html { get; }
+    static DataFormat Named(string name)
+    static DataFormat Text { get; }
+    static bool op_Equality(DataFormat left, DataFormat right)
+    static bool op_Inequality(DataFormat left, DataFormat right)
+    string? Name { get; }
 enum WxKit.DataViewCellMode : int
     Activatable = 1
     Editable = 2
@@ -1441,21 +1454,42 @@ class WxKit.DpiChangedEvent : Event
     Size Scale(Size size)
     int ScaleX(int x)
     int ScaleY(int y)
+static class WxKit.DragDrop
+    static DragResult DoDragDrop(Window source, ClipboardContent content, DragFlags flags = DragFlags.CopyOnly)
+class WxKit.DragEventArgs : EventArgs
+    DataFormat Format { get; }
+    DragResult Effect { get; set; }
+    Point Position { get; }
 [Flags] enum WxKit.DragFlags : int
     AllowMove = 1
     CopyOnly = 0
     DefaultMove = 3
 enum WxKit.DragResult : int
-    DragCancel = 5
-    DragCopy = 2
-    DragError = 0
-    DragLink = 4
-    DragMove = 3
-    DragNone = 1
+    Cancel = 5
+    Copy = 2
+    Error = 0
+    Link = 4
+    Move = 3
+    None = 1
+sealed class WxKit.DropEventArgs : DragEventArgs
+    Bitmap? Bitmap { get; }
+    byte[]? Data { get; }
+    string? Html { get; }
+    string? Text { get; }
+    string[]? Files { get; }
 class WxKit.DropFilesEvent : Event
     Point Position { get; }
     int NumberOfFiles { get; }
     string[] Files { get; }
+sealed class WxKit.DropTarget
+    DropTarget(Window window, params DataFormat[] formats)
+    IReadOnlyList<DataFormat> Formats { get; }
+    Window Window { get; }
+    event EventHandler<DragEventArgs>? DragEnter
+    event EventHandler<DragEventArgs>? DragOver
+    event EventHandler<DropEventArgs>? Drop
+    event EventHandler? DragLeave
+    void Remove()
 enum WxKit.DuplexMode : int
     Horizontal = 1
     Simplex = 0

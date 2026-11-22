@@ -154,6 +154,42 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkStringArray* ClipboardGetFiles();
 
+	[LibraryImport(Library, EntryPoint = "wxk_DropTarget_SetCallbacks")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DropTargetSetCallbacks(WxkDropTargetCallbacks* callbacks);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DragDrop_DoDragDrop")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int DragDropDoDragDrop(WxkWindow* source, WxkClipboardContent* content, int flags);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DropTarget_Set")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte DropTargetSet(WxkWindow* window, uint kinds, WxkStringArray* named, void* userdata);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DropTarget_Remove")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DropTargetRemove(WxkWindow* window);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DropData_GetText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* DropDataGetText(WxkDropData* data);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DropData_GetBitmap")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* DropDataGetBitmap(WxkDropData* data);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DropData_GetFiles")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkStringArray* DropDataGetFiles(WxkDropData* data);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DropData_GetBytes")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte* DropDataGetBytes(WxkDropData* data, nuint* size);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DropTarget_TestDrop")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int DropTargetTestDrop(WxkWindow* window, WxkClipboardContent* content, int x, int y, int suggested);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Clipboard_GetData")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte* ClipboardGetData(char* format, nuint formatLength, nuint* size);

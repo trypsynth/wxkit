@@ -450,6 +450,74 @@ WXK_FUNCTION(uint8_t) wxk_AccessibilityInfo_Get(wxk_Window* window, int32_t* rol
 
 // Gives a control the label before it, as screen readers read it, where the platform does not.
 WXK_FUNCTION(void) wxk_Window_LinkLabel(wxk_Window* window) WXK_NOEXCEPT;
+// Names a window for screen readers, through ATK and NSAccessibility on Linux and macOS, where
+// wxWidgets' SetAccessibleName does nothing.
+WXK_FUNCTION(void) wxk_Window_SetAccessibleName(wxk_Window* window, const char16_t* name, size_t nameLength) WXK_NOEXCEPT;
+// Sets a window's tooltip, which names a button that shows only an icon, unless it has a name of its own.
+WXK_FUNCTION(void) wxk_Window_SetToolTip(wxk_Window* window, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
+// Names the icon buttons inside a window by their tooltips, such as an editable list box's.
+WXK_FUNCTION(void) wxk_Window_NameIconButtons(wxk_Window* window) WXK_NOEXCEPT;
+
+// Dialogs and controls made of others
+
+// A credential dialog's user name and password, as strings.
+WXK_FUNCTION(wxk_String*) wxk_CredentialEntryDialog_GetUserName(wxk_Window* dialog) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_CredentialEntryDialog_SetUserName(wxk_Window* dialog, const char16_t* user, size_t userLength) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_String*) wxk_CredentialEntryDialog_GetPassword(wxk_Window* dialog) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_CredentialEntryDialog_SetPassword(wxk_Window* dialog, const char16_t* password, size_t passwordLength) WXK_NOEXCEPT;
+// A tree list's selected items, as their pointers.
+WXK_FUNCTION(wxk_Numbers*) wxk_TreeListCtrl_GetSelections(wxk_Window* control) WXK_NOEXCEPT;
+
+// Drag and drop
+
+// Data a drag carries, which a drop target's handler reads while it runs.
+typedef struct wxk_DropData wxk_DropData;
+
+// The kinds of data a drop target takes, as bits of the kinds it is made with: the standard ones,
+// and formats an application names.
+typedef enum wxk_DropKind {
+	WXK_DROP_NONE = -1,
+	WXK_DROP_TEXT = 0,
+	WXK_DROP_BITMAP = 1,
+	WXK_DROP_FILES = 2,
+	WXK_DROP_HTML = 3,
+	WXK_DROP_NAMED = 4
+} wxk_DropKind;
+
+// Where a drag is: entering the target, or moving over it.
+typedef enum wxk_DropStage {
+	WXK_DROP_ENTER = 0,
+	WXK_DROP_OVER = 1
+} wxk_DropStage;
+
+// What a drop target asks .NET. Each gets the target's userdata, and the drag's position in the
+// window, the result wxWidgets suggests, a wxDragResult, and the kind of data that would arrive,
+// with a named format's name, and returns the result to show or give. onFree tells .NET the
+// target is gone.
+typedef struct wxk_DropTargetCallbacks {
+	int32_t (*onDrag)(void* userdata, int32_t stage, int32_t x, int32_t y, int32_t suggested, int32_t kind, const char16_t* name, size_t nameLength);
+	void (*onLeave)(void* userdata);
+	int32_t (*onDrop)(void* userdata, int32_t x, int32_t y, int32_t suggested, int32_t kind, const char16_t* name, size_t nameLength, wxk_DropData* data);
+	void (*onFree)(void* userdata);
+} wxk_DropTargetCallbacks;
+
+WXK_FUNCTION(void) wxk_DropTarget_SetCallbacks(const wxk_DropTargetCallbacks* callbacks) WXK_NOEXCEPT;
+// Drags content from a window, which takes ownership of it, with wxDrag flags, and returns the
+// wxDragResult once it is dropped or cancelled.
+WXK_FUNCTION(int32_t) wxk_DragDrop_DoDragDrop(wxk_Window* source, wxk_ClipboardContent* content, int32_t flags) WXK_NOEXCEPT;
+// Makes a window a drop target for the kinds in kinds, a bit for each wxk_DropKind, and the
+// formats named, which may be null.
+WXK_FUNCTION(uint8_t) wxk_DropTarget_Set(wxk_Window* window, uint32_t kinds, const wxk_StringArray* named, void* userdata) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DropTarget_Remove(wxk_Window* window) WXK_NOEXCEPT;
+// What was dropped: the text or HTML, the bitmap, the files, or a copy of a named format's bytes,
+// which wxk_Bytes_Free frees. Each is null when the data is of another kind.
+WXK_FUNCTION(wxk_String*) wxk_DropData_GetText(wxk_DropData* data) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Object*) wxk_DropData_GetBitmap(wxk_DropData* data) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_StringArray*) wxk_DropData_GetFiles(wxk_DropData* data) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t*) wxk_DropData_GetBytes(wxk_DropData* data, size_t* size) WXK_NOEXCEPT;
+// For tests: drags content, which it takes ownership of, over a window's drop target and drops
+// it, without the system's drag loop, and returns the wxDragResult.
+WXK_FUNCTION(int32_t) wxk_DropTarget_TestDrop(wxk_Window* window, wxk_ClipboardContent* content, int32_t x, int32_t y, int32_t suggested) WXK_NOEXCEPT;
 
 // The desktop
 
