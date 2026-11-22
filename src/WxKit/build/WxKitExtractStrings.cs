@@ -241,7 +241,13 @@ public static class StringExtractor {
 		problems.AddRange(lexer.Problems);
 		for (int index = 0; index < tokens.Count; index++) {
 			Token token = tokens[index];
-			if (token.Kind != TokenKind.Identifier || !IsCall(tokens, index, language, out Keyword? keyword)) continue;
+			if (token.Kind != TokenKind.Identifier) continue;
+			// An application's own shortcut passes its arguments on, so neither it nor its body has strings.
+			if (IsDeclaration(tokens, index, language)) {
+				index = BodyEnd(tokens, index, language) - 1;
+				continue;
+			}
+			if (!IsCall(tokens, index, language, out Keyword? keyword)) continue;
 			List<List<Token>>? arguments = Arguments(tokens, index + 1, language);
 			if (arguments is null || arguments.Count < keyword!.Arguments) continue;
 			string?[] literals = new string?[keyword.Literals];
@@ -287,6 +293,73 @@ public static class StringExtractor {
 			return true;
 		}
 		return false;
+	}
+
+	// The words that come before a call, which a declaration's return type does not look like.
+	private static readonly HashSet<string> CSharpCallKeywords = new HashSet<string>(StringComparer.Ordinal) {
+		"return", "await", "throw", "yield", "else", "case", "in", "is", "as", "when", "and", "or", "not", "new", "out", "ref", "default", "select", "where", "orderby", "group", "by",
+	};
+
+	private static readonly HashSet<string> FSharpDeclarationKeywords = new HashSet<string>(StringComparer.Ordinal) {
+		"let", "rec", "inline", "member", "static", "private", "internal", "public", "override", "default", "and",
+	};
+
+	// A method named as a shortcut or a lookup, which an application declares to wrap Gettext's
+	// or Translations', rather than a call of one: after a return type in C#, Function or Sub in
+	// Visual Basic, and let or member in F#.
+	private static bool IsDeclaration(List<Token> tokens, int index, SourceLanguage language) {
+		StringComparison comparison = language == SourceLanguage.VisualBasic ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+		string name = tokens[index].Text;
+		bool named = Shortcuts.Keys.Concat(Lookups.Keys).Any(key => string.Equals(key, name, comparison) && !(language == SourceLanguage.VisualBasic && key == "_"));
+		if (!named || index == 0 || index + 1 >= tokens.Count || !tokens[index + 1].Is('(')) return false;
+		Token before = tokens[index - 1];
+		switch (language) {
+			case SourceLanguage.VisualBasic:
+				return string.Equals(before.Text, "Function", comparison) || string.Equals(before.Text, "Sub", comparison);
+			case SourceLanguage.FSharp:
+				return before.Kind == TokenKind.Identifier && FSharpDeclarationKeywords.Contains(before.Text);
+			default:
+				// A generic return type ends in >, which => also does.
+				if (before.Is('>')) return !(index >= 2 && tokens[index - 2].Is('='));
+				return before.Kind == TokenKind.Identifier && !CSharpCallKeywords.Contains(before.Text);
+		}
+	}
+
+	// Where the body of the declaration at index ends: its block or expression body's ; in C#, its
+	// End Function or End Sub in Visual Basic, and the next line indented no deeper in F#.
+	private static int BodyEnd(List<Token> tokens, int index, SourceLanguage language) {
+		switch (language) {
+			case SourceLanguage.VisualBasic:
+				for (int at = index + 1; at + 1 < tokens.Count; at++) {
+					if (string.Equals(tokens[at].Text, "End", StringComparison.OrdinalIgnoreCase) && (string.Equals(tokens[at + 1].Text, "Function", StringComparison.OrdinalIgnoreCase) || string.Equals(tokens[at + 1].Text, "Sub", StringComparison.OrdinalIgnoreCase))) return at + 2;
+				}
+				return tokens.Count;
+			case SourceLanguage.FSharp:
+				int line = tokens[index].Line;
+				int start = index;
+				while (start > 0 && tokens[start - 1].Line == line) start--;
+				for (int at = index + 1; at < tokens.Count; at++) {
+					if (tokens[at].Line > line && tokens[at].Column <= tokens[start].Column) return at;
+				}
+				return tokens.Count;
+			default:
+				int depth = 0;
+				for (int at = index + 1; at < tokens.Count; at++) {
+					Token token = tokens[at];
+					if (token.Is('(') || token.Is('[')) depth++;
+					else if (token.Is(')') || token.Is(']')) depth--;
+					else if (depth == 0 && token.Is(';')) return at + 1;
+					else if (depth == 0 && token.Is('{')) {
+						int braces = 0;
+						for (; at < tokens.Count; at++) {
+							if (tokens[at].Is('{')) braces++;
+							else if (tokens[at].Is('}') && --braces == 0) return at + 1;
+						}
+						return tokens.Count;
+					}
+				}
+				return tokens.Count;
+		}
 	}
 
 	// The arguments between the parentheses at open, split at the commas outside any brackets.

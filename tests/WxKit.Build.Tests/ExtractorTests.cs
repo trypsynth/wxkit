@@ -166,6 +166,40 @@ public class ExtractorTests {
 		Assert.DoesNotContain("Creation-Date", text);
 	}
 
+	// An application's own shortcuts, which pass their arguments on to Gettext's, are declarations,
+	// not calls, so neither they nor the calls in them are warned about. A call elsewhere still is.
+	[Theory]
+	[InlineData(SourceLanguage.CSharp, """
+		public static string _(string text) => Gettext._(text);
+		public static string _(string text, params object?[] args) => Gettext._(text, args);
+		public static IEnumerable<string> _n(string text, string plural, long n) {
+			return [Gettext._n(text, plural, n)];
+		}
+		string name = _(label);
+		string title = _("Title");
+		""")]
+	[InlineData(SourceLanguage.VisualBasic, """
+		Public Function _n(text As String, plural As String, n As Long) As String
+			Return Gettext._n(text, plural, n)
+		End Function
+		Dim name = Translations.Translate(label)
+		Dim title = Translations.Translate("Title")
+		""")]
+	[InlineData(SourceLanguage.FSharp, """
+		let _p (context: string) (text: string) = Gettext._p(context, text)
+		let inline _n (text: string) (plural: string) (n: int64) =
+		    Gettext._n(text, plural, n)
+		let name = Translations.Translate(label)
+		let title = Translations.Translate("Title")
+		""")]
+	public void LeavesOutAnApplicationsOwnShortcuts(SourceLanguage language, string source) {
+		List<ExtractionProblem> problems = Extract(source, out StringTemplate template, language);
+		Assert.Equal(["Title"], template.Strings.Select(found => found.Id));
+		ExtractionProblem problem = Assert.Single(problems);
+		Assert.Equal("WXKIT2001", problem.Code);
+		Assert.Equal(source.Split('\n').Length - 1, problem.Line);
+	}
+
 	private static StringTemplate Extract(string source, SourceLanguage language = SourceLanguage.CSharp) {
 		List<ExtractionProblem> problems = Extract(source, out StringTemplate template, language);
 		Assert.Empty(problems);
