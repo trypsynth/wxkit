@@ -7,7 +7,7 @@ public class MoreControlTests {
 		using Bitmap picture = new(32, 24);
 		StaticBitmap bitmap = new(frame, picture);
 		using Bitmap? shown = bitmap.Bitmap;
-		Assert.Equal(new Size(32, 24), shown?.Size);
+		Assert.Equal(new Size(32, 24), shown?.DipSize);
 		BitmapButton button = new(frame, picture);
 		int clicks = 0;
 		button.Click += (_, _) => clicks++;
@@ -56,7 +56,7 @@ public class MoreControlTests {
 		BitmapComboBox combo = new(frame);
 		Assert.Equal(0, combo.Append("Red", icon));
 		using Bitmap? given = combo.GetItemBitmap(0);
-		Assert.Equal(new Size(16, 16), given?.Size);
+		Assert.Equal(new Size(16, 16), given?.DipSize);
 	});
 
 	[Fact]
