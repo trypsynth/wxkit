@@ -171,6 +171,11 @@ Object Element(wxWindow* window) {
 	return element != nullptr ? element : view;
 }
 
+// The name WxKit gave an element, which it keeps on the element itself: AppKit applies the
+// override it sets only for screen readers, which ask through the accessibility server, and not
+// to a call made in the application, as this one is.
+char nameKey;
+
 bool Describe(wxWindow* window, Found& found) {
 	Object element = Element(window);
 	if (element == nullptr) return false;
@@ -179,6 +184,8 @@ bool Describe(wxWindow* window, Found& found) {
 	// VoiceOver names an element by its title, its description, or the element that titles it,
 	// such as the label before a text field.
 	found.name = Text(Attribute(element, "AXTitle"));
+	// A name WxKit gave it overrides AppKit's description, as it does for VoiceOver.
+	if (found.name.empty()) found.name = Text(objc_getAssociatedObject(static_cast<id>(element), &nameKey));
 	if (found.name.empty()) found.name = Text(Attribute(element, "AXDescription"));
 	if (found.name.empty()) found.name = Text(Attribute(Send(element, "accessibilityTitleUIElement"), "AXValue"));
 	if (found.name.empty()) found.name = Text(Attribute(Attribute(element, "AXTitleUIElement"), "AXValue"));
@@ -204,6 +211,15 @@ void* wxkMacAccessibleElement(wxWindow* window) {
 
 bool wxkMacHasTitle(void* element) {
 	return !Text(Attribute(element, "AXTitle")).empty();
+}
+
+// The name WxKit gave an element, if it gave one.
+wxString wxkMacRecordedName(void* element) {
+	return Text(objc_getAssociatedObject(static_cast<id>(element), &nameKey));
+}
+
+void wxkMacRecordName(void* element, const void* name) {
+	objc_setAssociatedObject(static_cast<id>(element), &nameKey, static_cast<id>(const_cast<void*>(name)), OBJC_ASSOCIATION_RETAIN);
 }
 
 #elif defined(__WXGTK__)

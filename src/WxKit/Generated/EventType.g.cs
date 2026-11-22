@@ -118,10 +118,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_CHECKBOX.</summary>
-	public static EventType<CommandEvent> Checkbox => CheckboxType.Value;
+	public static EventType<CommandEvent> CheckBox => CheckBoxType.Value;
 
-	private static class CheckboxType {
-		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeCheckbox, static native => new CommandEvent((WxkEvent*)native));
+	private static class CheckBoxType {
+		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeCheckBox, static native => new CommandEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_CHECKLISTBOX.</summary>
@@ -411,6 +411,20 @@ public static unsafe partial class EventType {
 		public static readonly EventType<DateEvent> Value = new(WxKitNative.EventTypeDateChanged, static native => new DateEvent((WxkEvent*)native));
 	}
 
+	/// <summary>Wraps wxEVT_DIRCTRL_FILEACTIVATED.</summary>
+	public static EventType<Event> DirCtrlFileActivated => DirCtrlFileActivatedType.Value;
+
+	private static class DirCtrlFileActivatedType {
+		public static readonly EventType<Event> Value = new(WxKitNative.EventTypeDirCtrlFileActivated, static native => new Event((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_DIRCTRL_SELECTIONCHANGED.</summary>
+	public static EventType<Event> DirCtrlSelectionChanged => DirCtrlSelectionChangedType.Value;
+
+	private static class DirCtrlSelectionChangedType {
+		public static readonly EventType<Event> Value = new(WxKitNative.EventTypeDirCtrlSelectionChanged, static native => new Event((WxkEvent*)native));
+	}
+
 	/// <summary>Wraps wxEVT_DIRPICKER_CHANGED.</summary>
 	public static EventType<FileDirPickerEvent> DirPickerChanged => DirPickerChangedType.Value;
 
@@ -451,6 +465,34 @@ public static unsafe partial class EventType {
 
 	private static class EraseBackgroundType {
 		public static readonly EventType<EraseEvent> Value = new(WxKitNative.EventTypeEraseBackground, static native => new EraseEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_FILECTRL_FILEACTIVATED.</summary>
+	public static EventType<FileCtrlEvent> FileCtrlFileActivated => FileCtrlFileActivatedType.Value;
+
+	private static class FileCtrlFileActivatedType {
+		public static readonly EventType<FileCtrlEvent> Value = new(WxKitNative.EventTypeFileCtrlFileActivated, static native => new FileCtrlEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_FILECTRL_FILTERCHANGED.</summary>
+	public static EventType<FileCtrlEvent> FileCtrlFilterChanged => FileCtrlFilterChangedType.Value;
+
+	private static class FileCtrlFilterChangedType {
+		public static readonly EventType<FileCtrlEvent> Value = new(WxKitNative.EventTypeFileCtrlFilterChanged, static native => new FileCtrlEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_FILECTRL_FOLDERCHANGED.</summary>
+	public static EventType<FileCtrlEvent> FileCtrlFolderChanged => FileCtrlFolderChangedType.Value;
+
+	private static class FileCtrlFolderChangedType {
+		public static readonly EventType<FileCtrlEvent> Value = new(WxKitNative.EventTypeFileCtrlFolderChanged, static native => new FileCtrlEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_FILECTRL_SELECTIONCHANGED.</summary>
+	public static EventType<FileCtrlEvent> FileCtrlSelectionChanged => FileCtrlSelectionChangedType.Value;
+
+	private static class FileCtrlSelectionChangedType {
+		public static readonly EventType<FileCtrlEvent> Value = new(WxKitNative.EventTypeFileCtrlSelectionChanged, static native => new FileCtrlEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_FILEPICKER_CHANGED.</summary>
@@ -1762,6 +1804,55 @@ public static unsafe partial class EventType {
 		public static readonly EventType<TreeEvent> Value = new(WxKitNative.EventTypeTreeKeyDown, static native => new TreeEvent((WxkEvent*)native));
 	}
 
+	/// <summary>Wraps wxEVT_TREELIST_COLUMN_SORTED.</summary>
+	public static EventType<TreeListEvent> TreeListColumnSorted => TreeListColumnSortedType.Value;
+
+	private static class TreeListColumnSortedType {
+		public static readonly EventType<TreeListEvent> Value = new(WxKitNative.EventTypeTreeListColumnSorted, static native => new TreeListEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_TREELIST_ITEM_ACTIVATED.</summary>
+	public static EventType<TreeListEvent> TreeListItemActivated => TreeListItemActivatedType.Value;
+
+	private static class TreeListItemActivatedType {
+		public static readonly EventType<TreeListEvent> Value = new(WxKitNative.EventTypeTreeListItemActivated, static native => new TreeListEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_TREELIST_ITEM_CHECKED.</summary>
+	public static EventType<TreeListEvent> TreeListItemChecked => TreeListItemCheckedType.Value;
+
+	private static class TreeListItemCheckedType {
+		public static readonly EventType<TreeListEvent> Value = new(WxKitNative.EventTypeTreeListItemChecked, static native => new TreeListEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_TREELIST_ITEM_CONTEXT_MENU.</summary>
+	public static EventType<TreeListEvent> TreeListItemContextMenu => TreeListItemContextMenuType.Value;
+
+	private static class TreeListItemContextMenuType {
+		public static readonly EventType<TreeListEvent> Value = new(WxKitNative.EventTypeTreeListItemContextMenu, static native => new TreeListEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_TREELIST_ITEM_EXPANDED.</summary>
+	public static EventType<TreeListEvent> TreeListItemExpanded => TreeListItemExpandedType.Value;
+
+	private static class TreeListItemExpandedType {
+		public static readonly EventType<TreeListEvent> Value = new(WxKitNative.EventTypeTreeListItemExpanded, static native => new TreeListEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_TREELIST_ITEM_EXPANDING.</summary>
+	public static EventType<TreeListEvent> TreeListItemExpanding => TreeListItemExpandingType.Value;
+
+	private static class TreeListItemExpandingType {
+		public static readonly EventType<TreeListEvent> Value = new(WxKitNative.EventTypeTreeListItemExpanding, static native => new TreeListEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_TREELIST_SELECTION_CHANGED.</summary>
+	public static EventType<TreeListEvent> TreeListSelectionChanged => TreeListSelectionChangedType.Value;
+
+	private static class TreeListSelectionChangedType {
+		public static readonly EventType<TreeListEvent> Value = new(WxKitNative.EventTypeTreeListSelectionChanged, static native => new TreeListEvent((WxkEvent*)native));
+	}
+
 	/// <summary>Wraps wxEVT_TREE_SEL_CHANGED.</summary>
 	public static EventType<TreeEvent> TreeSelectionChanged => TreeSelectionChangedType.Value;
 
@@ -1921,5 +2012,54 @@ public static unsafe partial class EventType {
 
 	private static class WebviewWindowCloseRequestedType {
 		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewWindowCloseRequested, static native => new WebViewEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_WIZARD_BEFORE_PAGE_CHANGED.</summary>
+	public static EventType<WizardEvent> WizardBeforePageChanged => WizardBeforePageChangedType.Value;
+
+	private static class WizardBeforePageChangedType {
+		public static readonly EventType<WizardEvent> Value = new(WxKitNative.EventTypeWizardBeforePageChanged, static native => new WizardEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_WIZARD_CANCEL.</summary>
+	public static EventType<WizardEvent> WizardCancel => WizardCancelType.Value;
+
+	private static class WizardCancelType {
+		public static readonly EventType<WizardEvent> Value = new(WxKitNative.EventTypeWizardCancel, static native => new WizardEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_WIZARD_FINISHED.</summary>
+	public static EventType<WizardEvent> WizardFinished => WizardFinishedType.Value;
+
+	private static class WizardFinishedType {
+		public static readonly EventType<WizardEvent> Value = new(WxKitNative.EventTypeWizardFinished, static native => new WizardEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_WIZARD_HELP.</summary>
+	public static EventType<WizardEvent> WizardHelp => WizardHelpType.Value;
+
+	private static class WizardHelpType {
+		public static readonly EventType<WizardEvent> Value = new(WxKitNative.EventTypeWizardHelp, static native => new WizardEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_WIZARD_PAGE_CHANGED.</summary>
+	public static EventType<WizardEvent> WizardPageChanged => WizardPageChangedType.Value;
+
+	private static class WizardPageChangedType {
+		public static readonly EventType<WizardEvent> Value = new(WxKitNative.EventTypeWizardPageChanged, static native => new WizardEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_WIZARD_PAGE_CHANGING.</summary>
+	public static EventType<WizardEvent> WizardPageChanging => WizardPageChangingType.Value;
+
+	private static class WizardPageChangingType {
+		public static readonly EventType<WizardEvent> Value = new(WxKitNative.EventTypeWizardPageChanging, static native => new WizardEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_WIZARD_PAGE_SHOWN.</summary>
+	public static EventType<WizardEvent> WizardPageShown => WizardPageShownType.Value;
+
+	private static class WizardPageShownType {
+		public static readonly EventType<WizardEvent> Value = new(WxKitNative.EventTypeWizardPageShown, static native => new WizardEvent((WxkEvent*)native));
 	}
 }

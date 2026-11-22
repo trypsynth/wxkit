@@ -27,8 +27,8 @@ public unsafe partial class CheckBox : Control {
 
 	/// <summary>Process a wxEVT_CHECKBOX event, when the checkbox is clicked.</summary>
 	public event EventHandler<CommandEvent>? CheckedChanged {
-		add => AddHandler(EventType.Checkbox, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.Checkbox, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.CheckBox, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.CheckBox, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Returns whether or not the checkbox is a 3-state checkbox.</summary>

@@ -12,14 +12,6 @@ WXK_FUNCTION(uint8_t) wxk_FileDialog_AddShortcut(wxk_Window* self, const char16_
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxFileDialog*>(wxk::Unwrap(self))->AddShortcut(wxk::FromUtf16(directory, directoryLength), static_cast<int>(flags))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_FileDialog_GetFilenames(wxk_Window* self, wxk_StringArray** filenames) noexcept {
-	wxk::Guard([&] { static_cast<wxFileDialog*>(wxk::Unwrap(self))->GetFilenames(wxk::OutValue<wxArrayString, wxk_StringArray*, wxk::CopyStrings>{filenames}); });
-}
-
-WXK_FUNCTION(void) wxk_FileDialog_GetPaths(wxk_Window* self, wxk_StringArray** paths) noexcept {
-	wxk::Guard([&] { static_cast<wxFileDialog*>(wxk::Unwrap(self))->GetPaths(wxk::OutValue<wxArrayString, wxk_StringArray*, wxk::CopyStrings>{paths}); });
-}
-
 WXK_FUNCTION(wxk_String*) wxk_FileDialog_GetCurrentlySelectedFilename(wxk_Window* self) noexcept {
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxFileDialog*>(wxk::Unwrap(self))->GetCurrentlySelectedFilename()); });
 }
@@ -48,6 +40,10 @@ WXK_FUNCTION(void) wxk_FileDialog_SetFilename(wxk_Window* self, const char16_t* 
 	wxk::Guard([&] { static_cast<wxFileDialog*>(wxk::Unwrap(self))->SetFilename(wxk::FromUtf16(setfilename, setfilenameLength)); });
 }
 
+WXK_FUNCTION(wxk_StringArray*) wxk_FileDialog_GetFilenames(wxk_Window* self) noexcept {
+	return wxk::Guard<wxk_StringArray*>(nullptr, [&]() -> wxk_StringArray* { return [&] { wxArrayString filled; static_cast<wxFileDialog*>(wxk::Unwrap(self))->GetFilenames(filled); return wxk::CopyStrings(filled); }(); });
+}
+
 WXK_FUNCTION(int32_t) wxk_FileDialog_GetFilterIndex(wxk_Window* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxFileDialog*>(wxk::Unwrap(self))->GetFilterIndex()); });
 }
@@ -70,6 +66,10 @@ WXK_FUNCTION(wxk_String*) wxk_FileDialog_GetPath(wxk_Window* self) noexcept {
 
 WXK_FUNCTION(void) wxk_FileDialog_SetPath(wxk_Window* self, const char16_t* path, size_t pathLength) noexcept {
 	wxk::Guard([&] { static_cast<wxFileDialog*>(wxk::Unwrap(self))->SetPath(wxk::FromUtf16(path, pathLength)); });
+}
+
+WXK_FUNCTION(wxk_StringArray*) wxk_FileDialog_GetPaths(wxk_Window* self) noexcept {
+	return wxk::Guard<wxk_StringArray*>(nullptr, [&]() -> wxk_StringArray* { return [&] { wxArrayString filled; static_cast<wxFileDialog*>(wxk::Unwrap(self))->GetPaths(filled); return wxk::CopyStrings(filled); }(); });
 }
 
 WXK_FUNCTION(wxk_String*) wxk_FileDialog_GetWildcard(wxk_Window* self) noexcept {

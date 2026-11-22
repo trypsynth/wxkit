@@ -9,11 +9,11 @@ WXK_FUNCTION(wxk_Window*) wxk_DataViewTreeCtrl_new(wxk_Window* parent, int32_t i
 }
 
 WXK_FUNCTION(void*) wxk_DataViewTreeCtrl_AppendContainer(wxk_Window* self, void* parent, const char16_t* text, size_t textLength, int32_t icon, int32_t expanded, void* data) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxDataViewTreeCtrl*>(wxk::Unwrap(self))->AppendContainer(wxDataViewItem(parent), wxk::FromUtf16(text, textLength), static_cast<int>(icon), static_cast<int>(expanded), wxk::ToClientData(data))).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxDataViewTreeCtrl*>(wxk::Unwrap(self))->AppendContainer(wxDataViewItem(parent), wxk::FromUtf16(text, textLength), static_cast<int>(icon), static_cast<int>(expanded), wxk::ToClientData(data))).GetID()); });
 }
 
 WXK_FUNCTION(void*) wxk_DataViewTreeCtrl_AppendItem(wxk_Window* self, void* parent, const char16_t* text, size_t textLength, int32_t icon, void* data) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxDataViewTreeCtrl*>(wxk::Unwrap(self))->AppendItem(wxDataViewItem(parent), wxk::FromUtf16(text, textLength), static_cast<int>(icon), wxk::ToClientData(data))).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxDataViewTreeCtrl*>(wxk::Unwrap(self))->AppendItem(wxDataViewItem(parent), wxk::FromUtf16(text, textLength), static_cast<int>(icon), wxk::ToClientData(data))).GetID()); });
 }
 
 WXK_FUNCTION(void) wxk_DataViewTreeCtrl_DeleteAllItems(wxk_Window* self) noexcept {
@@ -45,7 +45,7 @@ WXK_FUNCTION(wxk_Object*) wxk_DataViewTreeCtrl_GetItemIcon(wxk_Window* self, voi
 }
 
 WXK_FUNCTION(void*) wxk_DataViewTreeCtrl_GetItemParent(wxk_Window* self, void* item) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxDataViewTreeCtrl*>(wxk::Unwrap(self))->GetItemParent(wxDataViewItem(item))).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxDataViewTreeCtrl*>(wxk::Unwrap(self))->GetItemParent(wxDataViewItem(item))).GetID()); });
 }
 
 WXK_FUNCTION(wxk_String*) wxk_DataViewTreeCtrl_GetItemText(wxk_Window* self, void* item) noexcept {
@@ -53,15 +53,15 @@ WXK_FUNCTION(wxk_String*) wxk_DataViewTreeCtrl_GetItemText(wxk_Window* self, voi
 }
 
 WXK_FUNCTION(void*) wxk_DataViewTreeCtrl_GetNthChild(wxk_Window* self, void* parent, uint32_t position) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxDataViewTreeCtrl*>(wxk::Unwrap(self))->GetNthChild(wxDataViewItem(parent), position)).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxDataViewTreeCtrl*>(wxk::Unwrap(self))->GetNthChild(wxDataViewItem(parent), position)).GetID()); });
 }
 
 WXK_FUNCTION(void*) wxk_DataViewTreeCtrl_InsertContainer(wxk_Window* self, void* parent, void* previous, const char16_t* text, size_t textLength, int32_t icon, int32_t expanded, void* data) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxDataViewTreeCtrl*>(wxk::Unwrap(self))->InsertContainer(wxDataViewItem(parent), wxDataViewItem(previous), wxk::FromUtf16(text, textLength), static_cast<int>(icon), static_cast<int>(expanded), wxk::ToClientData(data))).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxDataViewTreeCtrl*>(wxk::Unwrap(self))->InsertContainer(wxDataViewItem(parent), wxDataViewItem(previous), wxk::FromUtf16(text, textLength), static_cast<int>(icon), static_cast<int>(expanded), wxk::ToClientData(data))).GetID()); });
 }
 
 WXK_FUNCTION(void*) wxk_DataViewTreeCtrl_InsertItem(wxk_Window* self, void* parent, void* previous, const char16_t* text, size_t textLength, int32_t icon, void* data) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxDataViewTreeCtrl*>(wxk::Unwrap(self))->InsertItem(wxDataViewItem(parent), wxDataViewItem(previous), wxk::FromUtf16(text, textLength), static_cast<int>(icon), wxk::ToClientData(data))).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxDataViewTreeCtrl*>(wxk::Unwrap(self))->InsertItem(wxDataViewItem(parent), wxDataViewItem(previous), wxk::FromUtf16(text, textLength), static_cast<int>(icon), wxk::ToClientData(data))).GetID()); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_DataViewTreeCtrl_IsContainer(wxk_Window* self, void* item) noexcept {
@@ -69,11 +69,11 @@ WXK_FUNCTION(uint8_t) wxk_DataViewTreeCtrl_IsContainer(wxk_Window* self, void* i
 }
 
 WXK_FUNCTION(void*) wxk_DataViewTreeCtrl_PrependContainer(wxk_Window* self, void* parent, const char16_t* text, size_t textLength, int32_t icon, int32_t expanded, void* data) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxDataViewTreeCtrl*>(wxk::Unwrap(self))->PrependContainer(wxDataViewItem(parent), wxk::FromUtf16(text, textLength), static_cast<int>(icon), static_cast<int>(expanded), wxk::ToClientData(data))).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxDataViewTreeCtrl*>(wxk::Unwrap(self))->PrependContainer(wxDataViewItem(parent), wxk::FromUtf16(text, textLength), static_cast<int>(icon), static_cast<int>(expanded), wxk::ToClientData(data))).GetID()); });
 }
 
 WXK_FUNCTION(void*) wxk_DataViewTreeCtrl_PrependItem(wxk_Window* self, void* parent, const char16_t* text, size_t textLength, int32_t icon, void* data) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxDataViewTreeCtrl*>(wxk::Unwrap(self))->PrependItem(wxDataViewItem(parent), wxk::FromUtf16(text, textLength), static_cast<int>(icon), wxk::ToClientData(data))).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxDataViewTreeCtrl*>(wxk::Unwrap(self))->PrependItem(wxDataViewItem(parent), wxk::FromUtf16(text, textLength), static_cast<int>(icon), wxk::ToClientData(data))).GetID()); });
 }
 
 WXK_FUNCTION(void) wxk_DataViewTreeCtrl_SetItemData(wxk_Window* self, void* item, void* data) noexcept {

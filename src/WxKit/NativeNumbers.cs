@@ -25,6 +25,13 @@ internal static unsafe class NativeNumbers {
 		return result;
 	}
 
+	internal static TreeListItem[] TakeTreeListItems(WxkNumbers* numbers) {
+		long[] values = Take(numbers);
+		TreeListItem[] result = new TreeListItem[values.Length];
+		for (int index = 0; index < values.Length; index++) result[index] = new TreeListItem((nint)values[index]);
+		return result;
+	}
+
 	internal static long[] From(IEnumerable<int> values) => [.. values.Select(static value => (long)value)];
 
 	internal static long[] From(IEnumerable<DataViewItem> items) => [.. items.Select(static item => (long)item.Value)];

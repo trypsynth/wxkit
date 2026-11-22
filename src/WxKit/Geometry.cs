@@ -41,6 +41,12 @@ public readonly record struct TreeItemId(nint Value) {
 	public bool IsOk => Value != 0;
 }
 
+/// <summary>An item in a <see cref="TreeListCtrl"/>. Wraps wxTreeListItem. The default one is no item.</summary>
+public readonly record struct TreeListItem(nint Value) {
+	/// <summary>Whether this is an item, rather than none.</summary>
+	public bool IsOk => Value != 0;
+}
+
 /// <summary>A size in pixels. Wraps wxSize, and crosses into the shim as it is.</summary>
 public readonly record struct Size(int Width, int Height) {
 	/// <summary>Lets wxWidgets choose. Wraps wxDefaultSize.</summary>

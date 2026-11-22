@@ -88,6 +88,8 @@ A member that isn't overridden does what wxWidgets does. Only members a binding 
 
 Standard controls are accessible already, and a control is named by the `StaticText` just before it, as Windows has screen readers read it. On Linux, wxGTK gives a label's control its name only through the outer widget of a control made of more than one, such as a list box's scrolled window or a slider's box, so WxKit adds the relation to the widget that gets the focus, which Orca reads.
 
+A button that shows only an icon, such as a `BitmapButton`, is named by its tooltip, so set one with `SetToolTip`. Windows does that itself, and WxKit does it on Linux and macOS. To give a window another name, call `SetAccessibleName`, which a tooltip set later leaves alone. wxWidgets only implements it on Windows, so on Linux and macOS WxKit sets the name through ATK and NSAccessibility.
+
 `AccessibilityInfo.Of(window)` reads a window from the platform's accessibility API, as a screen reader does: its role, its name, the platform's own role, and whether it is enabled, focused, or checked. It asks MSAA on Windows, NSAccessibility on macOS, and ATK on Linux, so an application's own tests can check that each control has the role and the name a user needs, on every platform. On Linux, wxGTK names controls by their labels when it next goes idle, so a test lets the event loop run first.
 
 A control that draws itself, such as a grid or a game board, is one window to the platform, which can't see its parts. WxKit has two ways to describe it.
@@ -134,6 +136,18 @@ Image file formats work the same way. Images can always load and save BMP, and a
 ## The clipboard
 
 `Clipboard` is a static class with a getter, a setter, and a check for each format: text, bitmaps, lists of files, HTML, and formats the application names, which hold bytes, as in `Clipboard.GetData("MyApp.Shape")`. Each setter replaces everything on the clipboard. To offer one thing in several formats, set a `ClipboardContent`, as in `Clipboard.SetContent(new ClipboardContent { Text = "Bold text", Html = "<b>Bold</b> text" })`. Each call opens and closes the clipboard, and a setter returns false when another application has it open. A getter returns null when the clipboard doesn't have its format. On Windows, what an application put on the clipboard goes when it exits, unless it calls `Clipboard.Flush`.
+
+## Composite dialogs and controls
+
+wxWidgets makes some dialogs and controls out of standard controls, which screen readers already read:
+
+- `NumberEntryDialog` asks for a number, and `CredentialEntryDialog` for a `UserName` and a `Password`.
+- `RichMessageDialog` is a message box with a check box, such as "Don't ask again", from `ShowCheckBox`, details that can be shown, from `ShowDetailedText`, and a footer. It isn't a `MessageDialog`, since wxWidgets makes it from its own message dialog rather than the platform's, but it has the same members.
+- `PropertySheetDialog` is a dialog with a notebook, `BookCtrl`, and the buttons `CreateButtons` makes.
+- `Wizard` shows `WizardPageSimple` pages in turn, chained with `WizardPageSimple.Chain`. Call `FitToPage` with the first page to size the wizard for the largest, then `RunWizard`.
+- `TreeListCtrl` is a tree with columns, whose items are `TreeListItem` values, and which can have check boxes.
+- `GenericDirCtrl` shows the file system as a tree, and `FileCtrl` is a file chooser to put in a window. On Linux, `FileCtrl` is GTK's own, and its `Paths` are one empty path when nothing is chosen.
+- `EditableListBox` is a list of strings, `Strings`, with buttons to add, edit, delete, and move them, which screen readers name by their tooltips.
 
 ## The About box
 

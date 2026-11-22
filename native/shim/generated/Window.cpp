@@ -541,10 +541,6 @@ WXK_FUNCTION(wxk_String*) wxk_Window_GetHelpTextAtPoint(wxk_Window* self, wxk_Po
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxWindow*>(wxk::Unwrap(self))->GetHelpTextAtPoint(wxk::FromPoint(point), static_cast<wxHelpEvent::Origin>(origin))); });
 }
 
-WXK_FUNCTION(void) wxk_Window_SetToolTip(wxk_Window* self, const char16_t* tipString, size_t tipStringLength) noexcept {
-	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->SetToolTip(wxk::FromUtf16(tipString, tipStringLength)); });
-}
-
 WXK_FUNCTION(void) wxk_Window_UnsetToolTip(wxk_Window* self) noexcept {
 	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->UnsetToolTip(); });
 }
@@ -571,10 +567,6 @@ WXK_FUNCTION(uint8_t) wxk_Window_Validate(wxk_Window* self) noexcept {
 
 WXK_FUNCTION(int32_t) wxk_Window_AdjustForLayoutDirection(wxk_Window* self, int32_t x, int32_t width, int32_t widthTotal) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxWindow*>(wxk::Unwrap(self))->AdjustForLayoutDirection(static_cast<int>(x), static_cast<int>(width), static_cast<int>(widthTotal))); });
-}
-
-WXK_FUNCTION(void) wxk_Window_SetAccessibleName(wxk_Window* self, const char16_t* name, size_t nameLength) noexcept {
-	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->SetAccessibleName(wxk::FromUtf16(name, nameLength)); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Window_Close(wxk_Window* self, uint8_t force) noexcept {

@@ -6,7 +6,7 @@ WXK_FUNCTION(void) wxk_TreeEvent_SetToolTip(wxk_Event* self, const char16_t* too
 }
 
 WXK_FUNCTION(void*) wxk_TreeEvent_GetItem(wxk_Event* self) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxTreeEvent*>(wxk::Unwrap(self))->GetItem()).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeEvent*>(wxk::Unwrap(self))->GetItem()).GetID()); });
 }
 
 WXK_FUNCTION(int32_t) wxk_TreeEvent_GetKeyCode(wxk_Event* self) noexcept {
@@ -18,7 +18,7 @@ WXK_FUNCTION(wxk_String*) wxk_TreeEvent_GetLabel(wxk_Event* self) noexcept {
 }
 
 WXK_FUNCTION(void*) wxk_TreeEvent_GetOldItem(wxk_Event* self) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxTreeEvent*>(wxk::Unwrap(self))->GetOldItem()).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeEvent*>(wxk::Unwrap(self))->GetOldItem()).GetID()); });
 }
 
 WXK_FUNCTION(wxk_Point) wxk_TreeEvent_GetPoint(wxk_Event* self) noexcept {

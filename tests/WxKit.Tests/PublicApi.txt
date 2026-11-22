@@ -927,6 +927,10 @@ class WxKit.ControlWithItems : Control
     void Set(IEnumerable<string> items)
     void SetClientObject(int index, object? data)
     void SetString(int index, string text)
+class WxKit.CredentialEntryDialog : Dialog
+    CredentialEntryDialog(Window? parent, string message, string title)
+    string Password { get; set; }
+    string UserName { get; set; }
 class WxKit.Cursor : NativeObject
     Cursor()
     Cursor(Bitmap bitmap, Point hotSpot)
@@ -1356,6 +1360,16 @@ class WxKit.Dialog : TopLevelWindow, IDisposable
     void EndModal(int retCode)
     void SetIcon(Icon icon)
     void ShowWindowModal()
+[Flags] enum WxKit.DialogButtons : int
+    Apply = 32
+    Cancel = 16
+    Close = 64
+    Help = 4096
+    No = 8
+    NoDefault = 128
+    None = 0
+    Ok = 4
+    Yes = 2
 enum WxKit.DialogLayoutAdaptationMode : int
     Default = 0
     Disabled = 2
@@ -1375,7 +1389,7 @@ class WxKit.DirDialog : Dialog
     DirDialog(Window? parent, string? message = null, string defaultPath = "", DirDialogStyle style = DirDialogStyle.Default, Point? position = null, Size? size = null)
     string Message { get; set; }
     string Path { get; set; }
-    void GetPaths(out string[] paths)
+    string[] Paths { get; }
 [Flags] enum WxKit.DirDialogStyle : long
     ChangeDir = 256
     Default = 536877120
@@ -1446,6 +1460,22 @@ enum WxKit.DuplexMode : int
     Horizontal = 1
     Simplex = 0
     Vertical = 2
+class WxKit.EditableListBox : Panel
+    BitmapButton? DeleteButton { get; }
+    BitmapButton? DownButton { get; }
+    BitmapButton? EditButton { get; }
+    BitmapButton? NewButton { get; }
+    BitmapButton? UpButton { get; }
+    EditableListBox(Window parent, string label, int id = -1, Point? position = null, Size? size = null, EditableListBoxStyle style = EditableListBoxStyle.Default)
+    ListCtrl? ListCtrl { get; }
+    string[] Strings { get; set; }
+[Flags] enum WxKit.EditableListBoxStyle : long
+    AllowDelete = 1024
+    AllowEdit = 512
+    AllowNew = 256
+    Default = 1792
+    NoReorder = 2048
+    None = 0
 sealed class WxKit.EmbeddedTranslationsLoader : TranslationsLoader
     EmbeddedTranslationsLoader()
     EmbeddedTranslationsLoader(IEnumerable<Assembly> assemblies)
@@ -1501,7 +1531,7 @@ static class WxKit.EventType
     static EventType<ColorPickerEvent> ColorPickerCurrentChanged { get; }
     static EventType<ColorPickerEvent> ColorPickerDialogCancelled { get; }
     static EventType<CommandEvent> Button { get; }
-    static EventType<CommandEvent> Checkbox { get; }
+    static EventType<CommandEvent> CheckBox { get; }
     static EventType<CommandEvent> Checklistbox { get; }
     static EventType<CommandEvent> Choice { get; }
     static EventType<CommandEvent> ComboBox { get; }
@@ -1561,9 +1591,15 @@ static class WxKit.EventType
     static EventType<DpiChangedEvent> DpiChanged { get; }
     static EventType<DropFilesEvent> DropFiles { get; }
     static EventType<EraseEvent> EraseBackground { get; }
+    static EventType<Event> DirCtrlFileActivated { get; }
+    static EventType<Event> DirCtrlSelectionChanged { get; }
     static EventType<Event> MouseCaptureChanged { get; }
     static EventType<Event> MouseCaptureLost { get; }
     static EventType<Event> SetCursor { get; }
+    static EventType<FileCtrlEvent> FileCtrlFileActivated { get; }
+    static EventType<FileCtrlEvent> FileCtrlFilterChanged { get; }
+    static EventType<FileCtrlEvent> FileCtrlFolderChanged { get; }
+    static EventType<FileCtrlEvent> FileCtrlSelectionChanged { get; }
     static EventType<FileDirPickerEvent> DirPickerChanged { get; }
     static EventType<FileDirPickerEvent> FilePickerChanged { get; }
     static EventType<FindDialogEvent> Find { get; }
@@ -1731,6 +1767,13 @@ static class WxKit.EventType
     static EventType<TreeEvent> TreeSelectionChanging { get; }
     static EventType<TreeEvent> TreeSetInfo { get; }
     static EventType<TreeEvent> TreeStateImageClick { get; }
+    static EventType<TreeListEvent> TreeListColumnSorted { get; }
+    static EventType<TreeListEvent> TreeListItemActivated { get; }
+    static EventType<TreeListEvent> TreeListItemChecked { get; }
+    static EventType<TreeListEvent> TreeListItemContextMenu { get; }
+    static EventType<TreeListEvent> TreeListItemExpanded { get; }
+    static EventType<TreeListEvent> TreeListItemExpanding { get; }
+    static EventType<TreeListEvent> TreeListSelectionChanged { get; }
     static EventType<UpdateUIEvent> UpdateUi { get; }
     static EventType<WebViewEvent> WebviewBrowsingDataCleared { get; }
     static EventType<WebViewEvent> WebviewCreated { get; }
@@ -1746,6 +1789,13 @@ static class WxKit.EventType
     static EventType<WebViewEvent> WebviewScriptResult { get; }
     static EventType<WebViewEvent> WebviewTitleChanged { get; }
     static EventType<WebViewEvent> WebviewWindowCloseRequested { get; }
+    static EventType<WizardEvent> WizardBeforePageChanged { get; }
+    static EventType<WizardEvent> WizardCancel { get; }
+    static EventType<WizardEvent> WizardFinished { get; }
+    static EventType<WizardEvent> WizardHelp { get; }
+    static EventType<WizardEvent> WizardPageChanged { get; }
+    static EventType<WizardEvent> WizardPageChanging { get; }
+    static EventType<WizardEvent> WizardPageShown { get; }
 sealed class WxKit.EventType`1<TEvent>
     int Value { get; }
 abstract class WxKit.EvtHandler
@@ -1756,6 +1806,32 @@ abstract class WxKit.EvtHandler
     void Unbind<TEvent>(EventType<TEvent> type, EventHandler<TEvent> handler)
     void Unbind<TEvent>(EventType<TEvent> type, int id, EventHandler<TEvent> handler)
     void Unbind<TEvent>(EventType<TEvent> type, int id, int lastId, EventHandler<TEvent> handler)
+class WxKit.FileCtrl : Control
+    FileCtrl(Window parent, string defaultDirectory = "", string defaultFilename = "", string? wildcard = null, FileCtrlStyle style = FileCtrlStyle.Open, int id = -1, Point? position = null, Size? size = null)
+    event EventHandler<FileCtrlEvent>? FileActivated
+    event EventHandler<FileCtrlEvent>? FilterChanged
+    event EventHandler<FileCtrlEvent>? FolderChanged
+    event EventHandler<FileCtrlEvent>? SelectionChanged
+    int FilterIndex { get; set; }
+    string Directory { get; set; }
+    string Filename { get; set; }
+    string Path { get; set; }
+    string Wildcard { get; set; }
+    string[] Filenames { get; }
+    string[] Paths { get; }
+    void ShowHidden(bool show)
+class WxKit.FileCtrlEvent : CommandEvent
+    int FilterIndex { get; set; }
+    string Directory { get; set; }
+    string File { get; }
+    string[] Files { get; set; }
+[Flags] enum WxKit.FileCtrlStyle : long
+    Default = 1
+    Multiple = 4
+    NoShowHidden = 8
+    None = 0
+    Open = 1
+    Save = 2
 class WxKit.FileDialog : Dialog
     FileDialog(Window? parent, string? message = null, string defaultDir = "", string defaultFile = "", string? wildcard = null, FileDialogStyle style = FileDialogStyle.Open, Point? position = null, Size? size = null)
     Window? ExtraControl { get; }
@@ -1768,8 +1844,8 @@ class WxKit.FileDialog : Dialog
     string Message { get; set; }
     string Path { get; set; }
     string Wildcard { get; set; }
-    void GetFilenames(out string[] filenames)
-    void GetPaths(out string[] paths)
+    string[] Filenames { get; }
+    string[] Paths { get; }
 [Flags] enum WxKit.FileDialogStyle : long
     ChangeDir = 128
     Default = 1
@@ -2114,6 +2190,37 @@ class WxKit.Gauge : Control
     Smooth = 32
     Text = 64
     Vertical = 8
+class WxKit.GenericDirCtrl : Control
+    GenericDirCtrl(Window parent, string? directory = null, int id = -1, Point? position = null, Size? size = null, GenericDirCtrlStyle style = GenericDirCtrlStyle.ThreeDInternal, string filter = "", int defaultFilter = 0)
+    TreeCtrl? TreeCtrl { get; }
+    TreeItemId RootId { get; }
+    bool CollapsePath(string path)
+    bool ExpandPath(string path)
+    event EventHandler<Event>? FileActivated
+    event EventHandler<Event>? SelectionChanged
+    int FilterIndex { get; set; }
+    string DefaultPath { get; set; }
+    string FilePath { get; }
+    string Filter { get; set; }
+    string GetPath(TreeItemId itemId)
+    string Path { get; set; }
+    string[] FilePaths { get; }
+    string[] Paths { get; }
+    void CollapseTree()
+    void Init()
+    void ReCreateTree()
+    void SelectPath(string path, bool select = true)
+    void SelectPaths(IEnumerable<string> paths)
+    void ShowHidden(bool show)
+    void UnselectAll()
+[Flags] enum WxKit.GenericDirCtrlStyle : long
+    DirOnly = 16
+    EditLabels = 256
+    Multiple = 512
+    None = 0
+    SelectFirst = 32
+    ShowFilters = 64
+    ThreeDInternal = 128
 static class WxKit.Gettext
     static string _(string text)
     static string _(string text, params object?[] args)
@@ -3113,6 +3220,9 @@ class WxKit.NotifyEvent : CommandEvent
     bool IsAllowed { get; }
     void Allow()
     void Veto()
+class WxKit.NumberEntryDialog : Dialog
+    NumberEntryDialog(Window? parent, string message, string prompt, string caption, long value, long min, long max, Point? position = null)
+    long Value { get; }
 [Flags] enum WxKit.Orientation : int
     Both = 12
     Horizontal = 4
@@ -3484,6 +3594,27 @@ class WxKit.ProgressDialog : Dialog
     None = 0
     RemainingTime = 64
     Smooth = 32
+class WxKit.PropertySheetDialog : Dialog
+    BookCtrlBase? BookCtrl { get; set; }
+    BookCtrlBase? CreateBookCtrl()
+    PropertySheetDialog(Window? parent, string title, int id = -1, Point? position = null, Size? size = null, DialogStyle style = DialogStyle.Default)
+    PropertySheetStyle SheetStyle { get; set; }
+    int SheetInnerBorder { get; set; }
+    int SheetOuterBorder { get; set; }
+    void AddBookCtrl(Sizer sizer)
+    void CreateButtons(DialogButtons flags = DialogButtons.Ok | DialogButtons.Cancel)
+    void LayoutDialog(Orientation centerFlags = Orientation.Both)
+    void SetInnerSizer(Sizer sizer)
+[Flags] enum WxKit.PropertySheetStyle : int
+    Buttontoolbook = 32
+    Choicebook = 8
+    Default = 1
+    Listbook = 16
+    None = 0
+    Notebook = 2
+    Shrinktofit = 256
+    Toolbook = 4
+    Treebook = 64
 class WxKit.RadioBox : Control
     RadioBox(Window parent, string label, IEnumerable<string> choices, int id = -1, Point? position = null, Size? size = null, int majorDimension = 0, RadioBoxStyle style = RadioBoxStyle.SpecifyCols)
     RadioBox(Window parent, string label, int id = -1, Point? position = null, Size? size = null)
@@ -3573,6 +3704,29 @@ readonly record struct WxKit.Rect : IEquatable<Rect>
     static bool op_Equality(Rect left, Rect right)
     static bool op_Inequality(Rect left, Rect right)
     void Deconstruct(out int X, out int Y, out int Width, out int Height)
+class WxKit.RichMessageDialog : Dialog
+    MessageDialogStyle FooterIcon { get; set; }
+    MessageDialogStyle MessageDialogStyle { get; }
+    RichMessageDialog(Window? parent, string message, string caption = "Message", MessageDialogStyle style = MessageDialogStyle.Center | MessageDialogStyle.Ok)
+    bool HasCustomLabels { get; }
+    bool IsCheckBoxChecked { get; }
+    bool SetOKCancelLabels(string ok, string cancel)
+    bool SetYesNoCancelLabels(string yes, string no, string cancel)
+    bool SetYesNoLabels(string yes, string no)
+    long EffectiveIcon { get; }
+    string CancelLabel { get; }
+    string Caption { get; }
+    string CheckBoxText { get; }
+    string DetailedText { get; }
+    string ExtendedMessage { get; set; }
+    string FooterText { get; set; }
+    string HelpLabel { get; set; }
+    string Message { get; set; }
+    string NoLabel { get; }
+    string OKLabel { get; set; }
+    string YesLabel { get; }
+    void ShowCheckBox(string checkBoxText, bool checked = false)
+    void ShowDetailedText(string detailedText)
 enum WxKit.ScaleMode : int
     AspectFill = 3
     AspectFit = 2
@@ -8293,6 +8447,83 @@ readonly record struct WxKit.TreeItemId : IEquatable<TreeItemId>
     static bool op_Equality(TreeItemId left, TreeItemId right)
     static bool op_Inequality(TreeItemId left, TreeItemId right)
     void Deconstruct(out nint Value)
+class WxKit.TreeListCtrl : Window
+    CheckBoxState GetCheckedState(TreeListItem item)
+    DataViewCtrl? DataView { get; }
+    TreeListCtrl(Window parent, int id = -1, Point? position = null, Size? size = null, TreeListCtrlStyle style = TreeListCtrlStyle.None)
+    TreeListItem AppendItem(TreeListItem parent, string text, int imageClosed = -1, int imageOpened = -1, object? data = null)
+    TreeListItem FirstItem { get; }
+    TreeListItem GetFirstChild(TreeListItem item)
+    TreeListItem GetItemParent(TreeListItem item)
+    TreeListItem GetNextItem(TreeListItem item)
+    TreeListItem GetNextSibling(TreeListItem item)
+    TreeListItem InsertItem(TreeListItem parent, TreeListItem previous, string text, int imageClosed = -1, int imageOpened = -1, object? data = null)
+    TreeListItem PrependItem(TreeListItem parent, string text, int imageClosed = -1, int imageOpened = -1, object? data = null)
+    TreeListItem RootItem { get; }
+    TreeListItem Selection { get; }
+    TreeListItem[] Selections { get; }
+    Window? View { get; }
+    bool AreAllChildrenInState(TreeListItem item, CheckBoxState state)
+    bool DeleteColumn(int column)
+    bool IsExpanded(TreeListItem item)
+    bool IsSelected(TreeListItem item)
+    event EventHandler<TreeListEvent>? ColumnSorted
+    event EventHandler<TreeListEvent>? ItemActivated
+    event EventHandler<TreeListEvent>? ItemChecked
+    event EventHandler<TreeListEvent>? ItemContextMenu
+    event EventHandler<TreeListEvent>? ItemExpanded
+    event EventHandler<TreeListEvent>? ItemExpanding
+    event EventHandler<TreeListEvent>? SelectionChanged
+    int AppendColumn(string title, int width = -2, Alignment align = Alignment.Not, int flags = 1)
+    int ColumnCount { get; }
+    int GetColumnWidth(int column)
+    int WidthFor(string text)
+    object? GetItemData(TreeListItem item)
+    string GetItemText(TreeListItem item, int column = 0)
+    void CheckItem(TreeListItem item, CheckBoxState state = CheckBoxState.Checked)
+    void CheckItemRecursively(TreeListItem item, CheckBoxState state = CheckBoxState.Checked)
+    void ClearColumns()
+    void Collapse(TreeListItem item)
+    void DeleteAllItems()
+    void DeleteItem(TreeListItem item)
+    void EnsureVisible(TreeListItem item)
+    void Expand(TreeListItem item)
+    void Select(TreeListItem item)
+    void SelectAll()
+    void SetColumnWidth(int column, int width)
+    void SetItemData(TreeListItem item, object? data)
+    void SetItemImage(TreeListItem item, int closed, int opened = -1)
+    void SetItemText(TreeListItem item, int column, string text)
+    void SetItemText(TreeListItem item, string text)
+    void SetSortColumn(int column, bool ascendingOrder = true)
+    void UncheckItem(TreeListItem item)
+    void Unselect(TreeListItem item)
+    void UnselectAll()
+    void UpdateItemParentStateRecursively(TreeListItem item)
+[Flags] enum WxKit.TreeListCtrlStyle : long
+    CheckBox = 2
+    Default = 0
+    Multiple = 1
+    NoHeader = 16
+    None = 0
+    Single = 0
+    ThreeState = 4
+    UserThreeState = 8
+class WxKit.TreeListEvent : NotifyEvent
+    CheckBoxState OldCheckedState { get; }
+    TreeListItem Item { get; }
+    int Column { get; }
+readonly record struct WxKit.TreeListItem : IEquatable<TreeListItem>
+    TreeListItem(nint Value)
+    bool Equals(TreeListItem other)
+    bool IsOk { get; }
+    nint Value { get; init; }
+    override bool Equals(object obj)
+    override int GetHashCode()
+    override string ToString()
+    static bool op_Equality(TreeListItem left, TreeListItem right)
+    static bool op_Inequality(TreeListItem left, TreeListItem right)
+    void Deconstruct(out nint Value)
 class WxKit.Treebook : BookCtrlBase
     Treebook(Window parent, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
     bool AddSubPage(Window page, string text, bool select = false, int imageId = -1)
@@ -8750,7 +8981,7 @@ class WxKit.Window : EvtHandler
     void SetSize(int x, int y, int width, int height, SizeFlags sizeFlags = SizeFlags.Auto)
     void SetSizeHints(Size minSize, Size? maxSize = null, Size? incSize = null)
     void SetSizeHints(int minW, int minH, int maxW = -1, int maxH = -1, int incW = -1, int incH = -1)
-    void SetToolTip(string tipString)
+    void SetToolTip(string text)
     void SetVirtualSize(int width, int height)
     void SetWindowStyle(long style)
     void Thaw()
@@ -8801,6 +9032,46 @@ enum WxKit.WindowVariant : int
     Mini = 2
     Normal = 0
     Small = 1
+class WxKit.Wizard : Dialog
+    Bitmap? Bitmap { get; set; }
+    Color? BitmapBackgroundColor { get; set; }
+    Size PageSize { get; set; }
+    Wizard(Window? parent, string title = "", Bitmap? bitmap = null, int id = -1, Point? position = null, DialogStyle style = DialogStyle.Default)
+    WizardBitmapPlacement BitmapPlacement { get; set; }
+    WizardPage? CurrentPage { get; }
+    bool HasNextPage(WizardPage page)
+    bool HasPreviousPage(WizardPage page)
+    bool RunWizard(WizardPage firstPage)
+    event EventHandler<WizardEvent>? BeforePageChanged
+    event EventHandler<WizardEvent>? Cancelling
+    event EventHandler<WizardEvent>? Finished
+    event EventHandler<WizardEvent>? PageChanged
+    event EventHandler<WizardEvent>? PageChanging
+    event EventHandler<WizardEvent>? PageShown
+    int MinimumBitmapWidth { get; set; }
+    void FitToPage(WizardPage firstPage)
+    void SetBorder(int border)
+[Flags] enum WxKit.WizardBitmapPlacement : int
+    HalignCenter = 16
+    HalignLeft = 8
+    HalignRight = 32
+    None = 0
+    Tile = 64
+    ValignBottom = 4
+    ValignCenter = 2
+    ValignTop = 1
+class WxKit.WizardEvent : NotifyEvent
+    WizardPage? Page { get; }
+    bool Direction { get; }
+class WxKit.WizardPage : Panel
+    Bitmap? Bitmap { get; }
+    WizardPage? Next { get; }
+    WizardPage? Previous { get; }
+class WxKit.WizardPageSimple : WizardPage
+    WizardPageSimple(Wizard parent, WizardPage? previous = null, WizardPage? next = null, Bitmap? bitmap = null)
+    static void Chain(WizardPageSimple first, WizardPageSimple second)
+    void SetNext(WizardPage next)
+    void SetPrevious(WizardPage previous)
 class WxKit.WrapSizer : BoxSizer
     WrapSizer(Orientation orientation = Orientation.Horizontal, WrapSizerFlags flags = WrapSizerFlags.WrapSizerDefaultFlags)
 [Flags] enum WxKit.WrapSizerFlags : int

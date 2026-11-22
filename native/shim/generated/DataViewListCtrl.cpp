@@ -81,7 +81,7 @@ WXK_FUNCTION(int32_t) wxk_DataViewListCtrl_ItemToRow(wxk_Window* self, void* ite
 }
 
 WXK_FUNCTION(void*) wxk_DataViewListCtrl_RowToItem(wxk_Window* self, int32_t row) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxDataViewListCtrl*>(wxk::Unwrap(self))->RowToItem(static_cast<int>(row))).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxDataViewListCtrl*>(wxk::Unwrap(self))->RowToItem(static_cast<int>(row))).GetID()); });
 }
 
 WXK_FUNCTION(int32_t) wxk_DataViewListCtrl_GetSelectedRow(wxk_Window* self) noexcept {

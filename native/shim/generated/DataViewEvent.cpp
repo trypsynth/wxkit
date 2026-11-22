@@ -66,7 +66,7 @@ WXK_FUNCTION(int32_t) wxk_DataViewEvent_GetProposedDropIndex(wxk_Event* self) no
 }
 
 WXK_FUNCTION(void*) wxk_DataViewEvent_GetItem(wxk_Event* self) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxDataViewEvent*>(wxk::Unwrap(self))->GetItem()).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxDataViewEvent*>(wxk::Unwrap(self))->GetItem()).GetID()); });
 }
 
 WXK_FUNCTION(int32_t) wxk_DataViewEvent_GetDragFlags(wxk_Event* self) noexcept {

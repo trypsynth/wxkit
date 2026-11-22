@@ -44,6 +44,13 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 			}
 			api = api with { Classes = classes };
 		}
+		if (tweaks.Classes.Values.Any(static tweak => tweak.BaseOverride is not null)) {
+			Dictionary<string, DoxygenClass> classes = new(api.Classes, StringComparer.Ordinal);
+			foreach (ClassTweak tweak in tweaks.Classes.Values.Where(static tweak => tweak.BaseOverride is not null)) {
+				if (classes.TryGetValue(tweak.CppName, out DoxygenClass? overridden)) classes[tweak.CppName] = overridden with { Bases = tweak.BaseOverride! };
+			}
+			api = api with { Classes = classes };
+		}
 		foreach (ClassTweak tweak in tweaks.Classes.Values) {
 			if (!api.Classes.TryGetValue(tweak.CppName, out DoxygenClass? source)) throw new InvalidOperationException($"A tweak names {tweak.CppName}, which the interface headers do not have.");
 			HandleKind handle = tweak.IsStaticOnly ? HandleKind.Static : tweak.IsValueObject ? HandleKind.Value : tweak.IsOwnedObject ? HandleKind.Owned : HandleFor(source.Name);
@@ -138,7 +145,12 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 
 	private void BindMembers(BoundClass bound) {
 		ClassTweak tweak = bound.Tweak;
-		List<DoxygenMember> candidates = [.. MembersOf(bound.Source, tweak.InheritsUnboundBases).Where(static member => member.IsPublic && !member.Name.StartsWith('~') && !member.Name.StartsWith("operator", StringComparison.Ordinal))];
+		IEnumerable<DoxygenMember> members = MembersOf(bound.Source, tweak.InheritsUnboundBases);
+		foreach (string source in tweak.Borrowed.Keys) {
+			if (!api.Classes.TryGetValue(source, out DoxygenClass? lender)) throw new InvalidOperationException($"A tweak gives {bound.CppName} the members of {source}, which the interface headers do not have.");
+			members = members.Concat(lender.Members.Where(member => member.Name != source && member.Name != "~" + source && !bound.Source.Members.Any(own => own.Name == member.Name)).Select(member => member with { Mixin = source }));
+		}
+		List<DoxygenMember> candidates = [.. members.Where(static member => member.IsPublic && !member.Name.StartsWith('~') && !member.Name.StartsWith("operator", StringComparison.Ordinal))];
 		HashSet<string> known = [.. candidates.Select(static member => member.Name)];
 		foreach (string kept in tweak.KeptAlive) {
 			if (!candidates.Any(member => member.Name == bound.CppName && member.Parameters.Any(parameter => parameter.Name == kept))) throw new InvalidOperationException($"A tweak keeps {bound.CppName}'s constructor parameter {kept} alive, which no constructor has.");
@@ -312,6 +324,12 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 			string managedName = owner.Tweak.ParameterNames.GetValueOrDefault((member.Name, parameter.Name)) ?? Naming.Parameter(parameter.Name);
 			parameters.Add(new BoundParameter(parameter.Name, managedName, conversion, nullable, managedDefault));
 		}
+		// A function that only fills a list of strings, as GetPaths(wxArrayString&) does, returns
+		// the list, as .NET does, and a getter of it becomes a property.
+		if (!isConstructor && returns is VoidConversion && parameters is [{ Conversion: StringArrayOutConversion }]) {
+			returns = StringArrayFilledConversion.Instance;
+			parameters.Clear();
+		}
 		BoundFunction function = new(owner, member, returns, parameters, isConstructor);
 		function.ManagedParameters = ManagedOrder(parameters);
 		return function;
@@ -420,6 +438,7 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 			"wxRect" => RectConversion.Instance,
 			"wxTreeItemId" => ItemIdConversion.TreeItem,
 			"wxDataViewItem" => ItemIdConversion.DataViewItem,
+			"wxTreeListItem" => ItemIdConversion.TreeListItem,
 			"wxVariant" => VariantConversion.Instance,
 			"wxDateTime" => DateTimeConversion.Instance,
 			"wxArrayString" => StringArrayConversion.Instance,

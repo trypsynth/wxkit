@@ -933,14 +933,6 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>Safe wrapper for GetParent()-&gt;SendSizeEvent().</summary>
 	public void SendSizeEventToParent(SendSizeEventFlags flags = SendSizeEventFlags.None) => WxKitNative.WindowSendSizeEventToParent(Native, (int)flags);
 
-	/// <summary>Sets the name used by screen readers for this window.</summary>
-	public void SetAccessibleName(string name) {
-		ArgumentNullException.ThrowIfNull(name);
-		fixed (char* nameText = name) {
-			WxKitNative.WindowSetAccessibleName(Native, nameText, NativeString.Length(name));
-		}
-	}
-
 	/// <summary>This method is only implemented by ports which have support for native TAB traversal (such as GTK+ 2.0).</summary>
 	public void SetCanFocus(bool canFocus) => WxKitNative.WindowSetCanFocus(Native, canFocus ? (byte)1 : (byte)0);
 
@@ -1009,14 +1001,6 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public void SetSizeHints(int minW, int minH, int maxW = -1, int maxH = -1, int incW = -1, int incH = -1) => WxKitNative.WindowSetSizeHintsIntIntIntIntIntInt(Native, minW, minH, maxW, maxH, incW, incH);
-
-	/// <summary>Attach a tooltip to the window.</summary>
-	public void SetToolTip(string tipString) {
-		ArgumentNullException.ThrowIfNull(tipString);
-		fixed (char* tipStringText = tipString) {
-			WxKitNative.WindowSetToolTip(Native, tipStringText, NativeString.Length(tipString));
-		}
-	}
 
 	/// <summary>Set the transparency of the window.</summary>
 	public bool SetTransparent(byte alpha) => WxKitNative.WindowSetTransparent(Native, alpha) != 0;

@@ -61,6 +61,29 @@ public partial class AccessibilityInfoTests {
 		Assert.False(AccessibilityInfo.Of(first).IsFocused, AccessibilityInfo.Of(first).ToString());
 	});
 
+	// A button that shows only an icon is named by its tooltip, or by the name an application gives
+	// it, which a tooltip set later leaves alone.
+	[Fact]
+	public Task NamesIconButtons() => Gui.WithFrame(async frame => {
+		Panel panel = new(frame);
+		BitmapButton add = new(panel, ArtProvider.GetBitmap(ArtId.Plus, ArtClient.Button)!);
+		add.SetToolTip("Add");
+		BitmapButton remove = new(panel, ArtProvider.GetBitmap(ArtId.Minus, ArtClient.Button)!);
+		remove.SetAccessibleName("Remove item");
+		remove.SetToolTip("Remove");
+		BitmapButton help = new(panel, ArtProvider.GetBitmap(ArtId.Help, ArtClient.Button)!);
+		help.SetToolTip("Help");
+		help.SetToolTip("Show help");
+		Button labeled = new(panel, "&Save");
+		labeled.SetToolTip("Saves the file");
+		frame.Show();
+		await Gui.WaitUntil(() => AccessibilityInfo.Of(add).Name.Length > 0);
+		Expect(add, AccessibleRole.PushButton, "Add");
+		Expect(remove, AccessibleRole.PushButton, "Remove item");
+		Expect(help, AccessibleRole.PushButton, "Show help");
+		Expect(labeled, AccessibleRole.PushButton, "Save");
+	});
+
 	private static bool IsInFront(Frame frame) => !OperatingSystem.IsWindows() || GetForegroundWindow() == frame.NativeHandle;
 
 	[System.Runtime.InteropServices.LibraryImport("user32.dll")]

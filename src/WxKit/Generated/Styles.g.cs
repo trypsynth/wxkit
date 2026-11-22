@@ -254,6 +254,40 @@ public enum DirPickerCtrlStyle : long {
 	Small = 0x8000,
 }
 
+/// <summary>Styles for <see cref="EditableListBox"/>.</summary>
+[Flags]
+public enum EditableListBoxStyle : long {
+	/// <summary>No styles. Wraps 0.</summary>
+	None = 0x0,
+	/// <summary>Allows the user to enter new strings (implies wxEL_ALLOW_EDIT as well). Wraps wxEL_ALLOW_NEW.</summary>
+	AllowNew = 0x100,
+	/// <summary>Allows the user to edit existing strings. Wraps wxEL_ALLOW_EDIT.</summary>
+	AllowEdit = 0x200,
+	/// <summary>Allows the user to delete existing strings. Wraps wxEL_ALLOW_DELETE.</summary>
+	AllowDelete = 0x400,
+	/// <summary>Does not allow the user to reorder the strings. Wraps wxEL_NO_REORDER.</summary>
+	NoReorder = 0x800,
+	/// <summary>Default style: wxEL_ALLOW_NEW|wxEL_ALLOW_EDIT|wxEL_ALLOW_DELETE. Wraps wxEL_DEFAULT_STYLE.</summary>
+	Default = 0x700,
+}
+
+/// <summary>Styles for <see cref="FileCtrl"/>.</summary>
+[Flags]
+public enum FileCtrlStyle : long {
+	/// <summary>No styles. Wraps 0.</summary>
+	None = 0x0,
+	/// <summary>The default style: wxFC_OPEN. Wraps wxFC_DEFAULT_STYLE.</summary>
+	Default = 0x1,
+	/// <summary>Creates an file control suitable for opening files. Cannot be combined with wxFC_SAVE. Wraps wxFC_OPEN.</summary>
+	Open = 0x1,
+	/// <summary>Creates an file control suitable for saving files. Cannot be combined with wxFC_OPEN. Wraps wxFC_SAVE.</summary>
+	Save = 0x2,
+	/// <summary>For open control only, Allows selecting multiple files. Cannot be combined with wxFC_SAVE. Wraps wxFC_MULTIPLE.</summary>
+	Multiple = 0x4,
+	/// <summary>Hides the "Show Hidden Files" checkbox (Generic only). Wraps wxFC_NOSHOWHIDDEN.</summary>
+	NoShowHidden = 0x8,
+}
+
 /// <summary>Styles for <see cref="FileDialog"/>.</summary>
 [Flags]
 public enum FileDialogStyle : long {
@@ -369,6 +403,25 @@ public enum GaugeStyle : long {
 	Text = 0x40,
 	/// <summary>Reflect the value of gauge in the application taskbar button under Windows 7 and later and the dock icon under macOS, ignored under the other platforms. This flag is only available in wxWidgets 3.1.0 and later. Wraps wxGA_PROGRESS.</summary>
 	Progress = 0x10,
+}
+
+/// <summary>Styles for <see cref="GenericDirCtrl"/>.</summary>
+[Flags]
+public enum GenericDirCtrlStyle : long {
+	/// <summary>No styles. Wraps 0.</summary>
+	None = 0x0,
+	/// <summary>Only show directories, and not files. Wraps wxDIRCTRL_DIR_ONLY.</summary>
+	DirOnly = 0x10,
+	/// <summary>Use 3D borders for internal controls. This is the default. Wraps wxDIRCTRL_3D_INTERNAL.</summary>
+	ThreeDInternal = 0x80,
+	/// <summary>When setting the default path, select the first file in the directory. Wraps wxDIRCTRL_SELECT_FIRST.</summary>
+	SelectFirst = 0x20,
+	/// <summary>Show the drop-down filter list. Wraps wxDIRCTRL_SHOW_FILTERS.</summary>
+	ShowFilters = 0x40,
+	/// <summary>Allow the folder and file labels to be editable. Wraps wxDIRCTRL_EDIT_LABELS.</summary>
+	EditLabels = 0x100,
+	/// <summary>Allows multiple files and folders to be selected. Wraps wxDIRCTRL_MULTIPLE.</summary>
+	Multiple = 0x200,
 }
 
 /// <summary>Styles for <see cref="HyperlinkCtrl"/>.</summary>
@@ -936,6 +989,27 @@ public enum TreeCtrlStyle : long {
 	Single = 0x0,
 	/// <summary>Use this style to allow a range of items to be selected. If a second range is selected, the current range, if any, is deselected. Wraps wxTR_MULTIPLE.</summary>
 	Multiple = 0x20,
+}
+
+/// <summary>Styles for <see cref="TreeListCtrl"/>.</summary>
+[Flags]
+public enum TreeListCtrlStyle : long {
+	/// <summary>No styles. Wraps 0.</summary>
+	None = 0x0,
+	/// <summary>Single selection, this is the default. Wraps wxTL_SINGLE.</summary>
+	Single = 0x0,
+	/// <summary>Allow multiple selection, see GetSelections(). Wraps wxTL_MULTIPLE.</summary>
+	Multiple = 0x1,
+	/// <summary>Show the usual, 2 state, checkboxes for the items in the first column. Wraps wxTL_CHECKBOX.</summary>
+	CheckBox = 0x2,
+	/// <summary>Show the checkboxes that can possibly be set by the program, but not the user, to a third, undetermined, state, for the items in the first column. Implies wxTL_CHECKBOX. Wraps wxTL_3STATE.</summary>
+	ThreeState = 0x4,
+	/// <summary>Same as wxTL_3STATE but the user can also set the checkboxes to the undetermined state. Implies wxTL_3STATE. Wraps wxTL_USER_3STATE.</summary>
+	UserThreeState = 0x8,
+	/// <summary>Don't show the column headers, that are shown by default. Notice that this style is only available since wxWidgets 2.9.5. Wraps wxTL_NO_HEADER.</summary>
+	NoHeader = 0x10,
+	/// <summary>Style used by the control by default, just wxTL_SINGLE currently. Wraps wxTL_DEFAULT_STYLE.</summary>
+	Default = 0x0,
 }
 
 /// <summary>Styles for <see cref="Window"/>.</summary>

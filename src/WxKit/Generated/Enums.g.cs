@@ -554,6 +554,29 @@ public enum DataViewColumnFlags {
 	Hidden = 8,
 }
 
+/// <summary>Wraps *.</summary>
+[Flags]
+public enum DialogButtons {
+	/// <summary>None of the flags. Wraps 0.</summary>
+	None = 0,
+	/// <summary>Wraps wxYES.</summary>
+	Yes = 2,
+	/// <summary>Wraps wxOK.</summary>
+	Ok = 4,
+	/// <summary>Wraps wxNO.</summary>
+	No = 8,
+	/// <summary>Wraps wxCANCEL.</summary>
+	Cancel = 16,
+	/// <summary>Wraps wxAPPLY.</summary>
+	Apply = 32,
+	/// <summary>Wraps wxCLOSE.</summary>
+	Close = 64,
+	/// <summary>Wraps wxNO_DEFAULT.</summary>
+	NoDefault = 128,
+	/// <summary>Wraps wxHELP.</summary>
+	Help = 4096,
+}
+
 /// <summary>Wraps wxDialogLayoutAdaptationMode.</summary>
 public enum DialogLayoutAdaptationMode {
 	/// <summary>Use global adaptation enabled status. Wraps wxDIALOG_ADAPTATION_MODE_DEFAULT.</summary>
@@ -1955,6 +1978,29 @@ public enum ProgressDialogStyle {
 	CanSkip = 128,
 }
 
+/// <summary>Wraps *.</summary>
+[Flags]
+public enum PropertySheetStyle {
+	/// <summary>None of the flags. Wraps 0.</summary>
+	None = 0,
+	/// <summary>Wraps wxPROPSHEET_DEFAULT.</summary>
+	Default = 1,
+	/// <summary>Wraps wxPROPSHEET_NOTEBOOK.</summary>
+	Notebook = 2,
+	/// <summary>Wraps wxPROPSHEET_TOOLBOOK.</summary>
+	Toolbook = 4,
+	/// <summary>Wraps wxPROPSHEET_CHOICEBOOK.</summary>
+	Choicebook = 8,
+	/// <summary>Wraps wxPROPSHEET_LISTBOOK.</summary>
+	Listbook = 16,
+	/// <summary>Wraps wxPROPSHEET_BUTTONTOOLBOOK.</summary>
+	Buttontoolbook = 32,
+	/// <summary>Wraps wxPROPSHEET_TREEBOOK.</summary>
+	Treebook = 64,
+	/// <summary>Wraps wxPROPSHEET_SHRINKTOFIT.</summary>
+	Shrinktofit = 256,
+}
+
 /// <summary>Wraps wxRasterOperationMode.</summary>
 public enum RasterOperationMode {
 	/// <summary>0. Wraps wxCLEAR.</summary>
@@ -2615,6 +2661,27 @@ public enum WindowVariant {
 	Large = 3,
 	/// <summary>Wraps wxWINDOW_VARIANT_MAX.</summary>
 	Max = 4,
+}
+
+/// <summary>Wraps *.</summary>
+[Flags]
+public enum WizardBitmapPlacement {
+	/// <summary>None of the flags. Wraps 0.</summary>
+	None = 0,
+	/// <summary>Wraps wxWIZARD_VALIGN_TOP.</summary>
+	ValignTop = 1,
+	/// <summary>Wraps wxWIZARD_VALIGN_CENTRE.</summary>
+	ValignCenter = 2,
+	/// <summary>Wraps wxWIZARD_VALIGN_BOTTOM.</summary>
+	ValignBottom = 4,
+	/// <summary>Wraps wxWIZARD_HALIGN_LEFT.</summary>
+	HalignLeft = 8,
+	/// <summary>Wraps wxWIZARD_HALIGN_CENTRE.</summary>
+	HalignCenter = 16,
+	/// <summary>Wraps wxWIZARD_HALIGN_RIGHT.</summary>
+	HalignRight = 32,
+	/// <summary>Wraps wxWIZARD_TILE.</summary>
+	Tile = 64,
 }
 
 /// <summary>Wraps *.</summary>

@@ -9,11 +9,11 @@ WXK_FUNCTION(wxk_Window*) wxk_TreeCtrl_new(wxk_Window* parent, int32_t id, wxk_P
 }
 
 WXK_FUNCTION(void*) wxk_TreeCtrl_AddRoot(wxk_Window* self, const char16_t* text, size_t textLength, int32_t image, int32_t selImage, void* data) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->AddRoot(wxk::FromUtf16(text, textLength), static_cast<int>(image), static_cast<int>(selImage), wxk::ToTreeItemData(data))).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->AddRoot(wxk::FromUtf16(text, textLength), static_cast<int>(image), static_cast<int>(selImage), wxk::ToTreeItemData(data))).GetID()); });
 }
 
 WXK_FUNCTION(void*) wxk_TreeCtrl_AppendItem(wxk_Window* self, void* parent, const char16_t* text, size_t textLength, int32_t image, int32_t selImage, void* data) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->AppendItem(wxTreeItemId(parent), wxk::FromUtf16(text, textLength), static_cast<int>(image), static_cast<int>(selImage), wxk::ToTreeItemData(data))).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->AppendItem(wxTreeItemId(parent), wxk::FromUtf16(text, textLength), static_cast<int>(image), static_cast<int>(selImage), wxk::ToTreeItemData(data))).GetID()); });
 }
 
 WXK_FUNCTION(void) wxk_TreeCtrl_Collapse(wxk_Window* self, void* item) noexcept {
@@ -101,7 +101,7 @@ WXK_FUNCTION(int32_t) wxk_TreeCtrl_GetItemImage(wxk_Window* self, void* item, in
 }
 
 WXK_FUNCTION(void*) wxk_TreeCtrl_GetItemParent(wxk_Window* self, void* item) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetItemParent(wxTreeItemId(item))).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetItemParent(wxTreeItemId(item))).GetID()); });
 }
 
 WXK_FUNCTION(int32_t) wxk_TreeCtrl_GetItemState(wxk_Window* self, void* item) noexcept {
@@ -117,23 +117,23 @@ WXK_FUNCTION(wxk_Colour) wxk_TreeCtrl_GetItemTextColour(wxk_Window* self, void* 
 }
 
 WXK_FUNCTION(void*) wxk_TreeCtrl_GetLastChild(wxk_Window* self, void* item) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetLastChild(wxTreeItemId(item))).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetLastChild(wxTreeItemId(item))).GetID()); });
 }
 
 WXK_FUNCTION(void*) wxk_TreeCtrl_GetNextSibling(wxk_Window* self, void* item) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetNextSibling(wxTreeItemId(item))).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetNextSibling(wxTreeItemId(item))).GetID()); });
 }
 
 WXK_FUNCTION(void*) wxk_TreeCtrl_GetNextVisible(wxk_Window* self, void* item) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetNextVisible(wxTreeItemId(item))).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetNextVisible(wxTreeItemId(item))).GetID()); });
 }
 
 WXK_FUNCTION(void*) wxk_TreeCtrl_GetPrevSibling(wxk_Window* self, void* item) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetPrevSibling(wxTreeItemId(item))).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetPrevSibling(wxTreeItemId(item))).GetID()); });
 }
 
 WXK_FUNCTION(void*) wxk_TreeCtrl_GetPrevVisible(wxk_Window* self, void* item) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetPrevVisible(wxTreeItemId(item))).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetPrevVisible(wxTreeItemId(item))).GetID()); });
 }
 
 WXK_FUNCTION(size_t) wxk_TreeCtrl_GetSelections(wxk_Window* self, wxk_Numbers** selections) noexcept {
@@ -141,11 +141,11 @@ WXK_FUNCTION(size_t) wxk_TreeCtrl_GetSelections(wxk_Window* self, wxk_Numbers** 
 }
 
 WXK_FUNCTION(void*) wxk_TreeCtrl_InsertItem_TreeItemIdTreeItemIdStringIntIntData(wxk_Window* self, void* parent, void* previous, const char16_t* text, size_t textLength, int32_t image, int32_t selImage, void* data) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->InsertItem(wxTreeItemId(parent), wxTreeItemId(previous), wxk::FromUtf16(text, textLength), static_cast<int>(image), static_cast<int>(selImage), wxk::ToTreeItemData(data))).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->InsertItem(wxTreeItemId(parent), wxTreeItemId(previous), wxk::FromUtf16(text, textLength), static_cast<int>(image), static_cast<int>(selImage), wxk::ToTreeItemData(data))).GetID()); });
 }
 
 WXK_FUNCTION(void*) wxk_TreeCtrl_InsertItem_TreeItemIdSizeTStringIntIntData(wxk_Window* self, void* parent, size_t position, const char16_t* text, size_t textLength, int32_t image, int32_t selImage, void* data) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->InsertItem(wxTreeItemId(parent), position, wxk::FromUtf16(text, textLength), static_cast<int>(image), static_cast<int>(selImage), wxk::ToTreeItemData(data))).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->InsertItem(wxTreeItemId(parent), position, wxk::FromUtf16(text, textLength), static_cast<int>(image), static_cast<int>(selImage), wxk::ToTreeItemData(data))).GetID()); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_TreeCtrl_IsBold(wxk_Window* self, void* item) noexcept {
@@ -173,7 +173,7 @@ WXK_FUNCTION(int32_t) wxk_TreeCtrl_OnCompareItems(wxk_Window* self, void* item1,
 }
 
 WXK_FUNCTION(void*) wxk_TreeCtrl_PrependItem(wxk_Window* self, void* parent, const char16_t* text, size_t textLength, int32_t image, int32_t selImage, void* data) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->PrependItem(wxTreeItemId(parent), wxk::FromUtf16(text, textLength), static_cast<int>(image), static_cast<int>(selImage), wxk::ToTreeItemData(data))).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->PrependItem(wxTreeItemId(parent), wxk::FromUtf16(text, textLength), static_cast<int>(image), static_cast<int>(selImage), wxk::ToTreeItemData(data))).GetID()); });
 }
 
 WXK_FUNCTION(void) wxk_TreeCtrl_ScrollTo(wxk_Window* self, void* item) noexcept {
@@ -265,11 +265,11 @@ WXK_FUNCTION(wxk_Window*) wxk_TreeCtrl_GetEditControl(wxk_Window* self) noexcept
 }
 
 WXK_FUNCTION(void*) wxk_TreeCtrl_GetFirstVisibleItem(wxk_Window* self) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetFirstVisibleItem()).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetFirstVisibleItem()).GetID()); });
 }
 
 WXK_FUNCTION(void*) wxk_TreeCtrl_GetFocusedItem(wxk_Window* self) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetFocusedItem()).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetFocusedItem()).GetID()); });
 }
 
 WXK_FUNCTION(void) wxk_TreeCtrl_SetFocusedItem(wxk_Window* self, void* item) noexcept {
@@ -301,11 +301,11 @@ WXK_FUNCTION(void) wxk_TreeCtrl_SetQuickBestSize(wxk_Window* self, uint8_t quick
 }
 
 WXK_FUNCTION(void*) wxk_TreeCtrl_GetRootItem(wxk_Window* self) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetRootItem()).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetRootItem()).GetID()); });
 }
 
 WXK_FUNCTION(void*) wxk_TreeCtrl_GetSelection(wxk_Window* self) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetSelection()).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetSelection()).GetID()); });
 }
 
 WXK_FUNCTION(int32_t) wxk_TreeCtrl_GetStateImageCount(wxk_Window* self) noexcept {

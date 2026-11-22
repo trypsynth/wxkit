@@ -38,6 +38,27 @@ public unsafe partial class Window {
 
 	internal WxkWindow* Native => (WxkWindow*)Handle;
 
+	/// <summary>
+	/// Names the window for screen readers, in place of the name the platform gives it, such as
+	/// for a button that shows only an icon. Wraps SetAccessibleName, which wxWidgets only
+	/// implements on Windows, so on Linux and macOS WxKit sets the name through ATK and
+	/// NSAccessibility.
+	/// </summary>
+	public void SetAccessibleName(string name) {
+		ArgumentNullException.ThrowIfNull(name);
+		fixed (char* text = name) WxKitNative.WindowSetAccessibleName(Native, text, NativeString.Length(name));
+	}
+
+	/// <summary>
+	/// Sets the tooltip that shows when the pointer rests on the window. A button that shows only
+	/// an icon is named by its tooltip for screen readers, unless <see cref="SetAccessibleName"/>
+	/// gave it a name. Wraps SetToolTip.
+	/// </summary>
+	public void SetToolTip(string text) {
+		ArgumentNullException.ThrowIfNull(text);
+		fixed (char* chars = text) WxKitNative.WindowSetToolTip(Native, chars, NativeString.Length(text));
+	}
+
 	private protected override void OnDestroyed() {
 		_sizer?.MarkDestroyed();
 		_sizer = null;

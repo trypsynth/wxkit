@@ -201,7 +201,7 @@ WXK_FUNCTION(void) wxk_DataViewCtrl_SetExpanderColumn(wxk_Window* self, wxk_Data
 }
 
 WXK_FUNCTION(void*) wxk_DataViewCtrl_GetCurrentItem(wxk_Window* self) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxDataViewCtrl*>(wxk::Unwrap(self))->GetCurrentItem()).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxDataViewCtrl*>(wxk::Unwrap(self))->GetCurrentItem()).GetID()); });
 }
 
 WXK_FUNCTION(void) wxk_DataViewCtrl_SetCurrentItem(wxk_Window* self, void* item) noexcept {
@@ -229,7 +229,7 @@ WXK_FUNCTION(int32_t) wxk_DataViewCtrl_GetSelectedItemsCount(wxk_Window* self) n
 }
 
 WXK_FUNCTION(void*) wxk_DataViewCtrl_GetSelection(wxk_Window* self) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxDataViewCtrl*>(wxk::Unwrap(self))->GetSelection()).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxDataViewCtrl*>(wxk::Unwrap(self))->GetSelection()).GetID()); });
 }
 
 WXK_FUNCTION(wxk_DataViewColumn*) wxk_DataViewCtrl_GetSortingColumn(wxk_Window* self) noexcept {
@@ -249,6 +249,6 @@ WXK_FUNCTION(int32_t) wxk_DataViewCtrl_GetCountPerPage(wxk_Window* self) noexcep
 }
 
 WXK_FUNCTION(void*) wxk_DataViewCtrl_GetTopItem(wxk_Window* self) noexcept {
-	return wxk::Guard<void*>(nullptr, [&]() -> void* { return (static_cast<wxDataViewCtrl*>(wxk::Unwrap(self))->GetTopItem()).GetID(); });
+	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxDataViewCtrl*>(wxk::Unwrap(self))->GetTopItem()).GetID()); });
 }
 

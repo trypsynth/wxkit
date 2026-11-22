@@ -14,8 +14,9 @@ internal static class Core {
 			.NoConstructors()
 			// WxKit tracks the sizer a window owns, gives the native handle as NativeHandle, keeps
 			// the validator it was given, since the window holds a copy, and gives a window its
-			// accessible object through the hand-written Accessible.
-			.Ignore("SetSizer", "SetSizerAndFit", "GetSizer", "GetHandle", "SetValidator", "GetValidator", "GetAccessible", "SetAccessible", "CreateAccessible", "GetOrCreateAccessible")
+			// accessible object through the hand-written Accessible. A name for screen readers, and a
+			// tooltip, which names a button that shows only an icon, are set by hand on Linux and macOS.
+			.Ignore("SetSizer", "SetSizerAndFit", "GetSizer", "GetHandle", "SetValidator", "GetValidator", "GetAccessible", "SetAccessible", "CreateAccessible", "GetOrCreateAccessible", "SetAccessibleName", "SetToolTip")
 			.Property("IsEnabled", "IsEnabled", "Enable")
 			.ParameterEnum("Centre", "direction", "Orientation")
 			.ParameterEnum("Move", "flags", "SizeFlags")
@@ -462,8 +463,50 @@ internal static class Core {
 		tweaks.Class("wxSystemSettings").StaticOnly();
 		tweaks.Class("wxArtProvider").StaticOnly();
 		// The standard dialogs.
-		foreach (string dialog in (string[])["wxTextEntryDialog", "wxPasswordEntryDialog", "wxFileDialog", "wxDirDialog", "wxProgressDialog", "wxSingleChoiceDialog", "wxMultiChoiceDialog"]) {
+		foreach (string dialog in (string[])["wxTextEntryDialog", "wxPasswordEntryDialog", "wxFileDialog", "wxDirDialog", "wxProgressDialog", "wxSingleChoiceDialog", "wxMultiChoiceDialog", "wxNumberEntryDialog", "wxRichMessageDialog", "wxCredentialEntryDialog", "wxPropertySheetDialog", "wxWizard", "wxWizardPage", "wxWizardPageSimple"]) {
 			tweaks.Class(dialog);
+		}
+		// A message dialog with a check box, such as "Don't ask again", and details that can be shown.
+		// wxWidgets makes it from its own message dialog, not the platform's, so it is no
+		// MessageDialog, and has that class's members through the base the two share.
+		tweaks.Class("wxRichMessageDialog", dialog => dialog
+			.Bases("wxDialog")
+			.Borrow("wxMessageDialog", "wxMessageDialogBase")
+			.ParameterEnum("wxRichMessageDialog", "style", "MessageDialogStyle")
+			.ParameterEnum("GetMessageDialogStyle", "return", "MessageDialogStyle")
+			.ParameterEnum("SetFooterIcon", "icon", "MessageDialogStyle")
+			.ParameterEnum("GetFooterIcon", "return", "MessageDialogStyle"));
+		// A password is a wxSecretValue in wxWebCredentials, so the user name and password are
+		// strings written by hand.
+		tweaks.Class("wxCredentialEntryDialog").Ignore("SetUser", "SetPassword");
+		tweaks.Class("wxGenericDirCtrl", tree => tree
+			.StylesPrefixed("DIRCTRL")
+			.ParameterName("wxGenericDirCtrl", "dir", "directory"));
+		tweaks.Class("wxFileCtrl").ParameterName("wxFileCtrl", "wildCard", "wildcard");
+		tweaks.Class("wxEditableListBox").Rename("GetDelButton", "DeleteButton");
+		// A wizard's pages are each a WizardPageSimple, chained in order, or a WizardPage whose
+		// Next and Previous a subclass decides.
+		tweaks.Class("wxWizardPage").NoConstructors().Rename("GetPrev", "Previous");
+		tweaks.Class("wxWizardPageSimple", page => page
+			.Rename("SetPrev", "SetPrevious")
+			.ParameterName("wxWizardPageSimple", "prev", "previous")
+			.ParameterName("SetPrev", "prev", "previous"));
+		tweaks.ConstantEnumOf("WizardBitmapPlacement", isFlags: true, "wxWIZARD_VALIGN_TOP", "wxWIZARD_VALIGN_CENTRE", "wxWIZARD_VALIGN_BOTTOM", "wxWIZARD_HALIGN_LEFT", "wxWIZARD_HALIGN_CENTRE", "wxWIZARD_HALIGN_RIGHT", "wxWIZARD_TILE");
+		tweaks.Class("wxWizard", wizard => wizard
+			.Rename("HasPrevPage", "HasPreviousPage")
+			.ParameterEnum("SetBitmapPlacement", "placement", "WizardBitmapPlacement")
+			.ParameterEnum("GetBitmapPlacement", "return", "WizardBitmapPlacement"));
+		// The buttons a dialog makes for itself, such as OK and Cancel.
+		tweaks.ConstantEnumOf("DialogButtons", isFlags: true, "wxOK", "wxCANCEL", "wxYES", "wxNO", "wxAPPLY", "wxCLOSE", "wxHELP", "wxNO_DEFAULT");
+		tweaks.ConstantEnumOf("PropertySheetStyle", isFlags: true, "wxPROPSHEET_DEFAULT", "wxPROPSHEET_NOTEBOOK", "wxPROPSHEET_TOOLBOOK", "wxPROPSHEET_CHOICEBOOK", "wxPROPSHEET_LISTBOOK", "wxPROPSHEET_BUTTONTOOLBOOK", "wxPROPSHEET_TREEBOOK", "wxPROPSHEET_SHRINKTOFIT");
+		tweaks.Class("wxPropertySheetDialog", sheet => sheet
+			.ParameterEnum("CreateButtons", "flags", "DialogButtons")
+			.ParameterEnum("SetSheetStyle", "style", "PropertySheetStyle")
+			.ParameterEnum("GetSheetStyle", "return", "PropertySheetStyle"));
+		// Controls made of others that screen readers know: a tree of items with columns, the file
+		// system as a tree, a file chooser to put in a window, and a list that can be edited.
+		foreach (string control in (string[])["wxTreeListCtrl", "wxTreeListEvent", "wxGenericDirCtrl", "wxFileCtrl", "wxFileCtrlEvent", "wxEditableListBox", "wxWizardEvent"]) {
+			tweaks.Class(control);
 		}
 		tweaks.Class("wxEvent", e => e.NoConstructors().Rename("GetSkipped", "IsSkipped"));
 		// An event does not delete the item data it is given, so only the item's data comes out.

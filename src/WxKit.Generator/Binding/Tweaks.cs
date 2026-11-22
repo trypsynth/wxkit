@@ -98,6 +98,15 @@ internal sealed class ClassTweak(string name) {
 	/// </summary>
 	public bool InheritsUnboundBases { get; private set; }
 
+	/// <summary>
+	/// The bases to use in place of those the interface headers give, when one they give is not
+	/// documented, as wxRichMessageDialog's wxRichMessageDialogBase is not.
+	/// </summary>
+	public List<string>? BaseOverride { get; private set; }
+
+	/// <summary>Bound classes whose own members this class has too, and the real bases the shim calls them through.</summary>
+	public Dictionary<string, string> Borrowed { get; } = new(StringComparer.Ordinal);
+
 	/// <summary>Whether WxKit can wrap a native object of this class it did not create. Generated event handler classes always can.</summary>
 	public bool IsWrappable { get; private set; }
 
@@ -215,6 +224,22 @@ internal sealed class ClassTweak(string name) {
 
 	public ClassTweak MixinBase(string mixin, string realBase) {
 		MixinBases[mixin] = realBase;
+		return this;
+	}
+
+	public ClassTweak Bases(params string[] bases) {
+		BaseOverride = [.. bases];
+		return this;
+	}
+
+	/// <summary>
+	/// Gives the class <paramref name="source"/>'s own members, called through
+	/// <paramref name="through"/>, as wxRichMessageDialog has wxMessageDialog's through
+	/// wxMessageDialogBase without being a wxMessageDialog.
+	/// </summary>
+	public ClassTweak Borrow(string source, string through) {
+		Borrowed[source] = through;
+		MixinBases[source] = through;
 		return this;
 	}
 

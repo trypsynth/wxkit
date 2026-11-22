@@ -93,6 +93,7 @@ set(WXK_SOURCES
 	src/busy.cpp
 	src/clientdata.cpp
 	src/clipboard.cpp
+	src/credentials.cpp
 	src/dataview.cpp
 	src/desktop.cpp
 	src/display.cpp
@@ -127,6 +128,7 @@ set(WXK_SOURCES
 	src/timer.cpp
 	src/uiaction.cpp
 	src/toolbar.cpp
+	src/treelist.cpp
 	src/validator.cpp
 	src/variant.cpp
 	src/window.cpp

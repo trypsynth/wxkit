@@ -1454,6 +1454,10 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ControlWithItemsSetStringSelection(WxkWindow* self, char* text, nuint textLength);
 
+	[LibraryImport(Library, EntryPoint = "wxk_CredentialEntryDialog_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* CredentialEntryDialogNew(WxkWindow* parent, char* message, nuint messageLength, char* title, nuint titleLength);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Cursor_new_Default")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* CursorNewDefault();
@@ -2798,10 +2802,6 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* DirDialogNew(WxkWindow* parent, char* message, nuint messageLength, char* defaultPath, nuint defaultPathLength, long style, Point position, Size size);
 
-	[LibraryImport(Library, EntryPoint = "wxk_DirDialog_GetPaths")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DirDialogGetPaths(WxkWindow* self, WxkStringArray** paths);
-
 	[LibraryImport(Library, EntryPoint = "wxk_DirDialog_GetMessage")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkString* DirDialogGetMessage(WxkWindow* self);
@@ -2817,6 +2817,10 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_DirDialog_SetPath")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DirDialogSetPath(WxkWindow* self, char* path, nuint pathLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DirDialog_GetPaths")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkStringArray* DirDialogGetPaths(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_DirPickerCtrl_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -2841,6 +2845,42 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_DropFilesEvent_GetPosition")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Point DropFilesEventGetPosition(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_EditableListBox_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* EditableListBoxNew(WxkWindow* parent, int id, char* label, nuint labelLength, Point position, Size size, long style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_EditableListBox_GetStrings")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkStringArray* EditableListBoxGetStrings(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_EditableListBox_SetStrings")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void EditableListBoxSetStrings(WxkWindow* self, WxkStringArray* strings);
+
+	[LibraryImport(Library, EntryPoint = "wxk_EditableListBox_GetListCtrl")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* EditableListBoxGetListCtrl(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_EditableListBox_GetDelButton")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* EditableListBoxGetDelButton(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_EditableListBox_GetNewButton")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* EditableListBoxGetNewButton(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_EditableListBox_GetUpButton")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* EditableListBoxGetUpButton(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_EditableListBox_GetDownButton")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* EditableListBoxGetDownButton(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_EditableListBox_GetEditButton")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* EditableListBoxGetEditButton(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Event_ResumePropagation")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -2894,6 +2934,90 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte EventIsCommandEvent(WxkEvent* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_FileCtrl_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* FileCtrlNew(WxkWindow* parent, int id, char* defaultDirectory, nuint defaultDirectoryLength, char* defaultFilename, nuint defaultFilenameLength, char* wildcard, nuint wildcardLength, long style, Point position, Size size);
+
+	[LibraryImport(Library, EntryPoint = "wxk_FileCtrl_ShowHidden")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void FileCtrlShowHidden(WxkWindow* self, byte show);
+
+	[LibraryImport(Library, EntryPoint = "wxk_FileCtrl_GetDirectory")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* FileCtrlGetDirectory(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_FileCtrl_SetDirectory")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte FileCtrlSetDirectory(WxkWindow* self, char* directory, nuint directoryLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_FileCtrl_GetFilename")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* FileCtrlGetFilename(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_FileCtrl_SetFilename")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte FileCtrlSetFilename(WxkWindow* self, char* filename, nuint filenameLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_FileCtrl_GetFilenames")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkStringArray* FileCtrlGetFilenames(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_FileCtrl_GetFilterIndex")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int FileCtrlGetFilterIndex(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_FileCtrl_SetFilterIndex")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void FileCtrlSetFilterIndex(WxkWindow* self, int filterIndex);
+
+	[LibraryImport(Library, EntryPoint = "wxk_FileCtrl_GetPath")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* FileCtrlGetPath(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_FileCtrl_SetPath")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte FileCtrlSetPath(WxkWindow* self, char* path, nuint pathLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_FileCtrl_GetPaths")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkStringArray* FileCtrlGetPaths(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_FileCtrl_GetWildcard")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* FileCtrlGetWildcard(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_FileCtrl_SetWildcard")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void FileCtrlSetWildcard(WxkWindow* self, char* wildCard, nuint wildCardLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_FileCtrlEvent_GetDirectory")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* FileCtrlEventGetDirectory(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_FileCtrlEvent_SetDirectory")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void FileCtrlEventSetDirectory(WxkEvent* self, char* directory, nuint directoryLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_FileCtrlEvent_GetFile")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* FileCtrlEventGetFile(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_FileCtrlEvent_GetFiles")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkStringArray* FileCtrlEventGetFiles(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_FileCtrlEvent_SetFiles")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void FileCtrlEventSetFiles(WxkEvent* self, WxkStringArray* files);
+
+	[LibraryImport(Library, EntryPoint = "wxk_FileCtrlEvent_GetFilterIndex")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int FileCtrlEventGetFilterIndex(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_FileCtrlEvent_SetFilterIndex")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void FileCtrlEventSetFilterIndex(WxkEvent* self, int index);
+
 	[LibraryImport(Library, EntryPoint = "wxk_FileDialog_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* FileDialogNew(WxkWindow* parent, char* message, nuint messageLength, char* defaultDir, nuint defaultDirLength, char* defaultFile, nuint defaultFileLength, char* wildcard, nuint wildcardLength, long style, Point position, Size size);
@@ -2901,14 +3025,6 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_FileDialog_AddShortcut")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte FileDialogAddShortcut(WxkWindow* self, char* directory, nuint directoryLength, int flags);
-
-	[LibraryImport(Library, EntryPoint = "wxk_FileDialog_GetFilenames")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void FileDialogGetFilenames(WxkWindow* self, WxkStringArray** filenames);
-
-	[LibraryImport(Library, EntryPoint = "wxk_FileDialog_GetPaths")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void FileDialogGetPaths(WxkWindow* self, WxkStringArray** paths);
 
 	[LibraryImport(Library, EntryPoint = "wxk_FileDialog_GetCurrentlySelectedFilename")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -2938,6 +3054,10 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void FileDialogSetFilename(WxkWindow* self, char* setfilename, nuint setfilenameLength);
 
+	[LibraryImport(Library, EntryPoint = "wxk_FileDialog_GetFilenames")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkStringArray* FileDialogGetFilenames(WxkWindow* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_FileDialog_GetFilterIndex")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int FileDialogGetFilterIndex(WxkWindow* self);
@@ -2961,6 +3081,10 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_FileDialog_SetPath")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void FileDialogSetPath(WxkWindow* self, char* path, nuint pathLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_FileDialog_GetPaths")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkStringArray* FileDialogGetPaths(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_FileDialog_GetWildcard")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -3533,6 +3657,102 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Gauge_IsVertical")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte GaugeIsVertical(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* GenericDirCtrlNew(WxkWindow* parent, int id, char* directory, nuint directoryLength, Point position, Size size, long style, char* filter, nuint filterLength, int defaultFilter);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_CollapsePath")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte GenericDirCtrlCollapsePath(WxkWindow* self, char* path, nuint pathLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_CollapseTree")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void GenericDirCtrlCollapseTree(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_ExpandPath")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte GenericDirCtrlExpandPath(WxkWindow* self, char* path, nuint pathLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_GetPath_TreeItemId")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* GenericDirCtrlGetPathTreeItemId(WxkWindow* self, nint itemId);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_Init")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void GenericDirCtrlInit(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_ReCreateTree")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void GenericDirCtrlReCreateTree(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_ShowHidden")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void GenericDirCtrlShowHidden(WxkWindow* self, byte show);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_SelectPath")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void GenericDirCtrlSelectPath(WxkWindow* self, char* path, nuint pathLength, byte select);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_SelectPaths")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void GenericDirCtrlSelectPaths(WxkWindow* self, WxkStringArray* paths);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_UnselectAll")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void GenericDirCtrlUnselectAll(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_GetDefaultPath")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* GenericDirCtrlGetDefaultPath(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_SetDefaultPath")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void GenericDirCtrlSetDefaultPath(WxkWindow* self, char* path, nuint pathLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_GetFilePath")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* GenericDirCtrlGetFilePath(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_GetFilePaths")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkStringArray* GenericDirCtrlGetFilePaths(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_GetFilter")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* GenericDirCtrlGetFilter(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_SetFilter")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void GenericDirCtrlSetFilter(WxkWindow* self, char* filter, nuint filterLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_GetFilterIndex")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int GenericDirCtrlGetFilterIndex(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_SetFilterIndex")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void GenericDirCtrlSetFilterIndex(WxkWindow* self, int index);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_GetPath_Default")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* GenericDirCtrlGetPathDefault(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_SetPath")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void GenericDirCtrlSetPath(WxkWindow* self, char* path, nuint pathLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_GetPaths")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkStringArray* GenericDirCtrlGetPaths(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_GetRootId")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial nint GenericDirCtrlGetRootId(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_GetTreeCtrl")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* GenericDirCtrlGetTreeCtrl(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_GridBagSizer_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -5678,6 +5898,14 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte NotifyEventIsAllowed(WxkEvent* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_NumberEntryDialog_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* NumberEntryDialogNew(WxkWindow* parent, char* message, nuint messageLength, char* prompt, nuint promptLength, char* caption, nuint captionLength, long value, long min, long max, Point position);
+
+	[LibraryImport(Library, EntryPoint = "wxk_NumberEntryDialog_GetValue")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial long NumberEntryDialogGetValue(WxkWindow* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_PageSetupDialog_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* PageSetupDialogNew(WxkWindow* parent, WxkObject* data);
@@ -6322,6 +6550,62 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* ProgressDialogNew(char* title, nuint titleLength, char* message, nuint messageLength, int maximum, WxkWindow* parent, int style);
 
+	[LibraryImport(Library, EntryPoint = "wxk_PropertySheetDialog_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* PropertySheetDialogNew(WxkWindow* parent, int id, char* title, nuint titleLength, Point position, Size size, long style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_PropertySheetDialog_AddBookCtrl")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void PropertySheetDialogAddBookCtrl(WxkWindow* self, WxkSizer* sizer);
+
+	[LibraryImport(Library, EntryPoint = "wxk_PropertySheetDialog_CreateBookCtrl")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* PropertySheetDialogCreateBookCtrl(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_PropertySheetDialog_CreateButtons")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void PropertySheetDialogCreateButtons(WxkWindow* self, int flags);
+
+	[LibraryImport(Library, EntryPoint = "wxk_PropertySheetDialog_SetInnerSizer")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void PropertySheetDialogSetInnerSizer(WxkWindow* self, WxkSizer* sizer);
+
+	[LibraryImport(Library, EntryPoint = "wxk_PropertySheetDialog_LayoutDialog")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void PropertySheetDialogLayoutDialog(WxkWindow* self, int centerFlags);
+
+	[LibraryImport(Library, EntryPoint = "wxk_PropertySheetDialog_GetBookCtrl")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* PropertySheetDialogGetBookCtrl(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_PropertySheetDialog_SetBookCtrl")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void PropertySheetDialogSetBookCtrl(WxkWindow* self, WxkWindow* bookCtrl);
+
+	[LibraryImport(Library, EntryPoint = "wxk_PropertySheetDialog_GetSheetStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial long PropertySheetDialogGetSheetStyle(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_PropertySheetDialog_SetSheetStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void PropertySheetDialogSetSheetStyle(WxkWindow* self, long style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_PropertySheetDialog_GetSheetOuterBorder")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int PropertySheetDialogGetSheetOuterBorder(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_PropertySheetDialog_SetSheetOuterBorder")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void PropertySheetDialogSetSheetOuterBorder(WxkWindow* self, int border);
+
+	[LibraryImport(Library, EntryPoint = "wxk_PropertySheetDialog_GetSheetInnerBorder")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int PropertySheetDialogGetSheetInnerBorder(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_PropertySheetDialog_SetSheetInnerBorder")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void PropertySheetDialogSetSheetInnerBorder(WxkWindow* self, int border);
+
 	[LibraryImport(Library, EntryPoint = "wxk_RadioBox_new_WindowIntStringPointSize")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* RadioBoxNewWindowIntStringPointSize(WxkWindow* parent, int id, char* label, nuint labelLength, Point position, Size size);
@@ -6489,6 +6773,118 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_RearrangeList_CanMoveCurrentDown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte RearrangeListCanMoveCurrentDown(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* RichMessageDialogNew(WxkWindow* parent, char* message, nuint messageLength, char* caption, nuint captionLength, long style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_ShowCheckBox")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void RichMessageDialogShowCheckBox(WxkWindow* self, char* checkBoxText, nuint checkBoxTextLength, byte @checked);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_ShowDetailedText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void RichMessageDialogShowDetailedText(WxkWindow* self, char* detailedText, nuint detailedTextLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_SetOKCancelLabels")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte RichMessageDialogSetOKCancelLabels(WxkWindow* self, char* ok, nuint okLength, char* cancel, nuint cancelLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_SetYesNoCancelLabels")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte RichMessageDialogSetYesNoCancelLabels(WxkWindow* self, char* yes, nuint yesLength, char* no, nuint noLength, char* cancel, nuint cancelLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_SetYesNoLabels")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte RichMessageDialogSetYesNoLabels(WxkWindow* self, char* yes, nuint yesLength, char* no, nuint noLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_GetCheckBoxText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* RichMessageDialogGetCheckBoxText(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_GetDetailedText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* RichMessageDialogGetDetailedText(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_GetFooterText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* RichMessageDialogGetFooterText(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_SetFooterText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void RichMessageDialogSetFooterText(WxkWindow* self, char* footerText, nuint footerTextLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_GetFooterIcon")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int RichMessageDialogGetFooterIcon(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_SetFooterIcon")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void RichMessageDialogSetFooterIcon(WxkWindow* self, int icon);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_IsCheckBoxChecked")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte RichMessageDialogIsCheckBoxChecked(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_GetCaption")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* RichMessageDialogGetCaption(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_GetMessage")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* RichMessageDialogGetMessage(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_SetMessage")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void RichMessageDialogSetMessage(WxkWindow* self, char* message, nuint messageLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_GetExtendedMessage")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* RichMessageDialogGetExtendedMessage(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_SetExtendedMessage")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void RichMessageDialogSetExtendedMessage(WxkWindow* self, char* extendedMessage, nuint extendedMessageLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_GetMessageDialogStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial long RichMessageDialogGetMessageDialogStyle(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_HasCustomLabels")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte RichMessageDialogHasCustomLabels(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_GetYesLabel")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* RichMessageDialogGetYesLabel(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_GetNoLabel")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* RichMessageDialogGetNoLabel(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_GetOKLabel")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* RichMessageDialogGetOKLabel(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_SetOKLabel")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte RichMessageDialogSetOKLabel(WxkWindow* self, char* ok, nuint okLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_GetCancelLabel")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* RichMessageDialogGetCancelLabel(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_GetHelpLabel")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* RichMessageDialogGetHelpLabel(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_SetHelpLabel")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte RichMessageDialogSetHelpLabel(WxkWindow* self, char* help, nuint helpLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_GetEffectiveIcon")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial long RichMessageDialogGetEffectiveIcon(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ScreenDC_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -11950,6 +12346,194 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte TreeEventIsEditCancelled(WxkEvent* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* TreeListCtrlNew(WxkWindow* parent, int id, Point position, Size size, long style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_AppendColumn")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int TreeListCtrlAppendColumn(WxkWindow* self, char* title, nuint titleLength, int width, int align, int flags);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_DeleteColumn")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte TreeListCtrlDeleteColumn(WxkWindow* self, uint column);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_ClearColumns")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeListCtrlClearColumns(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_SetColumnWidth")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeListCtrlSetColumnWidth(WxkWindow* self, uint column, int width);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_GetColumnWidth")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int TreeListCtrlGetColumnWidth(WxkWindow* self, uint column);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_WidthFor")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int TreeListCtrlWidthFor(WxkWindow* self, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_AppendItem")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial nint TreeListCtrlAppendItem(WxkWindow* self, nint parent, char* text, nuint textLength, int imageClosed, int imageOpened, nint data);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_InsertItem")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial nint TreeListCtrlInsertItem(WxkWindow* self, nint parent, nint previous, char* text, nuint textLength, int imageClosed, int imageOpened, nint data);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_PrependItem")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial nint TreeListCtrlPrependItem(WxkWindow* self, nint parent, char* text, nuint textLength, int imageClosed, int imageOpened, nint data);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_DeleteItem")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeListCtrlDeleteItem(WxkWindow* self, nint item);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_DeleteAllItems")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeListCtrlDeleteAllItems(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_GetItemParent")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial nint TreeListCtrlGetItemParent(WxkWindow* self, nint item);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_GetFirstChild")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial nint TreeListCtrlGetFirstChild(WxkWindow* self, nint item);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_GetNextSibling")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial nint TreeListCtrlGetNextSibling(WxkWindow* self, nint item);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_GetNextItem")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial nint TreeListCtrlGetNextItem(WxkWindow* self, nint item);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_GetItemText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* TreeListCtrlGetItemText(WxkWindow* self, nint item, uint column);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_SetItemText_TreeListItemUIntString")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeListCtrlSetItemTextTreeListItemUIntString(WxkWindow* self, nint item, uint column, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_SetItemText_TreeListItemString")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeListCtrlSetItemTextTreeListItemString(WxkWindow* self, nint item, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_SetItemImage")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeListCtrlSetItemImage(WxkWindow* self, nint item, int closed, int opened);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_GetItemData")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial nint TreeListCtrlGetItemData(WxkWindow* self, nint item);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_SetItemData")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeListCtrlSetItemData(WxkWindow* self, nint item, nint data);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_Expand")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeListCtrlExpand(WxkWindow* self, nint item);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_Collapse")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeListCtrlCollapse(WxkWindow* self, nint item);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_IsExpanded")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte TreeListCtrlIsExpanded(WxkWindow* self, nint item);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_Select")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeListCtrlSelect(WxkWindow* self, nint item);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_Unselect")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeListCtrlUnselect(WxkWindow* self, nint item);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_IsSelected")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte TreeListCtrlIsSelected(WxkWindow* self, nint item);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_SelectAll")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeListCtrlSelectAll(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_UnselectAll")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeListCtrlUnselectAll(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_EnsureVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeListCtrlEnsureVisible(WxkWindow* self, nint item);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_CheckItem")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeListCtrlCheckItem(WxkWindow* self, nint item, int state);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_CheckItemRecursively")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeListCtrlCheckItemRecursively(WxkWindow* self, nint item, int state);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_UncheckItem")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeListCtrlUncheckItem(WxkWindow* self, nint item);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_UpdateItemParentStateRecursively")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeListCtrlUpdateItemParentStateRecursively(WxkWindow* self, nint item);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_GetCheckedState")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int TreeListCtrlGetCheckedState(WxkWindow* self, nint item);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_AreAllChildrenInState")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte TreeListCtrlAreAllChildrenInState(WxkWindow* self, nint item, int state);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_SetSortColumn")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeListCtrlSetSortColumn(WxkWindow* self, uint column, byte ascendingOrder);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_GetColumnCount")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial uint TreeListCtrlGetColumnCount(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_GetRootItem")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial nint TreeListCtrlGetRootItem(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_GetFirstItem")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial nint TreeListCtrlGetFirstItem(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_GetSelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial nint TreeListCtrlGetSelection(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_GetView")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* TreeListCtrlGetView(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_GetDataView")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* TreeListCtrlGetDataView(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListEvent_GetItem")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial nint TreeListEventGetItem(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListEvent_GetOldCheckedState")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int TreeListEventGetOldCheckedState(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListEvent_GetColumn")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial uint TreeListEventGetColumn(WxkEvent* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Treebook_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* TreebookNew(WxkWindow* parent, int id, Point position, Size size, long style);
@@ -12882,10 +13466,6 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkString* WindowGetHelpTextAtPoint(WxkWindow* self, Point point, int origin);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Window_SetToolTip")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void WindowSetToolTip(WxkWindow* self, char* tipString, nuint tipStringLength);
-
 	[LibraryImport(Library, EntryPoint = "wxk_Window_UnsetToolTip")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void WindowUnsetToolTip(WxkWindow* self);
@@ -12913,10 +13493,6 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Window_AdjustForLayoutDirection")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int WindowAdjustForLayoutDirection(WxkWindow* self, int x, int width, int widthTotal);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_SetAccessibleName")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void WindowSetAccessibleName(WxkWindow* self, char* name, nuint nameLength);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Window_Close")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -13410,6 +13986,110 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* WindowDCNew(WxkWindow* window);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Wizard_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* WizardNew(WxkWindow* parent, int id, char* title, nuint titleLength, WxkObject* bitmap, Point position, long style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Wizard_FitToPage")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WizardFitToPage(WxkWindow* self, WxkWindow* firstPage);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Wizard_HasNextPage")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WizardHasNextPage(WxkWindow* self, WxkWindow* page);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Wizard_HasPrevPage")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WizardHasPrevPage(WxkWindow* self, WxkWindow* page);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Wizard_RunWizard")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WizardRunWizard(WxkWindow* self, WxkWindow* firstPage);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Wizard_SetBorder")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WizardSetBorder(WxkWindow* self, int border);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Wizard_GetBitmap")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* WizardGetBitmap(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Wizard_SetBitmap")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WizardSetBitmap(WxkWindow* self, WxkObject* bitmap);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Wizard_GetBitmapBackgroundColour")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor WizardGetBitmapBackgroundColour(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Wizard_SetBitmapBackgroundColour")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WizardSetBitmapBackgroundColour(WxkWindow* self, WxkColor color);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Wizard_GetBitmapPlacement")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int WizardGetBitmapPlacement(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Wizard_SetBitmapPlacement")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WizardSetBitmapPlacement(WxkWindow* self, int placement);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Wizard_GetCurrentPage")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* WizardGetCurrentPage(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Wizard_GetMinimumBitmapWidth")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int WizardGetMinimumBitmapWidth(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Wizard_SetMinimumBitmapWidth")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WizardSetMinimumBitmapWidth(WxkWindow* self, int width);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Wizard_GetPageSize")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial Size WizardGetPageSize(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Wizard_SetPageSize")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WizardSetPageSize(WxkWindow* self, Size sizePage);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WizardEvent_GetDirection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WizardEventGetDirection(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WizardEvent_GetPage")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* WizardEventGetPage(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WizardPage_GetBitmap")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* WizardPageGetBitmap(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WizardPage_GetNext")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* WizardPageGetNext(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WizardPage_GetPrev")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* WizardPageGetPrev(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WizardPageSimple_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* WizardPageSimpleNew(WxkWindow* parent, WxkWindow* previous, WxkWindow* next, WxkObject* bitmap);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WizardPageSimple_SetNext")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WizardPageSimpleSetNext(WxkWindow* self, WxkWindow* next);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WizardPageSimple_SetPrev")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WizardPageSimpleSetPrev(WxkWindow* self, WxkWindow* previous);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WizardPageSimple_Chain")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WizardPageSimpleChain(WxkWindow* first, WxkWindow* second);
+
 	[LibraryImport(Library, EntryPoint = "wxk_WrapSizer_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkSizer* WrapSizerNew(int orientation, int flags);
@@ -13478,9 +14158,9 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeCharHook();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_Checkbox")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_CheckBox")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeCheckbox();
+	public static partial int EventTypeCheckBox();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_Checklistbox")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -13646,6 +14326,14 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeDateChanged();
 
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_DirCtrlFileActivated")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeDirCtrlFileActivated();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_DirCtrlSelectionChanged")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeDirCtrlSelectionChanged();
+
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_DirPickerChanged")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeDirPickerChanged();
@@ -13669,6 +14357,22 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_EraseBackground")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeEraseBackground();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_FileCtrlFileActivated")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeFileCtrlFileActivated();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_FileCtrlFilterChanged")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeFileCtrlFilterChanged();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_FileCtrlFolderChanged")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeFileCtrlFolderChanged();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_FileCtrlSelectionChanged")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeFileCtrlSelectionChanged();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_FilePickerChanged")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -14418,6 +15122,34 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeTreeKeyDown();
 
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_TreeListColumnSorted")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeTreeListColumnSorted();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_TreeListItemActivated")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeTreeListItemActivated();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_TreeListItemChecked")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeTreeListItemChecked();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_TreeListItemContextMenu")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeTreeListItemContextMenu();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_TreeListItemExpanded")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeTreeListItemExpanded();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_TreeListItemExpanding")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeTreeListItemExpanding();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_TreeListSelectionChanged")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeTreeListSelectionChanged();
+
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_TreeSelectionChanged")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeTreeSelectionChanged();
@@ -14509,4 +15241,32 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewWindowCloseRequested")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeWebviewWindowCloseRequested();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WizardBeforePageChanged")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeWizardBeforePageChanged();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WizardCancel")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeWizardCancel();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WizardFinished")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeWizardFinished();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WizardHelp")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeWizardHelp();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WizardPageChanged")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeWizardPageChanged();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WizardPageChanging")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeWizardPageChanging();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WizardPageShown")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeWizardPageShown();
 }

@@ -565,6 +565,38 @@ internal sealed class StringArrayOutConversion : Conversion {
 	private static string Native(string name) => name.TrimStart('@') + "Native";
 }
 
+// A list of strings that a function with no other parameters fills, as GetPaths(wxArrayString&)
+// does, which the shim fills in a list of its own and returns. Its call is the function's, given
+// that list as its argument.
+internal sealed class StringArrayFilledConversion : Conversion {
+	public static StringArrayFilledConversion Instance { get; } = new();
+
+	public override string Suffix => "Strings";
+
+	public override string CReturnType => "wxk_StringArray*";
+
+	public override string Fallback => "nullptr";
+
+	public override string InteropReturnType => "WxkStringArray*";
+
+	public override IEnumerable<string> CParameters(string name) => throw new InvalidOperationException("Filled lists are only return types.");
+
+	public override string ToCpp(string name) => throw new InvalidOperationException("Filled lists are only return types.");
+
+	public override string FromCpp(string expression) {
+		if (!expression.EndsWith("()", StringComparison.Ordinal)) throw new InvalidOperationException($"A filled list's call takes no arguments of its own, but {expression} does.");
+		return $"[&] {{ wxArrayString filled; {expression[..^1]}filled); return wxk::CopyStrings(filled); }}()";
+	}
+
+	public override IEnumerable<string> InteropParameters(string name) => throw new InvalidOperationException("Filled lists are only return types.");
+
+	public override string ManagedType(bool nullable) => "string[]";
+
+	public override IEnumerable<string> InteropArguments(string name, bool nullable) => throw new InvalidOperationException("Filled lists are only return types.");
+
+	public override string ManagedReturn(string expression) => $"NativeStringArray.Take({expression})";
+}
+
 // Ints after their count, as in SetStatusWidths(int n, const int widths[]), are any sequence of
 // them, which passes both, so the count is not a parameter of its own.
 internal sealed class CountedIntsConversion : Conversion {
@@ -940,11 +972,14 @@ internal sealed class WindowListConversion : Conversion {
 }
 
 // An item id that wraps one pointer, as wxTreeItemId and wxDataViewItem do, crosses as that
-// pointer and becomes a value type that holds it, such as TreeItemId.
-internal sealed class ItemIdConversion(string managedName, string cppName) : Conversion {
+// pointer and becomes a value type that holds it, such as TreeItemId. One whose pointer is typed,
+// as wxTreeListItem's is, is made from it after a cast.
+internal sealed class ItemIdConversion(string managedName, string cppName, string? pointerType = null) : Conversion {
 	public static ItemIdConversion TreeItem { get; } = new("TreeItemId", "wxTreeItemId");
 
 	public static ItemIdConversion DataViewItem { get; } = new("DataViewItem", "wxDataViewItem");
+
+	public static ItemIdConversion TreeListItem { get; } = new("TreeListItem", "wxTreeListItem", "wxTreeListModelNode*");
 
 	public override string Suffix => managedName;
 
@@ -952,7 +987,7 @@ internal sealed class ItemIdConversion(string managedName, string cppName) : Con
 
 	public override string CallbackInteropType => "nint";
 
-	public override string FromCallback(string expression) => $"{cppName}({expression})";
+	public override string FromCallback(string expression) => Make(expression);
 
 	public override string ToCallback(string expression) => $"{expression}.Value";
 
@@ -964,9 +999,9 @@ internal sealed class ItemIdConversion(string managedName, string cppName) : Con
 
 	public override IEnumerable<string> CParameters(string name) => [$"void* {name}"];
 
-	public override string ToCpp(string name) => $"{cppName}({name})";
+	public override string ToCpp(string name) => Make(name);
 
-	public override string FromCpp(string expression) => $"({expression}).GetID()";
+	public override string FromCpp(string expression) => $"static_cast<void*>(({expression}).GetID())";
 
 	public override IEnumerable<string> InteropParameters(string name) => [$"nint {name}"];
 
@@ -975,6 +1010,8 @@ internal sealed class ItemIdConversion(string managedName, string cppName) : Con
 	public override IEnumerable<string> InteropArguments(string name, bool nullable) => [$"{name}.Value"];
 
 	public override string ManagedReturn(string expression) => $"new global::WxKit.{managedName}({expression})";
+
+	private string Make(string pointer) => pointerType is null ? $"{cppName}({pointer})" : $"{cppName}(static_cast<{pointerType}>({pointer}))";
 }
 
 // A wxVariant crosses as a handle to one, and is an object in the managed API: null, a string, a

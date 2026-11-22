@@ -27,8 +27,8 @@ public class OutValueTests {
 	[Fact]
 	public Task GivesAFileDialogsPaths() => Gui.WithFrame(frame => {
 		using FileDialog dialog = new(frame, style: FileDialogStyle.Open | FileDialogStyle.Multiple);
-		dialog.GetPaths(out string[] paths);
-		dialog.GetFilenames(out string[] filenames);
+		string[] paths = dialog.Paths;
+		string[] filenames = dialog.Filenames;
 		Assert.NotNull(paths);
 		Assert.Equal(paths.Length, filenames.Length);
 	});

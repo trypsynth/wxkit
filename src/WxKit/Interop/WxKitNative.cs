@@ -394,6 +394,26 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void NumbersCopyTo(WxkNumbers* numbers, long* values);
 
+	[LibraryImport(Library, EntryPoint = "wxk_CredentialEntryDialog_GetUserName")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* CredentialEntryDialogGetUserName(WxkWindow* dialog);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CredentialEntryDialog_SetUserName")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void CredentialEntryDialogSetUserName(WxkWindow* dialog, char* user, nuint userLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CredentialEntryDialog_GetPassword")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* CredentialEntryDialogGetPassword(WxkWindow* dialog);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CredentialEntryDialog_SetPassword")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void CredentialEntryDialogSetPassword(WxkWindow* dialog, char* password, nuint passwordLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_GetSelections")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkNumbers* TreeListCtrlGetSelections(WxkWindow* control);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Numbers_Free")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void NumbersFree(WxkNumbers* numbers);
@@ -479,6 +499,18 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_AccessibilityInfo_Get")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte AccessibilityInfoGet(WxkWindow* window, int* role, uint* states, WxkString** name, WxkString** platformRole);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Window_SetAccessibleName")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WindowSetAccessibleName(WxkWindow* window, char* name, nuint nameLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Window_SetToolTip")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WindowSetToolTip(WxkWindow* window, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Window_NameIconButtons")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WindowNameIconButtons(WxkWindow* window);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Window_LinkLabel")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

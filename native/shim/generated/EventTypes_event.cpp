@@ -45,7 +45,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_CharHook(void) noexcept {
 	return wxEVT_CHAR_HOOK;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_Checkbox(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_CheckBox(void) noexcept {
 	return wxEVT_CHECKBOX;
 }
 

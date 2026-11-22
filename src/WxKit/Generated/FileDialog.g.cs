@@ -44,6 +44,9 @@ public unsafe partial class FileDialog : Dialog {
 		}
 	}
 
+	/// <summary>Fills the array filenames with the names of the files chosen.</summary>
+	public string[] Filenames => NativeStringArray.Take(WxKitNative.FileDialogGetFilenames(Native));
+
 	/// <summary>Returns the index into the list of filters supplied, optionally, in the wildcard parameter.</summary>
 	public int FilterIndex {
 		get => WxKitNative.FileDialogGetFilterIndex(Native);
@@ -72,6 +75,9 @@ public unsafe partial class FileDialog : Dialog {
 		}
 	}
 
+	/// <summary>Fills the array paths with the full paths of the files chosen.</summary>
+	public string[] Paths => NativeStringArray.Take(WxKitNative.FileDialogGetPaths(Native));
+
 	/// <summary>Returns the file dialog wildcard.</summary>
 	public string Wildcard {
 		get => NativeString.Take(WxKitNative.FileDialogGetWildcard(Native));
@@ -89,20 +95,6 @@ public unsafe partial class FileDialog : Dialog {
 		fixed (char* directoryText = directory) {
 			return WxKitNative.FileDialogAddShortcut(Native, directoryText, NativeString.Length(directory), flags) != 0;
 		}
-	}
-
-	/// <summary>Fills the array filenames with the names of the files chosen.</summary>
-	public void GetFilenames(out string[] filenames) {
-		WxkStringArray* filenamesNative = null;
-		WxKitNative.FileDialogGetFilenames(Native, &filenamesNative);
-		filenames = NativeStringArray.Take(filenamesNative);
-	}
-
-	/// <summary>Fills the array paths with the full paths of the files chosen.</summary>
-	public void GetPaths(out string[] paths) {
-		WxkStringArray* pathsNative = null;
-		WxKitNative.FileDialogGetPaths(Native, &pathsNative);
-		paths = NativeStringArray.Take(pathsNative);
 	}
 
 	private static WxkWindow* CreateNative(Window? parent, string? message, string defaultDir, string defaultFile, string? wildcard, FileDialogStyle style, Point? position, Size? size) {
