@@ -175,6 +175,18 @@ return Application.Run(() => {
 
 It builds on `SingleInstanceChecker`, which wraps `wxSingleInstanceChecker` and needs no running application: a named mutex on Windows, and a lock file with its process's ID on Linux and macOS, so a copy that crashed never blocks the next one. On Linux and macOS, two checkers in one process don't see each other. The copies talk over a named pipe on Windows, and a Unix socket elsewhere, in `$XDG_RUNTIME_DIR` or else a folder of WxKit's own in the temporary folder. Only the same user can open either.
 
+## The desktop
+
+A few of wxWidgets' utilities, where .NET has no way to ask the system:
+
+- `Desktop.Bell` plays the alert sound, `Desktop.OpenUrl` opens a link in the default browser, and `Desktop.Open` opens a file in the application the system opens its kind of file with.
+- `Keyboard.IsKeyDown`, `IsCapsLockOn`, and `IsNumLockOn` ask about the keyboard outside a key event, and `Mouse.Position` says where the pointer is on the screen.
+- `BusyCursor` and `WindowDisabler` last until they are disposed, as in `using (new BusyCursor()) { ... }`: the busy cursor, which nests, and every top-level window disabled but one, such as a progress window that doesn't block.
+- `Display.All`, `Primary`, `FromWindow`, and `FromPoint` describe the displays, like WinForms' `Screen`, with each one's `Bounds`, `WorkArea`, and `ScaleFactor`.
+- `Application.SetAppearance` shows the application light, dark, or as the system is, which on Windows it otherwise doesn't follow, and `SystemSettings.Appearance` says whether the system is dark.
+
+Utilities .NET has already, such as timers, processes, and the user's name, aren't bound.
+
 ## Web views
 
 `WebView` shows pages with the system's browser engine: Edge's WebView2 on Windows, WebKit on macOS, and WebKitGTK on Linux, whose pages screen readers read as in a browser. An application sets `<WxKitWebView>true</WxKitWebView>`, which becomes a runtime switch the constructor checks, and on Linux gives it the shared library built with the web view and links WebKitGTK when it publishes with Native AOT. `WebView.IsAvailable` says whether the system has the engine, which on Windows is the WebView2 runtime.

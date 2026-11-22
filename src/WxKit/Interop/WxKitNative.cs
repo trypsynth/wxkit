@@ -476,6 +476,92 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte LiveRegionAnnounce(WxkWindow* window, char* message, nuint messageLength, int priority);
 
+	// The desktop
+
+	[LibraryImport(Library, EntryPoint = "wxk_Desktop_Bell")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DesktopBell();
+
+	[LibraryImport(Library, EntryPoint = "wxk_Desktop_OpenUrl")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte DesktopOpenUrl(char* url, nuint urlLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Desktop_Open")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte DesktopOpen(char* document, nuint documentLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Keyboard_IsKeyDown")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte KeyboardIsKeyDown(int key);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Mouse_GetPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial Point MouseGetPosition();
+
+	[LibraryImport(Library, EntryPoint = "wxk_BusyCursor_Begin")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void BusyCursorBegin();
+
+	[LibraryImport(Library, EntryPoint = "wxk_BusyCursor_End")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void BusyCursorEnd();
+
+	[LibraryImport(Library, EntryPoint = "wxk_BusyCursor_IsBusy")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte BusyCursorIsBusy();
+
+	[LibraryImport(Library, EntryPoint = "wxk_WindowDisabler_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void* WindowDisablerNew(WxkWindow* except);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WindowDisabler_Free")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WindowDisablerFree(void* disabler);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Display_GetCount")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int DisplayGetCount();
+
+	[LibraryImport(Library, EntryPoint = "wxk_Display_GetFromWindow")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int DisplayGetFromWindow(WxkWindow* window);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Display_GetFromPoint")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int DisplayGetFromPoint(Point point);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Display_GetGeometry")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial Rect DisplayGetGeometry(int index);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Display_GetClientArea")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial Rect DisplayGetClientArea(int index);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Display_GetName")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* DisplayGetName(int index);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Display_IsPrimary")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte DisplayIsPrimary(int index);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Display_GetScaleFactor")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial double DisplayGetScaleFactor(int index);
+
+	[LibraryImport(Library, EntryPoint = "wxk_App_SetAppearance")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int AppSetAppearance(int appearance);
+
+	[LibraryImport(Library, EntryPoint = "wxk_SystemAppearance_GetFlags")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int SystemAppearanceGetFlags();
+
+	[LibraryImport(Library, EntryPoint = "wxk_SystemAppearance_GetName")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* SystemAppearanceGetName();
+
 	// Web views
 
 	[LibraryImport(Library, EntryPoint = "wxk_WebView_IsAvailable")]

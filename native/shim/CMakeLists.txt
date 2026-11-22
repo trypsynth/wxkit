@@ -88,9 +88,13 @@ set(WXK_SOURCES
 	src/accessible.cpp
 	src/accessparts.cpp
 	src/app.cpp
+	src/appearance.cpp
+	src/busy.cpp
 	src/clientdata.cpp
 	src/clipboard.cpp
 	src/dataview.cpp
+	src/desktop.cpp
+	src/display.cpp
 	src/dropfiles.cpp
 	src/event.cpp
 	src/gridbag.cpp

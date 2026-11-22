@@ -10,7 +10,7 @@ namespace WxKit;
 /// The application: starts wxWidgets, runs the event loop, and ends when the last top-level window
 /// closes. Derive from it to override its startup, or call <see cref="Run(Action)"/>.
 /// </summary>
-public unsafe class Application {
+public unsafe partial class Application {
 	private static int _guiThreadId;
 	private static LayoutDirection _layoutDirection = LayoutDirection.Default;
 	private ExceptionDispatchInfo? _failure;

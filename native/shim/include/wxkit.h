@@ -440,6 +440,39 @@ WXK_FUNCTION(uint8_t) wxk_LiveRegion_Prepare(wxk_Window* window) WXK_NOEXCEPT;
 // returns whether one could be told, which on Windows is false when no UI Automation client listens.
 WXK_FUNCTION(uint8_t) wxk_LiveRegion_Announce(wxk_Window* window, const char16_t* message, size_t messageLength, int32_t priority) WXK_NOEXCEPT;
 
+// The desktop
+
+// Plays the system's alert sound.
+WXK_FUNCTION(void) wxk_Desktop_Bell(void) WXK_NOEXCEPT;
+// Opens url in the default browser, and returns whether it could.
+WXK_FUNCTION(uint8_t) wxk_Desktop_OpenUrl(const char16_t* url, size_t urlLength) WXK_NOEXCEPT;
+// Opens a file in the application the system opens its kind of file with, and returns whether it could.
+WXK_FUNCTION(uint8_t) wxk_Desktop_Open(const char16_t* document, size_t documentLength) WXK_NOEXCEPT;
+// Whether a key, a wxKeyCode, is down, or for a lock key, such as Caps Lock, on.
+WXK_FUNCTION(uint8_t) wxk_Keyboard_IsKeyDown(int32_t key) WXK_NOEXCEPT;
+// The pointer's position on the screen.
+WXK_FUNCTION(wxk_Point) wxk_Mouse_GetPosition(void) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_BusyCursor_Begin(void) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_BusyCursor_End(void) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_BusyCursor_IsBusy(void) WXK_NOEXCEPT;
+// Disables every top-level window but except, which may be null, until the disabler is freed.
+WXK_FUNCTION(void*) wxk_WindowDisabler_new(wxk_Window* except) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_WindowDisabler_Free(void* disabler) WXK_NOEXCEPT;
+// The displays, by index, from 0 to the count, or -1 for none.
+WXK_FUNCTION(int32_t) wxk_Display_GetCount(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_Display_GetFromWindow(wxk_Window* window) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_Display_GetFromPoint(wxk_Point point) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Rect) wxk_Display_GetGeometry(int32_t index) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Rect) wxk_Display_GetClientArea(int32_t index) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_String*) wxk_Display_GetName(int32_t index) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Display_IsPrimary(int32_t index) WXK_NOEXCEPT;
+WXK_FUNCTION(double) wxk_Display_GetScaleFactor(int32_t index) WXK_NOEXCEPT;
+// Asks for the system's appearance, 0, light, 1, or dark, 2, and returns 1 when it could, and 0 when not.
+WXK_FUNCTION(int32_t) wxk_App_SetAppearance(int32_t appearance) WXK_NOEXCEPT;
+// Whether the system is dark, its background is, and its applications are, as the bits 1, 2, and 4.
+WXK_FUNCTION(int32_t) wxk_SystemAppearance_GetFlags(void) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_String*) wxk_SystemAppearance_GetName(void) WXK_NOEXCEPT;
+
 // Web views
 
 // Whether the system has the browser engine a web view needs, such as Edge's WebView2 runtime.

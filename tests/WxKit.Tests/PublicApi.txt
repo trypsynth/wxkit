@@ -255,6 +255,10 @@ class WxKit.AnyButton : Control
     void SetBitmap(Bitmap bitmap, Direction direction = Direction.Left)
     void SetBitmapMargins(int x, int y)
     void SetBitmapPosition(Direction direction)
+enum WxKit.Appearance : int
+    Dark = 2
+    Light = 1
+    System = 0
 class WxKit.Application
     Application()
     int Run()
@@ -262,6 +266,7 @@ class WxKit.Application
     static Application? Current { get; }
     static LayoutDirection LayoutDirection { get; set; }
     static bool IsGuiThread { get; }
+    static bool SetAppearance(Appearance appearance)
     static event EventHandler<ApplicationExceptionEventArgs>? UnhandledException
     static event EventHandler<AssertFailedEventArgs>? AssertFailed
     static int Run(Action onInit)
@@ -548,6 +553,10 @@ enum WxKit.BrushStyle : int
     StippleMaskOpaque = 107
     Transparent = 106
     VerticalHatch = 116
+sealed class WxKit.BusyCursor : IDisposable
+    BusyCursor()
+    static bool IsBusy { get; }
+    void Dispose()
 class WxKit.Button : AnyButton
     Button(Window parent, string label = "", int id = -1, Point? position = null, Size? size = null, ButtonStyle style = ButtonStyle.None)
     Window? SetDefault()
@@ -1315,6 +1324,11 @@ class WxKit.DatePickerCtrl : Control
     None = 0
     Showcentury = 4
     Spin = 1
+static class WxKit.Desktop
+    static bool Open(string path)
+    static bool OpenUrl(Uri url)
+    static bool OpenUrl(string url)
+    static void Bell()
 class WxKit.Dialog : TopLevelWindow, IDisposable
     Dialog(Window? parent, string title, int id = -1, Point? position = null, Size? size = null, DialogStyle style = DialogStyle.Default)
     DialogLayoutAdaptationMode LayoutAdaptationMode { get; set; }
@@ -1382,6 +1396,25 @@ class WxKit.DirPickerCtrl : PickerBase
     Left = 16
     Right = 32
     Top = 64
+sealed record WxKit.Display : IEquatable<Display>
+    Display(int Index, string Name, Rect Bounds, Rect WorkArea, bool IsPrimary, double ScaleFactor)
+    Rect Bounds { get; init; }
+    Rect WorkArea { get; init; }
+    bool Equals(Display? other)
+    bool IsPrimary { get; init; }
+    double ScaleFactor { get; init; }
+    int Index { get; init; }
+    override bool Equals(object? obj)
+    override int GetHashCode()
+    override string ToString()
+    static Display Primary { get; }
+    static Display? FromPoint(Point point)
+    static Display? FromWindow(Window window)
+    static IReadOnlyList<Display> All { get; }
+    static bool op_Equality(Display? left, Display? right)
+    static bool op_Inequality(Display? left, Display? right)
+    string Name { get; init; }
+    void Deconstruct(out int Index, out string Name, out Rect Bounds, out Rect WorkArea, out bool IsPrimary, out double ScaleFactor)
 enum WxKit.DragResult : int
     DragCancel = 5
     DragCopy = 2
@@ -2532,6 +2565,10 @@ class WxKit.KeyEvent : Event
     None = 0
     Shift = 4
     Win = 8
+static class WxKit.Keyboard
+    static bool IsCapsLockOn { get; }
+    static bool IsKeyDown(KeyCode key)
+    static bool IsNumLockOn { get; }
 sealed record WxKit.LanguageInfo : IEquatable<LanguageInfo>
     LanguageInfo(string Code, string Tag, string Name, string NativeName, LayoutDirection LayoutDirection)
     LayoutDirection LayoutDirection { get; init; }
@@ -2907,6 +2944,8 @@ class WxKit.MiniFrame : Frame
     ResizeBorder = 64
     StayOnTop = 32768
     SystemMenu = 2048
+static class WxKit.Mouse
+    static Point Position { get; }
 enum WxKit.MouseButton : int
     Any = -1
     Aux1 = 4
@@ -7652,6 +7691,19 @@ class WxKit.StyledTextEvent : CommandEvent
     int Y { get; set; }
     void SetAnnotationLinesAdded(int val)
 class WxKit.SysColorChangedEvent : Event
+sealed record WxKit.SystemAppearance : IEquatable<SystemAppearance>
+    SystemAppearance(string Name, bool IsDark, bool IsUsingDarkBackground, bool AreAppsDark)
+    bool AreAppsDark { get; init; }
+    bool Equals(SystemAppearance? other)
+    bool IsDark { get; init; }
+    bool IsUsingDarkBackground { get; init; }
+    override bool Equals(object? obj)
+    override int GetHashCode()
+    override string ToString()
+    static bool op_Equality(SystemAppearance? left, SystemAppearance? right)
+    static bool op_Inequality(SystemAppearance? left, SystemAppearance? right)
+    string Name { get; init; }
+    void Deconstruct(out string Name, out bool IsDark, out bool IsUsingDarkBackground, out bool AreAppsDark)
 enum WxKit.SystemColor : int
     ActiveBorder = 10
     ActiveCaption = 2
@@ -7759,6 +7811,7 @@ static class WxKit.SystemSettings
     static Color? GetColor(SystemColor index)
     static Color? SelectLightDark(Color? colForLight, Color? colForDark)
     static Font? GetFont(SystemFont index)
+    static SystemAppearance Appearance { get; }
     static SystemScreenType ScreenType { get; }
     static bool ExceedsDragThreshold(Point origin, Point current, Window? window = null)
     static bool HasFeature(SystemFeature index)
@@ -8696,6 +8749,9 @@ class WxKit.Window : EvtHandler
     void WarpPointer(int x, int y)
 class WxKit.WindowDC : DC
     WindowDC(Window window)
+sealed class WxKit.WindowDisabler : IDisposable
+    WindowDisabler(Window? except = null)
+    void Dispose()
 [Flags] enum WxKit.WindowExtraStyle : int
     BlockEvents = 2
     ContextHelp = 128
