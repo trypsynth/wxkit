@@ -19,7 +19,8 @@ if ($IsWindows) {
 	}
 }
 
-foreach ($sample in $Samples) {
+# A list given as one string, such as from bash, is "Hello,Editor".
+foreach ($sample in ($Samples -split "," | ForEach-Object { $_.Trim() } | Where-Object { $_ })) {
 	$output = Join-Path $root "artifacts/aot/$Runtime/$sample"
 	Remove-Item -Recurse -Force $output -ErrorAction SilentlyContinue
 	# Native AOT analyzes the whole application as it compiles it, so a trim or AOT warning, which
