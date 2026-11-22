@@ -347,19 +347,22 @@ public static class StringExtractor {
 				for (int at = index + 1; at < tokens.Count; at++) {
 					Token token = tokens[at];
 					if (token.Is('(') || token.Is('[')) depth++;
-					else if (token.Is(')') || token.Is(']')) depth--;
-					else if (depth == 0 && token.Is(';')) return at + 1;
-					else if (depth == 0 && token.Is('{')) {
-						int braces = 0;
-						for (; at < tokens.Count; at++) {
-							if (tokens[at].Is('{')) braces++;
-							else if (tokens[at].Is('}') && --braces == 0) return at + 1;
-						}
-						return tokens.Count;
-					}
+					if (token.Is(')') || token.Is(']')) depth--;
+					if (depth == 0 && token.Is(';')) return at + 1;
+					if (depth == 0 && token.Is('{')) return BlockEnd(tokens, at);
 				}
 				return tokens.Count;
 		}
+	}
+
+	// Just past the } that closes the { at open.
+	private static int BlockEnd(List<Token> tokens, int open) {
+		int braces = 0;
+		for (int at = open; at < tokens.Count; at++) {
+			if (tokens[at].Is('{')) braces++;
+			if (tokens[at].Is('}') && --braces == 0) return at + 1;
+		}
+		return tokens.Count;
 	}
 
 	// The arguments between the parentheses at open, split at the commas outside any brackets.
