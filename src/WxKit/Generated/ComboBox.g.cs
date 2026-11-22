@@ -138,7 +138,7 @@ public unsafe partial class ComboBox : Control {
 	}
 
 	/// <summary>Process a wxEVT_TEXT event, when the combobox text changes.</summary>
-	public event EventHandler<CommandEvent>? Text {
+	public event EventHandler<CommandEvent>? TextChanged {
 		add => AddHandler(EventType.Text, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.Text, StandardId.Any, StandardId.Any, value);
 	}

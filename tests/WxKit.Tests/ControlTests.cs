@@ -25,8 +25,8 @@ public class ControlTests {
 	[Fact]
 	public Task RoundTripsValues() => Gui.WithFrame(frame => {
 		CheckBox check = new(frame, "&Check");
-		check.Value = true;
-		Assert.True(check.Value);
+		check.IsChecked = true;
+		Assert.True(check.IsChecked);
 		SpinCtrl spin = new(frame, max: 50);
 		spin.Value = 42;
 		Assert.Equal(42, spin.Value);

@@ -14,7 +14,7 @@ public unsafe partial class ToggleButton : AnyButton {
 	}
 
 	/// <summary>Gets the state of the toggle button.</summary>
-	public bool Value {
+	public bool IsChecked {
 		get => WxKitNative.ToggleButtonGetValue(Native) != 0;
 		set => WxKitNative.ToggleButtonSetValue(Native, value ? (byte)1 : (byte)0);
 	}

@@ -8,3 +8,11 @@ WXK_FUNCTION(wxk_Window*) wxk_BitmapToggleButton_new(wxk_Window* parent, int32_t
 	});
 }
 
+WXK_FUNCTION(uint8_t) wxk_BitmapToggleButton_GetValue(wxk_Window* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxBitmapToggleButton*>(wxk::Unwrap(self))->GetValue()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(void) wxk_BitmapToggleButton_SetValue(wxk_Window* self, uint8_t state) noexcept {
+	wxk::Guard([&] { static_cast<wxBitmapToggleButton*>(wxk::Unwrap(self))->SetValue(state != 0); });
+}
+

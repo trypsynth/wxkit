@@ -70,7 +70,7 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public Size ClientSize {
-		get => WxKitNative.WindowGetClientSizeDefault(Native);
+		get => WxKitNative.WindowGetClientSize(Native);
 		set => WxKitNative.WindowSetClientSizeSize(Native, value);
 	}
 
@@ -268,7 +268,7 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>This gets the position of the window in pixels, relative to the parent window for the child windows or relative to the display origin for the top level windows.</summary>
 	public Point Position {
-		get => WxKitNative.WindowGetPositionDefault(Native);
+		get => WxKitNative.WindowGetPosition(Native);
 		set => WxKitNative.WindowSetPosition(Native, value);
 	}
 
@@ -279,14 +279,14 @@ public unsafe partial class Window : EvtHandler {
 	public Rect Rect => WxKitNative.WindowGetRect(Native);
 
 	/// <summary>Returns the window position in screen coordinates, whether the window is a child window or a top level one.</summary>
-	public Point ScreenPosition => WxKitNative.WindowGetScreenPositionDefault(Native);
+	public Point ScreenPosition => WxKitNative.WindowGetScreenPosition(Native);
 
 	/// <summary>Returns the position and size of the window on the screen as a wxRect object.</summary>
 	public Rect ScreenRect => WxKitNative.WindowGetScreenRect(Native);
 
 	/// <summary>See the GetSize(int*,int*) overload for more info.</summary>
 	public Size Size {
-		get => WxKitNative.WindowGetSizeDefault(Native);
+		get => WxKitNative.WindowGetSize(Native);
 		set => WxKitNative.WindowSetSizeSize(Native, value);
 	}
 
@@ -307,7 +307,7 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>This gets the virtual size of the window in pixels.</summary>
 	public Size VirtualSize {
-		get => WxKitNative.WindowGetVirtualSizeDefault(Native);
+		get => WxKitNative.WindowGetVirtualSize(Native);
 		set => WxKitNative.WindowSetVirtualSizeSize(Native, value);
 	}
 
@@ -552,17 +552,7 @@ public unsafe partial class Window : EvtHandler {
 	public void ClearBackground() => WxKitNative.WindowClearBackground(Native);
 
 	/// <summary>Converts to screen coordinates from coordinates relative to this window.</summary>
-	public void ClientToScreen(out int x, out int y) {
-		x = 0;
-		y = 0;
-		fixed (int* xPointer = &x)
-		fixed (int* yPointer = &y) {
-			WxKitNative.WindowClientToScreenOutIntOutInt(Native, xPointer, yPointer);
-		}
-	}
-
-	/// <summary>Converts to screen coordinates from coordinates relative to this window.</summary>
-	public Point ClientToScreen(Point point) => WxKitNative.WindowClientToScreenPoint(Native, point);
+	public Point ClientToScreen(Point point) => WxKitNative.WindowClientToScreen(Native, point);
 
 	/// <summary>Converts client area size size to corresponding window size.</summary>
 	public Size ClientToWindowSize(Size size) => WxKitNative.WindowClientToWindowSize(Native, size);
@@ -731,16 +721,6 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>Get the window border style from the given flags: this is different from simply doing flags &amp; wxBORDER_MASK because it uses GetDefaultBorder() to translate wxBORDER_DEFAULT to something reasonable.</summary>
 	public Border GetBorder(long flags) => (Border)WxKitNative.WindowGetBorderLong(Native, flags);
 
-	/// <summary>Returns the size of the window 'client area' in pixels.</summary>
-	public void GetClientSize(out int width, out int height) {
-		width = 0;
-		height = 0;
-		fixed (int* widthPointer = &width)
-		fixed (int* heightPointer = &height) {
-			WxKitNative.WindowGetClientSizeOutIntOutInt(Native, widthPointer, heightPointer);
-		}
-	}
-
 	/// <summary>Get the ID to be used for help events generated at the given point.</summary>
 	public int GetHelpIdAtPoint(Point point) => WxKitNative.WindowGetHelpIdAtPoint(Native, point);
 
@@ -749,26 +729,6 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>May be overridden if the control minimal size depends on the layout direction.</summary>
 	public Size GetMinSizeFromKnownDirection(int direction, int size, int availableOtherDir) => WxKitNative.WindowGetMinSizeFromKnownDirection(Native, direction, size, availableOtherDir);
-
-	/// <summary>This gets the position of the window in pixels, relative to the parent window for the child windows or relative to the display origin for the top level windows.</summary>
-	public void GetPosition(out int x, out int y) {
-		x = 0;
-		y = 0;
-		fixed (int* xPointer = &x)
-		fixed (int* yPointer = &y) {
-			WxKitNative.WindowGetPositionOutIntOutInt(Native, xPointer, yPointer);
-		}
-	}
-
-	/// <summary>Returns the window position in screen coordinates, whether the window is a child window or a top level one.</summary>
-	public void GetScreenPosition(out int x, out int y) {
-		x = 0;
-		y = 0;
-		fixed (int* xPointer = &x)
-		fixed (int* yPointer = &y) {
-			WxKitNative.WindowGetScreenPositionOutIntOutInt(Native, xPointer, yPointer);
-		}
-	}
 
 	/// <summary>Returns the built-in scrollbar position.</summary>
 	public int GetScrollPosition(int orientation) => WxKitNative.WindowGetScrollPos(Native, orientation);
@@ -782,43 +742,11 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>Returns the space taken by the scrollbar of the given orientation when it is shown in this window.</summary>
 	public int GetScrollbarSize(int orientation) => WxKitNative.WindowGetScrollbarSize(Native, orientation);
 
-	/// <summary>Returns the size of the entire window in pixels, including title bar, border, scrollbars, etc.</summary>
-	public void GetSize(out int width, out int height) {
-		width = 0;
-		height = 0;
-		fixed (int* widthPointer = &width)
-		fixed (int* heightPointer = &height) {
-			WxKitNative.WindowGetSizeOutIntOutInt(Native, widthPointer, heightPointer);
-		}
-	}
-
-	/// <summary>Gets the dimensions of the string as it would be drawn on the window with the currently selected font.</summary>
-	public void GetTextExtent(string text, out int w, out int h) {
-		ArgumentNullException.ThrowIfNull(text);
-		w = 0;
-		h = 0;
-		fixed (char* textText = text)
-		fixed (int* wPointer = &w)
-		fixed (int* hPointer = &h) {
-			WxKitNative.WindowGetTextExtentStringOutIntOutInt(Native, textText, NativeString.Length(text), wPointer, hPointer);
-		}
-	}
-
 	/// <summary>Gets the dimensions of the string as it would be drawn on the window with the currently selected font.</summary>
 	public Size GetTextExtent(string text) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return WxKitNative.WindowGetTextExtentString(Native, textText, NativeString.Length(text));
-		}
-	}
-
-	/// <summary>Like the other GetVirtualSize() overload but uses pointers instead.</summary>
-	public void GetVirtualSize(out int width, out int height) {
-		width = 0;
-		height = 0;
-		fixed (int* widthPointer = &width)
-		fixed (int* heightPointer = &height) {
-			WxKitNative.WindowGetVirtualSizeOutIntOutInt(Native, widthPointer, heightPointer);
+			return WxKitNative.WindowGetTextExtent(Native, textText, NativeString.Length(text));
 		}
 	}
 
@@ -988,17 +916,7 @@ public unsafe partial class Window : EvtHandler {
 	}
 
 	/// <summary>Converts from screen to client window coordinates.</summary>
-	public void ScreenToClient(out int x, out int y) {
-		x = 0;
-		y = 0;
-		fixed (int* xPointer = &x)
-		fixed (int* yPointer = &y) {
-			WxKitNative.WindowScreenToClientOutIntOutInt(Native, xPointer, yPointer);
-		}
-	}
-
-	/// <summary>Converts from screen to client window coordinates.</summary>
-	public Point ScreenToClient(Point point) => WxKitNative.WindowScreenToClientPoint(Native, point);
+	public Point ScreenToClient(Point point) => WxKitNative.WindowScreenToClient(Native, point);
 
 	/// <summary>Scrolls the window by the given number of lines down (if lines is positive) or up.</summary>
 	public bool ScrollLines(int lines) => WxKitNative.WindowScrollLines(Native, lines) != 0;

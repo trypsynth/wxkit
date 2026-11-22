@@ -173,6 +173,7 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		// A mixin can declare a member the class declares too, such as SetValue in both wxComboBox
 		// and wxTextEntry. The class's own, which comes first, is kept.
 		functions = [.. functions.DistinctBy(static function => $"{function.Source.Name}({string.Join(",", function.Source.Parameters.Select(static parameter => parameter.Type))})")];
+		functions = [.. functions.Where(function => !HasStructOverload(function, functions))];
 		NameOverloads(functions);
 		// Two C++ constructors can have the same managed signature, as an int and a long do, and C#
 		// allows only one.
@@ -496,6 +497,27 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		if (styles?.Members.FirstOrDefault(style => style.Value == number) is BoundStyle exact) return $"{enumeration.EnumName}.{exact.Name}";
 		return number == 0 ? "0" : $"({enumeration.EnumName})0x{number:X}";
 	}
+
+	// An overload that gives back two or more numbers through out parameters, such as
+	// GetSize(out int width, out int height), when another of the same name gives them as one
+	// value, such as Size GetSize(), or takes them as one, as ClientToScreen(Point) does, which is
+	// how .NET has them.
+	private static bool HasStructOverload(BoundFunction function, List<BoundFunction> functions) {
+		List<BoundParameter> outs = [.. function.Parameters.Where(static parameter => parameter.Conversion is OutConversion)];
+		if (outs.Count < 2 || function.IsConstructor) return false;
+		List<string> rest = [.. function.Parameters.Where(static parameter => parameter.Conversion is not OutConversion).Select(static parameter => parameter.Conversion.ManagedType(parameter.Nullable))];
+		return functions.Any(other => other != function && other.Source.Name == function.Source.Name && other.IsStatic == function.IsStatic && !other.Parameters.Any(static parameter => parameter.Conversion is OutConversion) && GivesTheSameAsOne(rest, other));
+	}
+
+	// The other returns the numbers as one value, or takes them as one, rather than meaning
+	// something else, as ComboBox's GetSelection() gives the item, not the text selected.
+	private static bool GivesTheSameAsOne(List<string> rest, BoundFunction other) {
+		List<string> parameters = [.. other.Parameters.Select(static parameter => parameter.Conversion.ManagedType(parameter.Nullable))];
+		if (rest.SequenceEqual(parameters)) return IsGeometry(other.Returns.ManagedType(false));
+		return parameters.Count == rest.Count + 1 && parameters.Take(rest.Count).SequenceEqual(rest) && IsGeometry(parameters[^1]);
+	}
+
+	private static bool IsGeometry(string type) => type.TrimEnd('?') is "Point" or "Size" or "Rect";
 
 	private static void NameOverloads(List<BoundFunction> functions) {
 		foreach (IGrouping<string, BoundFunction> group in functions.GroupBy(static function => function.ExportName).Where(static group => group.Count() > 1)) {

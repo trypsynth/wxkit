@@ -68,127 +68,127 @@ public unsafe partial class TreeCtrl : Control {
 	public int StateImageCount => WxKitNative.TreeCtrlGetStateImageCount(Native);
 
 	/// <summary>Begin dragging with the left mouse button. If you want to enable left-dragging you need to intercept this event and explicitly call wxTreeEvent::Allow(), as it's vetoed by default. Processes a wxEVT_TREE_BEGIN_DRAG event type.</summary>
-	public event EventHandler<TreeEvent>? TreeBeginDrag {
+	public event EventHandler<TreeEvent>? BeginDrag {
 		add => AddHandler(EventType.TreeBeginDrag, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.TreeBeginDrag, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Begin editing a label. This can be prevented by calling Veto(). Processes a wxEVT_TREE_BEGIN_LABEL_EDIT event type.</summary>
-	public event EventHandler<TreeEvent>? TreeBeginLabelEdit {
+	public event EventHandler<TreeEvent>? BeginLabelEdit {
 		add => AddHandler(EventType.TreeBeginLabelEdit, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.TreeBeginLabelEdit, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Begin dragging with the right mouse button. If you want to enable right-dragging you need to intercept this event and explicitly call wxTreeEvent::Allow(), as it's vetoed by default. Processes a wxEVT_TREE_BEGIN_RDRAG event type.</summary>
-	public event EventHandler<TreeEvent>? TreeBeginRdrag {
+	public event EventHandler<TreeEvent>? BeginRightDrag {
 		add => AddHandler(EventType.TreeBeginRdrag, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.TreeBeginRdrag, StandardId.Any, StandardId.Any, value);
 	}
 
-	/// <summary>An item was deleted. Processes a wxEVT_TREE_DELETE_ITEM event type.</summary>
-	public event EventHandler<TreeEvent>? TreeDeleteItem {
-		add => AddHandler(EventType.TreeDeleteItem, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.TreeDeleteItem, StandardId.Any, StandardId.Any, value);
-	}
-
 	/// <summary>End dragging with the left or right mouse button. Processes a wxEVT_TREE_END_DRAG event type.</summary>
-	public event EventHandler<TreeEvent>? TreeEndDrag {
+	public event EventHandler<TreeEvent>? EndDrag {
 		add => AddHandler(EventType.TreeEndDrag, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.TreeEndDrag, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Finish editing a label. This can be prevented by calling Veto(). Processes a wxEVT_TREE_END_LABEL_EDIT event type.</summary>
-	public event EventHandler<TreeEvent>? TreeEndLabelEdit {
+	public event EventHandler<TreeEvent>? EndLabelEdit {
 		add => AddHandler(EventType.TreeEndLabelEdit, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.TreeEndLabelEdit, StandardId.Any, StandardId.Any, value);
 	}
 
-	/// <summary>Request information from the application. Processes a wxEVT_TREE_GET_INFO event type.</summary>
-	public event EventHandler<TreeEvent>? TreeGetInfo {
-		add => AddHandler(EventType.TreeGetInfo, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.TreeGetInfo, StandardId.Any, StandardId.Any, value);
-	}
-
 	/// <summary>The item has been activated, i.e. chosen by double clicking it with mouse or from keyboard. Processes a wxEVT_TREE_ITEM_ACTIVATED event type.</summary>
-	public event EventHandler<TreeEvent>? TreeItemActivated {
+	public event EventHandler<TreeEvent>? ItemActivated {
 		add => AddHandler(EventType.TreeItemActivated, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.TreeItemActivated, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>The item has been collapsed. Processes a wxEVT_TREE_ITEM_COLLAPSED event type.</summary>
-	public event EventHandler<TreeEvent>? TreeItemCollapsed {
+	public event EventHandler<TreeEvent>? ItemCollapsed {
 		add => AddHandler(EventType.TreeItemCollapsed, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.TreeItemCollapsed, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>The item is being collapsed. This can be prevented by calling Veto(). Processes a wxEVT_TREE_ITEM_COLLAPSING event type.</summary>
-	public event EventHandler<TreeEvent>? TreeItemCollapsing {
+	public event EventHandler<TreeEvent>? ItemCollapsing {
 		add => AddHandler(EventType.TreeItemCollapsing, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.TreeItemCollapsing, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>The context menu for the selected item has been requested, either by a right click or by using the menu key. Notice that these events always carry a valid tree item and so are not generated when (right) clicking outside of the items area. If you need to handle such events, consider using wxEVT_CONTEXT_MENU instead. Processes a wxEVT_TREE_ITEM_MENU event type.</summary>
+	public event EventHandler<CommandEvent>? ItemContextMenu {
+		add => AddHandler(EventType.ContextMenu, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.ContextMenu, StandardId.Any, StandardId.Any, value);
+	}
+
+	/// <summary>An item was deleted. Processes a wxEVT_TREE_DELETE_ITEM event type.</summary>
+	public event EventHandler<TreeEvent>? ItemDeleted {
+		add => AddHandler(EventType.TreeDeleteItem, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TreeDeleteItem, StandardId.Any, StandardId.Any, value);
+	}
+
 	/// <summary>The item has been expanded. Processes a wxEVT_TREE_ITEM_EXPANDED event type.</summary>
-	public event EventHandler<TreeEvent>? TreeItemExpanded {
+	public event EventHandler<TreeEvent>? ItemExpanded {
 		add => AddHandler(EventType.TreeItemExpanded, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.TreeItemExpanded, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>The item is being expanded. This can be prevented by calling Veto(). Processes a wxEVT_TREE_ITEM_EXPANDING event type.</summary>
-	public event EventHandler<TreeEvent>? TreeItemExpanding {
+	public event EventHandler<TreeEvent>? ItemExpanding {
 		add => AddHandler(EventType.TreeItemExpanding, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.TreeItemExpanding, StandardId.Any, StandardId.Any, value);
 	}
 
-	/// <summary>The opportunity to set the item tooltip is being given to the application (call wxTreeEvent::SetToolTip). Windows only. Processes a wxEVT_TREE_ITEM_GETTOOLTIP event type.</summary>
-	public event EventHandler<TreeEvent>? TreeItemGettooltip {
-		add => AddHandler(EventType.TreeItemGettooltip, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.TreeItemGettooltip, StandardId.Any, StandardId.Any, value);
+	/// <summary>Request information from the application. Processes a wxEVT_TREE_GET_INFO event type.</summary>
+	public event EventHandler<TreeEvent>? ItemInfoRequested {
+		add => AddHandler(EventType.TreeGetInfo, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TreeGetInfo, StandardId.Any, StandardId.Any, value);
 	}
 
-	/// <summary>The context menu for the selected item has been requested, either by a right click or by using the menu key. Notice that these events always carry a valid tree item and so are not generated when (right) clicking outside of the items area. If you need to handle such events, consider using wxEVT_CONTEXT_MENU instead. Processes a wxEVT_TREE_ITEM_MENU event type.</summary>
-	public event EventHandler<CommandEvent>? TreeItemMenu {
-		add => AddHandler(EventType.ContextMenu, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ContextMenu, StandardId.Any, StandardId.Any, value);
+	/// <summary>Information is being supplied. Processes a wxEVT_TREE_SET_INFO event type.</summary>
+	public event EventHandler<TreeEvent>? ItemInfoSet {
+		add => AddHandler(EventType.TreeSetInfo, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TreeSetInfo, StandardId.Any, StandardId.Any, value);
+	}
+
+	/// <summary>A key has been pressed. Processes a wxEVT_TREE_KEY_DOWN event type.</summary>
+	public event EventHandler<TreeEvent>? ItemKeyDown {
+		add => AddHandler(EventType.TreeKeyDown, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TreeKeyDown, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>The user has clicked the item with the middle mouse button. This is only supported by the generic control. Processes a wxEVT_TREE_ITEM_MIDDLE_CLICK event type.</summary>
-	public event EventHandler<TreeEvent>? TreeItemMiddleClick {
+	public event EventHandler<TreeEvent>? ItemMiddleClick {
 		add => AddHandler(EventType.TreeItemMiddleClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.TreeItemMiddleClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>The user has clicked the item with the right mouse button. Processes a wxEVT_TREE_ITEM_RIGHT_CLICK event type.</summary>
-	public event EventHandler<TreeEvent>? TreeItemRightClick {
+	public event EventHandler<TreeEvent>? ItemRightClick {
 		add => AddHandler(EventType.TreeItemRightClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.TreeItemRightClick, StandardId.Any, StandardId.Any, value);
 	}
 
-	/// <summary>A key has been pressed. Processes a wxEVT_TREE_KEY_DOWN event type.</summary>
-	public event EventHandler<TreeEvent>? TreeKeyDown {
-		add => AddHandler(EventType.TreeKeyDown, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.TreeKeyDown, StandardId.Any, StandardId.Any, value);
+	/// <summary>The opportunity to set the item tooltip is being given to the application (call wxTreeEvent::SetToolTip). Windows only. Processes a wxEVT_TREE_ITEM_GETTOOLTIP event type.</summary>
+	public event EventHandler<TreeEvent>? ItemToolTipRequested {
+		add => AddHandler(EventType.TreeItemGettooltip, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TreeItemGettooltip, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Selection has changed. Processes a wxEVT_TREE_SEL_CHANGED event type.</summary>
-	public event EventHandler<TreeEvent>? TreeSelChanged {
+	public event EventHandler<TreeEvent>? SelectionChanged {
 		add => AddHandler(EventType.TreeSelectionChanged, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.TreeSelectionChanged, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Selection is changing. This can be prevented by calling Veto(). Processes a wxEVT_TREE_SEL_CHANGING event type.</summary>
-	public event EventHandler<TreeEvent>? TreeSelChanging {
+	public event EventHandler<TreeEvent>? SelectionChanging {
 		add => AddHandler(EventType.TreeSelectionChanging, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.TreeSelectionChanging, StandardId.Any, StandardId.Any, value);
 	}
 
-	/// <summary>Information is being supplied. Processes a wxEVT_TREE_SET_INFO event type.</summary>
-	public event EventHandler<TreeEvent>? TreeSetInfo {
-		add => AddHandler(EventType.TreeSetInfo, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.TreeSetInfo, StandardId.Any, StandardId.Any, value);
-	}
-
 	/// <summary>The state image has been clicked. Processes a wxEVT_TREE_STATE_IMAGE_CLICK event type.</summary>
-	public event EventHandler<TreeEvent>? TreeStateImageClick {
+	public event EventHandler<TreeEvent>? StateImageClick {
 		add => AddHandler(EventType.TreeStateImageClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.TreeStateImageClick, StandardId.Any, StandardId.Any, value);
 	}

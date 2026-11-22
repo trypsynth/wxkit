@@ -13,19 +13,16 @@ public unsafe partial class CheckBox : Control {
 	internal CheckBox(WxkWindow* native) : base(native) {
 	}
 
-	/// <summary>This is just a maybe more readable synonym for GetValue(): just as the latter, it returns true if the checkbox is checked and false otherwise.</summary>
-	public bool IsChecked => WxKitNative.CheckBoxIsChecked(Native) != 0;
+	/// <summary>Gets the state of a 2-state checkbox.</summary>
+	public bool IsChecked {
+		get => WxKitNative.CheckBoxGetValue(Native) != 0;
+		set => WxKitNative.CheckBoxSetValue(Native, value ? (byte)1 : (byte)0);
+	}
 
 	/// <summary>Gets the state of a 3-state checkbox.</summary>
 	public CheckBoxState ThreeStateValue {
 		get => (CheckBoxState)WxKitNative.CheckBoxGet3StateValue(Native);
 		set => WxKitNative.CheckBoxSet3StateValue(Native, (int)value);
-	}
-
-	/// <summary>Gets the state of a 2-state checkbox.</summary>
-	public bool Value {
-		get => WxKitNative.CheckBoxGetValue(Native) != 0;
-		set => WxKitNative.CheckBoxSetValue(Native, value ? (byte)1 : (byte)0);
 	}
 
 	/// <summary>Process a wxEVT_CHECKBOX event, when the checkbox is clicked.</summary>

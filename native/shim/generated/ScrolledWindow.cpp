@@ -44,12 +44,8 @@ WXK_FUNCTION(void) wxk_ScrolledWindow_GetScrollPixelsPerUnit(wxk_Window* self, i
 	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->GetScrollPixelsPerUnit(xUnit, yUnit); });
 }
 
-WXK_FUNCTION(void) wxk_ScrolledWindow_GetViewStart_OutIntOutInt(wxk_Window* self, int32_t* x, int32_t* y) noexcept {
-	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->GetViewStart(x, y); });
-}
-
-WXK_FUNCTION(void) wxk_ScrolledWindow_GetViewStartPixels_OutIntOutInt(wxk_Window* self, int32_t* x, int32_t* y) noexcept {
-	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->GetViewStartPixels(x, y); });
+WXK_FUNCTION(void) wxk_ScrolledWindow_GetVirtualSize(wxk_Window* self, int32_t* x, int32_t* y) noexcept {
+	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->GetVirtualSize(x, y); });
 }
 
 WXK_FUNCTION(void) wxk_ScrolledWindow_PrepareDC(wxk_Window* self, wxk_Object* dc) noexcept {
@@ -112,11 +108,11 @@ WXK_FUNCTION(void) wxk_ScrolledWindow_StopAutoScrolling(wxk_Window* self) noexce
 	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->StopAutoScrolling(); });
 }
 
-WXK_FUNCTION(wxk_Point) wxk_ScrolledWindow_GetViewStart_Default(wxk_Window* self) noexcept {
+WXK_FUNCTION(wxk_Point) wxk_ScrolledWindow_GetViewStart(wxk_Window* self) noexcept {
 	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->GetViewStart()); });
 }
 
-WXK_FUNCTION(wxk_Point) wxk_ScrolledWindow_GetViewStartPixels_Default(wxk_Window* self) noexcept {
+WXK_FUNCTION(wxk_Point) wxk_ScrolledWindow_GetViewStartPixels(wxk_Window* self) noexcept {
 	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->GetViewStartPixels()); });
 }
 

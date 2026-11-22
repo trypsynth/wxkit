@@ -50,37 +50,37 @@ public unsafe partial class ToolBar : Control {
 	}
 
 	/// <summary>Process a wxEVT_TOOL event (a synonym for wxEVT_MENU). Pass the id of the tool.</summary>
-	public event EventHandler<CommandEvent>? Tool {
+	public event EventHandler<CommandEvent>? ToolClicked {
+		add => AddHandler(EventType.Tool, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.Tool, StandardId.Any, StandardId.Any, value);
+	}
+
+	/// <summary>Process a wxEVT_TOOL event for a range of identifiers. Pass the ids of the tools.</summary>
+	public event EventHandler<CommandEvent>? ToolClickedRange {
 		add => AddHandler(EventType.Tool, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.Tool, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_TOOL_DROPDOWN event. If unhandled, displays the default dropdown menu set using wxToolBar::SetDropdownMenu().</summary>
-	public event EventHandler<CommandEvent>? ToolDropdown {
+	public event EventHandler<CommandEvent>? ToolDropDown {
 		add => AddHandler(EventType.ToolDropdown, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ToolDropdown, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_TOOL_ENTER event. Pass the id of the toolbar itself. The value of wxCommandEvent::GetSelection() is the tool id, or -1 if the mouse cursor has moved off a tool. (Not available on wxOSX.)</summary>
-	public event EventHandler<CommandEvent>? ToolEnter {
+	public event EventHandler<CommandEvent>? ToolHovered {
 		add => AddHandler(EventType.ToolEnter, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ToolEnter, StandardId.Any, StandardId.Any, value);
 	}
 
-	/// <summary>Process a wxEVT_TOOL event for a range of identifiers. Pass the ids of the tools.</summary>
-	public event EventHandler<CommandEvent>? ToolRange {
-		add => AddHandler(EventType.Tool, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.Tool, StandardId.Any, StandardId.Any, value);
-	}
-
 	/// <summary>Process a wxEVT_TOOL_RCLICKED event. Pass the id of the tool. (Not available on wxOSX.)</summary>
-	public event EventHandler<CommandEvent>? ToolRclicked {
+	public event EventHandler<CommandEvent>? ToolRightClicked {
 		add => AddHandler(EventType.ToolRclicked, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ToolRclicked, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_TOOL_RCLICKED event for a range of ids. Pass the ids of the tools. (Not available on wxOSX.)</summary>
-	public event EventHandler<CommandEvent>? ToolRclickedRange {
+	public event EventHandler<CommandEvent>? ToolRightClickedRange {
 		add => AddHandler(EventType.ToolRclicked, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ToolRclicked, StandardId.Any, StandardId.Any, value);
 	}

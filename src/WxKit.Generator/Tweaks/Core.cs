@@ -394,6 +394,11 @@ internal static class Core {
 		tweaks.Class("wxCalendarCtrl").Rename("ResetAttr", "ResetAttributes");
 		tweaks.Class("wxFont").Rename("GetNativeFontInfoDesc", "NativeFontInfoDescription").Property("NativeFontInfoUserDescription", "GetNativeFontInfoUserDesc", "SetNativeFontInfoUserDesc");
 		tweaks.Class("wxImage").Rename("GetImageExtWildcard", "ImageExtensionWildcard");
+		// A check box, a radio button, and a toggle button say whether they are checked, as WPF's do.
+		tweaks.Class("wxCheckBox").Ignore("IsChecked").Property("IsChecked", "GetValue", "SetValue");
+		tweaks.Class("wxRadioButton").Property("IsChecked", "GetValue", "SetValue");
+		tweaks.Class("wxToggleButton").Property("IsChecked", "GetValue", "SetValue");
+		tweaks.Class("wxComboBox").Event("EVT_TEXT", "TextChanged");
 		// Flags and modes wxWidgets passes as ints, as enums.
 		tweaks.Class("wxDC", dc => dc
 			.ParameterEnum("SetBackgroundMode", "mode", "BrushStyle")

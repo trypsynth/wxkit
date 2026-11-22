@@ -76,136 +76,136 @@ public unsafe partial class ListCtrl : Control {
 	/// <summary>Returns the rectangle taken by all items in the control.</summary>
 	public Rect ViewRect => WxKitNative.ListCtrlGetViewRect(Native);
 
+	/// <summary>All items were deleted. Processes a wxEVT_LIST_DELETE_ALL_ITEMS event type.</summary>
+	public event EventHandler<ListEvent>? AllItemsDeleted {
+		add => AddHandler(EventType.ListDeleteAllItems, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.ListDeleteAllItems, StandardId.Any, StandardId.Any, value);
+	}
+
 	/// <summary>Begin dragging with the left mouse button. Processes a wxEVT_LIST_BEGIN_DRAG event type.</summary>
-	public event EventHandler<ListEvent>? ListBeginDrag {
+	public event EventHandler<ListEvent>? BeginDrag {
 		add => AddHandler(EventType.ListBeginDrag, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ListBeginDrag, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Begin editing a label. This can be prevented by calling Veto(). Processes a wxEVT_LIST_BEGIN_LABEL_EDIT event type.</summary>
-	public event EventHandler<ListEvent>? ListBeginLabelEdit {
+	public event EventHandler<ListEvent>? BeginLabelEdit {
 		add => AddHandler(EventType.ListBeginLabelEdit, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ListBeginLabelEdit, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Begin dragging with the right mouse button. Processes a wxEVT_LIST_BEGIN_RDRAG event type.</summary>
-	public event EventHandler<ListEvent>? ListBeginRdrag {
+	public event EventHandler<ListEvent>? BeginRightDrag {
 		add => AddHandler(EventType.ListBeginRdrag, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ListBeginRdrag, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Prepare cache for a virtual list control. Processes a wxEVT_LIST_CACHE_HINT event type.</summary>
-	public event EventHandler<ListEvent>? ListCacheHint {
+	public event EventHandler<ListEvent>? CacheHint {
 		add => AddHandler(EventType.ListCacheHint, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ListCacheHint, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>The user started resizing a column - can be vetoed. Processes a wxEVT_LIST_COL_BEGIN_DRAG event type.</summary>
-	public event EventHandler<ListEvent>? ListColBeginDrag {
+	public event EventHandler<ListEvent>? ColumnBeginDrag {
 		add => AddHandler(EventType.ListColumnBeginDrag, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ListColumnBeginDrag, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>A column (m_col) has been left-clicked. Processes a wxEVT_LIST_COL_CLICK event type.</summary>
-	public event EventHandler<ListEvent>? ListColClick {
+	public event EventHandler<ListEvent>? ColumnClick {
 		add => AddHandler(EventType.ListColumnClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ListColumnClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>The divider between columns is being dragged. Processes a wxEVT_LIST_COL_DRAGGING event type.</summary>
-	public event EventHandler<ListEvent>? ListColDragging {
+	public event EventHandler<ListEvent>? ColumnDragging {
 		add => AddHandler(EventType.ListColumnDragging, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ListColumnDragging, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>A column has been resized by the user. Processes a wxEVT_LIST_COL_END_DRAG event type.</summary>
-	public event EventHandler<ListEvent>? ListColEndDrag {
+	public event EventHandler<ListEvent>? ColumnEndDrag {
 		add => AddHandler(EventType.ListColumnEndDrag, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ListColumnEndDrag, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>A column (m_col) has been right-clicked. Processes a wxEVT_LIST_COL_RIGHT_CLICK event type.</summary>
-	public event EventHandler<ListEvent>? ListColRightClick {
+	public event EventHandler<ListEvent>? ColumnRightClick {
 		add => AddHandler(EventType.ListColumnRightClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ListColumnRightClick, StandardId.Any, StandardId.Any, value);
 	}
 
-	/// <summary>All items were deleted. Processes a wxEVT_LIST_DELETE_ALL_ITEMS event type.</summary>
-	public event EventHandler<ListEvent>? ListDeleteAllItems {
-		add => AddHandler(EventType.ListDeleteAllItems, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ListDeleteAllItems, StandardId.Any, StandardId.Any, value);
-	}
-
-	/// <summary>An item was deleted. Processes a wxEVT_LIST_DELETE_ITEM event type.</summary>
-	public event EventHandler<ListEvent>? ListDeleteItem {
-		add => AddHandler(EventType.ListDeleteItem, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ListDeleteItem, StandardId.Any, StandardId.Any, value);
-	}
-
 	/// <summary>Finish editing a label. This can be prevented by calling Veto(). Processes a wxEVT_LIST_END_LABEL_EDIT event type.</summary>
-	public event EventHandler<ListEvent>? ListEndLabelEdit {
+	public event EventHandler<ListEvent>? EndLabelEdit {
 		add => AddHandler(EventType.ListEndLabelEdit, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ListEndLabelEdit, StandardId.Any, StandardId.Any, value);
 	}
 
-	/// <summary>An item has been inserted. Processes a wxEVT_LIST_INSERT_ITEM event type.</summary>
-	public event EventHandler<ListEvent>? ListInsertItem {
-		add => AddHandler(EventType.ListInsertItem, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ListInsertItem, StandardId.Any, StandardId.Any, value);
-	}
-
 	/// <summary>The item has been activated (ENTER or double click). Processes a wxEVT_LIST_ITEM_ACTIVATED event type.</summary>
-	public event EventHandler<ListEvent>? ListItemActivated {
+	public event EventHandler<ListEvent>? ItemActivated {
 		add => AddHandler(EventType.ListItemActivated, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ListItemActivated, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>The item has been checked. Processes a wxEVT_LIST_ITEM_CHECKED event type (new since wxWidgets 3.1.0).</summary>
-	public event EventHandler<ListEvent>? ListItemChecked {
+	public event EventHandler<ListEvent>? ItemChecked {
 		add => AddHandler(EventType.ListItemChecked, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ListItemChecked, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>An item was deleted. Processes a wxEVT_LIST_DELETE_ITEM event type.</summary>
+	public event EventHandler<ListEvent>? ItemDeleted {
+		add => AddHandler(EventType.ListDeleteItem, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.ListDeleteItem, StandardId.Any, StandardId.Any, value);
+	}
+
 	/// <summary>The item has been deselected. Processes a wxEVT_LIST_ITEM_DESELECTED event type.</summary>
-	public event EventHandler<ListEvent>? ListItemDeselected {
+	public event EventHandler<ListEvent>? ItemDeselected {
 		add => AddHandler(EventType.ListItemDeselected, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ListItemDeselected, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>The currently focused item has changed. Processes a wxEVT_LIST_ITEM_FOCUSED event type.</summary>
-	public event EventHandler<ListEvent>? ListItemFocused {
+	public event EventHandler<ListEvent>? ItemFocused {
 		add => AddHandler(EventType.ListItemFocused, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ListItemFocused, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>An item has been inserted. Processes a wxEVT_LIST_INSERT_ITEM event type.</summary>
+	public event EventHandler<ListEvent>? ItemInserted {
+		add => AddHandler(EventType.ListInsertItem, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.ListInsertItem, StandardId.Any, StandardId.Any, value);
+	}
+
+	/// <summary>A key has been pressed. Processes a wxEVT_LIST_KEY_DOWN event type.</summary>
+	public event EventHandler<ListEvent>? ItemKeyDown {
+		add => AddHandler(EventType.ListKeyDown, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.ListKeyDown, StandardId.Any, StandardId.Any, value);
+	}
+
 	/// <summary>The middle mouse button has been clicked on an item. This is only supported by the generic control. Processes a wxEVT_LIST_ITEM_MIDDLE_CLICK event type.</summary>
-	public event EventHandler<ListEvent>? ListItemMiddleClick {
+	public event EventHandler<ListEvent>? ItemMiddleClick {
 		add => AddHandler(EventType.ListItemMiddleClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ListItemMiddleClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>The right mouse button has been clicked on an item. Processes a wxEVT_LIST_ITEM_RIGHT_CLICK event type.</summary>
-	public event EventHandler<ListEvent>? ListItemRightClick {
+	public event EventHandler<ListEvent>? ItemRightClick {
 		add => AddHandler(EventType.ListItemRightClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ListItemRightClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>The item has been selected. Notice that the mouse is captured by the control itself when this event is generated, see event handling overview. Processes a wxEVT_LIST_ITEM_SELECTED event type.</summary>
-	public event EventHandler<ListEvent>? ListItemSelected {
+	public event EventHandler<ListEvent>? ItemSelected {
 		add => AddHandler(EventType.ListItemSelected, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ListItemSelected, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>The item has been unchecked. Processes a wxEVT_LIST_ITEM_UNCHECKED event type (new since wxWidgets 3.1.0).</summary>
-	public event EventHandler<ListEvent>? ListItemUnchecked {
+	public event EventHandler<ListEvent>? ItemUnchecked {
 		add => AddHandler(EventType.ListItemUnchecked, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ListItemUnchecked, StandardId.Any, StandardId.Any, value);
-	}
-
-	/// <summary>A key has been pressed. Processes a wxEVT_LIST_KEY_DOWN event type.</summary>
-	public event EventHandler<ListEvent>? ListKeyDown {
-		add => AddHandler(EventType.ListKeyDown, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ListKeyDown, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Adds a new column to the list control in report view mode.</summary>

@@ -451,6 +451,7 @@ class WxKit.BitmapComboBox : ComboBox
     BitmapComboBox(Window parent, string value = "", int id = -1, Point? position = null, Size? size = null)
     BitmapComboBox(Window parent, string value, IEnumerable<string> choices, BitmapComboBoxStyle style, int id = -1, Point? position = null, Size? size = null)
     Size BitmapSize { get; }
+    event EventHandler<CommandEvent>? Text
     int Append(string item, Bitmap bitmap, object? clientData)
     int Append(string item, Bitmap? bitmap = null)
     int Insert(string item, Bitmap bitmap, int position)
@@ -463,6 +464,7 @@ class WxKit.BitmapComboBox : ComboBox
     TeProcessEnter = 1024
 class WxKit.BitmapToggleButton : ToggleButton
     BitmapToggleButton(Window parent, Bitmap label, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
+    bool Value { get; set; }
 enum WxKit.BitmapType : int
     Ani = 27
     Any = 50
@@ -636,8 +638,7 @@ class WxKit.CheckBox : Control
     CheckBoxState ThreeStateValue { get; set; }
     bool Is3State()
     bool Is3rdStateAllowedForUser()
-    bool IsChecked { get; }
-    bool Value { get; set; }
+    bool IsChecked { get; set; }
     event EventHandler<CommandEvent>? CheckedChanged
 enum WxKit.CheckBoxState : int
     Checked = 1
@@ -817,7 +818,7 @@ class WxKit.ComboBox : Control
     event EventHandler<CommandEvent>? DropDownClosed
     event EventHandler<CommandEvent>? DropDownOpened
     event EventHandler<CommandEvent>? SelectionChanged
-    event EventHandler<CommandEvent>? Text
+    event EventHandler<CommandEvent>? TextChanged
     event EventHandler<CommandEvent>? TextEnter
     int Append(IEnumerable<string> items)
     int Append(string item)
@@ -1044,12 +1045,7 @@ class WxKit.DC : NativeObject
     void DrawText(string text, int x, int y)
     void EndDoc()
     void EndPage()
-    void GetLogicalOrigin(out int x, out int y)
     void GetLogicalScale(out double x, out double y)
-    void GetMultiLineTextExtent(string text, out int w, out int h)
-    void GetSize(out int width, out int height)
-    void GetSizeMM(out int width, out int height)
-    void GetTextExtent(string text, out int w, out int h)
     void GetUserScale(out double x, out double y)
     void GradientFillConcentric(Rect rect, Color? initialColor, Color? destColor)
     void GradientFillConcentric(Rect rect, Color? initialColor, Color? destColor, Point circleCenter)
@@ -1139,24 +1135,24 @@ class WxKit.DataViewCtrl : Control
     bool IsSelected(DataViewItem item)
     bool SetAlternateRowColor(Color? color)
     bool SetRowHeight(int rowHeight)
-    event EventHandler<DataViewEvent>? DataViewColumnHeaderClick
-    event EventHandler<DataViewEvent>? DataViewColumnHeaderRightClick
-    event EventHandler<DataViewEvent>? DataViewColumnReordered
-    event EventHandler<DataViewEvent>? DataViewColumnSorted
-    event EventHandler<DataViewEvent>? DataViewItemActivated
-    event EventHandler<DataViewEvent>? DataViewItemBeginDrag
-    event EventHandler<DataViewEvent>? DataViewItemCollapsed
-    event EventHandler<DataViewEvent>? DataViewItemCollapsing
-    event EventHandler<DataViewEvent>? DataViewItemContextMenu
-    event EventHandler<DataViewEvent>? DataViewItemDrop
-    event EventHandler<DataViewEvent>? DataViewItemDropPossible
-    event EventHandler<DataViewEvent>? DataViewItemEditingDone
-    event EventHandler<DataViewEvent>? DataViewItemEditingStarted
-    event EventHandler<DataViewEvent>? DataViewItemExpanded
-    event EventHandler<DataViewEvent>? DataViewItemExpanding
-    event EventHandler<DataViewEvent>? DataViewItemStartEditing
-    event EventHandler<DataViewEvent>? DataViewItemValueChanged
-    event EventHandler<DataViewEvent>? DataViewSelectionChanged
+    event EventHandler<DataViewEvent>? ColumnHeaderClick
+    event EventHandler<DataViewEvent>? ColumnHeaderRightClick
+    event EventHandler<DataViewEvent>? ColumnReordered
+    event EventHandler<DataViewEvent>? ColumnSorted
+    event EventHandler<DataViewEvent>? ItemActivated
+    event EventHandler<DataViewEvent>? ItemBeginDrag
+    event EventHandler<DataViewEvent>? ItemCollapsed
+    event EventHandler<DataViewEvent>? ItemCollapsing
+    event EventHandler<DataViewEvent>? ItemContextMenu
+    event EventHandler<DataViewEvent>? ItemDrop
+    event EventHandler<DataViewEvent>? ItemDropPossible
+    event EventHandler<DataViewEvent>? ItemEditingDone
+    event EventHandler<DataViewEvent>? ItemEditingStarted
+    event EventHandler<DataViewEvent>? ItemExpanded
+    event EventHandler<DataViewEvent>? ItemExpanding
+    event EventHandler<DataViewEvent>? ItemStartEditing
+    event EventHandler<DataViewEvent>? ItemValueChanged
+    event EventHandler<DataViewEvent>? SelectionChanged
     int ColumnCount { get; }
     int CountPerPage { get; }
     int GetColumnPosition(DataViewColumn column)
@@ -1346,7 +1342,7 @@ class WxKit.Dialog : TopLevelWindow, IDisposable
     bool IsMainButtonId(int id = -1)
     bool IsModal { get; }
     bool LayoutAdaptationDone { get; set; }
-    event EventHandler<InitDialogEvent>? InitDialogEvent
+    event EventHandler<InitDialogEvent>? Initializing
     int AffirmativeId { get; set; }
     int EscapeId { get; set; }
     int LayoutAdaptationLevel { get; set; }
@@ -2569,7 +2565,6 @@ class WxKit.KeyEvent : Event
     int X { get; }
     int Y { get; }
     void DoAllowNextEvent()
-    void GetPosition(out int x, out int y)
     void SetAltDown(bool down)
     void SetControlDown(bool down)
     void SetMetaDown(bool down)
@@ -2704,28 +2699,28 @@ class WxKit.ListCtrl : Control
     bool SetItemImage(long item, int image, int selImage = -1)
     bool SetItemPosition(long item, Point position)
     bool SetItemState(long item, long state, long stateMask)
-    event EventHandler<ListEvent>? ListBeginDrag
-    event EventHandler<ListEvent>? ListBeginLabelEdit
-    event EventHandler<ListEvent>? ListBeginRdrag
-    event EventHandler<ListEvent>? ListCacheHint
-    event EventHandler<ListEvent>? ListColBeginDrag
-    event EventHandler<ListEvent>? ListColClick
-    event EventHandler<ListEvent>? ListColDragging
-    event EventHandler<ListEvent>? ListColEndDrag
-    event EventHandler<ListEvent>? ListColRightClick
-    event EventHandler<ListEvent>? ListDeleteAllItems
-    event EventHandler<ListEvent>? ListDeleteItem
-    event EventHandler<ListEvent>? ListEndLabelEdit
-    event EventHandler<ListEvent>? ListInsertItem
-    event EventHandler<ListEvent>? ListItemActivated
-    event EventHandler<ListEvent>? ListItemChecked
-    event EventHandler<ListEvent>? ListItemDeselected
-    event EventHandler<ListEvent>? ListItemFocused
-    event EventHandler<ListEvent>? ListItemMiddleClick
-    event EventHandler<ListEvent>? ListItemRightClick
-    event EventHandler<ListEvent>? ListItemSelected
-    event EventHandler<ListEvent>? ListItemUnchecked
-    event EventHandler<ListEvent>? ListKeyDown
+    event EventHandler<ListEvent>? AllItemsDeleted
+    event EventHandler<ListEvent>? BeginDrag
+    event EventHandler<ListEvent>? BeginLabelEdit
+    event EventHandler<ListEvent>? BeginRightDrag
+    event EventHandler<ListEvent>? CacheHint
+    event EventHandler<ListEvent>? ColumnBeginDrag
+    event EventHandler<ListEvent>? ColumnClick
+    event EventHandler<ListEvent>? ColumnDragging
+    event EventHandler<ListEvent>? ColumnEndDrag
+    event EventHandler<ListEvent>? ColumnRightClick
+    event EventHandler<ListEvent>? EndLabelEdit
+    event EventHandler<ListEvent>? ItemActivated
+    event EventHandler<ListEvent>? ItemChecked
+    event EventHandler<ListEvent>? ItemDeleted
+    event EventHandler<ListEvent>? ItemDeselected
+    event EventHandler<ListEvent>? ItemFocused
+    event EventHandler<ListEvent>? ItemInserted
+    event EventHandler<ListEvent>? ItemKeyDown
+    event EventHandler<ListEvent>? ItemMiddleClick
+    event EventHandler<ListEvent>? ItemRightClick
+    event EventHandler<ListEvent>? ItemSelected
+    event EventHandler<ListEvent>? ItemUnchecked
     int ColumnCount { get; }
     int CountPerPage { get; }
     int GetColumnIndexFromOrder(int position)
@@ -3030,7 +3025,6 @@ class WxKit.MouseEvent : Event
     int WheelRotation { get; }
     int X { get; set; }
     int Y { get; set; }
-    void GetPosition(out int x, out int y)
     void SetAltDown(bool down)
     void SetAux1Down(bool down)
     void SetAux2Down(bool down)
@@ -3523,7 +3517,7 @@ class WxKit.RadioButton : Control
     RadioButton? LastInGroup { get; }
     RadioButton? NextInGroup { get; }
     RadioButton? PreviousInGroup { get; }
-    bool Value { get; set; }
+    bool IsChecked { get; set; }
     event EventHandler<CommandEvent>? Selected
 [Flags] enum WxKit.RadioButtonStyle : long
     Group = 4
@@ -3661,8 +3655,7 @@ class WxKit.ScrolledWindow : Panel
     void EnableAutoscrollWithoutCapture()
     void EnableScrolling(bool xScrolling, bool yScrolling)
     void GetScrollPixelsPerUnit(out int xUnit, out int yUnit)
-    void GetViewStart(out int x, out int y)
-    void GetViewStartPixels(out int x, out int y)
+    void GetVirtualSize(out int x, out int y)
     void PrepareDC(DC dc)
     void Scroll(Point point)
     void Scroll(int x, int y)
@@ -8006,7 +7999,7 @@ class WxKit.TimerEvent : Event
     int Interval { get; }
 class WxKit.ToggleButton : AnyButton
     ToggleButton(Window parent, string label, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
-    bool Value { get; set; }
+    bool IsChecked { get; set; }
     event EventHandler<CommandEvent>? Toggled
 class WxKit.ToolBar : Control
     Control? FindControl(int id = -1)
@@ -8036,12 +8029,12 @@ class WxKit.ToolBar : Control
     bool Realize()
     bool SetDropdownMenu(Menu menu, int id = -1)
     event EventHandler<CommandEvent>? Menu
-    event EventHandler<CommandEvent>? Tool
-    event EventHandler<CommandEvent>? ToolDropdown
-    event EventHandler<CommandEvent>? ToolEnter
-    event EventHandler<CommandEvent>? ToolRange
-    event EventHandler<CommandEvent>? ToolRclicked
-    event EventHandler<CommandEvent>? ToolRclickedRange
+    event EventHandler<CommandEvent>? ToolClicked
+    event EventHandler<CommandEvent>? ToolClickedRange
+    event EventHandler<CommandEvent>? ToolDropDown
+    event EventHandler<CommandEvent>? ToolHovered
+    event EventHandler<CommandEvent>? ToolRightClicked
+    event EventHandler<CommandEvent>? ToolRightClickedRange
     int GetToolPosition(int toolId)
     int ToolPacking { get; set; }
     int ToolSeparation { get; set; }
@@ -8193,27 +8186,27 @@ class WxKit.TreeCtrl : Control
     bool IsVisible(TreeItemId item)
     bool ItemHasChildren(TreeItemId item)
     bool QuickBestSize { get; set; }
-    event EventHandler<CommandEvent>? TreeItemMenu
-    event EventHandler<TreeEvent>? TreeBeginDrag
-    event EventHandler<TreeEvent>? TreeBeginLabelEdit
-    event EventHandler<TreeEvent>? TreeBeginRdrag
-    event EventHandler<TreeEvent>? TreeDeleteItem
-    event EventHandler<TreeEvent>? TreeEndDrag
-    event EventHandler<TreeEvent>? TreeEndLabelEdit
-    event EventHandler<TreeEvent>? TreeGetInfo
-    event EventHandler<TreeEvent>? TreeItemActivated
-    event EventHandler<TreeEvent>? TreeItemCollapsed
-    event EventHandler<TreeEvent>? TreeItemCollapsing
-    event EventHandler<TreeEvent>? TreeItemExpanded
-    event EventHandler<TreeEvent>? TreeItemExpanding
-    event EventHandler<TreeEvent>? TreeItemGettooltip
-    event EventHandler<TreeEvent>? TreeItemMiddleClick
-    event EventHandler<TreeEvent>? TreeItemRightClick
-    event EventHandler<TreeEvent>? TreeKeyDown
-    event EventHandler<TreeEvent>? TreeSelChanged
-    event EventHandler<TreeEvent>? TreeSelChanging
-    event EventHandler<TreeEvent>? TreeSetInfo
-    event EventHandler<TreeEvent>? TreeStateImageClick
+    event EventHandler<CommandEvent>? ItemContextMenu
+    event EventHandler<TreeEvent>? BeginDrag
+    event EventHandler<TreeEvent>? BeginLabelEdit
+    event EventHandler<TreeEvent>? BeginRightDrag
+    event EventHandler<TreeEvent>? EndDrag
+    event EventHandler<TreeEvent>? EndLabelEdit
+    event EventHandler<TreeEvent>? ItemActivated
+    event EventHandler<TreeEvent>? ItemCollapsed
+    event EventHandler<TreeEvent>? ItemCollapsing
+    event EventHandler<TreeEvent>? ItemDeleted
+    event EventHandler<TreeEvent>? ItemExpanded
+    event EventHandler<TreeEvent>? ItemExpanding
+    event EventHandler<TreeEvent>? ItemInfoRequested
+    event EventHandler<TreeEvent>? ItemInfoSet
+    event EventHandler<TreeEvent>? ItemKeyDown
+    event EventHandler<TreeEvent>? ItemMiddleClick
+    event EventHandler<TreeEvent>? ItemRightClick
+    event EventHandler<TreeEvent>? ItemToolTipRequested
+    event EventHandler<TreeEvent>? SelectionChanged
+    event EventHandler<TreeEvent>? SelectionChanging
+    event EventHandler<TreeEvent>? StateImageClick
     int Count { get; }
     int GetChildrenCount(TreeItemId item, bool recursively = true)
     int GetItemImage(TreeItemId item, TreeItemIcon which = TreeItemIcon.Normal)
@@ -8706,7 +8699,6 @@ class WxKit.Window : EvtHandler
     void Center(Orientation direction = Orientation.Both)
     void CenterOnParent(Orientation direction = Orientation.Both)
     void ClearBackground()
-    void ClientToScreen(out int x, out int y)
     void DisableFocusFromKeyboard()
     void DragAcceptFiles(bool accept)
     void EnableFocusFromKeyboard()
@@ -8716,12 +8708,6 @@ class WxKit.Window : EvtHandler
     void Fit()
     void FitInside()
     void Freeze()
-    void GetClientSize(out int width, out int height)
-    void GetPosition(out int x, out int y)
-    void GetScreenPosition(out int x, out int y)
-    void GetSize(out int width, out int height)
-    void GetTextExtent(string text, out int w, out int h)
-    void GetVirtualSize(out int width, out int height)
     void InheritAttributes()
     void InitDialog()
     void InvalidateBestSize()
@@ -8739,7 +8725,6 @@ class WxKit.Window : EvtHandler
     void RefreshRect(Rect rect, bool eraseBackground = true)
     void ReleaseMouse()
     void RemoveChild(Window child)
-    void ScreenToClient(out int x, out int y)
     void ScrollWindow(int dx, int dy)
     void SendSizeEvent(SendSizeEventFlags flags = SendSizeEventFlags.None)
     void SendSizeEventToParent(SendSizeEventFlags flags = SendSizeEventFlags.None)

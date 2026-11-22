@@ -65,109 +65,109 @@ public unsafe partial class DataViewCtrl : Control {
 	public DataViewItem TopItem => new global::WxKit.DataViewItem(WxKitNative.DataViewCtrlGetTopItem(Native));
 
 	/// <summary>Process a wxEVT_DATAVIEW_COLUMN_HEADER_CLICK event.</summary>
-	public event EventHandler<DataViewEvent>? DataViewColumnHeaderClick {
+	public event EventHandler<DataViewEvent>? ColumnHeaderClick {
 		add => AddHandler(EventType.DataViewColumnHeaderClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.DataViewColumnHeaderClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_DATAVIEW_COLUMN_HEADER_RIGHT_CLICK event.</summary>
-	public event EventHandler<DataViewEvent>? DataViewColumnHeaderRightClick {
+	public event EventHandler<DataViewEvent>? ColumnHeaderRightClick {
 		add => AddHandler(EventType.DataViewColumnHeaderRightClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.DataViewColumnHeaderRightClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_DATAVIEW_COLUMN_REORDERED event.</summary>
-	public event EventHandler<DataViewEvent>? DataViewColumnReordered {
+	public event EventHandler<DataViewEvent>? ColumnReordered {
 		add => AddHandler(EventType.DataViewColumnReordered, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.DataViewColumnReordered, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_DATAVIEW_COLUMN_SORTED event.</summary>
-	public event EventHandler<DataViewEvent>? DataViewColumnSorted {
+	public event EventHandler<DataViewEvent>? ColumnSorted {
 		add => AddHandler(EventType.DataViewColumnSorted, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.DataViewColumnSorted, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_DATAVIEW_ITEM_ACTIVATED event. This event is triggered by double clicking an item or pressing some special key (usually "Enter") when it is focused.</summary>
-	public event EventHandler<DataViewEvent>? DataViewItemActivated {
+	public event EventHandler<DataViewEvent>? ItemActivated {
 		add => AddHandler(EventType.DataViewItemActivated, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.DataViewItemActivated, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_DATAVIEW_ITEM_BEGIN_DRAG event which is generated when the user starts dragging a valid item. This event must be processed and wxDataViewEvent::SetDataObject() must be called to actually start dragging the item.</summary>
-	public event EventHandler<DataViewEvent>? DataViewItemBeginDrag {
+	public event EventHandler<DataViewEvent>? ItemBeginDrag {
 		add => AddHandler(EventType.DataViewItemBeginDrag, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.DataViewItemBeginDrag, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_DATAVIEW_ITEM_COLLAPSED event.</summary>
-	public event EventHandler<DataViewEvent>? DataViewItemCollapsed {
+	public event EventHandler<DataViewEvent>? ItemCollapsed {
 		add => AddHandler(EventType.DataViewItemCollapsed, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.DataViewItemCollapsed, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_DATAVIEW_ITEM_COLLAPSING event.</summary>
-	public event EventHandler<DataViewEvent>? DataViewItemCollapsing {
+	public event EventHandler<DataViewEvent>? ItemCollapsing {
 		add => AddHandler(EventType.DataViewItemCollapsing, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.DataViewItemCollapsing, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_DATAVIEW_ITEM_CONTEXT_MENU event generated when the user right clicks inside the control. Notice that this menu is generated even if the click didn't occur on any valid item, in this case wxDataViewEvent::GetItem() simply returns an invalid item.</summary>
-	public event EventHandler<DataViewEvent>? DataViewItemContextMenu {
+	public event EventHandler<DataViewEvent>? ItemContextMenu {
 		add => AddHandler(EventType.DataViewItemContextMenu, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.DataViewItemContextMenu, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_DATAVIEW_ITEM_DROP event.</summary>
-	public event EventHandler<DataViewEvent>? DataViewItemDrop {
+	public event EventHandler<DataViewEvent>? ItemDrop {
 		add => AddHandler(EventType.DataViewItemDrop, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.DataViewItemDrop, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_DATAVIEW_ITEM_DROP_POSSIBLE event.</summary>
-	public event EventHandler<DataViewEvent>? DataViewItemDropPossible {
+	public event EventHandler<DataViewEvent>? ItemDropPossible {
 		add => AddHandler(EventType.DataViewItemDropPossible, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.DataViewItemDropPossible, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_DATAVIEW_ITEM_EDITING_DONE event.</summary>
-	public event EventHandler<DataViewEvent>? DataViewItemEditingDone {
+	public event EventHandler<DataViewEvent>? ItemEditingDone {
 		add => AddHandler(EventType.DataViewItemEditingDone, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.DataViewItemEditingDone, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_DATAVIEW_ITEM_EDITING_STARTED event.</summary>
-	public event EventHandler<DataViewEvent>? DataViewItemEditingStarted {
+	public event EventHandler<DataViewEvent>? ItemEditingStarted {
 		add => AddHandler(EventType.DataViewItemEditingStarted, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.DataViewItemEditingStarted, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_DATAVIEW_ITEM_EXPANDED event.</summary>
-	public event EventHandler<DataViewEvent>? DataViewItemExpanded {
+	public event EventHandler<DataViewEvent>? ItemExpanded {
 		add => AddHandler(EventType.DataViewItemExpanded, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.DataViewItemExpanded, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_DATAVIEW_ITEM_EXPANDING event.</summary>
-	public event EventHandler<DataViewEvent>? DataViewItemExpanding {
+	public event EventHandler<DataViewEvent>? ItemExpanding {
 		add => AddHandler(EventType.DataViewItemExpanding, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.DataViewItemExpanding, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_DATAVIEW_ITEM_START_EDITING event. This event can be vetoed in order to prevent editing on an item by item basis.</summary>
-	public event EventHandler<DataViewEvent>? DataViewItemStartEditing {
+	public event EventHandler<DataViewEvent>? ItemStartEditing {
 		add => AddHandler(EventType.DataViewItemStartEditing, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.DataViewItemStartEditing, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_DATAVIEW_ITEM_VALUE_CHANGED event.</summary>
-	public event EventHandler<DataViewEvent>? DataViewItemValueChanged {
+	public event EventHandler<DataViewEvent>? ItemValueChanged {
 		add => AddHandler(EventType.DataViewItemValueChanged, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.DataViewItemValueChanged, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_DATAVIEW_SELECTION_CHANGED event.</summary>
-	public event EventHandler<DataViewEvent>? DataViewSelectionChanged {
+	public event EventHandler<DataViewEvent>? SelectionChanged {
 		add => AddHandler(EventType.DataViewSelectionChanged, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.DataViewSelectionChanged, StandardId.Any, StandardId.Any, value);
 	}

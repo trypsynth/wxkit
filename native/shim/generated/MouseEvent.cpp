@@ -105,10 +105,6 @@ WXK_FUNCTION(uint8_t) wxk_MouseEvent_RightUp(wxk_Event* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMouseEvent*>(wxk::Unwrap(self))->RightUp()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_MouseEvent_GetPosition_OutIntOutInt(wxk_Event* self, int32_t* x, int32_t* y) noexcept {
-	wxk::Guard([&] { static_cast<wxMouseState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->GetPosition(x, y); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_MouseEvent_LeftIsDown(wxk_Event* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMouseState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->LeftIsDown()) ? 1 : 0; });
 }
@@ -237,7 +233,7 @@ WXK_FUNCTION(uint8_t) wxk_MouseEvent_IsSynthesized(wxk_Event* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMouseEvent*>(wxk::Unwrap(self))->IsSynthesized()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(wxk_Point) wxk_MouseEvent_GetPosition_Default(wxk_Event* self) noexcept {
+WXK_FUNCTION(wxk_Point) wxk_MouseEvent_GetPosition(wxk_Event* self) noexcept {
 	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxMouseState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->GetPosition()); });
 }
 

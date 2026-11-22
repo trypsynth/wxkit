@@ -16,6 +16,12 @@ public unsafe partial class RadioButton : Control {
 	/// <summary>Returns the first button of the radio button group this button belongs to.</summary>
 	public RadioButton? FirstInGroup => ObjectRegistry.Wrap<RadioButton>(WxKitNative.RadioButtonGetFirstInGroup(Native));
 
+	/// <summary>Returns true if the radio button is checked, false otherwise.</summary>
+	public bool IsChecked {
+		get => WxKitNative.RadioButtonGetValue(Native) != 0;
+		set => WxKitNative.RadioButtonSetValue(Native, value ? (byte)1 : (byte)0);
+	}
+
 	/// <summary>Returns the last button of the radio button group this button belongs to.</summary>
 	public RadioButton? LastInGroup => ObjectRegistry.Wrap<RadioButton>(WxKitNative.RadioButtonGetLastInGroup(Native));
 
@@ -24,12 +30,6 @@ public unsafe partial class RadioButton : Control {
 
 	/// <summary>Returns the previous radio button in the same group.</summary>
 	public RadioButton? PreviousInGroup => ObjectRegistry.Wrap<RadioButton>(WxKitNative.RadioButtonGetPreviousInGroup(Native));
-
-	/// <summary>Returns true if the radio button is checked, false otherwise.</summary>
-	public bool Value {
-		get => WxKitNative.RadioButtonGetValue(Native) != 0;
-		set => WxKitNative.RadioButtonSetValue(Native, value ? (byte)1 : (byte)0);
-	}
 
 	/// <summary>Process a wxEVT_RADIOBUTTON event, when the radiobutton is clicked.</summary>
 	public event EventHandler<CommandEvent>? Selected {

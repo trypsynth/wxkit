@@ -20,6 +20,12 @@ public unsafe partial class BitmapComboBox : ComboBox {
 	/// <summary>Returns the size of the bitmaps used in the combo box.</summary>
 	public Size BitmapSize => WxKitNative.BitmapComboBoxGetBitmapSize(Native);
 
+	/// <summary>Process a wxEVT_TEXT event, when the combobox text changes.</summary>
+	public event EventHandler<CommandEvent>? Text {
+		add => AddHandler(EventType.Text, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.Text, StandardId.Any, StandardId.Any, value);
+	}
+
 	/// <summary>Adds the item to the end of the combo box.</summary>
 	public int Append(string item, Bitmap? bitmap = null) {
 		ArgumentNullException.ThrowIfNull(item);

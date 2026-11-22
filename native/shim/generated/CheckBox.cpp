@@ -32,7 +32,3 @@ WXK_FUNCTION(void) wxk_CheckBox_Set3StateValue(wxk_Window* self, int32_t state) 
 	wxk::Guard([&] { static_cast<wxCheckBox*>(wxk::Unwrap(self))->Set3StateValue(static_cast<wxCheckBoxState>(state)); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_CheckBox_IsChecked(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxCheckBox*>(wxk::Unwrap(self))->IsChecked()) ? 1 : 0; });
-}
-

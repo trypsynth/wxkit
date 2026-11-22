@@ -70,7 +70,7 @@ public unsafe partial class Dialog : TopLevelWindow {
 	}
 
 	/// <summary>Process a wxEVT_INIT_DIALOG event. See wxInitDialogEvent.</summary>
-	public event EventHandler<InitDialogEvent>? InitDialogEvent {
+	public event EventHandler<InitDialogEvent>? Initializing {
 		add => AddHandler(EventType.InitDialog, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.InitDialog, StandardId.Any, StandardId.Any, value);
 	}

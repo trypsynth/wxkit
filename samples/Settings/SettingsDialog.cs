@@ -40,7 +40,7 @@ internal sealed class SettingsDialog : Dialog {
 		AddField(form, 5, new StaticText(general, _("&Language:")), _language = new Choice(general, [_("The system's language"), .. languages.Select(static language => language.Name)]));
 		_language.Selection = Math.Max(_languageCodes.IndexOf(settings.Language), 0);
 		_startWithSystem = new CheckBox(general, _("&Start when I sign in")) {
-			Value = settings.StartWithSystem,
+			IsChecked = settings.StartWithSystem,
 		};
 		form.Add(_startWithSystem, new GridPosition(6, 0), new GridSpan(1, 2));
 		form.AddGrowableColumn(1);
@@ -61,7 +61,7 @@ internal sealed class SettingsDialog : Dialog {
 		string[] events = AppSettings.Events;
 		for (int index = 0; index < events.Length; index++) {
 			CheckBox box = new(group.StaticBox!, events[index]) {
-				Value = settings.Notifications.Contains(index),
+				IsChecked = settings.Notifications.Contains(index),
 			};
 			group.Add(box, SizerFlags.Default.Border(Direction.Top | Direction.Bottom));
 			_notifications.Add(box);
@@ -90,10 +90,10 @@ internal sealed class SettingsDialog : Dialog {
 		settings.Font = font?.NativeFontInfoDescription ?? string.Empty;
 		settings.RecentFiles = _recentFiles.Value;
 		settings.Language = _languageCodes[Math.Max(_language.Selection, 0)];
-		settings.StartWithSystem = _startWithSystem.Value;
+		settings.StartWithSystem = _startWithSystem.IsChecked;
 		settings.DocumentsFolder = _documents.Path;
 		settings.Notifications.Clear();
-		settings.Notifications.UnionWith(Enumerable.Range(0, _notifications.Count).Where(index => _notifications[index].Value));
+		settings.Notifications.UnionWith(Enumerable.Range(0, _notifications.Count).Where(index => _notifications[index].IsChecked));
 	}
 
 	private static void AddField(GridBagSizer form, int row, StaticText label, Window field) {

@@ -13,7 +13,7 @@ public partial class AccessibilityInfoTests {
 		TextCtrl notes = new(panel, style: TextCtrlStyle.MultiLine);
 		Button save = new(panel, "&Save");
 		Button later = new(panel, "&Later") { IsEnabled = false };
-		CheckBox remember = new(panel, "&Remember me") { Value = true };
+		CheckBox remember = new(panel, "&Remember me") { IsChecked = true };
 		RadioButton small = new(panel, "S&mall");
 		_ = new StaticText(panel, "Si&ze:");
 		Choice size = new(panel, choices: ["One", "Two"]);

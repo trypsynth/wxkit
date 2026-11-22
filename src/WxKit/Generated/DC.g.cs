@@ -79,7 +79,7 @@ public unsafe partial class DC : NativeObject {
 	}
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Point LogicalOrigin => WxKitNative.DCGetLogicalOriginDefault(Native);
+	public Point LogicalOrigin => WxKitNative.DCGetLogicalOrigin(Native);
 
 	/// <summary>Gets the current mapping mode for the device context.</summary>
 	public MappingMode MapMode {
@@ -97,10 +97,10 @@ public unsafe partial class DC : NativeObject {
 	public Size Ppi => WxKitNative.DCGetPPI(Native);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Size Size => WxKitNative.DCGetSizeDefault(Native);
+	public Size Size => WxKitNative.DCGetSize(Native);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Size SizeMM => WxKitNative.DCGetSizeMMDefault(Native);
+	public Size SizeMM => WxKitNative.DCGetSizeMM(Native);
 
 	/// <summary>Gets the current text background colour.</summary>
 	public Color? TextBackground {
@@ -350,16 +350,6 @@ public unsafe partial class DC : NativeObject {
 		}
 	}
 
-	/// <summary>Return the coordinates of the logical point (0, 0).</summary>
-	public void GetLogicalOrigin(out int x, out int y) {
-		x = 0;
-		y = 0;
-		fixed (int* xPointer = &x)
-		fixed (int* yPointer = &y) {
-			WxKitNative.DCGetLogicalOriginOutIntOutInt(Native, xPointer, yPointer);
-		}
-	}
-
 	/// <summary>Return the scale set by the last call to SetLogicalScale().</summary>
 	public void GetLogicalScale(out double x, out double y) {
 		x = 0;
@@ -371,22 +361,10 @@ public unsafe partial class DC : NativeObject {
 	}
 
 	/// <summary>Gets the dimensions of the string using the currently selected font.</summary>
-	public void GetMultiLineTextExtent(string text, out int w, out int h) {
-		ArgumentNullException.ThrowIfNull(text);
-		w = 0;
-		h = 0;
-		fixed (char* textText = text)
-		fixed (int* wPointer = &w)
-		fixed (int* hPointer = &h) {
-			WxKitNative.DCGetMultiLineTextExtentStringOutIntOutInt(Native, textText, NativeString.Length(text), wPointer, hPointer);
-		}
-	}
-
-	/// <summary>Gets the dimensions of the string using the currently selected font.</summary>
 	public Size GetMultiLineTextExtent(string text) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return WxKitNative.DCGetMultiLineTextExtentString(Native, textText, NativeString.Length(text));
+			return WxKitNative.DCGetMultiLineTextExtent(Native, textText, NativeString.Length(text));
 		}
 	}
 
@@ -401,43 +379,11 @@ public unsafe partial class DC : NativeObject {
 		}
 	}
 
-	/// <summary>Gets the horizontal and vertical extent of this device context in device units.</summary>
-	public void GetSize(out int width, out int height) {
-		width = 0;
-		height = 0;
-		fixed (int* widthPointer = &width)
-		fixed (int* heightPointer = &height) {
-			WxKitNative.DCGetSizeOutIntOutInt(Native, widthPointer, heightPointer);
-		}
-	}
-
-	/// <summary>Returns the horizontal and vertical resolution in millimetres.</summary>
-	public void GetSizeMM(out int width, out int height) {
-		width = 0;
-		height = 0;
-		fixed (int* widthPointer = &width)
-		fixed (int* heightPointer = &height) {
-			WxKitNative.DCGetSizeMMOutIntOutInt(Native, widthPointer, heightPointer);
-		}
-	}
-
-	/// <summary>Gets the dimensions of the string using the currently selected font.</summary>
-	public void GetTextExtent(string text, out int w, out int h) {
-		ArgumentNullException.ThrowIfNull(text);
-		w = 0;
-		h = 0;
-		fixed (char* textText = text)
-		fixed (int* wPointer = &w)
-		fixed (int* hPointer = &h) {
-			WxKitNative.DCGetTextExtentStringOutIntOutInt(Native, textText, NativeString.Length(text), wPointer, hPointer);
-		}
-	}
-
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public Size GetTextExtent(string text) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return WxKitNative.DCGetTextExtentString(Native, textText, NativeString.Length(text));
+			return WxKitNative.DCGetTextExtent(Native, textText, NativeString.Length(text));
 		}
 	}
 

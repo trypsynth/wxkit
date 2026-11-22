@@ -28,7 +28,7 @@ public unsafe partial class KeyEvent : Event {
 	public KeyModifiers Modifiers => (KeyModifiers)WxKitNative.KeyEventGetModifiers(Handle);
 
 	/// <summary>Obtains the position (in client coordinates) at which the key was pressed.</summary>
-	public Point Position => WxKitNative.KeyEventGetPositionDefault(Handle);
+	public Point Position => WxKitNative.KeyEventGetPosition(Handle);
 
 	/// <summary>Returns the raw key code for this event.</summary>
 	public int RawKeyCode => checked((int)WxKitNative.KeyEventGetRawKeyCode(Handle));
@@ -53,16 +53,6 @@ public unsafe partial class KeyEvent : Event {
 
 	/// <summary>Allow normal key events generation.</summary>
 	public void DoAllowNextEvent() => WxKitNative.KeyEventDoAllowNextEvent(Handle);
-
-	/// <summary>Obtains the position (in client coordinates) at which the key was pressed.</summary>
-	public void GetPosition(out int x, out int y) {
-		x = 0;
-		y = 0;
-		fixed (int* xPointer = &x)
-		fixed (int* yPointer = &y) {
-			WxKitNative.KeyEventGetPositionOutIntOutInt(Handle, xPointer, yPointer);
-		}
-	}
 
 	/// <summary>Returns true if the key is in the given key category.</summary>
 	public bool IsKeyInCategory(int category) => WxKitNative.KeyEventIsKeyInCategory(Handle, category) != 0;

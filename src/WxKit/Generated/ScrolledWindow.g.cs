@@ -34,10 +34,10 @@ public unsafe partial class ScrolledWindow : Panel {
 	}
 
 	/// <summary>This is a simple overload of GetViewStart(int*,int*); see that function for more info.</summary>
-	public Point ViewStart => WxKitNative.ScrolledWindowGetViewStartDefault(Native);
+	public Point ViewStart => WxKitNative.ScrolledWindowGetViewStart(Native);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Point ViewStartPixels => WxKitNative.ScrolledWindowGetViewStartPixelsDefault(Native);
+	public Point ViewStartPixels => WxKitNative.ScrolledWindowGetViewStartPixels(Native);
 
 	/// <summary>Process wxEVT_SCROLLWIN_BOTTOM scroll-to-bottom events.</summary>
 	public event EventHandler<ScrollWinEvent>? ScrollWinBottom {
@@ -151,23 +151,13 @@ public unsafe partial class ScrolledWindow : Panel {
 		}
 	}
 
-	/// <summary>Get the position at which the visible portion of the window starts.</summary>
-	public void GetViewStart(out int x, out int y) {
+	/// <summary>Gets the size in device units of the scrollable window area (as opposed to the client size, which is the area of the window currently visible).</summary>
+	public void GetVirtualSize(out int x, out int y) {
 		x = 0;
 		y = 0;
 		fixed (int* xPointer = &x)
 		fixed (int* yPointer = &y) {
-			WxKitNative.ScrolledWindowGetViewStartOutIntOutInt(Native, xPointer, yPointer);
-		}
-	}
-
-	/// <summary>Get the position at which the visible portion of the window starts in pixels.</summary>
-	public void GetViewStartPixels(out int x, out int y) {
-		x = 0;
-		y = 0;
-		fixed (int* xPointer = &x)
-		fixed (int* yPointer = &y) {
-			WxKitNative.ScrolledWindowGetViewStartPixelsOutIntOutInt(Native, xPointer, yPointer);
+			WxKitNative.ScrolledWindowGetVirtualSize(Native, xPointer, yPointer);
 		}
 	}
 

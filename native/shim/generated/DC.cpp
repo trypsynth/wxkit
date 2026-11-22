@@ -329,19 +329,11 @@ WXK_FUNCTION(void) wxk_DC_SetLogicalOrigin(wxk_Object* self, int32_t x, int32_t 
 	wxk::Guard([&] { static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->SetLogicalOrigin(static_cast<int>(x), static_cast<int>(y)); });
 }
 
-WXK_FUNCTION(void) wxk_DC_GetLogicalOrigin_OutIntOutInt(wxk_Object* self, int32_t* x, int32_t* y) noexcept {
-	wxk::Guard([&] { static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->GetLogicalOrigin(x, y); });
-}
-
 WXK_FUNCTION(void) wxk_DC_ResetTransformMatrix(wxk_Object* self) noexcept {
 	wxk::Guard([&] { static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->ResetTransformMatrix(); });
 }
 
-WXK_FUNCTION(void) wxk_DC_GetMultiLineTextExtent_StringOutIntOutInt(wxk_Object* self, const char16_t* text, size_t textLength, int32_t* w, int32_t* h) noexcept {
-	wxk::Guard([&] { static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->GetMultiLineTextExtent(wxk::FromUtf16(text, textLength), w, h); });
-}
-
-WXK_FUNCTION(wxk_Size) wxk_DC_GetMultiLineTextExtent_String(wxk_Object* self, const char16_t* text, size_t textLength) noexcept {
+WXK_FUNCTION(wxk_Size) wxk_DC_GetMultiLineTextExtent(wxk_Object* self, const char16_t* text, size_t textLength) noexcept {
 	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->GetMultiLineTextExtent(wxk::FromUtf16(text, textLength))); });
 }
 
@@ -349,11 +341,7 @@ WXK_FUNCTION(uint8_t) wxk_DC_GetPartialTextExtents(wxk_Object* self, const char1
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->GetPartialTextExtents(wxk::FromUtf16(text, textLength), wxk::OutNumbers<wxArrayInt>{widths})) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_DC_GetTextExtent_StringOutIntOutInt(wxk_Object* self, const char16_t* text, size_t textLength, int32_t* w, int32_t* h) noexcept {
-	wxk::Guard([&] { static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->GetTextExtent(wxk::FromUtf16(text, textLength), w, h); });
-}
-
-WXK_FUNCTION(wxk_Size) wxk_DC_GetTextExtent_String(wxk_Object* self, const char16_t* text, size_t textLength) noexcept {
+WXK_FUNCTION(wxk_Size) wxk_DC_GetTextExtent(wxk_Object* self, const char16_t* text, size_t textLength) noexcept {
 	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->GetTextExtent(wxk::FromUtf16(text, textLength))); });
 }
 
@@ -379,14 +367,6 @@ WXK_FUNCTION(wxk_Point) wxk_DC_ToDIP_Point(wxk_Object* self, wxk_Point point) no
 
 WXK_FUNCTION(int32_t) wxk_DC_ToDIP_Int(wxk_Object* self, int32_t d) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->ToDIP(static_cast<int>(d))); });
-}
-
-WXK_FUNCTION(void) wxk_DC_GetSize_OutIntOutInt(wxk_Object* self, int32_t* width, int32_t* height) noexcept {
-	wxk::Guard([&] { static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->GetSize(width, height); });
-}
-
-WXK_FUNCTION(void) wxk_DC_GetSizeMM_OutIntOutInt(wxk_Object* self, int32_t* width, int32_t* height) noexcept {
-	wxk::Guard([&] { static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->GetSizeMM(width, height); });
 }
 
 WXK_FUNCTION(void) wxk_DC_GetUserScale(wxk_Object* self, double* x, double* y) noexcept {
@@ -465,7 +445,7 @@ WXK_FUNCTION(uint8_t) wxk_DC_CanGetTextExtent(wxk_Object* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->CanGetTextExtent()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(wxk_Point) wxk_DC_GetLogicalOrigin_Default(wxk_Object* self) noexcept {
+WXK_FUNCTION(wxk_Point) wxk_DC_GetLogicalOrigin(wxk_Object* self) noexcept {
 	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->GetLogicalOrigin()); });
 }
 
@@ -509,11 +489,11 @@ WXK_FUNCTION(wxk_Size) wxk_DC_GetPPI(wxk_Object* self) noexcept {
 	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->GetPPI()); });
 }
 
-WXK_FUNCTION(wxk_Size) wxk_DC_GetSize_Default(wxk_Object* self) noexcept {
+WXK_FUNCTION(wxk_Size) wxk_DC_GetSize(wxk_Object* self) noexcept {
 	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->GetSize()); });
 }
 
-WXK_FUNCTION(wxk_Size) wxk_DC_GetSizeMM_Default(wxk_Object* self) noexcept {
+WXK_FUNCTION(wxk_Size) wxk_DC_GetSizeMM(wxk_Object* self) noexcept {
 	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->GetSizeMM()); });
 }
 
