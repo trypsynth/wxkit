@@ -4,7 +4,7 @@
 # sample's executable, and on macOS its app bundle, is named after the sample.
 param(
 	[string]$Runtime = "win-x64",
-	[string[]]$Samples = @("Hello", "Editor", "Settings", "Checklist"),
+	[string[]]$Samples = @("Hello", "HelloFSharp", "Editor", "Settings", "Checklist"),
 	[int]$TimeoutSeconds = 30
 )
 $ErrorActionPreference = "Stop"
