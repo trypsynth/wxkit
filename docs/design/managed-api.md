@@ -123,7 +123,7 @@ A message is made one line of at most 512 characters without control characters,
 
 ## Linking only what is used
 
-WxKit has no switches for optional features. Native AOT compiles only the methods an application can reach, and the shim has a file for each class, as [Native layer](native-layer.md#linking-only-what-an-application-uses) explains, so the linker leaves out the wxWidgets code of classes an application doesn't use, such as printing in one that doesn't print. Each event type is created the first time it's used. The Hello sample publishes as one executable of about 5 MB.
+WxKit has no switches for optional features. Native AOT compiles only the methods an application can reach, and the shim has a file for each class, as [Native layer](native-layer.md#linking-only-what-an-application-uses) explains, so the linker leaves out the wxWidgets code of classes an application doesn't use, such as printing in one that doesn't print. Each event type is created the first time it's used. The Hello sample publishes as one executable of about 6 MB.
 
 Image file formats work the same way. Images can always load and save BMP, and an application adds the other formats it uses before it loads images, such as with `Image.AddPngHandler()`. `Image.AddAllHandlers()` adds every format, which makes a published application about 1.1 MB larger, mostly for JPEG, TIFF, and WebP. PNG costs nothing extra, since wxMSW uses it itself. Without Native AOT, the shared library has every format, and the calls only decide which ones images can use. `Image.LoadFile` and `SaveFile` also take a `Stream`, for an image in memory or in a resource.
 
@@ -209,6 +209,10 @@ A handler consumes its event, as in wxWidgets. Call `e.Skip()` to let wxWidgets 
 ### Exceptions in handlers
 
 An exception can't unwind through wxWidgets, so WxKit catches every exception that an event handler, a posted action, an `await` continuation, or an override throws, and raises `Application.UnhandledException`. A handler of that event can set `Handled` on its `ApplicationExceptionEventArgs`, and the application keeps running. If nothing does, the event loop ends, and `Application.Run` rethrows the exception with its original stack trace. An exception from `OnInit`, or from the action given to `Run`, ends the application and is rethrown from `Run` directly.
+
+### Failed assertions
+
+wxWidgets checks how it is called, and a check that fails, such as for an index out of range, raises `Application.AssertFailed`, on the thread it failed on, with the file, line, function, condition, and message. wxWidgets then goes on as best it can, often by doing nothing. Unless a handler sets `Handled`, the failure is written to `Trace`, and an attached debugger breaks, so a mistake shows while you develop, and a user never sees a dialog for it.
 
 ## Threading
 

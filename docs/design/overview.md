@@ -70,5 +70,4 @@ A call goes down the layers: `button.Label = "Save"` pins the string and calls `
 
 - Optional libraries beyond the styled text control, in the order [Open questions](open-questions.md) suggests, and XRC last.
 - Dragging data other than files.
-- A debug build of the native library, with wxWidgets' assertions on and raised as `Application.AssertFailed`, as [Native layer](native-layer.md) plans. Only release builds exist, with assertions compiled out.
 - Disk images and notarization as part of a macOS publish, which the docs give the commands for today.

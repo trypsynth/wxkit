@@ -50,6 +50,20 @@ public class ApplicationTests {
 	[Fact]
 	public void RefusesADirectionThatIsNotOne() => Assert.Throws<ArgumentOutOfRangeException>(() => Application.LayoutDirection = (LayoutDirection)7);
 
+	// The native library keeps wxWidgets' assertions, which report wrong use rather than ignore it.
+	[Fact]
+	public Task ReportsAFailedAssertion() => Gui.WithFrame(frame => {
+		// A minimum larger than the maximum, which wxWidgets' common code checks on every port.
+		new Panel(frame).SetSizeHints(200, 200, 100, 100);
+		AssertFailedEventArgs failure = Assert.Single(Gui.TakeAssertions());
+		Assert.Contains("minW <= maxW", failure.Condition);
+		Assert.Contains("must be less than", failure.Message);
+		Assert.True(failure.Line > 0);
+		Assert.NotEmpty(failure.File);
+		Assert.NotEmpty(failure.Function);
+		Assert.Contains(failure.Condition, failure.ToString());
+	});
+
 	[Fact]
 	public async Task KnowsWhichThreadIsTheGuiThread() {
 		Assert.False(Application.IsGuiThread);

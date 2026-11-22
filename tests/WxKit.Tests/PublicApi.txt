@@ -263,6 +263,7 @@ class WxKit.Application
     static LayoutDirection LayoutDirection { get; set; }
     static bool IsGuiThread { get; }
     static event EventHandler<ApplicationExceptionEventArgs>? UnhandledException
+    static event EventHandler<AssertFailedEventArgs>? AssertFailed
     static int Run(Action onInit)
     static string WxWidgetsVersion { get; }
     static void Exit()
@@ -351,6 +352,15 @@ static class WxKit.ArtProvider
     static bool HasNativeProvider { get; }
     static bool Pop()
     static string GetMessageBoxIconId(int flags)
+sealed class WxKit.AssertFailedEventArgs : EventArgs
+    AssertFailedEventArgs(string file, int line, string function, string condition, string message)
+    bool Handled { get; set; }
+    int Line { get; }
+    override string ToString()
+    string Condition { get; }
+    string File { get; }
+    string Function { get; }
+    string Message { get; }
 enum WxKit.BackgroundStyle : int
     Color = 4
     Erase = 0

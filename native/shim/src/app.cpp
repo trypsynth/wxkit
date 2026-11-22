@@ -1,4 +1,6 @@
 #include "shim.h"
+#include <atomic>
+#include <cstdio>
 
 #ifdef __WXMSW__
 	#include <wx/msw/private.h>
@@ -16,6 +18,37 @@ void gtk_widget_set_default_direction(int direction);
 #endif
 
 namespace {
+
+// Where a failed wxWidgets assertion goes: .NET's Application.AssertFailed, once it registers.
+std::atomic<wxk_AssertCallback> assertCallback{nullptr};
+thread_local bool inAssert = false;
+
+// Replaces wxWidgets' handler, which would show a dialog, for assertions on any thread, before the
+// application runs too. One that fails while another is reported, such as in .NET's handler, is
+// left out rather than recursing.
+void OnAssert(const wxString& file, int line, const wxString& function, const wxString& condition, const wxString& message) {
+	if (inAssert) return;
+	inAssert = true;
+	wxk_AssertCallback callback = assertCallback.load();
+	if (callback != nullptr) {
+		callback(wxk::ToUtf16(file), line, wxk::ToUtf16(function), wxk::ToUtf16(condition), wxk::ToUtf16(message));
+	} else {
+		wxString text = wxString::Format("wxWidgets assertion \"%s\" failed in %s at %s:%d: %s\n", condition, function, file, line, message);
+#ifdef __WXMSW__
+		::OutputDebugStringW(text.wc_str());
+#else
+		fputs(text.utf8_str(), stderr);
+#endif
+	}
+	inAssert = false;
+}
+
+// Installed when the library loads, so that no assertion ever shows wxWidgets' dialog.
+const struct AssertHandlerInstaller {
+	AssertHandlerInstaller() {
+		wxSetAssertHandler(OnAssert);
+	}
+} assertHandlerInstaller;
 
 // The direction the application gives what has no window to take it from, such as a new frame or
 // a message box with no parent, or wxLayout_Default to follow the UI locale.
@@ -99,6 +132,10 @@ WXK_FUNCTION(void) wxk_App_ExitMainLoop(void) noexcept {
 	wxk::Guard([] {
 		if (wxTheApp != nullptr) wxTheApp->ExitMainLoop();
 	});
+}
+
+WXK_FUNCTION(void) wxk_App_SetAssertCallback(wxk_AssertCallback callback) noexcept {
+	assertCallback.store(callback);
 }
 
 WXK_FUNCTION(void) wxk_App_SetLayoutDirection(int32_t direction) noexcept {

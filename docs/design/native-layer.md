@@ -18,7 +18,7 @@ Text going in is a UTF-16 pointer and a length, `const char16_t* text, size_t le
 
 An exception that unwinds into .NET ends the process, so every export runs its body through `wxk::Guard`, in `native/shim/src/shim.h`, which catches everything and returns the function's "nothing" value, such as 0 or null. Most wxWidgets failures are `false` returns or null pointers anyway, which the shim passes through for the managed API to interpret.
 
-The decision for `wxASSERT` and `wxCHECK` is that debug builds of the native library keep assertions on, where a failure raises `Application.AssertFailed` instead of showing wxWidgets' dialog, and release builds compile them out, so a shipped application never stops on one. Only the release half exists today: `native/shim/CMakeLists.txt` sets `wxBUILD_DEBUG_LEVEL` to 0 unless it is given, and `scripts/build-native.ps1` builds only `Release`. Neither a debug build nor `Application.AssertFailed` exists yet.
+wxWidgets checks its preconditions with `wxASSERT` and `wxCHECK`, which it recommends keeping in release builds, so the native library is built with debug level 1, the `WXKIT_DEBUG_LEVEL` CMake option, which 0 turns off. The shim installs its own handler with `wxSetAssertHandler` when it loads, so a failure never shows wxWidgets' dialog, on any thread and before the application runs. It goes to `Application.AssertFailed` once the managed side registers, on first use of `Application`, and to the debug output before then. A failure inside the handler is left out rather than recursing.
 
 ## Callbacks and events
 

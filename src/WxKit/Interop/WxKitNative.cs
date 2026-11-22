@@ -28,6 +28,10 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void AppExitMainLoop();
 
+	[LibraryImport(Library, EntryPoint = "wxk_App_SetAssertCallback")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void AppSetAssertCallback(delegate* unmanaged[Cdecl]<WxkString*, int, WxkString*, WxkString*, WxkString*, void> callback);
+
 	[LibraryImport(Library, EntryPoint = "wxk_App_SetLayoutDirection")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void AppSetLayoutDirection(int direction);

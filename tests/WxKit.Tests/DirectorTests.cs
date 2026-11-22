@@ -27,6 +27,8 @@ public class DirectorTests {
 		list.InsertColumn(0, "Name");
 		list.SetItemCount(3);
 		Assert.Equal(string.Empty, list.GetItemText(1));
+		// A virtual list is meant to override it, so wxWidgets' own says it was called by mistake.
+		Assert.Contains("not supposed to be called", Assert.Single(Gui.TakeAssertions()).Message);
 	});
 
 	[Fact]

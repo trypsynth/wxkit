@@ -19,7 +19,7 @@ Each test hands its body to the GUI thread through the `Gui` helper:
 - `Gui.Run` posts the body, which can be async, waits for it, and returns its result.
 - `Gui.WithFrame` runs the body with a new frame, and destroys the frame afterwards if the body did not.
 - `Gui.WaitUntil` runs the event loop until a condition holds, for work wxWidgets does at idle time.
-- An exception that escapes an event handler while a body runs fails the test, unless the test takes it with `Gui.TakeUnhandled`.
+- An exception that escapes an event handler while a body runs fails the test, unless the test takes it with `Gui.TakeUnhandled`. So does a failed wxWidgets assertion, unless the test takes it with `Gui.TakeAssertions`.
 
 ## Platform-specific tests
 

@@ -68,8 +68,10 @@ public class ValueTests {
 	public Task GivesAnEmptyValueAsNull() => Gui.Run(() => {
 		using Image empty = new();
 		Assert.False(empty.IsOk);
-		// Copying an empty image out gives nothing, rather than an object that is not usable.
+		// Copying an empty image out gives nothing, rather than an object that is not usable, and
+		// wxWidgets says it was a mistake.
 		Assert.Null(empty.Copy());
+		Assert.Contains("invalid image", Assert.Single(Gui.TakeAssertions()).Message);
 	});
 
 	[Fact]

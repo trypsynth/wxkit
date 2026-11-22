@@ -26,9 +26,11 @@ endif()
 # The Edge web view downloads its SDK from NuGet while configuring. It comes back with the web view itself.
 set(wxUSE_WEBVIEW OFF CACHE BOOL "" FORCE)
 set(wxUSE_WEBVIEW_EDGE OFF CACHE BOOL "" FORCE)
-if(NOT DEFINED wxBUILD_DEBUG_LEVEL)
-	set(wxBUILD_DEBUG_LEVEL 0 CACHE STRING "" FORCE)
-endif()
+# wxWidgets checks its preconditions with assertions, which it recommends keeping in release builds,
+# and a failed one raises Application.AssertFailed, so applications learn of misuse that would
+# otherwise go unnoticed. WXKIT_DEBUG_LEVEL 0 compiles them out.
+set(WXKIT_DEBUG_LEVEL 1 CACHE STRING "wxWidgets' debug level: 1 keeps its assertions, 0 compiles them out")
+set(wxBUILD_DEBUG_LEVEL ${WXKIT_DEBUG_LEVEL} CACHE STRING "" FORCE)
 
 if(UNIX)
 	# Native AOT links position-independent executables, so every static library it links has to be

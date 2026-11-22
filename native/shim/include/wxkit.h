@@ -174,6 +174,12 @@ WXK_FUNCTION(uint8_t) wxk_App_CallAfter(wxk_Callback callback, void* userdata) W
 
 WXK_FUNCTION(void) wxk_App_ExitMainLoop(void) WXK_NOEXCEPT;
 
+// Receives a failed wxWidgets assertion, on the thread it failed on, with its file, line, function,
+// condition, and message, each a string the callback takes and frees.
+typedef void (*wxk_AssertCallback)(wxk_String* file, int32_t line, wxk_String* function, wxk_String* condition, wxk_String* message);
+// Sends failed assertions to callback, or, when it is null, to the debug output.
+WXK_FUNCTION(void) wxk_App_SetAssertCallback(wxk_AssertCallback callback) WXK_NOEXCEPT;
+
 // Sets the direction, a wxLayoutDirection, that windows with nothing to take one from are laid
 // out in, such as new frames and message boxes with no parent. wxLayout_Default follows the UI locale.
 WXK_FUNCTION(void) wxk_App_SetLayoutDirection(int32_t direction) WXK_NOEXCEPT;

@@ -3,6 +3,7 @@ namespace WxKit.Tests;
 // Runs test code on the GUI thread, and keeps the application alive between tests.
 internal static class Gui {
 	private static readonly List<Exception> Unhandled = [];
+	private static readonly List<AssertFailedEventArgs> Assertions = [];
 	private static Frame? _keeper;
 
 	public static TimeSpan Timeout { get; } = TimeSpan.FromSeconds(10);
@@ -12,6 +13,10 @@ internal static class Gui {
 		_keeper = new Frame(null, "WxKit tests");
 		Application.UnhandledException += (_, e) => {
 			lock (Unhandled) Unhandled.Add(e.Exception);
+			e.Handled = true;
+		};
+		Application.AssertFailed += (_, e) => {
+			lock (Assertions) Assertions.Add(e);
 			e.Handled = true;
 		};
 	}
@@ -36,15 +41,19 @@ internal static class Gui {
 	});
 
 	// The body runs on the GUI thread, and so do its continuations. An exception that escapes an
-	// event handler while it runs fails the test, since nothing else would see it.
+	// event handler while it runs fails the test, since nothing else would see it, and so does a
+	// failed wxWidgets assertion, which means the test, or WxKit, called wxWidgets wrongly.
 	public static Task<T> Run<T>(Func<Task<T>> body) {
 		TaskCompletionSource<T> completion = new(TaskCreationOptions.RunContinuationsAsynchronously);
 		Application.Post(async () => {
 			TakeUnhandled();
+			TakeAssertions();
 			try {
 				T result = await body().WaitAsync(Timeout);
 				Exception[] unhandled = TakeUnhandled();
 				if (unhandled.Length > 0) throw new AggregateException("An event handler threw.", unhandled);
+				AssertFailedEventArgs[] assertions = TakeAssertions();
+				if (assertions.Length > 0) throw new InvalidOperationException(string.Join("\n", assertions.Select(assertion => assertion.ToString())));
 				completion.SetResult(result);
 			} catch (Exception error) {
 				completion.SetException(error);
@@ -77,6 +86,15 @@ internal static class Gui {
 		while (!condition()) {
 			if (DateTime.UtcNow > deadline) throw new TimeoutException("The condition did not hold in time.");
 			await Task.Delay(10);
+		}
+	}
+
+	/// <summary>The wxWidgets assertions that failed since the last call, for a test that expects one.</summary>
+	public static AssertFailedEventArgs[] TakeAssertions() {
+		lock (Assertions) {
+			AssertFailedEventArgs[] taken = [.. Assertions];
+			Assertions.Clear();
+			return taken;
 		}
 	}
 

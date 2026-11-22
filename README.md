@@ -6,7 +6,7 @@ WxKit is a preview. It works for trying out and for small applications, its API 
 
 To write a first application, follow [Getting started](docs/getting-started.md). The samples show more:
 
-- [Hello](samples/Hello/Program.cs) publishes with Native AOT as one executable of about 5 MB, since an application links only the classes it uses. [HelloFSharp](samples/HelloFSharp/Program.fs) is its F# counterpart.
+- [Hello](samples/Hello/Program.cs) publishes with Native AOT as one executable of about 6 MB, since an application links only the classes it uses. [HelloFSharp](samples/HelloFSharp/Program.fs) is its F# counterpart.
 - [Editor](samples/Editor/EditorFrame.cs) is a text editor, with menus, files, find and replace, fonts, and printing.
 - [Settings](samples/Settings/SettingsDialog.cs) is a settings dialog, with pages, a form, pickers, and a validator, translated into German as [Translating an application](docs/translating.md) describes.
 - [Checklist](samples/Checklist/ChecklistControl.cs) is a control that draws itself, which screen readers read on all three platforms.

@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
@@ -13,6 +14,19 @@ public unsafe class Application {
 	private static int _guiThreadId;
 	private static LayoutDirection _layoutDirection = LayoutDirection.Default;
 	private ExceptionDispatchInfo? _failure;
+
+	// wxWidgets reports its failed assertions here from the first use of the application on.
+	static Application() => WxKitNative.AppSetAssertCallback(&OnAssertFailed);
+
+	/// <summary>
+	/// Raised when one of wxWidgets' assertions fails, which means it was called in a way it does
+	/// not support, such as with an index out of range or a style a control does not take. wxWidgets
+	/// then goes on as best it can, often by doing nothing. Unless a handler sets
+	/// <see cref="AssertFailedEventArgs.Handled"/>, the failure is written to
+	/// <see cref="Trace"/>, and a debugger that is attached breaks. It is raised on the thread the
+	/// assertion failed on, which is usually the GUI thread.
+	/// </summary>
+	public static event EventHandler<AssertFailedEventArgs>? AssertFailed;
 
 	/// <summary>
 	/// Raised on the GUI thread when an event handler, a posted action, or an <c>await</c>
@@ -190,6 +204,20 @@ public unsafe class Application {
 	}
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+	private static void OnAssertFailed(WxkString* file, int line, WxkString* function, WxkString* condition, WxkString* message) {
+		try {
+			AssertFailedEventArgs args = new(NativeString.Take(file), line, NativeString.Take(function), NativeString.Take(condition), NativeString.Take(message));
+			AssertFailed?.Invoke(Current, args);
+			if (args.Handled) return;
+			Trace.WriteLine(args.ToString());
+			if (Debugger.IsAttached) Debugger.Break();
+		} catch (Exception error) {
+			// An exception cannot unwind into wxWidgets, and an assertion can fail on any thread.
+			Trace.WriteLine($"An AssertFailed handler threw: {error}");
+		}
+	}
+
+	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
 	private static void RunPosted(void* userdata) {
 		GCHandle handle = GCHandle.FromIntPtr((nint)userdata);
 		Action action = (Action)handle.Target!;
@@ -238,6 +266,23 @@ public unsafe class Application {
 
 		public override SynchronizationContext CreateCopy() => this;
 	}
+}
+
+/// <summary>A failed wxWidgets assertion. See <see cref="Application.AssertFailed"/>.</summary>
+public sealed class AssertFailedEventArgs(string file, int line, string function, string condition, string message) : EventArgs {
+	/// <summary>The wxWidgets source file the assertion is in.</summary>
+	public string File { get; } = file;
+	/// <summary>Its line in the file.</summary>
+	public int Line { get; } = line;
+	/// <summary>The wxWidgets function it is in.</summary>
+	public string Function { get; } = function;
+	/// <summary>The condition that was false, as the source writes it.</summary>
+	public string Condition { get; } = condition;
+	/// <summary>What wxWidgets says went wrong, which may be empty.</summary>
+	public string Message { get; } = message;
+	/// <summary>Set to true to leave out the trace and the break into an attached debugger.</summary>
+	public bool Handled { get; set; }
+	public override string ToString() => $"wxWidgets assertion \"{Condition}\" failed in {Function} at {File}:{Line}{(Message.Length > 0 ? ": " + Message : string.Empty)}";
 }
 
 /// <summary>An exception that escaped an event handler. See <see cref="Application.UnhandledException"/>.</summary>
