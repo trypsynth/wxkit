@@ -43,8 +43,11 @@ public sealed class WxKitExtractStrings : Task {
 		string text = template.Write(Domain);
 		string? directory = Path.GetDirectoryName(Path.GetFullPath(Output));
 		if (directory is not null) System.IO.Directory.CreateDirectory(directory);
-		// The template has no creation date, so it only changes when the strings do.
-		if (!File.Exists(Output) || File.ReadAllText(Output) != text) File.WriteAllText(Output, text, new UTF8Encoding(false));
+		// The template has no creation date, so it only changes when the strings do, and it keeps
+		// the line endings it had.
+		string? existing = File.Exists(Output) ? File.ReadAllText(Output) : null;
+		if (existing is not null && existing.Contains("\r\n")) text = text.Replace("\n", "\r\n");
+		if (existing != text) File.WriteAllText(Output, text, new UTF8Encoding(false));
 		Log.LogMessage(MessageImportance.High, $"Extracted {template.Count} strings to {Output}.");
 		return !Log.HasLoggedErrors;
 	}

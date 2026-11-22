@@ -131,12 +131,27 @@
 		from, with msginit, as in msginit -i po/MyApp.pot -o po/de.po -l de. WxKitUpdateCatalogs
 		extracts them and updates each of the application's catalogs, the ones the build compiles, from
 		the template with msgmerge, which marks strings that changed as fuzzy, for a translator to
-		review. Run them with dotnet build -t:WxKitExtract or -t:WxKitUpdateCatalogs. Set WxKitMsgmerge
-		to msgmerge's path when it is not on the PATH.
+		review. It doesn't guess at a new string's translation from a similar old one unless
+		WxKitFuzzyMatching is true, since the guess is wrong more often than not. Both keep each file's
+		line endings. Run them with dotnet build -t:WxKitExtract or -t:WxKitUpdateCatalogs. Set
+		WxKitMsgmerge to msgmerge's path when it is not on the PATH.
 	-->
 	<PropertyGroup>
 		<WxKitMsgmerge Condition="'$(WxKitMsgmerge)' == ''">msgmerge</WxKitMsgmerge>
+		<WxKitFuzzyMatching Condition="'$(WxKitFuzzyMatching)' == ''">false</WxKitFuzzyMatching>
 	</PropertyGroup>
+
+	<UsingTask TaskName="WxKitMergeCatalogs" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)/Microsoft.Build.Tasks.Core.dll">
+		<ParameterGroup>
+			<Catalogs ParameterType="Microsoft.Build.Framework.ITaskItem[]" />
+			<Template ParameterType="System.String" Required="true" />
+			<Msgmerge ParameterType="System.String" Required="true" />
+			<FuzzyMatching ParameterType="System.Boolean" />
+		</ParameterGroup>
+		<Task>
+			<Code Type="Class" Language="cs" Source="$(MSBuildThisFileDirectory)WxKitMergeCatalogs.cs" />
+		</Task>
+	</UsingTask>
 
 	<UsingTask TaskName="WxKitExtractStrings" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)/Microsoft.Build.Tasks.Core.dll">
 		<ParameterGroup>
@@ -168,7 +183,7 @@
 		<ItemGroup>
 			<_WxKitCatalogToUpdate Include="@(_WxKitCatalogSource)" />
 		</ItemGroup>
-		<Exec Command="&quot;$(WxKitMsgmerge)&quot; --update --backup=none --quiet &quot;%(_WxKitCatalogToUpdate.FullPath)&quot; &quot;$(_WxKitTemplate)&quot;" Condition="'@(_WxKitCatalogToUpdate)' != ''" />
+		<WxKitMergeCatalogs Catalogs="@(_WxKitCatalogToUpdate)" Template="$(_WxKitTemplate)" Msgmerge="$(WxKitMsgmerge)" FuzzyMatching="$(WxKitFuzzyMatching)" Condition="'@(_WxKitCatalogToUpdate)' != ''" />
 	</Target>
 
 	<!-- The native package imports the link targets too, when it comes first, since NuGet does not say in which order packages' targets are imported. -->

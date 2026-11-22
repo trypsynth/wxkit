@@ -85,7 +85,7 @@ When your strings change, update every catalog with the following command:
 dotnet build -t:WxKitUpdateCatalogs
 ```
 
-This extracts the strings again, and merges each catalog with the template, with `msgmerge`. A string that changed keeps the translation of the string it was, marked fuzzy, for a translator to review. As gettext does, the build leaves fuzzy entries out until a translator removes the `fuzzy` flag, so they stay in English until then. `msgmerge` also marks a new string fuzzy when it looks like an old one, which is often a wrong guess.
+This extracts the strings again, and merges each catalog with the template, with `msgmerge`. A string that changed keeps the translation of the string it was, marked fuzzy, for a translator to review. As gettext does, the build leaves fuzzy entries out until a translator removes the `fuzzy` flag, so they stay in English until then. A new string is left untranslated, even when it looks like an old one, since `msgmerge`'s guesses at a translation are wrong more often than not. Set `WxKitFuzzyMatching` to `true` to have it guess, as fuzzy entries. The template and the catalogs keep the line endings they had.
 
 ## Check the translations
 
@@ -146,6 +146,7 @@ Set these MSBuild properties and items in the project file:
 - `WxKitTranslationTemplate`: the template's path. The default is the domain's name in the catalogs' folder, as in `po/MyApp.pot`.
 - `WxKitLanguage` items: the languages to embed wxWidgets' catalogs for, in place of the names of the catalogs in `po`.
 - `WxKitStdCatalogs`: `all` to embed all of wxWidgets' catalogs, or `none` to embed none.
+- `WxKitFuzzyMatching`: `true` to have `WxKitUpdateCatalogs` guess at new strings' translations from similar old ones, as fuzzy entries. The default is `false`.
 - `WxKitMsgfmt` and `WxKitMsgmerge`: the paths of `msgfmt` and `msgmerge`, when they aren't on the `PATH`.
 
 ## How it works

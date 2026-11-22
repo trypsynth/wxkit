@@ -16,7 +16,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include="..\..\src\WxKit\build\WxKitExtractStrings.cs;..\..\src\WxKit\build\WxKitCheckCatalogs.cs;..\..\src\WxKit\build\WxKitStdCatalogs.cs" Link="Tasks\%(Filename)%(Extension)" />
+		<Compile Include="..\..\src\WxKit\build\WxKitExtractStrings.cs;..\..\src\WxKit\build\WxKitCheckCatalogs.cs;..\..\src\WxKit\build\WxKitStdCatalogs.cs;..\..\src\WxKit\build\WxKitMergeCatalogs.cs" Link="Tasks\%(Filename)%(Extension)" />
 	</ItemGroup>
 
 	<!-- TargetsTests runs WxKit's targets themselves, from the repository. -->

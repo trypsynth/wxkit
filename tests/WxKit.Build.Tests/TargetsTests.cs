@@ -102,6 +102,43 @@ public class TargetsTests {
 		}
 	}
 
+	// A catalog keeps its CRLF line endings, as does the template, and a new string similar to an
+	// old one gets no guessed translation, unless WxKitFuzzyMatching asks for one.
+	[Theory]
+	[InlineData(false)]
+	[InlineData(true)]
+	public void UpdatesCatalogsWithoutChangingTheirLineEndings(bool fuzzyMatching) {
+		Assert.SkipUnless(HasMsgmerge(), "msgmerge, from GNU gettext, is not installed.");
+		string project = Directory.CreateTempSubdirectory("wxkit-merge-").FullName;
+		try {
+			File.WriteAllText(Path.Combine(project, "App.csproj"), $"""
+				<Project Sdk="Microsoft.NET.Sdk">
+					<PropertyGroup>
+						<OutputType>Exe</OutputType>
+						<TargetFramework>net10.0</TargetFramework>
+						<WxKitFuzzyMatching>{fuzzyMatching}</WxKitFuzzyMatching>
+					</PropertyGroup>
+					<Import Project="{TargetsFile}" />
+				</Project>
+				""");
+			File.WriteAllText(Path.Combine(project, "Program.cs"), "string title = _(\"Open the file\");");
+			Directory.CreateDirectory(Path.Combine(project, "po"));
+			string template = Path.Combine(project, "po", "App.pot");
+			File.WriteAllText(template, "msgid \"\"\r\nmsgstr \"\"\r\n");
+			string catalog = Path.Combine(project, "po", "de.po");
+			File.WriteAllText(catalog, "msgid \"\"\r\nmsgstr \"Content-Type: text/plain; charset=UTF-8\\n\"\r\n\r\nmsgid \"Open the files\"\r\nmsgstr \"Die Dateien öffnen\"\r\n");
+			(int exitCode, string output) = Run(project, "msbuild", "-t:WxKitUpdateCatalogs", "-nologo");
+			Assert.True(exitCode == 0, output);
+			string merged = File.ReadAllText(catalog);
+			Assert.DoesNotContain("\n", merged.Replace("\r\n", string.Empty));
+			Assert.DoesNotContain("\n", File.ReadAllText(template).Replace("\r\n", string.Empty));
+			Assert.Contains("msgid \"Open the file\"", merged);
+			Assert.Equal(fuzzyMatching, merged.Contains("#, fuzzy"));
+		} finally {
+			Directory.Delete(project, true);
+		}
+	}
+
 	private static bool HasMsgmerge() {
 		try {
 			using Process process = Process.Start(new ProcessStartInfo("msgmerge", "--version") { RedirectStandardOutput = true, RedirectStandardError = true })!;
