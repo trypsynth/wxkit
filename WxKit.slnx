@@ -1,6 +1,7 @@
 <Solution>
 	<Folder Name="/src/">
 		<Project Path="src/WxKit/WxKit.csproj" />
+		<Project Path="src/WxKit.FSharp/WxKit.FSharp.fsproj" />
 		<Project Path="src/WxKit.Generator/WxKit.Generator.csproj" />
 		<Project Path="src/WxKit.Native/WxKit.Native.csproj" />
 	</Folder>
@@ -8,6 +9,7 @@
 		<Project Path="tests/WxKit.Build.Tests/WxKit.Build.Tests.csproj" />
 		<Project Path="tests/WxKit.Generator.Tests/WxKit.Generator.Tests.csproj" />
 		<Project Path="tests/WxKit.Tests/WxKit.Tests.csproj" />
+		<Project Path="tests/WxKit.FSharp.Tests/WxKit.FSharp.Tests.fsproj" />
 	</Folder>
 	<Folder Name="/samples/">
 		<Project Path="samples/Checklist/Checklist.csproj" />

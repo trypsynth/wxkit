@@ -221,6 +221,13 @@ public static class StringExtractor {
 		["_pn"] = new Keyword(3, 4, true, true),
 	};
 
+	private static readonly Dictionary<string, Keyword> FSharpFunctions = new Dictionary<string, Keyword>(StringComparer.Ordinal) {
+		["tr"] = new Keyword(1, 1, false, false),
+		["trn"] = new Keyword(2, 3, false, true),
+		["trp"] = new Keyword(2, 2, true, false),
+		["trpn"] = new Keyword(3, 4, true, true),
+	};
+
 	private static readonly Dictionary<string, Keyword> Lookups = new Dictionary<string, Keyword>(StringComparer.Ordinal) {
 		["Translate"] = new Keyword(1, 1, false, false),
 		["TranslatePlural"] = new Keyword(2, 3, false, true),
@@ -250,9 +257,18 @@ public static class StringExtractor {
 				index = BodyEnd(tokens, index, language) - 1;
 				continue;
 			}
-			if (!IsCall(tokens, index, language, out Keyword? keyword)) continue;
-			List<List<Token>>? arguments = Arguments(tokens, index + 1, language);
-			if (arguments is null || arguments.Count < keyword!.Arguments) continue;
+			Keyword? keyword;
+			List<List<Token>>? arguments;
+			if (language == SourceLanguage.FSharp && IsFSharpFunction(tokens, index, out keyword)) {
+				arguments = CurriedArguments(tokens, index + 1, keyword!.Literals, language, IsFSharpArgument(tokens, index));
+				if (arguments is null) continue;
+				// A curried call has no arguments to format with, so it counts as taking them all.
+				if (arguments.Count < keyword.Arguments) arguments.AddRange(Enumerable.Repeat(new List<Token>(), keyword.Arguments - arguments.Count));
+			} else {
+				if (!IsCall(tokens, index, language, out keyword)) continue;
+				arguments = Arguments(tokens, index + 1, language);
+				if (arguments is null || arguments.Count < keyword!.Arguments) continue;
+			}
 			string?[] literals = new string?[keyword.Literals];
 			bool usable = true;
 			for (int position = 0; position < keyword.Literals; position++) {
@@ -273,6 +289,49 @@ public static class StringExtractor {
 			if (conflict is not null) problems.Add(new ExtractionProblem(token.Line, token.Column, "WXKIT2003", $"\"{id}\" {conflict}, and a string has one set of forms in a catalog."));
 		}
 		return problems;
+	}
+
+	// WxKit.FSharp's functions, as tr "text" or Translation.tr "text", which F# calls with its
+	// arguments one after another rather than in parentheses. One being declared, as by let tr, is
+	// not a call, and nor is a member of something else with the same name.
+	private static bool IsFSharpFunction(List<Token> tokens, int index, out Keyword? keyword) {
+		if (!FSharpFunctions.TryGetValue(tokens[index].Text, out keyword)) return false;
+		if (index >= 1 && tokens[index - 1].Is('.')) return index >= 2 && tokens[index - 2].Text == "Translation";
+		return index == 0 || tokens[index - 1].Kind != TokenKind.Identifier || !FSharpDeclarationKeywords.Contains(tokens[index - 1].Text);
+	}
+
+	// Whether the function is itself an argument, as in List.map tr labels, after a name that is
+	// not one of the keywords an expression follows, such as then.
+	private static bool IsFSharpArgument(List<Token> tokens, int index) {
+		if (index == 0 || tokens[index - 1].Kind != TokenKind.Identifier) return false;
+		return !FSharpExpressionKeywords.Contains(tokens[index - 1].Text);
+	}
+
+	private static readonly HashSet<string> FSharpExpressionKeywords = new HashSet<string>(StringComparer.Ordinal) {
+		"then", "else", "elif", "if", "in", "do", "yield", "return", "match", "with", "when", "not", "lazy", "upcast", "downcast",
+	};
+
+	// A curried call's strings, each one argument: tr "text", or trn "one" "many" count. One in
+	// parentheses, as in tr ("text"), is read as other calls are. Another name after it, as in
+	// tr label, is an argument that is not a literal, unless the function is an argument itself,
+	// as in List.map tr labels, and the function on its own is no call.
+	private static List<List<Token>>? CurriedArguments(List<Token> tokens, int start, int literals, SourceLanguage language, bool isArgument) {
+		if (start >= tokens.Count) return null;
+		if (tokens[start].Is('(')) {
+			List<List<Token>>? grouped = Arguments(tokens, start, language);
+			return grouped != null && grouped.Count == 1 ? grouped : null;
+		}
+		List<List<Token>> arguments = new List<List<Token>>();
+		for (int position = 0; position < literals && start + position < tokens.Count; position++) {
+			Token argument = tokens[start + position];
+			if (argument.Kind == TokenKind.String || argument.Kind == TokenKind.Interpolated || argument.Kind == TokenKind.Identifier) {
+				arguments.Add(new List<Token> { argument });
+				if (argument.Kind == TokenKind.Identifier) return arguments.Count == 1 && position == 0 && !isArgument ? arguments : null;
+			} else {
+				break;
+			}
+		}
+		return arguments.Count == literals ? arguments : null;
 	}
 
 	// A shortcut, bare or as Gettext's, or a lookup as Translations', followed by its arguments in

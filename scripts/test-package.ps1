@@ -1,5 +1,6 @@
 # Uses the packages in artifacts/packages the way an application would: a new project made with
-# their dotnet new template, which references WxKit from them. It builds the template's project,
+# their dotnet new template, which references WxKit from them, and its F# version, which
+# references WxKit.FSharp. It builds the template's project,
 # then gives it the Hello sample's code, which can close itself, runs it as it is, which loads the
 # shared library from the native package, and then publishes it with Native AOT, which links the
 # static one, and runs that. Run scripts/pack.ps1 first.
@@ -90,4 +91,23 @@ if ($IsMacOS) {
 }
 Test-Executable $executable "The package test, published with Native AOT,"
 $size = [math]::Round((Get-Item $executable).Length / 1MB, 1)
-Write-Host "WxKit $version restored from its packages, ran, and published with Native AOT for $Runtime as $size MB."
+
+# The F# template's project, which references WxKit.FSharp, builds from the packages too, shut off
+# from the repository's build in the same way.
+$fsharp = Join-Path $test "fsharp"
+dotnet new wxkit -lang "F#" -n PackageTestFSharp -o $fsharp --no-restore --debug:custom-hive $hive
+if ($LASTEXITCODE -ne 0) { throw "Making an F# project with the template failed." }
+foreach ($file in "Directory.Build.props", "Directory.Build.targets", "nuget.config") { Copy-Item (Join-Path $project $file) $fsharp }
+dotnet build $fsharp -c Release -nologo
+if ($LASTEXITCODE -ne 0) { throw "Building the F# template's project failed." }
+# Then it publishes the F# sample's code with Native AOT, which can close itself, so WxKit's
+# native library and link targets reach an application through WxKit.FSharp.
+Copy-Item (Join-Path $root "samples/HelloFSharp/Program.fs") $fsharp -Force
+(Get-Item (Join-Path $fsharp "Program.fs")).LastWriteTime = Get-Date
+$fsharpPublished = Join-Path $fsharp "published"
+dotnet publish $fsharp -c Release -r $Runtime -o $fsharpPublished -nologo
+if ($LASTEXITCODE -ne 0) { throw "Publishing the F# package test with Native AOT failed." }
+$fsharpExecutable = Join-Path $fsharpPublished "PackageTestFSharp$($IsWindows ? '.exe' : '')"
+if ($IsMacOS) { $fsharpExecutable = Join-Path $fsharpPublished "PackageTestFSharp.app/Contents/MacOS/PackageTestFSharp" }
+Test-Executable $fsharpExecutable "The F# package test, published with Native AOT,"
+Write-Host "WxKit $version restored from its packages, ran, and published with Native AOT for $Runtime as $size MB, and so did its F# template with WxKit.FSharp."

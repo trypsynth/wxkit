@@ -146,6 +146,8 @@ jobs:
         shell: pwsh
         run: |
           if ($IsLinux) { xvfb-run -a dotnet test --project tests/WxKit.Tests -c Release } else { dotnet test --project tests/WxKit.Tests -c Release }
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          if ($IsLinux) { xvfb-run -a dotnet test --project tests/WxKit.FSharp.Tests -c Release } else { dotnet test --project tests/WxKit.FSharp.Tests -c Release }
           exit $LASTEXITCODE
 
       - name: Test Native AOT
@@ -329,7 +331,7 @@ jobs:
         env:
           NUGET_API_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}
         run: |
-          for package in packages/WxKit.Native.*.nupkg packages/WxKit.[0-9]*.nupkg packages/WxKit.Templates.*.nupkg; do
+          for package in packages/WxKit.Native.*.nupkg packages/WxKit.[0-9]*.nupkg packages/WxKit.FSharp.*.nupkg packages/WxKit.Templates.*.nupkg; do
             dotnet nuget push "$package" --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json --skip-duplicate
           done
 

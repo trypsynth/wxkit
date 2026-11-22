@@ -1,9 +1,9 @@
+open System
 open WxKit
+open WxKit.FSharp
 
-// Text a user reads goes through Translations.Translate, so it can be translated. Translating an
-// application: https://github.com/trypsynth/wxkit/blob/master/docs/translating.md
-let tr (text: string) = Translations.Translate text
-
+// Text a user reads goes through tr, so it can be translated. Translating an application:
+// https://github.com/trypsynth/wxkit/blob/master/docs/translating.md
 [<EntryPoint>]
 let main _ =
     Translations.Use "WxKitApp" |> ignore
@@ -20,17 +20,18 @@ let main _ =
         let announcer = new LiveRegion(panel)
         let sayHello () =
             let text = name.Value.Trim()
-            let message = if text.Length = 0 then tr "Type your name first." else System.String.Format(tr "Hello, {0}!", text)
+            let message = if text.Length = 0 then tr "Type your name first." else String.Format(tr "Hello, {0}!", text)
             greeting.Label <- message
             announcer.Announce message |> ignore
         greet.Click.Add(fun _ -> sayHello ())
         name.TextEnter.Add(fun _ -> sayHello ())
-        let sizer = new BoxSizer(Orientation.Vertical)
-        sizer.Add(nameLabel, SizerFlags.Default.Border(Direction.Left ||| Direction.Right ||| Direction.Top))
-        sizer.Add(name, SizerFlags.Default.Expand().Border())
-        sizer.Add(greet, SizerFlags.Default.Border())
-        sizer.Add(greeting, SizerFlags.Default.Expand().Border())
-        panel.Sizer <- sizer
+        panel.Sizer <-
+            column {
+                item nameLabel |> border (Direction.Left ||| Direction.Right ||| Direction.Top)
+                item name |> fill
+                greet
+                item greeting |> fill
+            }
         frame.Center()
         frame.Show() |> ignore
         name.SetFocus())

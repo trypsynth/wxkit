@@ -128,7 +128,7 @@ New windows with no parent, and message boxes, are laid out in that direction, a
 
 ## Use F# or Visual Basic
 
-Neither F# nor Visual Basic accepts `_` alone as a name. Both can use `_n`, `_p`, and `_pn`, and for a plain string, `Translations.Translate`, written with `Translations.` before it, which the extractor looks for.
+Neither F# nor Visual Basic accepts `_` alone as a name. In F#, use WxKit.FSharp's `tr`, `trn`, `trp`, and `trpn`, as in `tr "&Open"` and `trn "{0} file" "{0} files" count`, which the extractor finds with the strings after them. Visual Basic can use `_n`, `_p`, and `_pn`, and for a plain string, `Translations.Translate`, written with `Translations.` before it, which the extractor looks for.
 
 ## Ship wxWidgets' translations
 

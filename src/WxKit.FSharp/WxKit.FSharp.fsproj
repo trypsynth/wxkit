@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<!--
+		WxKit for F#: functions that translate text, as Gettext's _ does in C#, and computation
+		expressions that lay out windows with sizers. It references the WxKit package of the same
+		version, so an application references only this one.
+	-->
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<IsAotCompatible>true</IsAotCompatible>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<PackageId>WxKit.FSharp</PackageId>
+		<Description>WxKit for F#: translation functions that gettext finds, and computation expressions for layouts, over WxKit's .NET bindings to wxWidgets. Publishes with Native AOT.</Description>
+		<PackageTags>wxwidgets;gui;desktop;native-aot;accessibility;fsharp</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/trypsynth/wxkit</PackageProjectUrl>
+		<PackageReleaseNotes>https://github.com/trypsynth/wxkit/releases</PackageReleaseNotes>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="Translation.fs" />
+		<Compile Include="Layout.fs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- An application gets WxKit's build targets through this package too: its native library, its Native AOT link, and its catalogs. -->
+		<ProjectReference Include="..\WxKit\WxKit.csproj" PrivateAssets="none" />
+	</ItemGroup>
+
+</Project>

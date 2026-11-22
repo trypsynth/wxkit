@@ -148,6 +148,39 @@ public class ExtractorTests {
 		Assert.Equal(["context", null, "verbatim \"quoted\"", "spans lines", "after"], template.Strings.Select(found => found.Context));
 	}
 
+	// WxKit.FSharp's functions take their strings one after another, or one in parentheses. A
+	// declaration of the same name, a member of something else, and the function passed as a
+	// value are not calls.
+	[Fact]
+	public void ReadsWxKitFSharpsFunctions() {
+		List<ExtractionProblem> problems = Extract("""
+			let a = tr "Open"
+			let b = trn "{0} file" "{0} files" count
+			let c = trp "verb" "Open"
+			let d = trpn "menu" "{0} item" "{0} items" count
+			let e = String.Format(tr "Hello, {0}!", name)
+			let f = Translation.tr "qualified"
+			let g = tr ("in parentheses")
+			let h = tr "one" + "not part of it"
+			let tr (text: string) = text
+			let i = other.tr "a member"
+			let j = List.map tr labels
+			let k = tr label
+			let l = tr $"Hello {name}"
+			""", out StringTemplate template, SourceLanguage.FSharp);
+		Assert.Collection(template.Strings,
+			found => Assert.Equal((null, "Open", null, false), Describe(found)),
+			found => Assert.Equal((null, "{0} file", "{0} files", false), Describe(found)),
+			found => Assert.Equal(("verb", "Open", null, false), Describe(found)),
+			found => Assert.Equal(("menu", "{0} item", "{0} items", false), Describe(found)),
+			found => Assert.Equal((null, "Hello, {0}!", null, false), Describe(found)),
+			found => Assert.Equal((null, "qualified", null, false), Describe(found)),
+			found => Assert.Equal((null, "in parentheses", null, false), Describe(found)),
+			found => Assert.Equal((null, "one", null, false), Describe(found)));
+		Assert.Equal(["WXKIT2001", "WXKIT2002"], problems.Select(problem => problem.Code));
+		Assert.Equal([12, 13], problems.Select(problem => problem.Line));
+	}
+
 	[Fact]
 	public void WritesATemplate() {
 		StringTemplate template = new();

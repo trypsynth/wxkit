@@ -56,6 +56,8 @@ To use WxKit in a project you have, add the package, which brings in the native 
 dotnet add package WxKit --prerelease
 ```
 
+In F#, add `WxKit.FSharp` instead, which brings WxKit with it, and adds translation functions and layouts that read as F#.
+
 [Getting started](docs/getting-started.md) goes from there to a published executable. A tag publishes a new version, as [Building and packaging](docs/design/building-and-packaging.md#releasing) describes.
 
 To try changes of your own from an application, build the packages, which go to `artifacts/packages`:
