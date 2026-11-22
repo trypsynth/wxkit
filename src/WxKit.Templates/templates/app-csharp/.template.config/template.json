@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Quin Gillespie",
+  "classifications": ["Desktop", "GUI", "wxWidgets"],
+  "identity": "WxKit.App.CSharp",
+  "groupIdentity": "WxKit.App",
+  "name": "WxKit application",
+  "description": "A desktop application with native controls on Windows, macOS, and Linux, which publishes with Native AOT as one executable.",
+  "shortName": "wxkit",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "WxKitApp",
+  "preferNameDirectory": true,
+  "symbols": {
+    "skipRestore": {
+      "type": "parameter",
+      "datatype": "bool",
+      "description": "Skips restoring the project's packages when it is made.",
+      "defaultValue": "false"
+    },
+    "lowerName": {
+      "type": "generated",
+      "generator": "casing",
+      "parameters": {
+        "source": "name",
+        "toLower": true
+      },
+      "replaces": "wxkitapp"
+    }
+  },
+  "primaryOutputs": [{ "path": "WxKitApp.csproj" }],
+  "postActions": [
+    {
+      "condition": "(!skipRestore)",
+      "description": "Restore the project's packages.",
+      "manualInstructions": [{ "text": "Run 'dotnet restore'" }],
+      "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+      "continueOnError": true
+    }
+  ]
+}

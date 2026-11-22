@@ -1,5 +1,6 @@
 # Packs WxKit into artifacts/packages: a native package for each runtime, such as
-# WxKit.Native.win-x64, from its build in artifacts/native, and then WxKit, which depends on them.
+# WxKit.Native.win-x64, from its build in artifacts/native, then WxKit, which depends on them, and
+# WxKit.Templates, the dotnet new templates, whose projects reference that WxKit.
 # Run scripts/build-native.ps1 for the same runtimes first.
 param(
 	[string[]]$Runtimes = @("win-x64"),
@@ -29,6 +30,12 @@ foreach ($runtime in $Runtimes) {
 $runtimeList = $Runtimes -join "+"
 dotnet pack (Join-Path $root "src/WxKit") -c $Configuration -o $output -nologo "-p:WxKitPacking=true" "-p:WxKitRuntimes=$runtimeList" "-p:RestoreAdditionalProjectSources=$output" "-p:RestorePackagesPath=$cache" @versionArguments
 if ($LASTEXITCODE -ne 0) { throw "Packing WxKit failed." }
+
+# The templates reference the WxKit just packed, by its version.
+$package = Get-ChildItem $output -Filter "WxKit.*.nupkg" | Where-Object { $_.Name -notlike "WxKit.Native.*" } | Select-Object -First 1
+$packed = $package.Name.Substring("WxKit.".Length, $package.Name.Length - "WxKit.".Length - ".nupkg".Length)
+dotnet pack (Join-Path $root "src/WxKit.Templates") -c $Configuration -o $output -nologo "-p:Version=$packed"
+if ($LASTEXITCODE -ne 0) { throw "Packing WxKit.Templates failed." }
 
 foreach ($package in Get-ChildItem $output -Include *.nupkg, *.snupkg -Recurse) {
 	$size = [math]::Round($package.Length / 1MB, 1)

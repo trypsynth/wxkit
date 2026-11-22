@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<!--
+		The dotnet new templates, as one package: dotnet new install WxKit.Templates, then
+		dotnet new wxkit -n MyApp, in C# or with -lang F#. The projects reference the WxKit package
+		of the same version as this one, which the pack writes into them.
+	-->
+	<PropertyGroup>
+		<PackageType>Template</PackageType>
+		<PackageId>WxKit.Templates</PackageId>
+		<Description>dotnet new templates for WxKit: a desktop application with native, accessible controls on Windows, macOS, and Linux, which publishes with Native AOT as one executable. Run dotnet new wxkit -n MyApp.</Description>
+		<PackageTags>wxwidgets;gui;desktop;native-aot;accessibility;dotnet-new;templates</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/trypsynth/wxkit</PackageProjectUrl>
+		<PackageReleaseNotes>https://github.com/trypsynth/wxkit/releases</PackageReleaseNotes>
+		<TargetFramework>net10.0</TargetFramework>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<IncludeSymbols>false</IncludeSymbols>
+		<EnableDefaultItems>false</EnableDefaultItems>
+		<SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+		<!-- The package has no library, only the templates. -->
+		<NoWarn>$(NoWarn);NU5128</NoWarn>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<_WxKitTemplateFile Include="templates/**/*" Folder="%(RecursiveDir)" />
+	</ItemGroup>
+
+	<!-- Each template's copy, in obj, with the WxKit version it references written in. -->
+	<Target Name="_WxKitStampTemplates" BeforeTargets="_GetPackageFiles">
+		<PropertyGroup>
+			<_WxKitStamped>$([System.IO.Path]::GetFullPath('$(MSBuildProjectDirectory)/$(IntermediateOutputPath)stamped-templates'))/</_WxKitStamped>
+		</PropertyGroup>
+		<ItemGroup>
+			<_WxKitStampedFile Include="@(_WxKitTemplateFile->'$(_WxKitStamped)%(Folder)%(Filename)%(Extension)')" Source="%(FullPath)" />
+		</ItemGroup>
+		<MakeDir Directories="@(_WxKitStampedFile->'%(RootDir)%(Directory)')" />
+		<WriteLinesToFile File="%(_WxKitStampedFile.Identity)" Lines="$([System.IO.File]::ReadAllText('%(_WxKitStampedFile.Source)').Replace('WXKIT_VERSION', '$(Version)').TrimEnd())" Overwrite="true" WriteOnlyWhenDifferent="true" />
+		<ItemGroup>
+			<None Include="@(_WxKitStampedFile)" Pack="true" PackagePath="content/templates/%(Folder)" />
+		</ItemGroup>
+	</Target>
+
+</Project>

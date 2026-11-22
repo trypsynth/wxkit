@@ -16,6 +16,17 @@ This guide uses C#. F# works as well, and the [F# sample](../samples/HelloFSharp
 
 ## Create the project
 
+The WxKit template makes a project that is ready to run and to publish with Native AOT, with a window that greets you by name:
+
+```shell
+dotnet new install WxKit.Templates
+dotnet new wxkit -n Todo
+cd Todo
+dotnet run
+```
+
+`dotnet new wxkit -lang F#` makes the F# version. This guide starts from a console project instead, to show what each part of the project does:
+
 1. Create a console project, and go into its folder:
 
    ```shell

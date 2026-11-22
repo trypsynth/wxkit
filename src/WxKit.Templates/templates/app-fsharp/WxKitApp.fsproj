@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net10.0</TargetFramework>
+		<!-- dotnet publish makes one native executable for this machine, or for another with -r, such as -r linux-x64. -->
+		<RuntimeIdentifier Condition="'$(RuntimeIdentifier)' == ''">$(NETCoreSdkRuntimeIdentifier)</RuntimeIdentifier>
+		<PublishAot>true</PublishAot>
+		<!-- On macOS, the app bundle is named after the title, and macOS knows it by the identifier. -->
+		<ApplicationTitle>WxKitApp</ApplicationTitle>
+		<ApplicationId>com.example.wxkitapp</ApplicationId>
+	</PropertyGroup>
+
+	<!-- F# compiles its files in the order listed. -->
+	<ItemGroup>
+		<Compile Include="Program.fs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="WxKit" Version="WXKIT_VERSION" />
+	</ItemGroup>
+
+</Project>

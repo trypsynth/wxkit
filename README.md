@@ -43,7 +43,14 @@ The tests create real windows, so they need a desktop session. On Linux without 
 
 ## Packages
 
-WxKit is on nuget.org as a preview. To use it in an application, add the package, which brings in the native package for each runtime, such as `WxKit.Native.win-x64`:
+WxKit is on nuget.org as a preview. To start an application, install the templates and make one, in C# or, with `-lang F#`, in F#:
+
+```shell
+dotnet new install WxKit.Templates
+dotnet new wxkit -n MyApp
+```
+
+To use WxKit in a project you have, add the package, which brings in the native package for each runtime, such as `WxKit.Native.win-x64`:
 
 ```shell
 dotnet add package WxKit --prerelease

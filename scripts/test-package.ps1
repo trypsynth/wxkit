@@ -1,7 +1,8 @@
-# Uses the packages in artifacts/packages the way an application would: a new project that
-# references WxKit from them, with the Hello sample's code. It runs the project as it is, which
-# loads the shared library from the native package, and then publishes it with Native AOT, which
-# links the static one, and runs that. Run scripts/pack.ps1 first.
+# Uses the packages in artifacts/packages the way an application would: a new project made with
+# their dotnet new template, which references WxKit from them. It builds the template's project,
+# then gives it the Hello sample's code, which can close itself, runs it as it is, which loads the
+# shared library from the native package, and then publishes it with Native AOT, which links the
+# static one, and runs that. Run scripts/pack.ps1 first.
 param(
 	[string]$Runtime = "win-x64",
 	[int]$TimeoutSeconds = 30
@@ -15,7 +16,7 @@ $test = Join-Path $root "artifacts/package-test"
 $project = Join-Path $test "app"
 $restored = Join-Path $test "packages"
 
-$package = Get-ChildItem $packages -Filter "WxKit.*.nupkg" | Where-Object { $_.Name -notlike "WxKit.Native.*" } | Select-Object -First 1
+$package = Get-ChildItem $packages -Filter "WxKit.*.nupkg" | Where-Object { $_.Name -notlike "WxKit.Native.*" -and $_.Name -notlike "WxKit.Templates.*" } | Select-Object -First 1
 if (-not $package) { throw "There is no WxKit package in $packages. Run scripts/pack.ps1 first." }
 $version = $package.Name.Substring("WxKit.".Length, $package.Name.Length - "WxKit.".Length - ".nupkg".Length)
 
@@ -46,21 +47,20 @@ Set-Content (Join-Path $project "nuget.config") @"
 	</packageSources>
 </configuration>
 "@ -Encoding utf8NoBOM
-Set-Content (Join-Path $project "PackageTest.csproj") @"
-<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<OutputType>WinExe</OutputType>
-		<TargetFramework>net10.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<ApplicationId>io.github.trypsynth.wxkit.packagetest</ApplicationId>
-	</PropertyGroup>
-	<ItemGroup>
-		<PackageReference Include="WxKit" Version="$version" />
-	</ItemGroup>
-</Project>
-"@ -Encoding utf8NoBOM
-Copy-Item (Join-Path $root "samples/Hello/Program.cs") $project
+# The template goes into a hive of its own, so the machine's own templates are left as they are.
+$templates = Get-ChildItem $packages -Filter "WxKit.Templates.*.nupkg" | Select-Object -First 1
+if (-not $templates) { throw "There is no WxKit.Templates package in $packages. Run scripts/pack.ps1 first." }
+$hive = Join-Path $test "template-hive"
+dotnet new install $templates.FullName --debug:custom-hive $hive
+if ($LASTEXITCODE -ne 0) { throw "Installing the templates failed." }
+dotnet new wxkit -n PackageTest -o $project --no-restore --debug:custom-hive $hive
+if ($LASTEXITCODE -ne 0) { throw "Making a project with the template failed." }
+dotnet build $project -c Release -nologo
+if ($LASTEXITCODE -ne 0) { throw "Building the template's project failed." }
+# The copy keeps the sample's time, older than the build just made, so it is marked as changed now,
+# or the next build would keep the template's program, which waits for a person to close it.
+Copy-Item (Join-Path $root "samples/Hello/Program.cs") $project -Force
+(Get-Item (Join-Path $project "Program.cs")).LastWriteTime = Get-Date
 
 function Test-Executable([string]$Path, [string]$What) {
 	$process = Start-Process $Path -ArgumentList "--smoke" -PassThru
@@ -73,7 +73,10 @@ function Test-Executable([string]$Path, [string]$What) {
 
 dotnet build $project -c Release -nologo
 if ($LASTEXITCODE -ne 0) { throw "Building the package test failed." }
-Test-Executable (Join-Path $project "bin/Release/net10.0/PackageTest$($IsWindows ? '.exe' : '')") "The package test, run as it is,"
+# The template's project builds for the machine's own runtime, so its output has the runtime in its path.
+$built = Get-ChildItem (Join-Path $project "bin/Release/net10.0") -Recurse -Filter "PackageTest$($IsWindows ? '.exe' : '')" | Where-Object { $_.Directory.Name -ne "publish" } | Select-Object -First 1
+if (-not $built) { throw "The package test's build has no executable." }
+Test-Executable $built.FullName "The package test, run as it is,"
 
 $published = Join-Path $project "published"
 dotnet publish $project -c Release -r $Runtime -o $published -nologo "-p:PublishAot=true"
