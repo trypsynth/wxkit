@@ -3,7 +3,7 @@ namespace WxKit.Tests;
 // What screen readers read of standard controls, from each platform's accessibility API: MSAA on
 // Windows, NSAccessibility on macOS, and ATK on Linux. A control is named by the label just before
 // it, as WxKit's samples and docs make forms.
-public class AccessibilityInfoTests {
+public partial class AccessibilityInfoTests {
 	[Fact]
 	public Task ReadsAFormAsAScreenReaderDoes() => Gui.WithFrame(async frame => {
 		Panel panel = new(frame);
@@ -51,11 +51,20 @@ public class AccessibilityInfoTests {
 		frame.Show();
 		frame.Raise();
 		second.SetFocus();
-		await Gui.WaitUntil(() => AccessibilityInfo.Of(second).IsFocused, TimeSpan.FromSeconds(5)).ContinueWith(_ => { }, TaskScheduler.Current);
-		Assert.SkipUnless(Window.FindFocus() == second, "The system did not give the test window the focus.");
-		Assert.True(AccessibilityInfo.Of(second).IsFocused);
-		Assert.False(AccessibilityInfo.Of(first).IsFocused);
+		// Windows reports a control focused only in the window in front, which a CI runner's may not be.
+		try {
+			await Gui.WaitUntil(() => frame.IsActive && Window.FindFocus() == second && IsInFront(frame), TimeSpan.FromSeconds(5));
+		} catch (TimeoutException) {
+			Assert.Skip("The system did not put the test window in front.");
+		}
+		Assert.True(AccessibilityInfo.Of(second).IsFocused, AccessibilityInfo.Of(second).ToString());
+		Assert.False(AccessibilityInfo.Of(first).IsFocused, AccessibilityInfo.Of(first).ToString());
 	});
+
+	private static bool IsInFront(Frame frame) => !OperatingSystem.IsWindows() || GetForegroundWindow() == frame.NativeHandle;
+
+	[System.Runtime.InteropServices.LibraryImport("user32.dll")]
+	private static partial nint GetForegroundWindow();
 
 	private static AccessibilityInfo Expect(Window window, AccessibleRole role, string name) {
 		AccessibilityInfo info = AccessibilityInfo.Of(window);
