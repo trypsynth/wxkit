@@ -349,14 +349,14 @@ static class WxKit.ArtId
 static class WxKit.ArtProvider
     static Bitmap? GetBitmap(string id, string client = "wxART_OTHER_C", Size? size = null)
     static Icon? GetIcon(string id, string client = "wxART_OTHER_C", Size? size = null)
-    static Icon? GetMessageBoxIcon(int flags)
+    static Icon? GetMessageBoxIcon(MessageDialogStyle flags)
     static Size GetDipSizeHint(string client)
     static Size GetNativeDipSizeHint(string client)
     static Size GetNativeSizeHint(string client, Window? window = null)
     static Size GetSizeHint(string client, Window? window = null)
     static bool HasNativeProvider { get; }
     static bool Pop()
-    static string GetMessageBoxIconId(int flags)
+    static string GetMessageBoxIconId(MessageDialogStyle flags)
 sealed class WxKit.AssertFailedEventArgs : EventArgs
     AssertFailedEventArgs(string file, int line, string function, string condition, string message)
     bool Handled { get; set; }
@@ -590,7 +590,7 @@ class WxKit.CalendarCtrl : Control
     event EventHandler<CalendarEvent>? WeekDayClicked
     void EnableHolidayDisplay(bool display = true)
     void Mark(int day, bool mark)
-    void ResetAttr(int day)
+    void ResetAttributes(int day)
     void SetHeaderColors(Color? colFg, Color? colBg)
     void SetHighlightColors(Color? colFg, Color? colBg)
     void SetHoliday(int day)
@@ -929,6 +929,7 @@ class WxKit.DC : NativeObject
     Bitmap? AsBitmap { get; }
     Brush? Background { get; set; }
     Brush? Brush { get; set; }
+    BrushStyle BackgroundMode { get; set; }
     Color? TextBackground { get; set; }
     Color? TextForeground { get; set; }
     Font? Font { get; set; }
@@ -955,7 +956,7 @@ class WxKit.DC : NativeObject
     Size Size { get; }
     Size SizeMM { get; }
     Size ToDip(Size size)
-    bool AreAutomaticBoundingBoxUpdatesEnabled()
+    bool AreAutomaticBoundingBoxUpdatesEnabled { get; }
     bool Blit(int xdest, int ydest, int width, int height, DC source, int xsrc, int ysrc, RasterOperationMode logicalFunc = RasterOperationMode.Copy, bool useMask = false, int xsrcMask = -1, int ysrcMask = -1)
     bool CanDrawBitmap { get; }
     bool CanGetTextExtent { get; }
@@ -969,7 +970,6 @@ class WxKit.DC : NativeObject
     bool StartDoc(string message)
     bool StretchBlit(int xdest, int ydest, int dstWidth, int dstHeight, DC source, int xsrc, int ysrc, int srcWidth, int srcHeight, RasterOperationMode logicalFunc = RasterOperationMode.Copy, bool useMask = false, int xsrcMask = -1, int ysrcMask = -1)
     double ContentScaleFactor { get; }
-    int BackgroundMode { get; set; }
     int CharHeight { get; }
     int CharWidth { get; }
     int Depth { get; }
@@ -1171,6 +1171,7 @@ class WxKit.DataViewCtrl : Control
 class WxKit.DataViewEvent : NotifyEvent
     DataViewColumn? DataViewColumn { get; }
     DataViewItem Item { get; }
+    DragFlags DragFlags { get; set; }
     DragResult DropEffect { get; set; }
     Point Position { get; }
     bool IsEditCancelled { get; }
@@ -1178,7 +1179,6 @@ class WxKit.DataViewEvent : NotifyEvent
     int CacheTo { get; }
     int Column { get; set; }
     int DataSize { get; set; }
-    int DragFlags { get; set; }
     int ProposedDropIndex { get; }
     object? Value { get; set; }
     void SetCache(int from, int to)
@@ -1415,6 +1415,10 @@ class WxKit.DpiChangedEvent : Event
     Size Scale(Size size)
     int ScaleX(int x)
     int ScaleY(int y)
+[Flags] enum WxKit.DragFlags : int
+    AllowMove = 1
+    CopyOnly = 0
+    DefaultMove = 3
 enum WxKit.DragResult : int
     DragCancel = 5
     DragCopy = 2
@@ -1472,7 +1476,7 @@ static class WxKit.EventType
     static EventType<BookCtrlEvent> TreebookPageChanging { get; }
     static EventType<CalendarEvent> CalendarDoubleclicked { get; }
     static EventType<CalendarEvent> CalendarPageChanged { get; }
-    static EventType<CalendarEvent> CalendarSelChanged { get; }
+    static EventType<CalendarEvent> CalendarSelectionChanged { get; }
     static EventType<CalendarEvent> CalendarWeekClicked { get; }
     static EventType<CalendarEvent> CalendarWeekdayClicked { get; }
     static EventType<ChildFocusEvent> ChildFocus { get; }
@@ -1572,11 +1576,11 @@ static class WxKit.EventType
     static EventType<ListEvent> ListBeginLabelEdit { get; }
     static EventType<ListEvent> ListBeginRdrag { get; }
     static EventType<ListEvent> ListCacheHint { get; }
-    static EventType<ListEvent> ListColBeginDrag { get; }
-    static EventType<ListEvent> ListColClick { get; }
-    static EventType<ListEvent> ListColDragging { get; }
-    static EventType<ListEvent> ListColEndDrag { get; }
-    static EventType<ListEvent> ListColRightClick { get; }
+    static EventType<ListEvent> ListColumnBeginDrag { get; }
+    static EventType<ListEvent> ListColumnClick { get; }
+    static EventType<ListEvent> ListColumnDragging { get; }
+    static EventType<ListEvent> ListColumnEndDrag { get; }
+    static EventType<ListEvent> ListColumnRightClick { get; }
     static EventType<ListEvent> ListDeleteAllItems { get; }
     static EventType<ListEvent> ListDeleteItem { get; }
     static EventType<ListEvent> ListEndLabelEdit { get; }
@@ -1646,9 +1650,9 @@ static class WxKit.EventType
     static EventType<SpinEvent> SpinUp { get; }
     static EventType<SpinEvent> Spinctrl { get; }
     static EventType<SplitterEvent> SplitterDoubleclicked { get; }
-    static EventType<SplitterEvent> SplitterSashPosChanged { get; }
-    static EventType<SplitterEvent> SplitterSashPosChanging { get; }
-    static EventType<SplitterEvent> SplitterSashPosResize { get; }
+    static EventType<SplitterEvent> SplitterSashPositionChanged { get; }
+    static EventType<SplitterEvent> SplitterSashPositionChanging { get; }
+    static EventType<SplitterEvent> SplitterSashPositionResize { get; }
     static EventType<SplitterEvent> SplitterUnsplit { get; }
     static EventType<StyledTextEvent> StcAutocompCancelled { get; }
     static EventType<StyledTextEvent> StcAutocompCharDeleted { get; }
@@ -1711,8 +1715,8 @@ static class WxKit.EventType
     static EventType<TreeEvent> TreeItemMiddleClick { get; }
     static EventType<TreeEvent> TreeItemRightClick { get; }
     static EventType<TreeEvent> TreeKeyDown { get; }
-    static EventType<TreeEvent> TreeSelChanged { get; }
-    static EventType<TreeEvent> TreeSelChanging { get; }
+    static EventType<TreeEvent> TreeSelectionChanged { get; }
+    static EventType<TreeEvent> TreeSelectionChanging { get; }
     static EventType<TreeEvent> TreeSetInfo { get; }
     static EventType<TreeEvent> TreeStateImageClick { get; }
     static EventType<UpdateUIEvent> UpdateUi { get; }
@@ -1814,14 +1818,14 @@ class WxKit.FlexGridSizer : GridSizer
     FlexGridSizer(int rows, int cols, Size gap)
     FlexGridSizer(int rows, int cols, int vgap, int hgap)
     FlexSizerGrowMode NonFlexibleGrowMode { get; set; }
-    bool IsColGrowable(int index)
+    bool IsColumnGrowable(int index)
     bool IsRowGrowable(int index)
     int FlexibleDirection { get; set; }
-    int[] ColWidths { get; }
+    int[] ColumnWidths { get; }
     int[] RowHeights { get; }
-    void AddGrowableCol(int index, int proportion = 0)
+    void AddGrowableColumn(int index, int proportion = 0)
     void AddGrowableRow(int index, int proportion = 0)
-    void RemoveGrowableCol(int index)
+    void RemoveGrowableColumn(int index)
     void RemoveGrowableRow(int index)
 enum WxKit.FlexSizerGrowMode : int
     All = 2
@@ -1869,8 +1873,8 @@ class WxKit.Font : NativeObject
     static bool AddPrivateFont(string filename)
     static int GetNumericWeightOf(FontWeight weight)
     string FaceName { get; set; }
-    string NativeFontInfoDesc { get; }
-    string NativeFontInfoUserDesc { get; set; }
+    string NativeFontInfoDescription { get; }
+    string NativeFontInfoUserDescription { get; set; }
     void SetSymbolicSize(FontSymbolicSize size)
     void SetSymbolicSizeRelativeTo(FontSymbolicSize size, int base)
 class WxKit.FontData : NativeObject
@@ -2283,7 +2287,7 @@ class WxKit.Image : NativeObject
     static bool RemoveHandler(string name)
     static int DefaultLoadFlags { get; set; }
     static int GetImageCount(string filename, BitmapType type = BitmapType.Any)
-    static string ImageExtWildcard { get; }
+    static string ImageExtensionWildcard { get; }
     static void AddAllHandlers()
     static void AddGifHandler()
     static void AddIconHandler()
@@ -3827,12 +3831,12 @@ class WxKit.Slider : Control
     int Max { get; set; }
     int Min { get; set; }
     int PageSize { get; set; }
-    int SelEnd { get; }
-    int SelStart { get; }
+    int SelectionEnd { get; }
+    int SelectionStart { get; }
     int ThumbLength { get; set; }
     int TickFreq { get; set; }
     int Value { get; set; }
-    void ClearSel()
+    void ClearSelection()
     void ClearTicks()
     void SetRange(int minValue, int maxValue)
     void SetSelection(int startPos, int endPos)
@@ -3924,7 +3928,7 @@ class WxKit.SplitterEvent : NotifyEvent
     void SetSize(int oldSize, int newSize)
 class WxKit.SplitterWindow : Window
     Point LastSplitPosition { get; set; }
-    SplitMode SplitMode { get; }
+    SplitMode SplitMode { get; set; }
     SplitterWindow(Window parent, int id = -1, Point? position = null, Size? size = null, SplitterWindowStyle style = SplitterWindowStyle.ThreeD)
     Window? Window1 { get; }
     Window? Window2 { get; }
@@ -3949,7 +3953,6 @@ class WxKit.SplitterWindow : Window
     void OnDoubleClickSash(int x, int y)
     void OnUnsplit(Window removed)
     void SetSashPosition(int position, bool redraw = true)
-    void SetSplitMode(int mode)
     void UpdateSize()
 [Flags] enum WxKit.SplitterWindowStyle : long
     Border = 512
@@ -4132,10 +4135,10 @@ class WxKit.StaticText : Control
 class WxKit.StatusBar : Control
     Size Borders { get; }
     StatusBar(Window parent, StatusBarStyle style = StatusBarStyle.Default, int id = -1)
+    StatusBarFieldStyle GetStatusStyle(int index)
     bool AddFieldControl(int i, Window window)
     bool GetFieldRect(int i, out Rect rect)
     int FieldsCount { get; set; }
-    int GetStatusStyle(int index)
     int GetStatusWidth(int index)
     string GetStatusText(int i = 0)
     void PopStatusText(int field = 0)
@@ -4144,6 +4147,11 @@ class WxKit.StatusBar : Control
     void SetStatusStyles(IEnumerable<int> styles)
     void SetStatusText(string text, int i = 0)
     void SetStatusWidths(IEnumerable<int> widths)
+enum WxKit.StatusBarFieldStyle : int
+    Flat = 1
+    Normal = 0
+    Raised = 2
+    Sunken = 3
 [Flags] enum WxKit.StatusBarStyle : long
     Default = 65840
     EllipsizeEnd = 256
@@ -7999,13 +8007,13 @@ class WxKit.ToolBar : Control
     ToolBarTool? AddTool(int toolId, string label, Bitmap bitmap, string shortHelp = "", MenuItemKind kind = MenuItemKind.Normal)
     ToolBarTool? FindById(int id = -1)
     ToolBarTool? FindToolForPosition(int x, int y)
-    ToolBarTool? GetToolByPos(int position)
+    ToolBarTool? GetToolByPosition(int position)
     ToolBarTool? InsertControl(int position, Control control, string label = "")
     ToolBarTool? InsertSeparator(int position)
     ToolBarTool? InsertStretchableSpace(int position)
     ToolBarTool? InsertTool(int position, int toolId, string label, Bitmap bitmap, Bitmap? bmpDisabled = null, MenuItemKind kind = MenuItemKind.Normal, string shortHelp = "", string longHelp = "")
     bool DeleteTool(int toolId)
-    bool DeleteToolByPos(int position)
+    bool DeleteToolByPosition(int position)
     bool GetToolEnabled(int toolId)
     bool GetToolState(int toolId)
     bool OnLeftClick(int toolId, bool toggleDown)
@@ -8018,7 +8026,7 @@ class WxKit.ToolBar : Control
     event EventHandler<CommandEvent>? ToolRange
     event EventHandler<CommandEvent>? ToolRclicked
     event EventHandler<CommandEvent>? ToolRclickedRange
-    int GetToolPos(int toolId)
+    int GetToolPosition(int toolId)
     int ToolPacking { get; set; }
     int ToolSeparation { get; set; }
     int ToolsCount { get; }
@@ -8404,7 +8412,7 @@ class WxKit.WebView : Control
     void NavigateToString(string html, string baseUrl = "")
     void Paste()
     void Print()
-    void Print(PrintData printData, int flags = 1)
+    void Print(PrintData printData, WebViewPrintFlags flags = WebViewPrintFlags.HideHeaderFooter)
     void Redo()
     void Reload(WebViewReloadFlags flags = WebViewReloadFlags.Default)
     void RemoveAllUserScripts()
@@ -8435,6 +8443,9 @@ enum WxKit.WebViewNavigationActionFlags : int
     None = 0
     Other = 2
     User = 1
+[Flags] enum WxKit.WebViewPrintFlags : int
+    Default = 0
+    HideHeaderFooter = 1
 enum WxKit.WebViewReloadFlags : int
     Default = 0
     NoCache = 1
@@ -8590,8 +8601,8 @@ class WxKit.Window : EvtHandler
     bool TransferDataToWindow()
     bool UnregisterHotKey(int hotkeyId)
     bool UseBackgroundColor()
-    bool UseBgCol()
     bool UseForegroundColor()
+    bool UsesBackgroundColor { get; }
     bool Validate()
     double ContentScaleFactor { get; }
     double DpiScaleFactor { get; }
@@ -8635,7 +8646,7 @@ class WxKit.Window : EvtHandler
     int GetBestHeight(int width)
     int GetBestWidth(int height)
     int GetHelpIdAtPoint(Point point)
-    int GetScrollPos(int orientation)
+    int GetScrollPosition(int orientation)
     int GetScrollRange(int orientation)
     int GetScrollThumb(int orientation)
     int GetScrollbarSize(int orientation)
@@ -8731,7 +8742,7 @@ class WxKit.Window : EvtHandler
     void SetOwnFont(Font font)
     void SetOwnForegroundColor(Color? color)
     void SetPreviousHandler(EvtHandler handler)
-    void SetScrollPos(int orientation, int position, bool refresh = true)
+    void SetScrollPosition(int orientation, int position, bool refresh = true)
     void SetScrollbar(int orientation, int position, int thumbSize, int range, bool refresh = true)
     void SetSize(Rect rect)
     void SetSize(int width, int height)

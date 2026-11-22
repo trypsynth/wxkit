@@ -164,7 +164,7 @@ public unsafe partial class ToolBar : Control {
 	public ToolBarTool? FindToolForPosition(int x, int y) => ToolBarTool.Wrap(WxKitNative.ToolBarFindToolForPosition(Native, x, y));
 
 	/// <summary>Returns a pointer to the tool at ordinal position pos.</summary>
-	public ToolBarTool? GetToolByPos(int position) => ToolBarTool.Wrap(WxKitNative.ToolBarGetToolByPos(Native, position));
+	public ToolBarTool? GetToolByPosition(int position) => ToolBarTool.Wrap(WxKitNative.ToolBarGetToolByPos(Native, position));
 
 	/// <summary>Called to determine whether a tool is enabled (responds to user input).</summary>
 	public bool GetToolEnabled(int toolId) => WxKitNative.ToolBarGetToolEnabled(Native, toolId) != 0;
@@ -173,7 +173,7 @@ public unsafe partial class ToolBar : Control {
 	public string GetToolLongHelp(int toolId) => NativeString.Take(WxKitNative.ToolBarGetToolLongHelp(Native, toolId));
 
 	/// <summary>Returns the tool position in the toolbar, or wxNOT_FOUND if the tool is not found.</summary>
-	public int GetToolPos(int toolId) => WxKitNative.ToolBarGetToolPos(Native, toolId);
+	public int GetToolPosition(int toolId) => WxKitNative.ToolBarGetToolPos(Native, toolId);
 
 	/// <summary>Returns the short help for the given tool.</summary>
 	public string GetToolShortHelp(int toolId) => NativeString.Take(WxKitNative.ToolBarGetToolShortHelp(Native, toolId));

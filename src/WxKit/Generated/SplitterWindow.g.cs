@@ -50,7 +50,10 @@ public unsafe partial class SplitterWindow : Window {
 	public int SashSize => WxKitNative.SplitterWindowGetSashSize(Native);
 
 	/// <summary>Gets the split mode.</summary>
-	public SplitMode SplitMode => (SplitMode)WxKitNative.SplitterWindowGetSplitMode(Native);
+	public SplitMode SplitMode {
+		get => (SplitMode)WxKitNative.SplitterWindowGetSplitMode(Native);
+		set => WxKitNative.SplitterWindowSetSplitMode(Native, (int)value);
+	}
 
 	/// <summary>Returns the left/top or only pane.</summary>
 	public Window? Window1 => ObjectRegistry.Wrap<Window>(WxKitNative.SplitterWindowGetWindow1(Native));
@@ -66,20 +69,20 @@ public unsafe partial class SplitterWindow : Window {
 
 	/// <summary>The sash position was changed. May be used to modify the sash position before it is set, or to prevent the change from taking place. Processes a wxEVT_SPLITTER_SASH_POS_CHANGED event.</summary>
 	public event EventHandler<SplitterEvent>? SashPositionChanged {
-		add => AddHandler(EventType.SplitterSashPosChanged, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.SplitterSashPosChanged, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.SplitterSashPositionChanged, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.SplitterSashPositionChanged, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>The sash position is in the process of being changed. May be used to modify the position of the tracking bar to properly reflect the position that would be set if the drag were to be completed at this point. Processes a wxEVT_SPLITTER_SASH_POS_CHANGING event.</summary>
 	public event EventHandler<SplitterEvent>? SashPositionChanging {
-		add => AddHandler(EventType.SplitterSashPosChanging, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.SplitterSashPosChanging, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.SplitterSashPositionChanging, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.SplitterSashPositionChanging, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>The sash position is in the process of being updated. May be used to modify the position of the tracking bar to properly reflect the position that would be set if the update were to be completed. This can happen e.g. when the window is resized and the sash is moved according to the gravity setting. This event is sent when the window is resized and allows the application to select the desired new sash position. If it doesn't process the event, the position is determined by the gravity setting. Processes a wxEVT_SPLITTER_SASH_POS_RESIZE event and is only available in wxWidgets 3.1.6 or newer.</summary>
 	public event EventHandler<SplitterEvent>? SashPositionResizing {
-		add => AddHandler(EventType.SplitterSashPosResize, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.SplitterSashPosResize, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.SplitterSashPositionResize, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.SplitterSashPositionResize, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>The splitter has been just unsplit. Processes a wxEVT_SPLITTER_UNSPLIT event.</summary>
@@ -115,9 +118,6 @@ public unsafe partial class SplitterWindow : Window {
 
 	/// <summary>Sets the sash position.</summary>
 	public void SetSashPosition(int position, bool redraw = true) => WxKitNative.SplitterWindowSetSashPosition(Native, position, redraw ? (byte)1 : (byte)0);
-
-	/// <summary>Sets the split mode.</summary>
-	public void SetSplitMode(int mode) => WxKitNative.SplitterWindowSetSplitMode(Native, mode);
 
 	/// <summary>Initializes the top and bottom panes of the splitter window.</summary>
 	public bool SplitHorizontally(Window window1, Window window2, int sashPosition = 0) {

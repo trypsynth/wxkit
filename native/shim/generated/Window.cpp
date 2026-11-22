@@ -449,10 +449,6 @@ WXK_FUNCTION(uint8_t) wxk_Window_InheritsBackgroundColour(wxk_Window* self) noex
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->InheritsBackgroundColour()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_Window_UseBgCol(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->UseBgCol()) ? 1 : 0; });
-}
-
 WXK_FUNCTION(uint8_t) wxk_Window_UseBackgroundColour(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->UseBackgroundColour()) ? 1 : 0; });
 }
@@ -725,6 +721,10 @@ WXK_FUNCTION(uint8_t) wxk_Window_IsEnabled(wxk_Window* self) noexcept {
 
 WXK_FUNCTION(uint8_t) wxk_Window_Enable(wxk_Window* self, uint8_t enable) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->Enable(enable != 0)) ? 1 : 0; });
+}
+
+WXK_FUNCTION(uint8_t) wxk_Window_UseBgCol(wxk_Window* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->UseBgCol()) ? 1 : 0; });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Window_IsFocusable(wxk_Window* self) noexcept {

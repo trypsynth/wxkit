@@ -5,15 +5,15 @@ WXK_FUNCTION(int32_t) wxk_EventType_SplitterDoubleclicked(void) noexcept {
 	return wxEVT_SPLITTER_DOUBLECLICKED;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_SplitterSashPosChanged(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_SplitterSashPositionChanged(void) noexcept {
 	return wxEVT_SPLITTER_SASH_POS_CHANGED;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_SplitterSashPosChanging(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_SplitterSashPositionChanging(void) noexcept {
 	return wxEVT_SPLITTER_SASH_POS_CHANGING;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_SplitterSashPosResize(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_SplitterSashPositionResize(void) noexcept {
 	return wxEVT_SPLITTER_SASH_POS_RESIZE;
 }
 

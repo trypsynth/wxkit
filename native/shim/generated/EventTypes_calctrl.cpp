@@ -9,7 +9,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_CalendarPageChanged(void) noexcept {
 	return wxEVT_CALENDAR_PAGE_CHANGED;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_CalendarSelChanged(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_CalendarSelectionChanged(void) noexcept {
 	return wxEVT_CALENDAR_SEL_CHANGED;
 }
 

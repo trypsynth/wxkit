@@ -302,6 +302,9 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>Get the update rectangle bounding box in client coords.</summary>
 	public Rect UpdateClientRect => WxKitNative.WindowGetUpdateClientRect(Native);
 
+	/// <summary>Return true if a background colour has been set for this window.</summary>
+	public bool UsesBackgroundColor => WxKitNative.WindowUseBgCol(Native) != 0;
+
 	/// <summary>This gets the virtual size of the window in pixels.</summary>
 	public Size VirtualSize {
 		get => WxKitNative.WindowGetVirtualSizeDefault(Native);
@@ -768,7 +771,7 @@ public unsafe partial class Window : EvtHandler {
 	}
 
 	/// <summary>Returns the built-in scrollbar position.</summary>
-	public int GetScrollPos(int orientation) => WxKitNative.WindowGetScrollPos(Native, orientation);
+	public int GetScrollPosition(int orientation) => WxKitNative.WindowGetScrollPos(Native, orientation);
 
 	/// <summary>Returns the built-in scrollbar range.</summary>
 	public int GetScrollRange(int orientation) => WxKitNative.WindowGetScrollRange(Native, orientation);
@@ -1069,7 +1072,7 @@ public unsafe partial class Window : EvtHandler {
 	}
 
 	/// <summary>Sets the position of one of the built-in scrollbars.</summary>
-	public void SetScrollPos(int orientation, int position, bool refresh = true) => WxKitNative.WindowSetScrollPos(Native, orientation, position, refresh ? (byte)1 : (byte)0);
+	public void SetScrollPosition(int orientation, int position, bool refresh = true) => WxKitNative.WindowSetScrollPos(Native, orientation, position, refresh ? (byte)1 : (byte)0);
 
 	/// <summary>Sets the scrollbar properties of a built-in scrollbar.</summary>
 	public void SetScrollbar(int orientation, int position, int thumbSize, int range, bool refresh = true) => WxKitNative.WindowSetScrollbar(Native, orientation, position, thumbSize, range, refresh ? (byte)1 : (byte)0);
@@ -1210,9 +1213,6 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>Return true if a background colour has been set for this window.</summary>
 	public bool UseBackgroundColor() => WxKitNative.WindowUseBackgroundColour(Native) != 0;
-
-	/// <summary>Return true if a background colour has been set for this window.</summary>
-	public bool UseBgCol() => WxKitNative.WindowUseBgCol(Native) != 0;
 
 	/// <summary>Return true if a foreground colour has been set for this window.</summary>
 	public bool UseForegroundColor() => WxKitNative.WindowUseForegroundColour(Native) != 0;

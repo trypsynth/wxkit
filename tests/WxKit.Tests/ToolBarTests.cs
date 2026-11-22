@@ -27,7 +27,7 @@ public class ToolBarTests {
 		Assert.NotNull(tool);
 		Assert.NotNull(separator);
 		Assert.NotNull(bold);
-		Assert.Same(tool, toolBar.GetToolByPos(0));
+		Assert.Same(tool, toolBar.GetToolByPosition(0));
 		Assert.Same(bold, toolBar.FindById(6100));
 		Assert.Same(toolBar, tool.ToolBar);
 		Assert.Equal(StandardId.Open, tool.Id);
@@ -58,7 +58,7 @@ public class ToolBarTests {
 		Assert.True(second.IsDestroyed);
 		Assert.Throws<ObjectDisposedException>(() => second.Label);
 		Assert.False(toolBar.DeleteTool(6201));
-		Assert.True(toolBar.DeleteToolByPos(1));
+		Assert.True(toolBar.DeleteToolByPosition(1));
 		Assert.True(third.IsDestroyed);
 		Assert.False(first.IsDestroyed);
 		toolBar.ClearTools();

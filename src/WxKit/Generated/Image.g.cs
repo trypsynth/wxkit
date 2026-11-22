@@ -54,7 +54,7 @@ public unsafe partial class Image : NativeObject {
 	public int Height => WxKitNative.ImageGetHeight(Native);
 
 	/// <summary>Iterates all registered wxImageHandler objects, and returns a string containing file extension masks suitable for passing to file open/save dialog boxes.</summary>
-	public static string ImageExtWildcard {
+	public static string ImageExtensionWildcard {
 		get {
 			Application.VerifyAccess();
 			return NativeString.Take(WxKitNative.ImageGetImageExtWildcard());

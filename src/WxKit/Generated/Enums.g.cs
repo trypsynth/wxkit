@@ -564,6 +564,17 @@ public enum DialogLayoutAdaptationMode {
 	Disabled = 2,
 }
 
+/// <summary>Wraps *.</summary>
+[Flags]
+public enum DragFlags {
+	/// <summary>Wraps wxDrag_CopyOnly.</summary>
+	CopyOnly = 0,
+	/// <summary>Wraps wxDrag_AllowMove.</summary>
+	AllowMove = 1,
+	/// <summary>Wraps wxDrag_DefaultMove.</summary>
+	DefaultMove = 3,
+}
+
 /// <summary>Wraps wxDragResult.</summary>
 public enum DragResult {
 	/// <summary>Error prevented the D&amp;D operation from completing. Wraps wxDragError.</summary>
@@ -2076,6 +2087,18 @@ public enum SplitMode {
 	Vertical = 2,
 }
 
+/// <summary>Wraps *.</summary>
+public enum StatusBarFieldStyle {
+	/// <summary>Wraps wxSB_NORMAL.</summary>
+	Normal = 0,
+	/// <summary>Wraps wxSB_FLAT.</summary>
+	Flat = 1,
+	/// <summary>Wraps wxSB_RAISED.</summary>
+	Raised = 2,
+	/// <summary>Wraps wxSB_SUNKEN.</summary>
+	Sunken = 3,
+}
+
 /// <summary>Wraps wxStockCursor.</summary>
 public enum StockCursor {
 	/// <summary>Wraps wxCURSOR_NONE.</summary>
@@ -2482,6 +2505,15 @@ public enum WebViewNavigationActionFlags {
 	User = 1,
 	/// <summary>The navigation was started but not by the user. Wraps wxWEBVIEW_NAV_ACTION_OTHER.</summary>
 	Other = 2,
+}
+
+/// <summary>Wraps wxWebViewPrintFlags.</summary>
+[Flags]
+public enum WebViewPrintFlags {
+	/// <summary>Do not apply any custom settings. Wraps wxWEBVIEW_PRINT_DEFAULT.</summary>
+	Default = 0,
+	/// <summary>Explicitly prevents headers and footers from appearing in print operations. Wraps wxWEBVIEW_PRINT_HIDE_HEADER_FOOTER.</summary>
+	HideHeaderFooter = 1,
 }
 
 /// <summary>Wraps wxWebViewReloadFlags.</summary>

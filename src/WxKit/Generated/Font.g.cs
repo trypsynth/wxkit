@@ -79,10 +79,10 @@ public unsafe partial class Font : NativeObject {
 	public bool IsOk => WxKitNative.FontIsOk(Native) != 0;
 
 	/// <summary>Returns the platform-dependent string completely describing this font.</summary>
-	public string NativeFontInfoDesc => NativeString.Take(WxKitNative.FontGetNativeFontInfoDesc(Native));
+	public string NativeFontInfoDescription => NativeString.Take(WxKitNative.FontGetNativeFontInfoDesc(Native));
 
 	/// <summary>Returns a user-friendly string for this font object.</summary>
-	public string NativeFontInfoUserDesc {
+	public string NativeFontInfoUserDescription {
 		get => NativeString.Take(WxKitNative.FontGetNativeFontInfoUserDesc(Native));
 		set {
 			ArgumentNullException.ThrowIfNull(value);

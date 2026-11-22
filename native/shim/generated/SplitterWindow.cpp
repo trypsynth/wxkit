@@ -32,10 +32,6 @@ WXK_FUNCTION(void) wxk_SplitterWindow_SetSashPosition(wxk_Window* self, int32_t 
 	wxk::Guard([&] { static_cast<wxSplitterWindow*>(wxk::Unwrap(self))->SetSashPosition(static_cast<int>(position), redraw != 0); });
 }
 
-WXK_FUNCTION(void) wxk_SplitterWindow_SetSplitMode(wxk_Window* self, int32_t mode) noexcept {
-	wxk::Guard([&] { static_cast<wxSplitterWindow*>(wxk::Unwrap(self))->SetSplitMode(static_cast<int>(mode)); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_SplitterWindow_SplitHorizontally(wxk_Window* self, wxk_Window* window1, wxk_Window* window2, int32_t sashPosition) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxSplitterWindow*>(wxk::Unwrap(self))->SplitHorizontally(static_cast<wxWindow*>(wxk::Unwrap(window1)), static_cast<wxWindow*>(wxk::Unwrap(window2)), static_cast<int>(sashPosition))) ? 1 : 0; });
 }
@@ -82,6 +78,10 @@ WXK_FUNCTION(int32_t) wxk_SplitterWindow_GetDefaultSashSize(wxk_Window* self) no
 
 WXK_FUNCTION(int32_t) wxk_SplitterWindow_GetSplitMode(wxk_Window* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxSplitterWindow*>(wxk::Unwrap(self))->GetSplitMode()); });
+}
+
+WXK_FUNCTION(void) wxk_SplitterWindow_SetSplitMode(wxk_Window* self, int32_t mode) noexcept {
+	wxk::Guard([&] { static_cast<wxSplitterWindow*>(wxk::Unwrap(self))->SetSplitMode(static_cast<int>(mode)); });
 }
 
 WXK_FUNCTION(wxk_Window*) wxk_SplitterWindow_GetWindow1(wxk_Window* self) noexcept {

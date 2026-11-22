@@ -25,7 +25,7 @@ internal sealed class AppSettings {
 
 	public Color Accent { get; set; } = new(0, 120, 215);
 
-	// The font's description, as Font.NativeFontInfoDesc gives it, or empty for the default font.
+	// The font's description, as Font.NativeFontInfoDescription gives it, or empty for the default font.
 	public string Font { get; set; } = string.Empty;
 
 	public int RecentFiles { get; set; } = 10;

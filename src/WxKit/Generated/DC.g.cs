@@ -9,6 +9,9 @@ public unsafe partial class DC : NativeObject {
 	internal DC(WxkObject* native) : base(native) {
 	}
 
+	/// <summary>Check if automatic bounding box updates are performed.</summary>
+	public bool AreAutomaticBoundingBoxUpdatesEnabled => WxKitNative.DCAreAutomaticBoundingBoxUpdatesEnabled(Native) != 0;
+
 	/// <summary>If supported by the platform and the type of DC, fetch the contents of the DC, or a subset of it, as a bitmap.</summary>
 	public Bitmap? AsBitmap => global::WxKit.Bitmap.Take(WxKitNative.DCGetAsBitmap(Native));
 
@@ -19,9 +22,9 @@ public unsafe partial class DC : NativeObject {
 	}
 
 	/// <summary>Returns the current background mode: wxBRUSHSTYLE_SOLID or wxBRUSHSTYLE_TRANSPARENT.</summary>
-	public int BackgroundMode {
-		get => WxKitNative.DCGetBackgroundMode(Native);
-		set => WxKitNative.DCSetBackgroundMode(Native, value);
+	public BrushStyle BackgroundMode {
+		get => (BrushStyle)WxKitNative.DCGetBackgroundMode(Native);
+		set => WxKitNative.DCSetBackgroundMode(Native, (int)value);
 	}
 
 	/// <summary>Gets the current brush.</summary>
@@ -110,9 +113,6 @@ public unsafe partial class DC : NativeObject {
 		get => global::WxKit.Color.FromNative(WxKitNative.DCGetTextForeground(Native));
 		set => WxKitNative.DCSetTextForeground(Native, global::WxKit.Color.ToNative(value));
 	}
-
-	/// <summary>Check if automatic bounding box updates are performed.</summary>
-	public bool AreAutomaticBoundingBoxUpdatesEnabled() => WxKitNative.DCAreAutomaticBoundingBoxUpdatesEnabled(Native) != 0;
 
 	/// <summary>Copy from a source DC to this DC.</summary>
 	public bool Blit(int xdest, int ydest, int width, int height, DC source, int xsrc, int ysrc, RasterOperationMode logicalFunc = RasterOperationMode.Copy, bool useMask = false, int xsrcMask = -1, int ysrcMask = -1) {

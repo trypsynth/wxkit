@@ -38,10 +38,10 @@ public unsafe partial class Slider : Control {
 	}
 
 	/// <summary>Returns the selection end point.</summary>
-	public int SelEnd => WxKitNative.SliderGetSelEnd(Native);
+	public int SelectionEnd => WxKitNative.SliderGetSelEnd(Native);
 
 	/// <summary>Returns the selection start point.</summary>
-	public int SelStart => WxKitNative.SliderGetSelStart(Native);
+	public int SelectionStart => WxKitNative.SliderGetSelStart(Native);
 
 	/// <summary>Returns the thumb length.</summary>
 	public int ThumbLength {
@@ -176,7 +176,7 @@ public unsafe partial class Slider : Control {
 	}
 
 	/// <summary>Clears the selection, for a slider with the wxSL_SELRANGE style.</summary>
-	public void ClearSel() => WxKitNative.SliderClearSel(Native);
+	public void ClearSelection() => WxKitNative.SliderClearSel(Native);
 
 	/// <summary>Clears the ticks.</summary>
 	public void ClearTicks() => WxKitNative.SliderClearTicks(Native);

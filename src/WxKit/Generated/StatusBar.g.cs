@@ -37,7 +37,7 @@ public unsafe partial class StatusBar : Control {
 	}
 
 	/// <summary>Returns the style of the n-th field.</summary>
-	public int GetStatusStyle(int index) => WxKitNative.StatusBarGetStatusStyle(Native, index);
+	public StatusBarFieldStyle GetStatusStyle(int index) => (StatusBarFieldStyle)WxKitNative.StatusBarGetStatusStyle(Native, index);
 
 	/// <summary>Returns the string associated with a status bar field.</summary>
 	public string GetStatusText(int i = 0) => NativeString.Take(WxKitNative.StatusBarGetStatusText(Native, i));

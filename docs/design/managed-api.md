@@ -48,7 +48,7 @@ Null going in is the class's empty object, such as `wxNullFont`, and setting a w
 
 ### Objects a control owns
 
-A toolbar's `ToolBarTool` objects and a data view's `DataViewColumn` objects work the same way. Adding one returns it, and finding one, such as with `FindById`, `GetToolByPos`, `GetColumn`, or `SortingColumn`, returns the same object each time. The control deletes it with `DeleteTool`, `DeleteToolByPos`, `ClearTools`, `DeleteColumn`, or `ClearColumns`, or when the control is destroyed, and then marks it destroyed, so using it throws `ObjectDisposedException`.
+A toolbar's `ToolBarTool` objects and a data view's `DataViewColumn` objects work the same way. Adding one returns it, and finding one, such as with `FindById`, `GetToolByPosition`, `GetColumn`, or `SortingColumn`, returns the same object each time. The control deletes it with `DeleteTool`, `DeleteToolByPosition`, `ClearTools`, `DeleteColumn`, or `ClearColumns`, or when the control is destroyed, and then marks it destroyed, so using it throws `ObjectDisposedException`.
 
 A tool's enabled and toggled state and its help change through the toolbar, by the tool's id. Members that make a tool, or remove one without deleting it, aren't bound. A column's title, width, alignment, and flags can change. On Linux, a column's `Width` is 0 until the control is on screen.
 

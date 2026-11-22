@@ -43,7 +43,7 @@ internal sealed class SettingsDialog : Dialog {
 			Value = settings.StartWithSystem,
 		};
 		form.Add(_startWithSystem, new GridPosition(6, 0), new GridSpan(1, 2));
-		form.AddGrowableCol(1);
+		form.AddGrowableColumn(1);
 		general.Sizer = Bordered(form);
 		pages.AddPage(general, _("General"));
 		// The folders page has a picker with a text box, which can be typed in as well as browsed.
@@ -87,7 +87,7 @@ internal sealed class SettingsDialog : Dialog {
 		settings.Theme = Math.Max(_theme.Selection, 0);
 		settings.Accent = _accent.Color ?? settings.Accent;
 		using Font? font = _font.SelectedFont;
-		settings.Font = font?.NativeFontInfoDesc ?? string.Empty;
+		settings.Font = font?.NativeFontInfoDescription ?? string.Empty;
 		settings.RecentFiles = _recentFiles.Value;
 		settings.Language = _languageCodes[Math.Max(_language.Selection, 0)];
 		settings.StartWithSystem = _startWithSystem.Value;

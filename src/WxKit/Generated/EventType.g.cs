@@ -83,10 +83,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_CALENDAR_SEL_CHANGED.</summary>
-	public static EventType<CalendarEvent> CalendarSelChanged => CalendarSelChangedType.Value;
+	public static EventType<CalendarEvent> CalendarSelectionChanged => CalendarSelectionChangedType.Value;
 
-	private static class CalendarSelChangedType {
-		public static readonly EventType<CalendarEvent> Value = new(WxKitNative.EventTypeCalendarSelChanged, static native => new CalendarEvent((WxkEvent*)native));
+	private static class CalendarSelectionChangedType {
+		public static readonly EventType<CalendarEvent> Value = new(WxKitNative.EventTypeCalendarSelectionChanged, static native => new CalendarEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_CALENDAR_WEEK_CLICKED.</summary>
@@ -636,38 +636,38 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_LIST_COL_BEGIN_DRAG.</summary>
-	public static EventType<ListEvent> ListColBeginDrag => ListColBeginDragType.Value;
+	public static EventType<ListEvent> ListColumnBeginDrag => ListColumnBeginDragType.Value;
 
-	private static class ListColBeginDragType {
-		public static readonly EventType<ListEvent> Value = new(WxKitNative.EventTypeListColBeginDrag, static native => new ListEvent((WxkEvent*)native));
+	private static class ListColumnBeginDragType {
+		public static readonly EventType<ListEvent> Value = new(WxKitNative.EventTypeListColumnBeginDrag, static native => new ListEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_LIST_COL_CLICK.</summary>
-	public static EventType<ListEvent> ListColClick => ListColClickType.Value;
+	public static EventType<ListEvent> ListColumnClick => ListColumnClickType.Value;
 
-	private static class ListColClickType {
-		public static readonly EventType<ListEvent> Value = new(WxKitNative.EventTypeListColClick, static native => new ListEvent((WxkEvent*)native));
+	private static class ListColumnClickType {
+		public static readonly EventType<ListEvent> Value = new(WxKitNative.EventTypeListColumnClick, static native => new ListEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_LIST_COL_DRAGGING.</summary>
-	public static EventType<ListEvent> ListColDragging => ListColDraggingType.Value;
+	public static EventType<ListEvent> ListColumnDragging => ListColumnDraggingType.Value;
 
-	private static class ListColDraggingType {
-		public static readonly EventType<ListEvent> Value = new(WxKitNative.EventTypeListColDragging, static native => new ListEvent((WxkEvent*)native));
+	private static class ListColumnDraggingType {
+		public static readonly EventType<ListEvent> Value = new(WxKitNative.EventTypeListColumnDragging, static native => new ListEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_LIST_COL_END_DRAG.</summary>
-	public static EventType<ListEvent> ListColEndDrag => ListColEndDragType.Value;
+	public static EventType<ListEvent> ListColumnEndDrag => ListColumnEndDragType.Value;
 
-	private static class ListColEndDragType {
-		public static readonly EventType<ListEvent> Value = new(WxKitNative.EventTypeListColEndDrag, static native => new ListEvent((WxkEvent*)native));
+	private static class ListColumnEndDragType {
+		public static readonly EventType<ListEvent> Value = new(WxKitNative.EventTypeListColumnEndDrag, static native => new ListEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_LIST_COL_RIGHT_CLICK.</summary>
-	public static EventType<ListEvent> ListColRightClick => ListColRightClickType.Value;
+	public static EventType<ListEvent> ListColumnRightClick => ListColumnRightClickType.Value;
 
-	private static class ListColRightClickType {
-		public static readonly EventType<ListEvent> Value = new(WxKitNative.EventTypeListColRightClick, static native => new ListEvent((WxkEvent*)native));
+	private static class ListColumnRightClickType {
+		public static readonly EventType<ListEvent> Value = new(WxKitNative.EventTypeListColumnRightClick, static native => new ListEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_LIST_DELETE_ALL_ITEMS.</summary>
@@ -1203,24 +1203,24 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_SPLITTER_SASH_POS_CHANGED.</summary>
-	public static EventType<SplitterEvent> SplitterSashPosChanged => SplitterSashPosChangedType.Value;
+	public static EventType<SplitterEvent> SplitterSashPositionChanged => SplitterSashPositionChangedType.Value;
 
-	private static class SplitterSashPosChangedType {
-		public static readonly EventType<SplitterEvent> Value = new(WxKitNative.EventTypeSplitterSashPosChanged, static native => new SplitterEvent((WxkEvent*)native));
+	private static class SplitterSashPositionChangedType {
+		public static readonly EventType<SplitterEvent> Value = new(WxKitNative.EventTypeSplitterSashPositionChanged, static native => new SplitterEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_SPLITTER_SASH_POS_CHANGING.</summary>
-	public static EventType<SplitterEvent> SplitterSashPosChanging => SplitterSashPosChangingType.Value;
+	public static EventType<SplitterEvent> SplitterSashPositionChanging => SplitterSashPositionChangingType.Value;
 
-	private static class SplitterSashPosChangingType {
-		public static readonly EventType<SplitterEvent> Value = new(WxKitNative.EventTypeSplitterSashPosChanging, static native => new SplitterEvent((WxkEvent*)native));
+	private static class SplitterSashPositionChangingType {
+		public static readonly EventType<SplitterEvent> Value = new(WxKitNative.EventTypeSplitterSashPositionChanging, static native => new SplitterEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_SPLITTER_SASH_POS_RESIZE.</summary>
-	public static EventType<SplitterEvent> SplitterSashPosResize => SplitterSashPosResizeType.Value;
+	public static EventType<SplitterEvent> SplitterSashPositionResize => SplitterSashPositionResizeType.Value;
 
-	private static class SplitterSashPosResizeType {
-		public static readonly EventType<SplitterEvent> Value = new(WxKitNative.EventTypeSplitterSashPosResize, static native => new SplitterEvent((WxkEvent*)native));
+	private static class SplitterSashPositionResizeType {
+		public static readonly EventType<SplitterEvent> Value = new(WxKitNative.EventTypeSplitterSashPositionResize, static native => new SplitterEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_SPLITTER_UNSPLIT.</summary>
@@ -1763,17 +1763,17 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_TREE_SEL_CHANGED.</summary>
-	public static EventType<TreeEvent> TreeSelChanged => TreeSelChangedType.Value;
+	public static EventType<TreeEvent> TreeSelectionChanged => TreeSelectionChangedType.Value;
 
-	private static class TreeSelChangedType {
-		public static readonly EventType<TreeEvent> Value = new(WxKitNative.EventTypeTreeSelChanged, static native => new TreeEvent((WxkEvent*)native));
+	private static class TreeSelectionChangedType {
+		public static readonly EventType<TreeEvent> Value = new(WxKitNative.EventTypeTreeSelectionChanged, static native => new TreeEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_TREE_SEL_CHANGING.</summary>
-	public static EventType<TreeEvent> TreeSelChanging => TreeSelChangingType.Value;
+	public static EventType<TreeEvent> TreeSelectionChanging => TreeSelectionChangingType.Value;
 
-	private static class TreeSelChangingType {
-		public static readonly EventType<TreeEvent> Value = new(WxKitNative.EventTypeTreeSelChanging, static native => new TreeEvent((WxkEvent*)native));
+	private static class TreeSelectionChangingType {
+		public static readonly EventType<TreeEvent> Value = new(WxKitNative.EventTypeTreeSelectionChanging, static native => new TreeEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_TREE_SET_INFO.</summary>

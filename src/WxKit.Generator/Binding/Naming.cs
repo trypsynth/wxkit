@@ -309,8 +309,14 @@ internal static class Naming {
 	/// <summary>The name of the event a macro such as EVT_SIZE handles, such as SizeChanged.</summary>
 	public static string Event(string macro) => EventNames.TryGetValue(macro, out string? name) ? name : Words(macro["EVT_".Length..]);
 
-	/// <summary>wxEVT_CLOSE_WINDOW to CloseWindow.</summary>
-	public static string EventType(string constant) => Words(constant["wxEVT_".Length..]);
+	/// <summary>wxEVT_CLOSE_WINDOW to CloseWindow, with abbreviations spelled out, so wxEVT_TREE_SEL_CHANGED is TreeSelectionChanged.</summary>
+	public static string EventType(string constant) => Words(string.Join('_', constant["wxEVT_".Length..].Split('_').Select(static word => EventTypeWords.GetValueOrDefault(word, word))));
+
+	private static readonly Dictionary<string, string> EventTypeWords = new(StringComparer.Ordinal) {
+		["SEL"] = "SELECTION",
+		["COL"] = "COLUMN",
+		["POS"] = "POSITION",
+	};
 
 	/// <summary>
 	/// A style constant's name inside its class's enum. wxTE_MULTILINE becomes MultiLine: the prefix

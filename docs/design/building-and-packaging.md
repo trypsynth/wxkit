@@ -4,7 +4,16 @@ This document covers how WxKit builds wxWidgets and the shim, how Native AOT lin
 
 ## Versions and names
 
-WxKit tracks the wxWidgets 3.3 series: the `native/wxWidgets` submodule is pinned to the `v3.3.4` tag, and WxKit moves to 3.4.0 when it comes out. WxKit's own version is independent of the wxWidgets version it bundles, and releases so far are `0.1.0-preview.N`. Everything targets `net10.0`, since .NET 8 leaves support in November 2026.
+WxKit tracks the wxWidgets 3.3 series: the `native/wxWidgets` submodule is pinned to the `v3.3.4` tag, and WxKit moves to 3.4.0 when it comes out. WxKit's own version is independent of the wxWidgets version it bundles. Everything targets `net10.0`, since .NET 8 leaves support in November 2026.
+
+WxKit follows semantic versioning, as it applies before 1.0:
+
+- `0.1.0-preview.N` previews come first, and any of them can need code changes. They add what 0.1.0 should have, and make the changes to the API that it needs, such as naming, before anyone depends on it.
+- 0.1.0 is the first release that isn't a preview. From it on, a patch release, such as 0.1.1, only fixes bugs and adds what needs no code changes, such as a new control or utility.
+- A change that needs code changes goes in the next minor release, such as 0.2.0, with its own previews, and its notes say what to change.
+- 1.0 promises that the API stays as it is, which [Open questions](open-questions.md#what-10-needs) says when.
+
+0.1.0 comes once its planned work is in, the API has had a pass for names and types that aren't .NET's, an application beyond the samples, such as SIC!, ships on it, and screen readers have been checked on each platform: NVDA or JAWS on Windows, VoiceOver on macOS, and Orca on Linux.
 
 The packages are `WxKit`, the managed library and its targets, and `WxKit.Native.<runtime>`, such as `WxKit.Native.win-x64`, for each runtime's native files. The GitHub repository is `trypsynth/wxkit`. The native library is `wxkitnative`, not `wxkit`, because Windows file names ignore case, and a native `wxkit.dll` would have the same name as the managed `WxKit.dll`.
 

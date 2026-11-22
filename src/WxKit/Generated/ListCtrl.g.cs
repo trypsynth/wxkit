@@ -102,32 +102,32 @@ public unsafe partial class ListCtrl : Control {
 
 	/// <summary>The user started resizing a column - can be vetoed. Processes a wxEVT_LIST_COL_BEGIN_DRAG event type.</summary>
 	public event EventHandler<ListEvent>? ListColBeginDrag {
-		add => AddHandler(EventType.ListColBeginDrag, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ListColBeginDrag, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.ListColumnBeginDrag, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.ListColumnBeginDrag, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>A column (m_col) has been left-clicked. Processes a wxEVT_LIST_COL_CLICK event type.</summary>
 	public event EventHandler<ListEvent>? ListColClick {
-		add => AddHandler(EventType.ListColClick, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ListColClick, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.ListColumnClick, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.ListColumnClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>The divider between columns is being dragged. Processes a wxEVT_LIST_COL_DRAGGING event type.</summary>
 	public event EventHandler<ListEvent>? ListColDragging {
-		add => AddHandler(EventType.ListColDragging, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ListColDragging, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.ListColumnDragging, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.ListColumnDragging, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>A column has been resized by the user. Processes a wxEVT_LIST_COL_END_DRAG event type.</summary>
 	public event EventHandler<ListEvent>? ListColEndDrag {
-		add => AddHandler(EventType.ListColEndDrag, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ListColEndDrag, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.ListColumnEndDrag, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.ListColumnEndDrag, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>A column (m_col) has been right-clicked. Processes a wxEVT_LIST_COL_RIGHT_CLICK event type.</summary>
 	public event EventHandler<ListEvent>? ListColRightClick {
-		add => AddHandler(EventType.ListColRightClick, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ListColRightClick, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.ListColumnRightClick, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.ListColumnRightClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>All items were deleted. Processes a wxEVT_LIST_DELETE_ALL_ITEMS event type.</summary>

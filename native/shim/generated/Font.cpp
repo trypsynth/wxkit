@@ -111,6 +111,14 @@ WXK_FUNCTION(int32_t) wxk_Font_GetNumericWeightOf(int32_t weight) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(wxFont::GetNumericWeightOf(static_cast<wxFontWeight>(weight))); });
 }
 
+WXK_FUNCTION(wxk_String*) wxk_Font_GetNativeFontInfoUserDesc(wxk_Object* self) noexcept {
+	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxFont*>(wxk::Unwrap(self))->GetNativeFontInfoUserDesc()); });
+}
+
+WXK_FUNCTION(uint8_t) wxk_Font_SetNativeFontInfoUserDesc(wxk_Object* self, const char16_t* info, size_t infoLength) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxFont*>(wxk::Unwrap(self))->SetNativeFontInfoUserDesc(wxk::FromUtf16(info, infoLength))) ? 1 : 0; });
+}
+
 WXK_FUNCTION(wxk_Object*) wxk_Font_GetBaseFont(wxk_Object* self) noexcept {
 	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxFont>(static_cast<wxFont*>(wxk::Unwrap(self))->GetBaseFont()); });
 }
@@ -141,14 +149,6 @@ WXK_FUNCTION(void) wxk_Font_SetFamily(wxk_Object* self, int32_t family) noexcept
 
 WXK_FUNCTION(wxk_String*) wxk_Font_GetNativeFontInfoDesc(wxk_Object* self) noexcept {
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxFont*>(wxk::Unwrap(self))->GetNativeFontInfoDesc()); });
-}
-
-WXK_FUNCTION(wxk_String*) wxk_Font_GetNativeFontInfoUserDesc(wxk_Object* self) noexcept {
-	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxFont*>(wxk::Unwrap(self))->GetNativeFontInfoUserDesc()); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Font_SetNativeFontInfoUserDesc(wxk_Object* self, const char16_t* info, size_t infoLength) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxFont*>(wxk::Unwrap(self))->SetNativeFontInfoUserDesc(wxk::FromUtf16(info, infoLength))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(int32_t) wxk_Font_GetPointSize(wxk_Object* self) noexcept {

@@ -69,11 +69,11 @@ WXK_FUNCTION(int32_t) wxk_EventType_TreeKeyDown(void) noexcept {
 	return wxEVT_TREE_KEY_DOWN;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_TreeSelChanged(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_TreeSelectionChanged(void) noexcept {
 	return wxEVT_TREE_SEL_CHANGED;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_TreeSelChanging(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_TreeSelectionChanging(void) noexcept {
 	return wxEVT_TREE_SEL_CHANGING;
 }
 

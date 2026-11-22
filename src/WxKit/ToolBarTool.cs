@@ -79,7 +79,7 @@ public unsafe partial class ToolBar {
 	}
 
 	/// <summary>Deletes the tool at the position, which is then destroyed. Returns false when there is none.</summary>
-	public bool DeleteToolByPos(int position) {
+	public bool DeleteToolByPosition(int position) {
 		ArgumentOutOfRangeException.ThrowIfNegative(position);
 		WxkToolBarTool* tool = WxKitNative.ToolBarGetToolByPos(Native, position);
 		if (WxKitNative.ToolBarDeleteToolByPos(Native, (nuint)position) == 0) return false;

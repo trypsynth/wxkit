@@ -81,7 +81,7 @@ WXK_FUNCTION(void) wxk_WebView_Print_Default(wxk_Window* self) noexcept {
 	wxk::Guard([&] { static_cast<wxWebView*>(wxk::Unwrap(self))->Print(); });
 }
 
-WXK_FUNCTION(void) wxk_WebView_Print_PrintDataInt(wxk_Window* self, const wxk_Object* printData, int32_t flags) noexcept {
+WXK_FUNCTION(void) wxk_WebView_Print_PrintDataWebViewPrintFlags(wxk_Window* self, const wxk_Object* printData, int32_t flags) noexcept {
 	wxk::Guard([&] { static_cast<wxWebView*>(wxk::Unwrap(self))->Print(wxk::ValueOf<wxPrintData>(printData), static_cast<int>(flags)); });
 }
 

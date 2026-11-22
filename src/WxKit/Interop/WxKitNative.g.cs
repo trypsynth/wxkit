@@ -1674,10 +1674,6 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DCDisableAutomaticBoundingBoxUpdates(WxkObject* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_DC_AreAutomaticBoundingBoxUpdatesEnabled")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte DCAreAutomaticBoundingBoxUpdatesEnabled(WxkObject* self);
-
 	[LibraryImport(Library, EntryPoint = "wxk_DC_CalcBoundingBox")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DCCalcBoundingBox(WxkObject* self, int x, int y);
@@ -1881,6 +1877,10 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_DC_GetUserScale")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DCGetUserScale(WxkObject* self, double* x, double* y);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DC_AreAutomaticBoundingBoxUpdatesEnabled")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte DCAreAutomaticBoundingBoxUpdatesEnabled(WxkObject* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_DC_GetBackgroundMode")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -3218,6 +3218,14 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int FontGetNumericWeightOf(int weight);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Font_GetNativeFontInfoUserDesc")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* FontGetNativeFontInfoUserDesc(WxkObject* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Font_SetNativeFontInfoUserDesc")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte FontSetNativeFontInfoUserDesc(WxkObject* self, char* info, nuint infoLength);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Font_GetBaseFont")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* FontGetBaseFont(WxkObject* self);
@@ -3249,14 +3257,6 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Font_GetNativeFontInfoDesc")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkString* FontGetNativeFontInfoDesc(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Font_GetNativeFontInfoUserDesc")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkString* FontGetNativeFontInfoUserDesc(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Font_SetNativeFontInfoUserDesc")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte FontSetNativeFontInfoUserDesc(WxkObject* self, char* info, nuint infoLength);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Font_GetPointSize")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -7298,10 +7298,6 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void SplitterWindowSetSashPosition(WxkWindow* self, int position, byte redraw);
 
-	[LibraryImport(Library, EntryPoint = "wxk_SplitterWindow_SetSplitMode")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void SplitterWindowSetSplitMode(WxkWindow* self, int mode);
-
 	[LibraryImport(Library, EntryPoint = "wxk_SplitterWindow_SplitHorizontally")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte SplitterWindowSplitHorizontally(WxkWindow* self, WxkWindow* window1, WxkWindow* window2, int sashPosition);
@@ -7349,6 +7345,10 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_SplitterWindow_GetSplitMode")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int SplitterWindowGetSplitMode(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_SplitterWindow_SetSplitMode")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void SplitterWindowSetSplitMode(WxkWindow* self, int mode);
 
 	[LibraryImport(Library, EntryPoint = "wxk_SplitterWindow_GetWindow1")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -12198,9 +12198,9 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void WebViewPrintDefault(WxkWindow* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_WebView_Print_PrintDataInt")]
+	[LibraryImport(Library, EntryPoint = "wxk_WebView_Print_PrintDataWebViewPrintFlags")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void WebViewPrintPrintDataInt(WxkWindow* self, WxkObject* printData, int flags);
+	public static partial void WebViewPrintPrintDataWebViewPrintFlags(WxkWindow* self, WxkObject* printData, int flags);
 
 	[LibraryImport(Library, EntryPoint = "wxk_WebView_PrintToPDF_String")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -12818,10 +12818,6 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte WindowInheritsBackgroundColour(WxkWindow* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Window_UseBgCol")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte WindowUseBgCol(WxkWindow* self);
-
 	[LibraryImport(Library, EntryPoint = "wxk_Window_UseBackgroundColour")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte WindowUseBackgroundColour(WxkWindow* self);
@@ -13081,6 +13077,10 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Window_Enable")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte WindowEnable(WxkWindow* self, byte enable);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Window_UseBgCol")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WindowUseBgCol(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Window_IsFocusable")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -13518,9 +13518,9 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeCalendarPageChanged();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_CalendarSelChanged")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_CalendarSelectionChanged")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeCalendarSelChanged();
+	public static partial int EventTypeCalendarSelectionChanged();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_CalendarWeekClicked")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -13834,25 +13834,25 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeListCacheHint();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_ListColBeginDrag")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_ListColumnBeginDrag")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeListColBeginDrag();
+	public static partial int EventTypeListColumnBeginDrag();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_ListColClick")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_ListColumnClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeListColClick();
+	public static partial int EventTypeListColumnClick();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_ListColDragging")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_ListColumnDragging")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeListColDragging();
+	public static partial int EventTypeListColumnDragging();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_ListColEndDrag")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_ListColumnEndDrag")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeListColEndDrag();
+	public static partial int EventTypeListColumnEndDrag();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_ListColRightClick")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_ListColumnRightClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeListColRightClick();
+	public static partial int EventTypeListColumnRightClick();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_ListDeleteAllItems")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -14158,17 +14158,17 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeSplitterDoubleclicked();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_SplitterSashPosChanged")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_SplitterSashPositionChanged")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeSplitterSashPosChanged();
+	public static partial int EventTypeSplitterSashPositionChanged();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_SplitterSashPosChanging")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_SplitterSashPositionChanging")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeSplitterSashPosChanging();
+	public static partial int EventTypeSplitterSashPositionChanging();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_SplitterSashPosResize")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_SplitterSashPositionResize")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeSplitterSashPosResize();
+	public static partial int EventTypeSplitterSashPositionResize();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_SplitterUnsplit")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -14478,13 +14478,13 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeTreeKeyDown();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_TreeSelChanged")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_TreeSelectionChanged")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeTreeSelChanged();
+	public static partial int EventTypeTreeSelectionChanged();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_TreeSelChanging")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_TreeSelectionChanging")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeTreeSelChanging();
+	public static partial int EventTypeTreeSelectionChanging();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_TreeSetInfo")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

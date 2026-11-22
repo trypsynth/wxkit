@@ -189,10 +189,6 @@ WXK_FUNCTION(void) wxk_DC_DisableAutomaticBoundingBoxUpdates(wxk_Object* self) n
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DisableAutomaticBoundingBoxUpdates(); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_DC_AreAutomaticBoundingBoxUpdatesEnabled(wxk_Object* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDC*>(wxk::Unwrap(self))->AreAutomaticBoundingBoxUpdatesEnabled()) ? 1 : 0; });
-}
-
 WXK_FUNCTION(void) wxk_DC_CalcBoundingBox(wxk_Object* self, int32_t x, int32_t y) noexcept {
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->CalcBoundingBox(static_cast<int>(x), static_cast<int>(y)); });
 }
@@ -395,6 +391,10 @@ WXK_FUNCTION(void) wxk_DC_GetSizeMM_OutIntOutInt(wxk_Object* self, int32_t* widt
 
 WXK_FUNCTION(void) wxk_DC_GetUserScale(wxk_Object* self, double* x, double* y) noexcept {
 	wxk::Guard([&] { static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->GetUserScale(x, y); });
+}
+
+WXK_FUNCTION(uint8_t) wxk_DC_AreAutomaticBoundingBoxUpdatesEnabled(wxk_Object* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDC*>(wxk::Unwrap(self))->AreAutomaticBoundingBoxUpdatesEnabled()) ? 1 : 0; });
 }
 
 WXK_FUNCTION(int32_t) wxk_DC_GetBackgroundMode(wxk_Object* self) noexcept {

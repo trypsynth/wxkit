@@ -171,14 +171,14 @@ public unsafe partial class TreeCtrl : Control {
 
 	/// <summary>Selection has changed. Processes a wxEVT_TREE_SEL_CHANGED event type.</summary>
 	public event EventHandler<TreeEvent>? TreeSelChanged {
-		add => AddHandler(EventType.TreeSelChanged, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.TreeSelChanged, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.TreeSelectionChanged, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TreeSelectionChanged, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Selection is changing. This can be prevented by calling Veto(). Processes a wxEVT_TREE_SEL_CHANGING event type.</summary>
 	public event EventHandler<TreeEvent>? TreeSelChanging {
-		add => AddHandler(EventType.TreeSelChanging, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.TreeSelChanging, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.TreeSelectionChanging, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TreeSelectionChanging, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Information is being supplied. Processes a wxEVT_TREE_SET_INFO event type.</summary>

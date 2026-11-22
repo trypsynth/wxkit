@@ -50,8 +50,8 @@ public unsafe partial class CalendarCtrl : Control {
 
 	/// <summary>The selected date changed.</summary>
 	public event EventHandler<CalendarEvent>? SelectionChanged {
-		add => AddHandler(EventType.CalendarSelChanged, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.CalendarSelChanged, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.CalendarSelectionChanged, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.CalendarSelectionChanged, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>User clicked on the week of the year number (only generic).</summary>
@@ -76,7 +76,7 @@ public unsafe partial class CalendarCtrl : Control {
 	public void Mark(int day, bool mark) => WxKitNative.CalendarCtrlMark(Native, checked((nuint)day), mark ? (byte)1 : (byte)0);
 
 	/// <summary>Clears any attributes associated with the given day (in the range 1...31).</summary>
-	public void ResetAttr(int day) => WxKitNative.CalendarCtrlResetAttr(Native, checked((nuint)day));
+	public void ResetAttributes(int day) => WxKitNative.CalendarCtrlResetAttr(Native, checked((nuint)day));
 
 	/// <summary>Restrict the dates that can be selected in the control to the specified range.</summary>
 	public bool SetDateRange(DateTime? earliest = null, DateTime? latest = null) => WxKitNative.CalendarCtrlSetDateRange(Native, global::WxKit.NativeDateTime.ToNative(earliest), global::WxKit.NativeDateTime.ToNative(latest)) != 0;

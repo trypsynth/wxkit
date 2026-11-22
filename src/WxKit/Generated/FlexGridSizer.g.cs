@@ -26,7 +26,7 @@ public unsafe partial class FlexGridSizer : GridSizer {
 	}
 
 	/// <summary>Returns a read-only array containing the widths of the columns in the sizer.</summary>
-	public int[] ColWidths => NativeNumbers.TakeInts(WxKitNative.FlexGridSizerGetColWidths(Native));
+	public int[] ColumnWidths => NativeNumbers.TakeInts(WxKitNative.FlexGridSizerGetColWidths(Native));
 
 	/// <summary>Returns a wxOrientation value that specifies whether the sizer flexibly resizes its columns, rows, or both (default).</summary>
 	public int FlexibleDirection {
@@ -44,19 +44,19 @@ public unsafe partial class FlexGridSizer : GridSizer {
 	public int[] RowHeights => NativeNumbers.TakeInts(WxKitNative.FlexGridSizerGetRowHeights(Native));
 
 	/// <summary>Specifies that column idx (starting from zero) should be grown if there is extra space available to the sizer.</summary>
-	public void AddGrowableCol(int index, int proportion = 0) => WxKitNative.FlexGridSizerAddGrowableCol(Native, checked((nuint)index), proportion);
+	public void AddGrowableColumn(int index, int proportion = 0) => WxKitNative.FlexGridSizerAddGrowableCol(Native, checked((nuint)index), proportion);
 
 	/// <summary>Specifies that row idx (starting from zero) should be grown if there is extra space available to the sizer.</summary>
 	public void AddGrowableRow(int index, int proportion = 0) => WxKitNative.FlexGridSizerAddGrowableRow(Native, checked((nuint)index), proportion);
 
 	/// <summary>Returns true if column idx is growable.</summary>
-	public bool IsColGrowable(int index) => WxKitNative.FlexGridSizerIsColGrowable(Native, checked((nuint)index)) != 0;
+	public bool IsColumnGrowable(int index) => WxKitNative.FlexGridSizerIsColGrowable(Native, checked((nuint)index)) != 0;
 
 	/// <summary>Returns true if row idx is growable.</summary>
 	public bool IsRowGrowable(int index) => WxKitNative.FlexGridSizerIsRowGrowable(Native, checked((nuint)index)) != 0;
 
 	/// <summary>Specifies that the idx column index is no longer growable.</summary>
-	public void RemoveGrowableCol(int index) => WxKitNative.FlexGridSizerRemoveGrowableCol(Native, checked((nuint)index));
+	public void RemoveGrowableColumn(int index) => WxKitNative.FlexGridSizerRemoveGrowableCol(Native, checked((nuint)index));
 
 	/// <summary>Specifies that the idx row index is no longer growable.</summary>
 	public void RemoveGrowableRow(int index) => WxKitNative.FlexGridSizerRemoveGrowableRow(Native, checked((nuint)index));

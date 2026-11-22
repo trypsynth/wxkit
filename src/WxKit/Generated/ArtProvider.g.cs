@@ -46,15 +46,15 @@ public static unsafe partial class ArtProvider {
 	}
 
 	/// <summary>Helper used by several generic classes: return the icon corresponding to the standard wxICON_INFORMATION/WARNING/ERROR/QUESTION flags (only one can be set).</summary>
-	public static Icon? GetMessageBoxIcon(int flags) {
+	public static Icon? GetMessageBoxIcon(MessageDialogStyle flags) {
 		Application.VerifyAccess();
-		return global::WxKit.Icon.Take(WxKitNative.ArtProviderGetMessageBoxIcon(flags));
+		return global::WxKit.Icon.Take(WxKitNative.ArtProviderGetMessageBoxIcon((int)flags));
 	}
 
 	/// <summary>Helper used by GetMessageBoxIcon(): return the art id corresponding to the standard wxICON_INFORMATION/WARNING/ERROR/QUESTION flags (only one can be set).</summary>
-	public static string GetMessageBoxIconId(int flags) {
+	public static string GetMessageBoxIconId(MessageDialogStyle flags) {
 		Application.VerifyAccess();
-		return NativeString.Take(WxKitNative.ArtProviderGetMessageBoxIconId(flags));
+		return NativeString.Take(WxKitNative.ArtProviderGetMessageBoxIconId((int)flags));
 	}
 
 	/// <summary>Returns native icon size for use specified by client hint in DIPs.</summary>

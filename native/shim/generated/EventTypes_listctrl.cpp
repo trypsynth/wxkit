@@ -17,23 +17,23 @@ WXK_FUNCTION(int32_t) wxk_EventType_ListCacheHint(void) noexcept {
 	return wxEVT_LIST_CACHE_HINT;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_ListColBeginDrag(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_ListColumnBeginDrag(void) noexcept {
 	return wxEVT_LIST_COL_BEGIN_DRAG;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_ListColClick(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_ListColumnClick(void) noexcept {
 	return wxEVT_LIST_COL_CLICK;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_ListColDragging(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_ListColumnDragging(void) noexcept {
 	return wxEVT_LIST_COL_DRAGGING;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_ListColEndDrag(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_ListColumnEndDrag(void) noexcept {
 	return wxEVT_LIST_COL_END_DRAG;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_ListColRightClick(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_ListColumnRightClick(void) noexcept {
 	return wxEVT_LIST_COL_RIGHT_CLICK;
 }
 

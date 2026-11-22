@@ -383,6 +383,28 @@ internal static class Core {
 			.Event("EVT_WEBVIEW_PDF_SAVED", "PdfSaved"));
 		tweaks.Class("wxWebViewEvent", e => e.Ignore("GetTargetWindowFeatures").Rename("GetURL", "Url"));
 		tweaks.Enum("wxWebViewBrowsingDataTypes", "WebViewBrowsingDataTypes", isFlags: true);
+		tweaks.Enum("wxWebViewPrintFlags", "WebViewPrintFlags", isFlags: true);
+		tweaks.Class("wxWebView").ParameterEnum("Print", "flags", "WebViewPrintFlags");
+		// Abbreviations .NET spells out, as its naming guidelines ask. The styled text control keeps
+		// Scintilla's, which its own documentation uses.
+		tweaks.Class("wxWindow").Rename("GetScrollPos", "GetScrollPosition").Rename("SetScrollPos", "SetScrollPosition").Property("UsesBackgroundColor", "UseBgCol");
+		tweaks.Class("wxToolBar").Rename("GetToolByPos", "GetToolByPosition").Rename("DeleteToolByPos", "DeleteToolByPosition").Rename("GetToolPos", "GetToolPosition");
+		tweaks.Class("wxSlider").Rename("GetSelStart", "SelectionStart").Rename("GetSelEnd", "SelectionEnd").Rename("ClearSel", "ClearSelection");
+		tweaks.Class("wxFlexGridSizer").Rename("IsColGrowable", "IsColumnGrowable").Rename("AddGrowableCol", "AddGrowableColumn").Rename("RemoveGrowableCol", "RemoveGrowableColumn").Rename("GetColWidths", "ColumnWidths");
+		tweaks.Class("wxCalendarCtrl").Rename("ResetAttr", "ResetAttributes");
+		tweaks.Class("wxFont").Rename("GetNativeFontInfoDesc", "NativeFontInfoDescription").Property("NativeFontInfoUserDescription", "GetNativeFontInfoUserDesc", "SetNativeFontInfoUserDesc");
+		tweaks.Class("wxImage").Rename("GetImageExtWildcard", "ImageExtensionWildcard");
+		// Flags and modes wxWidgets passes as ints, as enums.
+		tweaks.Class("wxDC", dc => dc
+			.ParameterEnum("SetBackgroundMode", "mode", "BrushStyle")
+			.ParameterEnum("GetBackgroundMode", "return", "BrushStyle")
+			.Property("AreAutomaticBoundingBoxUpdatesEnabled", "AreAutomaticBoundingBoxUpdatesEnabled"));
+		tweaks.ConstantEnumOf("DragFlags", isFlags: true, "wxDrag_CopyOnly", "wxDrag_AllowMove", "wxDrag_DefaultMove");
+		tweaks.Class("wxDataViewEvent").ParameterEnum("SetDragFlags", "flags", "DragFlags").ParameterEnum("GetDragFlags", "return", "DragFlags");
+		tweaks.Class("wxSplitterWindow").ParameterEnum("SetSplitMode", "mode", "SplitMode");
+		tweaks.ConstantEnumOf("StatusBarFieldStyle", isFlags: false, "wxSB_NORMAL", "wxSB_FLAT", "wxSB_RAISED", "wxSB_SUNKEN");
+		tweaks.Class("wxStatusBar").ParameterEnum("GetStatusStyle", "return", "StatusBarFieldStyle");
+		tweaks.Class("wxArtProvider").ParameterEnum("GetMessageBoxIcon", "flags", "MessageDialogStyle").ParameterEnum("GetMessageBoxIconId", "flags", "MessageDialogStyle");
 		// Printing. The data and dialogs are objects the application owns, and so is a printout,
 		// whose virtual members are written by hand, since GetPageInfo answers through pointers, and
 		// whose DC is only lent to it for each page. A preview, which takes its printouts, is too.

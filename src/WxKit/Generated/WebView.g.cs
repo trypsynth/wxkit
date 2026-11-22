@@ -248,9 +248,9 @@ public unsafe partial class WebView : Control {
 	public void Print() => WxKitNative.WebViewPrintDefault(Native);
 
 	/// <summary>Prints the currently displayed page using the given print settings.</summary>
-	public void Print(PrintData printData, int flags = 1) {
+	public void Print(PrintData printData, WebViewPrintFlags flags = WebViewPrintFlags.HideHeaderFooter) {
 		ArgumentNullException.ThrowIfNull(printData);
-		WxKitNative.WebViewPrintPrintDataInt(Native, printData.Native, flags);
+		WxKitNative.WebViewPrintPrintDataWebViewPrintFlags(Native, printData.Native, (int)flags);
 	}
 
 	/// <summary>Saves the currently displayed page as a PDF file to filePath.</summary>
