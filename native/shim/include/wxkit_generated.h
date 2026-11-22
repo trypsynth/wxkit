@@ -225,7 +225,7 @@ WXK_FUNCTION(wxk_Window*) wxk_CheckListBox_new_WindowIntPointSize(wxk_Window* pa
 WXK_FUNCTION(wxk_Window*) wxk_CheckListBox_new_WindowIntPointSizeStringsListBoxStyle(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, const wxk_StringArray* choices, int64_t style) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_CheckListBox_Check(wxk_Window* self, uint32_t item, uint8_t check) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_CheckListBox_IsChecked(wxk_Window* self, uint32_t item) WXK_NOEXCEPT;
-WXK_FUNCTION(uint32_t) wxk_CheckListBox_GetCheckedItems(wxk_Window* self, wxk_Numbers** checkedItems) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Numbers*) wxk_CheckListBox_GetCheckedItems(wxk_Window* self) WXK_NOEXCEPT;
 
 // wxChildFocusEvent
 
@@ -530,8 +530,7 @@ WXK_FUNCTION(uint8_t) wxk_DC_FloodFill_PointColorFloodFillStyle(wxk_Object* self
 WXK_FUNCTION(void) wxk_DC_CrossHair_IntInt(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_CrossHair_Point(wxk_Object* self, wxk_Point point) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_DestroyClippingRegion(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_DC_GetClippingBox_OutIntOutIntOutIntOutInt(wxk_Object* self, int32_t* x, int32_t* y, int32_t* width, int32_t* height) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_DC_GetClippingBox_OutRect(wxk_Object* self, wxk_Rect* rect) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_DC_GetClippingBox(wxk_Object* self, wxk_Rect* rect) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_SetClippingRegion_IntIntIntInt(wxk_Object* self, int32_t x, int32_t y, int32_t width, int32_t height) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_SetClippingRegion_PointSize(wxk_Object* self, wxk_Point point, wxk_Size size) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_SetClippingRegion_Rect(wxk_Object* self, wxk_Rect rect) WXK_NOEXCEPT;
@@ -573,7 +572,7 @@ WXK_FUNCTION(void) wxk_DC_GetLogicalScale(wxk_Object* self, double* x, double* y
 WXK_FUNCTION(void) wxk_DC_SetLogicalOrigin(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_ResetTransformMatrix(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_DC_GetMultiLineTextExtent(wxk_Object* self, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_DC_GetPartialTextExtents(wxk_Object* self, const char16_t* text, size_t textLength, wxk_Numbers** widths) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Numbers*) wxk_DC_GetPartialTextExtents(wxk_Object* self, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_DC_GetTextExtent(wxk_Object* self, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_DC_FromDIP_Size(wxk_Object* self, wxk_Size size) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Point) wxk_DC_FromDIP_Point(wxk_Object* self, wxk_Point point) WXK_NOEXCEPT;
@@ -611,8 +610,8 @@ WXK_FUNCTION(wxk_Point) wxk_DC_GetDeviceOrigin(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_DC_GetMapMode(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_SetMapMode(wxk_Object* self, int32_t mode) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_DC_GetPPI(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Size) wxk_DC_GetSize(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Size) wxk_DC_GetSizeMM(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Size) wxk_DC_GetSize_Default(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Size) wxk_DC_GetSizeMM_Default(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_DC_GetFont(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_SetFont(wxk_Object* self, const wxk_Object* font) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_DC_GetLayoutDirection(wxk_Object* self) WXK_NOEXCEPT;
@@ -696,13 +695,11 @@ WXK_FUNCTION(void) wxk_DataViewCtrl_ExpandChildren(wxk_Window* self, void* item)
 WXK_FUNCTION(wxk_DataViewColumn*) wxk_DataViewCtrl_GetColumn(wxk_Window* self, uint32_t position) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_DataViewCtrl_GetColumnPosition(wxk_Window* self, wxk_DataViewColumn* column) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Rect) wxk_DataViewCtrl_GetItemRect(wxk_Window* self, void* item, wxk_DataViewColumn* column) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_DataViewCtrl_GetSelections(wxk_Window* self, wxk_Numbers** selections) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_IsExpanded(wxk_Window* self, void* item) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_IsSelected(wxk_Window* self, void* item) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DataViewCtrl_Select(wxk_Window* self, void* item) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DataViewCtrl_SelectAll(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_SetAlternateRowColour(wxk_Window* self, wxk_Colour color) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_DataViewCtrl_SetSelections(wxk_Window* self, const int64_t* selections, size_t selectionsCount) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DataViewCtrl_Unselect(wxk_Window* self, void* item) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DataViewCtrl_UnselectAll(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_SetRowHeight(wxk_Window* self, int32_t rowHeight) WXK_NOEXCEPT;
@@ -718,6 +715,8 @@ WXK_FUNCTION(void) wxk_DataViewCtrl_SetIndent(wxk_Window* self, int32_t indent) 
 WXK_FUNCTION(wxk_Window*) wxk_DataViewCtrl_GetMainWindow(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_DataViewCtrl_GetSelectedItemsCount(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void*) wxk_DataViewCtrl_GetSelection(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Numbers*) wxk_DataViewCtrl_GetSelections(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DataViewCtrl_SetSelections(wxk_Window* self, const int64_t* selections, size_t selectionsCount) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_DataViewColumn*) wxk_DataViewCtrl_GetSortingColumn(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_HasSelection(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_IsMultiColumnSortAllowed(wxk_Window* self) WXK_NOEXCEPT;
@@ -1386,7 +1385,6 @@ WXK_FUNCTION(wxk_Window*) wxk_ListBox_new_WindowIntPointSize(wxk_Window* parent,
 WXK_FUNCTION(wxk_Window*) wxk_ListBox_new_WindowIntPointSizeStringsListBoxStyle(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, const wxk_StringArray* choices, int64_t style) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListBox_Deselect(wxk_Window* self, int32_t index) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListBox_SetStringSelection_StringBool(wxk_Window* self, const char16_t* s, size_t sLength, uint8_t select) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_ListBox_GetSelections(wxk_Window* self, wxk_Numbers** selections) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListBox_InsertItems(wxk_Window* self, const wxk_StringArray* items, uint32_t position) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListBox_IsSelected(wxk_Window* self, int32_t index) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListBox_SetFirstItem_Int(wxk_Window* self, int32_t index) WXK_NOEXCEPT;
@@ -1410,6 +1408,7 @@ WXK_FUNCTION(void) wxk_ListBox_Select(wxk_Window* self, int32_t index) WXK_NOEXC
 WXK_FUNCTION(uint8_t) wxk_ListBox_HasMultipleSelection(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListBox_GetSelection(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListBox_SetSelection(wxk_Window* self, int32_t index) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Numbers*) wxk_ListBox_GetSelections(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListBox_IsSorted(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListBox_GetCountPerPage(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListBox_GetTopItem(wxk_Window* self) WXK_NOEXCEPT;
@@ -1965,10 +1964,6 @@ WXK_FUNCTION(void) wxk_Printout_FitThisSizeToPage(wxk_Object* self, wxk_Size ima
 WXK_FUNCTION(void) wxk_Printout_FitThisSizeToPageMargins(wxk_Object* self, wxk_Size imageSize, const wxk_Object* pageSetupData) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Printout_FitThisSizeToPaper(wxk_Object* self, wxk_Size imageSize) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Rect) wxk_Printout_GetLogicalPageMarginsRect(wxk_Object* self, const wxk_Object* pageSetupData) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Printout_GetPPIPrinter(wxk_Object* self, int32_t* w, int32_t* h) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Printout_GetPPIScreen(wxk_Object* self, int32_t* w, int32_t* h) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Printout_GetPageSizeMM(wxk_Object* self, int32_t* w, int32_t* h) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Printout_GetPageSizePixels(wxk_Object* self, int32_t* w, int32_t* h) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Printout_MapScreenSizeToDevice(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Printout_MapScreenSizeToPage(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Printout_MapScreenSizeToPageMargins(wxk_Object* self, const wxk_Object* pageSetupData) WXK_NOEXCEPT;
@@ -1977,6 +1972,10 @@ WXK_FUNCTION(void) wxk_Printout_OffsetLogicalOrigin(wxk_Object* self, int32_t xo
 WXK_FUNCTION(void) wxk_Printout_SetLogicalOrigin(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Rect) wxk_Printout_GetLogicalPageRect(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Rect) wxk_Printout_GetLogicalPaperRect(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Size) wxk_Printout_GetPPIPrinter(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Size) wxk_Printout_GetPPIScreen(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Size) wxk_Printout_GetPageSizeMM(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Size) wxk_Printout_GetPageSizePixels(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Rect) wxk_Printout_GetPaperRectPixels(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_Printout_GetTitle(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Printout_IsPreview(wxk_Object* self) WXK_NOEXCEPT;
@@ -2125,15 +2124,12 @@ WXK_FUNCTION(int32_t) wxk_ScrollWinEvent_GetPixelOffset(wxk_Event* self) WXK_NOE
 // wxScrolledWindow
 
 WXK_FUNCTION(wxk_Window*) wxk_ScrolledWindow_new(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_ScrolledWindow_CalcScrolledPosition_IntIntOutIntOutInt(wxk_Window* self, int32_t x, int32_t y, int32_t* xx, int32_t* yy) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Point) wxk_ScrolledWindow_CalcScrolledPosition_Point(wxk_Window* self, wxk_Point point) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_ScrolledWindow_CalcUnscrolledPosition_IntIntOutIntOutInt(wxk_Window* self, int32_t x, int32_t y, int32_t* xx, int32_t* yy) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Point) wxk_ScrolledWindow_CalcUnscrolledPosition_Point(wxk_Window* self, wxk_Point point) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Point) wxk_ScrolledWindow_CalcScrolledPosition(wxk_Window* self, wxk_Point point) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Point) wxk_ScrolledWindow_CalcUnscrolledPosition(wxk_Window* self, wxk_Point point) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ScrolledWindow_DisableKeyboardScrolling(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ScrolledWindow_DoPrepareDC(wxk_Window* self, wxk_Object* dc) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ScrolledWindow_EnableScrolling(wxk_Window* self, uint8_t xScrolling, uint8_t yScrolling) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ScrolledWindow_ShowScrollbars(wxk_Window* self, int32_t horz, int32_t vert) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_ScrolledWindow_GetScrollPixelsPerUnit(wxk_Window* self, int32_t* xUnit, int32_t* yUnit) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ScrolledWindow_GetVirtualSize(wxk_Window* self, int32_t* x, int32_t* y) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ScrolledWindow_PrepareDC(wxk_Window* self, wxk_Object* dc) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ScrolledWindow_Scroll_IntInt(wxk_Window* self, int32_t x, int32_t y) WXK_NOEXCEPT;
@@ -2150,6 +2146,7 @@ WXK_FUNCTION(void) wxk_ScrolledWindow_DisableAutoScrollOutside(wxk_Window* self)
 WXK_FUNCTION(void) wxk_ScrolledWindow_SetScale(wxk_Window* self, double xs, double ys) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ScrolledWindow_AdjustScrollbars(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ScrolledWindow_StopAutoScrolling(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Size) wxk_ScrolledWindow_GetScrollPixelsPerUnit(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Point) wxk_ScrolledWindow_GetViewStart(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Point) wxk_ScrolledWindow_GetViewStartPixels(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_ScrolledWindow_GetTargetWindow(wxk_Window* self) WXK_NOEXCEPT;
@@ -3366,7 +3363,6 @@ WXK_FUNCTION(void) wxk_TextValidator_SetStyle(wxk_Object* self, int64_t style) W
 // wxTimePickerCtrl
 
 WXK_FUNCTION(wxk_Window*) wxk_TimePickerCtrl_new(wxk_Window* parent, int32_t id, wxk_DateTime time, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_TimePickerCtrl_GetTime(wxk_Window* self, int32_t* hour, int32_t* minute, int32_t* second) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_TimePickerCtrl_SetTime(wxk_Window* self, int32_t hour, int32_t minute, int32_t second) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_DateTime) wxk_TimePickerCtrl_GetValue(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_TimePickerCtrl_SetValue(wxk_Window* self, wxk_DateTime dt) WXK_NOEXCEPT;
@@ -3519,7 +3515,6 @@ WXK_FUNCTION(void*) wxk_TreeCtrl_GetNextSibling(wxk_Window* self, void* item) WX
 WXK_FUNCTION(void*) wxk_TreeCtrl_GetNextVisible(wxk_Window* self, void* item) WXK_NOEXCEPT;
 WXK_FUNCTION(void*) wxk_TreeCtrl_GetPrevSibling(wxk_Window* self, void* item) WXK_NOEXCEPT;
 WXK_FUNCTION(void*) wxk_TreeCtrl_GetPrevVisible(wxk_Window* self, void* item) WXK_NOEXCEPT;
-WXK_FUNCTION(size_t) wxk_TreeCtrl_GetSelections(wxk_Window* self, wxk_Numbers** selections) WXK_NOEXCEPT;
 WXK_FUNCTION(void*) wxk_TreeCtrl_InsertItem_TreeItemIdTreeItemIdStringIntIntData(wxk_Window* self, void* parent, void* previous, const char16_t* text, size_t textLength, int32_t image, int32_t selImage, void* data) WXK_NOEXCEPT;
 WXK_FUNCTION(void*) wxk_TreeCtrl_InsertItem_TreeItemIdSizeTStringIntIntData(wxk_Window* self, void* parent, size_t position, const char16_t* text, size_t textLength, int32_t image, int32_t selImage, void* data) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_TreeCtrl_IsBold(wxk_Window* self, void* item) WXK_NOEXCEPT;
@@ -3562,6 +3557,7 @@ WXK_FUNCTION(uint8_t) wxk_TreeCtrl_GetQuickBestSize(wxk_Window* self) WXK_NOEXCE
 WXK_FUNCTION(void) wxk_TreeCtrl_SetQuickBestSize(wxk_Window* self, uint8_t quickBestSize) WXK_NOEXCEPT;
 WXK_FUNCTION(void*) wxk_TreeCtrl_GetRootItem(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void*) wxk_TreeCtrl_GetSelection(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Numbers*) wxk_TreeCtrl_GetSelections(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_TreeCtrl_GetStateImageCount(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_TreeCtrl_HasStateImages(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_TreeCtrl_IsEmpty(wxk_Window* self) WXK_NOEXCEPT;
@@ -3926,7 +3922,7 @@ WXK_FUNCTION(wxk_Window*) wxk_Window_GetNextSibling(wxk_Window* self) WXK_NOEXCE
 WXK_FUNCTION(wxk_Window*) wxk_Window_GetParent(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_Window_GetPrevSibling(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_Window_GetBestSize(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Size) wxk_Window_GetClientSize(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Size) wxk_Window_GetClientSize_Default(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_SetClientSize_Size(wxk_Window* self, wxk_Size size) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_Window_GetEffectiveMinSize(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_Window_GetMaxClientSize(wxk_Window* self) WXK_NOEXCEPT;
@@ -3941,9 +3937,9 @@ WXK_FUNCTION(int32_t) wxk_Window_GetMinWidth(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Window_GetMinHeight(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Window_GetMaxWidth(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Window_GetMaxHeight(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Size) wxk_Window_GetSize(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Size) wxk_Window_GetSize_Default(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_SetSize_Size(wxk_Window* self, wxk_Size size) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Size) wxk_Window_GetVirtualSize(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Size) wxk_Window_GetVirtualSize_Default(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_SetVirtualSize_Size(wxk_Window* self, wxk_Size size) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_Window_GetBestVirtualSize(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(double) wxk_Window_GetContentScaleFactor(wxk_Window* self) WXK_NOEXCEPT;
@@ -4117,8 +4113,6 @@ WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemStartEditing(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemValueChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_DataViewSelectionChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_DateChanged(void) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_EventType_DirCtrlFileActivated(void) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_EventType_DirCtrlSelectionChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_DirPickerChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_DpiChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_DropFiles(void) WXK_NOEXCEPT;
@@ -4137,6 +4131,8 @@ WXK_FUNCTION(int32_t) wxk_EventType_FindReplace(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_FindReplaceAll(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_FontPickerChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_FullScreen(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_GenericDirCtrlFileActivated(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_GenericDirCtrlSelectionChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_Help(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_Hyperlink(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_Iconize(void) WXK_NOEXCEPT;

@@ -219,7 +219,7 @@ sealed record WxKit.AccessibleRow : IEquatable<AccessibleRow>
     Collapsed = 64
     Default = 128
     Expanded = 256
-    ExtSelectable = 512
+    ExtendedSelectable = 512
     Floating = 1024
     Focusable = 2048
     Focused = 4096
@@ -325,7 +325,7 @@ static class WxKit.ArtId
     const string FolderOpen = "wxART_FOLDER_OPEN"
     const string FullScreen = "wxART_FULL_SCREEN"
     const string GoBack = "wxART_GO_BACK"
-    const string GoDirUp = "wxART_GO_DIR_UP"
+    const string GoDirectoryUp = "wxART_GO_DIR_UP"
     const string GoDown = "wxART_GO_DOWN"
     const string GoForward = "wxART_GO_FORWARD"
     const string GoHome = "wxART_GO_HOME"
@@ -345,7 +345,7 @@ static class WxKit.ArtId
     const string Minus = "wxART_MINUS"
     const string MissingImage = "wxART_MISSING_IMAGE"
     const string New = "wxART_NEW"
-    const string NewDir = "wxART_NEW_DIR"
+    const string NewDirectory = "wxART_NEW_DIR"
     const string NormalFile = "wxART_NORMAL_FILE"
     const string Paste = "wxART_PASTE"
     const string Plus = "wxART_PLUS"
@@ -655,7 +655,7 @@ class WxKit.CheckListBox : ListBox
     CheckListBox(Window parent, int id = -1, Point? position = null, Size? size = null)
     bool IsChecked(int item)
     event EventHandler<CommandEvent>? ItemCheckedChanged
-    int GetCheckedItems(out int[] checkedItems)
+    int[] CheckedItems { get; }
     void Check(int item, bool check = true)
 class WxKit.ChildFocusEvent : CommandEvent
     Window? Window { get; }
@@ -832,6 +832,8 @@ class WxKit.ComboBox : Control
     int Selection { get; set; }
     long InsertionPoint { get; set; }
     long LastPosition { get; }
+    long SelectionLength { get; set; }
+    long SelectionStart { get; set; }
     object? GetClientObject(int index)
     string GetRange(long from, long to)
     string GetString(int index)
@@ -984,12 +986,10 @@ class WxKit.DC : NativeObject
     bool CanUseTransformMatrix { get; }
     bool FloodFill(Point point, Color? column, FloodFillStyle style = FloodFillStyle.Surface)
     bool FloodFill(int x, int y, Color? color, FloodFillStyle style = FloodFillStyle.Surface)
-    bool GetClippingBox(out Rect rect)
-    bool GetClippingBox(out int x, out int y, out int width, out int height)
-    bool GetPartialTextExtents(string text, out int[] widths)
     bool IsOk { get; }
     bool StartDoc(string message)
     bool StretchBlit(int xdest, int ydest, int dstWidth, int dstHeight, DC source, int xsrc, int ysrc, int srcWidth, int srcHeight, RasterOperationMode logicalFunc = RasterOperationMode.Copy, bool useMask = false, int xsrcMask = -1, int ysrcMask = -1)
+    bool TryGetClippingBox(out Rect rect)
     double ContentScaleFactor { get; }
     int CharHeight { get; }
     int CharWidth { get; }
@@ -1008,6 +1008,7 @@ class WxKit.DC : NativeObject
     int MinX()
     int MinY()
     int ToDip(int d)
+    int[] GetPartialTextExtents(string text)
     void CalcBoundingBox(int x, int y)
     void Clear()
     void CopyAttributes(DC dc)
@@ -1140,6 +1141,7 @@ class WxKit.DataViewCtrl : Control
     DataViewItem CurrentItem { get; set; }
     DataViewItem Selection { get; }
     DataViewItem TopItem { get; }
+    DataViewItem[] Selections { get; set; }
     DataViewModel? Model { get; set; }
     Rect GetItemRect(DataViewItem item, DataViewColumn? column = null)
     Window? MainWindow { get; }
@@ -1173,7 +1175,6 @@ class WxKit.DataViewCtrl : Control
     int ColumnCount { get; }
     int CountPerPage { get; }
     int GetColumnPosition(DataViewColumn column)
-    int GetSelections(out DataViewItem[] selections)
     int Indent { get; set; }
     int SelectedItemsCount { get; }
     void Collapse(DataViewItem item)
@@ -1184,7 +1185,6 @@ class WxKit.DataViewCtrl : Control
     void ExpandChildren(DataViewItem item)
     void Select(DataViewItem item)
     void SelectAll()
-    void SetSelections(IEnumerable<DataViewItem> selections)
     void ToggleSortByColumn(int column)
     void Unselect(DataViewItem item)
     void UnselectAll()
@@ -1404,9 +1404,9 @@ class WxKit.DirDialog : Dialog
     string Path { get; set; }
     string[] Paths { get; }
 [Flags] enum WxKit.DirDialogStyle : long
-    ChangeDir = 256
+    ChangeDirectory = 256
     Default = 536877120
-    DirMustExist = 512
+    DirectoryMustExist = 512
     Multiple = 1024
     None = 0
     ShowHidden = 1
@@ -1416,8 +1416,8 @@ class WxKit.DirPickerCtrl : PickerBase
     string Path { get; set; }
     void SetInitialDirectory(string directory)
 [Flags] enum WxKit.DirPickerCtrlStyle : long
-    ChangeDir = 16
-    DirMustExist = 8
+    ChangeDirectory = 16
+    DirectoryMustExist = 8
     None = 0
     Small = 32768
     UseTextCtrl = 2
@@ -1625,8 +1625,8 @@ static class WxKit.EventType
     static EventType<DpiChangedEvent> DpiChanged { get; }
     static EventType<DropFilesEvent> DropFiles { get; }
     static EventType<EraseEvent> EraseBackground { get; }
-    static EventType<Event> DirCtrlFileActivated { get; }
-    static EventType<Event> DirCtrlSelectionChanged { get; }
+    static EventType<Event> GenericDirCtrlFileActivated { get; }
+    static EventType<Event> GenericDirCtrlSelectionChanged { get; }
     static EventType<Event> MouseCaptureChanged { get; }
     static EventType<Event> MouseCaptureLost { get; }
     static EventType<Event> SetCursor { get; }
@@ -1881,7 +1881,7 @@ class WxKit.FileDialog : Dialog
     string[] Filenames { get; }
     string[] Paths { get; }
 [Flags] enum WxKit.FileDialogStyle : long
-    ChangeDir = 128
+    ChangeDirectory = 128
     Default = 1
     FileMustExist = 16
     Multiple = 512
@@ -1900,7 +1900,7 @@ class WxKit.FilePickerCtrl : PickerBase
     string Path { get; set; }
     void SetInitialDirectory(string directory)
 [Flags] enum WxKit.FilePickerCtrlStyle : long
-    ChangeDir = 16384
+    ChangeDirectory = 16384
     FileMustExist = 8192
     None = 0
     Open = 1024
@@ -2133,7 +2133,7 @@ class WxKit.FontPickerCtrl : PickerBase
     int MinPointSize { get; set; }
 [Flags] enum WxKit.FontPickerCtrlStyle : long
     Default = 24
-    FontDescAsLabel = 8
+    FontDescriptionAsLabel = 8
     None = 0
     UseFontForLabel = 16
     UseTextCtrl = 2
@@ -2248,7 +2248,7 @@ class WxKit.GenericDirCtrl : Control
     void ShowHidden(bool show)
     void UnselectAll()
 [Flags] enum WxKit.GenericDirCtrlStyle : long
-    DirOnly = 16
+    DirectoryOnly = 16
     EditLabels = 256
     Multiple = 512
     None = 0
@@ -2601,7 +2601,7 @@ enum WxKit.KeyCode : int
     LeftButton = 301
     MediaNextTrack = 427
     MediaPlayPause = 430
-    MediaPrevTrack = 428
+    MediaPreviousTrack = 428
     MediaStop = 429
     Menu = 309
     MiddleButton = 304
@@ -2763,12 +2763,12 @@ class WxKit.ListBox : Control
     int Count { get; }
     int CountPerPage { get; }
     int FindString(string text, bool caseSensitive = false)
-    int GetSelections(out int[] selections)
     int Insert(IEnumerable<string> items, int position)
     int Insert(string item, int position)
     int Insert(string item, int position, object? clientData)
     int Selection { get; set; }
     int TopItem { get; }
+    int[] Selections { get; }
     object? GetClientObject(int index)
     string GetString(int index)
     string StringSelection { get; set; }
@@ -2819,8 +2819,6 @@ class WxKit.ListCtrl : Control
     bool EnsureVisible(long item)
     bool GetColumn(int column, ListItem item)
     bool GetItem(ListItem info)
-    bool GetItemRect(long item, out Rect rect, int code = 0)
-    bool GetSubItemRect(long item, long subItem, out Rect rect, int code = 0)
     bool GetUpdatedAscendingSortIndicator(int column)
     bool HasCheckBoxes { get; }
     bool InReportView()
@@ -2840,6 +2838,8 @@ class WxKit.ListCtrl : Control
     bool SetItemImage(long item, int image, int selImage = -1)
     bool SetItemPosition(long item, Point position)
     bool SetItemState(long item, long state, long stateMask)
+    bool TryGetItemRect(long item, out Rect rect, int code = 0)
+    bool TryGetSubItemRect(long item, long subItem, out Rect rect, int code = 0)
     event EventHandler<ListEvent>? AllItemsDeleted
     event EventHandler<ListEvent>? BeginDrag
     event EventHandler<ListEvent>? BeginLabelEdit
@@ -3592,6 +3592,10 @@ abstract class WxKit.Printout : NativeObject
     Rect LogicalPageRect { get; }
     Rect LogicalPaperRect { get; }
     Rect PaperRectPixels { get; }
+    Size PageSizeMM { get; }
+    Size PageSizePixels { get; }
+    Size PpiPrinter { get; }
+    Size PpiScreen { get; }
     bool IsPreview { get; }
     protected Printout(string title = "Printout")
     protected abstract bool OnPrintPage(int page, DC dc)
@@ -3606,10 +3610,6 @@ abstract class WxKit.Printout : NativeObject
     void FitThisSizeToPage(Size imageSize)
     void FitThisSizeToPageMargins(Size imageSize, PageSetupDialogData pageSetupData)
     void FitThisSizeToPaper(Size imageSize)
-    void GetPageSizeMM(out int w, out int h)
-    void GetPageSizePixels(out int w, out int h)
-    void GetPpiPrinter(out int w, out int h)
-    void GetPpiScreen(out int w, out int h)
     void MapScreenSizeToDevice()
     void MapScreenSizeToPage()
     void MapScreenSizeToPageMargins(PageSetupDialogData pageSetupData)
@@ -3818,6 +3818,7 @@ class WxKit.ScrolledWindow : Panel
     Point ViewStartPixels { get; }
     Rect TargetRect { get; set; }
     ScrolledWindow(Window parent, int id = -1, Point? position = null, Size? size = null, ScrolledWindowStyle style = ScrolledWindowStyle.HorizontalScrollBar | ScrolledWindowStyle.VerticalScrollBar)
+    Size ScrollPixelsPerUnit { get; }
     Window? TargetWindow { get; set; }
     bool IsAutoScrolling { get; }
     double ScaleX { get; }
@@ -3833,8 +3834,6 @@ class WxKit.ScrolledWindow : Panel
     int GetScrollLines(Orientation orientation)
     int GetScrollPageSize(Orientation orientation)
     void AdjustScrollbars()
-    void CalcScrolledPosition(int x, int y, out int xx, out int yy)
-    void CalcUnscrolledPosition(int x, int y, out int xx, out int yy)
     void DisableAutoScrollOutside()
     void DisableAutoscrollWithoutCapture()
     void DisableKeyboardScrolling()
@@ -3842,7 +3841,6 @@ class WxKit.ScrolledWindow : Panel
     void EnableAutoScrollInside(int insideWidth)
     void EnableAutoscrollWithoutCapture()
     void EnableScrolling(bool xScrolling, bool yScrolling)
-    void GetScrollPixelsPerUnit(out int xUnit, out int yUnit)
     void GetVirtualSize(out int x, out int y)
     void PrepareDC(DC dc)
     void Scroll(Point point)
@@ -3879,6 +3877,8 @@ class WxKit.SearchCtrl : Control
     event EventHandler<CommandEvent>? SearchRequested
     long InsertionPoint { get; set; }
     long LastPosition { get; }
+    long SelectionLength { get; set; }
+    long SelectionStart { get; set; }
     string DescriptiveText { get; set; }
     string GetRange(long from, long to)
     string Hint { get; set; }
@@ -4229,7 +4229,7 @@ static class WxKit.StandardId
     const int MdiWindowFirst = 5230
     const int MdiWindowLast = 5235
     const int MdiWindowNext = 5235
-    const int MdiWindowPrev = 5234
+    const int MdiWindowPrevious = 5234
     const int MdiWindowTileHorz = 5231
     const int MdiWindowTileVert = 5232
     const int More = 5109
@@ -4334,7 +4334,7 @@ class WxKit.StatusBar : Control
     StatusBar(Window parent, StatusBarStyle style = StatusBarStyle.Default, int id = -1)
     StatusBarFieldStyle GetStatusStyle(int index)
     bool AddFieldControl(int i, Window window)
-    bool GetFieldRect(int i, out Rect rect)
+    bool TryGetFieldRect(int i, out Rect rect)
     int FieldsCount { get; set; }
     int GetStatusWidth(int index)
     string GetStatusText(int i = 0)
@@ -7474,7 +7474,7 @@ class WxKit.StyledTextCtrl : Control
     int SearchFlags { get; set; }
     int SearchInTarget(string text)
     int SearchNext(int searchFlags, string text)
-    int SearchPrev(int searchFlags, string text)
+    int SearchPrevious(int searchFlags, string text)
     int SelAlpha { get; set; }
     int SelectionEnd { get; set; }
     int SelectionMode { get; set; }
@@ -7876,7 +7876,7 @@ class WxKit.StyledTextEvent : CommandEvent
     int AnnotationsLinesAdded { get; }
     int DragFlags { get; set; }
     int FoldLevelNow { get; set; }
-    int FoldLevelPrev { get; set; }
+    int FoldLevelPrevious { get; set; }
     int Key { get; set; }
     int LParam { get; set; }
     int Length { get; set; }
@@ -8076,6 +8076,8 @@ class WxKit.TextCtrl : Control
     int NumberOfLines { get; }
     long InsertionPoint { get; set; }
     long LastPosition { get; }
+    long SelectionLength { get; set; }
+    long SelectionStart { get; set; }
     long XYToPosition(long x, long y)
     string GetLineText(long lineNo)
     string GetRange(long from, long to)
@@ -8173,7 +8175,6 @@ enum WxKit.TextValidatorStyle : int
 class WxKit.TimePickerCtrl : Control
     DateTime? Value { get; set; }
     TimePickerCtrl(Window parent, DateTime? time = null, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
-    bool GetTime(out int hour, out int minute, out int second)
     bool SetTime(int hour, int minute, int second)
     event EventHandler<DateEvent>? TimeChanged
 sealed class WxKit.Timer : EvtHandler, IDisposable
@@ -8357,14 +8358,14 @@ class WxKit.TreeCtrl : Control
     TreeItemId GetLastChild(TreeItemId item)
     TreeItemId GetNextSibling(TreeItemId item)
     TreeItemId GetNextVisible(TreeItemId item)
-    TreeItemId GetPrevSibling(TreeItemId item)
-    TreeItemId GetPrevVisible(TreeItemId item)
+    TreeItemId GetPreviousSibling(TreeItemId item)
+    TreeItemId GetPreviousVisible(TreeItemId item)
     TreeItemId InsertItem(TreeItemId parent, TreeItemId previous, string text, int image = -1, int selImage = -1, object? data = null)
     TreeItemId InsertItem(TreeItemId parent, int position, string text, int image = -1, int selImage = -1, object? data = null)
     TreeItemId PrependItem(TreeItemId parent, string text, int image = -1, int selImage = -1, object? data = null)
     TreeItemId RootItem { get; }
     TreeItemId Selection { get; }
-    bool GetBoundingRect(TreeItemId item, out Rect rect, bool textOnly = false)
+    TreeItemId[] Selections { get; }
     bool HasImages { get; }
     bool HasStateImages { get; }
     bool IsBold(TreeItemId item)
@@ -8374,6 +8375,7 @@ class WxKit.TreeCtrl : Control
     bool IsVisible(TreeItemId item)
     bool ItemHasChildren(TreeItemId item)
     bool QuickBestSize { get; set; }
+    bool TryGetBoundingRect(TreeItemId item, out Rect rect, bool textOnly = false)
     event EventHandler<CommandEvent>? ItemContextMenu
     event EventHandler<TreeEvent>? BeginDrag
     event EventHandler<TreeEvent>? BeginLabelEdit
@@ -8399,7 +8401,6 @@ class WxKit.TreeCtrl : Control
     int GetChildrenCount(TreeItemId item, bool recursively = true)
     int GetItemImage(TreeItemId item, TreeItemIcon which = TreeItemIcon.Normal)
     int GetItemState(TreeItemId item)
-    int GetSelections(out TreeItemId[] selections)
     int ImageCount { get; }
     int Indent { get; set; }
     int OnCompareItems(TreeItemId item1, TreeItemId item2)
@@ -8803,7 +8804,7 @@ class WxKit.Window : EvtHandler
     Window? GrandParent { get; }
     Window? NextSibling { get; }
     Window? Parent { get; }
-    Window? PrevSibling { get; }
+    Window? PreviousSibling { get; }
     WindowExtraStyle ExtraStyle { get; set; }
     WindowStyle WindowStyle { get; }
     WindowVariant WindowVariant { get; set; }

@@ -288,7 +288,7 @@ public enum AccessibleStates {
 	/// <summary>Wraps wxACC_STATE_SYSTEM_EXPANDED.</summary>
 	Expanded = 256,
 	/// <summary>Wraps wxACC_STATE_SYSTEM_EXTSELECTABLE.</summary>
-	ExtSelectable = 512,
+	ExtendedSelectable = 512,
 	/// <summary>Wraps wxACC_STATE_SYSTEM_FLOATING.</summary>
 	Floating = 1024,
 	/// <summary>Wraps wxACC_STATE_SYSTEM_FOCUSABLE.</summary>
@@ -1380,7 +1380,7 @@ public enum KeyCode {
 	/// <summary>Since wxWidgets 3.1.0. Wraps WXK_MEDIA_NEXT_TRACK.</summary>
 	MediaNextTrack = 427,
 	/// <summary>Since wxWidgets 3.1.0. Wraps WXK_MEDIA_PREV_TRACK.</summary>
-	MediaPrevTrack = 428,
+	MediaPreviousTrack = 428,
 	/// <summary>Since wxWidgets 3.1.0. Wraps WXK_MEDIA_STOP.</summary>
 	MediaStop = 429,
 	/// <summary>Since wxWidgets 3.1.0. Wraps WXK_MEDIA_PLAY_PAUSE.</summary>

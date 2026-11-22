@@ -34,10 +34,10 @@ dotnet run
    cd Todo
    ```
 
-2. Add the WxKit package, which is a prerelease. It brings in WxKit's native library for each system and architecture it supports.
+2. Add the WxKit package. It brings in WxKit's native library for each system and architecture it supports.
 
    ```shell
-   dotnet add package WxKit --prerelease
+   dotnet add package WxKit
    ```
 
 3. In `Todo.csproj`, change `OutputType` from `Exe` to `WinExe`, so that Windows doesn't open a console window beside the application. On Linux and macOS, it makes no difference.

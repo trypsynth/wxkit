@@ -87,8 +87,7 @@ public class MoreControlTests {
 		for (int index = 0; index < 30; index++) sizer.Add(new CheckBox(scrolled, $"Option {index}"));
 		scrolled.Sizer = sizer;
 		scrolled.FitInside();
-		scrolled.GetScrollPixelsPerUnit(out int xUnit, out int yUnit);
-		Assert.Equal((0, 10), (xUnit, yUnit));
+		Assert.Equal(new Size(0, 10), scrolled.ScrollPixelsPerUnit);
 		// A child's parent comes back as the same object, of the class WxKit made.
 		Assert.Same(scrolled, scrolled.Children[0].Parent);
 	});

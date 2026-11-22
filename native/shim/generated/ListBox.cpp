@@ -23,10 +23,6 @@ WXK_FUNCTION(uint8_t) wxk_ListBox_SetStringSelection_StringBool(wxk_Window* self
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListBox*>(wxk::Unwrap(self))->SetStringSelection(wxk::FromUtf16(s, sLength), select != 0)) ? 1 : 0; });
 }
 
-WXK_FUNCTION(int32_t) wxk_ListBox_GetSelections(wxk_Window* self, wxk_Numbers** selections) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListBox*>(wxk::Unwrap(self))->GetSelections(wxk::OutNumbers<wxArrayInt>{selections})); });
-}
-
 WXK_FUNCTION(void) wxk_ListBox_InsertItems(wxk_Window* self, const wxk_StringArray* items, uint32_t position) noexcept {
 	wxk::Guard([&] { static_cast<wxListBox*>(wxk::Unwrap(self))->InsertItems(*wxk::Unwrap(items), position); });
 }
@@ -117,6 +113,10 @@ WXK_FUNCTION(int32_t) wxk_ListBox_GetSelection(wxk_Window* self) noexcept {
 
 WXK_FUNCTION(void) wxk_ListBox_SetSelection(wxk_Window* self, int32_t index) noexcept {
 	wxk::Guard([&] { static_cast<wxListBox*>(wxk::Unwrap(self))->SetSelection(static_cast<int>(index)); });
+}
+
+WXK_FUNCTION(wxk_Numbers*) wxk_ListBox_GetSelections(wxk_Window* self) noexcept {
+	return wxk::Guard<wxk_Numbers*>(nullptr, [&]() -> wxk_Numbers* { return [&] { wxArrayInt filled; (void)(static_cast<wxListBox*>(wxk::Unwrap(self))->GetSelections(filled)); return wxk::ToNumbers(filled); }(); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_ListBox_IsSorted(wxk_Window* self) noexcept {

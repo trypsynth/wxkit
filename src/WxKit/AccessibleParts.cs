@@ -150,7 +150,7 @@ internal sealed class PartsAccessible(Window window) : Accessible(window) {
 
 	// The window itself is named by the label just before it, as a standard control is, unless
 	// SetAccessibleName named it, which wxWidgets answers before asking.
-	protected override string? GetName(int childId) => childId == 0 ? (Window.PrevSibling as StaticText)?.LabelText : _isTable ? Name(Row(childId)) : Part(childId).Label;
+	protected override string? GetName(int childId) => childId == 0 ? (Window.PreviousSibling as StaticText)?.LabelText : _isTable ? Name(Row(childId)) : Part(childId).Label;
 
 	protected override AccessibleRole? GetRole(int childId) => childId == 0 ? (_isTable ? AccessibleRole.List : null) : _isTable ? AccessibleRole.ListItem : AccessibleRole.StaticText;
 

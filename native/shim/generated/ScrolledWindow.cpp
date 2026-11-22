@@ -8,19 +8,11 @@ WXK_FUNCTION(wxk_Window*) wxk_ScrolledWindow_new(wxk_Window* parent, int32_t id,
 	});
 }
 
-WXK_FUNCTION(void) wxk_ScrolledWindow_CalcScrolledPosition_IntIntOutIntOutInt(wxk_Window* self, int32_t x, int32_t y, int32_t* xx, int32_t* yy) noexcept {
-	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->CalcScrolledPosition(static_cast<int>(x), static_cast<int>(y), xx, yy); });
-}
-
-WXK_FUNCTION(wxk_Point) wxk_ScrolledWindow_CalcScrolledPosition_Point(wxk_Window* self, wxk_Point point) noexcept {
+WXK_FUNCTION(wxk_Point) wxk_ScrolledWindow_CalcScrolledPosition(wxk_Window* self, wxk_Point point) noexcept {
 	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->CalcScrolledPosition(wxk::FromPoint(point))); });
 }
 
-WXK_FUNCTION(void) wxk_ScrolledWindow_CalcUnscrolledPosition_IntIntOutIntOutInt(wxk_Window* self, int32_t x, int32_t y, int32_t* xx, int32_t* yy) noexcept {
-	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->CalcUnscrolledPosition(static_cast<int>(x), static_cast<int>(y), xx, yy); });
-}
-
-WXK_FUNCTION(wxk_Point) wxk_ScrolledWindow_CalcUnscrolledPosition_Point(wxk_Window* self, wxk_Point point) noexcept {
+WXK_FUNCTION(wxk_Point) wxk_ScrolledWindow_CalcUnscrolledPosition(wxk_Window* self, wxk_Point point) noexcept {
 	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->CalcUnscrolledPosition(wxk::FromPoint(point))); });
 }
 
@@ -38,10 +30,6 @@ WXK_FUNCTION(void) wxk_ScrolledWindow_EnableScrolling(wxk_Window* self, uint8_t 
 
 WXK_FUNCTION(void) wxk_ScrolledWindow_ShowScrollbars(wxk_Window* self, int32_t horz, int32_t vert) noexcept {
 	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->ShowScrollbars(static_cast<wxScrollbarVisibility>(horz), static_cast<wxScrollbarVisibility>(vert)); });
-}
-
-WXK_FUNCTION(void) wxk_ScrolledWindow_GetScrollPixelsPerUnit(wxk_Window* self, int32_t* xUnit, int32_t* yUnit) noexcept {
-	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->GetScrollPixelsPerUnit(xUnit, yUnit); });
 }
 
 WXK_FUNCTION(void) wxk_ScrolledWindow_GetVirtualSize(wxk_Window* self, int32_t* x, int32_t* y) noexcept {
@@ -106,6 +94,10 @@ WXK_FUNCTION(void) wxk_ScrolledWindow_AdjustScrollbars(wxk_Window* self) noexcep
 
 WXK_FUNCTION(void) wxk_ScrolledWindow_StopAutoScrolling(wxk_Window* self) noexcept {
 	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->StopAutoScrolling(); });
+}
+
+WXK_FUNCTION(wxk_Size) wxk_ScrolledWindow_GetScrollPixelsPerUnit(wxk_Window* self) noexcept {
+	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize([&] { int first = 0; int second = 0; (void)(static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->GetScrollPixelsPerUnit(&first, &second)); return wxSize(first, second); }()); });
 }
 
 WXK_FUNCTION(wxk_Point) wxk_ScrolledWindow_GetViewStart(wxk_Window* self) noexcept {

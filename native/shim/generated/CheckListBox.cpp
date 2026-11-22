@@ -23,7 +23,7 @@ WXK_FUNCTION(uint8_t) wxk_CheckListBox_IsChecked(wxk_Window* self, uint32_t item
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxCheckListBox*>(wxk::Unwrap(self))->IsChecked(item)) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint32_t) wxk_CheckListBox_GetCheckedItems(wxk_Window* self, wxk_Numbers** checkedItems) noexcept {
-	return wxk::Guard<uint32_t>(0, [&]() -> uint32_t { return static_cast<uint32_t>(static_cast<wxCheckListBox*>(wxk::Unwrap(self))->GetCheckedItems(wxk::OutNumbers<wxArrayInt>{checkedItems})); });
+WXK_FUNCTION(wxk_Numbers*) wxk_CheckListBox_GetCheckedItems(wxk_Window* self) noexcept {
+	return wxk::Guard<wxk_Numbers*>(nullptr, [&]() -> wxk_Numbers* { return [&] { wxArrayInt filled; (void)(static_cast<wxCheckListBox*>(wxk::Unwrap(self))->GetCheckedItems(filled)); return wxk::ToNumbers(filled); }(); });
 }
 

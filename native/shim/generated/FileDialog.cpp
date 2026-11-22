@@ -41,7 +41,7 @@ WXK_FUNCTION(void) wxk_FileDialog_SetFilename(wxk_Window* self, const char16_t* 
 }
 
 WXK_FUNCTION(wxk_StringArray*) wxk_FileDialog_GetFilenames(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_StringArray*>(nullptr, [&]() -> wxk_StringArray* { return [&] { wxArrayString filled; static_cast<wxFileDialog*>(wxk::Unwrap(self))->GetFilenames(filled); return wxk::CopyStrings(filled); }(); });
+	return wxk::Guard<wxk_StringArray*>(nullptr, [&]() -> wxk_StringArray* { return [&] { wxArrayString filled; (void)(static_cast<wxFileDialog*>(wxk::Unwrap(self))->GetFilenames(filled)); return wxk::CopyStrings(filled); }(); });
 }
 
 WXK_FUNCTION(int32_t) wxk_FileDialog_GetFilterIndex(wxk_Window* self) noexcept {
@@ -69,7 +69,7 @@ WXK_FUNCTION(void) wxk_FileDialog_SetPath(wxk_Window* self, const char16_t* path
 }
 
 WXK_FUNCTION(wxk_StringArray*) wxk_FileDialog_GetPaths(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_StringArray*>(nullptr, [&]() -> wxk_StringArray* { return [&] { wxArrayString filled; static_cast<wxFileDialog*>(wxk::Unwrap(self))->GetPaths(filled); return wxk::CopyStrings(filled); }(); });
+	return wxk::Guard<wxk_StringArray*>(nullptr, [&]() -> wxk_StringArray* { return [&] { wxArrayString filled; (void)(static_cast<wxFileDialog*>(wxk::Unwrap(self))->GetPaths(filled)); return wxk::CopyStrings(filled); }(); });
 }
 
 WXK_FUNCTION(wxk_String*) wxk_FileDialog_GetWildcard(wxk_Window* self) noexcept {

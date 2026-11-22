@@ -58,6 +58,9 @@ public unsafe partial class TreeCtrl : Control {
 	/// <summary>Returns the selection, or an invalid item if there is no selection.</summary>
 	public TreeItemId Selection => new global::WxKit.TreeItemId(WxKitNative.TreeCtrlGetSelection(Native));
 
+	/// <summary>Fills the array of tree items passed in with the currently selected items.</summary>
+	public TreeItemId[] Selections => NativeNumbers.TakeTreeItems(WxKitNative.TreeCtrlGetSelections(Native));
+
 	/// <summary>Returns the current tree control spacing.</summary>
 	public int Spacing {
 		get => checked((int)WxKitNative.TreeCtrlGetSpacing(Native));
@@ -254,14 +257,6 @@ public unsafe partial class TreeCtrl : Control {
 	/// <summary>Expands the given item and all its children recursively.</summary>
 	public void ExpandAllChildren(TreeItemId item) => WxKitNative.TreeCtrlExpandAllChildren(Native, item.Value);
 
-	/// <summary>Retrieves the rectangle bounding the item.</summary>
-	public bool GetBoundingRect(TreeItemId item, out Rect rect, bool textOnly = false) {
-		rect = default;
-		fixed (Rect* rectPointer = &rect) {
-			return WxKitNative.TreeCtrlGetBoundingRect(Native, item.Value, rectPointer, textOnly ? (byte)1 : (byte)0) != 0;
-		}
-	}
-
 	/// <summary>Returns the number of items in the branch.</summary>
 	public int GetChildrenCount(TreeItemId item, bool recursively = true) => checked((int)WxKitNative.TreeCtrlGetChildrenCount(Native, item.Value, recursively ? (byte)1 : (byte)0));
 
@@ -299,18 +294,10 @@ public unsafe partial class TreeCtrl : Control {
 	public TreeItemId GetNextVisible(TreeItemId item) => new global::WxKit.TreeItemId(WxKitNative.TreeCtrlGetNextVisible(Native, item.Value));
 
 	/// <summary>Returns the previous sibling of the specified item; call GetNextSibling() for the next sibling.</summary>
-	public TreeItemId GetPrevSibling(TreeItemId item) => new global::WxKit.TreeItemId(WxKitNative.TreeCtrlGetPrevSibling(Native, item.Value));
+	public TreeItemId GetPreviousSibling(TreeItemId item) => new global::WxKit.TreeItemId(WxKitNative.TreeCtrlGetPrevSibling(Native, item.Value));
 
 	/// <summary>Returns the previous visible item or an invalid item if this item is the first visible one.</summary>
-	public TreeItemId GetPrevVisible(TreeItemId item) => new global::WxKit.TreeItemId(WxKitNative.TreeCtrlGetPrevVisible(Native, item.Value));
-
-	/// <summary>Fills the array of tree items passed in with the currently selected items.</summary>
-	public int GetSelections(out TreeItemId[] selections) {
-		WxkNumbers* selectionsNative = null;
-		var returned = WxKitNative.TreeCtrlGetSelections(Native, &selectionsNative);
-		selections = NativeNumbers.TakeTreeItems(selectionsNative);
-		return checked((int)returned);
-	}
+	public TreeItemId GetPreviousVisible(TreeItemId item) => new global::WxKit.TreeItemId(WxKitNative.TreeCtrlGetPrevVisible(Native, item.Value));
 
 	/// <summary>Inserts an item after a given one (previous).</summary>
 	public TreeItemId InsertItem(TreeItemId parent, TreeItemId previous, string text, int image = -1, int selImage = -1, object? data = null) {
@@ -424,6 +411,14 @@ public unsafe partial class TreeCtrl : Control {
 
 	/// <summary>Toggles the given item between selected and unselected states.</summary>
 	public void ToggleItemSelection(TreeItemId item) => WxKitNative.TreeCtrlToggleItemSelection(Native, item.Value);
+
+	/// <summary>Retrieves the rectangle bounding the item.</summary>
+	public bool TryGetBoundingRect(TreeItemId item, out Rect rect, bool textOnly = false) {
+		rect = default;
+		fixed (Rect* rectPointer = &rect) {
+			return WxKitNative.TreeCtrlGetBoundingRect(Native, item.Value, rectPointer, textOnly ? (byte)1 : (byte)0) != 0;
+		}
+	}
 
 	/// <summary>Removes the selection from the currently selected item (if any).</summary>
 	public void Unselect() => WxKitNative.TreeCtrlUnselect(Native);

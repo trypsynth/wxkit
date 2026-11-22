@@ -124,6 +124,12 @@ internal sealed class BoundFunction(BoundClass owner, DoxygenMember source, Conv
 
 	public bool IsConstructor { get; } = isConstructor;
 
+	/// <summary>
+	/// The locals the shim gives the C++ call for what it fills, which the function returns, such as
+	/// the list a <see cref="FilledListConversion"/> returns, each with where it goes among the call's arguments.
+	/// </summary>
+	public IReadOnlyList<(int Index, string Argument)> FilledArguments { get; init; } = [];
+
 	public bool IsStatic => Source.IsStatic && !IsConstructor;
 
 	/// <summary>Told apart from overloads with the same name, such as "SetSize_Int4".</summary>

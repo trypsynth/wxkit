@@ -37,7 +37,7 @@ public unsafe partial class StyledTextEvent : CommandEvent {
 	}
 
 	/// <summary>Returns previous fold level for the line.</summary>
-	public int FoldLevelPrev {
+	public int FoldLevelPrevious {
 		get => WxKitNative.StyledTextEventGetFoldLevelPrev(Handle);
 		set => WxKitNative.StyledTextEventSetFoldLevelPrev(Handle, value);
 	}

@@ -411,20 +411,6 @@ public static unsafe partial class EventType {
 		public static readonly EventType<DateEvent> Value = new(WxKitNative.EventTypeDateChanged, static native => new DateEvent((WxkEvent*)native));
 	}
 
-	/// <summary>Wraps wxEVT_DIRCTRL_FILEACTIVATED.</summary>
-	public static EventType<Event> DirCtrlFileActivated => DirCtrlFileActivatedType.Value;
-
-	private static class DirCtrlFileActivatedType {
-		public static readonly EventType<Event> Value = new(WxKitNative.EventTypeDirCtrlFileActivated, static native => new Event((WxkEvent*)native));
-	}
-
-	/// <summary>Wraps wxEVT_DIRCTRL_SELECTIONCHANGED.</summary>
-	public static EventType<Event> DirCtrlSelectionChanged => DirCtrlSelectionChangedType.Value;
-
-	private static class DirCtrlSelectionChangedType {
-		public static readonly EventType<Event> Value = new(WxKitNative.EventTypeDirCtrlSelectionChanged, static native => new Event((WxkEvent*)native));
-	}
-
 	/// <summary>Wraps wxEVT_DIRPICKER_CHANGED.</summary>
 	public static EventType<FileDirPickerEvent> DirPickerChanged => DirPickerChangedType.Value;
 
@@ -549,6 +535,20 @@ public static unsafe partial class EventType {
 
 	private static class FullScreenType {
 		public static readonly EventType<FullScreenEvent> Value = new(WxKitNative.EventTypeFullScreen, static native => new FullScreenEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_DIRCTRL_FILEACTIVATED.</summary>
+	public static EventType<Event> GenericDirCtrlFileActivated => GenericDirCtrlFileActivatedType.Value;
+
+	private static class GenericDirCtrlFileActivatedType {
+		public static readonly EventType<Event> Value = new(WxKitNative.EventTypeGenericDirCtrlFileActivated, static native => new Event((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_DIRCTRL_SELECTIONCHANGED.</summary>
+	public static EventType<Event> GenericDirCtrlSelectionChanged => GenericDirCtrlSelectionChangedType.Value;
+
+	private static class GenericDirCtrlSelectionChangedType {
+		public static readonly EventType<Event> Value = new(WxKitNative.EventTypeGenericDirCtrlSelectionChanged, static native => new Event((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_HELP.</summary>

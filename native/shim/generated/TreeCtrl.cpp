@@ -136,10 +136,6 @@ WXK_FUNCTION(void*) wxk_TreeCtrl_GetPrevVisible(wxk_Window* self, void* item) no
 	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetPrevVisible(wxTreeItemId(item))).GetID()); });
 }
 
-WXK_FUNCTION(size_t) wxk_TreeCtrl_GetSelections(wxk_Window* self, wxk_Numbers** selections) noexcept {
-	return wxk::Guard<size_t>(0, [&]() -> size_t { return static_cast<size_t>(static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetSelections(wxk::OutNumbers<wxArrayTreeItemIds>{selections})); });
-}
-
 WXK_FUNCTION(void*) wxk_TreeCtrl_InsertItem_TreeItemIdTreeItemIdStringIntIntData(wxk_Window* self, void* parent, void* previous, const char16_t* text, size_t textLength, int32_t image, int32_t selImage, void* data) noexcept {
 	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->InsertItem(wxTreeItemId(parent), wxTreeItemId(previous), wxk::FromUtf16(text, textLength), static_cast<int>(image), static_cast<int>(selImage), wxk::ToTreeItemData(data))).GetID()); });
 }
@@ -306,6 +302,10 @@ WXK_FUNCTION(void*) wxk_TreeCtrl_GetRootItem(wxk_Window* self) noexcept {
 
 WXK_FUNCTION(void*) wxk_TreeCtrl_GetSelection(wxk_Window* self) noexcept {
 	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetSelection()).GetID()); });
+}
+
+WXK_FUNCTION(wxk_Numbers*) wxk_TreeCtrl_GetSelections(wxk_Window* self) noexcept {
+	return wxk::Guard<wxk_Numbers*>(nullptr, [&]() -> wxk_Numbers* { return [&] { wxArrayTreeItemIds filled; (void)(static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->GetSelections(filled)); return wxk::ToNumbers(filled); }(); });
 }
 
 WXK_FUNCTION(int32_t) wxk_TreeCtrl_GetStateImageCount(wxk_Window* self) noexcept {

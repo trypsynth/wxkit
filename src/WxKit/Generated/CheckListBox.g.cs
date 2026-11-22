@@ -17,6 +17,9 @@ public unsafe partial class CheckListBox : ListBox {
 	internal CheckListBox(WxkWindow* native) : base(native) {
 	}
 
+	/// <summary>Return the indices of the checked items.</summary>
+	public int[] CheckedItems => NativeNumbers.TakeInts(WxKitNative.CheckListBoxGetCheckedItems(Native));
+
 	/// <summary>Process a wxEVT_CHECKLISTBOX event, when an item in the check list box is checked or unchecked. wxCommandEvent::GetInt() will contain the index of the item that was checked or unchecked. wxCommandEvent::IsChecked() is not valid! Use wxCheckListBox::IsChecked() instead.</summary>
 	public event EventHandler<CommandEvent>? ItemCheckedChanged {
 		add => AddHandler(EventType.Checklistbox, StandardId.Any, StandardId.Any, value, this);
@@ -25,14 +28,6 @@ public unsafe partial class CheckListBox : ListBox {
 
 	/// <summary>Checks the given item.</summary>
 	public void Check(int item, bool check = true) => WxKitNative.CheckListBoxCheck(Native, checked((uint)item), check ? (byte)1 : (byte)0);
-
-	/// <summary>Return the indices of the checked items.</summary>
-	public int GetCheckedItems(out int[] checkedItems) {
-		WxkNumbers* checkedItemsNative = null;
-		var returned = WxKitNative.CheckListBoxGetCheckedItems(Native, &checkedItemsNative);
-		checkedItems = NativeNumbers.TakeInts(checkedItemsNative);
-		return checked((int)returned);
-	}
 
 	/// <summary>Returns true if the given item is checked, false otherwise.</summary>
 	public bool IsChecked(int item) => WxKitNative.CheckListBoxIsChecked(Native, checked((uint)item)) != 0;

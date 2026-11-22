@@ -22,7 +22,7 @@ WxKit only exposes wxWidgets's one-step creation, where the constructor creates 
 
 `Point`, `Size`, `Rect`, and `Color` are `readonly record struct` types laid out like their shim structs, so they cross the boundary without conversion. `SizerFlags` is a `readonly struct` whose methods return a changed copy, as in `new SizerFlags(1).Expand().Border()`, and it becomes a `wxSizerFlags` when an item is added.
 
-A `wxDateTime` is a `DateTime?` in local time, and null is `wxInvalidDateTime`. A UTC time goes in as the local time it is, and it keeps milliseconds but not finer ticks. A list of positions or items, such as selections, comes back as an array, such as `int[]` or `TreeItemId[]`, and goes in as any sequence. A member that fills a list, as `wxListBox::GetSelections` does, takes an `out` array and returns the count, as in `list.GetSelections(out int[] selections)`.
+A `wxDateTime` is a `DateTime?` in local time, and null is `wxInvalidDateTime`. A UTC time goes in as the local time it is, and it keeps milliseconds but not finer ticks. A list of positions or items, such as selections, comes back as an array, such as `int[]` or `TreeItemId[]`, and goes in as any sequence. A member that fills a list, as `wxListBox::GetSelections` does, returns it, and a getter of one is a property, as in `list.Selections`.
 
 ## Object lifetime
 

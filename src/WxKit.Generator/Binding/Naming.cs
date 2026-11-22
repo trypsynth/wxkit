@@ -17,12 +17,16 @@ internal static class Naming {
 		["Customise"] = "Customize",
 		["Favourite"] = "Favorite",
 		["Neighbour"] = "Neighbor",
+		// Abbreviations .NET spells out, as in PreviousSibling.
+		["Prev"] = "Previous",
+		["Desc"] = "Description",
 	};
 
 	// Words that wxWidgets writes run together in upper case, so they cannot be split on their own.
 	private static readonly Dictionary<string, string> CompoundWords = new(StringComparer.Ordinal) {
 		["MULTILINE"] = "MultiLine",
 		["CHECKBOX"] = "CheckBox",
+		["DIR"] = "Directory",
 		["NOSHOWHIDDEN"] = "NoShowHidden",
 		["READONLY"] = "ReadOnly",
 		["NOHIDESEL"] = "NoHideSelection",
@@ -36,7 +40,7 @@ internal static class Naming {
 		["DIRPICKER"] = "DirPicker",
 		["FONTPICKER"] = "FontPicker",
 		["TEXTCTRL"] = "TextCtrl",
-		["FONTDESC"] = "FontDesc",
+		["FONTDESC"] = "FontDescription",
 		["USEFONT"] = "UseFont",
 		["STATUSITEM"] = "StatusItem",
 		// The mouse buttons, as keys.
@@ -167,7 +171,7 @@ internal static class Naming {
 		["EXTENDSELECTION"] = "ExtendSelection",
 		["ADDSELECTION"] = "AddSelection",
 		["REMOVESELECTION"] = "RemoveSelection",
-		["EXTSELECTABLE"] = "ExtSelectable",
+		["EXTSELECTABLE"] = "ExtendedSelectable",
 		["HOTTRACKED"] = "HotTracked",
 		["MULTISELECTABLE"] = "MultiSelectable",
 		["SELFVOICING"] = "SelfVoicing",
@@ -410,7 +414,7 @@ internal static class Naming {
 		["COL"] = "COLUMN",
 		["POS"] = "POSITION",
 		// Words wxWidgets runs together in some event types, such as wxEVT_DIRCTRL_FILEACTIVATED.
-		["DIRCTRL"] = "DIR_CTRL",
+		["DIRCTRL"] = "GenericDirCtrl",
 		["FILECTRL"] = "FILE_CTRL",
 		["TREELIST"] = "TREE_LIST",
 		["FILEACTIVATED"] = "FILE_ACTIVATED",

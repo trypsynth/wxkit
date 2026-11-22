@@ -18,8 +18,20 @@ public unsafe partial class Printout : NativeObject {
 	/// <summary>Return the rectangle corresponding to the paper in the associated wxDC 's logical coordinates for the current user scale and device origin.</summary>
 	public Rect LogicalPaperRect => WxKitNative.PrintoutGetLogicalPaperRect(Native);
 
+	/// <summary>Returns the size of the printer page in millimetres.</summary>
+	public Size PageSizeMM => WxKitNative.PrintoutGetPageSizeMM(Native);
+
+	/// <summary>Returns the size of the printer page in pixels, called the page rectangle.</summary>
+	public Size PageSizePixels => WxKitNative.PrintoutGetPageSizePixels(Native);
+
 	/// <summary>Returns the rectangle that corresponds to the entire paper in pixels, called the paper rectangle.</summary>
 	public Rect PaperRectPixels => WxKitNative.PrintoutGetPaperRectPixels(Native);
+
+	/// <summary>Returns the number of pixels per logical inch of the printer device context.</summary>
+	public Size PpiPrinter => WxKitNative.PrintoutGetPPIPrinter(Native);
+
+	/// <summary>Returns the number of pixels per logical inch of the screen device context.</summary>
+	public Size PpiScreen => WxKitNative.PrintoutGetPPIScreen(Native);
 
 	/// <summary>Returns the title of the printout.</summary>
 	public string Title => NativeString.Take(WxKitNative.PrintoutGetTitle(Native));
@@ -40,46 +52,6 @@ public unsafe partial class Printout : NativeObject {
 	public Rect GetLogicalPageMarginsRect(PageSetupDialogData pageSetupData) {
 		ArgumentNullException.ThrowIfNull(pageSetupData);
 		return WxKitNative.PrintoutGetLogicalPageMarginsRect(Native, pageSetupData.Native);
-	}
-
-	/// <summary>Returns the size of the printer page in millimetres.</summary>
-	public void GetPageSizeMM(out int w, out int h) {
-		w = 0;
-		h = 0;
-		fixed (int* wPointer = &w)
-		fixed (int* hPointer = &h) {
-			WxKitNative.PrintoutGetPageSizeMM(Native, wPointer, hPointer);
-		}
-	}
-
-	/// <summary>Returns the size of the printer page in pixels, called the page rectangle.</summary>
-	public void GetPageSizePixels(out int w, out int h) {
-		w = 0;
-		h = 0;
-		fixed (int* wPointer = &w)
-		fixed (int* hPointer = &h) {
-			WxKitNative.PrintoutGetPageSizePixels(Native, wPointer, hPointer);
-		}
-	}
-
-	/// <summary>Returns the number of pixels per logical inch of the printer device context.</summary>
-	public void GetPpiPrinter(out int w, out int h) {
-		w = 0;
-		h = 0;
-		fixed (int* wPointer = &w)
-		fixed (int* hPointer = &h) {
-			WxKitNative.PrintoutGetPPIPrinter(Native, wPointer, hPointer);
-		}
-	}
-
-	/// <summary>Returns the number of pixels per logical inch of the screen device context.</summary>
-	public void GetPpiScreen(out int w, out int h) {
-		w = 0;
-		h = 0;
-		fixed (int* wPointer = &w)
-		fixed (int* hPointer = &h) {
-			WxKitNative.PrintoutGetPPIScreen(Native, wPointer, hPointer);
-		}
 	}
 
 	/// <summary>Set the user scale and device origin of the wxDC associated with this wxPrintout so that one screen pixel maps to one device pixel on the DC.</summary>

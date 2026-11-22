@@ -96,11 +96,11 @@ public unsafe partial class DC : NativeObject {
 	/// <summary>Returns the resolution of the device in pixels per inch.</summary>
 	public Size Ppi => WxKitNative.DCGetPPI(Native);
 
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Size Size => WxKitNative.DCGetSize(Native);
+	/// <summary>Gets the horizontal and vertical extent of this device context in device units.</summary>
+	public Size Size => WxKitNative.DCGetSizeDefault(Native);
 
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Size SizeMM => WxKitNative.DCGetSizeMM(Native);
+	/// <summary>Returns the horizontal and vertical resolution in millimetres.</summary>
+	public Size SizeMM => WxKitNative.DCGetSizeMMDefault(Native);
 
 	/// <summary>Gets the current text background colour.</summary>
 	public Color? TextBackground {
@@ -328,28 +328,6 @@ public unsafe partial class DC : NativeObject {
 	/// <summary>Convert DPI-independent value in pixels to the value in pixels appropriate for the DC.</summary>
 	public int FromDip(int d) => WxKitNative.DCFromDIPInt(Native, d);
 
-	/// <summary>Gets the rectangle surrounding the current clipping region.</summary>
-	public bool GetClippingBox(out int x, out int y, out int width, out int height) {
-		x = 0;
-		y = 0;
-		width = 0;
-		height = 0;
-		fixed (int* xPointer = &x)
-		fixed (int* yPointer = &y)
-		fixed (int* widthPointer = &width)
-		fixed (int* heightPointer = &height) {
-			return WxKitNative.DCGetClippingBoxOutIntOutIntOutIntOutInt(Native, xPointer, yPointer, widthPointer, heightPointer) != 0;
-		}
-	}
-
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public bool GetClippingBox(out Rect rect) {
-		rect = default;
-		fixed (Rect* rectPointer = &rect) {
-			return WxKitNative.DCGetClippingBoxOutRect(Native, rectPointer) != 0;
-		}
-	}
-
 	/// <summary>Return the scale set by the last call to SetLogicalScale().</summary>
 	public void GetLogicalScale(out double x, out double y) {
 		x = 0;
@@ -369,13 +347,10 @@ public unsafe partial class DC : NativeObject {
 	}
 
 	/// <summary>Fills the widths array with the widths from the beginning of text to the corresponding character of text.</summary>
-	public bool GetPartialTextExtents(string text, out int[] widths) {
+	public int[] GetPartialTextExtents(string text) {
 		ArgumentNullException.ThrowIfNull(text);
-		WxkNumbers* widthsNative = null;
 		fixed (char* textText = text) {
-			var returned = WxKitNative.DCGetPartialTextExtents(Native, textText, NativeString.Length(text), &widthsNative);
-			widths = NativeNumbers.TakeInts(widthsNative);
-			return returned != 0;
+			return NativeNumbers.TakeInts(WxKitNative.DCGetPartialTextExtents(Native, textText, NativeString.Length(text)));
 		}
 	}
 
@@ -497,4 +472,12 @@ public unsafe partial class DC : NativeObject {
 
 	/// <summary>Convert pixel values of the current DC to DPI-independent pixel values.</summary>
 	public int ToDip(int d) => WxKitNative.DCToDIPInt(Native, d);
+
+	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
+	public bool TryGetClippingBox(out Rect rect) {
+		rect = default;
+		fixed (Rect* rectPointer = &rect) {
+			return WxKitNative.DCGetClippingBox(Native, rectPointer) != 0;
+		}
+	}
 }

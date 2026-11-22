@@ -735,8 +735,8 @@ WXK_FUNCTION(wxk_Size) wxk_Window_GetBestSize(wxk_Window* self) noexcept {
 	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxWindow*>(wxk::Unwrap(self))->GetBestSize()); });
 }
 
-WXK_FUNCTION(wxk_Size) wxk_Window_GetClientSize(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxWindow*>(wxk::Unwrap(self))->GetClientSize()); });
+WXK_FUNCTION(wxk_Size) wxk_Window_GetClientSize_Default(wxk_Window* self) noexcept {
+	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize([&] { int first = 0; int second = 0; (void)(static_cast<wxWindow*>(wxk::Unwrap(self))->GetClientSize(&first, &second)); return wxSize(first, second); }()); });
 }
 
 WXK_FUNCTION(void) wxk_Window_SetClientSize_Size(wxk_Window* self, wxk_Size size) noexcept {
@@ -795,15 +795,15 @@ WXK_FUNCTION(int32_t) wxk_Window_GetMaxHeight(wxk_Window* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxWindow*>(wxk::Unwrap(self))->GetMaxHeight()); });
 }
 
-WXK_FUNCTION(wxk_Size) wxk_Window_GetSize(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxWindow*>(wxk::Unwrap(self))->GetSize()); });
+WXK_FUNCTION(wxk_Size) wxk_Window_GetSize_Default(wxk_Window* self) noexcept {
+	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize([&] { int first = 0; int second = 0; (void)(static_cast<wxWindow*>(wxk::Unwrap(self))->GetSize(&first, &second)); return wxSize(first, second); }()); });
 }
 
 WXK_FUNCTION(void) wxk_Window_SetSize_Size(wxk_Window* self, wxk_Size size) noexcept {
 	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->SetSize(wxk::FromSize(size)); });
 }
 
-WXK_FUNCTION(wxk_Size) wxk_Window_GetVirtualSize(wxk_Window* self) noexcept {
+WXK_FUNCTION(wxk_Size) wxk_Window_GetVirtualSize_Default(wxk_Window* self) noexcept {
 	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxWindow*>(wxk::Unwrap(self))->GetVirtualSize()); });
 }
 

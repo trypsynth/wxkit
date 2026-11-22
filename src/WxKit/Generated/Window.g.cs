@@ -68,9 +68,9 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>Get the client rectangle in window (i.e. client) coordinates.</summary>
 	public Rect ClientRect => WxKitNative.WindowGetClientRect(Native);
 
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
+	/// <summary>Returns the size of the window 'client area' in pixels.</summary>
 	public Size ClientSize {
-		get => WxKitNative.WindowGetClientSize(Native);
+		get => WxKitNative.WindowGetClientSizeDefault(Native);
 		set => WxKitNative.WindowSetClientSizeSize(Native, value);
 	}
 
@@ -273,7 +273,7 @@ public unsafe partial class Window : EvtHandler {
 	}
 
 	/// <summary>Returns the previous window before this one among the parent's children or nullptr if this window is the first child.</summary>
-	public Window? PrevSibling => ObjectRegistry.Wrap<Window>(WxKitNative.WindowGetPrevSibling(Native));
+	public Window? PreviousSibling => ObjectRegistry.Wrap<Window>(WxKitNative.WindowGetPrevSibling(Native));
 
 	/// <summary>Returns the position and size of the window as a wxRect object.</summary>
 	public Rect Rect => WxKitNative.WindowGetRect(Native);
@@ -284,9 +284,9 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>Returns the position and size of the window on the screen as a wxRect object.</summary>
 	public Rect ScreenRect => WxKitNative.WindowGetScreenRect(Native);
 
-	/// <summary>See the GetSize(int*,int*) overload for more info.</summary>
+	/// <summary>Returns the size of the entire window in pixels, including title bar, border, scrollbars, etc.</summary>
 	public Size Size {
-		get => WxKitNative.WindowGetSize(Native);
+		get => WxKitNative.WindowGetSizeDefault(Native);
 		set => WxKitNative.WindowSetSizeSize(Native, value);
 	}
 
@@ -307,7 +307,7 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>This gets the virtual size of the window in pixels.</summary>
 	public Size VirtualSize {
-		get => WxKitNative.WindowGetVirtualSize(Native);
+		get => WxKitNative.WindowGetVirtualSizeDefault(Native);
 		set => WxKitNative.WindowSetVirtualSizeSize(Native, value);
 	}
 

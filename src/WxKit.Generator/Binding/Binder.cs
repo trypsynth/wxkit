@@ -324,13 +324,28 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 			string managedName = owner.Tweak.ParameterNames.GetValueOrDefault((member.Name, parameter.Name)) ?? Naming.Parameter(parameter.Name);
 			parameters.Add(new BoundParameter(parameter.Name, managedName, conversion, nullable, managedDefault));
 		}
-		// A function that only fills a list of strings, as GetPaths(wxArrayString&) does, returns
-		// the list, as .NET does, and a getter of it becomes a property.
-		if (!isConstructor && returns is VoidConversion && parameters is [{ Conversion: StringArrayOutConversion }]) {
-			returns = StringArrayFilledConversion.Instance;
+		// A function that fills one list, as GetSelections(wxArrayInt&) and GetPaths(wxArrayString&)
+		// do, returns the list, as .NET does, and a getter of it becomes a property. What it returned
+		// besides, such as the list's length or whether it could, is left out.
+		List<(int Index, string Argument)> filled = [];
+		List<int> lists = [.. parameters.Select(static (parameter, index) => (parameter, index)).Where(static pair => pair.parameter.Conversion is StringArrayOutConversion or NumberListOutConversion && pair.parameter.Default is null).Select(static pair => pair.index)];
+		if (!isConstructor && lists is [int position] && returns is VoidConversion or BoolConversion or NumberConversion or CountConversion) {
+			returns = parameters[position].Conversion is NumberListOutConversion numbers ? FilledListConversion.Of(numbers.Kind) : FilledListConversion.Strings;
+			parameters.RemoveAt(position);
+			filled.Add((position, FilledListConversion.Argument));
+		}
+		// A function that only fills a width and a height, as wxPrintout::GetPageSizeMM(int* w, int* h)
+		// does, returns them as a Size, and a getter of it becomes a property.
+		// Only a pair named as a size is one: x and y are a position, which another overload gives
+		// as a Point already.
+		if (!isConstructor && returns is VoidConversion && parameters.Count == 2 && parameters.All(static parameter => parameter.Conversion == OutConversion.Int) && (parameters[0].CppName, parameters[1].CppName) is ("w", "h") or ("width", "height") or ("xUnit", "yUnit")) {
+			bool byReference = member.Parameters[0].Type.Contains('&', StringComparison.Ordinal);
+			returns = FilledSizeConversion.Instance;
+			filled.Add((0, byReference ? "first" : "&first"));
+			filled.Add((1, byReference ? "second" : "&second"));
 			parameters.Clear();
 		}
-		BoundFunction function = new(owner, member, returns, parameters, isConstructor);
+		BoundFunction function = new(owner, member, returns, parameters, isConstructor) { FilledArguments = filled };
 		function.ManagedParameters = ManagedOrder(parameters);
 		return function;
 	}
@@ -533,6 +548,11 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 	private static bool GivesTheSameAsOne(List<string> rest, BoundFunction other) {
 		List<string> parameters = [.. other.Parameters.Select(static parameter => parameter.Conversion.ManagedType(parameter.Nullable))];
 		if (rest.SequenceEqual(parameters)) return IsGeometry(other.Returns.ManagedType(false));
+		// Two ints in for two out, as CalcScrolledPosition(x, y, out xx, out yy), beside a point in
+		// for a point out.
+		if (rest is ["int", "int"] && parameters is ["Point"] && other.Returns.ManagedType(false) == "Point") return true;
+		// Four ints out beside a Rect out, as GetClippingBox's are.
+		if (parameters.Count == rest.Count + 1 && parameters.Take(rest.Count).SequenceEqual(rest) && other.Parameters.Any(static parameter => parameter.Conversion is RectOutConversion)) return true;
 		return parameters.Count == rest.Count + 1 && parameters.Take(rest.Count).SequenceEqual(rest) && IsGeometry(parameters[^1]);
 	}
 

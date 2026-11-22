@@ -25,6 +25,6 @@ WXK_FUNCTION(void) wxk_DirDialog_SetPath(wxk_Window* self, const char16_t* path,
 }
 
 WXK_FUNCTION(wxk_StringArray*) wxk_DirDialog_GetPaths(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_StringArray*>(nullptr, [&]() -> wxk_StringArray* { return [&] { wxArrayString filled; static_cast<wxDirDialog*>(wxk::Unwrap(self))->GetPaths(filled); return wxk::CopyStrings(filled); }(); });
+	return wxk::Guard<wxk_StringArray*>(nullptr, [&]() -> wxk_StringArray* { return [&] { wxArrayString filled; (void)(static_cast<wxDirDialog*>(wxk::Unwrap(self))->GetPaths(filled)); return wxk::CopyStrings(filled); }(); });
 }
 

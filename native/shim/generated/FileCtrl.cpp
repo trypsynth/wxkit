@@ -29,7 +29,7 @@ WXK_FUNCTION(uint8_t) wxk_FileCtrl_SetFilename(wxk_Window* self, const char16_t*
 }
 
 WXK_FUNCTION(wxk_StringArray*) wxk_FileCtrl_GetFilenames(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_StringArray*>(nullptr, [&]() -> wxk_StringArray* { return [&] { wxArrayString filled; static_cast<wxFileCtrl*>(wxk::Unwrap(self))->GetFilenames(filled); return wxk::CopyStrings(filled); }(); });
+	return wxk::Guard<wxk_StringArray*>(nullptr, [&]() -> wxk_StringArray* { return [&] { wxArrayString filled; (void)(static_cast<wxFileCtrl*>(wxk::Unwrap(self))->GetFilenames(filled)); return wxk::CopyStrings(filled); }(); });
 }
 
 WXK_FUNCTION(int32_t) wxk_FileCtrl_GetFilterIndex(wxk_Window* self) noexcept {
@@ -49,7 +49,7 @@ WXK_FUNCTION(uint8_t) wxk_FileCtrl_SetPath(wxk_Window* self, const char16_t* pat
 }
 
 WXK_FUNCTION(wxk_StringArray*) wxk_FileCtrl_GetPaths(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_StringArray*>(nullptr, [&]() -> wxk_StringArray* { return [&] { wxArrayString filled; static_cast<wxFileCtrl*>(wxk::Unwrap(self))->GetPaths(filled); return wxk::CopyStrings(filled); }(); });
+	return wxk::Guard<wxk_StringArray*>(nullptr, [&]() -> wxk_StringArray* { return [&] { wxArrayString filled; (void)(static_cast<wxFileCtrl*>(wxk::Unwrap(self))->GetPaths(filled)); return wxk::CopyStrings(filled); }(); });
 }
 
 WXK_FUNCTION(wxk_String*) wxk_FileCtrl_GetWildcard(wxk_Window* self) noexcept {

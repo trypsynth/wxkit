@@ -486,6 +486,14 @@ internal static class Core {
 			.ParameterName("wxGenericDirCtrl", "dir", "directory"));
 		tweaks.Class("wxFileCtrl").ParameterName("wxFileCtrl", "wildCard", "wildcard");
 		tweaks.Class("wxEditableListBox").Rename("GetDelButton", "DeleteButton");
+		// A getter that can fail returns whether it could, and its result through out, as .NET's Try
+		// methods do, and is named as they are.
+		tweaks.Class("wxListCtrl").Rename("GetItemRect", "TryGetItemRect").Rename("GetSubItemRect", "TryGetSubItemRect");
+		tweaks.Class("wxTreeCtrl").Rename("GetBoundingRect", "TryGetBoundingRect");
+		tweaks.Class("wxStatusBar").Rename("GetFieldRect", "TryGetFieldRect");
+		tweaks.Class("wxDC").Rename("GetClippingBox", "TryGetClippingBox");
+		// The time is the Value property.
+		tweaks.Class("wxTimePickerCtrl").Ignore("GetTime");
 		// A wizard's pages are each a WizardPageSimple, chained in order, or a WizardPage whose
 		// Next and Previous a subclass decides.
 		tweaks.Class("wxWizardPage").NoConstructors().Rename("GetPrev", "Previous");

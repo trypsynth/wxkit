@@ -18,8 +18,6 @@ public class DateTests {
 	public Task PicksATime() => Gui.WithFrame(frame => {
 		TimePickerCtrl picker = new(frame);
 		Assert.True(picker.SetTime(13, 45, 30));
-		Assert.True(picker.GetTime(out int hour, out int minute, out int second));
-		Assert.Equal((13, 45, 30), (hour, minute, second));
 		Assert.Equal(new TimeSpan(13, 45, 30), picker.Value?.TimeOfDay);
 	});
 

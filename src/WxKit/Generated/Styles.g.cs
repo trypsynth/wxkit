@@ -230,9 +230,9 @@ public enum DirDialogStyle : long {
 	/// <summary>Equivalent to a combination of wxDEFAULT_DIALOG_STYLE and wxRESIZE_BORDER. Wraps wxDD_DEFAULT_STYLE.</summary>
 	Default = 0x20001840,
 	/// <summary>The dialog will allow the user to choose only an existing folder. When this style is not given, a "Create new directory" button is added to the dialog or some other way is provided to the user to type the name of a new folder. Wraps wxDD_DIR_MUST_EXIST.</summary>
-	DirMustExist = 0x200,
+	DirectoryMustExist = 0x200,
 	/// <summary>Change the current working directory to the directory chosen by the user. This flag cannot be used with the wxDD_MULTIPLE style. Wraps wxDD_CHANGE_DIR.</summary>
-	ChangeDir = 0x100,
+	ChangeDirectory = 0x100,
 	/// <summary>Allow the user to select multiple directories. This flag is only available since wxWidgets 3.1.4. Wraps wxDD_MULTIPLE.</summary>
 	Multiple = 0x400,
 	/// <summary>Show hidden and system folders. This flag is only available since wxWidgets 3.1.4. Wraps wxDD_SHOW_HIDDEN.</summary>
@@ -247,9 +247,9 @@ public enum DirPickerCtrlStyle : long {
 	/// <summary>Creates a text control to the left of the picker button which is completely managed by the wxDirPickerCtrl and which can be used by the user to specify a path (see SetPath). The text control is automatically synchronized with button's value. Use functions defined in wxPickerBase to modify the text control. Wraps wxDIRP_USE_TEXTCTRL.</summary>
 	UseTextCtrl = 0x2,
 	/// <summary>Creates a picker which allows selecting only existing directories in the popup wxDirDialog. Notice that, as with wxFLP_FILE_MUST_EXIST, it is still possible to enter a non-existent directory even when this file is specified if wxDIRP_USE_TEXTCTRL style is also used. Also note that if wxDIRP_USE_TEXTCTRL is not used, the native wxGTK implementation always uses this style as it doesn't support selecting non-existent directories. Wraps wxDIRP_DIR_MUST_EXIST.</summary>
-	DirMustExist = 0x8,
+	DirectoryMustExist = 0x8,
 	/// <summary>Change current working directory on each user directory selection change. Wraps wxDIRP_CHANGE_DIR.</summary>
-	ChangeDir = 0x10,
+	ChangeDirectory = 0x10,
 	/// <summary>Use smaller version of the control with a small "..." button instead of the normal "Browse" one. This flag is new since wxWidgets 2.9.3. Wraps wxDIRP_SMALL.</summary>
 	Small = 0x8000,
 }
@@ -308,7 +308,7 @@ public enum FileDialogStyle : long {
 	/// <summary>For open dialog only: allows selecting multiple files. Wraps wxFD_MULTIPLE.</summary>
 	Multiple = 0x200,
 	/// <summary>Change the current working directory (when the dialog is dismissed) to the directory where the file(s) chosen by the user are. Wraps wxFD_CHANGE_DIR.</summary>
-	ChangeDir = 0x80,
+	ChangeDirectory = 0x80,
 	/// <summary>Show the preview of the selected files (currently only supported by wxGTK). Wraps wxFD_PREVIEW.</summary>
 	Preview = 0x100,
 	/// <summary>Show hidden files. This flag was added in wxWidgets 3.1.3. Wraps wxFD_SHOW_HIDDEN.</summary>
@@ -331,7 +331,7 @@ public enum FilePickerCtrlStyle : long {
 	/// <summary>Can be combined with wxFLP_OPEN only: the file selected in the popup wxFileDialog must be an existing file. Notice that it still remains possible for the user to enter a non-existent file name in the text control if wxFLP_USE_TEXTCTRL is also used, this flag is a hint for the user rather than a guarantee that the selected file does exist for the program. Wraps wxFLP_FILE_MUST_EXIST.</summary>
 	FileMustExist = 0x2000,
 	/// <summary>Change current working directory on each user file selection change. Wraps wxFLP_CHANGE_DIR.</summary>
-	ChangeDir = 0x4000,
+	ChangeDirectory = 0x4000,
 	/// <summary>Use smaller version of the control with a small "..." button instead of the normal "Browse" one. This flag is new since wxWidgets 2.9.3. Wraps wxFLP_SMALL.</summary>
 	Small = 0x8000,
 }
@@ -346,7 +346,7 @@ public enum FontPickerCtrlStyle : long {
 	/// <summary>Creates a text control to the left of the picker button which is completely managed by the wxFontPickerCtrl and which can be used by the user to specify a font (see SetSelectedFont). The text control is automatically synchronized with button's value. Use functions defined in wxPickerBase to modify the text control. Wraps wxFNTP_USE_TEXTCTRL.</summary>
 	UseTextCtrl = 0x2,
 	/// <summary>Keeps the label of the button updated with the fontface name and the font size. E.g. choosing "Times New Roman bold, italic with size 10" from the fontdialog, will update the label (overwriting any previous label) with the "Times New Roman, 10" text. Wraps wxFNTP_FONTDESC_AS_LABEL.</summary>
-	FontDescAsLabel = 0x8,
+	FontDescriptionAsLabel = 0x8,
 	/// <summary>Uses the currently selected font to draw the label of the button. Wraps wxFNTP_USEFONT_FOR_LABEL.</summary>
 	UseFontForLabel = 0x10,
 }
@@ -411,7 +411,7 @@ public enum GenericDirCtrlStyle : long {
 	/// <summary>No styles. Wraps 0.</summary>
 	None = 0x0,
 	/// <summary>Only show directories, and not files. Wraps wxDIRCTRL_DIR_ONLY.</summary>
-	DirOnly = 0x10,
+	DirectoryOnly = 0x10,
 	/// <summary>Use 3D borders for internal controls. This is the default. Wraps wxDIRCTRL_3D_INTERNAL.</summary>
 	ThreeDInternal = 0x80,
 	/// <summary>When setting the default path, select the first file in the directory. Wraps wxDIRCTRL_SELECT_FIRST.</summary>

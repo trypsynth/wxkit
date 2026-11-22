@@ -91,4 +91,16 @@ public class ControlTests {
 		text.DropFiles += (_, _) => { };
 		text.DragAcceptFiles(false);
 	});
+
+	[Fact]
+	public Task SelectsTextByStartAndLength() => Gui.WithFrame(frame => {
+		TextCtrl text = new(frame, "hello world");
+		text.SetSelection(6, 11);
+		Assert.Equal(6, text.SelectionStart);
+		Assert.Equal(5, text.SelectionLength);
+		text.SelectionStart = 0;
+		Assert.Equal("hello", text.StringSelection);
+		text.SelectionLength = 4;
+		Assert.Equal("hell", text.StringSelection);
+	});
 }

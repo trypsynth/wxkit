@@ -2293,7 +2293,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Find some text starting at the search anchor and moving backwards.</summary>
-	public int SearchPrev(int searchFlags, string text) {
+	public int SearchPrevious(int searchFlags, string text) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
 			return WxKitNative.StyledTextCtrlSearchPrev(Native, searchFlags, textText, NativeString.Length(text));

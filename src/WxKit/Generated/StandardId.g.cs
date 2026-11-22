@@ -259,7 +259,7 @@ public static partial class StandardId {
 	/// <summary>Wraps wxID_MDI_WINDOW_ARRANGE_ICONS.</summary>
 	public const int MdiWindowArrangeIcons = 5233;
 	/// <summary>Wraps wxID_MDI_WINDOW_PREV.</summary>
-	public const int MdiWindowPrev = 5234;
+	public const int MdiWindowPrevious = 5234;
 	/// <summary>Wraps wxID_MDI_WINDOW_NEXT.</summary>
 	public const int MdiWindowNext = 5235;
 	/// <summary>End of the range of IDs reserved for MDI menu commands. Wraps wxID_MDI_WINDOW_LAST.</summary>

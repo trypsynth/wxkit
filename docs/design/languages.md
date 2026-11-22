@@ -22,7 +22,7 @@ These rules keep the public `WxKit` namespace usable from F# and Visual Basic, a
 Reference `WxKit.FSharp`, which brings `WxKit` with it, or start from `dotnet new wxkit -lang F#`:
 
 ```shell
-dotnet add package WxKit.FSharp --prerelease
+dotnet add package WxKit.FSharp
 ```
 
 ```fsharp

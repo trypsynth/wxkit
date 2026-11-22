@@ -69,14 +69,14 @@ public unsafe partial class GenericDirCtrl : Control {
 
 	/// <summary>The user activated a file by double-clicking or pressing Enter. Available since wxWidgets 2.9.5.</summary>
 	public event EventHandler<Event>? FileActivated {
-		add => AddHandler(EventType.DirCtrlFileActivated, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.DirCtrlFileActivated, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.GenericDirCtrlFileActivated, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.GenericDirCtrlFileActivated, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Selected directory has changed. Processes a wxEVT_DIRCTRL_SELECTIONCHANGED event type. Notice that this event is generated even for the changes done by the program itself and not only those done by the user. Available since wxWidgets 2.9.5.</summary>
 	public event EventHandler<Event>? SelectionChanged {
-		add => AddHandler(EventType.DirCtrlSelectionChanged, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.DirCtrlSelectionChanged, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.GenericDirCtrlSelectionChanged, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.GenericDirCtrlSelectionChanged, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Collapse the given path.</summary>

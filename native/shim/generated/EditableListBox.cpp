@@ -9,7 +9,7 @@ WXK_FUNCTION(wxk_Window*) wxk_EditableListBox_new(wxk_Window* parent, int32_t id
 }
 
 WXK_FUNCTION(wxk_StringArray*) wxk_EditableListBox_GetStrings(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_StringArray*>(nullptr, [&]() -> wxk_StringArray* { return [&] { wxArrayString filled; static_cast<wxEditableListBox*>(wxk::Unwrap(self))->GetStrings(filled); return wxk::CopyStrings(filled); }(); });
+	return wxk::Guard<wxk_StringArray*>(nullptr, [&]() -> wxk_StringArray* { return [&] { wxArrayString filled; (void)(static_cast<wxEditableListBox*>(wxk::Unwrap(self))->GetStrings(filled)); return wxk::CopyStrings(filled); }(); });
 }
 
 WXK_FUNCTION(void) wxk_EditableListBox_SetStrings(wxk_Window* self, const wxk_StringArray* strings) noexcept {

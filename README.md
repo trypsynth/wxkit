@@ -2,7 +2,7 @@
 
 .NET bindings to [wxWidgets](https://wxwidgets.org), for native desktop applications on Windows, macOS, and Linux. WxKit works with Native AOT, and links wxWidgets into the executable so that an application ships as one file.
 
-WxKit is a preview. It works for trying out and for small applications, its API will change before 1.0, and parts of wxWidgets are not bound yet. It runs on Windows, Linux, and macOS, each on x64 and ARM64, from C# or F#. The bindings are generated from wxWidgets's own headers, and cover windows and the common controls, list, tree, and data view controls, the styled text control, the web view, toolbars, sizers, menus, the standard dialogs, drawing, images, the clipboard, translations, and accessibility, including for controls that draw themselves.
+WxKit 0.1 is the first release that isn't a preview. Its API follows .NET's names and types, and 0.1.x releases add to it without changes that need code changes, as [Versions and names](docs/design/building-and-packaging.md#versions-and-names) describes. Parts of wxWidgets are not bound yet. It runs on Windows, Linux, and macOS, each on x64 and ARM64, from C# or F#. The bindings are generated from wxWidgets's own headers, and cover windows and the common controls, list, tree, and data view controls, the styled text control, the web view, toolbars, sizers, menus, the standard and composite dialogs, wizards, drawing, images, the clipboard, drag and drop, translations, and accessibility, including for controls that draw themselves. Screen readers read its controls, and tests can check what they read, on all three platforms.
 
 To write a first application, follow [Getting started](docs/getting-started.md). The samples show more:
 
@@ -43,7 +43,7 @@ The tests create real windows, so they need a desktop session. On Linux without 
 
 ## Packages
 
-WxKit is on nuget.org as a preview. To start an application, install the templates and make one, in C# or, with `-lang F#`, in F#:
+WxKit is on nuget.org. To start an application, install the templates and make one, in C# or, with `-lang F#`, in F#:
 
 ```shell
 dotnet new install WxKit.Templates
@@ -53,7 +53,7 @@ dotnet new wxkit -n MyApp
 To use WxKit in a project you have, add the package, which brings in the native package for each runtime, such as `WxKit.Native.win-x64`:
 
 ```shell
-dotnet add package WxKit --prerelease
+dotnet add package WxKit
 ```
 
 In F#, add `WxKit.FSharp` instead, which brings WxKit with it, and adds translation functions and layouts that read as F#.

@@ -565,36 +565,65 @@ internal sealed class StringArrayOutConversion : Conversion {
 	private static string Native(string name) => name.TrimStart('@') + "Native";
 }
 
-// A list of strings that a function with no other parameters fills, as GetPaths(wxArrayString&)
-// does, which the shim fills in a list of its own and returns. Its call is the function's, given
-// that list as its argument.
-internal sealed class StringArrayFilledConversion : Conversion {
-	public static StringArrayFilledConversion Instance { get; } = new();
+// A list that a call fills, as GetSelections(wxArrayInt&) and GetPaths(wxArrayString&) do, which
+// the shim gives the call as a list of its own, and returns, as .NET returns a list. The function's
+// FilledArgument says where the list goes among the call's arguments.
+internal sealed class FilledListConversion(NumberListKind? kind) : Conversion {
+	public static FilledListConversion Strings { get; } = new(null);
 
-	public override string Suffix => "Strings";
+	public static FilledListConversion Of(NumberListKind kind) => new(kind);
 
-	public override string CReturnType => "wxk_StringArray*";
+	public const string Argument = "filled";
+
+	public override string Suffix => kind is null ? "Strings" : kind.ElementType + "s";
+
+	public override string CReturnType => kind is null ? "wxk_StringArray*" : "wxk_Numbers*";
 
 	public override string Fallback => "nullptr";
 
-	public override string InteropReturnType => "WxkStringArray*";
+	public override string InteropReturnType => kind is null ? "WxkStringArray*" : "WxkNumbers*";
 
 	public override IEnumerable<string> CParameters(string name) => throw new InvalidOperationException("Filled lists are only return types.");
 
 	public override string ToCpp(string name) => throw new InvalidOperationException("Filled lists are only return types.");
 
-	public override string FromCpp(string expression) {
-		if (!expression.EndsWith("()", StringComparison.Ordinal)) throw new InvalidOperationException($"A filled list's call takes no arguments of its own, but {expression} does.");
-		return $"[&] {{ wxArrayString filled; {expression[..^1]}filled); return wxk::CopyStrings(filled); }}()";
-	}
+	public override string FromCpp(string expression) => $"[&] {{ {kind?.CppType ?? "wxArrayString"} {Argument}; (void)({expression}); return {(kind is null ? "wxk::CopyStrings" : "wxk::ToNumbers")}({Argument}); }}()";
 
 	public override IEnumerable<string> InteropParameters(string name) => throw new InvalidOperationException("Filled lists are only return types.");
 
-	public override string ManagedType(bool nullable) => "string[]";
+	public override string ManagedType(bool nullable) => kind is null ? "string[]" : kind.ElementType + "[]";
 
 	public override IEnumerable<string> InteropArguments(string name, bool nullable) => throw new InvalidOperationException("Filled lists are only return types.");
 
-	public override string ManagedReturn(string expression) => $"NativeStringArray.Take({expression})";
+	public override string ManagedReturn(string expression) => kind is null ? $"NativeStringArray.Take({expression})" : $"NativeNumbers.{kind.Take}({expression})";
+}
+
+// Two ints that a call fills, such as a width and a height, which the shim gives the call as
+// locals of its own, named first and second, and returns as a size.
+internal sealed class FilledSizeConversion : Conversion {
+	public static FilledSizeConversion Instance { get; } = new();
+
+	public override string Suffix => "Size";
+
+	public override string CReturnType => GeometryConversion.Size.CReturnType;
+
+	public override string Fallback => GeometryConversion.Size.Fallback;
+
+	public override string InteropReturnType => GeometryConversion.Size.InteropReturnType;
+
+	public override IEnumerable<string> CParameters(string name) => throw new InvalidOperationException("Filled sizes are only return types.");
+
+	public override string ToCpp(string name) => throw new InvalidOperationException("Filled sizes are only return types.");
+
+	public override string FromCpp(string expression) => GeometryConversion.Size.FromCpp($"[&] {{ int first = 0; int second = 0; (void)({expression}); return wxSize(first, second); }}()");
+
+	public override IEnumerable<string> InteropParameters(string name) => throw new InvalidOperationException("Filled sizes are only return types.");
+
+	public override string ManagedType(bool nullable) => GeometryConversion.Size.ManagedType(nullable);
+
+	public override IEnumerable<string> InteropArguments(string name, bool nullable) => throw new InvalidOperationException("Filled sizes are only return types.");
+
+	public override string ManagedReturn(string expression) => GeometryConversion.Size.ManagedReturn(expression);
 }
 
 // Ints after their count, as in SetStatusWidths(int n, const int widths[]), are any sequence of
@@ -693,6 +722,8 @@ internal sealed class NumberListConversion(NumberListKind kind) : Conversion {
 // A list a call fills, passed by a reference that can change, such as a list box's selections,
 // is an out array. The shim fills a list of its own, and hands a copy back as the call returns.
 internal sealed class NumberListOutConversion(NumberListKind kind) : Conversion {
+	public NumberListKind Kind => kind;
+
 	public override string Suffix => "Out" + kind.ElementType + "s";
 
 	public override string CReturnType => throw new InvalidOperationException("Output lists are only parameters.");

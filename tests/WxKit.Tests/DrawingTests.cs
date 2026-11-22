@@ -50,7 +50,6 @@ public class DrawingTests {
 		Size narrow = dc.GetTextExtent("W");
 		Assert.True(wide.Width > narrow.Width);
 		Assert.True(dc.CharHeight > 0);
-		Assert.True(dc.GetPartialTextExtents("abc", out int[] widths));
-		Assert.Equal(3, widths.Length);
+		Assert.Equal(3, dc.GetPartialTextExtents("abc").Length);
 	});
 }

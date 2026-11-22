@@ -8,10 +8,6 @@ WXK_FUNCTION(wxk_Window*) wxk_TimePickerCtrl_new(wxk_Window* parent, int32_t id,
 	});
 }
 
-WXK_FUNCTION(uint8_t) wxk_TimePickerCtrl_GetTime(wxk_Window* self, int32_t* hour, int32_t* minute, int32_t* second) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTimePickerCtrl*>(wxk::Unwrap(self))->GetTime(hour, minute, second)) ? 1 : 0; });
-}
-
 WXK_FUNCTION(uint8_t) wxk_TimePickerCtrl_SetTime(wxk_Window* self, int32_t hour, int32_t minute, int32_t second) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTimePickerCtrl*>(wxk::Unwrap(self))->SetTime(static_cast<int>(hour), static_cast<int>(minute), static_cast<int>(second))) ? 1 : 0; });
 }

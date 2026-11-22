@@ -50,7 +50,7 @@ internal sealed class SettingsDialog : Dialog {
 		Panel folders = new(pages);
 		BoxSizer folderSizer = new(Orientation.Vertical);
 		folderSizer.Add(new StaticText(folders, _("&Documents folder:")));
-		_documents = new DirPickerCtrl(folders, settings.DocumentsFolder, _("Choose the documents folder"), style: DirPickerCtrlStyle.UseTextCtrl | DirPickerCtrlStyle.DirMustExist);
+		_documents = new DirPickerCtrl(folders, settings.DocumentsFolder, _("Choose the documents folder"), style: DirPickerCtrlStyle.UseTextCtrl | DirPickerCtrlStyle.DirectoryMustExist);
 		folderSizer.Add(_documents, SizerFlags.Default.Expand().Border(Direction.Top));
 		folders.Sizer = Bordered(folderSizer);
 		pages.AddPage(folders, _("Folders"));

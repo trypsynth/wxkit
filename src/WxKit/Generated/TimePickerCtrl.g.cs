@@ -25,18 +25,6 @@ public unsafe partial class TimePickerCtrl : Control {
 		remove => RemoveHandler(EventType.TimeChanged, StandardId.Any, StandardId.Any, value);
 	}
 
-	/// <summary>Returns the currently entered time as hours, minutes and seconds.</summary>
-	public bool GetTime(out int hour, out int minute, out int second) {
-		hour = 0;
-		minute = 0;
-		second = 0;
-		fixed (int* hourPointer = &hour)
-		fixed (int* minutePointer = &minute)
-		fixed (int* secondPointer = &second) {
-			return WxKitNative.TimePickerCtrlGetTime(Native, hourPointer, minutePointer, secondPointer) != 0;
-		}
-	}
-
 	/// <summary>Changes the current time of the control.</summary>
 	public bool SetTime(int hour, int minute, int second) => WxKitNative.TimePickerCtrlSetTime(Native, hour, minute, second) != 0;
 

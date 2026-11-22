@@ -17,22 +17,6 @@ WXK_FUNCTION(wxk_Rect) wxk_Printout_GetLogicalPageMarginsRect(wxk_Object* self, 
 	return wxk::Guard<wxk_Rect>(wxk_Rect{0, 0, 0, 0}, [&]() -> wxk_Rect { return wxk::ToRect(static_cast<wxPrintout*>(wxk::Unwrap(self))->GetLogicalPageMarginsRect(wxk::ValueOf<wxPageSetupDialogData>(pageSetupData))); });
 }
 
-WXK_FUNCTION(void) wxk_Printout_GetPPIPrinter(wxk_Object* self, int32_t* w, int32_t* h) noexcept {
-	wxk::Guard([&] { static_cast<wxPrintout*>(wxk::Unwrap(self))->GetPPIPrinter(w, h); });
-}
-
-WXK_FUNCTION(void) wxk_Printout_GetPPIScreen(wxk_Object* self, int32_t* w, int32_t* h) noexcept {
-	wxk::Guard([&] { static_cast<wxPrintout*>(wxk::Unwrap(self))->GetPPIScreen(w, h); });
-}
-
-WXK_FUNCTION(void) wxk_Printout_GetPageSizeMM(wxk_Object* self, int32_t* w, int32_t* h) noexcept {
-	wxk::Guard([&] { static_cast<wxPrintout*>(wxk::Unwrap(self))->GetPageSizeMM(w, h); });
-}
-
-WXK_FUNCTION(void) wxk_Printout_GetPageSizePixels(wxk_Object* self, int32_t* w, int32_t* h) noexcept {
-	wxk::Guard([&] { static_cast<wxPrintout*>(wxk::Unwrap(self))->GetPageSizePixels(w, h); });
-}
-
 WXK_FUNCTION(void) wxk_Printout_MapScreenSizeToDevice(wxk_Object* self) noexcept {
 	wxk::Guard([&] { static_cast<wxPrintout*>(wxk::Unwrap(self))->MapScreenSizeToDevice(); });
 }
@@ -63,6 +47,22 @@ WXK_FUNCTION(wxk_Rect) wxk_Printout_GetLogicalPageRect(wxk_Object* self) noexcep
 
 WXK_FUNCTION(wxk_Rect) wxk_Printout_GetLogicalPaperRect(wxk_Object* self) noexcept {
 	return wxk::Guard<wxk_Rect>(wxk_Rect{0, 0, 0, 0}, [&]() -> wxk_Rect { return wxk::ToRect(static_cast<wxPrintout*>(wxk::Unwrap(self))->GetLogicalPaperRect()); });
+}
+
+WXK_FUNCTION(wxk_Size) wxk_Printout_GetPPIPrinter(wxk_Object* self) noexcept {
+	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize([&] { int first = 0; int second = 0; (void)(static_cast<wxPrintout*>(wxk::Unwrap(self))->GetPPIPrinter(&first, &second)); return wxSize(first, second); }()); });
+}
+
+WXK_FUNCTION(wxk_Size) wxk_Printout_GetPPIScreen(wxk_Object* self) noexcept {
+	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize([&] { int first = 0; int second = 0; (void)(static_cast<wxPrintout*>(wxk::Unwrap(self))->GetPPIScreen(&first, &second)); return wxSize(first, second); }()); });
+}
+
+WXK_FUNCTION(wxk_Size) wxk_Printout_GetPageSizeMM(wxk_Object* self) noexcept {
+	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize([&] { int first = 0; int second = 0; (void)(static_cast<wxPrintout*>(wxk::Unwrap(self))->GetPageSizeMM(&first, &second)); return wxSize(first, second); }()); });
+}
+
+WXK_FUNCTION(wxk_Size) wxk_Printout_GetPageSizePixels(wxk_Object* self) noexcept {
+	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize([&] { int first = 0; int second = 0; (void)(static_cast<wxPrintout*>(wxk::Unwrap(self))->GetPageSizePixels(&first, &second)); return wxSize(first, second); }()); });
 }
 
 WXK_FUNCTION(wxk_Rect) wxk_Printout_GetPaperRectPixels(wxk_Object* self) noexcept {

@@ -9,7 +9,7 @@ public class OutValueTests {
 		frame.SetStatusWidths([-1, 120, 60]);
 		bar.SetStatusStyles([0, 0, 0]);
 		Assert.Equal(3, bar.FieldsCount);
-		Assert.True(bar.GetFieldRect(1, out Rect field));
+		Assert.True(bar.TryGetFieldRect(1, out Rect field));
 		Assert.True(field.Width >= 0);
 		Assert.Throws<ArgumentNullException>(() => frame.SetStatusWidths(null!));
 	});
@@ -20,7 +20,7 @@ public class OutValueTests {
 		list.InsertColumn(0, "Name");
 		list.InsertItem(0, "readme.md");
 		frame.Show();
-		Assert.True(list.GetItemRect(0, out Rect item));
+		Assert.True(list.TryGetItemRect(0, out Rect item));
 		Assert.True(item.Height > 0);
 	});
 

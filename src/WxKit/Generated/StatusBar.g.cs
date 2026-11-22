@@ -28,14 +28,6 @@ public unsafe partial class StatusBar : Control {
 		return WxKitNative.StatusBarAddFieldControl(Native, i, (WxkWindow*)window.Native) != 0;
 	}
 
-	/// <summary>Returns the size and position of a field's internal bounding rectangle.</summary>
-	public bool GetFieldRect(int i, out Rect rect) {
-		rect = default;
-		fixed (Rect* rectPointer = &rect) {
-			return WxKitNative.StatusBarGetFieldRect(Native, i, rectPointer) != 0;
-		}
-	}
-
 	/// <summary>Returns the style of the n-th field.</summary>
 	public StatusBarFieldStyle GetStatusStyle(int index) => (StatusBarFieldStyle)WxKitNative.StatusBarGetStatusStyle(Native, index);
 
@@ -82,6 +74,14 @@ public unsafe partial class StatusBar : Control {
 		int[] widthsValues = [.. widths];
 		fixed (int* widthsPointer = widthsValues) {
 			WxKitNative.StatusBarSetStatusWidths(Native, widthsPointer, (nuint)widthsValues.Length);
+		}
+	}
+
+	/// <summary>Returns the size and position of a field's internal bounding rectangle.</summary>
+	public bool TryGetFieldRect(int i, out Rect rect) {
+		rect = default;
+		fixed (Rect* rectPointer = &rect) {
+			return WxKitNative.StatusBarGetFieldRect(Native, i, rectPointer) != 0;
 		}
 	}
 

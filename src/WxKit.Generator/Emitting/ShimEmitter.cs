@@ -189,7 +189,9 @@ internal static class ShimEmitter {
 
 	private static void WriteFunction(CodeWriter writer, BoundFunction function) {
 		BoundClass owner = function.Owner;
-		string arguments = string.Join(", ", function.Parameters.Select(static parameter => parameter.Conversion.ToCpp(parameter.Name.TrimStart('@'))));
+		List<string> argumentList = [.. function.Parameters.Select(static parameter => parameter.Conversion.ToCpp(parameter.Name.TrimStart('@')))];
+		foreach ((int index, string argument) in function.FilledArguments) argumentList.Insert(index, argument);
+		string arguments = string.Join(", ", argumentList);
 		string returns = function.IsConstructor ? $"{owner.Handle.CType}*" : function.Returns.CReturnType;
 		string fallback = function.IsConstructor ? "nullptr" : function.Returns.Fallback;
 		writer.Open(Signature(function).Replace(" WXK_NOEXCEPT", string.Empty) + " noexcept");

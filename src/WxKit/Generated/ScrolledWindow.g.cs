@@ -20,6 +20,9 @@ public unsafe partial class ScrolledWindow : Panel {
 
 	public double ScaleY => WxKitNative.ScrolledWindowGetScaleY(Native);
 
+	/// <summary>Get the number of pixels per scroll unit (line), in each direction, as set by SetScrollbars().</summary>
+	public Size ScrollPixelsPerUnit => WxKitNative.ScrolledWindowGetScrollPixelsPerUnit(Native);
+
 	public Rect TargetRect {
 		get => WxKitNative.ScrolledWindowGetTargetRect(Native);
 		set => WxKitNative.ScrolledWindowSetTargetRect(Native, value);
@@ -89,29 +92,9 @@ public unsafe partial class ScrolledWindow : Panel {
 
 	public void AdjustScrollbars() => WxKitNative.ScrolledWindowAdjustScrollbars(Native);
 
-	/// <summary>Translates the logical coordinates to the device ones.</summary>
-	public void CalcScrolledPosition(int x, int y, out int xx, out int yy) {
-		xx = 0;
-		yy = 0;
-		fixed (int* xxPointer = &xx)
-		fixed (int* yyPointer = &yy) {
-			WxKitNative.ScrolledWindowCalcScrolledPositionIntIntOutIntOutInt(Native, x, y, xxPointer, yyPointer);
-		}
-	}
+	public Point CalcScrolledPosition(Point point) => WxKitNative.ScrolledWindowCalcScrolledPosition(Native, point);
 
-	public Point CalcScrolledPosition(Point point) => WxKitNative.ScrolledWindowCalcScrolledPositionPoint(Native, point);
-
-	/// <summary>Translates the device coordinates to the logical ones.</summary>
-	public void CalcUnscrolledPosition(int x, int y, out int xx, out int yy) {
-		xx = 0;
-		yy = 0;
-		fixed (int* xxPointer = &xx)
-		fixed (int* yyPointer = &yy) {
-			WxKitNative.ScrolledWindowCalcUnscrolledPositionIntIntOutIntOutInt(Native, x, y, xxPointer, yyPointer);
-		}
-	}
-
-	public Point CalcUnscrolledPosition(Point point) => WxKitNative.ScrolledWindowCalcUnscrolledPositionPoint(Native, point);
+	public Point CalcUnscrolledPosition(Point point) => WxKitNative.ScrolledWindowCalcUnscrolledPosition(Native, point);
 
 	/// <summary>By default, autoscrolling is triggered when the mouse is anywhere outside of the window.</summary>
 	public void DisableAutoScrollOutside() => WxKitNative.ScrolledWindowDisableAutoScrollOutside(Native);
@@ -140,16 +123,6 @@ public unsafe partial class ScrolledWindow : Panel {
 	public int GetScrollLines(Orientation orientation) => WxKitNative.ScrolledWindowGetScrollLines(Native, (int)orientation);
 
 	public int GetScrollPageSize(Orientation orientation) => WxKitNative.ScrolledWindowGetScrollPageSize(Native, (int)orientation);
-
-	/// <summary>Get the number of pixels per scroll unit (line), in each direction, as set by SetScrollbars().</summary>
-	public void GetScrollPixelsPerUnit(out int xUnit, out int yUnit) {
-		xUnit = 0;
-		yUnit = 0;
-		fixed (int* xUnitPointer = &xUnit)
-		fixed (int* yUnitPointer = &yUnit) {
-			WxKitNative.ScrolledWindowGetScrollPixelsPerUnit(Native, xUnitPointer, yUnitPointer);
-		}
-	}
 
 	/// <summary>Gets the size in device units of the scrollable window area (as opposed to the client size, which is the area of the window currently visible).</summary>
 	public void GetVirtualSize(out int x, out int y) {

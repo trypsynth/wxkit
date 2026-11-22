@@ -12,13 +12,13 @@ internal sealed class TextPrintout(string title, string text, Font? font) : Prin
 	private int _margin;
 
 	protected override void OnPreparePrinting() {
-		GetPpiScreen(out int screenX, out int screenY);
-		GetPpiPrinter(out int printerX, out int printerY);
-		GetPageSizePixels(out int pageWidth, out int pageHeight);
+		Size screen = PpiScreen;
+		Size printer = PpiPrinter;
+		Size page = PageSizePixels;
 		// The page's size in screen pixels, which the page is drawn in.
-		int width = (int)((long)pageWidth * screenX / Math.Max(printerX, 1));
-		int height = (int)((long)pageHeight * screenY / Math.Max(printerY, 1));
-		_margin = screenY / 2;
+		int width = (int)((long)page.Width * screen.Width / Math.Max(printer.Width, 1));
+		int height = (int)((long)page.Height * screen.Height / Math.Max(printer.Height, 1));
+		_margin = screen.Height / 2;
 		using ScreenDC measure = new();
 		if (font is not null) measure.Font = font;
 		_lineHeight = Math.Max(measure.CharHeight, 1);

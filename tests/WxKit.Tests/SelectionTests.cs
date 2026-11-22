@@ -7,8 +7,7 @@ public class SelectionTests {
 		ListBox list = new(frame, ["Milk", "Bread", "Eggs", "Tea"], style: ListBoxStyle.Multiple);
 		list.Select(1);
 		list.Select(3);
-		Assert.Equal(2, list.GetSelections(out int[] selections));
-		Assert.Equal([1, 3], selections);
+		Assert.Equal([1, 3], list.Selections);
 	});
 
 	[Fact]
@@ -16,8 +15,7 @@ public class SelectionTests {
 		CheckListBox list = new(frame, ["Milk", "Bread", "Eggs"]);
 		list.Check(0);
 		list.Check(2);
-		Assert.Equal(2, list.GetCheckedItems(out int[] checkedItems));
-		Assert.Equal([0, 2], checkedItems);
+		Assert.Equal([0, 2], list.CheckedItems);
 	});
 
 	[Fact]
@@ -29,8 +27,7 @@ public class SelectionTests {
 		tree.UnselectAll();
 		tree.SelectItem(fiction);
 		tree.SelectItem(poetry);
-		Assert.Equal(2, tree.GetSelections(out TreeItemId[] selections));
-		Assert.Equal(new HashSet<TreeItemId> { fiction, poetry }, selections.ToHashSet());
+		Assert.Equal(new HashSet<TreeItemId> { fiction, poetry }, tree.Selections.ToHashSet());
 	});
 
 	[Fact]
@@ -40,9 +37,8 @@ public class SelectionTests {
 		foreach (string task in (string[])["Milk", "Bread", "Eggs"]) list.AppendItem([task]);
 		DataViewItem first = list.RowToItem(0);
 		DataViewItem last = list.RowToItem(2);
-		list.SetSelections([first, last]);
-		Assert.Equal(2, list.GetSelections(out DataViewItem[] selections));
-		Assert.Equal(new HashSet<DataViewItem> { first, last }, selections.ToHashSet());
+		list.Selections = [first, last];
+		Assert.Equal(new HashSet<DataViewItem> { first, last }, list.Selections.ToHashSet());
 	});
 
 	[Fact]

@@ -52,7 +52,7 @@ public static class ArtId {
 	/// <summary>Wraps wxART_GO_BACK.</summary>
 	public const string GoBack = "wxART_GO_BACK";
 	/// <summary>Wraps wxART_GO_DIR_UP.</summary>
-	public const string GoDirUp = "wxART_GO_DIR_UP";
+	public const string GoDirectoryUp = "wxART_GO_DIR_UP";
 	/// <summary>Wraps wxART_GO_DOWN.</summary>
 	public const string GoDown = "wxART_GO_DOWN";
 	/// <summary>Wraps wxART_GO_FORWARD.</summary>
@@ -88,7 +88,7 @@ public static class ArtId {
 	/// <summary>Wraps wxART_NEW.</summary>
 	public const string New = "wxART_NEW";
 	/// <summary>Wraps wxART_NEW_DIR.</summary>
-	public const string NewDir = "wxART_NEW_DIR";
+	public const string NewDirectory = "wxART_NEW_DIR";
 	/// <summary>Wraps wxART_NORMAL_FILE.</summary>
 	public const string NormalFile = "wxART_NORMAL_FILE";
 	/// <summary>Wraps wxART_PASTE.</summary>
