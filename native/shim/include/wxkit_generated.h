@@ -620,13 +620,13 @@ WXK_FUNCTION(void) wxk_DC_SetLayoutDirection(wxk_Object* self, int32_t direction
 
 // wxDPIChangedEvent
 
-WXK_FUNCTION(wxk_Size) wxk_DPIChangedEvent_Scale_Size(wxk_Event* self, wxk_Size size) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Point) wxk_DPIChangedEvent_Scale_Point(wxk_Event* self, wxk_Point point) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Rect) wxk_DPIChangedEvent_Scale_Rect(wxk_Event* self, wxk_Rect rect) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_DPIChangedEvent_ScaleX(wxk_Event* self, int32_t x) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_DPIChangedEvent_ScaleY(wxk_Event* self, int32_t y) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Size) wxk_DPIChangedEvent_GetOldDPI(wxk_Event* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Size) wxk_DPIChangedEvent_GetNewDPI(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Size) wxk_DpiChangedEvent_Scale_Size(wxk_Event* self, wxk_Size size) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Point) wxk_DpiChangedEvent_Scale_Point(wxk_Event* self, wxk_Point point) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Rect) wxk_DpiChangedEvent_Scale_Rect(wxk_Event* self, wxk_Rect rect) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_DpiChangedEvent_ScaleX(wxk_Event* self, int32_t x) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_DpiChangedEvent_ScaleY(wxk_Event* self, int32_t y) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Size) wxk_DpiChangedEvent_GetOldDPI(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Size) wxk_DpiChangedEvent_GetNewDPI(wxk_Event* self) WXK_NOEXCEPT;
 
 // wxDataViewColumn
 

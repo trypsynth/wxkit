@@ -113,7 +113,7 @@ public unsafe partial class Image : NativeObject {
 	public void ChangeBrightness(double factor) => WxKitNative.ImageChangeBrightness(Native, factor);
 
 	/// <summary>Changes the hue, the saturation and the brightness (value) of each pixel in the image.</summary>
-	public void ChangeHSV(double angleH, double factorS, double factorV) => WxKitNative.ImageChangeHSV(Native, angleH, factorS, factorV);
+	public void ChangeHsv(double angleH, double factorS, double factorV) => WxKitNative.ImageChangeHSV(Native, angleH, factorS, factorV);
 
 	/// <summary>Returns a changed version of the image based on the given lightness.</summary>
 	public Image? ChangeLightness(int alpha) => global::WxKit.Image.Take(WxKitNative.ImageChangeLightness(Native, alpha));
@@ -364,10 +364,10 @@ public unsafe partial class Image : NativeObject {
 	}
 
 	/// <summary>Set the color of the pixel at the given x and y coordinate.</summary>
-	public void SetRGB(int x, int y, byte r, byte g, byte b) => WxKitNative.ImageSetRGBIntIntByteByteByte(Native, x, y, r, g, b);
+	public void SetRgb(int x, int y, byte r, byte g, byte b) => WxKitNative.ImageSetRGBIntIntByteByteByte(Native, x, y, r, g, b);
 
 	/// <summary>Sets the colour of the pixels within the given rectangle.</summary>
-	public void SetRGB(Rect rect, byte red, byte green, byte blue) => WxKitNative.ImageSetRGBRectByteByteByte(Native, rect, red, green, blue);
+	public void SetRgb(Rect rect, byte red, byte green, byte blue) => WxKitNative.ImageSetRGBRectByteByteByte(Native, rect, red, green, blue);
 
 	private static WxkObject* CreateNative() {
 		Application.VerifyAccess();

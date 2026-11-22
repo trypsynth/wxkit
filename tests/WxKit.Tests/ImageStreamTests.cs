@@ -74,8 +74,8 @@ public class ImageStreamTests {
 
 	private static Image Pattern() {
 		Image image = new(4, 3);
-		image.SetRGB(1, 2, 200, 0, 0);
-		image.SetRGB(3, 0, 0, 100, 0);
+		image.SetRgb(1, 2, 200, 0, 0);
+		image.SetRgb(3, 0, 0, 100, 0);
 		return image;
 	}
 }

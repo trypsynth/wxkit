@@ -44,11 +44,11 @@ public unsafe partial class Bitmap : NativeObject {
 	// Takes ownership of a copy the shim hands out, which is null when the value was empty.
 	internal static Bitmap? Take(WxkObject* native) => native is null ? null : new Bitmap(native);
 
-	/// <summary>Returns the size of bitmap in DPI-independent units.</summary>
-	public Size DIPSize => WxKitNative.BitmapGetDIPSize(Native);
-
 	/// <summary>Gets the colour depth of the bitmap.</summary>
 	public int Depth => WxKitNative.BitmapGetDepth(Native);
+
+	/// <summary>Returns the size of bitmap in DPI-independent units.</summary>
+	public Size DipSize => WxKitNative.BitmapGetDIPSize(Native);
 
 	/// <summary>Returns true if the bitmap has an alpha channel.</summary>
 	public bool HasAlpha => WxKitNative.BitmapHasAlpha(Native) != 0;
@@ -123,10 +123,10 @@ public unsafe partial class Bitmap : NativeObject {
 	public bool CreateScaled(int width, int height, int depth, double logicalScale) => WxKitNative.BitmapCreateScaled(Native, width, height, depth, logicalScale) != 0;
 
 	/// <summary>Create a bitmap specifying its size in DPI-independent pixels and the scale factor to use.</summary>
-	public bool CreateWithDIPSize(Size size, double scale, int depth = -1) => WxKitNative.BitmapCreateWithDIPSizeSizeDoubleInt(Native, size, scale, depth) != 0;
+	public bool CreateWithDipSize(Size size, double scale, int depth = -1) => WxKitNative.BitmapCreateWithDIPSizeSizeDoubleInt(Native, size, scale, depth) != 0;
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public bool CreateWithDIPSize(int width, int height, double scale, int depth = -1) => WxKitNative.BitmapCreateWithDIPSizeIntIntDoubleInt(Native, width, height, scale, depth) != 0;
+	public bool CreateWithDipSize(int width, int height, double scale, int depth = -1) => WxKitNative.BitmapCreateWithDIPSizeIntIntDoubleInt(Native, width, height, scale, depth) != 0;
 
 	/// <summary>Create a bitmap specifying its size in logical pixels and the scale factor to use.</summary>
 	public bool CreateWithLogicalSize(Size size, double scale, int depth = -1) => WxKitNative.BitmapCreateWithLogicalSizeSizeDoubleInt(Native, size, scale, depth) != 0;

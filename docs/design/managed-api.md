@@ -137,7 +137,7 @@ Image file formats work the same way. Images can always load and save BMP, and a
 
 ## Notifications and taskbar icons
 
-A `NotificationMessage` shows a notification outside the application's windows, such as a toast, with an icon from `MessageIcon`. It raises `Clicked`, `Dismissed`, and `ActionSelected`, for the buttons `AddAction` adds. Dispose of it when it's done with, since wxWidgets doesn't free it. On Windows, call `NotificationMessage.MSWUseToasts()` before the first one to show toasts rather than taskbar balloons. On macOS, notifications only show from an app bundle.
+A `NotificationMessage` shows a notification outside the application's windows, such as a toast, with an icon from `MessageIcon`. It raises `Clicked`, `Dismissed`, and `ActionSelected`, for the buttons `AddAction` adds. Dispose of it when it's done with, since wxWidgets doesn't free it. On Windows, call `NotificationMessage.MswUseToasts()` before the first one to show toasts rather than taskbar balloons. On macOS, notifications only show from an app bundle.
 
 A `TaskBarIcon` shows an icon in the Windows notification area, the macOS menu bar, or a Linux tray, once `SetIcon` gives it one. Its `Menu` shows when it's right-clicked, or clicked on macOS, and it raises `LeftDoubleClick`, `RightUp`, and the other mouse events where the platform sends them. wxWidgets keeps the application running while an icon exists, so dispose of it when done.
 

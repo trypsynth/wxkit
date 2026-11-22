@@ -84,14 +84,14 @@ public unsafe partial class DC : NativeObject {
 		set => WxKitNative.DCSetMapMode(Native, (int)value);
 	}
 
-	/// <summary>Returns the resolution of the device in pixels per inch.</summary>
-	public Size PPI => WxKitNative.DCGetPPI(Native);
-
 	/// <summary>Gets the current pen.</summary>
 	public Pen? Pen {
 		get => global::WxKit.Pen.Take(WxKitNative.DCGetPen(Native));
 		set => WxKitNative.DCSetPen(Native, value is null ? null : value.Native);
 	}
+
+	/// <summary>Returns the resolution of the device in pixels per inch.</summary>
+	public Size Ppi => WxKitNative.DCGetPPI(Native);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public Size Size => WxKitNative.DCGetSizeDefault(Native);
@@ -320,13 +320,13 @@ public unsafe partial class DC : NativeObject {
 	public bool FloodFill(Point point, Color? column, FloodFillStyle style = FloodFillStyle.Surface) => WxKitNative.DCFloodFillPointColorFloodFillStyle(Native, point, global::WxKit.Color.ToNative(column), (int)style) != 0;
 
 	/// <summary>Convert DPI-independent pixel values to the value in pixels appropriate for the DC.</summary>
-	public Size FromDIP(Size size) => WxKitNative.DCFromDIPSize(Native, size);
+	public Size FromDip(Size size) => WxKitNative.DCFromDIPSize(Native, size);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Point FromDIP(Point point) => WxKitNative.DCFromDIPPoint(Native, point);
+	public Point FromDip(Point point) => WxKitNative.DCFromDIPPoint(Native, point);
 
 	/// <summary>Convert DPI-independent value in pixels to the value in pixels appropriate for the DC.</summary>
-	public int FromDIP(int d) => WxKitNative.DCFromDIPInt(Native, d);
+	public int FromDip(int d) => WxKitNative.DCFromDIPInt(Native, d);
 
 	/// <summary>Gets the rectangle surrounding the current clipping region.</summary>
 	public bool GetClippingBox(out int x, out int y, out int width, out int height) {
@@ -544,11 +544,11 @@ public unsafe partial class DC : NativeObject {
 	}
 
 	/// <summary>Convert pixel values of the current DC to DPI-independent pixel values.</summary>
-	public Size ToDIP(Size size) => WxKitNative.DCToDIPSize(Native, size);
+	public Size ToDip(Size size) => WxKitNative.DCToDIPSize(Native, size);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Point ToDIP(Point point) => WxKitNative.DCToDIPPoint(Native, point);
+	public Point ToDip(Point point) => WxKitNative.DCToDIPPoint(Native, point);
 
 	/// <summary>Convert pixel values of the current DC to DPI-independent pixel values.</summary>
-	public int ToDIP(int d) => WxKitNative.DCToDIPInt(Native, d);
+	public int ToDip(int d) => WxKitNative.DCToDIPInt(Native, d);
 }

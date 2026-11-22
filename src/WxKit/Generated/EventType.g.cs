@@ -419,10 +419,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_DPI_CHANGED.</summary>
-	public static EventType<DPIChangedEvent> DpiChanged => DpiChangedType.Value;
+	public static EventType<DpiChangedEvent> DpiChanged => DpiChangedType.Value;
 
 	private static class DpiChangedType {
-		public static readonly EventType<DPIChangedEvent> Value = new(WxKitNative.EventTypeDpiChanged, static native => new DPIChangedEvent((WxkEvent*)native));
+		public static readonly EventType<DpiChangedEvent> Value = new(WxKitNative.EventTypeDpiChanged, static native => new DpiChangedEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_DROP_FILES.</summary>

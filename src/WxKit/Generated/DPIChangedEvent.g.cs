@@ -5,28 +5,28 @@ using WxKit.Interop;
 namespace WxKit;
 
 /// <summary>Event sent when the display scale factor or pixel density (measured in dots-per-inch, or DPI) of the monitor a window is on changes. Wraps wxDPIChangedEvent.</summary>
-public unsafe partial class DPIChangedEvent : Event {
-	internal DPIChangedEvent(WxkEvent* native) : base(native) {
+public unsafe partial class DpiChangedEvent : Event {
+	internal DpiChangedEvent(WxkEvent* native) : base(native) {
 	}
 
 	/// <summary>Returns the new DPI.</summary>
-	public Size NewDPI => WxKitNative.DPIChangedEventGetNewDPI(Handle);
+	public Size NewDpi => WxKitNative.DpiChangedEventGetNewDPI(Handle);
 
 	/// <summary>Returns the old DPI.</summary>
-	public Size OldDPI => WxKitNative.DPIChangedEventGetOldDPI(Handle);
+	public Size OldDpi => WxKitNative.DpiChangedEventGetOldDPI(Handle);
 
 	/// <summary>Rescale a value in pixels to match the new DPI.</summary>
-	public Size Scale(Size size) => WxKitNative.DPIChangedEventScaleSize(Handle, size);
+	public Size Scale(Size size) => WxKitNative.DpiChangedEventScaleSize(Handle, size);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Point Scale(Point point) => WxKitNative.DPIChangedEventScalePoint(Handle, point);
+	public Point Scale(Point point) => WxKitNative.DpiChangedEventScalePoint(Handle, point);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Rect Scale(Rect rect) => WxKitNative.DPIChangedEventScaleRect(Handle, rect);
+	public Rect Scale(Rect rect) => WxKitNative.DpiChangedEventScaleRect(Handle, rect);
 
 	/// <summary>Rescale horizontal component to match the new DPI.</summary>
-	public int ScaleX(int x) => WxKitNative.DPIChangedEventScaleX(Handle, x);
+	public int ScaleX(int x) => WxKitNative.DpiChangedEventScaleX(Handle, x);
 
 	/// <summary>Rescale vertical component to match the new DPI.</summary>
-	public int ScaleY(int y) => WxKitNative.DPIChangedEventScaleY(Handle, y);
+	public int ScaleY(int y) => WxKitNative.DpiChangedEventScaleY(Handle, y);
 }

@@ -26,7 +26,7 @@ public unsafe partial class HyperlinkCtrl : Control {
 	}
 
 	/// <summary>Returns the URL associated with the hyperlink.</summary>
-	public string URL {
+	public string Url {
 		get => NativeString.Take(WxKitNative.HyperlinkCtrlGetURL(Native));
 		set {
 			ArgumentNullException.ThrowIfNull(value);

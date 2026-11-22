@@ -12,8 +12,8 @@ internal sealed class TextPrintout(string title, string text, Font? font) : Prin
 	private int _margin;
 
 	protected override void OnPreparePrinting() {
-		GetPPIScreen(out int screenX, out int screenY);
-		GetPPIPrinter(out int printerX, out int printerY);
+		GetPpiScreen(out int screenX, out int screenY);
+		GetPpiPrinter(out int printerX, out int printerY);
 		GetPageSizePixels(out int pageWidth, out int pageHeight);
 		// The page's size in screen pixels, which the page is drawn in.
 		int width = (int)((long)pageWidth * screenX / Math.Max(printerX, 1));

@@ -131,17 +131,17 @@ public unsafe partial class TopLevelWindow : Window {
 	/// <summary>Iconizes or restores the window.</summary>
 	public void Iconize(bool iconize = true) => WxKitNative.TopLevelWindowIconize(Native, iconize ? (byte)1 : (byte)0);
 
-	/// <summary>MSW-specific function for accessing the system menu.</summary>
-	public Menu? MSWGetSystemMenu() => ObjectRegistry.Wrap<Menu>(WxKitNative.TopLevelWindowMSWGetSystemMenu(Native));
-
 	/// <summary>Maximizes or restores the window.</summary>
 	public void Maximize(bool maximize = true) => WxKitNative.TopLevelWindowMaximize(Native, maximize ? (byte)1 : (byte)0);
 
+	/// <summary>MSW-specific function for accessing the system menu.</summary>
+	public Menu? MswGetSystemMenu() => ObjectRegistry.Wrap<Menu>(WxKitNative.TopLevelWindowMSWGetSystemMenu(Native));
+
 	/// <summary>Returns the current modified state of the wxTopLevelWindow on macOS.</summary>
-	public bool OSXIsModified() => WxKitNative.TopLevelWindowOSXIsModified(Native) != 0;
+	public bool OsxIsModified() => WxKitNative.TopLevelWindowOSXIsModified(Native) != 0;
 
 	/// <summary>This function sets the wxTopLevelWindow's modified state on macOS, which currently draws a black dot in the wxTopLevelWindow's close button.</summary>
-	public void OSXSetModified(bool modified) => WxKitNative.TopLevelWindowOSXSetModified(Native, modified ? (byte)1 : (byte)0);
+	public void OsxSetModified(bool modified) => WxKitNative.TopLevelWindowOSXSetModified(Native, modified ? (byte)1 : (byte)0);
 
 	/// <summary>Use a system-dependent way to attract users attention to the window when it is in background.</summary>
 	public void RequestUserAttention(UserAttention flags = UserAttention.Info) => WxKitNative.TopLevelWindowRequestUserAttention(Native, (int)flags);

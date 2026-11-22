@@ -26,7 +26,7 @@ public static unsafe partial class ArtProvider {
 	}
 
 	/// <summary>Returns a suitable size hint for the given wxArtClient in DIPs.</summary>
-	public static Size GetDIPSizeHint(string client) {
+	public static Size GetDipSizeHint(string client) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(client);
 		fixed (char* clientText = client) {
@@ -58,7 +58,7 @@ public static unsafe partial class ArtProvider {
 	}
 
 	/// <summary>Returns native icon size for use specified by client hint in DIPs.</summary>
-	public static Size GetNativeDIPSizeHint(string client) {
+	public static Size GetNativeDipSizeHint(string client) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(client);
 		fixed (char* clientText = client) {

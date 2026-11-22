@@ -110,7 +110,7 @@ public unsafe partial class MenuBar : Window {
 	}
 
 	/// <summary>Returns the Apple menu.</summary>
-	public Menu? OSXGetAppleMenu() => ObjectRegistry.Wrap<Menu>(WxKitNative.MenuBarOSXGetAppleMenu(Native));
+	public Menu? OsxGetAppleMenu() => ObjectRegistry.Wrap<Menu>(WxKitNative.MenuBarOSXGetAppleMenu(Native));
 
 	/// <summary>Removes the menu from the menu bar and returns the menu object - the caller is responsible for deleting it.</summary>
 	public Menu? Remove(int position) => ObjectRegistry.Wrap<Menu>(WxKitNative.MenuBarRemove(Native, checked((nuint)position)));

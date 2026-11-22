@@ -290,10 +290,10 @@ internal static class Naming {
 	private static readonly HashSet<string> Keywords = ["base", "checked", "class", "default", "event", "fixed", "lock", "object", "operator", "out", "params", "ref", "string", "this"];
 
 	/// <summary>wxButton to Button.</summary>
-	public static string Type(string name) => Respell(name.StartsWith("wx", StringComparison.Ordinal) ? name[2..] : name);
+	public static string Type(string name) => Acronyms(Respell(name.StartsWith("wx", StringComparison.Ordinal) ? name[2..] : name));
 
 	/// <summary>A method or property name, respelled. A leading digit is spelled out, as Get3StateValue gives ThreeStateValue.</summary>
-	public static string Member(string name) => Respell(name.Length > 0 && char.IsDigit(name[0]) ? Digits[name[0] - '0'] + name[1..] : name);
+	public static string Member(string name) => Acronyms(Respell(name.Length > 0 && char.IsDigit(name[0]) ? Digits[name[0] - '0'] + name[1..] : name));
 
 	private static readonly string[] Digits = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
 
@@ -301,7 +301,8 @@ internal static class Naming {
 		string renamed = ParameterNames.GetValueOrDefault(name, name);
 		// A snake_case name, such as model_column, becomes modelColumn.
 		if (renamed.Contains('_', StringComparison.Ordinal)) renamed = string.Concat(renamed.Split('_', StringSplitOptions.RemoveEmptyEntries).Select(static (word, index) => index == 0 ? word : char.ToUpperInvariant(word[0]) + word[1..]));
-		string camel = char.ToLowerInvariant(renamed[0]) + Respell(char.ToUpperInvariant(renamed[0]) + renamed[1..])[1..];
+		string pascal = Acronyms(Respell(char.ToUpperInvariant(renamed[0]) + renamed[1..]));
+		string camel = char.ToLowerInvariant(pascal[0]) + pascal[1..];
 		return Keywords.Contains(camel) ? "@" + camel : camel;
 	}
 
@@ -358,6 +359,30 @@ internal static class Naming {
 			result.Append(char.ToUpperInvariant(word[0])).Append(rest);
 		}
 		return Respell(result.ToString());
+	}
+
+	/// <summary>
+	/// An acronym of three letters or more in Pascal case, as .NET writes them, so GetURL's URL is
+	/// Url and FromDIP is FromDip. Two letters stay upper case, as UI and DC do in .NET. An acronym
+	/// ends where a capital starts a lowercase word, so RGBAImage is RgbaImage and VCHome keeps VC.
+	/// </summary>
+	public static string Acronyms(string identifier) {
+		StringBuilder result = new();
+		int index = 0;
+		while (index < identifier.Length) {
+			if (!char.IsUpper(identifier[index])) {
+				result.Append(identifier[index++]);
+				continue;
+			}
+			int end = index;
+			while (end < identifier.Length && char.IsUpper(identifier[end])) end++;
+			// The last capital of a run that a lowercase letter follows starts the next word.
+			int acronymEnd = end < identifier.Length && char.IsLower(identifier[end]) && end - index > 1 ? end - 1 : end;
+			string run = identifier[index..acronymEnd];
+			result.Append(run.Length >= 3 ? run[0] + run[1..].ToLower(CultureInfo.InvariantCulture) : run);
+			index = acronymEnd;
+		}
+		return result.ToString();
 	}
 
 	private static string Respell(string identifier) {

@@ -47,7 +47,7 @@ public unsafe partial class NotificationMessage : EvtHandler {
 	public bool Close() => WxKitNative.NotificationMessageClose(NativeHandler) != 0;
 
 	/// <summary>Enables toast notifications available since Windows 8 and suppresses the additional icon in the notification area on Windows 10.</summary>
-	public static bool MSWUseToasts(string shortcutPath = "", string appId = "") {
+	public static bool MswUseToasts(string shortcutPath = "", string appId = "") {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(shortcutPath);
 		ArgumentNullException.ThrowIfNull(appId);

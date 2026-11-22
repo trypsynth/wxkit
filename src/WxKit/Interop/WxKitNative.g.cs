@@ -2018,33 +2018,33 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DCSetLayoutDirection(WxkObject* self, int direction);
 
-	[LibraryImport(Library, EntryPoint = "wxk_DPIChangedEvent_Scale_Size")]
+	[LibraryImport(Library, EntryPoint = "wxk_DpiChangedEvent_Scale_Size")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial Size DPIChangedEventScaleSize(WxkEvent* self, Size size);
+	public static partial Size DpiChangedEventScaleSize(WxkEvent* self, Size size);
 
-	[LibraryImport(Library, EntryPoint = "wxk_DPIChangedEvent_Scale_Point")]
+	[LibraryImport(Library, EntryPoint = "wxk_DpiChangedEvent_Scale_Point")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial Point DPIChangedEventScalePoint(WxkEvent* self, Point point);
+	public static partial Point DpiChangedEventScalePoint(WxkEvent* self, Point point);
 
-	[LibraryImport(Library, EntryPoint = "wxk_DPIChangedEvent_Scale_Rect")]
+	[LibraryImport(Library, EntryPoint = "wxk_DpiChangedEvent_Scale_Rect")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial Rect DPIChangedEventScaleRect(WxkEvent* self, Rect rect);
+	public static partial Rect DpiChangedEventScaleRect(WxkEvent* self, Rect rect);
 
-	[LibraryImport(Library, EntryPoint = "wxk_DPIChangedEvent_ScaleX")]
+	[LibraryImport(Library, EntryPoint = "wxk_DpiChangedEvent_ScaleX")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int DPIChangedEventScaleX(WxkEvent* self, int x);
+	public static partial int DpiChangedEventScaleX(WxkEvent* self, int x);
 
-	[LibraryImport(Library, EntryPoint = "wxk_DPIChangedEvent_ScaleY")]
+	[LibraryImport(Library, EntryPoint = "wxk_DpiChangedEvent_ScaleY")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int DPIChangedEventScaleY(WxkEvent* self, int y);
+	public static partial int DpiChangedEventScaleY(WxkEvent* self, int y);
 
-	[LibraryImport(Library, EntryPoint = "wxk_DPIChangedEvent_GetOldDPI")]
+	[LibraryImport(Library, EntryPoint = "wxk_DpiChangedEvent_GetOldDPI")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial Size DPIChangedEventGetOldDPI(WxkEvent* self);
+	public static partial Size DpiChangedEventGetOldDPI(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_DPIChangedEvent_GetNewDPI")]
+	[LibraryImport(Library, EntryPoint = "wxk_DpiChangedEvent_GetNewDPI")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial Size DPIChangedEventGetNewDPI(WxkEvent* self);
+	public static partial Size DpiChangedEventGetNewDPI(WxkEvent* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_DataViewColumn_UnsetAsSortKey")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

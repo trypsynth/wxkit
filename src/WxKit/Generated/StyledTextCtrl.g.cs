@@ -204,12 +204,6 @@ public unsafe partial class StyledTextCtrl : Control {
 	/// <summary>Get which document options are set.</summary>
 	public int DocumentOptions => WxKitNative.StyledTextCtrlGetDocumentOptions(Native);
 
-	/// <summary>Retrieve the current end of line mode - one of wxSTC_EOL_CRLF, wxSTC_EOL_CR, or wxSTC_EOL_LF.</summary>
-	public int EOLMode {
-		get => WxKitNative.StyledTextCtrlGetEOLMode(Native);
-		set => WxKitNative.StyledTextCtrlSetEOLMode(Native, value);
-	}
-
 	/// <summary>Retrieve the colour used in edge indication.</summary>
 	public Color? EdgeColor {
 		get => global::WxKit.Color.FromNative(WxKitNative.StyledTextCtrlGetEdgeColour(Native));
@@ -236,6 +230,12 @@ public unsafe partial class StyledTextCtrl : Control {
 
 	/// <summary>Retrieve the position of the last correctly styled character.</summary>
 	public int EndStyled => WxKitNative.StyledTextCtrlGetEndStyled(Native);
+
+	/// <summary>Retrieve the current end of line mode - one of wxSTC_EOL_CRLF, wxSTC_EOL_CR, or wxSTC_EOL_LF.</summary>
+	public int EolMode {
+		get => WxKitNative.StyledTextCtrlGetEOLMode(Native);
+		set => WxKitNative.StyledTextCtrlSetEOLMode(Native, value);
+	}
 
 	/// <summary>Get extra ascent for each line.</summary>
 	public int ExtraAscent {
@@ -299,12 +299,6 @@ public unsafe partial class StyledTextCtrl : Control {
 		set => WxKitNative.StyledTextCtrlSetHotspotSingleLine(Native, value ? (byte)1 : (byte)0);
 	}
 
-	/// <summary>Is the IME displayed in a window or inline?</summary>
-	public int IMEInteraction {
-		get => WxKitNative.StyledTextCtrlGetIMEInteraction(Native);
-		set => WxKitNative.StyledTextCtrlSetIMEInteraction(Native, value);
-	}
-
 	/// <summary>Get the identifier.</summary>
 	public int Identifier {
 		get => WxKitNative.StyledTextCtrlGetIdentifier(Native);
@@ -315,6 +309,12 @@ public unsafe partial class StyledTextCtrl : Control {
 	public int IdleStyling {
 		get => WxKitNative.StyledTextCtrlGetIdleStyling(Native);
 		set => WxKitNative.StyledTextCtrlSetIdleStyling(Native, value);
+	}
+
+	/// <summary>Is the IME displayed in a window or inline?</summary>
+	public int ImeInteraction {
+		get => WxKitNative.StyledTextCtrlGetIMEInteraction(Native);
+		set => WxKitNative.StyledTextCtrlSetIMEInteraction(Native, value);
 	}
 
 	/// <summary>Retrieve indentation size.</summary>
@@ -591,18 +591,6 @@ public unsafe partial class StyledTextCtrl : Control {
 		set => WxKitNative.StyledTextCtrlSetRectangularSelectionModifier(Native, value);
 	}
 
-	/// <summary>Get cursor type.</summary>
-	public int STCCursor {
-		get => WxKitNative.StyledTextCtrlGetSTCCursor(Native);
-		set => WxKitNative.StyledTextCtrlSetSTCCursor(Native, value);
-	}
-
-	/// <summary>Get internal focus flag.</summary>
-	public bool STCFocus {
-		get => WxKitNative.StyledTextCtrlGetSTCFocus(Native) != 0;
-		set => WxKitNative.StyledTextCtrlSetSTCFocus(Native, value ? (byte)1 : (byte)0);
-	}
-
 	/// <summary>Retrieve the document width assumed for scrolling.</summary>
 	public int ScrollWidth {
 		get => WxKitNative.StyledTextCtrlGetScrollWidth(Native);
@@ -628,7 +616,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Is the selection end of line filled?</summary>
-	public bool SelEOLFilled {
+	public bool SelEolFilled {
 		get => WxKitNative.StyledTextCtrlGetSelEOLFilled(Native) != 0;
 		set => WxKitNative.StyledTextCtrlSetSelEOLFilled(Native, value ? (byte)1 : (byte)0);
 	}
@@ -664,6 +652,18 @@ public unsafe partial class StyledTextCtrl : Control {
 	public int Status {
 		get => WxKitNative.StyledTextCtrlGetStatus(Native);
 		set => WxKitNative.StyledTextCtrlSetStatus(Native, value);
+	}
+
+	/// <summary>Get cursor type.</summary>
+	public int StcCursor {
+		get => WxKitNative.StyledTextCtrlGetSTCCursor(Native);
+		set => WxKitNative.StyledTextCtrlSetSTCCursor(Native, value);
+	}
+
+	/// <summary>Get internal focus flag.</summary>
+	public bool StcFocus {
+		get => WxKitNative.StyledTextCtrlGetSTCFocus(Native) != 0;
+		set => WxKitNative.StyledTextCtrlSetSTCFocus(Native, value ? (byte)1 : (byte)0);
 	}
 
 	/// <summary>Gets the text currently selected in the control.</summary>
@@ -785,7 +785,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Are the end of line characters visible?</summary>
-	public bool ViewEOL {
+	public bool ViewEol {
 		get => WxKitNative.StyledTextCtrlGetViewEOL(Native) != 0;
 		set => WxKitNative.StyledTextCtrlSetViewEOL(Native, value ? (byte)1 : (byte)0);
 	}
@@ -1523,38 +1523,6 @@ public unsafe partial class StyledTextCtrl : Control {
 	/// <summary>Drop one selection.</summary>
 	public void DropSelectionN(int selection) => WxKitNative.StyledTextCtrlDropSelectionN(Native, selection);
 
-	/// <summary>Clear the end of annotations from all lines.</summary>
-	public void EOLAnnotationClearAll() => WxKitNative.StyledTextCtrlEOLAnnotationClearAll(Native);
-
-	/// <summary>Get the style number for the end of line annotations for a line.</summary>
-	public int EOLAnnotationGetStyle(int line) => WxKitNative.StyledTextCtrlEOLAnnotationGetStyle(Native, line);
-
-	/// <summary>Get the start of the range of style numbers used for end of line annotations.</summary>
-	public int EOLAnnotationGetStyleOffset() => WxKitNative.StyledTextCtrlEOLAnnotationGetStyleOffset(Native);
-
-	/// <summary>Get the end of line annotation text for a line.</summary>
-	public string EOLAnnotationGetText(int line) => NativeString.Take(WxKitNative.StyledTextCtrlEOLAnnotationGetText(Native, line));
-
-	/// <summary>Get the visibility for the end of line annotations for a view.</summary>
-	public int EOLAnnotationGetVisible() => WxKitNative.StyledTextCtrlEOLAnnotationGetVisible(Native);
-
-	/// <summary>Set the style number for the end of line annotations for a line.</summary>
-	public void EOLAnnotationSetStyle(int line, int style) => WxKitNative.StyledTextCtrlEOLAnnotationSetStyle(Native, line, style);
-
-	/// <summary>Get the start of the range of style numbers used for end of line annotations.</summary>
-	public void EOLAnnotationSetStyleOffset(int style) => WxKitNative.StyledTextCtrlEOLAnnotationSetStyleOffset(Native, style);
-
-	/// <summary>Set the end of line annotation text for a line.</summary>
-	public void EOLAnnotationSetText(int line, string text) {
-		ArgumentNullException.ThrowIfNull(text);
-		fixed (char* textText = text) {
-			WxKitNative.StyledTextCtrlEOLAnnotationSetText(Native, line, textText, NativeString.Length(text));
-		}
-	}
-
-	/// <summary>Set the visibility for the end of line annotations for a view.</summary>
-	public void EOLAnnotationSetVisible(int visible) => WxKitNative.StyledTextCtrlEOLAnnotationSetVisible(Native, visible);
-
 	/// <summary>Switch from insert to overtype mode or the reverse.</summary>
 	public void EditToggleOvertype() => WxKitNative.StyledTextCtrlEditToggleOvertype(Native);
 
@@ -1572,6 +1540,38 @@ public unsafe partial class StyledTextCtrl : Control {
 
 	/// <summary>Ensure a particular line is visible by expanding any header line hiding it.</summary>
 	public void EnsureVisibleEnforcePolicy(int line) => WxKitNative.StyledTextCtrlEnsureVisibleEnforcePolicy(Native, line);
+
+	/// <summary>Clear the end of annotations from all lines.</summary>
+	public void EolAnnotationClearAll() => WxKitNative.StyledTextCtrlEOLAnnotationClearAll(Native);
+
+	/// <summary>Get the style number for the end of line annotations for a line.</summary>
+	public int EolAnnotationGetStyle(int line) => WxKitNative.StyledTextCtrlEOLAnnotationGetStyle(Native, line);
+
+	/// <summary>Get the start of the range of style numbers used for end of line annotations.</summary>
+	public int EolAnnotationGetStyleOffset() => WxKitNative.StyledTextCtrlEOLAnnotationGetStyleOffset(Native);
+
+	/// <summary>Get the end of line annotation text for a line.</summary>
+	public string EolAnnotationGetText(int line) => NativeString.Take(WxKitNative.StyledTextCtrlEOLAnnotationGetText(Native, line));
+
+	/// <summary>Get the visibility for the end of line annotations for a view.</summary>
+	public int EolAnnotationGetVisible() => WxKitNative.StyledTextCtrlEOLAnnotationGetVisible(Native);
+
+	/// <summary>Set the style number for the end of line annotations for a line.</summary>
+	public void EolAnnotationSetStyle(int line, int style) => WxKitNative.StyledTextCtrlEOLAnnotationSetStyle(Native, line, style);
+
+	/// <summary>Get the start of the range of style numbers used for end of line annotations.</summary>
+	public void EolAnnotationSetStyleOffset(int style) => WxKitNative.StyledTextCtrlEOLAnnotationSetStyleOffset(Native, style);
+
+	/// <summary>Set the end of line annotation text for a line.</summary>
+	public void EolAnnotationSetText(int line, string text) {
+		ArgumentNullException.ThrowIfNull(text);
+		fixed (char* textText = text) {
+			WxKitNative.StyledTextCtrlEOLAnnotationSetText(Native, line, textText, NativeString.Length(text));
+		}
+	}
+
+	/// <summary>Set the visibility for the end of line annotations for a view.</summary>
+	public void EolAnnotationSetVisible(int visible) => WxKitNative.StyledTextCtrlEOLAnnotationSetVisible(Native, visible);
 
 	/// <summary>Expand a fold header and all children.</summary>
 	public void ExpandChildren(int line, int level) => WxKitNative.StyledTextCtrlExpandChildren(Native, line, level);
@@ -2191,15 +2191,6 @@ public unsafe partial class StyledTextCtrl : Control {
 		}
 	}
 
-	/// <summary>Set the height for future RGBA image data.</summary>
-	public void RGBAImageSetHeight(int height) => WxKitNative.StyledTextCtrlRGBAImageSetHeight(Native, height);
-
-	/// <summary>Set the scale factor in percent for future RGBA image data.</summary>
-	public void RGBAImageSetScale(int scalePercent) => WxKitNative.StyledTextCtrlRGBAImageSetScale(Native, scalePercent);
-
-	/// <summary>Set the width for future RGBA image data.</summary>
-	public void RGBAImageSetWidth(int width) => WxKitNative.StyledTextCtrlRGBAImageSetWidth(Native, width);
-
 	/// <summary>Redoes the next action on the undo history.</summary>
 	public void Redo() => WxKitNative.StyledTextCtrlRedo(Native);
 
@@ -2246,6 +2237,15 @@ public unsafe partial class StyledTextCtrl : Control {
 			return WxKitNative.StyledTextCtrlReplaceTargetRE(Native, textText, NativeString.Length(text));
 		}
 	}
+
+	/// <summary>Set the height for future RGBA image data.</summary>
+	public void RgbaImageSetHeight(int height) => WxKitNative.StyledTextCtrlRGBAImageSetHeight(Native, height);
+
+	/// <summary>Set the scale factor in percent for future RGBA image data.</summary>
+	public void RgbaImageSetScale(int scalePercent) => WxKitNative.StyledTextCtrlRGBAImageSetScale(Native, scalePercent);
+
+	/// <summary>Set the width for future RGBA image data.</summary>
+	public void RgbaImageSetWidth(int width) => WxKitNative.StyledTextCtrlRGBAImageSetWidth(Native, width);
 
 	/// <summary>Set the main selection to the next selection.</summary>
 	public void RotateSelection() => WxKitNative.StyledTextCtrlRotateSelection(Native);
@@ -2532,7 +2532,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public int StyleGetCharacterSet(int style) => WxKitNative.StyledTextCtrlStyleGetCharacterSet(Native, style);
 
 	/// <summary>Get is a style to have its end of line filled or not.</summary>
-	public bool StyleGetEOLFilled(int style) => WxKitNative.StyledTextCtrlStyleGetEOLFilled(Native, style) != 0;
+	public bool StyleGetEolFilled(int style) => WxKitNative.StyledTextCtrlStyleGetEOLFilled(Native, style) != 0;
 
 	/// <summary>Get the font facename of a style.</summary>
 	public string StyleGetFaceName(int style) => NativeString.Take(WxKitNative.StyledTextCtrlStyleGetFaceName(Native, style));
@@ -2583,7 +2583,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void StyleSetCharacterSet(int style, int characterSet) => WxKitNative.StyledTextCtrlStyleSetCharacterSet(Native, style, characterSet);
 
 	/// <summary>Set a style to have its end of line filled or not.</summary>
-	public void StyleSetEOLFilled(int style, bool eolFilled) => WxKitNative.StyledTextCtrlStyleSetEOLFilled(Native, style, eolFilled ? (byte)1 : (byte)0);
+	public void StyleSetEolFilled(int style, bool eolFilled) => WxKitNative.StyledTextCtrlStyleSetEOLFilled(Native, style, eolFilled ? (byte)1 : (byte)0);
 
 	/// <summary>Set the font of a style.</summary>
 	public void StyleSetFaceName(int style, string fontName) {

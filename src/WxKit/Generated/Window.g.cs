@@ -84,10 +84,10 @@ public unsafe partial class Window : EvtHandler {
 	}
 
 	/// <summary>Return the DPI of the display used by this window.</summary>
-	public Size DPI => WxKitNative.WindowGetDPI(Native);
+	public Size Dpi => WxKitNative.WindowGetDPI(Native);
 
 	/// <summary>Returns the ratio of the DPI used by this window to the standard DPI.</summary>
-	public double DPIScaleFactor => WxKitNative.WindowGetDPIScaleFactor(Native);
+	public double DpiScaleFactor => WxKitNative.WindowGetDPIScaleFactor(Native);
 
 	/// <summary>Merges the window's best size into the min size and returns the result.</summary>
 	public Size EffectiveMinSize => WxKitNative.WindowGetEffectiveMinSize(Native);
@@ -660,30 +660,30 @@ public unsafe partial class Window : EvtHandler {
 	public void Freeze() => WxKitNative.WindowFreeze(Native);
 
 	/// <summary>Convert DPI-independent pixel values to the value in pixels appropriate for the current toolkit.</summary>
-	public Size FromDIP(Size size) => WxKitNative.WindowFromDIPSize(Native, size);
+	public Size FromDip(Size size) => WxKitNative.WindowFromDIPSize(Native, size);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Point FromDIP(Point point) => WxKitNative.WindowFromDIPPoint(Native, point);
+	public Point FromDip(Point point) => WxKitNative.WindowFromDIPPoint(Native, point);
 
 	/// <summary>Convert DPI-independent distance in pixels to the value in pixels appropriate for the current toolkit.</summary>
-	public int FromDIP(int d) => WxKitNative.WindowFromDIPInt(Native, d);
+	public int FromDip(int d) => WxKitNative.WindowFromDIPInt(Native, d);
 
 	/// <summary>Non window-specific DPI-independent pixels conversion functions.</summary>
-	public static Size FromDIP(Size size, Window w) {
+	public static Size FromDip(Size size, Window w) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(w);
 		return WxKitNative.WindowFromDIPSizeWindow(size, (WxkWindow*)w.Native);
 	}
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public static Point FromDIP(Point point, Window w) {
+	public static Point FromDip(Point point, Window w) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(w);
 		return WxKitNative.WindowFromDIPPointWindow(point, (WxkWindow*)w.Native);
 	}
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public static int FromDIP(int d, Window w) {
+	public static int FromDip(int d, Window w) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(w);
 		return WxKitNative.WindowFromDIPIntWindow(d, (WxkWindow*)w.Native);
@@ -1119,30 +1119,30 @@ public unsafe partial class Window : EvtHandler {
 	public void Thaw() => WxKitNative.WindowThaw(Native);
 
 	/// <summary>Convert pixel values of the current toolkit to DPI-independent pixel values.</summary>
-	public Size ToDIP(Size size) => WxKitNative.WindowToDIPSize(Native, size);
+	public Size ToDip(Size size) => WxKitNative.WindowToDIPSize(Native, size);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Point ToDIP(Point point) => WxKitNative.WindowToDIPPoint(Native, point);
+	public Point ToDip(Point point) => WxKitNative.WindowToDIPPoint(Native, point);
 
 	/// <summary>Convert pixel values of the current toolkit to DPI-independent pixel values.</summary>
-	public int ToDIP(int d) => WxKitNative.WindowToDIPInt(Native, d);
+	public int ToDip(int d) => WxKitNative.WindowToDIPInt(Native, d);
 
 	/// <summary>Non window-specific pixel to DPI-independent pixels conversion functions.</summary>
-	public static Size ToDIP(Size size, Window w) {
+	public static Size ToDip(Size size, Window w) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(w);
 		return WxKitNative.WindowToDIPSizeWindow(size, (WxkWindow*)w.Native);
 	}
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public static Point ToDIP(Point point, Window w) {
+	public static Point ToDip(Point point, Window w) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(w);
 		return WxKitNative.WindowToDIPPointWindow(point, (WxkWindow*)w.Native);
 	}
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public static int ToDIP(int d, Window w) {
+	public static int ToDip(int d, Window w) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(w);
 		return WxKitNative.WindowToDIPIntWindow(d, (WxkWindow*)w.Native);

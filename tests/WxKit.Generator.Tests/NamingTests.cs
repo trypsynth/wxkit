@@ -15,6 +15,32 @@ public class NamingTests {
 	[InlineData("GetLabel", "GetLabel")]
 	public void RespellsMembersByWholeWord(string cpp, string managed) => Assert.Equal(managed, Naming.Member(cpp));
 
+	// .NET writes an acronym of three letters or more in Pascal case, and keeps two in upper case.
+	[Theory]
+	[InlineData("GetURL", "GetUrl")]
+	[InlineData("FromDIP", "FromDip")]
+	[InlineData("CreateWithDIPSize", "CreateWithDipSize")]
+	[InlineData("RGBAImageSetWidth", "RgbaImageSetWidth")]
+	[InlineData("OSXSetModified", "OsxSetModified")]
+	[InlineData("PrintToPDF", "PrintToPdf")]
+	[InlineData("VCHome", "VCHome")]
+	[InlineData("XYToPosition", "XYToPosition")]
+	[InlineData("GetSizeMM", "GetSizeMM")]
+	[InlineData("GetUIState", "GetUIState")]
+	[InlineData("GetDC", "GetDC")]
+	[InlineData("IsOk", "IsOk")]
+	public void WritesAcronymsAsDotNetDoes(string cpp, string managed) => Assert.Equal(managed, Naming.Member(cpp));
+
+	[Theory]
+	[InlineData("wxDPIChangedEvent", "DpiChangedEvent")]
+	[InlineData("wxHTMLDataObject", "HtmlDataObject")]
+	public void WritesAcronymsInTypesAsDotNetDoes(string cpp, string managed) => Assert.Equal(managed, Naming.Type(cpp));
+
+	[Theory]
+	[InlineData("URL", "url")]
+	[InlineData("baseURL", "baseUrl")]
+	public void WritesAcronymsInParametersAsDotNetDoes(string cpp, string managed) => Assert.Equal(managed, Naming.Parameter(cpp));
+
 	[Theory]
 	[InlineData("pos", "position")]
 	[InlineData("orient", "orientation")]

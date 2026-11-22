@@ -350,8 +350,8 @@ static class WxKit.ArtProvider
     static Bitmap? GetBitmap(string id, string client = "wxART_OTHER_C", Size? size = null)
     static Icon? GetIcon(string id, string client = "wxART_OTHER_C", Size? size = null)
     static Icon? GetMessageBoxIcon(int flags)
-    static Size GetDIPSizeHint(string client)
-    static Size GetNativeDIPSizeHint(string client)
+    static Size GetDipSizeHint(string client)
+    static Size GetNativeDipSizeHint(string client)
     static Size GetNativeSizeHint(string client, Window? window = null)
     static Size GetSizeHint(string client, Window? window = null)
     static bool HasNativeProvider { get; }
@@ -389,7 +389,7 @@ class WxKit.Bitmap : NativeObject
     Bitmap? ConvertToDisabled(byte brightness = 255)
     Bitmap? GetSubBitmap(Rect rect)
     Image? ConvertToImage()
-    Size DIPSize { get; }
+    Size DipSize { get; }
     Size LogicalSize { get; }
     Size ScaledSize { get; }
     Size Size { get; }
@@ -398,8 +398,8 @@ class WxKit.Bitmap : NativeObject
     bool Create(int width, int height, DC dc)
     bool Create(int width, int height, int depth = -1)
     bool CreateScaled(int width, int height, int depth, double logicalScale)
-    bool CreateWithDIPSize(Size size, double scale, int depth = -1)
-    bool CreateWithDIPSize(int width, int height, double scale, int depth = -1)
+    bool CreateWithDipSize(Size size, double scale, int depth = -1)
+    bool CreateWithDipSize(int width, int height, double scale, int depth = -1)
     bool CreateWithLogicalSize(Size size, double scale, int depth = -1)
     bool CreateWithLogicalSize(int width, int height, double scale, int depth = -1)
     bool HasAlpha { get; }
@@ -938,23 +938,23 @@ class WxKit.DC : NativeObject
     Point DeviceOrigin { get; }
     Point DeviceToLogical(Point point)
     Point DeviceToLogical(int x, int y)
-    Point FromDIP(Point point)
+    Point FromDip(Point point)
     Point LogicalOrigin { get; }
     Point LogicalToDevice(Point point)
     Point LogicalToDevice(int x, int y)
-    Point ToDIP(Point point)
+    Point ToDip(Point point)
     RasterOperationMode LogicalFunction { get; set; }
     Size DeviceToLogicalRel(Size dim)
     Size DeviceToLogicalRel(int x, int y)
-    Size FromDIP(Size size)
+    Size FromDip(Size size)
     Size GetMultiLineTextExtent(string text)
     Size GetTextExtent(string text)
     Size LogicalToDeviceRel(Size dim)
     Size LogicalToDeviceRel(int x, int y)
-    Size PPI { get; }
+    Size Ppi { get; }
     Size Size { get; }
     Size SizeMM { get; }
-    Size ToDIP(Size size)
+    Size ToDip(Size size)
     bool AreAutomaticBoundingBoxUpdatesEnabled()
     bool Blit(int xdest, int ydest, int width, int height, DC source, int xsrc, int ysrc, RasterOperationMode logicalFunc = RasterOperationMode.Copy, bool useMask = false, int xsrcMask = -1, int ysrcMask = -1)
     bool CanDrawBitmap { get; }
@@ -977,7 +977,7 @@ class WxKit.DC : NativeObject
     int DeviceToLogicalXRel(int x)
     int DeviceToLogicalY(int y)
     int DeviceToLogicalYRel(int y)
-    int FromDIP(int d)
+    int FromDip(int d)
     int LogicalToDeviceX(int x)
     int LogicalToDeviceXRel(int x)
     int LogicalToDeviceY(int y)
@@ -986,7 +986,7 @@ class WxKit.DC : NativeObject
     int MaxY()
     int MinX()
     int MinY()
-    int ToDIP(int d)
+    int ToDip(int d)
     void CalcBoundingBox(int x, int y)
     void Clear()
     void CopyAttributes(DC dc)
@@ -1049,14 +1049,6 @@ class WxKit.DC : NativeObject
     void SetLogicalScale(double x, double y)
     void SetUserScale(double xScale, double yScale)
     void StartPage()
-class WxKit.DPIChangedEvent : Event
-    Point Scale(Point point)
-    Rect Scale(Rect rect)
-    Size NewDPI { get; }
-    Size OldDPI { get; }
-    Size Scale(Size size)
-    int ScaleX(int x)
-    int ScaleY(int y)
 enum WxKit.DataViewCellMode : int
     Activatable = 1
     Editable = 2
@@ -1415,6 +1407,14 @@ sealed record WxKit.Display : IEquatable<Display>
     static bool op_Inequality(Display? left, Display? right)
     string Name { get; init; }
     void Deconstruct(out int Index, out string Name, out Rect Bounds, out Rect WorkArea, out bool IsPrimary, out double ScaleFactor)
+class WxKit.DpiChangedEvent : Event
+    Point Scale(Point point)
+    Rect Scale(Rect rect)
+    Size NewDpi { get; }
+    Size OldDpi { get; }
+    Size Scale(Size size)
+    int ScaleX(int x)
+    int ScaleY(int y)
 enum WxKit.DragResult : int
     DragCancel = 5
     DragCopy = 2
@@ -1521,7 +1521,6 @@ static class WxKit.EventType
     static EventType<CommandEvent> ToolDropdown { get; }
     static EventType<CommandEvent> ToolEnter { get; }
     static EventType<CommandEvent> ToolRclicked { get; }
-    static EventType<DPIChangedEvent> DpiChanged { get; }
     static EventType<DataViewEvent> DataViewCacheHint { get; }
     static EventType<DataViewEvent> DataViewColumnHeaderClick { get; }
     static EventType<DataViewEvent> DataViewColumnHeaderRightClick { get; }
@@ -1543,6 +1542,7 @@ static class WxKit.EventType
     static EventType<DataViewEvent> DataViewSelectionChanged { get; }
     static EventType<DateEvent> DateChanged { get; }
     static EventType<DateEvent> TimeChanged { get; }
+    static EventType<DpiChangedEvent> DpiChanged { get; }
     static EventType<DropFilesEvent> DropFiles { get; }
     static EventType<EraseEvent> EraseBackground { get; }
     static EventType<Event> MouseCaptureChanged { get; }
@@ -2190,7 +2190,7 @@ class WxKit.HyperlinkCtrl : Control
     HyperlinkCtrl(Window parent, string label, string url, int id = -1, Point? position = null, Size? size = null, HyperlinkCtrlStyle style = HyperlinkCtrlStyle.Default)
     bool Visited { get; set; }
     event EventHandler<HyperlinkEvent>? Click
-    string URL { get; set; }
+    string Url { get; set; }
 [Flags] enum WxKit.HyperlinkCtrlStyle : long
     AlignCenter = 8
     AlignLeft = 2
@@ -2199,7 +2199,7 @@ class WxKit.HyperlinkCtrl : Control
     Default = 2097161
     None = 0
 class WxKit.HyperlinkEvent : CommandEvent
-    string URL { get; set; }
+    string Url { get; set; }
 class WxKit.Icon : NativeObject
     Icon()
     Icon(string name, BitmapType? type = null, int desiredWidth = -1, int desiredHeight = -1)
@@ -2300,7 +2300,7 @@ class WxKit.Image : NativeObject
     static void InitStandardHandlers()
     string GetOption(string name)
     void ChangeBrightness(double factor)
-    void ChangeHSV(double angleH, double factorS, double factorV)
+    void ChangeHsv(double angleH, double factorS, double factorV)
     void ChangeSaturation(double factor)
     void Clear(byte value = 0)
     void ClearAlpha()
@@ -2315,8 +2315,8 @@ class WxKit.Image : NativeObject
     void SetMaskColor(byte red, byte green, byte blue)
     void SetOption(string name, int value)
     void SetOption(string name, string value)
-    void SetRGB(Rect rect, byte red, byte green, byte blue)
-    void SetRGB(int x, int y, byte r, byte g, byte b)
+    void SetRgb(Rect rect, byte red, byte green, byte blue)
+    void SetRgb(int x, int y, byte r, byte g, byte b)
 enum WxKit.ImageAlphaBlendMode : int
     Compose = 1
     Over = 0
@@ -2844,7 +2844,7 @@ sealed class WxKit.Menu : EvtHandler
 class WxKit.MenuBar : Window
     Frame? Frame { get; }
     Menu? GetMenu(int menuIndex)
-    Menu? OSXGetAppleMenu()
+    Menu? OsxGetAppleMenu()
     Menu? Remove(int position)
     Menu? Replace(int position, Menu menu, string title)
     MenuBar(WindowStyle style = WindowStyle.None)
@@ -3088,7 +3088,7 @@ sealed class WxKit.NotificationMessage : EvtHandler, IDisposable
     event EventHandler<CommandEvent>? Clicked
     event EventHandler<CommandEvent>? Dismissed
     static TaskBarIcon? UseTaskBarIcon(TaskBarIcon icon)
-    static bool MSWUseToasts(string shortcutPath = "", string appId = "")
+    static bool MswUseToasts(string shortcutPath = "", string appId = "")
     void Dispose()
     void SetFlags(MessageIcon flags)
     void SetIcon(Icon icon)
@@ -3448,10 +3448,10 @@ abstract class WxKit.Printout : NativeObject
     void FitThisSizeToPage(Size imageSize)
     void FitThisSizeToPageMargins(Size imageSize, PageSetupDialogData pageSetupData)
     void FitThisSizeToPaper(Size imageSize)
-    void GetPPIPrinter(out int w, out int h)
-    void GetPPIScreen(out int w, out int h)
     void GetPageSizeMM(out int w, out int h)
     void GetPageSizePixels(out int w, out int h)
+    void GetPpiPrinter(out int w, out int h)
+    void GetPpiScreen(out int w, out int h)
     void MapScreenSizeToDevice()
     void MapScreenSizeToPage()
     void MapScreenSizeToPageMargins(PageSetupDialogData pageSetupData)
@@ -7052,15 +7052,15 @@ class WxKit.StyledTextCtrl : Control
     bool PasteConvertEndings { get; set; }
     bool PositionToXY(long position, out long x, out long y)
     bool ReadOnly { get; set; }
-    bool STCFocus { get; set; }
     bool SaveFile(string filename)
     bool ScrollWidthTracking { get; set; }
-    bool SelEOLFilled { get; set; }
+    bool SelEolFilled { get; set; }
     bool SelectionEmpty { get; }
     bool SelectionIsRectangle()
+    bool StcFocus { get; set; }
     bool StyleGetBold(int style)
     bool StyleGetChangeable(int style)
-    bool StyleGetEOLFilled(int style)
+    bool StyleGetEolFilled(int style)
     bool StyleGetHotSpot(int style)
     bool StyleGetItalic(int style)
     bool StyleGetUnderline(int style)
@@ -7071,7 +7071,7 @@ class WxKit.StyledTextCtrl : Control
     bool UseHorizontalScrollBar { get; set; }
     bool UseTabs { get; set; }
     bool UseVerticalScrollBar { get; set; }
-    bool ViewEOL { get; set; }
+    bool ViewEol { get; set; }
     event EventHandler<StyledTextEvent>? AutoCompleteCancelled
     event EventHandler<StyledTextEvent>? AutoCompleteCharDeleted
     event EventHandler<StyledTextEvent>? AutoCompleteCompleted
@@ -7149,13 +7149,13 @@ class WxKit.StyledTextCtrl : Control
     int DistanceToSecondaryStyles()
     int DocLineFromVisible(int displayLine)
     int DocumentOptions { get; }
-    int EOLAnnotationGetStyle(int line)
-    int EOLAnnotationGetStyleOffset()
-    int EOLAnnotationGetVisible()
-    int EOLMode { get; set; }
     int EdgeColumn { get; set; }
     int EdgeMode { get; set; }
     int EndStyled { get; }
+    int EolAnnotationGetStyle(int line)
+    int EolAnnotationGetStyleOffset()
+    int EolAnnotationGetVisible()
+    int EolMode { get; set; }
     int ExtraAscent { get; set; }
     int ExtraDescent { get; set; }
     int FindColumn(int line, int column)
@@ -7199,9 +7199,9 @@ class WxKit.StyledTextCtrl : Control
     int GetSubStylesLength(int styleBase)
     int GetSubStylesStart(int styleBase)
     int HighlightGuide { get; set; }
-    int IMEInteraction { get; set; }
     int Identifier { get; set; }
     int IdleStyling { get; set; }
+    int ImeInteraction { get; set; }
     int Indent { get; set; }
     int IndentationGuides { get; set; }
     int IndicatorAllOnFor(int position)
@@ -7265,7 +7265,6 @@ class WxKit.StyledTextCtrl : Control
     int RectangularSelectionModifier { get; set; }
     int ReplaceTarget(string text)
     int ReplaceTargetRE(string text)
-    int STCCursor { get; set; }
     int ScrollWidth { get; set; }
     int SearchFlags { get; set; }
     int SearchInTarget(string text)
@@ -7277,6 +7276,7 @@ class WxKit.StyledTextCtrl : Control
     int SelectionStart { get; set; }
     int Selections { get; }
     int Status { get; set; }
+    int StcCursor { get; set; }
     int StyleGetCase(int style)
     int StyleGetCharacterSet(int style)
     int StyleGetSize(int style)
@@ -7318,7 +7318,7 @@ class WxKit.StyledTextCtrl : Control
     string DescribeKeyWordSets()
     string DescribeProperty(string name)
     string DescriptionOfStyle(int style)
-    string EOLAnnotationGetText(int line)
+    string EolAnnotationGetText(int line)
     string GetLine(int line)
     string GetLineText(long lineNo)
     string GetProperty(string key)
@@ -7433,17 +7433,17 @@ class WxKit.StyledTextCtrl : Control
     void DocumentStart()
     void DocumentStartExtend()
     void DropSelectionN(int selection)
-    void EOLAnnotationClearAll()
-    void EOLAnnotationSetStyle(int line, int style)
-    void EOLAnnotationSetStyleOffset(int style)
-    void EOLAnnotationSetText(int line, string text)
-    void EOLAnnotationSetVisible(int visible)
     void EditToggleOvertype()
     void EmptyUndoBuffer()
     void EndUndoAction()
     void EnsureCaretVisible()
     void EnsureVisible(int line)
     void EnsureVisibleEnforcePolicy(int line)
+    void EolAnnotationClearAll()
+    void EolAnnotationSetStyle(int line, int style)
+    void EolAnnotationSetStyleOffset(int style)
+    void EolAnnotationSetText(int line, string text)
+    void EolAnnotationSetVisible(int visible)
     void ExpandChildren(int line, int level)
     void FoldAll(int action)
     void FoldChildren(int line, int action)
@@ -7533,15 +7533,15 @@ class WxKit.StyledTextCtrl : Control
     void ParaUp()
     void ParaUpExtend()
     void Paste()
-    void RGBAImageSetHeight(int height)
-    void RGBAImageSetScale(int scalePercent)
-    void RGBAImageSetWidth(int width)
     void Redo()
     void RegisterImage(int type, Bitmap bitmap)
     void ReleaseAllExtendedStyles()
     void Remove(long from, long to)
     void Replace(long from, long to, string value)
     void ReplaceSelection(string text)
+    void RgbaImageSetHeight(int height)
+    void RgbaImageSetScale(int scalePercent)
+    void RgbaImageSetWidth(int width)
     void RotateSelection()
     void ScrollRange(int secondary, int primary)
     void ScrollToColumn(int column)
@@ -7615,7 +7615,7 @@ class WxKit.StyledTextCtrl : Control
     void StyleSetCase(int style, int caseVisible)
     void StyleSetChangeable(int style, bool changeable)
     void StyleSetCharacterSet(int style, int characterSet)
-    void StyleSetEOLFilled(int style, bool eolFilled)
+    void StyleSetEolFilled(int style, bool eolFilled)
     void StyleSetFaceName(int style, string fontName)
     void StyleSetFont(int styleNum, Font font)
     void StyleSetFontAttr(int styleNum, int size, string faceName, bool bold, bool italic, bool underline, FontEncoding encoding = FontEncoding.Default)
@@ -7852,12 +7852,12 @@ class WxKit.TextCtrl : Control
     bool CanRedo { get; }
     bool CanUndo { get; }
     bool EnableProofCheck()
-    bool GTKSetPangoMarkup(string text)
+    bool GtkSetPangoMarkup(string text)
     bool IsEditable { get; set; }
     bool IsEmpty { get; }
     bool IsModified { get; set; }
     bool IsMultiLine { get; }
-    bool IsRTFSupported { get; }
+    bool IsRtfSupported { get; }
     bool IsSingleLine { get; }
     bool LoadFile(string filename, int fileType = 0)
     bool PositionToXY(long position, out long x, out long y)
@@ -7875,7 +7875,7 @@ class WxKit.TextCtrl : Control
     string GetLineText(long lineNo)
     string GetRange(long from, long to)
     string Hint { get; set; }
-    string RTFValue { get; set; }
+    string RtfValue { get; set; }
     string StringSelection { get; }
     string Value { get; set; }
     void AppendText(string text)
@@ -7888,10 +7888,10 @@ class WxKit.TextCtrl : Control
     void ForceUpper()
     void GetSelection(out long from, out long to)
     void MarkDirty()
-    void OSXDisableAllSmartSubstitutions()
-    void OSXEnableAutomaticDashSubstitution(bool enable)
-    void OSXEnableAutomaticQuoteSubstitution(bool enable)
-    void OSXEnableNewLineReplacement(bool enable)
+    void OsxDisableAllSmartSubstitutions()
+    void OsxEnableAutomaticDashSubstitution(bool enable)
+    void OsxEnableAutomaticQuoteSubstitution(bool enable)
+    void OsxEnableNewLineReplacement(bool enable)
     void Paste()
     void Redo()
     void Remove(long from, long to)
@@ -8080,7 +8080,7 @@ class WxKit.Toolbook : BookCtrlBase
 class WxKit.TopLevelWindow : Window
     ContentProtection ContentProtection { get; set; }
     Icon? Icon { get; set; }
-    Menu? MSWGetSystemMenu()
+    Menu? MswGetSystemMenu()
     Window? DefaultItem { get; set; }
     Window? TmpDefaultItem { get; set; }
     bool EnableCloseButton(bool enable = true)
@@ -8092,7 +8092,7 @@ class WxKit.TopLevelWindow : Window
     bool IsFullScreen { get; }
     bool IsIconized { get; }
     bool IsMaximized { get; }
-    bool OSXIsModified()
+    bool OsxIsModified()
     bool ShouldPreventAppExit()
     bool ShowFullScreen(bool show, FullScreenStyle style = FullScreenStyle.All)
     event EventHandler<CloseEvent>? Closing
@@ -8107,7 +8107,7 @@ class WxKit.TopLevelWindow : Window
     void CenterOnScreen(Orientation direction = Orientation.Both)
     void Iconize(bool iconize = true)
     void Maximize(bool maximize = true)
-    void OSXSetModified(bool modified)
+    void OsxSetModified(bool modified)
     void RequestUserAttention(UserAttention flags = UserAttention.Info)
     void Restore()
     void SetIcons(Icon icons)
@@ -8477,12 +8477,12 @@ class WxKit.Window : EvtHandler
     Point ClientToScreen(Point point)
     Point ConvertDialogToPixels(Point point)
     Point ConvertPixelsToDialog(Point point)
-    Point FromDIP(Point point)
+    Point FromDip(Point point)
     Point FromPhys(Point point)
     Point Position { get; set; }
     Point ScreenPosition { get; }
     Point ScreenToClient(Point point)
-    Point ToDIP(Point point)
+    Point ToDip(Point point)
     Point ToPhys(Point point)
     Rect ClientRect { get; }
     Rect InputMethodCursorRect { get; }
@@ -8495,9 +8495,9 @@ class WxKit.Window : EvtHandler
     Size ClientToWindowSize(Size size)
     Size ConvertDialogToPixels(Size size)
     Size ConvertPixelsToDialog(Size size)
-    Size DPI { get; }
+    Size Dpi { get; }
     Size EffectiveMinSize { get; }
-    Size FromDIP(Size size)
+    Size FromDip(Size size)
     Size FromPhys(Size size)
     Size GetMinSizeFromKnownDirection(int direction, int size, int availableOtherDir)
     Size GetTextExtent(string text)
@@ -8506,7 +8506,7 @@ class WxKit.Window : EvtHandler
     Size MinClientSize { get; set; }
     Size MinSize { get; set; }
     Size Size { get; set; }
-    Size ToDIP(Size size)
+    Size ToDip(Size size)
     Size ToPhys(Size size)
     Size VirtualSize { get; set; }
     Size WindowBorderSize { get; }
@@ -8594,7 +8594,7 @@ class WxKit.Window : EvtHandler
     bool UseForegroundColor()
     bool Validate()
     double ContentScaleFactor { get; }
-    double DPIScaleFactor { get; }
+    double DpiScaleFactor { get; }
     event EventHandler<ActivateEvent>? Activated
     event EventHandler<ChildFocusEvent>? ChildFocused
     event EventHandler<CommandEvent>? ContextMenu
@@ -8630,7 +8630,7 @@ class WxKit.Window : EvtHandler
     int AdjustForLayoutDirection(int x, int width, int widthTotal)
     int CharHeight { get; }
     int CharWidth { get; }
-    int FromDIP(int d)
+    int FromDip(int d)
     int FromPhys(int d)
     int GetBestHeight(int width)
     int GetBestWidth(int height)
@@ -8644,27 +8644,27 @@ class WxKit.Window : EvtHandler
     int MaxWidth { get; }
     int MinHeight { get; }
     int MinWidth { get; }
-    int ToDIP(int d)
+    int ToDip(int d)
     int ToPhys(int d)
     long WindowStyleFlag { get; set; }
     nint NativeHandle { get; }
-    static Point FromDIP(Point point, Window w)
+    static Point FromDip(Point point, Window w)
     static Point FromPhys(Point point, Window w)
-    static Point ToDIP(Point point, Window w)
+    static Point ToDip(Point point, Window w)
     static Point ToPhys(Point point, Window w)
-    static Size FromDIP(Size size, Window w)
+    static Size FromDip(Size size, Window w)
     static Size FromPhys(Size size, Window w)
-    static Size ToDIP(Size size, Window w)
+    static Size ToDip(Size size, Window w)
     static Size ToPhys(Size size, Window w)
     static Window? Capture { get; }
     static Window? FindFocus()
     static Window? FindWindowById(long id, Window? parent = null)
     static Window? FindWindowByLabel(string label, Window? parent = null)
     static Window? FindWindowByName(string name, Window? parent = null)
-    static int FromDIP(int d, Window w)
+    static int FromDip(int d, Window w)
     static int FromPhys(int d, Window w)
     static int NewControlId(int count = 1)
-    static int ToDIP(int d, Window w)
+    static int ToDip(int d, Window w)
     static int ToPhys(int d, Window w)
     static void UnreserveControlId(int count = 1, int id = -1)
     string GetHelpTextAtPoint(Point point, Origin origin)

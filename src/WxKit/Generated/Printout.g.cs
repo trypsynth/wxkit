@@ -42,26 +42,6 @@ public unsafe partial class Printout : NativeObject {
 		return WxKitNative.PrintoutGetLogicalPageMarginsRect(Native, pageSetupData.Native);
 	}
 
-	/// <summary>Returns the number of pixels per logical inch of the printer device context.</summary>
-	public void GetPPIPrinter(out int w, out int h) {
-		w = 0;
-		h = 0;
-		fixed (int* wPointer = &w)
-		fixed (int* hPointer = &h) {
-			WxKitNative.PrintoutGetPPIPrinter(Native, wPointer, hPointer);
-		}
-	}
-
-	/// <summary>Returns the number of pixels per logical inch of the screen device context.</summary>
-	public void GetPPIScreen(out int w, out int h) {
-		w = 0;
-		h = 0;
-		fixed (int* wPointer = &w)
-		fixed (int* hPointer = &h) {
-			WxKitNative.PrintoutGetPPIScreen(Native, wPointer, hPointer);
-		}
-	}
-
 	/// <summary>Returns the size of the printer page in millimetres.</summary>
 	public void GetPageSizeMM(out int w, out int h) {
 		w = 0;
@@ -79,6 +59,26 @@ public unsafe partial class Printout : NativeObject {
 		fixed (int* wPointer = &w)
 		fixed (int* hPointer = &h) {
 			WxKitNative.PrintoutGetPageSizePixels(Native, wPointer, hPointer);
+		}
+	}
+
+	/// <summary>Returns the number of pixels per logical inch of the printer device context.</summary>
+	public void GetPpiPrinter(out int w, out int h) {
+		w = 0;
+		h = 0;
+		fixed (int* wPointer = &w)
+		fixed (int* hPointer = &h) {
+			WxKitNative.PrintoutGetPPIPrinter(Native, wPointer, hPointer);
+		}
+	}
+
+	/// <summary>Returns the number of pixels per logical inch of the screen device context.</summary>
+	public void GetPpiScreen(out int w, out int h) {
+		w = 0;
+		h = 0;
+		fixed (int* wPointer = &w)
+		fixed (int* hPointer = &h) {
+			WxKitNative.PrintoutGetPPIScreen(Native, wPointer, hPointer);
 		}
 	}
 

@@ -64,7 +64,7 @@ public unsafe partial class TextCtrl : Control {
 	public bool IsMultiLine => WxKitNative.TextCtrlIsMultiLine(Native) != 0;
 
 	/// <summary>Returns true if text controls support reading and writing RTF (Rich Text Format).</summary>
-	public bool IsRTFSupported => WxKitNative.TextCtrlIsRTFSupported(Native) != 0;
+	public bool IsRtfSupported => WxKitNative.TextCtrlIsRTFSupported(Native) != 0;
 
 	/// <summary>Returns true if this is a single line edit control and false otherwise.</summary>
 	public bool IsSingleLine => WxKitNative.TextCtrlIsSingleLine(Native) != 0;
@@ -82,7 +82,7 @@ public unsafe partial class TextCtrl : Control {
 	public int NumberOfLines => WxKitNative.TextCtrlGetNumberOfLines(Native);
 
 	/// <summary>Returns the content of a multiline text control as RTF (Rich Text Formatted) text.</summary>
-	public string RTFValue {
+	public string RtfValue {
 		get => NativeString.Take(WxKitNative.TextCtrlGetRTFValue(Native));
 		set {
 			ArgumentNullException.ThrowIfNull(value);
@@ -180,14 +180,6 @@ public unsafe partial class TextCtrl : Control {
 	/// <summary>Convert all text entered into the control to upper case.</summary>
 	public void ForceUpper() => WxKitNative.TextCtrlForceUpper(Native);
 
-	/// <summary>Sets the content of a multiline text control from a Pango markup buffer.</summary>
-	public bool GTKSetPangoMarkup(string text) {
-		ArgumentNullException.ThrowIfNull(text);
-		fixed (char* textText = text) {
-			return WxKitNative.TextCtrlGTKSetPangoMarkup(Native, textText, NativeString.Length(text)) != 0;
-		}
-	}
-
 	/// <summary>Gets the length of the specified line, not including any trailing newline character(s).</summary>
 	public int GetLineLength(long lineNo) => WxKitNative.TextCtrlGetLineLength(Native, lineNo);
 
@@ -204,6 +196,14 @@ public unsafe partial class TextCtrl : Control {
 		fixed (long* fromPointer = &from)
 		fixed (long* toPointer = &to) {
 			WxKitNative.TextCtrlGetSelection(Native, fromPointer, toPointer);
+		}
+	}
+
+	/// <summary>Sets the content of a multiline text control from a Pango markup buffer.</summary>
+	public bool GtkSetPangoMarkup(string text) {
+		ArgumentNullException.ThrowIfNull(text);
+		fixed (char* textText = text) {
+			return WxKitNative.TextCtrlGTKSetPangoMarkup(Native, textText, NativeString.Length(text)) != 0;
 		}
 	}
 
@@ -227,16 +227,16 @@ public unsafe partial class TextCtrl : Control {
 	public void MarkDirty() => WxKitNative.TextCtrlMarkDirty(Native);
 
 	/// <summary>Disables all automatic character substitutions.</summary>
-	public void OSXDisableAllSmartSubstitutions() => WxKitNative.TextCtrlOSXDisableAllSmartSubstitutions(Native);
+	public void OsxDisableAllSmartSubstitutions() => WxKitNative.TextCtrlOSXDisableAllSmartSubstitutions(Native);
 
 	/// <summary>Enables the automatic conversion of two ASCII hyphens into an em dash.</summary>
-	public void OSXEnableAutomaticDashSubstitution(bool enable) => WxKitNative.TextCtrlOSXEnableAutomaticDashSubstitution(Native, enable ? (byte)1 : (byte)0);
+	public void OsxEnableAutomaticDashSubstitution(bool enable) => WxKitNative.TextCtrlOSXEnableAutomaticDashSubstitution(Native, enable ? (byte)1 : (byte)0);
 
 	/// <summary>Enables the automatic replacement of straight (ASCII) quotation marks and apostrophes with smart ("curly") quotes.</summary>
-	public void OSXEnableAutomaticQuoteSubstitution(bool enable) => WxKitNative.TextCtrlOSXEnableAutomaticQuoteSubstitution(Native, enable ? (byte)1 : (byte)0);
+	public void OsxEnableAutomaticQuoteSubstitution(bool enable) => WxKitNative.TextCtrlOSXEnableAutomaticQuoteSubstitution(Native, enable ? (byte)1 : (byte)0);
 
 	/// <summary>Enables the automatic replacement of new lines characters in a single-line text field with spaces under macOS.</summary>
-	public void OSXEnableNewLineReplacement(bool enable) => WxKitNative.TextCtrlOSXEnableNewLineReplacement(Native, enable ? (byte)1 : (byte)0);
+	public void OsxEnableNewLineReplacement(bool enable) => WxKitNative.TextCtrlOSXEnableNewLineReplacement(Native, enable ? (byte)1 : (byte)0);
 
 	/// <summary>Pastes text from the clipboard to the text item.</summary>
 	public void Paste() => WxKitNative.TextCtrlPaste(Native);
