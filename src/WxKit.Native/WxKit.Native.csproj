@@ -39,6 +39,8 @@
 		<None Include="$(_WxKitSources)/3rdparty/pcre/LICENCE.md" Pack="true" PackagePath="licenses/pcre2/" />
 		<None Include="$(_WxKitSources)/3rdparty/libwebp/COPYING" Pack="true" PackagePath="licenses/libwebp/" />
 		<None Include="$(_WxKitSources)/3rdparty/nanosvg/LICENSE.txt" Pack="true" PackagePath="licenses/nanosvg/" />
+		<None Include="$(_WxKitSources)/src/stc/scintilla/License.txt" Pack="true" PackagePath="licenses/scintilla/" />
+		<None Include="$(_WxKitSources)/src/stc/lexilla/License.txt" Pack="true" PackagePath="licenses/lexilla/" />
 	</ItemGroup>
 
 	<!-- An empty package would restore and then fail to link, so a missing native build fails the pack instead. -->

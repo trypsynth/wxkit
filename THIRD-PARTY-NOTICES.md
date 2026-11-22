@@ -50,3 +50,9 @@ The native packages, such as `WxKit.Native.win-x64`, also contain wxWidgets and 
 
 - Website: https://github.com/memononen/nanosvg
 - License: the zlib license, in `licenses/nanosvg/LICENSE.txt`.
+
+## Scintilla and Lexilla
+
+- Versions: Scintilla 5.0.0 and Lexilla 5.5.4, as wxWidgets' styled text control bundles them. An application links them only when it uses `StyledTextCtrl`.
+- Website: https://www.scintilla.org
+- License: Neil Hodgson's permission notice, in `licenses/scintilla/License.txt` and `licenses/lexilla/License.txt`.
