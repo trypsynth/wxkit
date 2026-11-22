@@ -1,28 +1,23 @@
 # Language support
 
-WxKit is written in C# and designed for C# first. F# and Visual Basic can use any .NET library, but some C# features are awkward or impossible to use from them. This document describes the rules that keep WxKit usable from all three, and what each language gets.
+WxKit is written in C# and designed for C# first. F# is supported too, and Visual Basic should work, but isn't tested.
+
+- C# gets the whole API, as [Managed API](managed-api.md) describes. The samples and docs are in C#.
+- F# uses the C# API directly, and publishes with Native AOT. The HelloFSharp sample shows it, and CI publishes and runs it on every platform.
+- Visual Basic can use the API within the rules below, but nothing in CI builds Visual Basic, and it can't use the C#-only source generators that Native AOT relies on, such as System.Text.Json's and `LibraryImport`. The translation extractor reads it.
 
 ## Rules for the public API
 
-These rules apply to every public member of the `WxKit` namespace:
+These rules keep the public `WxKit` namespace usable from F# and Visual Basic, and cost C# little. The internals can use any C# feature.
 
-- Do not use `ref struct` types in public signatures, except in overloads that also have an alternative. Visual Basic cannot use them, and F# can only use them in limited ways. Where a `ReadOnlySpan<T>` overload helps C# performance, there is also an overload that takes an array or `string`.
-- Do not use `required` members. Visual Basic cannot set them, and the compiler blocks the type.
-- Do not use C# 14 extension members, such as extension properties. Neither F# nor Visual Basic can consume them yet. Ordinary extension methods are fine.
-- Do not put a public API only on a static abstract interface member. F# consumes these with warnings, and Visual Basic cannot call them.
-- Use standard `EventHandler<T>` events, whose argument types derive from `EventArgs`. Visual Basic's `WithEvents` and `Handles` depend on this pattern.
-- Avoid names that differ only in case. Visual Basic is not case sensitive.
-- Optional parameters are fine. All three languages support them.
-
-These rules cost C# very little. The internals of WxKit can use any C# feature.
-
-## C#
-
-C# gets the whole API as described in [Managed API](managed-api.md). The samples and documentation are written in C# first.
+- No `ref struct` types in public signatures without an alternative. Where a `ReadOnlySpan<T>` overload helps C#, there is also one that takes an array or a `string`.
+- No `required` members, which Visual Basic can't set.
+- No C# 14 extension members, such as extension properties, which neither language can consume yet. Ordinary extension methods are fine.
+- No public API only on a static abstract interface member, which F# consumes with warnings and Visual Basic can't call.
+- Events are `EventHandler<T>`, with arguments that derive from `EventArgs`, which Visual Basic's `WithEvents` and `Handles` depend on.
+- No names that differ only in case, since Visual Basic isn't case sensitive.
 
 ## F#
-
-F# can use the C# API directly:
 
 ```fsharp
 open WxKit
@@ -34,15 +29,9 @@ Application.Run(fun () ->
     frame.Show() |> ignore)
 ```
 
-Events appear as F# events, so `Add`, `Subscribe`, and the `Observable` functions work on them.
-
-The F# compiler does not accept tabs for indentation, so F# files are the one place WxKit indents with spaces. The `.editorconfig` gets a section for `*.{fs,fsi,fsx}` that sets `indent_style = space` and `indent_size = 4`.
-
-Once the C# API settles, a small `WxKit.FSharp` package could make F# code more natural. For example, a computation expression for building sizer layouts, or functions that return `unit` where the C# method returns a value most callers ignore. Whether this package is worth making is an open question, and it is not part of the first milestones.
+Events appear as F# events, so `Add`, `Subscribe`, and the `Observable` functions work on them. Avoid `printf` and `sprintf` in an application that publishes with Native AOT: FSharp.Core formats them by reflection, which gives trim warnings. F# files are indented with four spaces, since the compiler rejects tabs.
 
 ## Visual Basic
-
-Visual Basic can use the C# API directly, within the rules above:
 
 ```vb
 Imports WxKit
@@ -64,8 +53,4 @@ Module Program
 End Module
 ```
 
-Visual Basic gets no package of its own.
-
-## Keeping it working
-
-The F# and Visual Basic samples build in CI, so a change that breaks either language fails the build. Each sample uses a few features that are known to be fragile across languages, such as events, optional parameters, and enum flags. The F# sample also publishes with Native AOT, since F# has its own trimming warnings to watch for.
+`_` alone isn't a valid name in Visual Basic, so it translates text with `Translations.Translate` rather than `_`, as [Translating an application](../translating.md) describes.

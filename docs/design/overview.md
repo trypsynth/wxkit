@@ -1,93 +1,74 @@
 # WxKit design overview
 
-WxKit is a set of .NET bindings to [wxWidgets](https://wxwidgets.org), the C++ library for native desktop user interfaces. This document describes what WxKit is for, how its parts fit together, and the order in which they get built. The other documents in this folder cover each part in detail.
+WxKit is a set of .NET bindings to [wxWidgets](https://wxwidgets.org), the C++ library for native desktop user interfaces. This document covers what WxKit is for, how its layers fit together, and what is left to build. The other documents in this folder cover each part in detail.
 
-Status: draft. The first two milestones are done on Windows, Linux, and macOS, and the third, breadth, is under way: the generator binds 117 classes. The first preview, 0.1.0-preview.1, is on nuget.org for Windows. Decisions made so far, and the ones still open, are in [Open questions](open-questions.md).
+WxKit is in preview, as `0.1.0-preview.N` on nuget.org, for Windows, Linux, and macOS. The questions still open are in [Open questions](open-questions.md).
 
 ## Goals
 
-- Give C# developers wxWidgets through an API that reads like modern .NET, not like C++ with a C# accent. Properties instead of getter and setter pairs, standard .NET events, enums instead of integer flags, and nullable annotations throughout.
-- Work with Native AOT. A published application is one executable with wxWidgets linked into it, and nothing ships beside it.
-- Cover wxWidgets broadly. The aim is the whole GUI surface that a desktop application uses, not a hand-picked subset. A generator does the mechanical work so that coverage can grow without hand-writing thousands of functions.
-- Keep native controls native. wxWidgets uses the platform's own controls, so screen readers and other assistive technology work with them out of the box. WxKit must not get in the way of that, and its samples and defaults should model accessible practice.
-- Be usable from F#, and from Visual Basic where it costs little. C# comes first. See [Language support](languages.md).
+- An API that reads like modern .NET: properties, standard .NET events, enums instead of integer flags, and nullable annotations throughout.
+- Native AOT. A published application is one executable with wxWidgets linked into it.
+- Broad coverage of the GUI surface a desktop application uses, which a generator makes possible.
+- Native controls, so screen readers and other assistive technology work with them. WxKit's samples and defaults model accessible practice.
+- C# first, with F# supported. See [Language support](languages.md).
 
 ## Non-goals
 
-- Binding the non-GUI parts of wxWidgets that .NET already does better. For example, `wxString`, `wxDateTime`, `wxFileName`, `wxRegEx`, `wxThread`, `wxSocket`, and the wx containers. WxKit maps these to .NET types at the boundary instead.
-- Mobile platforms. wxWidgets has no supported iOS or Android port.
-- A visual designer. XRC files, which other tools can produce, are in scope later.
-- Source compatibility with wxPython, wxRuby, or wxDragon. WxKit borrows ideas from them, not their API shapes.
+- The non-GUI parts of wxWidgets that .NET does better, such as `wxString`, `wxDateTime`, `wxFileName`, `wxThread`, `wxSocket`, and the wx containers. WxKit maps these to .NET types at the boundary.
+- Mobile platforms, which wxWidgets has no supported port for.
+- A visual designer.
+- Source compatibility with wxPython, wxRuby, or wxDragon. WxKit borrows their ideas, not their API shapes.
 
-## Supported platforms
+## Platforms
 
-WxKit targets the three wxWidgets ports that matter on the desktop:
-
-- Windows, through wxMSW, on `win-x64` and `win-arm64`. `win-x86` is left out for now: Windows 11 has no 32-bit edition, and 32-bit Windows 10 is out of support. The build script can already build it, so it would take a package and a CI job if someone needs it.
+- Windows, through wxMSW, on `win-x64` and `win-arm64`. 32-bit Windows is left out, as Windows 11 has no 32-bit edition. The build script can build `win-x86`, so it would take a package and a CI job.
 - macOS, through wxOSX Cocoa, on `osx-arm64` and `osx-x64`.
 - Linux, through wxGTK 3, on `linux-x64` and `linux-arm64`.
 
-Windows came first, then Linux, on `linux-x64` and `linux-arm64`, and macOS, on `osx-arm64` and `osx-x64`.
-
 ## Architecture
 
-WxKit has four layers. Each one only talks to the layer directly below it.
+WxKit has four layers, each of which talks only to the one below it:
 
-1. wxWidgets itself. It is a git submodule under `native/wxWidgets`, pinned to a release tag, and built with CMake as static libraries.
-2. The native shim, under `native/shim`. This is C++ code that exposes wxWidgets through a flat C interface, because .NET cannot call C++ directly. Every function has a `wxk_` prefix, takes and returns only C types, and never lets a C++ exception escape. Most of the shim is generated. The rest, such as the application object and event dispatch, is written by hand. The shim and wxWidgets build together into one library, called `wxkitnative`.
-3. The raw interop layer, in the `WxKit.Interop` namespace. It declares every shim function with `LibraryImport`, one to one. It is generated.
-4. The managed API, in the `WxKit` namespace. These are the classes that applications use, such as `Frame`, `Button`, and `BoxSizer`. Each class is a generated partial class, with a hand-written partial beside it wherever the generated part needs help.
+1. wxWidgets, a git submodule under `native/wxWidgets`, pinned to a release tag and built with CMake as static libraries.
+2. The native shim, under `native/shim`: C++ that exposes wxWidgets as flat C functions with a `wxk_` prefix, since .NET can't call C++. It is mostly generated, and builds with wxWidgets into one library, `wxkitnative`. See [Native layer](native-layer.md).
+3. The interop layer, `WxKit.Interop`, which declares each shim function with `LibraryImport`. It is generated.
+4. The managed API, `WxKit`, the classes applications use. Each is a generated partial class, with a hand-written partial where it needs help. See [Managed API](managed-api.md).
 
-A call from application code goes down through these layers like this. `button.Label = "Save"` calls a property setter in the managed API. The setter pins the string and calls `WxKitNative.ButtonSetLabel` in the interop layer. That function calls `wxk_Button_SetLabel` in the shim, which converts the text to a `wxString` and calls `wxButton::SetLabel`.
-
-An event goes the other way. wxWidgets calls a functor that the shim bound with `Bind`. The functor calls a function pointer into an `UnmanagedCallersOnly` method in the managed API, which raises the .NET event.
+A call goes down the layers: `button.Label = "Save"` pins the string and calls `WxKitNative.ButtonSetLabel`, which calls `wxk_Button_SetLabel`, which calls `wxButton::SetLabel`. An event goes up: a functor the shim bound with `Bind` calls a function pointer into an `UnmanagedCallersOnly` method, which raises the .NET event.
 
 ## Documents in this folder
 
-- [Native layer](native-layer.md) covers the shim: its C conventions, strings, errors, callbacks, and how C++ virtual methods are overridden from .NET.
-- [Managed API](managed-api.md) covers naming, object lifetime, events, threading, and the application model.
-- [Generator](generator.md) covers how bindings are produced from the wxWidgets interface headers.
-- [Building and packaging](building-and-packaging.md) covers native builds, static linking for Native AOT, NuGet packages, and CI.
-- [Language support](languages.md) covers F# and Visual Basic.
-- [Testing](testing.md) covers how GUI code gets tested on three platforms.
-- [Open questions](open-questions.md) lists the decisions made so far and the ones still open.
+- [Native layer](native-layer.md): the shim's C conventions, strings, errors, callbacks, and overriding virtual methods.
+- [Managed API](managed-api.md): naming, object lifetime, events, threading, and the application model.
+- [Generator](generator.md): how bindings come from the wxWidgets interface headers.
+- [Building and packaging](building-and-packaging.md): native builds, static linking, NuGet packages, CI, and releases.
+- [Language support](languages.md): F# and Visual Basic.
+- [Testing](testing.md): testing GUI code on three platforms.
+- [Open questions](open-questions.md): what is still undecided.
 
 ## Conventions
 
-WxKit follows these conventions:
-
-- Every text file uses LF line endings, which `.editorconfig` and `.gitattributes` enforce. C# is indented with tabs, Markdown and YAML with two spaces, and F# with four spaces. Code is formatted with `dotnet format`, and style warnings show in every build.
-- `Directory.Build.props` sets the language version, nullable reference types, implicit usings, unsafe blocks, and code style enforcement for every project.
-- The solution is a `.slnx` file.
+- Text files use LF line endings, which `.editorconfig` and `.gitattributes` enforce. C# is indented with tabs, Markdown and YAML with two spaces, and F# with four spaces.
+- Code is formatted with `dotnet format`, and style warnings show in every build. `Directory.Build.props` sets the language version, nullable reference types, implicit usings, and code style for every project.
 - Build output goes under `artifacts/`, which git ignores.
-- Native code is built by a PowerShell script under `scripts/`, which CI runs on each platform.
-- Commit messages start with a lowercase verb for fixes, such as "fix a crash when a frame closes twice", and a capitalized verb for new work, such as "Add the tree control".
 - Comments explain why the code does something, not what it does.
+- Commit messages start with a lowercase verb for fixes, such as "fix a crash when a frame closes twice", and a capitalized one for new work, such as "Add the tree control".
 
 ## Repository layout
 
-The planned layout is:
-
 - `native/wxWidgets`: the wxWidgets submodule.
-- `native/shim`: the C++ shim and its CMake project. Generated sources go in `native/shim/generated`.
-- `src/WxKit`: the managed library, with `build/WxKit.targets` for consumers.
-- `src/WxKit.Generator`: the binding generator, a console application that is not packed.
-- `tests/WxKit.Tests`: tests for the managed API.
-- `tests/WxKit.Generator.Tests`: tests for the generator.
-- `samples/Hello`: a C# sample that publishes with Native AOT.
-- `samples/HelloFSharp` and `samples/HelloVisualBasic`: the same sample in the other languages.
-- `scripts/build-native.ps1`: builds wxWidgets and the shim for the given runtimes.
-- `scripts/generate.ps1`: runs Doxygen and the generator, and rewrites the generated files.
-- `docs/design`: these documents.
+- `native/shim`: the shim and its CMake project. Generated sources are in `native/shim/generated`, and hand-written ones in `native/shim/src`.
+- `src/WxKit`: the managed library, with `build/WxKit.targets` for applications.
+- `src/WxKit.Native`: the native packages.
+- `src/WxKit.Generator`: the generator, which is not packed.
+- `tests/WxKit.Tests`, `tests/WxKit.Generator.Tests`, and `tests/WxKit.Build.Tests`: the tests of the managed API, the generator, and the MSBuild targets.
+- `samples`: Hello, its F# counterpart HelloFSharp, a text editor, a translated settings dialog, and a checklist control that draws itself.
+- `scripts`: building the native libraries, generating, packing, and testing the packages and Native AOT.
+- `docs`: the guides, these design documents, and each release's notes, in `docs/releases`.
 
-## Milestones
+## What is left
 
-The plan builds a small slice of wxWidgets by hand first, to settle the hard questions, and only then automates.
-
-1. Hand-written vertical slice, on one platform. An application object, `Frame`, `Panel`, `Button`, `StaticText`, `TextCtrl`, `BoxSizer`, a menu bar, `MessageDialog`, button and menu events, `CallAfter`, and a timer. The sample publishes with Native AOT as a single executable and runs. This milestone settles strings, lifetime, events, threading, and static linking.
-2. Generator, reproducing the slice. The generator emits the same shim, interop, and managed code that the slice has by hand. The hand-written versions are then deleted.
-3. Breadth. The generator covers the core and advanced controls, sizers, dialogs, menus, toolbars, drawing, images, the clipboard, and drag and drop.
-4. All three platforms in CI, with packages for every runtime.
-5. Overridable virtual methods for the classes that need them, such as virtual list controls and data view models.
-6. Optional libraries: AUI, the styled text control, the property grid, the web view, and rich text. XRC comes last.
-7. F# and Visual Basic samples in CI, and an F# helper package if one turns out to be worth it.
+- Optional libraries beyond the styled text control, in the order [Open questions](open-questions.md) suggests, and XRC last.
+- Dragging data other than files.
+- A debug build of the native library, with wxWidgets' assertions on and raised as `Application.AssertFailed`, as [Native layer](native-layer.md) plans. Only release builds exist, with assertions compiled out.
+- Disk images and notarization as part of a macOS publish, which the docs give the commands for today.

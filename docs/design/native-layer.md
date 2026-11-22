@@ -1,125 +1,63 @@
 # Native layer
 
-This document describes the C interface that WxKit's native shim exposes over wxWidgets. The shim is the only place where WxKit code is C++. Everything above it is C#.
+This document describes the C interface that WxKit's native shim, in `native/shim`, exposes over wxWidgets. .NET can call C functions but not C++ ones, whose name mangling, virtual tables, overloads, exceptions, and templates `LibraryImport` does not understand, so the shim wraps each wxWidgets function WxKit uses in an `extern "C"` function with only C types in its signature, as wxDragon's `wxd_` functions do for Rust. Most of the shim is generated into `native/shim/generated`, as [Generator](generator.md) describes, and the rest is written by hand in `native/shim/src`. [Overview](overview.md) shows where the shim sits.
 
-## Why a shim
+## Naming and handles
 
-.NET can call C functions, but not C++ ones. C++ has name mangling that differs by compiler, classes with virtual tables, overloads, exceptions, and templates, none of which `LibraryImport` understands. The shim wraps each wxWidgets function that WxKit uses in a plain `extern "C"` function with a stable name and only C types in its signature.
+Every export is named `wxk_<Class>_<Method>`, with the class name minus its `wx` prefix: `wxk_Button_SetLabel` wraps `wxButton::SetLabel`, and `wxk_Frame_new` creates a `wxFrame`. C has no overloads, so the generator gives an overload a suffix from its parameters, such as `wxk_Window_SetSize_Rect` and `wxk_Window_SetSize_IntInt`, which a binding tweak can override.
 
-wxDragon, the Rust binding, takes the same approach with its `wxd_` functions. WxKit uses its own shim rather than wxDragon's, because WxKit's is generated and shaped for .NET. wxDragon's lessons still apply, such as the order in which destroy handlers run.
-
-## Naming
-
-Every exported function is named `wxk_<Class>_<Method>`, keeping the wxWidgets class name without its `wx` prefix. For example:
-
-- `wxk_Button_SetLabel` wraps `wxButton::SetLabel`.
-- `wxk_Window_GetSize` wraps `wxWindow::GetSize`.
-- `wxk_Frame_new` creates a `wxFrame`.
-
-C has no overloads, so an overloaded method gets a suffix that describes its parameters. For example, `wxk_Window_SetSize_Rect` and `wxk_Window_SetSize_Int4`. The generator picks these suffixes, and a binding tweak can override one when the default reads badly.
-
-Opaque handle types are declared as incomplete structs, such as `typedef struct wxk_Window wxk_Window;`. In C# they become empty structs used through pointers, such as `Window*`, so the compiler keeps one kind of handle from being passed where another is expected.
+Handles are incomplete structs declared in `native/shim/include/wxkit.h`, such as `typedef struct wxk_Window wxk_Window;`. In C# they are empty structs used through pointers, such as `WxkWindow*`, so the compiler keeps a window from being passed where a sizer is expected. Handles are coarse: every window class shares `wxk_Window`.
 
 ## Types at the boundary
 
-Only these kinds of values cross the boundary:
+Only fixed-width integers, `float`, `double`, booleans as `uint8_t`, handle pointers, C function pointers, text, and small value structs that both sides lay out the same way, such as `wxk_Point`, `wxk_Size`, `wxk_Rect`, and `wxk_Colour`, cross the boundary. Booleans are `uint8_t` because the size of C's `bool` is not guaranteed to match .NET's. The managed assembly is marked `DisableRuntimeMarshalling`, so a signature the runtime would have to marshal fails to compile, and Native AOT needs no marshalling stubs.
 
-- Integers of a fixed width, such as `int32_t`, `int64_t`, and `size_t`.
-- `float` and `double`.
-- Booleans as `uint8_t`, because the size of C's `bool` is not guaranteed to match what .NET expects.
-- Pointers to opaque handles.
-- Small value structs that both sides lay out the same way: `wxk_Point`, `wxk_Size`, `wxk_Rect`, and `wxk_Colour`. The shim converts these to and from `wxPoint`, `wxSize`, `wxRect`, and `wxColour`.
-- Function pointers with the C calling convention, for callbacks.
-- Text, as described in the next section.
+Text going in is a UTF-16 pointer and a length, `const char16_t* text, size_t length`. The managed side pins the string with `fixed`, so a call allocates nothing, and the length keeps an embedded null character intact. On Windows, `wxString` is UTF-16 too, so text crosses without conversion; on macOS and Linux it holds UTF-32 `wchar_t`, so the shim converts on each call. Text coming out is a `wxk_String*`, a heap copy that the managed side reads with `wxk_String_GetData` and frees with `wxk_String_Free`, through one helper that generated code calls. Arrays of strings cross as a `wxk_StringArray*` with a count and an accessor.
 
-The C# side marks the assembly with `DisableRuntimeMarshalling`, so any signature that would need the runtime to marshal it fails to compile. Every type that crosses the boundary has to be blittable. This keeps calls cheap and keeps Native AOT from needing marshalling stubs.
+## Errors and assertions
 
-## Text
+An exception that unwinds into .NET ends the process, so every export runs its body through `wxk::Guard`, in `native/shim/src/shim.h`, which catches everything and returns the function's "nothing" value, such as 0 or null. Most wxWidgets failures are `false` returns or null pointers anyway, which the shim passes through for the managed API to interpret.
 
-.NET strings are UTF-16. On Windows, `wxString` is UTF-16 too, so text can cross without conversion there.
+The decision for `wxASSERT` and `wxCHECK` is that debug builds of the native library keep assertions on, where a failure raises `Application.AssertFailed` instead of showing wxWidgets' dialog, and release builds compile them out, so a shipped application never stops on one. Only the release half exists today: `native/shim/CMakeLists.txt` sets `wxBUILD_DEBUG_LEVEL` to 0 unless it is given, and `scripts/build-native.ps1` builds only `Release`. Neither a debug build nor `Application.AssertFailed` exists yet.
 
-Text going into the shim is a pointer to UTF-16 code units and a length: `const char16_t* text, size_t length`. The managed side pins the string with `fixed` and passes its length, so a call allocates nothing on the managed heap. Because the length is explicit, a string that contains a null character arrives intact rather than cut short.
+## Callbacks and events
 
-Text coming out of the shim is harder, because the shim owns the `wxString`. The shim returns a `wxk_String*`, an opaque handle to a heap copy of the text. The managed side reads its UTF-16 data and length, makes a .NET string, and frees the handle with `wxk_String_free`. A helper on the managed side wraps this so that generated code calls one function.
+The shim never stores a .NET delegate. A callback is a C function pointer, which on the managed side is a static `UnmanagedCallersOnly` method, and a `void* userdata`, which is a `GCHandle` to the managed object. This avoids marshalled delegates, which Native AOT supports poorly. Every `UnmanagedCallersOnly` method catches every exception, and [Managed API](managed-api.md) describes where they go.
 
-On macOS and Linux, `wxString` stores `wchar_t`, which is UTF-32 there. The shim converts with `wxString::FromUTF16` and `wxString::utf16_str`, or their equivalents. This costs a conversion per call on those platforms, which is the same cost any binding pays.
-
-Arrays of strings, such as `wxArrayString`, cross as a `wxk_StringArray*` handle with a count and an accessor, and become `string[]` or `IReadOnlyList<string>` on the managed side.
-
-## Errors
-
-wxWidgets rarely throws C++ exceptions, but it can, for example `std::bad_alloc`. An exception that unwinds into .NET code ends the process, so every shim function catches everything. A caught exception is stored in a thread-local slot with its message, and the function returns a default value. The managed side does not check this slot after every call, which would cost too much. Instead, functions that wxWidgets documents as throwing, and the generator's list of risky calls, check it and throw a `WxException`.
-
-Most wxWidgets failures are not exceptions. They are `false` return values, such as from `wxImage::LoadFile`, or null pointers. The shim passes these through unchanged, and the managed API decides what they mean.
-
-### Assertions
-
-wxWidgets checks its preconditions with `wxASSERT` and `wxCHECK`. When one fails, it calls `wxApp::OnAssertFailure`. By default, a debug build of wxWidgets then shows a dialog.
-
-The shim's application class overrides `OnAssertFailure` and forwards the failure to managed code with the file, line, function, condition, and message. WxKit handles it like this:
-
-- Debug builds of the native library keep assertions on. A failure raises the `Application.AssertFailed` event, and by default writes the failure to the debug output, instead of showing the wxWidgets assertion dialog.
-- Release builds compile assertions out, with `wxDEBUG_LEVEL` set to 0, so a shipped application never stops on one.
-
-## Callbacks
-
-The shim never stores a .NET delegate. A callback is a C function pointer and a `void* userdata`. On the managed side, the function pointer is a static method marked `UnmanagedCallersOnly`, and the userdata is a `GCHandle` that leads back to the managed object. This avoids marshalled delegates, which Native AOT supports poorly, and makes the cost of a callback a single indirect call.
-
-Every `UnmanagedCallersOnly` method catches every exception, because one that escapes ends the process. What happens to that exception depends on the callback. See the events section of [Managed API](managed-api.md).
-
-## Events
-
-The shim binds events with one generic function:
+One function binds every event:
 
 ```c
-uint8_t wxk_EvtHandler_Bind(wxk_EvtHandler* handler, int32_t eventType, int32_t id, int32_t lastId, wxk_EventCallback callback, void* userdata, wxk_FreeCallback free);
+uint8_t wxk_EvtHandler_Bind(wxk_EvtHandler* handler, int32_t eventType, int32_t id, int32_t lastId, wxk_EventCallback callback, void* userdata, wxk_Callback onFree);
 ```
 
-It binds a small C++ functor that holds the function pointer and userdata. When the event fires, the functor calls the function pointer with the userdata and a pointer to the `wxEvent`. When wxWidgets destroys the functor, which happens when the handler is unbound or the window is destroyed, its destructor calls `free` with the userdata. That is how the managed side learns it can release the `GCHandle`. Tying the release to the functor's destructor means it always happens exactly once, after the last possible call, with no ordering problems between handlers.
-
-Event types are runtime values in wxWidgets, such as `wxEVT_BUTTON`. The shim exports a getter for each event type, and the managed side reads them once.
+wxWidgets copies the bound functor, so the copies share their state, and when the last one is deleted, because the handler was unbound or destroyed, `onFree` releases the userdata exactly once, after the last possible call. Event types are runtime values in wxWidgets, so the shim exports a getter for each, such as `wxk_EventType_Activate`, which the managed side reads once.
 
 ## Object tracking
 
-The managed side needs to know when a native object it wraps is destroyed, so that later calls throw `ObjectDisposedException` instead of crashing.
-
-Every window and event handler in wxWidgets derives from `wxTrackable`, which is what `wxWeakRef` uses. The shim attaches a `wxTrackerNode` to each object the managed side wraps. When wxWidgets destroys the object, the node's `OnObjectDestroy` runs and calls back into managed code. This works for windows WxKit created and for ones it did not, such as the buttons inside a standard dialog.
-
-Objects that are not trackable, such as sizers, are tracked through the window that owns them. The details are in [Managed API](managed-api.md).
+So that a call on a destroyed object throws `ObjectDisposedException` instead of crashing, the shim attaches a `wxTrackerNode`, in `native/shim/src/object.cpp`, to each window and event handler the managed side wraps, all of which derive from `wxTrackable`. It calls into managed code when wxWidgets destroys the object, even one WxKit did not create, such as a button inside a standard dialog. Objects that are not trackable, such as sizers, are tracked through the window that owns them, as [Managed API](managed-api.md) describes.
 
 ## Overriding virtual methods
 
-Some wxWidgets classes are only useful if you override a virtual method. For example, a virtual list control calls `OnGetItemText` for each visible row, and a `wxDataViewModel` is entirely virtual methods.
+For the virtual members a binding tweak lists, such as a virtual list control's `OnGetItemText`, the generator emits a director: a C++ class that derives from the wxWidgets class, overrides those members, and inherits its constructors. The constructor exports create the director instead of the class. `ListCtrlDirector` and `ListViewDirector` are the generated directors today.
 
-For these classes, the generator emits a director: a C++ class that derives from the wxWidgets class and overrides each virtual member a tweak lists. WxKit creates the director instead of the class, so the constructor exports only change which class they create, and inheriting constructors give the director all of the class's. For example, `ListCtrlDirector` derives from `wxListCtrl` and overrides `OnGetItemText`, and a class derived from it, such as `wxListView`, gets a director of its own with the same overrides.
+Each override calls a function pointer that the managed class sets once, before it creates its first object, through an export such as `wxk_ListCtrl_SetDirectors`; until then, the override calls the wxWidgets implementation. The callback takes the object's handle and finds the managed object through the registry. Its `protected virtual` counterpart in C# defaults to the wxWidgets implementation, which it reaches through an export such as `wxk_ListCtrl_base_OnGetItemText`, and the callback uses that export too while no managed object exists. The director always calls into .NET, which costs one transition but needs no reflection to detect overrides. A generated director's parameters can only be numbers, enums, and booleans, and its result can also be a string; the generator rejects a tweak that lists anything else.
 
-Each override calls a function pointer into .NET, which the managed class sets once, before it creates the first object, through `wxk_ListCtrl_SetDirectors`. The callback takes the object's handle, and finds the managed object through the registry, so the director keeps no handle of its own. Until the pointers are set, an override calls the class's own implementation.
+These classes in `native/shim/src` override virtual methods by hand, each through a table of callbacks into .NET:
 
-On the managed side, the class has a matching `protected virtual` method. Its default calls the class's own implementation through an exported `wxk_ListCtrl_base_OnGetItemText` function, which reaches the member, often protected, through a struct derived from the class. The callback also calls that implementation when there is no managed object yet, or no longer, as while one is created or destroyed. The director always calls into managed code, whether or not the method is overridden. This costs one transition per call, but it avoids reflection to detect overrides, which does not fit Native AOT well.
+- `ManagedAccessible`, in `accessible.cpp`, which answers "not implemented" for whatever .NET leaves to Windows. The window owns it, and its destructor frees the `GCHandle`.
+- `ManagedValidator`, in `validator.cpp`. A window clones the validator it is given, so the copies share their callbacks and a weak `GCHandle` through a `shared_ptr`; the clones a window holds make the handle strong while they live, and the last copy frees it.
+- `ManagedDataViewModel` and `ManagedVirtualListModel` in `dataview.cpp`, `ManagedPrintout` in `printing.cpp`, `ManagedTaskBarIcon` in `taskbar.cpp`, and `ManagedTranslationsLoader` in `translations.cpp`.
 
-A director's parameters can only be numbers, enums, and booleans for now, and its result can also be a string.
+## Announcements
 
-Only the virtual methods a binding tweak lists get directors. Most wxWidgets virtual methods are implementation details, and overriding them from .NET is a way to break things.
+`native/shim/src/liveregion.cpp` exports `wxk_LiveRegion_Prepare` and `wxk_LiveRegion_Announce`, which speak a message through screen readers with a priority of 0, 1, or 2, for low, medium, and high. It raises a UI Automation notification on Windows, posts `AXAnnouncementRequested` on macOS, and emits an ATK signal on Linux. Other ports get stubs that return 0. The announcements section of [Managed API](managed-api.md) describes each backend.
 
-Two directors are written by hand. `ManagedAccessible`, in `native/shim/src/accessible.cpp`, is the accessible object `Accessible` gives a window. Its callbacks return a `wxAccStatus`, and fill in their result when they answer, and it answers "not implemented" for what .NET leaves to Windows. The window owns it, and its destructor frees the `GCHandle` that reaches the managed object. The other is `ManagedValidator`, in `native/shim/src/validator.cpp`, which `CustomValidator` creates. A validator is copied, since a window clones the one it is given, so the copies share their table and userdata, a weak `GCHandle`, through a `shared_ptr`. Each clone a window holds asks .NET to make the handle strong while it lives, so the managed validator lives as long as a window uses it, and the last copy to go frees the handle. Its methods call into .NET without a base implementation to fall back on, since `wxValidator`'s own checks only return true.
+## Linking only what an application uses
 
-## One file for each class
+A linker loads a static library's object file whole, along with every wxWidgets object file it refers to, even from functions nothing calls. So the generator writes a file for each class, and the hand-written shim keeps features apart the same way, such as a file for each image format in `native/shim/src/handlers`. An application that never creates a data view links no data view code.
 
-A linker loads an object file of a static library whole, with every wxWidgets object file any of its functions refers to, even functions it then leaves out because nothing calls them. A shim in one file would bring the wxWidgets code of every class WxKit binds into every application. So the generator writes a file for each class, and the hand-written shim keeps features apart the same way, such as a file for each image format. An application that never creates a data view links no data view code.
-
-## Platform-specific functions
-
-Some wxWidgets functions exist on only one port. For example, `wxWindow::MSWGetBgBrush`. The shim exports every function on every platform. On a platform that lacks the function, the export is a stub that stores an error and returns a default value. This matters for static linking: if a symbol were missing on one platform, every Native AOT application that references it would fail to link there, even if it never calls it.
-
-The managed side marks these members with `SupportedOSPlatform`, so the platform compatibility analyzer warns about calls that are not guarded with `OperatingSystem.IsWindows()` or similar.
+Some wxWidgets functions exist on only some ports, such as `wxDialog::IsMainButtonId` on wxMSW. The shim still exports every function on every platform, since a missing symbol would make every Native AOT application that references it fail to link there. On a port that lacks the function, the export does nothing and returns its "nothing" value.
 
 ## wxWidgets build options
 
-WxKit builds wxWidgets with a fixed set of options, so the generator knows which features exist. These include:
-
-- Unicode, which is the only mode in wxWidgets 3.3.
-- `wxUSE_ACCESSIBILITY` on, on Windows.
-- The built-in copies of zlib, libpng, libjpeg, libtiff, expat, PCRE2, and libwebp, rather than system copies, so that builds are the same on every machine. GTK and its dependencies are the exception on Linux, because those must come from the system.
-- No compatibility with wxWidgets 3.0 or 3.2 APIs, so that deprecated functions are not exposed.
-
-The exact list lives in `scripts/build-native.ps1` and is documented beside each option.
+WxKit builds wxWidgets with a fixed set of options, forced in `native/shim/CMakeLists.txt` with a comment beside each, so the generator knows which features exist. wxWidgets is linked statically, with the static C runtime, as Native AOT needs. `wxUSE_ACCESSIBILITY` is on only on Windows, since `wxAccessible` is MSAA's. `wxBUILD_COMPATIBILITY` is `NONE`, so deprecated functions are not exposed. wxWidgets uses its own copies of zlib, libpng, libjpeg, libtiff, libwebp, PCRE2, and expat. On Linux, GTK and its dependencies come from the system, and features that would need another system library, such as web requests and spell checking, are off. [Building and packaging](building-and-packaging.md) describes the builds themselves.

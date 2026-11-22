@@ -2,7 +2,16 @@
 
 .NET bindings to [wxWidgets](https://wxwidgets.org), for native desktop applications on Windows, macOS, and Linux. WxKit works with Native AOT, and links wxWidgets into the executable so that an application ships as one file.
 
-WxKit is a preview: it works for trying out and small applications, its API will change before 1.0, and parts of wxWidgets are not bound yet. It runs on Windows, Linux, and macOS, each on x64 and ARM64. The bindings are generated from wxWidgets's own headers, and cover 119 classes: windows and the common controls, list, tree, and data view controls, toolbars, sizers, menus, the standard dialogs, drawing, images, validators, and the clipboard, with events, async support, and accessibility for controls that draw themselves. To write a first application, follow [Getting started](docs/getting-started.md). The [text editor sample](samples/Editor/EditorFrame.cs) shows what an application looks like, with menus, files, find and replace, and fonts, and the [settings sample](samples/Settings/SettingsDialog.cs) shows a settings dialog, with pages, a form, pickers, and a validator, translated into German, as [Translating an application](docs/translating.md) describes. The [checklist sample](samples/Checklist/ChecklistControl.cs) is a control that draws itself, which screen readers read on all three platforms. The [Hello sample](samples/Hello/Program.cs) publishes with Native AOT as a single executable of about 5 MB, and an application only links the classes it uses. To see what it will look like and how it will work, start with the [design overview](docs/design/overview.md). Decisions made so far, and the ones still open, are in [Open questions](docs/design/open-questions.md).
+WxKit is a preview. It works for trying out and for small applications, its API will change before 1.0, and parts of wxWidgets are not bound yet. It runs on Windows, Linux, and macOS, each on x64 and ARM64, from C# or F#. The bindings are generated from wxWidgets's own headers, and cover windows and the common controls, list, tree, and data view controls, the styled text control, toolbars, sizers, menus, the standard dialogs, drawing, images, the clipboard, translations, and accessibility, including for controls that draw themselves.
+
+To write a first application, follow [Getting started](docs/getting-started.md). The samples show more:
+
+- [Hello](samples/Hello/Program.cs) publishes with Native AOT as one executable of about 5 MB, since an application links only the classes it uses. [HelloFSharp](samples/HelloFSharp/Program.fs) is its F# counterpart.
+- [Editor](samples/Editor/EditorFrame.cs) is a text editor, with menus, files, find and replace, fonts, and printing.
+- [Settings](samples/Settings/SettingsDialog.cs) is a settings dialog, with pages, a form, pickers, and a validator, translated into German as [Translating an application](docs/translating.md) describes.
+- [Checklist](samples/Checklist/ChecklistControl.cs) is a control that draws itself, which screen readers read on all three platforms.
+
+How WxKit is built is in the [design overview](docs/design/overview.md), and what is still undecided in [Open questions](docs/design/open-questions.md).
 
 ## Building
 

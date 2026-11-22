@@ -1,12 +1,10 @@
 # Translating an application
 
-WxKit translates an application with [gettext](https://www.gnu.org/software/gettext/), the system wxWidgets uses for its own text. You mark the strings to translate, WxKit's build extracts them into a template for translators, and each language's translations are compiled and embedded in the application. wxWidgets' own text, such as stock button labels and the text of its dialogs, follows the same language, from catalogs WxKit ships for the 46 languages wxWidgets is translated into.
-
-The [settings sample](../samples/Settings) is translated into German, and has a language picker, which this guide's code comes from.
+WxKit translates an application with [gettext](https://www.gnu.org/software/gettext/), as wxWidgets translates its own text. You mark the strings to translate, the build extracts them into a template for translators, and each language's translations are compiled and embedded in the application. wxWidgets' own text, such as stock button labels, follows the same language, from catalogs WxKit ships for the 46 languages wxWidgets is translated into. The [settings sample](../samples/Settings), translated into German with a language picker, is where this guide's code comes from.
 
 ## Before you begin
 
-Install the GNU gettext tools, and make sure that they're on your `PATH`. The build uses `msgfmt` to compile translations, and you use `msginit` and `msgmerge` to make and update them. Use one of the following commands:
+Install the GNU gettext tools, and make sure that they're on your `PATH`. The build compiles translations with `msgfmt`, and makes and updates catalogs with `msginit` and `msgmerge`:
 
 - Windows: `winget install mlocati.GetText`
 - macOS: `brew install gettext`
@@ -44,7 +42,7 @@ edit.Append(StandardId.Preferences, _("&Settings...\tCtrl+,"));
 
 ## Set up translations
 
-At start-up, before you make any windows, set up translations with `Translations.Use`. It picks the best language the user prefers that there's a catalog for, and adds wxWidgets' catalog and the application's:
+Before you make any windows, set up translations with `Translations.Use`. It picks the best language the user prefers that there's a catalog for, and adds wxWidgets' catalog and the application's. You can also call it in `Main`, before `Application.Run`, so that a command-line mode's text is translated too:
 
 ```csharp
 return Application.Run(() => {
@@ -87,7 +85,7 @@ When your strings change, update every catalog with the following command:
 dotnet build -t:WxKitUpdateCatalogs
 ```
 
-This extracts the strings again, and merges each of your catalogs with the template, with `msgmerge`. A string that changed keeps the translation of the string it was, marked fuzzy, for a translator to review. As gettext does, the build leaves fuzzy entries out until a translator removes the `fuzzy` flag, so their strings stay in English until then.
+This extracts the strings again, and merges each catalog with the template, with `msgmerge`. A string that changed keeps the translation of the string it was, marked fuzzy, for a translator to review. As gettext does, the build leaves fuzzy entries out until a translator removes the `fuzzy` flag, so they stay in English until then. `msgmerge` also marks a new string fuzzy when it looks like an old one, which is often a wrong guess.
 
 ## Check the translations
 
@@ -128,9 +126,9 @@ Application.LayoutDirection = LanguageInfo.Find(language)?.LayoutDirection ?? La
 
 New windows with no parent, and message boxes, are laid out in that direction, and a window with a parent takes its parent's. Windows that are already open keep theirs. To change the language while the application runs, set `Application.LayoutDirection` again, and set each open top-level window's `LayoutDirection` before you make its contents again. On macOS, Cocoa takes the direction from the languages the application is localized in, not from WxKit.
 
-## Use Visual Basic or F\#
+## Use F# or Visual Basic
 
-Neither Visual Basic nor F# accepts `_` alone as a name. Both can use `_n`, `_p`, and `_pn`. For a string without a count or a context, call `Translations.Translate`, with `Translations.` before it, which the extractor looks for. The extractor reads both languages.
+Neither F# nor Visual Basic accepts `_` alone as a name. Both can use `_n`, `_p`, and `_pn`, and for a plain string, `Translations.Translate`, written with `Translations.` before it, which the extractor looks for.
 
 ## Ship wxWidgets' translations
 
@@ -152,7 +150,7 @@ Set these MSBuild properties and items in the project file:
 
 ## How it works
 
-The build compiles each catalog in `po` to a `.mo` file, and embeds it as the resource `locale/<language>/<domain>.mo`, with wxWidgets' as `locale/<language>/wxstd.mo`. `Translations` reads them through an `EmbeddedTranslationsLoader`, and when a catalog isn't embedded, wxWidgets looks for a file, as `locale/<language>/<domain>.mo` next to the application. To load catalogs from somewhere else, derive from `TranslationsLoader`, and pass it to a `Translations` that you set up yourself:
+The build embeds each catalog, compiled, as the resource `locale/<language>/<domain>.mo`, and wxWidgets' as `locale/<language>/wxstd.mo`. An `EmbeddedTranslationsLoader` reads them, and for a catalog that isn't embedded, wxWidgets looks for the same path next to the application. To load catalogs from somewhere else, derive from `TranslationsLoader`, and pass it to a `Translations` you set up yourself:
 
 ```csharp
 Translations translations = new(new MyLoader()) { Language = "de" };
