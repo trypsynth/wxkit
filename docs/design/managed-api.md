@@ -86,7 +86,11 @@ A member that isn't overridden does what wxWidgets does. Only members a binding 
 
 ## Accessibility
 
-Standard controls are accessible already. A control that draws itself, such as a grid or a game board, is one window to the platform, which can't see its parts. WxKit has two ways to describe it.
+Standard controls are accessible already, and a control is named by the `StaticText` just before it, as Windows has screen readers read it. On Linux, wxGTK gives a label's control its name only through the outer widget of a control made of more than one, such as a list box's scrolled window or a slider's box, so WxKit adds the relation to the widget that gets the focus, which Orca reads.
+
+`AccessibilityInfo.Of(window)` reads a window from the platform's accessibility API, as a screen reader does: its role, its name, the platform's own role, and whether it is enabled, focused, or checked. It asks MSAA on Windows, NSAccessibility on macOS, and ATK on Linux, so an application's own tests can check that each control has the role and the name a user needs, on every platform. On Linux, wxGTK names controls by their labels when it next goes idle, so a test lets the event loop run first.
+
+A control that draws itself, such as a grid or a game board, is one window to the platform, which can't see its parts. WxKit has two ways to describe it.
 
 A class derived from `Accessible` describes it through Microsoft Active Accessibility, so it only works on Windows:
 

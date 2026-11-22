@@ -85,6 +85,7 @@ list(REMOVE_ITEM WXK_GENERATED ${WXK_WEBVIEW})
 set(WXK_SOURCES
 	${WXK_GENERATED}
 	src/about.cpp
+	src/accessinfo.cpp
 	src/accessible.cpp
 	src/accessparts.cpp
 	src/app.cpp
@@ -98,6 +99,7 @@ set(WXK_SOURCES
 	src/dropfiles.cpp
 	src/event.cpp
 	src/gridbag.cpp
+	src/labels.cpp
 	src/handlers/all.cpp
 	src/notification.cpp
 	src/numbers.cpp

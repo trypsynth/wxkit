@@ -39,4 +39,4 @@ Tests do not depend on the pixel layout of native controls, which differs betwee
 
 ## Checking accessibility by hand
 
-The Hello sample was checked by hand through MSAA: its text box is named after the label before it, and its button reports its role and state. Automating checks like that for the samples is a later step. When checking from .NET, use MSAA or the native UI Automation COM interface. The managed client in `System.Windows.Automation` reports every Win32 control as a pane with no patterns, because it lacks the client-side providers for them.
+`AccessibilityInfoTests` read a labeled form through `AccessibilityInfo`, as screen readers read it, on all three platforms, and check that each standard control has its role, its name from the label before it, and its states, so a change that leaves a control unnamed for NVDA, VoiceOver, or Orca fails CI. When checking from .NET, use MSAA or the native UI Automation COM interface. The managed client in `System.Windows.Automation` reports every Win32 control as a pane with no patterns, because it lacks the client-side providers for them.

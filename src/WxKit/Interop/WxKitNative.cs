@@ -476,6 +476,14 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte LiveRegionAnnounce(WxkWindow* window, char* message, nuint messageLength, int priority);
 
+	[LibraryImport(Library, EntryPoint = "wxk_AccessibilityInfo_Get")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte AccessibilityInfoGet(WxkWindow* window, int* role, uint* states, WxkString** name, WxkString** platformRole);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Window_LinkLabel")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WindowLinkLabel(WxkWindow* window);
+
 	// The desktop
 
 	[LibraryImport(Library, EntryPoint = "wxk_Desktop_Bell")]

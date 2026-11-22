@@ -14,12 +14,6 @@ Native AOT links wxWidgets into the executable, but not a native library another
 
 Recommendation: a `WxKitBundle` item that embeds a native library or a folder of files when publishing, and a small runtime helper that unpacks and loads them, once a second application needs it.
 
-## An F# helper package
-
-F# uses the C# API directly, as the HelloFSharp sample shows. A `WxKit.FSharp` package could make it read more naturally, such as with a computation expression for sizer layouts.
-
-Recommendation: decide once the C# API is stable, from what the sample shows is awkward.
-
 ## Disk images and notarization
 
 A macOS publish makes an app bundle, but not a disk image, and doesn't notarize it. The docs give the commands, and Velopack does both.

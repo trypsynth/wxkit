@@ -15,6 +15,22 @@ sealed class WxKit.AboutDialogInfo
     string? Version { get; set; }
     string? WebSite { get; set; }
     string? WebSiteDescription { get; set; }
+sealed record WxKit.AccessibilityInfo : IEquatable<AccessibilityInfo>
+    AccessibilityInfo(AccessibleRole Role, string Name, string PlatformRole, bool IsEnabled, bool IsFocused, bool IsChecked)
+    AccessibleRole Role { get; init; }
+    bool Equals(AccessibilityInfo? other)
+    bool IsChecked { get; init; }
+    bool IsEnabled { get; init; }
+    bool IsFocused { get; init; }
+    override bool Equals(object? obj)
+    override int GetHashCode()
+    override string ToString()
+    static AccessibilityInfo Of(Window window)
+    static bool op_Equality(AccessibilityInfo? left, AccessibilityInfo? right)
+    static bool op_Inequality(AccessibilityInfo? left, AccessibilityInfo? right)
+    string Name { get; init; }
+    string PlatformRole { get; init; }
+    void Deconstruct(out AccessibleRole Role, out string Name, out string PlatformRole, out bool IsEnabled, out bool IsFocused, out bool IsChecked)
 abstract class WxKit.Accessible
     Window Window { get; }
     protected Accessible(Window window)

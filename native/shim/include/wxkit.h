@@ -440,6 +440,17 @@ WXK_FUNCTION(uint8_t) wxk_LiveRegion_Prepare(wxk_Window* window) WXK_NOEXCEPT;
 // returns whether one could be told, which on Windows is false when no UI Automation client listens.
 WXK_FUNCTION(uint8_t) wxk_LiveRegion_Announce(wxk_Window* window, const char16_t* message, size_t messageLength, int32_t priority) WXK_NOEXCEPT;
 
+// What screen readers learn of a window
+
+// Asks the platform's accessibility API about a window, as a screen reader would: MSAA on Windows,
+// NSAccessibility on macOS, and ATK on Linux. Fills in its role, as a wxAccRole, its states, as
+// the bits 1 for enabled, 2 for focused, and 4 for checked, its name, and the platform's name for
+// its role, and returns whether it could ask.
+WXK_FUNCTION(uint8_t) wxk_AccessibilityInfo_Get(wxk_Window* window, int32_t* role, uint32_t* states, wxk_String** name, wxk_String** platformRole) WXK_NOEXCEPT;
+
+// Gives a control the label before it, as screen readers read it, where the platform does not.
+WXK_FUNCTION(void) wxk_Window_LinkLabel(wxk_Window* window) WXK_NOEXCEPT;
+
 // The desktop
 
 // Plays the system's alert sound.

@@ -20,6 +20,8 @@ public abstract unsafe class EvtHandler {
 		if (native is null) throw new InvalidOperationException($"wxWidgets could not create the {GetType().Name}.");
 		_native = native;
 		ObjectRegistry.Register(this, native);
+		// A control is named by the label before it, which on Linux WxKit has to add for some.
+		if (this is Control and not StaticText) WxKitNative.WindowLinkLabel((WxkWindow*)native);
 	}
 
 	/// <summary>Whether wxWidgets has destroyed the object, after which nothing else on it can be used.</summary>
