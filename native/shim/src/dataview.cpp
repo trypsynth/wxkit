@@ -112,24 +112,24 @@ WXK_FUNCTION(void) wxk_DataViewModel_DecRef(wxk_DataViewModel* model) noexcept {
 	wxk::Guard([&] { Unwrap(model)->DecRef(); });
 }
 
-WXK_FUNCTION(void) wxk_DataViewItems_Add(wxk_DataViewItems* items, void* item) noexcept {
-	wxk::Guard([&] { reinterpret_cast<wxDataViewItemArray*>(items)->push_back(wxDataViewItem(item)); });
+WXK_FUNCTION(void) wxk_DataViewItems_Add(wxk_DataViewItems* items, wxk_ItemId item) noexcept {
+	wxk::Guard([&] { reinterpret_cast<wxDataViewItemArray*>(items)->push_back(wxDataViewItem(wxk::ItemPointer(item))); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_DataViewModel_ItemAdded(wxk_DataViewModel* model, void* parent, void* item) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return Unwrap(model)->ItemAdded(wxDataViewItem(parent), wxDataViewItem(item)) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_DataViewModel_ItemAdded(wxk_DataViewModel* model, wxk_ItemId parent, wxk_ItemId item) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return Unwrap(model)->ItemAdded(wxDataViewItem(wxk::ItemPointer(parent)), wxDataViewItem(wxk::ItemPointer(item))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_DataViewModel_ItemDeleted(wxk_DataViewModel* model, void* parent, void* item) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return Unwrap(model)->ItemDeleted(wxDataViewItem(parent), wxDataViewItem(item)) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_DataViewModel_ItemDeleted(wxk_DataViewModel* model, wxk_ItemId parent, wxk_ItemId item) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return Unwrap(model)->ItemDeleted(wxDataViewItem(wxk::ItemPointer(parent)), wxDataViewItem(wxk::ItemPointer(item))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_DataViewModel_ItemChanged(wxk_DataViewModel* model, void* item) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return Unwrap(model)->ItemChanged(wxDataViewItem(item)) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_DataViewModel_ItemChanged(wxk_DataViewModel* model, wxk_ItemId item) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return Unwrap(model)->ItemChanged(wxDataViewItem(wxk::ItemPointer(item))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_DataViewModel_ValueChanged(wxk_DataViewModel* model, void* item, uint32_t column) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return Unwrap(model)->ValueChanged(wxDataViewItem(item), column) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_DataViewModel_ValueChanged(wxk_DataViewModel* model, wxk_ItemId item, uint32_t column) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return Unwrap(model)->ValueChanged(wxDataViewItem(wxk::ItemPointer(item)), column) ? 1 : 0; });
 }
 
 WXK_FUNCTION(uint8_t) wxk_DataViewModel_Cleared(wxk_DataViewModel* model) noexcept {
@@ -172,12 +172,12 @@ WXK_FUNCTION(uint32_t) wxk_VirtualListModel_GetCount(wxk_DataViewModel* model) n
 	return wxk::Guard<uint32_t>(0, [&] { return UnwrapList(model)->GetCount(); });
 }
 
-WXK_FUNCTION(void*) wxk_VirtualListModel_GetItem(wxk_DataViewModel* model, uint32_t row) noexcept {
-	return wxk::Guard<void*>(nullptr, [&] { return UnwrapList(model)->GetItem(row).GetID(); });
+WXK_FUNCTION(wxk_ItemId) wxk_VirtualListModel_GetItem(wxk_DataViewModel* model, uint32_t row) noexcept {
+	return wxk::Guard<wxk_ItemId>(0, [&] { return wxk::ItemId(UnwrapList(model)->GetItem(row).GetID()); });
 }
 
-WXK_FUNCTION(uint32_t) wxk_VirtualListModel_GetRow(wxk_DataViewModel* model, void* item) noexcept {
-	return wxk::Guard<uint32_t>(0, [&] { return UnwrapList(model)->GetRow(wxDataViewItem(item)); });
+WXK_FUNCTION(uint32_t) wxk_VirtualListModel_GetRow(wxk_DataViewModel* model, wxk_ItemId item) noexcept {
+	return wxk::Guard<uint32_t>(0, [&] { return UnwrapList(model)->GetRow(wxDataViewItem(wxk::ItemPointer(item))); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_DeleteColumn(wxk_Window* control, wxk_DataViewColumn* column) noexcept {

@@ -38,6 +38,10 @@ if (Directory.Exists(generated)) {
 }
 foreach ((string fileName, string text) in ShimEmitter.Files(result)) Write(Path.Combine(generated, fileName), text);
 Write(Path.Combine(root, "src", "WxKit", "Interop", "WxKitNative.g.cs"), InteropEmitter.Source(result));
+// The hand-written functions' imports come from wxkit.h, which declares them, and which every
+// function the shim's sources define has to be declared in.
+string[] handwritten = Directory.GetFiles(Path.Combine(shim, "src"), "*.cpp", SearchOption.AllDirectories);
+Write(Path.Combine(root, "src", "WxKit", "Interop", "WxKitNative.Header.g.cs"), HeaderInteropEmitter.Source(Path.Combine(shim, "include", "wxkit.h"), handwritten));
 // Every generated class file is rewritten, so one for a class no longer bound must not linger.
 if (Directory.Exists(managed)) {
 	foreach (string stale in Directory.GetFiles(managed, "*.g.cs")) File.Delete(stale);

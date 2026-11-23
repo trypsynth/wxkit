@@ -30,6 +30,15 @@ struct wxk_String {
 
 namespace wxk {
 
+// An item id's pointer, which wxTreeItemId and wxDataViewItem are made from, and back.
+inline void* ItemPointer(wxk_ItemId item) {
+	return reinterpret_cast<void*>(item);
+}
+
+inline wxk_ItemId ItemId(void* pointer) {
+	return reinterpret_cast<wxk_ItemId>(pointer);
+}
+
 // Every exported function runs its body through Guard, because a C++ exception that reached .NET
 // would end the process. A failure returns the fallback, which is the function's "nothing" value.
 template <typename R, typename F>

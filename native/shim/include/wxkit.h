@@ -27,6 +27,9 @@
 // form a chain of primary bases, so the same address is a valid handle to any of the classes an
 // object derives from: a frame's handle is also a window's and an event handler's.
 typedef struct wxk_Object wxk_Object;
+// An item in a tree or a data view, as the pointer wxWidgets identifies it by, which only
+// wxWidgets reads, so it crosses as a number.
+typedef intptr_t wxk_ItemId;
 typedef struct wxk_EvtHandler wxk_EvtHandler;
 typedef struct wxk_Window wxk_Window;
 typedef struct wxk_Sizer wxk_Sizer;
@@ -303,11 +306,11 @@ WXK_FUNCTION(void) wxk_VirtualListModel_SetCallbacks(const wxk_VirtualListModelC
 WXK_FUNCTION(wxk_DataViewModel*) wxk_ManagedDataViewModel_new(void* userdata) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_DataViewModel*) wxk_ManagedVirtualListModel_new(void* userdata, uint32_t count) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DataViewModel_DecRef(wxk_DataViewModel* model) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_DataViewItems_Add(wxk_DataViewItems* items, void* item) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_DataViewModel_ItemAdded(wxk_DataViewModel* model, void* parent, void* item) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_DataViewModel_ItemDeleted(wxk_DataViewModel* model, void* parent, void* item) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_DataViewModel_ItemChanged(wxk_DataViewModel* model, void* item) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_DataViewModel_ValueChanged(wxk_DataViewModel* model, void* item, uint32_t column) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DataViewItems_Add(wxk_DataViewItems* items, wxk_ItemId item) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_DataViewModel_ItemAdded(wxk_DataViewModel* model, wxk_ItemId parent, wxk_ItemId item) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_DataViewModel_ItemDeleted(wxk_DataViewModel* model, wxk_ItemId parent, wxk_ItemId item) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_DataViewModel_ItemChanged(wxk_DataViewModel* model, wxk_ItemId item) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_DataViewModel_ValueChanged(wxk_DataViewModel* model, wxk_ItemId item, uint32_t column) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_DataViewModel_Cleared(wxk_DataViewModel* model) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DataViewModel_Resort(wxk_DataViewModel* model) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_VirtualListModel_Reset(wxk_DataViewModel* model, uint32_t count) WXK_NOEXCEPT;
@@ -318,8 +321,8 @@ WXK_FUNCTION(void) wxk_VirtualListModel_RowDeleted(wxk_DataViewModel* model, uin
 WXK_FUNCTION(void) wxk_VirtualListModel_RowChanged(wxk_DataViewModel* model, uint32_t row) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_VirtualListModel_RowValueChanged(wxk_DataViewModel* model, uint32_t row, uint32_t column) WXK_NOEXCEPT;
 WXK_FUNCTION(uint32_t) wxk_VirtualListModel_GetCount(wxk_DataViewModel* model) WXK_NOEXCEPT;
-WXK_FUNCTION(void*) wxk_VirtualListModel_GetItem(wxk_DataViewModel* model, uint32_t row) WXK_NOEXCEPT;
-WXK_FUNCTION(uint32_t) wxk_VirtualListModel_GetRow(wxk_DataViewModel* model, void* item) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_ItemId) wxk_VirtualListModel_GetItem(wxk_DataViewModel* model, uint32_t row) WXK_NOEXCEPT;
+WXK_FUNCTION(uint32_t) wxk_VirtualListModel_GetRow(wxk_DataViewModel* model, wxk_ItemId item) WXK_NOEXCEPT;
 // Shows the model in the control, which takes a reference to it.
 // Delete one or all of a data view's columns. The managed side marks their objects destroyed.
 WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_DeleteColumn(wxk_Window* control, wxk_DataViewColumn* column) WXK_NOEXCEPT;
@@ -699,7 +702,7 @@ WXK_FUNCTION(wxk_StringArray*) wxk_DropFilesEvent_GetFiles(wxk_Event* event) WXK
 WXK_FUNCTION(void) wxk_ClientData_SetFree(void (*free)(void* handle)) WXK_NOEXCEPT;
 // Gives a tree item the .NET object, or none when the handle is null, deleting the data it had,
 // which wxTreeCtrl::SetItemData does not.
-WXK_FUNCTION(void) wxk_TreeCtrl_SetItemData(wxk_Window* tree, void* item, void* handle) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_TreeCtrl_SetItemData(wxk_Window* tree, wxk_ItemId item, void* handle) WXK_NOEXCEPT;
 
 // Validators
 

@@ -22,7 +22,7 @@ internal static unsafe class ItemData {
 	public static object? Get(nint handle) => handle == 0 ? null : GCHandle.FromIntPtr(handle).Target;
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static void Free(nint handle) => GCHandle.FromIntPtr(handle).Free();
+	private static void Free(void* handle) => GCHandle.FromIntPtr((nint)handle).Free();
 }
 
 public unsafe partial class TreeCtrl {
@@ -30,5 +30,5 @@ public unsafe partial class TreeCtrl {
 	/// Keeps an object with the item, such as what it stands for, or none when it is null. The tree
 	/// keeps it until the item is deleted or given another.
 	/// </summary>
-	public void SetItemData(TreeItemId item, object? data) => WxKitNative.TreeCtrlSetItemData(Native, item.Value, ItemData.Alloc(data));
+	public void SetItemData(TreeItemId item, object? data) => WxKitNative.TreeCtrlSetItemData(Native, item.Value, (void*)ItemData.Alloc(data));
 }

@@ -56,10 +56,10 @@ WXK_FUNCTION(void) wxk_ClientData_SetFree(void (*free)(void* handle)) noexcept {
 	freeHandle = free;
 }
 
-WXK_FUNCTION(void) wxk_TreeCtrl_SetItemData(wxk_Window* tree, void* item, void* handle) noexcept {
+WXK_FUNCTION(void) wxk_TreeCtrl_SetItemData(wxk_Window* tree, wxk_ItemId item, void* handle) noexcept {
 	wxk::Guard([&] {
 		auto* control = static_cast<wxTreeCtrl*>(wxk::Unwrap(tree));
-		wxTreeItemId id(item);
+		wxTreeItemId id(wxk::ItemPointer(item));
 		wxTreeItemData* old = control->GetItemData(id);
 		control->SetItemData(id, wxk::ToTreeItemData(handle));
 		delete old;
