@@ -2,7 +2,7 @@
 
 WxKit is a set of .NET bindings to [wxWidgets](https://wxwidgets.org), the C++ library for native desktop user interfaces. This document covers what WxKit is for, how its layers fit together, and what is left to build. The other documents in this folder cover each part in detail.
 
-WxKit is in preview, as `0.1.0-preview.N` on nuget.org, for Windows, Linux, and macOS. The questions still open are in [Open questions](open-questions.md).
+WxKit 0.1 is on nuget.org, for Windows, Linux, and macOS. The questions still open are in [Open questions](open-questions.md), and the changes that wait for 0.2.0 because they need code changes are in [Planned changes](planned-changes.md).
 
 ## Goals
 
@@ -45,6 +45,7 @@ A call goes down the layers: `button.Label = "Save"` pins the string and calls `
 - [Language support](languages.md): F# and Visual Basic.
 - [Testing](testing.md): testing GUI code on three platforms.
 - [Open questions](open-questions.md): what is still undecided.
+- [Planned changes](planned-changes.md): changes that need code changes, which wait for 0.2.0.
 
 ## Conventions
 

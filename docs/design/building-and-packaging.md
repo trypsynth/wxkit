@@ -10,7 +10,7 @@ WxKit follows semantic versioning, as it applies before 1.0:
 
 - `0.1.0-preview.N` previews come first, and any of them can need code changes. They add what 0.1.0 should have, and make the changes to the API that it needs, such as naming, before anyone depends on it.
 - 0.1.0 is the first release that isn't a preview. From it on, a patch release, such as 0.1.1, only fixes bugs and adds what needs no code changes, such as a new control or utility.
-- A change that needs code changes goes in the next minor release, such as 0.2.0, with its own previews, and its notes say what to change.
+- A change that needs code changes goes in the next minor release, such as 0.2.0, with its own previews, and its notes say what to change. [Planned changes](planned-changes.md) collects them until then.
 - 1.0 promises that the API stays as it is, which [Open questions](open-questions.md#what-10-needs) says when.
 
 0.1.0 came once its planned work was in, the API had a pass for names and types that aren't .NET's, an application beyond the samples, SIC!, ran on it, and screen readers had read the samples' basics on each platform: NVDA on Windows, VoiceOver on macOS, and Orca on Linux. The planned work was checks of what screen readers read in the tests, a `dotnet new` template, the dialogs and controls screen readers can read that were still unbound, a `WxKit.FSharp` package that makes F# read naturally, and dragging data other than files. A grid that screen readers can read comes in a 0.1.x release, since adding it needs no code changes.
