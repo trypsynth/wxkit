@@ -774,30 +774,6 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkMenuItem* MenuAppendSubMenu(WxkMenu* menu, WxkMenu* submenu, char* text, nuint textLength, char* help, nuint helpLength);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Menu_Enable")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MenuEnable(WxkMenu* menu, int id, byte enable);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Menu_IsEnabled")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte MenuIsEnabled(WxkMenu* menu, int id);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Menu_Check")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MenuCheck(WxkMenu* menu, int id, byte check);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Menu_IsChecked")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte MenuIsChecked(WxkMenu* menu, int id);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Menu_SetLabel")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MenuSetLabel(WxkMenu* menu, int id, char* text, nuint textLength);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Menu_GetLabel")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkString* MenuGetLabel(WxkMenu* menu, int id);
-
 	[LibraryImport(Library, EntryPoint = "wxk_MenuItem_GetId")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int MenuItemGetId(WxkMenuItem* item);

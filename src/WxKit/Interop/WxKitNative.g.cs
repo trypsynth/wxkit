@@ -5378,6 +5378,30 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* MemoryDCGetSelectedBitmap(WxkObject* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Menu_Check")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void MenuCheck(WxkMenu* self, int id, byte check);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Menu_Enable")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void MenuEnable(WxkMenu* self, int id, byte enable);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Menu_GetLabel")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* MenuGetLabel(WxkMenu* self, int id);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Menu_IsChecked")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte MenuIsChecked(WxkMenu* self, int id);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Menu_IsEnabled")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte MenuIsEnabled(WxkMenu* self, int id);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Menu_SetLabel")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void MenuSetLabel(WxkMenu* self, int id, char* label, nuint labelLength);
+
 	[LibraryImport(Library, EntryPoint = "wxk_MenuBar_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* MenuBarNew(long style);

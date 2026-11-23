@@ -685,13 +685,6 @@ WXK_FUNCTION(wxk_MenuItem*) wxk_Menu_AppendSeparator(wxk_Menu* menu) WXK_NOEXCEP
 WXK_FUNCTION(void) wxk_Menu_Free(wxk_Menu* menu) WXK_NOEXCEPT;
 // Adds a submenu, which the menu then owns.
 WXK_FUNCTION(wxk_MenuItem*) wxk_Menu_AppendSubMenu(wxk_Menu* menu, wxk_Menu* submenu, const char16_t* text, size_t textLength, const char16_t* help, size_t helpLength) WXK_NOEXCEPT;
-// The item with an id, in the menu or its submenus.
-WXK_FUNCTION(void) wxk_Menu_Enable(wxk_Menu* menu, int32_t id, uint8_t enable) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Menu_IsEnabled(wxk_Menu* menu, int32_t id) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Menu_Check(wxk_Menu* menu, int32_t id, uint8_t check) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Menu_IsChecked(wxk_Menu* menu, int32_t id) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Menu_SetLabel(wxk_Menu* menu, int32_t id, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_String*) wxk_Menu_GetLabel(wxk_Menu* menu, int32_t id) WXK_NOEXCEPT;
 
 WXK_FUNCTION(int32_t) wxk_MenuItem_GetId(wxk_MenuItem* item) WXK_NOEXCEPT;
 
