@@ -129,7 +129,6 @@ set(WXK_SOURCES
 	src/timer.cpp
 	src/uiaction.cpp
 	src/toolbar.cpp
-	src/treelist.cpp
 	src/validator.cpp
 	src/variant.cpp
 	src/window.cpp

@@ -12498,6 +12498,10 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial nint TreeListCtrlGetSelection(WxkWindow* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_GetSelections")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkNumbers* TreeListCtrlGetSelections(WxkWindow* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_GetView")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* TreeListCtrlGetView(WxkWindow* self);

@@ -465,8 +465,6 @@ WXK_FUNCTION(wxk_String*) wxk_CredentialEntryDialog_GetUserName(wxk_Window* dial
 WXK_FUNCTION(void) wxk_CredentialEntryDialog_SetUserName(wxk_Window* dialog, const char16_t* user, size_t userLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_CredentialEntryDialog_GetPassword(wxk_Window* dialog) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_CredentialEntryDialog_SetPassword(wxk_Window* dialog, const char16_t* password, size_t passwordLength) WXK_NOEXCEPT;
-// A tree list's selected items, as their pointers.
-WXK_FUNCTION(wxk_Numbers*) wxk_TreeListCtrl_GetSelections(wxk_Window* control) WXK_NOEXCEPT;
 
 // Drag and drop
 

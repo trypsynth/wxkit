@@ -25,8 +25,3 @@ public unsafe partial class CredentialEntryDialog {
 		}
 	}
 }
-
-public unsafe partial class TreeListCtrl {
-	/// <summary>The selected items, in no particular order. Wraps GetSelections.</summary>
-	public TreeListItem[] Selections => NativeNumbers.TakeTreeListItems(WxKitNative.TreeListCtrlGetSelections(Native));
-}

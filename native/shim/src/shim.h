@@ -205,6 +205,14 @@ inline wxk_Numbers* ToNumbers(const wxDataViewItemArray& items) {
 	return numbers;
 }
 
+// Other lists of item ids, such as wxTreeListItems, a wxVector the tree list control declares.
+template <typename Items>
+inline auto ToNumbers(const Items& items) -> decltype(items.begin()->GetID(), static_cast<wxk_Numbers*>(nullptr)) {
+	auto* numbers = new wxk_Numbers;
+	for (const auto& item : items) numbers->values.push_back(reinterpret_cast<intptr_t>(item.GetID()));
+	return numbers;
+}
+
 inline wxArrayInt ToIntArray(const int64_t* values, size_t count) {
 	wxArrayInt result;
 	for (size_t index = 0; index < count; index++) result.push_back(static_cast<int>(values[index]));

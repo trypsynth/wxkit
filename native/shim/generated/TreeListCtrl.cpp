@@ -172,6 +172,10 @@ WXK_FUNCTION(void*) wxk_TreeListCtrl_GetSelection(wxk_Window* self) noexcept {
 	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeListCtrl*>(wxk::Unwrap(self))->GetSelection()).GetID()); });
 }
 
+WXK_FUNCTION(wxk_Numbers*) wxk_TreeListCtrl_GetSelections(wxk_Window* self) noexcept {
+	return wxk::Guard<wxk_Numbers*>(nullptr, [&]() -> wxk_Numbers* { return [&] { wxTreeListItems filled; (void)(static_cast<wxTreeListCtrl*>(wxk::Unwrap(self))->GetSelections(filled)); return wxk::ToNumbers(filled); }(); });
+}
+
 WXK_FUNCTION(wxk_Window*) wxk_TreeListCtrl_GetView(wxk_Window* self) noexcept {
 	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(static_cast<wxTreeListCtrl*>(wxk::Unwrap(self))->GetView())); });
 }

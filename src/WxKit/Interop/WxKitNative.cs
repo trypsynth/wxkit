@@ -446,10 +446,6 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void CredentialEntryDialogSetPassword(WxkWindow* dialog, char* password, nuint passwordLength);
 
-	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_GetSelections")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkNumbers* TreeListCtrlGetSelections(WxkWindow* control);
-
 	[LibraryImport(Library, EntryPoint = "wxk_Numbers_Free")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void NumbersFree(WxkNumbers* numbers);

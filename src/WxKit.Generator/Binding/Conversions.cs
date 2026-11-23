@@ -674,10 +674,13 @@ internal sealed record NumberListKind(string CppType, string ElementType, string
 
 	public static NumberListKind DataViewItem { get; } = new("wxDataViewItemArray", "DataViewItem", "TakeDataViewItems", "wxk::ToDataViewItems");
 
+	public static NumberListKind TreeListItem { get; } = new("wxTreeListItems", "TreeListItem", "TakeTreeListItems", ToCpp: null);
+
 	public static NumberListKind? For(string cppType) => cppType switch {
 		"wxArrayInt" => Int,
 		"wxArrayTreeItemIds" => TreeItem,
 		"wxDataViewItemArray" => DataViewItem,
+		"wxTreeListItems" => TreeListItem,
 		_ => null,
 	};
 }

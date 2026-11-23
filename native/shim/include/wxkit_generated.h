@@ -3618,6 +3618,7 @@ WXK_FUNCTION(uint32_t) wxk_TreeListCtrl_GetColumnCount(wxk_Window* self) WXK_NOE
 WXK_FUNCTION(void*) wxk_TreeListCtrl_GetRootItem(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void*) wxk_TreeListCtrl_GetFirstItem(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void*) wxk_TreeListCtrl_GetSelection(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Numbers*) wxk_TreeListCtrl_GetSelections(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_TreeListCtrl_GetView(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_TreeListCtrl_GetDataView(wxk_Window* self) WXK_NOEXCEPT;
 
