@@ -174,10 +174,6 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Size ArtProviderGetSizeHint(char* client, nuint clientLength, WxkWindow* window);
 
-	[LibraryImport(Library, EntryPoint = "wxk_ArtProvider_Pop")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ArtProviderPop();
-
 	[LibraryImport(Library, EntryPoint = "wxk_ArtProvider_GetMessageBoxIconId")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkString* ArtProviderGetMessageBoxIconId(int flags);
@@ -3878,10 +3874,6 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkString* GenericDirCtrlGetPathTreeItemId(WxkWindow* self, nint itemId);
 
-	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_Init")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void GenericDirCtrlInit(WxkWindow* self);
-
 	[LibraryImport(Library, EntryPoint = "wxk_GenericDirCtrl_ReCreateTree")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void GenericDirCtrlReCreateTree(WxkWindow* self);
@@ -4442,13 +4434,9 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ImageSaveFileString(WxkObject* self, char* name, nuint nameLength);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Image_SetAlpha_Default")]
+	[LibraryImport(Library, EntryPoint = "wxk_Image_SetAlpha")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ImageSetAlphaDefault(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_SetAlpha_IntIntByte")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ImageSetAlphaIntIntByte(WxkObject* self, int x, int y, byte alpha);
+	public static partial void ImageSetAlpha(WxkObject* self, int x, int y, byte alpha);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Image_ClearAlpha")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -6338,9 +6326,9 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* PenNewBitmapInt(WxkObject* stipple, int width);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Pen_SetColour")]
+	[LibraryImport(Library, EntryPoint = "wxk_Pen_SetColour_ByteByteByte")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void PenSetColour(WxkObject* self, byte red, byte green, byte blue);
+	public static partial void PenSetColourByteByteByte(WxkObject* self, byte red, byte green, byte blue);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Pen_SetStipple")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -6365,6 +6353,10 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Pen_GetColour")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkColor PenGetColour(WxkObject* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Pen_SetColour_Color")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void PenSetColourColor(WxkObject* self, WxkColor color);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Pen_GetJoin")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -6829,6 +6821,42 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_ProgressDialog_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* ProgressDialogNew(char* title, nuint titleLength, char* message, nuint messageLength, int maximum, WxkWindow* parent, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ProgressDialog_Pulse")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ProgressDialogPulse(WxkWindow* self, char* message, nuint messageLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ProgressDialog_Resume")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void ProgressDialogResume(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ProgressDialog_Update")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ProgressDialogUpdate(WxkWindow* self, int value, char* message, nuint messageLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ProgressDialog_WasCancelled")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ProgressDialogWasCancelled(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ProgressDialog_WasSkipped")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ProgressDialogWasSkipped(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ProgressDialog_GetValue")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int ProgressDialogGetValue(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ProgressDialog_GetRange")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int ProgressDialogGetRange(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ProgressDialog_SetRange")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void ProgressDialogSetRange(WxkWindow* self, int maximum);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ProgressDialog_GetMessage")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* ProgressDialogGetMessage(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_PropertySheetDialog_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

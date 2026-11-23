@@ -169,14 +169,14 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		foreach (string kept in tweak.KeptAlive) {
 			if (!candidates.Any(member => member.Name == bound.CppName && member.Parameters.Any(parameter => parameter.Name == kept))) throw new InvalidOperationException($"A tweak keeps {bound.CppName}'s constructor parameter {kept} alive, which no constructor has.");
 		}
-		foreach (string named in (tweak.OnlyMembers ?? []).Concat(tweak.IgnoredMembers).Concat(tweak.InternalMembers).Concat(tweak.MemberGuards.Keys).Concat(tweak.OverloadGuards.Select(static guard => guard.Member)).Concat(tweak.Renames.Keys.Where(name => !tweak.PropertyPairs.ContainsKey(name))).Concat(tweak.PropertyPairs.Values.SelectMany(static pair => pair.Setter is null ? [pair.Getter] : new[] { pair.Getter, pair.Setter }))) {
+		foreach (string named in (tweak.OnlyMembers ?? []).Concat(tweak.IgnoredMembers).Concat(tweak.InternalMembers).Concat(tweak.MemberGuards.Keys).Concat(tweak.OverloadGuards.Select(static guard => guard.Member)).Concat(tweak.IgnoredOverloads.Select(static ignored => ignored.Member)).Concat(tweak.Renames.Keys.Where(name => !tweak.PropertyPairs.ContainsKey(name))).Concat(tweak.PropertyPairs.Values.SelectMany(static pair => pair.Setter is null ? [pair.Getter] : new[] { pair.Getter, pair.Setter }))) {
 			if (!known.Contains(named)) throw new InvalidOperationException($"A tweak names {bound.CppName}::{named}, which the interface headers do not have.");
 		}
 		string shortName = bound.CppName;
 		List<BoundFunction> functions = [];
 		foreach (DoxygenMember member in candidates) {
 			bool isConstructor = member.Name == shortName;
-			if (tweak.IgnoredMembers.Contains(member.Name)) continue;
+			if (tweak.IgnoredMembers.Contains(member.Name) || tweak.IgnoredOverloads.Any(ignored => ignored.Matches(member))) continue;
 			bool isInternal = tweak.InternalMembers.Contains(member.Name);
 			if (tweak.IsHandwritten && !isInternal) continue;
 			if (isConstructor) {
@@ -491,6 +491,9 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		}
 		// A reference that comes back, even one that could change, such as a color dialog's data,
 		// is copied, as a value or a const reference is.
+		// wxPen::SetColour's documentation takes a wxColour that could change, though wxWidgets' own
+		// takes a const one, so a pen's color can be set.
+		if (!isReturn && type is { Name: "wxColour", IsReference: true, IsConst: false, Pointers: 0 } && member.StartsWith("Set", StringComparison.Ordinal)) return ColorConversion.Instance;
 		if (!type.IsValueOrConstReference && !(isReturn && type.IsReference && type.Pointers == 0)) return null;
 		if (_classes.TryGetValue(type.Name, out BoundClass? value) && value.Handle == HandleKind.Value) return new ValueConversion(value);
 		// Bundles of bitmaps or icons, which wxWidgets uses for every resolution, convert from one.

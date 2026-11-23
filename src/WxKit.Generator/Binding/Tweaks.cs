@@ -84,6 +84,10 @@ internal sealed record OverloadGuard(string Member, string Parameter, string Typ
 	public bool Matches(DoxygenMember member) => member.Name == Member && member.Parameters.Any(parameter => parameter.Name == Parameter && parameter.Type.Replace(" ", string.Empty, StringComparison.Ordinal) == Type.Replace(" ", string.Empty, StringComparison.Ordinal));
 }
 
+internal sealed record OverloadMatch(string Member, string Parameter, string Type) {
+	public bool Matches(DoxygenMember member) => member.Name == Member && member.Parameters.Any(parameter => parameter.Name == Parameter && parameter.Type.Replace(" ", string.Empty, StringComparison.Ordinal) == Type.Replace(" ", string.Empty, StringComparison.Ordinal));
+}
+
 internal sealed record ConstantClassTweak(string Name, IReadOnlySet<string> Exclude);
 
 internal sealed record TemplateInstanceTweak(string Template, string Name, string BaseClass);
@@ -198,6 +202,14 @@ internal sealed class ClassTweak(string name) {
 
 	public ClassTweak GuardOverload(string condition, string member, string parameter, string type) {
 		OverloadGuards.Add(new OverloadGuard(member, parameter, type, condition));
+		return this;
+	}
+
+	/// <summary>Overloads left out, told apart by one of their parameters, such as wxImage's SetAlpha that takes an alpha array.</summary>
+	public List<OverloadMatch> IgnoredOverloads { get; } = [];
+
+	public ClassTweak IgnoreOverload(string member, string parameter, string type) {
+		IgnoredOverloads.Add(new OverloadMatch(member, parameter, type));
 		return this;
 	}
 

@@ -16,7 +16,9 @@ internal static class Drawing {
 			.Rename("Strikethrough", "WithStrikethrough")
 			.Guard("wxUSE_PRIVATE_FONTS", "AddPrivateFont"));
 		// Size returns a resized copy, beside the Size property, as Resize resizes the image itself.
-		tweaks.Class("wxImage").Rename("GetImageExtWildcard", "ImageExtensionWildcard").Rename("Size", "Resized");
+		// SetAlpha with no array gives the image an alpha channel it leaves as it was in memory, rather
+		// than opaque, as InitAlpha does.
+		tweaks.Class("wxImage").Rename("GetImageExtWildcard", "ImageExtensionWildcard").Rename("Size", "Resized").IgnoreOverload("SetAlpha", "alpha", "unsigned char *");
 		// wxMSW's wxIcon has no ConvertToDisabled, though the documentation gives it one.
 		tweaks.Class("wxIcon").Ignore("ConvertToDisabled");
 		// Drawing contexts. wxWidgets 3.3 moved a DC's font, text measurement, and other parts that
@@ -36,8 +38,11 @@ internal static class Drawing {
 		tweaks.Enum("wxDragResult", "DragResult", memberPrefix: "wxDrag");
 		// The system's colors, fonts, and metrics, and the standard icons.
 		tweaks.Class("wxSystemSettings").StaticOnly();
+		// Pop takes the newest provider off the stack, which without Push is one of wxWidgets' own, so
+		// the standard icons go.
 		tweaks.Class("wxArtProvider", art => art
 			.StaticOnly()
+			.Ignore("Pop")
 			.ParameterEnum("GetMessageBoxIcon", "flags", "MessageDialogStyle")
 			.ParameterEnum("GetMessageBoxIconId", "flags", "MessageDialogStyle"));
 	}

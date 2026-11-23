@@ -87,7 +87,9 @@ internal static class Lists {
 		foreach (string control in (string[])["wxTreeListCtrl", "wxTreeListEvent", "wxGenericDirCtrl", "wxFileCtrl", "wxFileCtrlEvent", "wxEditableListBox"]) {
 			tweaks.Class(control);
 		}
+		// Init sets the control's members as its constructor does, which leaves it without its tree.
 		tweaks.Class("wxGenericDirCtrl", tree => tree
+			.Ignore("Init")
 			.StylesPrefixed("DIRCTRL")
 			.ParameterName("wxGenericDirCtrl", "dir", "directory"));
 		tweaks.Class("wxFileCtrl").ParameterName("wxFileCtrl", "wildCard", "wildcard");

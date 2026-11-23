@@ -327,11 +327,8 @@ public unsafe partial class Image : NativeObject {
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public Image? Scale(Size size, ImageResizeQuality quality = ImageResizeQuality.Normal) => global::WxKit.Image.Take(WxKitNative.ImageScaleSizeImageResizeQuality(Native, size, (int)quality));
 
-	/// <summary>This function is similar to SetData() and has similar restrictions.</summary>
-	public void SetAlpha() => WxKitNative.ImageSetAlphaDefault(Native);
-
 	/// <summary>Sets the alpha value for the given pixel.</summary>
-	public void SetAlpha(int x, int y, byte alpha) => WxKitNative.ImageSetAlphaIntIntByte(Native, x, y, alpha);
+	public void SetAlpha(int x, int y, byte alpha) => WxKitNative.ImageSetAlpha(Native, x, y, alpha);
 
 	/// <summary>Specifies whether there is a mask or not.</summary>
 	public void SetMask(bool hasMask = true) => WxKitNative.ImageSetMask(Native, hasMask ? (byte)1 : (byte)0);

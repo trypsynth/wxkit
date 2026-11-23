@@ -220,11 +220,7 @@ WXK_FUNCTION(uint8_t) wxk_Image_SaveFile_String(wxk_Object* self, const char16_t
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->SaveFile(wxk::FromUtf16(name, nameLength))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_Image_SetAlpha_Default(wxk_Object* self) noexcept {
-	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->SetAlpha(); });
-}
-
-WXK_FUNCTION(void) wxk_Image_SetAlpha_IntIntByte(wxk_Object* self, int32_t x, int32_t y, uint8_t alpha) noexcept {
+WXK_FUNCTION(void) wxk_Image_SetAlpha(wxk_Object* self, int32_t x, int32_t y, uint8_t alpha) noexcept {
 	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->SetAlpha(static_cast<int>(x), static_cast<int>(y), static_cast<unsigned char>(alpha)); });
 }
 

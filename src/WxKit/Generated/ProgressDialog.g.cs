@@ -12,6 +12,43 @@ public unsafe partial class ProgressDialog : Dialog {
 	internal ProgressDialog(WxkWindow* native) : base(native) {
 	}
 
+	/// <summary>Returns true if the "Cancel" button was pressed.</summary>
+	public bool IsCanceled => WxKitNative.ProgressDialogWasCancelled(Native) != 0;
+
+	/// <summary>Returns true if the "Skip" button was pressed.</summary>
+	public bool IsSkipped => WxKitNative.ProgressDialogWasSkipped(Native) != 0;
+
+	/// <summary>Returns the last message passed to the Update() function; if you always passed wxEmptyString to Update() then the message set through the constructor is returned.</summary>
+	public string Message => NativeString.Take(WxKitNative.ProgressDialogGetMessage(Native));
+
+	/// <summary>Returns the maximum value of the progress meter, as passed to the constructor or wxNOT_FOUND if the dialog has no progress bar.</summary>
+	public int Range {
+		get => WxKitNative.ProgressDialogGetRange(Native);
+		set => WxKitNative.ProgressDialogSetRange(Native, value);
+	}
+
+	/// <summary>Returns the last value passed to the Update() function or wxNOT_FOUND if the dialog has no progress bar.</summary>
+	public int Value => WxKitNative.ProgressDialogGetValue(Native);
+
+	/// <summary>Like Update() but makes the gauge control run in indeterminate mode.</summary>
+	public bool Pulse(string message = "") {
+		ArgumentNullException.ThrowIfNull(message);
+		fixed (char* messageText = message) {
+			return WxKitNative.ProgressDialogPulse(Native, messageText, NativeString.Length(message)) != 0;
+		}
+	}
+
+	/// <summary>Can be used to continue with the dialog, after the user had clicked the "Abort" button.</summary>
+	public void Resume() => WxKitNative.ProgressDialogResume(Native);
+
+	/// <summary>Updates the dialog, setting the progress bar to the new value and updating the message if new one is specified.</summary>
+	public bool Update(int value, string message = "") {
+		ArgumentNullException.ThrowIfNull(message);
+		fixed (char* messageText = message) {
+			return WxKitNative.ProgressDialogUpdate(Native, value, messageText, NativeString.Length(message)) != 0;
+		}
+	}
+
 	private static WxkWindow* CreateNative(string title, string message, int maximum, Window? parent, ProgressDialogStyle style) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(title);

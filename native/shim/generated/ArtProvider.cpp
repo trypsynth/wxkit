@@ -25,10 +25,6 @@ WXK_FUNCTION(wxk_Size) wxk_ArtProvider_GetSizeHint(const char16_t* client, size_
 	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(wxArtProvider::GetSizeHint(wxk::FromUtf16(client, clientLength), static_cast<wxWindow*>(wxk::Unwrap(window)))); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ArtProvider_Pop(void) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (wxArtProvider::Pop()) ? 1 : 0; });
-}
-
 WXK_FUNCTION(wxk_String*) wxk_ArtProvider_GetMessageBoxIconId(int32_t flags) noexcept {
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(wxArtProvider::GetMessageBoxIconId(static_cast<int>(flags))); });
 }

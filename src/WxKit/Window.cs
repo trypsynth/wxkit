@@ -79,7 +79,7 @@ public unsafe partial class Window {
 public unsafe partial class Frame {
 	private MenuBar? _menuBar;
 
-	/// <summary>The frame's menu bar. Setting it gives the menu bar to the frame, which destroys it along with itself.</summary>
+	/// <summary>The frame's menu bar. Setting it gives the menu bar to the frame, which destroys it along with itself, or when another replaces it.</summary>
 	public MenuBar? MenuBar {
 		get {
 			_ = Native;
@@ -87,8 +87,13 @@ public unsafe partial class Frame {
 		}
 		set {
 			WxkWindow* native = Native;
+			if (ReferenceEquals(value, _menuBar)) return;
+			MenuBar? replaced = _menuBar;
 			WxKitNative.FrameSetMenuBar(native, NativeOf(value));
 			_menuBar = value;
+			// wxWidgets only detaches the menu bar it replaces, so the frame destroys it, as it would have
+			// with itself.
+			if (replaced is not null && !replaced.IsDestroyed) replaced.Destroy();
 		}
 	}
 }

@@ -40,7 +40,15 @@ internal static class Dialogs {
 		tweaks.Class("wxColourDialogEvent", e => e.Ignore("SetColour"));
 		// A progress dialog's styles are constants, not a style table.
 		tweaks.ConstantEnum("ProgressDialogStyle", "wxPD_", isFlags: true);
-		tweaks.Class("wxProgressDialog").ParameterEnum("wxProgressDialog", "style", "ProgressDialogStyle");
+		// Its progress members, such as Update and WasCancelled, are wxGenericProgressDialog's, which
+		// wxMSW's native dialog overrides.
+		tweaks.Class("wxProgressDialog", dialog => dialog
+			.InheritUnboundBases()
+			.ParameterEnum("wxProgressDialog", "style", "ProgressDialogStyle")
+			.ParameterName("Update", "newmsg", "message")
+			.ParameterName("Pulse", "newmsg", "message")
+			.Property("IsCanceled", "WasCancelled")
+			.Property("IsSkipped", "WasSkipped"));
 		// A message dialog with a check box, such as "Don't ask again", and details that can be shown.
 		// wxWidgets makes it from its own message dialog, not the platform's, so it is no
 		// MessageDialog, and has that class's members through the base the two share.

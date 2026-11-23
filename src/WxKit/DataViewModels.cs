@@ -222,6 +222,8 @@ public abstract unsafe class DataViewTreeModel : DataViewModel {
 public abstract class DataViewTreeModel<T> : DataViewTreeModel where T : class {
 	private readonly Dictionary<T, nint> _ids = new(ReferenceEqualityComparer.Instance);
 	private readonly Dictionary<nint, T> _items = [];
+	// Each item's parent's id, 0 for the root, so deleting an item forgets the items under it too.
+	private readonly Dictionary<nint, nint> _parents = [];
 	private nint _lastId;
 
 	/// <summary>The item for an object, or <see cref="DataViewItem.Root"/> for null.</summary>
@@ -241,7 +243,10 @@ public abstract class DataViewTreeModel<T> : DataViewTreeModel where T : class {
 	/// <summary>Tells the controls that an object was added under a parent, or under the root for null.</summary>
 	public bool ItemAdded(T? parent, T item) {
 		ArgumentNullException.ThrowIfNull(item);
-		return ItemAdded(ItemOf(parent), ItemOf(item));
+		DataViewItem parentItem = ItemOf(parent);
+		DataViewItem added = ItemOf(item);
+		_parents[added.Value] = parentItem.Value;
+		return ItemAdded(parentItem, added);
 	}
 
 	/// <summary>Tells the controls that an object was deleted from under a parent, and forgets its id.</summary>
@@ -252,10 +257,7 @@ public abstract class DataViewTreeModel<T> : DataViewTreeModel where T : class {
 
 	public override bool ItemDeleted(DataViewItem parent, DataViewItem item) {
 		bool deleted = base.ItemDeleted(parent, item);
-		if (ObjectOf(item) is T gone) {
-			_ids.Remove(gone);
-			_items.Remove(item.Value);
-		}
+		if (ObjectOf(item) is T) Forget(item.Value);
 		return deleted;
 	}
 
@@ -269,6 +271,7 @@ public abstract class DataViewTreeModel<T> : DataViewTreeModel where T : class {
 	public override bool Cleared() {
 		_ids.Clear();
 		_items.Clear();
+		_parents.Clear();
 		return base.Cleared();
 	}
 
@@ -304,7 +307,19 @@ public abstract class DataViewTreeModel<T> : DataViewTreeModel where T : class {
 	protected sealed override IEnumerable<DataViewItem> GetChildren(DataViewItem item) {
 		T? parent = ObjectOf(item);
 		if (item.IsOk && parent is null) return [];
-		return [.. GetChildren(parent).Select(ItemOf)];
+		DataViewItem[] children = [.. GetChildren(parent).Select(ItemOf)];
+		foreach (DataViewItem child in children) _parents[child.Value] = item.Value;
+		return children;
+	}
+
+	// Forgets an item's id and those of the items under it, which the control no longer has either.
+	private void Forget(nint id) {
+		List<nint> gone = [id];
+		for (int index = 0; index < gone.Count; index++) gone.AddRange(_parents.Where(pair => pair.Value == gone[index]).Select(static pair => pair.Key));
+		foreach (nint each in gone) {
+			if (_items.Remove(each, out T? item)) _ids.Remove(item);
+			_parents.Remove(each);
+		}
 	}
 
 	protected sealed override bool IsEnabled(DataViewItem item, int column) => ObjectOf(item) is not T found || IsEnabled(found, column);

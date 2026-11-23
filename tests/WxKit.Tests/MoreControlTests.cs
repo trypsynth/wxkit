@@ -2,6 +2,23 @@ namespace WxKit.Tests;
 
 // Bitmaps and bitmap buttons, the book controls besides the notebook, and other smaller controls.
 public class MoreControlTests {
+	// A progress dialog shows how far a task has got, and says whether the user canceled it.
+	[Fact]
+	public Task ShowsProgress() => Gui.WithFrame(frame => {
+		ProgressDialog progress = new("Copying", "Starting", 10, frame, ProgressDialogStyle.CanAbort);
+		try {
+			Assert.True(progress.Update(4, "Copying four"));
+			Assert.Equal(4, progress.Value);
+			Assert.Equal("Copying four", progress.Message);
+			Assert.Equal(10, progress.Range);
+			Assert.True(progress.Pulse("Still copying"));
+			Assert.False(progress.IsCanceled);
+			Assert.False(progress.IsSkipped);
+		} finally {
+			progress.Destroy();
+		}
+	});
+
 	[Fact]
 	public Task ShowsBitmapsAndBitmapButtons() => Gui.WithFrame(frame => {
 		using Bitmap picture = new(32, 24);

@@ -15,6 +15,12 @@ public class MenuTests {
 		MenuBar bar = new();
 		bar.Append(menu, "&File");
 		frame.MenuBar = bar;
+		// A menu bar the frame replaces is destroyed, as it would have been with the frame.
+		MenuBar next = new();
+		next.Append(new Menu(), "&Edit");
+		frame.MenuBar = next;
+		Assert.True(bar.IsDestroyed);
+		Assert.Same(next, frame.MenuBar);
 	});
 
 	[Fact]

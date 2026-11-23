@@ -24,10 +24,6 @@ WXK_FUNCTION(wxk_String*) wxk_GenericDirCtrl_GetPath_TreeItemId(wxk_Window* self
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxGenericDirCtrl*>(wxk::Unwrap(self))->GetPath(wxTreeItemId(itemId))); });
 }
 
-WXK_FUNCTION(void) wxk_GenericDirCtrl_Init(wxk_Window* self) noexcept {
-	wxk::Guard([&] { static_cast<wxGenericDirCtrl*>(wxk::Unwrap(self))->Init(); });
-}
-
 WXK_FUNCTION(void) wxk_GenericDirCtrl_ReCreateTree(wxk_Window* self) noexcept {
 	wxk::Guard([&] { static_cast<wxGenericDirCtrl*>(wxk::Unwrap(self))->ReCreateTree(); });
 }

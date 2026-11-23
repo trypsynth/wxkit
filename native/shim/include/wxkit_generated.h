@@ -71,7 +71,6 @@ WXK_FUNCTION(wxk_Size) wxk_ArtProvider_GetNativeDIPSizeHint(const char16_t* clie
 WXK_FUNCTION(wxk_Size) wxk_ArtProvider_GetNativeSizeHint(const char16_t* client, size_t clientLength, wxk_Window* window) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_ArtProvider_GetDIPSizeHint(const char16_t* client, size_t clientLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_ArtProvider_GetSizeHint(const char16_t* client, size_t clientLength, wxk_Window* window) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_ArtProvider_Pop(void) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_ArtProvider_GetMessageBoxIconId(int32_t flags) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_ArtProvider_GetMessageBoxIcon(int32_t flags) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ArtProvider_HasNativeProvider(void) WXK_NOEXCEPT;
@@ -1213,7 +1212,6 @@ WXK_FUNCTION(uint8_t) wxk_GenericDirCtrl_CollapsePath(wxk_Window* self, const ch
 WXK_FUNCTION(void) wxk_GenericDirCtrl_CollapseTree(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_GenericDirCtrl_ExpandPath(wxk_Window* self, const char16_t* path, size_t pathLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_GenericDirCtrl_GetPath_TreeItemId(wxk_Window* self, void* itemId) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_GenericDirCtrl_Init(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_GenericDirCtrl_ReCreateTree(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_GenericDirCtrl_ShowHidden(wxk_Window* self, uint8_t show) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_GenericDirCtrl_SelectPath(wxk_Window* self, const char16_t* path, size_t pathLength, uint8_t select) WXK_NOEXCEPT;
@@ -1381,8 +1379,7 @@ WXK_FUNCTION(uint8_t) wxk_Image_LoadFile_StringStringInt(wxk_Object* self, const
 WXK_FUNCTION(uint8_t) wxk_Image_SaveFile_StringBitmapType(wxk_Object* self, const char16_t* name, size_t nameLength, int32_t type) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Image_SaveFile_StringString(wxk_Object* self, const char16_t* name, size_t nameLength, const char16_t* mimetype, size_t mimetypeLength) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Image_SaveFile_String(wxk_Object* self, const char16_t* name, size_t nameLength) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Image_SetAlpha_Default(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Image_SetAlpha_IntIntByte(wxk_Object* self, int32_t x, int32_t y, uint8_t alpha) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Image_SetAlpha(wxk_Object* self, int32_t x, int32_t y, uint8_t alpha) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_ClearAlpha(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_SetMask(wxk_Object* self, uint8_t hasMask) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_SetMaskColour(wxk_Object* self, uint8_t red, uint8_t green, uint8_t blue) WXK_NOEXCEPT;
@@ -1942,13 +1939,14 @@ WXK_FUNCTION(wxk_Window*) wxk_PasswordEntryDialog_new(wxk_Window* parent, const 
 WXK_FUNCTION(wxk_Object*) wxk_Pen_new_Default(void) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Pen_new_ColorIntPenStyle(wxk_Colour color, int32_t width, int32_t style) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Pen_new_BitmapInt(const wxk_Object* stipple, int32_t width) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Pen_SetColour(wxk_Object* self, uint8_t red, uint8_t green, uint8_t blue) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Pen_SetColour_ByteByteByte(wxk_Object* self, uint8_t red, uint8_t green, uint8_t blue) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Pen_SetStipple(wxk_Object* self, const wxk_Object* stipple) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Pen_GetCap(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Pen_SetCap(wxk_Object* self, int32_t capStyle) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Pen_GetQuality(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Pen_SetQuality(wxk_Object* self, int32_t quality) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Colour) wxk_Pen_GetColour(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Pen_SetColour_Color(wxk_Object* self, wxk_Colour color) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Pen_GetJoin(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Pen_SetJoin(wxk_Object* self, int32_t joinStyle) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Pen_GetStyle(wxk_Object* self) WXK_NOEXCEPT;
@@ -2086,6 +2084,15 @@ WXK_FUNCTION(void) wxk_Printout_SetDirectors(uint8_t (*onPrintPage)(wxk_Object* 
 // wxProgressDialog
 
 WXK_FUNCTION(wxk_Window*) wxk_ProgressDialog_new(const char16_t* title, size_t titleLength, const char16_t* message, size_t messageLength, int32_t maximum, wxk_Window* parent, int32_t style) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_ProgressDialog_Pulse(wxk_Window* self, const char16_t* message, size_t messageLength) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_ProgressDialog_Resume(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_ProgressDialog_Update(wxk_Window* self, int32_t value, const char16_t* message, size_t messageLength) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_ProgressDialog_WasCancelled(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_ProgressDialog_WasSkipped(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_ProgressDialog_GetValue(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_ProgressDialog_GetRange(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_ProgressDialog_SetRange(wxk_Window* self, int32_t maximum) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_String*) wxk_ProgressDialog_GetMessage(wxk_Window* self) WXK_NOEXCEPT;
 
 // wxPropertySheetDialog
 

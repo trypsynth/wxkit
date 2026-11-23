@@ -124,7 +124,8 @@ public class DataViewTests {
 		DataViewCtrl view = new(frame);
 		view.AppendTextColumn("Name", 0);
 		Folder music = new("Music", [new Folder("Jazz", []), new Folder("Folk", [])]);
-		Folders model = new([music, new Folder("Photos", [])]);
+		List<Folder> top = [music, new Folder("Photos", [])];
+		Folders model = new(top);
 		view.Model = model;
 		DataViewItem musicItem = model.ItemOf(music);
 		Assert.Same(music, model.ObjectOf(musicItem));
@@ -137,6 +138,12 @@ public class DataViewTests {
 		Assert.True(model.ItemChanged(blues));
 		Assert.Same(music, model.ObjectOf(model.ItemOf(music)));
 		Assert.Equal(DataViewItem.Root, model.ItemOf(null));
+		// Deleting a folder forgets the items under it too.
+		DataViewItem bluesItem = model.ItemOf(blues);
+		top.Remove(music);
+		Assert.True(model.ItemDeleted(null, music));
+		Assert.Null(model.ObjectOf(musicItem));
+		Assert.Null(model.ObjectOf(bluesItem));
 	});
 
 	[Fact]

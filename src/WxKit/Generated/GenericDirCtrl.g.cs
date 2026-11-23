@@ -101,9 +101,6 @@ public unsafe partial class GenericDirCtrl : Control {
 	/// <summary>Gets the path corresponding to the given tree control item.</summary>
 	public string GetPath(TreeItemId itemId) => NativeString.Take(WxKitNative.GenericDirCtrlGetPathTreeItemId(Native, itemId.Value));
 
-	/// <summary>Initializes variables.</summary>
-	public void Init() => WxKitNative.GenericDirCtrlInit(Native);
-
 	/// <summary>Collapse and expand the tree, thus re-creating it from scratch.</summary>
 	public void ReCreateTree() => WxKitNative.GenericDirCtrlReCreateTree(Native);
 

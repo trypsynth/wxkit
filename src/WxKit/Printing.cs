@@ -26,12 +26,16 @@ public readonly record struct PageRange(int MinPage, int MaxPage, int FromPage, 
 /// </remarks>
 public abstract unsafe partial class Printout {
 	private static bool _directorsSet;
+	private readonly Holder? _holder;
 
 	/// <summary>Makes a printout, whose title the system's print queue shows.</summary>
 	protected Printout(string title = "Printout") : this(new Holder(), title) {
 	}
 
-	private Printout(Holder holder, string title) : this(Create(holder, title)) => holder.Printout = this;
+	private Printout(Holder holder, string title) : this(Create(holder, title)) {
+		holder.Printout = this;
+		_holder = holder;
+	}
 
 	/// <summary>Draws a page, numbered from 1, on the DC, which is only good until this returns. Returns false to stop printing.</summary>
 	protected abstract bool OnPrintPage(int page, DC dc);
@@ -68,15 +72,17 @@ public abstract unsafe partial class Printout {
 	internal void GiveAway() {
 		_ = Native;
 		Disown();
+		_holder?.KeepAlive();
 	}
 
 	private static WxkObject* Create(Holder holder, string title) {
 		ArgumentNullException.ThrowIfNull(title);
 		Application.VerifyAccess();
 		SetDirectors();
-		// The native printout holds the managed one strongly, so it can call it for as long as it
-		// lives, and frees the handle when it is deleted.
-		GCHandle handle = GCHandle.Alloc(holder);
+		// The native printout holds the managed one weakly, so one the application lets go of is
+		// collected and freed, as other native objects are, and Directors frees the handle when it is
+		// deleted. Once a preview takes it, the holder keeps it alive itself.
+		GCHandle handle = GCHandle.Alloc(holder, GCHandleType.Weak);
 		fixed (char* titleText = title) {
 			WxkObject* native = WxKitNative.PrintoutNew((void*)GCHandle.ToIntPtr(handle), titleText, NativeString.Length(title));
 			if (native is null) handle.Free();
@@ -168,9 +174,20 @@ public abstract unsafe partial class Printout {
 	// The handle's target, made before the printout so the native one can be given it. wxWidgets
 	// deletes the printout when the application disposes it or a preview closes.
 	private sealed class Holder : IDirected {
+		private GCHandle _keepAlive;
+
 		public Printout? Printout { get; set; }
 
-		public void OnNativeFreed() => Printout?.Invalidate();
+		// wxWidgets owns a printout a preview took, and calls it until it deletes it, though the
+		// application may have let go of it.
+		public void KeepAlive() {
+			if (!_keepAlive.IsAllocated) _keepAlive = GCHandle.Alloc(this);
+		}
+
+		public void OnNativeFreed() {
+			Printout?.Invalidate();
+			if (_keepAlive.IsAllocated) _keepAlive.Free();
+		}
 	}
 }
 

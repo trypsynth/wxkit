@@ -371,7 +371,6 @@ static class WxKit.ArtProvider
     static Size GetNativeSizeHint(string client, Window? window = null)
     static Size GetSizeHint(string client, Window? window = null)
     static bool HasNativeProvider { get; }
-    static bool Pop()
     static string GetMessageBoxIconId(MessageDialogStyle flags)
 sealed class WxKit.AssertFailedEventArgs : EventArgs
     AssertFailedEventArgs(string file, int line, string function, string condition, string message)
@@ -2241,7 +2240,6 @@ class WxKit.GenericDirCtrl : Control
     string[] FilePaths { get; }
     string[] Paths { get; }
     void CollapseTree()
-    void Init()
     void ReCreateTree()
     void SelectPath(string path, bool select = true)
     void SelectPaths(IEnumerable<string> paths)
@@ -2466,7 +2464,6 @@ class WxKit.Image : NativeObject
     void Paste(Image image, int x, int y, ImageAlphaBlendMode alphaBlend = ImageAlphaBlendMode.Over)
     void Replace(byte r1, byte g1, byte b1, byte r2, byte g2, byte b2)
     void RotateHue(double angle)
-    void SetAlpha()
     void SetAlpha(int x, int y, byte alpha)
     void SetMask(bool hasMask = true)
     void SetMaskColor(byte red, byte green, byte blue)
@@ -3429,7 +3426,7 @@ enum WxKit.PaperSize : int
 class WxKit.PasswordEntryDialog : TextEntryDialog
     PasswordEntryDialog(Window? parent, string message, string? caption = null, string defaultValue = "", DialogStyle style = DialogStyle.21, Point? position = null)
 class WxKit.Pen : NativeObject
-    Color? Color { get; }
+    Color? Color { get; set; }
     Pen()
     Pen(Bitmap stipple, int width)
     Pen(Color? color, int width = 1, PenStyle style = PenStyle.Solid)
@@ -3618,6 +3615,14 @@ abstract class WxKit.Printout : NativeObject
     void SetLogicalOrigin(int x, int y)
 class WxKit.ProgressDialog : Dialog
     ProgressDialog(string title, string message, int maximum = 100, Window? parent = null, ProgressDialogStyle style = ProgressDialogStyle.AppModal | ProgressDialogStyle.AutoHide)
+    bool IsCanceled { get; }
+    bool IsSkipped { get; }
+    bool Pulse(string message = "")
+    bool Update(int value, string message = "")
+    int Range { get; set; }
+    int Value { get; }
+    string Message { get; }
+    void Resume()
 [Flags] enum WxKit.ProgressDialogStyle : int
     AppModal = 2
     AutoHide = 4

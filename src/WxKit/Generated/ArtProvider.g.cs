@@ -83,10 +83,4 @@ public static unsafe partial class ArtProvider {
 			return WxKitNative.ArtProviderGetSizeHint(clientText, NativeString.Length(client), window is null ? null : (WxkWindow*)window.Native);
 		}
 	}
-
-	/// <summary>Remove latest added provider and delete it.</summary>
-	public static bool Pop() {
-		Application.VerifyAccess();
-		return WxKitNative.ArtProviderPop() != 0;
-	}
 }

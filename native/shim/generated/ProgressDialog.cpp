@@ -8,3 +8,39 @@ WXK_FUNCTION(wxk_Window*) wxk_ProgressDialog_new(const char16_t* title, size_t t
 	});
 }
 
+WXK_FUNCTION(uint8_t) wxk_ProgressDialog_Pulse(wxk_Window* self, const char16_t* message, size_t messageLength) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxGenericProgressDialog*>(static_cast<wxProgressDialog*>(wxk::Unwrap(self)))->Pulse(wxk::FromUtf16(message, messageLength))) ? 1 : 0; });
+}
+
+WXK_FUNCTION(void) wxk_ProgressDialog_Resume(wxk_Window* self) noexcept {
+	wxk::Guard([&] { static_cast<wxGenericProgressDialog*>(static_cast<wxProgressDialog*>(wxk::Unwrap(self)))->Resume(); });
+}
+
+WXK_FUNCTION(uint8_t) wxk_ProgressDialog_Update(wxk_Window* self, int32_t value, const char16_t* message, size_t messageLength) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxGenericProgressDialog*>(static_cast<wxProgressDialog*>(wxk::Unwrap(self)))->Update(static_cast<int>(value), wxk::FromUtf16(message, messageLength))) ? 1 : 0; });
+}
+
+WXK_FUNCTION(uint8_t) wxk_ProgressDialog_WasCancelled(wxk_Window* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxGenericProgressDialog*>(static_cast<wxProgressDialog*>(wxk::Unwrap(self)))->WasCancelled()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(uint8_t) wxk_ProgressDialog_WasSkipped(wxk_Window* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxGenericProgressDialog*>(static_cast<wxProgressDialog*>(wxk::Unwrap(self)))->WasSkipped()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(int32_t) wxk_ProgressDialog_GetValue(wxk_Window* self) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxGenericProgressDialog*>(static_cast<wxProgressDialog*>(wxk::Unwrap(self)))->GetValue()); });
+}
+
+WXK_FUNCTION(int32_t) wxk_ProgressDialog_GetRange(wxk_Window* self) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxGenericProgressDialog*>(static_cast<wxProgressDialog*>(wxk::Unwrap(self)))->GetRange()); });
+}
+
+WXK_FUNCTION(void) wxk_ProgressDialog_SetRange(wxk_Window* self, int32_t maximum) noexcept {
+	wxk::Guard([&] { static_cast<wxGenericProgressDialog*>(static_cast<wxProgressDialog*>(wxk::Unwrap(self)))->SetRange(static_cast<int>(maximum)); });
+}
+
+WXK_FUNCTION(wxk_String*) wxk_ProgressDialog_GetMessage(wxk_Window* self) noexcept {
+	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxGenericProgressDialog*>(static_cast<wxProgressDialog*>(wxk::Unwrap(self)))->GetMessage()); });
+}
+
