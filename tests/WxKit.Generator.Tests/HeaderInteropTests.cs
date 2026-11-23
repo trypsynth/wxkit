@@ -50,6 +50,42 @@ public sealed class HeaderInteropTests : IDisposable {
 		Assert.Contains("bool", error.Message, StringComparison.Ordinal);
 	}
 
+	// A function that calls into C++ runs the call in Guard, or says why it can't throw, so no
+	// exception ends the process. One that only stores or returns needs neither.
+	[Fact]
+	public void RefusesACallOutsideGuard() {
+		string header = """
+			WXK_FUNCTION(void) wxk_Thing_Guarded(wxk_Thing* thing) WXK_NOEXCEPT;
+			WXK_FUNCTION(int32_t) wxk_Thing_Marked(wxk_Thing* thing) WXK_NOEXCEPT;
+			WXK_FUNCTION(void) wxk_Thing_SetCallbacks(const wxk_Thing* set) WXK_NOEXCEPT;
+			WXK_FUNCTION(void) wxk_Thing_Unguarded(wxk_Thing* thing) WXK_NOEXCEPT;
+			""";
+		string source = """
+			WXK_FUNCTION(void) wxk_Thing_Guarded(wxk_Thing* thing) noexcept {
+				wxk::Guard([&] { Unwrap(thing)->Refresh("{ a brace in a string"); });
+			}
+
+			// Can't throw: it reads a member.
+			WXK_FUNCTION(int32_t) wxk_Thing_Marked(wxk_Thing* thing) noexcept {
+				return Unwrap(thing)->GetId();
+			}
+
+			WXK_FUNCTION(void) wxk_Thing_SetCallbacks(const wxk_Thing* set) noexcept {
+				// Stores them for later (as a copy).
+				callbacks = *set;
+			}
+
+			WXK_FUNCTION(void) wxk_Thing_Unguarded(wxk_Thing* thing) noexcept {
+				Unwrap(thing)->Destroy();
+			}
+			""";
+		InvalidOperationException error = Assert.Throws<InvalidOperationException>(() => HeaderInteropEmitter.Source(Write("wxkit.h", header), [Write("thing.cpp", source)]));
+		Assert.Contains("wxk_Thing_Unguarded", error.Message, StringComparison.Ordinal);
+		Assert.DoesNotContain("wxk_Thing_Guarded", error.Message, StringComparison.Ordinal);
+		Assert.DoesNotContain("wxk_Thing_Marked", error.Message, StringComparison.Ordinal);
+		Assert.DoesNotContain("wxk_Thing_SetCallbacks", error.Message, StringComparison.Ordinal);
+	}
+
 	private static string Definitions(params string[] names) => string.Concat(names.Select(static name => $"WXK_FUNCTION(void) {name}() noexcept {{\n}}\n\n"));
 
 	private string Write(string name, string text) {

@@ -52,6 +52,7 @@ WXK_FUNCTION(void) wxk_Menu_Free(wxk_Menu* menu) noexcept {
 	Guard([&] { delete Unwrap(menu); });
 }
 
+// Can't throw: it reads a member.
 WXK_FUNCTION(int32_t) wxk_MenuItem_GetId(wxk_MenuItem* item) noexcept {
 	return Unwrap(item)->GetId();
 }

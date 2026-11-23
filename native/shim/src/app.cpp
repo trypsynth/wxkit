@@ -111,6 +111,7 @@ WXK_FUNCTION(int32_t) wxk_App_Run(wxk_AppInitCallback onInit, void* userdata) no
 	});
 }
 
+// Can't throw: pthread_main_np is a C function.
 WXK_FUNCTION(uint8_t) wxk_App_CanRunOnThisThread(void) noexcept {
 #ifdef __WXOSX__
 	// Cocoa only runs a user interface on the process's main thread.
@@ -134,6 +135,7 @@ WXK_FUNCTION(void) wxk_App_ExitMainLoop(void) noexcept {
 	});
 }
 
+// Can't throw: storing a pointer in an atomic.
 WXK_FUNCTION(void) wxk_App_SetAssertCallback(wxk_AssertCallback callback) noexcept {
 	assertCallback.store(callback);
 }

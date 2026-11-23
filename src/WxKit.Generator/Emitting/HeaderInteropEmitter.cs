@@ -94,6 +94,48 @@ internal static partial class HeaderInteropEmitter {
 		List<string> undefined = [.. declared.Except(defined).Order(StringComparer.Ordinal)];
 		if (undeclared.Count > 0) throw new InvalidOperationException($"The shim defines functions wxkit.h does not declare: {string.Join(", ", undeclared)}.");
 		if (undefined.Count > 0) throw new InvalidOperationException($"wxkit.h declares functions the shim does not define: {string.Join(", ", undefined)}.");
+		List<string> unguarded = [.. sources.SelectMany(static source => Unguarded(File.ReadAllText(source).Replace("\r\n", "\n", StringComparison.Ordinal))).Distinct().Order(StringComparer.Ordinal)];
+		if (unguarded.Count > 0) throw new InvalidOperationException($"The shim's functions call into C++ outside wxk::Guard, so an exception would end the process rather than reach .NET: {string.Join(", ", unguarded)}. Run the call in Guard, or put a line before the function that begins \"// Can't throw:\" and says why.");
+	}
+
+	// A function whose body calls something, other than through Guard, unless the line before it says
+	// why it can't throw. A body that only stores, returns, or deletes a struct of WxKit's own is fine.
+	private static IEnumerable<string> Unguarded(string source) {
+		foreach (Match definition in Body().Matches(source)) {
+			string body = BodyFrom(source, definition.Index + definition.Length);
+			if (body.Contains("Guard", StringComparison.Ordinal) || !Call().IsMatch(body)) continue;
+			int line = source.LastIndexOf('\n', definition.Index);
+			int previous = line <= 0 ? -1 : source.LastIndexOf('\n', line - 1);
+			if (line > 0 && source[(previous + 1)..line].StartsWith("// Can't throw:", StringComparison.Ordinal)) continue;
+			yield return definition.Groups["name"].Value;
+		}
+	}
+
+	// The text between a function's braces, from just after the opening one, without its comments and
+	// literals, which could hold braces of their own.
+	private static string BodyFrom(string source, int start) {
+		System.Text.StringBuilder body = new();
+		int depth = 1;
+		for (int index = start; index < source.Length; index++) {
+			char character = source[index];
+			if (character is '"' or '\'') {
+				char quote = character;
+				for (index++; index < source.Length && source[index] != quote; index++) {
+					if (source[index] == '\\') index++;
+				}
+				body.Append(quote).Append(quote);
+				continue;
+			}
+			if (character == '/' && index + 1 < source.Length && source[index + 1] == '/') {
+				index = source.IndexOf('\n', index) is int end and >= 0 ? end : source.Length;
+				body.Append('\n');
+				continue;
+			}
+			if (character == '{') depth++;
+			if (character == '}' && --depth == 0) break;
+			body.Append(character);
+		}
+		return body.ToString();
 	}
 
 	private static IEnumerable<string> Parameters(string list) {
@@ -162,4 +204,11 @@ internal static partial class HeaderInteropEmitter {
 
 	[GeneratedRegex(@"^WXK_FUNCTION\([^)]*\)\s+(?<name>wxk_\w+)\(", RegexOptions.Multiline)]
 	private static partial Regex Definition();
+
+	[GeneratedRegex(@"^WXK_FUNCTION\([^)]*\)\s+(?<name>wxk_\w+)\([^{;]*\)\s*noexcept\s*\{", RegexOptions.Multiline)]
+	private static partial Regex Body();
+
+	// A call, which is a name and an opening parenthesis, other than the keywords that look like one.
+	[GeneratedRegex(@"\b(?!if\b|while\b|for\b|return\b|sizeof\b|switch\b|defined\b)[A-Za-z_]\w*\s*\(")]
+	private static partial Regex Call();
 }

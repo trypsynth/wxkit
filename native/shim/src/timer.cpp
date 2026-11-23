@@ -22,7 +22,7 @@ WXK_FUNCTION(void) wxk_Timer_Stop(wxk_Timer* timer) noexcept {
 }
 
 WXK_FUNCTION(uint8_t) wxk_Timer_IsRunning(wxk_Timer* timer) noexcept {
-	return Unwrap(timer)->IsRunning() ? 1 : 0;
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return Unwrap(timer)->IsRunning() ? 1 : 0; });
 }
 
 WXK_FUNCTION(void) wxk_Timer_Free(wxk_Timer* timer) noexcept {

@@ -40,6 +40,7 @@ WXK_FUNCTION(uint8_t) wxk_EvtHandler_Bind(wxk_EvtHandler* handler, int32_t event
 	});
 }
 
+// Can't throw: it reads a member.
 WXK_FUNCTION(int32_t) wxk_Event_GetEventType(wxk_Event* event) noexcept {
 	return wxk::Unwrap(event)->GetEventType();
 }

@@ -9,6 +9,7 @@ WXK_FUNCTION(wxk_Variant*) wxk_Variant_new(void) noexcept {
 	return wxk::Guard<wxk_Variant*>(nullptr, [] { return wxk::Wrap(new wxVariant()); });
 }
 
+// Can't throw: destructors don't throw.
 WXK_FUNCTION(void) wxk_Variant_Free(wxk_Variant* variant) noexcept {
 	delete wxk::Unwrap(variant);
 }
@@ -121,6 +122,7 @@ WXK_FUNCTION(void) wxk_VariantList_Add(wxk_VariantList* list, const wxk_Variant*
 	wxk::Guard([&] { wxk::Unwrap(list)->push_back(*wxk::Unwrap(const_cast<wxk_Variant*>(value))); });
 }
 
+// Can't throw: destructors don't throw.
 WXK_FUNCTION(void) wxk_VariantList_Free(wxk_VariantList* list) noexcept {
 	delete wxk::Unwrap(list);
 }
