@@ -676,17 +676,5 @@ WXK_FUNCTION(void) wxk_CloseEvent_Veto(wxk_Event* event, uint8_t veto) WXK_NOEXC
 // The platform's own handle: an HWND on Windows, an NSView* on macOS, and a GtkWidget* on Linux.
 WXK_FUNCTION(void*) wxk_Window_GetHandle(wxk_Window* window) WXK_NOEXCEPT;
 
-// Menus
-
-WXK_FUNCTION(wxk_Menu*) wxk_Menu_new(void) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_MenuItem*) wxk_Menu_Append(wxk_Menu* menu, int32_t id, const char16_t* text, size_t textLength, const char16_t* help, size_t helpLength, int32_t kind) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_MenuItem*) wxk_Menu_AppendSeparator(wxk_Menu* menu) WXK_NOEXCEPT;
-// Deletes a menu that no menu bar or other menu owns.
-WXK_FUNCTION(void) wxk_Menu_Free(wxk_Menu* menu) WXK_NOEXCEPT;
-// Adds a submenu, which the menu then owns.
-WXK_FUNCTION(wxk_MenuItem*) wxk_Menu_AppendSubMenu(wxk_Menu* menu, wxk_Menu* submenu, const char16_t* text, size_t textLength, const char16_t* help, size_t helpLength) WXK_NOEXCEPT;
-
-WXK_FUNCTION(int32_t) wxk_MenuItem_GetId(wxk_MenuItem* item) WXK_NOEXCEPT;
-
 // The functions generated from the wxWidgets interface headers.
 #include "wxkit_generated.h"

@@ -124,7 +124,6 @@ set(WXK_SOURCES
 	src/handlers/tga.cpp
 	src/handlers/xpm.cpp
 	src/handlers/icon.cpp
-	src/menu.cpp
 	src/object.cpp
 	src/string.cpp
 	src/taskbar.cpp

@@ -1632,6 +1632,13 @@ WXK_FUNCTION(wxk_Object*) wxk_MemoryDC_GetSelectedBitmap(wxk_Object* self) WXK_N
 
 // wxMenu
 
+WXK_FUNCTION(wxk_Menu*) wxk_Menu_new_Default(void) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Menu*) wxk_Menu_new_Long(int64_t style) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Menu*) wxk_Menu_new_StringLong(const char16_t* title, size_t titleLength, int64_t style) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_MenuItem*) wxk_Menu_Append_IntStringStringMenuItemKind(wxk_Menu* self, int32_t id, const char16_t* item, size_t itemLength, const char16_t* helpString, size_t helpStringLength, int32_t kind) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_MenuItem*) wxk_Menu_Append_MenuItem(wxk_Menu* self, wxk_MenuItem* menuItem) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_MenuItem*) wxk_Menu_AppendSeparator(wxk_Menu* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_MenuItem*) wxk_Menu_AppendSubMenu(wxk_Menu* self, wxk_Menu* submenu, const char16_t* text, size_t textLength, const char16_t* help, size_t helpLength) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Menu_Check(wxk_Menu* self, int32_t id, uint8_t check) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Menu_Enable(wxk_Menu* self, int32_t id, uint8_t enable) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_Menu_GetLabel(wxk_Menu* self, int32_t id) WXK_NOEXCEPT;
@@ -1676,6 +1683,10 @@ WXK_FUNCTION(uint8_t) wxk_MenuBar_IsAttached(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Menu*) wxk_MenuEvent_GetMenu(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_MenuEvent_GetMenuId(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_MenuEvent_IsPopup(wxk_Event* self) WXK_NOEXCEPT;
+
+// wxMenuItem
+
+WXK_FUNCTION(int32_t) wxk_MenuItem_GetId(wxk_MenuItem* self) WXK_NOEXCEPT;
 
 // wxMessageDialog
 

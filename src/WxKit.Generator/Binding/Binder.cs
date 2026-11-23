@@ -123,6 +123,7 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		if (ancestors.Contains("wxWindow")) return HandleKind.Window;
 		if (ancestors.Contains("wxSizer")) return HandleKind.Sizer;
 		if (ancestors.Contains("wxMenu")) return HandleKind.Menu;
+		if (ancestors.Contains("wxMenuItem")) return HandleKind.MenuItem;
 		if (ancestors.Contains("wxEvent")) return HandleKind.Event;
 		if (ancestors.Contains("wxDataViewColumn")) return HandleKind.Column;
 		if (ancestors.Contains("wxToolBarToolBase")) return HandleKind.Tool;
@@ -437,6 +438,7 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 			// Only event handlers are tracked, so only they can be wrapped when wxWidgets hands one back.
 			// A tool cannot go in, since the only tools are a toolbar's own, which it has already.
 			if (!isReturn && target.Handle == HandleKind.Tool) return null;
+			if (target.Handle == HandleKind.MenuItem) return owner.Tweak.InternalMembers.Contains(member) ? new ObjectConversion(target) : null;
 			return isReturn && !target.Handle.IsEvtHandler && !target.Handle.IsKeptByOwner ? null : new ObjectConversion(target);
 		}
 		// A rectangle or strings a call fills by reference are out parameters. Only a getter's

@@ -5378,6 +5378,34 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* MemoryDCGetSelectedBitmap(WxkObject* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Menu_new_Default")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkMenu* MenuNewDefault();
+
+	[LibraryImport(Library, EntryPoint = "wxk_Menu_new_Long")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkMenu* MenuNewLong(long style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Menu_new_StringLong")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkMenu* MenuNewStringLong(char* title, nuint titleLength, long style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Menu_Append_IntStringStringMenuItemKind")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkMenuItem* MenuAppendIntStringStringMenuItemKind(WxkMenu* self, int id, char* item, nuint itemLength, char* helpString, nuint helpStringLength, int kind);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Menu_Append_MenuItem")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkMenuItem* MenuAppendMenuItem(WxkMenu* self, WxkMenuItem* menuItem);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Menu_AppendSeparator")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkMenuItem* MenuAppendSeparator(WxkMenu* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Menu_AppendSubMenu")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkMenuItem* MenuAppendSubMenu(WxkMenu* self, WxkMenu* submenu, char* text, nuint textLength, char* help, nuint helpLength);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Menu_Check")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void MenuCheck(WxkMenu* self, int id, byte check);
@@ -5529,6 +5557,10 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_MenuEvent_IsPopup")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte MenuEventIsPopup(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_MenuItem_GetId")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int MenuItemGetId(WxkMenuItem* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_MessageDialog_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

@@ -11,7 +11,8 @@ internal static class Core {
 		tweaks.Class("wxSizer").Handwritten().Internal("Add", "AddSpacer", "AddStretchSpacer").DiscardUnboundReturns();
 		// The border SizerFlags.Border uses when it is not given one.
 		tweaks.Class("wxSizerFlags", flags => flags.StaticOnly().InteropOnly().Only("GetDefaultBorder"));
-		tweaks.Class("wxMenu").Handwritten().Wrappable().Internal("Enable", "IsEnabled", "Check", "IsChecked", "SetLabel", "GetLabel");
+		tweaks.Class("wxMenu").Handwritten().Wrappable().Internal("wxMenu", "Append", "AppendSeparator", "AppendSubMenu", "Enable", "IsEnabled", "Check", "IsChecked", "SetLabel", "GetLabel");
+		tweaks.Class("wxMenuItem").Handwritten().Internal("GetId");
 		tweaks.Class("wxWindow", window => window
 			.NoConstructors()
 			// WxKit tracks the sizer a window owns, gives the native handle as NativeHandle, keeps

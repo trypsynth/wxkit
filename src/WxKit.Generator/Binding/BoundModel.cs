@@ -59,6 +59,12 @@ internal sealed record HandleKind(string CType, string CppBase, string InteropTy
 	/// <summary>A toolbar's tool, which the toolbar owns, deletes, and keeps the managed object of, as a data view does its columns.</summary>
 	public static HandleKind Tool { get; } = new("wxk_ToolBarTool", "wxToolBarToolBase", "WxkToolBarTool", "Native", "Tool");
 
+	/// <summary>
+	/// A menu's item, which the menu owns. The hand-written Menu calls the members that give one back,
+	/// such as Append, for its id, so only internal members take or return one.
+	/// </summary>
+	public static HandleKind MenuItem { get; } = new("wxk_MenuItem", "wxMenuItem", "WxkMenuItem", "Native", "MenuItem");
+
 	/// <summary>Whether the object belongs to a control, which gives back its one managed object, written by hand in part.</summary>
 	public bool IsKeptByOwner => this == Column || this == Tool;
 

@@ -751,30 +751,4 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Window_GetHandle")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void* WindowGetHandle(WxkWindow* window);
-
-	// Menus
-
-	[LibraryImport(Library, EntryPoint = "wxk_Menu_new")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkMenu* MenuNew();
-
-	[LibraryImport(Library, EntryPoint = "wxk_Menu_Append")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkMenuItem* MenuAppend(WxkMenu* menu, int id, char* text, nuint textLength, char* help, nuint helpLength, int kind);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Menu_AppendSeparator")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkMenuItem* MenuAppendSeparator(WxkMenu* menu);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Menu_Free")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MenuFree(WxkMenu* menu);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Menu_AppendSubMenu")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkMenuItem* MenuAppendSubMenu(WxkMenu* menu, WxkMenu* submenu, char* text, nuint textLength, char* help, nuint helpLength);
-
-	[LibraryImport(Library, EntryPoint = "wxk_MenuItem_GetId")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int MenuItemGetId(WxkMenuItem* item);
 }

@@ -62,6 +62,7 @@
 #include <wx/listbox.h>
 #include <wx/listctrl.h>
 #include <wx/menu.h>
+#include <wx/menuitem.h>
 #include <wx/minifram.h>
 #include <wx/msgdlg.h>
 #include <wx/notebook.h>
