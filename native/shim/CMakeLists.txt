@@ -107,7 +107,6 @@ set(WXK_SOURCES
 	src/event.cpp
 	src/labels.cpp
 	src/handlers/all.cpp
-	src/notification.cpp
 	src/numbers.cpp
 	src/printing.cpp
 	src/imagedata.cpp

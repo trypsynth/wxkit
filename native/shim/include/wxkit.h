@@ -39,6 +39,8 @@ typedef struct wxk_Menu wxk_Menu;
 typedef struct wxk_MenuItem wxk_MenuItem;
 typedef struct wxk_Event wxk_Event;
 typedef struct wxk_ClassInfo wxk_ClassInfo;
+// An accessible object, which describes a window to screen readers. The window owns it.
+typedef struct wxk_Accessible wxk_Accessible;
 
 // Text that the shim hands out, which the caller frees with wxk_String_Free.
 typedef struct wxk_String wxk_String;
@@ -143,7 +145,7 @@ typedef uint8_t (*wxk_TransferCallback)(void* userdata, wxk_Window* window);
 typedef void (*wxk_Callback)(void* userdata);
 typedef void (*wxk_EventCallback)(void* userdata, wxk_Event* event);
 
-// Application
+// The application
 
 // Runs the application: initializes wxWidgets, calls onInit, and runs the event loop until it
 // ends. Returns the exit code, or -1 when wxWidgets could not start.
@@ -169,7 +171,34 @@ WXK_FUNCTION(void) wxk_App_SetLayoutDirection(int32_t direction) WXK_NOEXCEPT;
 // The wxWidgets version, such as "wxWidgets 3.3.4".
 WXK_FUNCTION(wxk_String*) wxk_Version_GetString(void) WXK_NOEXCEPT;
 
-// Text
+// Objects and events
+
+// Calls onDestroy with userdata when wxWidgets destroys the handler, after its own destructor has
+// run and every event handler bound to it has been released.
+WXK_FUNCTION(uint8_t) wxk_EvtHandler_Track(wxk_EvtHandler* handler, wxk_Callback onDestroy, void* userdata) WXK_NOEXCEPT;
+
+WXK_FUNCTION(const wxk_ClassInfo*) wxk_Object_GetClassInfo(wxk_Object* object) WXK_NOEXCEPT;
+
+// Deletes an object the shim copied out, such as a font or a bitmap, which releases its reference.
+WXK_FUNCTION(void) wxk_Object_Free(wxk_Object* object) WXK_NOEXCEPT;
+
+WXK_FUNCTION(wxk_String*) wxk_ClassInfo_GetClassName(const wxk_ClassInfo* info) WXK_NOEXCEPT;
+
+// The first base class, or null for wxObject.
+WXK_FUNCTION(const wxk_ClassInfo*) wxk_ClassInfo_GetBaseClass(const wxk_ClassInfo* info) WXK_NOEXCEPT;
+
+// Binds callback to events of eventType from ids in [id, lastId], where -1 means any. When
+// wxWidgets releases the binding, which it does when the handler is destroyed, it calls onFree.
+WXK_FUNCTION(uint8_t) wxk_EvtHandler_Bind(wxk_EvtHandler* handler, int32_t eventType, int32_t id, int32_t lastId, wxk_EventCallback callback, void* userdata, wxk_Callback onFree) WXK_NOEXCEPT;
+
+WXK_FUNCTION(int32_t) wxk_Event_GetEventType(wxk_Event* event) WXK_NOEXCEPT;
+
+WXK_FUNCTION(void) wxk_CloseEvent_Veto(wxk_Event* event, uint8_t veto) WXK_NOEXCEPT;
+
+// The paths of the files dropped on a window, which the caller frees.
+WXK_FUNCTION(wxk_StringArray*) wxk_DropFilesEvent_GetFiles(wxk_Event* event) WXK_NOEXCEPT;
+
+// Text, lists, and bytes
 
 WXK_FUNCTION(const char16_t*) wxk_String_GetData(const wxk_String* text, size_t* length) WXK_NOEXCEPT;
 
@@ -193,65 +222,8 @@ WXK_FUNCTION(size_t) wxk_WindowList_GetCount(const wxk_WindowList* list) WXK_NOE
 WXK_FUNCTION(wxk_Window*) wxk_WindowList_Item(const wxk_WindowList* list, size_t index) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_WindowList_Free(wxk_WindowList* list) WXK_NOEXCEPT;
 
-// Objects
-
-// Calls onDestroy with userdata when wxWidgets destroys the handler, after its own destructor has
-// run and every event handler bound to it has been released.
-WXK_FUNCTION(uint8_t) wxk_EvtHandler_Track(wxk_EvtHandler* handler, wxk_Callback onDestroy, void* userdata) WXK_NOEXCEPT;
-
-WXK_FUNCTION(const wxk_ClassInfo*) wxk_Object_GetClassInfo(wxk_Object* object) WXK_NOEXCEPT;
-
-// Deletes an object the shim copied out, such as a font or a bitmap, which releases its reference.
-WXK_FUNCTION(void) wxk_Object_Free(wxk_Object* object) WXK_NOEXCEPT;
-
-WXK_FUNCTION(wxk_String*) wxk_ClassInfo_GetClassName(const wxk_ClassInfo* info) WXK_NOEXCEPT;
-
-// The first base class, or null for wxObject.
-WXK_FUNCTION(const wxk_ClassInfo*) wxk_ClassInfo_GetBaseClass(const wxk_ClassInfo* info) WXK_NOEXCEPT;
-
-// The clipboard. Each call opens the clipboard and closes it again. The getters return null when
-// the clipboard does not have their format.
-
-WXK_FUNCTION(uint8_t) wxk_Clipboard_SetText(const char16_t* text, size_t textLength) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_String*) wxk_Clipboard_GetText(void) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Clipboard_HasText(void) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Clipboard_Clear(void) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_ClipboardContent*) wxk_ClipboardContent_new(void) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_ClipboardContent_Free(wxk_ClipboardContent* content) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_ClipboardContent_AddText(wxk_ClipboardContent* content, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_ClipboardContent_AddHtml(wxk_ClipboardContent* content, const char16_t* html, size_t htmlLength) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_ClipboardContent_AddBitmap(wxk_ClipboardContent* content, wxk_Object* bitmap) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_ClipboardContent_AddFiles(wxk_ClipboardContent* content, const wxk_StringArray* files) WXK_NOEXCEPT;
-// Data in a format the application names, such as "MyApp.Shape", which the system registers.
-WXK_FUNCTION(void) wxk_ClipboardContent_AddData(wxk_ClipboardContent* content, const char16_t* format, size_t formatLength, const uint8_t* data, size_t size) WXK_NOEXCEPT;
-// Takes ownership of the content, whether or not it succeeds.
-WXK_FUNCTION(uint8_t) wxk_Clipboard_SetContent(wxk_ClipboardContent* content) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Clipboard_Has(wxk_ClipboardFormat format) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Clipboard_HasData(const char16_t* format, size_t formatLength) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_String*) wxk_Clipboard_GetHtml(void) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Object*) wxk_Clipboard_GetBitmap(void) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_StringArray*) wxk_Clipboard_GetFiles(void) WXK_NOEXCEPT;
-// The caller frees the data with wxk_Bytes_Free.
-WXK_FUNCTION(uint8_t*) wxk_Clipboard_GetData(const char16_t* format, size_t formatLength, size_t* size) WXK_NOEXCEPT;
+// Frees bytes the shim hands out, such as the clipboard's data or an image's file.
 WXK_FUNCTION(void) wxk_Bytes_Free(uint8_t* bytes) WXK_NOEXCEPT;
-// Keeps the clipboard's content after the application exits.
-WXK_FUNCTION(uint8_t) wxk_Clipboard_Flush(void) WXK_NOEXCEPT;
-
-// Image file formats. Each is in a file of its own, so a statically linked application only
-// links the formats it adds. BMP is always there.
-
-WXK_FUNCTION(void) wxk_Image_AddPngHandler(void) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Image_AddJpegHandler(void) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Image_AddTiffHandler(void) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Image_AddGifHandler(void) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Image_AddWebpHandler(void) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Image_AddPnmHandler(void) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Image_AddPcxHandler(void) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Image_AddIffHandler(void) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Image_AddTgaHandler(void) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Image_AddXpmHandler(void) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Image_AddIconHandler(void) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Image_AddAllHandlers(void) WXK_NOEXCEPT;
 
 // Variants
 
@@ -277,15 +249,42 @@ WXK_FUNCTION(wxk_VariantList*) wxk_VariantList_new(void) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_VariantList_Add(wxk_VariantList* list, const wxk_Variant* value) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_VariantList_Free(wxk_VariantList* list) WXK_NOEXCEPT;
 
-// Data view models
+// Windows and controls
+
+// The platform's own handle: an HWND on Windows, an NSView* on macOS, and a GtkWidget* on Linux.
+WXK_FUNCTION(void*) wxk_Window_GetHandle(wxk_Window* window) WXK_NOEXCEPT;
+
+// A validator whose checks call back into .NET. retain and release are called as windows take
+// and drop copies of it, and onFree once the last copy is gone.
+WXK_FUNCTION(wxk_Object*) wxk_ManagedValidator_new(wxk_ValidateCallback validate, wxk_TransferCallback toWindow, wxk_TransferCallback fromWindow, wxk_Callback retain, wxk_Callback release, wxk_Callback onFree, void* userdata) WXK_NOEXCEPT;
+// Gives the window a copy of the validator. Null removes the window's validator.
+WXK_FUNCTION(void) wxk_Window_SetValidator(wxk_Window* window, wxk_Object* validator) WXK_NOEXCEPT;
+
+// The tool's toolbar. The interface headers don't document the wxToolBarBase it returns, so it
+// isn't generated, as the toolbar's other members are.
+WXK_FUNCTION(wxk_Window*) wxk_ToolBarTool_GetToolBar(wxk_ToolBarTool* tool) WXK_NOEXCEPT;
+
+// A credential dialog's user name and password, as strings.
+WXK_FUNCTION(wxk_String*) wxk_CredentialEntryDialog_GetUserName(wxk_Window* dialog) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_CredentialEntryDialog_SetUserName(wxk_Window* dialog, const char16_t* user, size_t userLength) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_String*) wxk_CredentialEntryDialog_GetPassword(wxk_Window* dialog) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_CredentialEntryDialog_SetPassword(wxk_Window* dialog, const char16_t* password, size_t passwordLength) WXK_NOEXCEPT;
+
+// Shows a preview of printout in a frame of its own, and returns the frame, or null when the
+// preview could not be made. The preview takes the printouts, and deletes them when it closes.
+WXK_FUNCTION(wxk_Window*) wxk_PrintPreview_Show(wxk_Object* printout, wxk_Object* printoutForPrinting, wxk_Object* data, wxk_Window* parent, const char16_t* title, size_t titleLength, wxk_Size size) WXK_NOEXCEPT;
+
+// Sets the function that frees the GCHandle of a .NET object a control kept with an item, which
+// is called when the control deletes the item.
+WXK_FUNCTION(void) wxk_ClientData_SetFree(void (*free)(void* handle)) WXK_NOEXCEPT;
+// Gives a tree item the .NET object, or none when the handle is null, deleting the data it had,
+// which wxTreeCtrl::SetItemData does not.
+WXK_FUNCTION(void) wxk_TreeCtrl_SetItemData(wxk_Window* tree, wxk_ItemId item, void* handle) WXK_NOEXCEPT;
 
 // Adds a child to the array a model's GetChildren fills. The models' members and directors are generated.
 WXK_FUNCTION(void) wxk_DataViewItems_Add(wxk_DataViewItems* items, wxk_ItemId item) WXK_NOEXCEPT;
 
 // Accessibility
-
-// An accessible object, which describes a window to screen readers. The window owns it.
-typedef struct wxk_Accessible wxk_Accessible;
 
 // Gives the window an accessible object made with wxk_Accessible_new, which replaces the one it had
 // and keeps its name. Returns 0 where there's no Microsoft Active Accessibility, or when it fails.
@@ -311,12 +310,6 @@ WXK_FUNCTION(void) wxk_Window_SetAccessibleParts(wxk_Window* window, const wxk_S
 WXK_FUNCTION(void) wxk_Window_SetAccessibleRows(wxk_Window* window, const wxk_AccessibleRow* rows, size_t count, const wxk_StringArray* cellLabels, const wxk_Rect* cellRects, int64_t total) WXK_NOEXCEPT;
 // Tells screen readers which row, by its index, is the current one, or none for -1.
 WXK_FUNCTION(void) wxk_Window_SetAccessibleCurrentRow(wxk_Window* window, int64_t row) WXK_NOEXCEPT;
-
-// Printing
-
-// Shows a preview of printout in a frame of its own, and returns the frame, or null when the
-// preview could not be made. The preview takes the printouts, and deletes them when it closes.
-WXK_FUNCTION(wxk_Window*) wxk_PrintPreview_Show(wxk_Object* printout, wxk_Object* printoutForPrinting, wxk_Object* data, wxk_Window* parent, const char16_t* title, size_t titleLength, wxk_Size size) WXK_NOEXCEPT;
 
 // Live regions
 
@@ -345,13 +338,32 @@ WXK_FUNCTION(void) wxk_Window_SetToolTip(wxk_Window* window, const char16_t* tex
 // Names the icon buttons inside a window by their tooltips, such as an editable list box's.
 WXK_FUNCTION(void) wxk_Window_NameIconButtons(wxk_Window* window) WXK_NOEXCEPT;
 
-// Dialogs and controls made of others
+// The clipboard. Each call opens the clipboard and closes it again. The getters return null when
+// the clipboard does not have their format.
 
-// A credential dialog's user name and password, as strings.
-WXK_FUNCTION(wxk_String*) wxk_CredentialEntryDialog_GetUserName(wxk_Window* dialog) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_CredentialEntryDialog_SetUserName(wxk_Window* dialog, const char16_t* user, size_t userLength) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_String*) wxk_CredentialEntryDialog_GetPassword(wxk_Window* dialog) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_CredentialEntryDialog_SetPassword(wxk_Window* dialog, const char16_t* password, size_t passwordLength) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Clipboard_SetText(const char16_t* text, size_t textLength) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_String*) wxk_Clipboard_GetText(void) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Clipboard_HasText(void) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Clipboard_Clear(void) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_ClipboardContent*) wxk_ClipboardContent_new(void) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_ClipboardContent_Free(wxk_ClipboardContent* content) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_ClipboardContent_AddText(wxk_ClipboardContent* content, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_ClipboardContent_AddHtml(wxk_ClipboardContent* content, const char16_t* html, size_t htmlLength) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_ClipboardContent_AddBitmap(wxk_ClipboardContent* content, wxk_Object* bitmap) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_ClipboardContent_AddFiles(wxk_ClipboardContent* content, const wxk_StringArray* files) WXK_NOEXCEPT;
+// Data in a format the application names, such as "MyApp.Shape", which the system registers.
+WXK_FUNCTION(void) wxk_ClipboardContent_AddData(wxk_ClipboardContent* content, const char16_t* format, size_t formatLength, const uint8_t* data, size_t size) WXK_NOEXCEPT;
+// Takes ownership of the content, whether or not it succeeds.
+WXK_FUNCTION(uint8_t) wxk_Clipboard_SetContent(wxk_ClipboardContent* content) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Clipboard_Has(wxk_ClipboardFormat format) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Clipboard_HasData(const char16_t* format, size_t formatLength) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_String*) wxk_Clipboard_GetHtml(void) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Object*) wxk_Clipboard_GetBitmap(void) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_StringArray*) wxk_Clipboard_GetFiles(void) WXK_NOEXCEPT;
+// The caller frees the data with wxk_Bytes_Free.
+WXK_FUNCTION(uint8_t*) wxk_Clipboard_GetData(const char16_t* format, size_t formatLength, size_t* size) WXK_NOEXCEPT;
+// Keeps the clipboard's content after the application exits.
+WXK_FUNCTION(uint8_t) wxk_Clipboard_Flush(void) WXK_NOEXCEPT;
 
 // Drag and drop
 
@@ -404,15 +416,45 @@ WXK_FUNCTION(uint8_t*) wxk_DropData_GetBytes(wxk_DropData* data, size_t* size) W
 // it, without the system's drag loop, and returns the wxDragResult.
 WXK_FUNCTION(int32_t) wxk_DropTarget_TestDrop(wxk_Window* window, wxk_ClipboardContent* content, int32_t x, int32_t y, int32_t suggested) WXK_NOEXCEPT;
 
-// The desktop. Its free functions, such as wxBell, are generated, as wxk_Desktop_Bell and
-// wxk_BusyCursor_IsBusy, and so are wxDisplay's, wxUIActionSimulator's, wxSingleInstanceChecker's,
-// and wxWindowDisabler's, each a handle of its own type, as wxk_Display.
+// Images. Each file format is in a file of its own, so a statically linked application only
+// links the formats it adds. BMP is always there.
+
+WXK_FUNCTION(void) wxk_Image_AddPngHandler(void) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Image_AddJpegHandler(void) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Image_AddTiffHandler(void) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Image_AddGifHandler(void) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Image_AddWebpHandler(void) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Image_AddPnmHandler(void) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Image_AddPcxHandler(void) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Image_AddIffHandler(void) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Image_AddTgaHandler(void) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Image_AddXpmHandler(void) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Image_AddIconHandler(void) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Image_AddAllHandlers(void) WXK_NOEXCEPT;
+
+// Loads an image from the bytes of a file in a format whose handler was added, and returns whether
+// it could. A failure is not logged.
+WXK_FUNCTION(uint8_t) wxk_Image_LoadData(wxk_Object* image, const uint8_t* data, size_t length, int32_t type, int32_t index) WXK_NOEXCEPT;
+// The image as the bytes of a file in a format, which the caller frees with wxk_Bytes_Free, or null
+// when it cannot be saved in it. A failure is not logged.
+WXK_FUNCTION(uint8_t*) wxk_Image_SaveData(wxk_Object* image, int32_t type, size_t* size) WXK_NOEXCEPT;
+
+// The desktop. Its free functions, such as wxBell, are generated, as wxk_Desktop_Bell, and so
+// are wxDisplay's and the other classes' that aren't wxObjects, each a handle of its own type.
 
 // Asks for the system's appearance, 0, light, 1, or dark, 2, and returns 1 when it could, and 0 when not.
 WXK_FUNCTION(int32_t) wxk_App_SetAppearance(int32_t appearance) WXK_NOEXCEPT;
 // Whether the system is dark, its background is, and its applications are, as the bits 1, 2, and 4.
 WXK_FUNCTION(int32_t) wxk_SystemAppearance_GetFlags(void) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_SystemAppearance_GetName(void) WXK_NOEXCEPT;
+
+// Makes a taskbar icon whose menu is the one wxk_ManagedTaskBarIcon_SetMenu gives it, which
+// wxWidgets shows when the icon is right-clicked, or on macOS clicked, and does not delete. A
+// negative type is wxTBI_DEFAULT_TYPE.
+WXK_FUNCTION(wxk_EvtHandler*) wxk_ManagedTaskBarIcon_new(int32_t type) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_ManagedTaskBarIcon_SetMenu(wxk_EvtHandler* icon, wxk_Menu* menu) WXK_NOEXCEPT;
+// Removes the icon and deletes it once the event loop is idle. Call it only once.
+WXK_FUNCTION(void) wxk_ManagedTaskBarIcon_Destroy(wxk_EvtHandler* icon) WXK_NOEXCEPT;
 
 // Web views
 
@@ -429,15 +471,6 @@ WXK_FUNCTION(void) wxk_WebView_SetPage(wxk_Window* self, const char16_t* html, s
 WXK_FUNCTION(void) wxk_WebView_RunScriptAsync(wxk_Window* self, const char16_t* script, size_t scriptLength, int64_t request) WXK_NOEXCEPT;
 // The request a script result event answers.
 WXK_FUNCTION(int64_t) wxk_WebViewEvent_GetRequest(wxk_Event* event) WXK_NOEXCEPT;
-
-// Images in memory
-
-// Loads an image from the bytes of a file in a format whose handler was added, and returns whether
-// it could. A failure is not logged.
-WXK_FUNCTION(uint8_t) wxk_Image_LoadData(wxk_Object* image, const uint8_t* data, size_t length, int32_t type, int32_t index) WXK_NOEXCEPT;
-// The image as the bytes of a file in a format, which the caller frees with wxk_Bytes_Free, or null
-// when it cannot be saved in it. A failure is not logged.
-WXK_FUNCTION(uint8_t*) wxk_Image_SaveData(wxk_Object* image, int32_t type, size_t* size) WXK_NOEXCEPT;
 
 // Translations
 
@@ -516,64 +549,6 @@ typedef struct wxk_AboutInfo {
 
 // Shows the platform's About box, or wxWidgets's own when the platform's cannot show everything.
 WXK_FUNCTION(void) wxk_AboutBox_Show(const wxk_AboutInfo* about, wxk_Window* parent) WXK_NOEXCEPT;
-
-// Notifications
-
-// Deletes a notification, which hides it if it is showing.
-WXK_FUNCTION(void) wxk_NotificationMessage_Free(wxk_EvtHandler* notification) WXK_NOEXCEPT;
-
-// Taskbar icons
-
-// Makes a taskbar icon whose menu is the one wxk_ManagedTaskBarIcon_SetMenu gives it, which
-// wxWidgets shows when the icon is right-clicked, or on macOS clicked, and does not delete. A
-// negative type is wxTBI_DEFAULT_TYPE.
-WXK_FUNCTION(wxk_EvtHandler*) wxk_ManagedTaskBarIcon_new(int32_t type) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_ManagedTaskBarIcon_SetMenu(wxk_EvtHandler* icon, wxk_Menu* menu) WXK_NOEXCEPT;
-// Removes the icon and deletes it once the event loop is idle. Call it only once.
-WXK_FUNCTION(void) wxk_ManagedTaskBarIcon_Destroy(wxk_EvtHandler* icon) WXK_NOEXCEPT;
-
-// Toolbar tools
-
-// The tool's toolbar. The interface headers don't document the wxToolBarBase it returns, so it
-// isn't generated, as the toolbar's other members are.
-WXK_FUNCTION(wxk_Window*) wxk_ToolBarTool_GetToolBar(wxk_ToolBarTool* tool) WXK_NOEXCEPT;
-
-// Dropped files
-
-// The paths of the files dropped on a window, which the caller frees.
-WXK_FUNCTION(wxk_StringArray*) wxk_DropFilesEvent_GetFiles(wxk_Event* event) WXK_NOEXCEPT;
-
-// Item data
-
-// Sets the function that frees the GCHandle of a .NET object a control kept with an item, which
-// is called when the control deletes the item.
-WXK_FUNCTION(void) wxk_ClientData_SetFree(void (*free)(void* handle)) WXK_NOEXCEPT;
-// Gives a tree item the .NET object, or none when the handle is null, deleting the data it had,
-// which wxTreeCtrl::SetItemData does not.
-WXK_FUNCTION(void) wxk_TreeCtrl_SetItemData(wxk_Window* tree, wxk_ItemId item, void* handle) WXK_NOEXCEPT;
-
-// Validators
-
-// A validator whose checks call back into .NET. retain and release are called as windows take
-// and drop copies of it, and onFree once the last copy is gone.
-WXK_FUNCTION(wxk_Object*) wxk_ManagedValidator_new(wxk_ValidateCallback validate, wxk_TransferCallback toWindow, wxk_TransferCallback fromWindow, wxk_Callback retain, wxk_Callback release, wxk_Callback onFree, void* userdata) WXK_NOEXCEPT;
-// Gives the window a copy of the validator. Null removes the window's validator.
-WXK_FUNCTION(void) wxk_Window_SetValidator(wxk_Window* window, wxk_Object* validator) WXK_NOEXCEPT;
-
-// Events
-
-// Binds callback to events of eventType from ids in [id, lastId], where -1 means any. When
-// wxWidgets releases the binding, which it does when the handler is destroyed, it calls onFree.
-WXK_FUNCTION(uint8_t) wxk_EvtHandler_Bind(wxk_EvtHandler* handler, int32_t eventType, int32_t id, int32_t lastId, wxk_EventCallback callback, void* userdata, wxk_Callback onFree) WXK_NOEXCEPT;
-
-WXK_FUNCTION(int32_t) wxk_Event_GetEventType(wxk_Event* event) WXK_NOEXCEPT;
-
-WXK_FUNCTION(void) wxk_CloseEvent_Veto(wxk_Event* event, uint8_t veto) WXK_NOEXCEPT;
-
-// Windows
-
-// The platform's own handle: an HWND on Windows, an NSView* on macOS, and a GtkWidget* on Linux.
-WXK_FUNCTION(void*) wxk_Window_GetHandle(wxk_Window* window) WXK_NOEXCEPT;
 
 // The functions generated from the wxWidgets interface headers.
 #include "wxkit_generated.h"

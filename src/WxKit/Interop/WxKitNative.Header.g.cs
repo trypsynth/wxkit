@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 namespace WxKit.Interop;
 
 public static unsafe partial class WxKitNative {
-	// Application
+	// The application
 
 	[LibraryImport(Library, EntryPoint = "wxk_App_Run")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -36,7 +36,45 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkString* VersionGetString();
 
-	// Text
+	// Objects and events
+
+	[LibraryImport(Library, EntryPoint = "wxk_EvtHandler_Track")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte EvtHandlerTrack(WxkEvtHandler* handler, delegate* unmanaged[Cdecl]<void*, void> onDestroy, void* userdata);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Object_GetClassInfo")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkClassInfo* ObjectGetClassInfo(WxkObject* @object);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Object_Free")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void ObjectFree(WxkObject* @object);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ClassInfo_GetClassName")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* ClassInfoGetClassName(WxkClassInfo* info);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ClassInfo_GetBaseClass")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkClassInfo* ClassInfoGetBaseClass(WxkClassInfo* info);
+
+	[LibraryImport(Library, EntryPoint = "wxk_EvtHandler_Bind")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte EvtHandlerBind(WxkEvtHandler* handler, int eventType, int id, int lastId, delegate* unmanaged[Cdecl]<void*, WxkEvent*, void> callback, void* userdata, delegate* unmanaged[Cdecl]<void*, void> onFree);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Event_GetEventType")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventGetEventType(WxkEvent* @event);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CloseEvent_Veto")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void CloseEventVeto(WxkEvent* @event, byte veto);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DropFilesEvent_GetFiles")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkStringArray* DropFilesEventGetFiles(WxkEvent* @event);
+
+	// Text, lists, and bytes
 
 	[LibraryImport(Library, EntryPoint = "wxk_String_GetData")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -94,27 +132,179 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void WindowListFree(WxkWindowList* list);
 
-	// Objects
-
-	[LibraryImport(Library, EntryPoint = "wxk_EvtHandler_Track")]
+	[LibraryImport(Library, EntryPoint = "wxk_Bytes_Free")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte EvtHandlerTrack(WxkEvtHandler* handler, delegate* unmanaged[Cdecl]<void*, void> onDestroy, void* userdata);
+	public static partial void BytesFree(byte* bytes);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Object_GetClassInfo")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkClassInfo* ObjectGetClassInfo(WxkObject* @object);
+	// Variants
 
-	[LibraryImport(Library, EntryPoint = "wxk_Object_Free")]
+	[LibraryImport(Library, EntryPoint = "wxk_Variant_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ObjectFree(WxkObject* @object);
+	public static partial WxkVariant* VariantNew();
 
-	[LibraryImport(Library, EntryPoint = "wxk_ClassInfo_GetClassName")]
+	[LibraryImport(Library, EntryPoint = "wxk_Variant_Free")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkString* ClassInfoGetClassName(WxkClassInfo* info);
+	public static partial void VariantFree(WxkVariant* variant);
 
-	[LibraryImport(Library, EntryPoint = "wxk_ClassInfo_GetBaseClass")]
+	[LibraryImport(Library, EntryPoint = "wxk_Variant_SetNull")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkClassInfo* ClassInfoGetBaseClass(WxkClassInfo* info);
+	public static partial void VariantSetNull(WxkVariant* variant);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Variant_SetString")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void VariantSetString(WxkVariant* variant, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Variant_SetBool")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void VariantSetBool(WxkVariant* variant, byte value);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Variant_SetLong")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void VariantSetLong(WxkVariant* variant, long value);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Variant_SetDouble")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void VariantSetDouble(WxkVariant* variant, double value);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Variant_SetObject")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte VariantSetObject(WxkVariant* variant, WxkObject* value);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Variant_GetType")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int VariantGetType(WxkVariant* variant);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Variant_GetString")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* VariantGetString(WxkVariant* variant);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Variant_GetBool")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte VariantGetBool(WxkVariant* variant);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Variant_GetLong")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial long VariantGetLong(WxkVariant* variant);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Variant_GetDouble")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial double VariantGetDouble(WxkVariant* variant);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Variant_GetObject")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* VariantGetObject(WxkVariant* variant);
+
+	[LibraryImport(Library, EntryPoint = "wxk_VariantList_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkVariantList* VariantListNew();
+
+	[LibraryImport(Library, EntryPoint = "wxk_VariantList_Add")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void VariantListAdd(WxkVariantList* list, WxkVariant* value);
+
+	[LibraryImport(Library, EntryPoint = "wxk_VariantList_Free")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void VariantListFree(WxkVariantList* list);
+
+	// Windows and controls
+
+	[LibraryImport(Library, EntryPoint = "wxk_Window_GetHandle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void* WindowGetHandle(WxkWindow* window);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ManagedValidator_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* ManagedValidatorNew(delegate* unmanaged[Cdecl]<void*, WxkWindow*, WxkWindow*, byte> validate, delegate* unmanaged[Cdecl]<void*, WxkWindow*, byte> toWindow, delegate* unmanaged[Cdecl]<void*, WxkWindow*, byte> fromWindow, delegate* unmanaged[Cdecl]<void*, void> retain, delegate* unmanaged[Cdecl]<void*, void> release, delegate* unmanaged[Cdecl]<void*, void> onFree, void* userdata);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Window_SetValidator")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WindowSetValidator(WxkWindow* window, WxkObject* validator);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ToolBarTool_GetToolBar")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* ToolBarToolGetToolBar(WxkToolBarTool* tool);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CredentialEntryDialog_GetUserName")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* CredentialEntryDialogGetUserName(WxkWindow* dialog);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CredentialEntryDialog_SetUserName")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void CredentialEntryDialogSetUserName(WxkWindow* dialog, char* user, nuint userLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CredentialEntryDialog_GetPassword")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* CredentialEntryDialogGetPassword(WxkWindow* dialog);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CredentialEntryDialog_SetPassword")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void CredentialEntryDialogSetPassword(WxkWindow* dialog, char* password, nuint passwordLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_PrintPreview_Show")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* PrintPreviewShow(WxkObject* printout, WxkObject* printoutForPrinting, WxkObject* data, WxkWindow* parent, char* title, nuint titleLength, Size size);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ClientData_SetFree")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void ClientDataSetFree(delegate* unmanaged[Cdecl]<void*, void> free);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeCtrl_SetItemData")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeCtrlSetItemData(WxkWindow* tree, nint item, void* handle);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewItems_Add")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DataViewItemsAdd(WxkDataViewItems* items, nint item);
+
+	// Accessibility
+
+	[LibraryImport(Library, EntryPoint = "wxk_Window_GiveAccessible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte WindowGiveAccessible(WxkWindow* window, WxkAccessible* accessible);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Window_SetAccessibleParts")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WindowSetAccessibleParts(WxkWindow* window, WxkStringArray* labels, Rect* rects);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Window_SetAccessibleRows")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WindowSetAccessibleRows(WxkWindow* window, WxkAccessibleRow* rows, nuint count, WxkStringArray* cellLabels, Rect* cellRects, long total);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Window_SetAccessibleCurrentRow")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WindowSetAccessibleCurrentRow(WxkWindow* window, long row);
+
+	// Live regions
+
+	[LibraryImport(Library, EntryPoint = "wxk_LiveRegion_Prepare")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte LiveRegionPrepare(WxkWindow* window);
+
+	[LibraryImport(Library, EntryPoint = "wxk_LiveRegion_Announce")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte LiveRegionAnnounce(WxkWindow* window, char* message, nuint messageLength, int priority);
+
+	// What screen readers learn of a window
+
+	[LibraryImport(Library, EntryPoint = "wxk_AccessibilityInfo_Get")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte AccessibilityInfoGet(WxkWindow* window, int* role, uint* states, WxkString** name, WxkString** platformRole);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Window_LinkLabel")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WindowLinkLabel(WxkWindow* window);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Window_SetAccessibleName")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WindowSetAccessibleName(WxkWindow* window, char* name, nuint nameLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Window_SetToolTip")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WindowSetToolTip(WxkWindow* window, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Window_NameIconButtons")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WindowNameIconButtons(WxkWindow* window);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Clipboard_SetText")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -188,13 +378,47 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte* ClipboardGetData(char* format, nuint formatLength, nuint* size);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Bytes_Free")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void BytesFree(byte* bytes);
-
 	[LibraryImport(Library, EntryPoint = "wxk_Clipboard_Flush")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ClipboardFlush();
+
+	// Drag and drop
+
+	[LibraryImport(Library, EntryPoint = "wxk_DropTarget_SetCallbacks")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DropTargetSetCallbacks(WxkDropTargetCallbacks* callbacks);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DragDrop_DoDragDrop")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int DragDropDoDragDrop(WxkWindow* source, WxkClipboardContent* content, int flags);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DropTarget_Set")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte DropTargetSet(WxkWindow* window, uint kinds, WxkStringArray* named, void* userdata);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DropTarget_Remove")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DropTargetRemove(WxkWindow* window);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DropData_GetText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* DropDataGetText(WxkDropData* data);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DropData_GetBitmap")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* DropDataGetBitmap(WxkDropData* data);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DropData_GetFiles")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkStringArray* DropDataGetFiles(WxkDropData* data);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DropData_GetBytes")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte* DropDataGetBytes(WxkDropData* data, nuint* size);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DropTarget_TestDrop")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int DropTargetTestDrop(WxkWindow* window, WxkClipboardContent* content, int x, int y, int suggested);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Image_AddPngHandler")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -244,193 +468,13 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void ImageAddAllHandlers();
 
-	// Variants
-
-	[LibraryImport(Library, EntryPoint = "wxk_Variant_new")]
+	[LibraryImport(Library, EntryPoint = "wxk_Image_LoadData")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkVariant* VariantNew();
+	public static partial byte ImageLoadData(WxkObject* image, byte* data, nuint length, int type, int index);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Variant_Free")]
+	[LibraryImport(Library, EntryPoint = "wxk_Image_SaveData")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void VariantFree(WxkVariant* variant);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Variant_SetNull")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void VariantSetNull(WxkVariant* variant);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Variant_SetString")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void VariantSetString(WxkVariant* variant, char* text, nuint textLength);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Variant_SetBool")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void VariantSetBool(WxkVariant* variant, byte value);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Variant_SetLong")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void VariantSetLong(WxkVariant* variant, long value);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Variant_SetDouble")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void VariantSetDouble(WxkVariant* variant, double value);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Variant_SetObject")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte VariantSetObject(WxkVariant* variant, WxkObject* value);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Variant_GetType")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int VariantGetType(WxkVariant* variant);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Variant_GetString")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkString* VariantGetString(WxkVariant* variant);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Variant_GetBool")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte VariantGetBool(WxkVariant* variant);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Variant_GetLong")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial long VariantGetLong(WxkVariant* variant);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Variant_GetDouble")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial double VariantGetDouble(WxkVariant* variant);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Variant_GetObject")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkObject* VariantGetObject(WxkVariant* variant);
-
-	[LibraryImport(Library, EntryPoint = "wxk_VariantList_new")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkVariantList* VariantListNew();
-
-	[LibraryImport(Library, EntryPoint = "wxk_VariantList_Add")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void VariantListAdd(WxkVariantList* list, WxkVariant* value);
-
-	[LibraryImport(Library, EntryPoint = "wxk_VariantList_Free")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void VariantListFree(WxkVariantList* list);
-
-	// Data view models
-
-	[LibraryImport(Library, EntryPoint = "wxk_DataViewItems_Add")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DataViewItemsAdd(WxkDataViewItems* items, nint item);
-
-	// Accessibility
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_GiveAccessible")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte WindowGiveAccessible(WxkWindow* window, WxkAccessible* accessible);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_SetAccessibleParts")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void WindowSetAccessibleParts(WxkWindow* window, WxkStringArray* labels, Rect* rects);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_SetAccessibleRows")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void WindowSetAccessibleRows(WxkWindow* window, WxkAccessibleRow* rows, nuint count, WxkStringArray* cellLabels, Rect* cellRects, long total);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_SetAccessibleCurrentRow")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void WindowSetAccessibleCurrentRow(WxkWindow* window, long row);
-
-	// Printing
-
-	[LibraryImport(Library, EntryPoint = "wxk_PrintPreview_Show")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkWindow* PrintPreviewShow(WxkObject* printout, WxkObject* printoutForPrinting, WxkObject* data, WxkWindow* parent, char* title, nuint titleLength, Size size);
-
-	// Live regions
-
-	[LibraryImport(Library, EntryPoint = "wxk_LiveRegion_Prepare")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte LiveRegionPrepare(WxkWindow* window);
-
-	[LibraryImport(Library, EntryPoint = "wxk_LiveRegion_Announce")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte LiveRegionAnnounce(WxkWindow* window, char* message, nuint messageLength, int priority);
-
-	// What screen readers learn of a window
-
-	[LibraryImport(Library, EntryPoint = "wxk_AccessibilityInfo_Get")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte AccessibilityInfoGet(WxkWindow* window, int* role, uint* states, WxkString** name, WxkString** platformRole);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_LinkLabel")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void WindowLinkLabel(WxkWindow* window);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_SetAccessibleName")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void WindowSetAccessibleName(WxkWindow* window, char* name, nuint nameLength);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_SetToolTip")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void WindowSetToolTip(WxkWindow* window, char* text, nuint textLength);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_NameIconButtons")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void WindowNameIconButtons(WxkWindow* window);
-
-	// Dialogs and controls made of others
-
-	[LibraryImport(Library, EntryPoint = "wxk_CredentialEntryDialog_GetUserName")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkString* CredentialEntryDialogGetUserName(WxkWindow* dialog);
-
-	[LibraryImport(Library, EntryPoint = "wxk_CredentialEntryDialog_SetUserName")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void CredentialEntryDialogSetUserName(WxkWindow* dialog, char* user, nuint userLength);
-
-	[LibraryImport(Library, EntryPoint = "wxk_CredentialEntryDialog_GetPassword")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkString* CredentialEntryDialogGetPassword(WxkWindow* dialog);
-
-	[LibraryImport(Library, EntryPoint = "wxk_CredentialEntryDialog_SetPassword")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void CredentialEntryDialogSetPassword(WxkWindow* dialog, char* password, nuint passwordLength);
-
-	// Drag and drop
-
-	[LibraryImport(Library, EntryPoint = "wxk_DropTarget_SetCallbacks")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DropTargetSetCallbacks(WxkDropTargetCallbacks* callbacks);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DragDrop_DoDragDrop")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int DragDropDoDragDrop(WxkWindow* source, WxkClipboardContent* content, int flags);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DropTarget_Set")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte DropTargetSet(WxkWindow* window, uint kinds, WxkStringArray* named, void* userdata);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DropTarget_Remove")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DropTargetRemove(WxkWindow* window);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DropData_GetText")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkString* DropDataGetText(WxkDropData* data);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DropData_GetBitmap")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkObject* DropDataGetBitmap(WxkDropData* data);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DropData_GetFiles")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkStringArray* DropDataGetFiles(WxkDropData* data);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DropData_GetBytes")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte* DropDataGetBytes(WxkDropData* data, nuint* size);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DropTarget_TestDrop")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int DropTargetTestDrop(WxkWindow* window, WxkClipboardContent* content, int x, int y, int suggested);
+	public static partial byte* ImageSaveData(WxkObject* image, int type, nuint* size);
 
 	[LibraryImport(Library, EntryPoint = "wxk_App_SetAppearance")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -443,6 +487,18 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_SystemAppearance_GetName")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkString* SystemAppearanceGetName();
+
+	[LibraryImport(Library, EntryPoint = "wxk_ManagedTaskBarIcon_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkEvtHandler* ManagedTaskBarIconNew(int type);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ManagedTaskBarIcon_SetMenu")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void ManagedTaskBarIconSetMenu(WxkEvtHandler* icon, WxkMenu* menu);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ManagedTaskBarIcon_Destroy")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void ManagedTaskBarIconDestroy(WxkEvtHandler* icon);
 
 	// Web views
 
@@ -473,16 +529,6 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_WebViewEvent_GetRequest")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial long WebViewEventGetRequest(WxkEvent* @event);
-
-	// Images in memory
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_LoadData")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ImageLoadData(WxkObject* image, byte* data, nuint length, int type, int index);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_SaveData")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte* ImageSaveData(WxkObject* image, int type, nuint* size);
 
 	// Translations
 
@@ -567,76 +613,4 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_AboutBox_Show")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void AboutBoxShow(WxkAboutInfo* about, WxkWindow* parent);
-
-	// Notifications
-
-	[LibraryImport(Library, EntryPoint = "wxk_NotificationMessage_Free")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void NotificationMessageFree(WxkEvtHandler* notification);
-
-	// Taskbar icons
-
-	[LibraryImport(Library, EntryPoint = "wxk_ManagedTaskBarIcon_new")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkEvtHandler* ManagedTaskBarIconNew(int type);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ManagedTaskBarIcon_SetMenu")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ManagedTaskBarIconSetMenu(WxkEvtHandler* icon, WxkMenu* menu);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ManagedTaskBarIcon_Destroy")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ManagedTaskBarIconDestroy(WxkEvtHandler* icon);
-
-	// Toolbar tools
-
-	[LibraryImport(Library, EntryPoint = "wxk_ToolBarTool_GetToolBar")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkWindow* ToolBarToolGetToolBar(WxkToolBarTool* tool);
-
-	// Dropped files
-
-	[LibraryImport(Library, EntryPoint = "wxk_DropFilesEvent_GetFiles")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkStringArray* DropFilesEventGetFiles(WxkEvent* @event);
-
-	// Item data
-
-	[LibraryImport(Library, EntryPoint = "wxk_ClientData_SetFree")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ClientDataSetFree(delegate* unmanaged[Cdecl]<void*, void> free);
-
-	[LibraryImport(Library, EntryPoint = "wxk_TreeCtrl_SetItemData")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void TreeCtrlSetItemData(WxkWindow* tree, nint item, void* handle);
-
-	// Validators
-
-	[LibraryImport(Library, EntryPoint = "wxk_ManagedValidator_new")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkObject* ManagedValidatorNew(delegate* unmanaged[Cdecl]<void*, WxkWindow*, WxkWindow*, byte> validate, delegate* unmanaged[Cdecl]<void*, WxkWindow*, byte> toWindow, delegate* unmanaged[Cdecl]<void*, WxkWindow*, byte> fromWindow, delegate* unmanaged[Cdecl]<void*, void> retain, delegate* unmanaged[Cdecl]<void*, void> release, delegate* unmanaged[Cdecl]<void*, void> onFree, void* userdata);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_SetValidator")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void WindowSetValidator(WxkWindow* window, WxkObject* validator);
-
-	// Events
-
-	[LibraryImport(Library, EntryPoint = "wxk_EvtHandler_Bind")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte EvtHandlerBind(WxkEvtHandler* handler, int eventType, int id, int lastId, delegate* unmanaged[Cdecl]<void*, WxkEvent*, void> callback, void* userdata, delegate* unmanaged[Cdecl]<void*, void> onFree);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Event_GetEventType")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventGetEventType(WxkEvent* @event);
-
-	[LibraryImport(Library, EntryPoint = "wxk_CloseEvent_Veto")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void CloseEventVeto(WxkEvent* @event, byte veto);
-
-	// Windows
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_GetHandle")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void* WindowGetHandle(WxkWindow* window);
 }
