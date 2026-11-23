@@ -16,3 +16,11 @@ WXK_FUNCTION(uint8_t) wxk_Toolbook_EnablePage_WindowBool(wxk_Window* self, wxk_W
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxToolbook*>(wxk::Unwrap(self))->EnablePage(static_cast<wxWindow*>(wxk::Unwrap(page)), enable != 0)) ? 1 : 0; });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_ToolbookPageChanged(void) noexcept {
+	return wxEVT_TOOLBOOK_PAGE_CHANGED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_ToolbookPageChanging(void) noexcept {
+	return wxEVT_TOOLBOOK_PAGE_CHANGING;
+}
+

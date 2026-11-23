@@ -8,3 +8,23 @@ WXK_FUNCTION(wxk_Window*) wxk_FindReplaceDialog_new(wxk_Window* parent, wxk_Obje
 	});
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_Find(void) noexcept {
+	return wxEVT_FIND;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_FindClose(void) noexcept {
+	return wxEVT_FIND_CLOSE;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_FindNext(void) noexcept {
+	return wxEVT_FIND_NEXT;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_FindReplace(void) noexcept {
+	return wxEVT_FIND_REPLACE;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_FindReplaceAll(void) noexcept {
+	return wxEVT_FIND_REPLACE_ALL;
+}
+

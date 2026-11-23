@@ -25,3 +25,35 @@ WXK_FUNCTION(uint8_t) wxk_TaskBarIcon_IsAvailable(void) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (wxTaskBarIcon::IsAvailable()) ? 1 : 0; });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_TaskbarClick(void) noexcept {
+	return wxEVT_TASKBAR_CLICK;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TaskbarLeftDclick(void) noexcept {
+	return wxEVT_TASKBAR_LEFT_DCLICK;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TaskbarLeftDown(void) noexcept {
+	return wxEVT_TASKBAR_LEFT_DOWN;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TaskbarLeftUp(void) noexcept {
+	return wxEVT_TASKBAR_LEFT_UP;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TaskbarMove(void) noexcept {
+	return wxEVT_TASKBAR_MOVE;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TaskbarRightDclick(void) noexcept {
+	return wxEVT_TASKBAR_RIGHT_DCLICK;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TaskbarRightDown(void) noexcept {
+	return wxEVT_TASKBAR_RIGHT_DOWN;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TaskbarRightUp(void) noexcept {
+	return wxEVT_TASKBAR_RIGHT_UP;
+}
+

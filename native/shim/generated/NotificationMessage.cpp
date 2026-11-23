@@ -68,3 +68,15 @@ WXK_FUNCTION(uint8_t) wxk_NotificationMessage_MSWUseToasts(const char16_t* short
 	#endif
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_NotificationMessageAction(void) noexcept {
+	return wxEVT_NOTIFICATION_MESSAGE_ACTION;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_NotificationMessageClick(void) noexcept {
+	return wxEVT_NOTIFICATION_MESSAGE_CLICK;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_NotificationMessageDismissed(void) noexcept {
+	return wxEVT_NOTIFICATION_MESSAGE_DISMISSED;
+}
+

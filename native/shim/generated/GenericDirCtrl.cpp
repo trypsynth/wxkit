@@ -100,3 +100,11 @@ WXK_FUNCTION(wxk_Window*) wxk_GenericDirCtrl_GetTreeCtrl(wxk_Window* self) noexc
 	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(static_cast<wxGenericDirCtrl*>(wxk::Unwrap(self))->GetTreeCtrl())); });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_GenericDirCtrlFileActivated(void) noexcept {
+	return wxEVT_DIRCTRL_FILEACTIVATED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_GenericDirCtrlSelectionChanged(void) noexcept {
+	return wxEVT_DIRCTRL_SELECTIONCHANGED;
+}
+

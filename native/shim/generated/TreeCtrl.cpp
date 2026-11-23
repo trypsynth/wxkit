@@ -328,3 +328,87 @@ WXK_FUNCTION(uint8_t) wxk_TreeCtrl_HasImages(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWithImages*>(static_cast<wxTreeCtrl*>(wxk::Unwrap(self)))->HasImages()) ? 1 : 0; });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_TreeBeginDrag(void) noexcept {
+	return wxEVT_TREE_BEGIN_DRAG;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeBeginLabelEdit(void) noexcept {
+	return wxEVT_TREE_BEGIN_LABEL_EDIT;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeBeginRdrag(void) noexcept {
+	return wxEVT_TREE_BEGIN_RDRAG;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeDeleteItem(void) noexcept {
+	return wxEVT_TREE_DELETE_ITEM;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeEndDrag(void) noexcept {
+	return wxEVT_TREE_END_DRAG;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeEndLabelEdit(void) noexcept {
+	return wxEVT_TREE_END_LABEL_EDIT;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeGetInfo(void) noexcept {
+	return wxEVT_TREE_GET_INFO;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeItemActivated(void) noexcept {
+	return wxEVT_TREE_ITEM_ACTIVATED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeItemCollapsed(void) noexcept {
+	return wxEVT_TREE_ITEM_COLLAPSED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeItemCollapsing(void) noexcept {
+	return wxEVT_TREE_ITEM_COLLAPSING;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeItemExpanded(void) noexcept {
+	return wxEVT_TREE_ITEM_EXPANDED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeItemExpanding(void) noexcept {
+	return wxEVT_TREE_ITEM_EXPANDING;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeItemGettooltip(void) noexcept {
+	return wxEVT_TREE_ITEM_GETTOOLTIP;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeItemMenu(void) noexcept {
+	return wxEVT_TREE_ITEM_MENU;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeItemMiddleClick(void) noexcept {
+	return wxEVT_TREE_ITEM_MIDDLE_CLICK;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeItemRightClick(void) noexcept {
+	return wxEVT_TREE_ITEM_RIGHT_CLICK;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeKeyDown(void) noexcept {
+	return wxEVT_TREE_KEY_DOWN;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeSelectionChanged(void) noexcept {
+	return wxEVT_TREE_SEL_CHANGED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeSelectionChanging(void) noexcept {
+	return wxEVT_TREE_SEL_CHANGING;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeSetInfo(void) noexcept {
+	return wxEVT_TREE_SET_INFO;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeStateImageClick(void) noexcept {
+	return wxEVT_TREE_STATE_IMAGE_CLICK;
+}
+

@@ -5,3 +5,11 @@ WXK_FUNCTION(wxk_DateTime) wxk_DateEvent_GetDate(wxk_Event* self) noexcept {
 	return wxk::Guard<wxk_DateTime>(wxk_DateTime{0, 0, 0, 0, 0, 0, 0, 0}, [&]() -> wxk_DateTime { return wxk::ToDateTime(static_cast<wxDateEvent*>(wxk::Unwrap(self))->GetDate()); });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_DateChanged(void) noexcept {
+	return wxEVT_DATE_CHANGED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TimeChanged(void) noexcept {
+	return wxEVT_TIME_CHANGED;
+}
+

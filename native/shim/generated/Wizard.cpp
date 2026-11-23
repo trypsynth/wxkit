@@ -72,3 +72,31 @@ WXK_FUNCTION(void) wxk_Wizard_SetPageSize(wxk_Window* self, wxk_Size sizePage) n
 	wxk::Guard([&] { static_cast<wxWizard*>(wxk::Unwrap(self))->SetPageSize(wxk::FromSize(sizePage)); });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_WizardBeforePageChanged(void) noexcept {
+	return wxEVT_WIZARD_BEFORE_PAGE_CHANGED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_WizardCancel(void) noexcept {
+	return wxEVT_WIZARD_CANCEL;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_WizardFinished(void) noexcept {
+	return wxEVT_WIZARD_FINISHED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_WizardHelp(void) noexcept {
+	return wxEVT_WIZARD_HELP;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_WizardPageChanged(void) noexcept {
+	return wxEVT_WIZARD_PAGE_CHANGED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_WizardPageChanging(void) noexcept {
+	return wxEVT_WIZARD_PAGE_CHANGING;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_WizardPageShown(void) noexcept {
+	return wxEVT_WIZARD_PAGE_SHOWN;
+}
+

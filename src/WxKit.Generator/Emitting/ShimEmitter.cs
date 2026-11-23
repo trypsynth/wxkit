@@ -56,11 +56,22 @@ internal static class ShimEmitter {
 			yield return ("directors.h", DirectorDeclarations(result));
 			yield return ("Directors.cpp", DirectorsFile());
 		}
-		foreach (BoundClass bound in result.Classes.Where(static bound => bound.Functions.Any())) yield return ($"{bound.Name}.cpp", ClassFile(bound));
-		foreach (IGrouping<string, BoundEventType> group in result.EventTypes.GroupBy(static type => type.Header ?? "wx/event.h").OrderBy(static group => group.Key, StringComparer.Ordinal)) {
-			string name = group.Key.Replace("wx/", string.Empty, StringComparison.Ordinal).Replace(".h", string.Empty, StringComparison.Ordinal).Replace('/', '_');
-			yield return ($"EventTypes_{name}.cpp", EventTypeFile(group));
+		// A header's event types are in the file of a class the header declares, one that sends them if
+		// it can, since an application that uses them links the code wxWidgets defines them in anyway.
+		// wx/event.h's, which every application links, share a file, and a header with no class has one
+		// of its own, so neither brings another class's code with it.
+		List<BoundClass> withFiles = [.. result.Classes.Where(static bound => bound.Functions.Any())];
+		Dictionary<BoundClass, List<BoundEventType>> homed = [];
+		foreach (IGrouping<string, BoundEventType> group in result.EventTypes.GroupBy(static type => type.Header ?? CoreEventHeader).OrderBy(static group => group.Key, StringComparer.Ordinal)) {
+			BoundClass? home = group.Key == CoreEventHeader ? null : withFiles.Where(bound => bound.Source.Header == group.Key).OrderByDescending(bound => bound.Events.Count(boundEvent => group.Contains(boundEvent.Type))).ThenBy(static bound => bound.CppName, StringComparer.Ordinal).FirstOrDefault();
+			if (home is not null) {
+				homed[home] = [.. group];
+				continue;
+			}
+			string name = group.Key == CoreEventHeader ? string.Empty : "_" + group.Key.Replace("wx/", string.Empty, StringComparison.Ordinal).Replace(".h", string.Empty, StringComparison.Ordinal).Replace('/', '_');
+			yield return ($"EventTypes{name}.cpp", EventTypeFile(group));
 		}
+		foreach (BoundClass bound in withFiles) yield return ($"{bound.Name}.cpp", ClassFile(bound, homed.GetValueOrDefault(bound) ?? []));
 	}
 
 	private static string Includes(BindingResult result) {
@@ -128,7 +139,7 @@ internal static class ShimEmitter {
 		return writer.ToString();
 	}
 
-	private static string ClassFile(BoundClass bound) {
+	private static string ClassFile(BoundClass bound, IReadOnlyList<BoundEventType> eventTypes) {
 		CodeWriter writer = new();
 		writer.Line(Banner).Line(bound.HasDirector || bound.Directors.Count > 0 ? "#include \"directors.h\"" : "#include \"includes.h\"").Line();
 		// The callbacks are C, so they're there even where the class isn't, as SetDirectors sets them.
@@ -158,18 +169,25 @@ internal static class ShimEmitter {
 			writer.Line("wxk::Guard([&] { delete wxk::Unwrap(self); });");
 			writer.Close();
 		}
+		WriteEventTypes(writer, eventTypes);
 		return writer.ToString();
 	}
+
+	private const string CoreEventHeader = "wx/event.h";
 
 	private static string EventTypeFile(IEnumerable<BoundEventType> types) {
 		CodeWriter writer = new();
 		writer.Line(Banner).Line("#include \"includes.h\"").Line();
-		foreach (BoundEventType type in types) {
+		WriteEventTypes(writer, types);
+		return writer.ToString();
+	}
+
+	private static void WriteEventTypes(CodeWriter writer, IEnumerable<BoundEventType> types) {
+		foreach (BoundEventType type in types.OrderBy(static type => type.Name, StringComparer.Ordinal)) {
 			writer.Open($"WXK_FUNCTION(int32_t) wxk_EventType_{type.Name}(void) noexcept");
 			writer.Line($"return {type.Constant};");
 			writer.Close().Line();
 		}
-		return writer.ToString();
 	}
 
 	// A director is a subclass WxKit creates instead of a class, whose overridable members call

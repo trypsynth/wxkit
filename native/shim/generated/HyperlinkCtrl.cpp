@@ -48,3 +48,7 @@ WXK_FUNCTION(void) wxk_HyperlinkCtrl_SetVisitedColour(wxk_Window* self, wxk_Colo
 	wxk::Guard([&] { static_cast<wxHyperlinkCtrl*>(wxk::Unwrap(self))->SetVisitedColour(wxk::FromColour(color)); });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_Hyperlink(void) noexcept {
+	return wxEVT_HYPERLINK;
+}
+

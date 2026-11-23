@@ -313,3 +313,19 @@ WXK_FUNCTION(uint8_t) wxk_TextCtrl_SetMargins_Point(wxk_Window* self, wxk_Point 
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTextEntry*>(static_cast<wxTextCtrl*>(wxk::Unwrap(self)))->SetMargins(wxk::FromPoint(point))) ? 1 : 0; });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_Text(void) noexcept {
+	return wxEVT_TEXT;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TextEnter(void) noexcept {
+	return wxEVT_TEXT_ENTER;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TextMaxlen(void) noexcept {
+	return wxEVT_TEXT_MAXLEN;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TextUrl(void) noexcept {
+	return wxEVT_TEXT_URL;
+}
+

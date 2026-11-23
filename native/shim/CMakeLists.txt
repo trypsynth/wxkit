@@ -86,7 +86,7 @@ add_subdirectory(../wxWidgets wx EXCLUDE_FROM_ALL)
 file(GLOB WXK_GENERATED CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/generated/*.cpp)
 # The web view's, which the shared library on Linux leaves out, since WebKitGTK would then be
 # needed by every application, and which a library of its own has instead.
-file(GLOB WXK_WEBVIEW CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/generated/WebView*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/generated/EventTypes_webview*.cpp)
+file(GLOB WXK_WEBVIEW CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/generated/WebView*.cpp)
 list(APPEND WXK_WEBVIEW ${CMAKE_CURRENT_SOURCE_DIR}/src/webview.cpp)
 list(REMOVE_ITEM WXK_GENERATED ${WXK_WEBVIEW})
 

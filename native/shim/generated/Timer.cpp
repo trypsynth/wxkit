@@ -35,3 +35,7 @@ WXK_FUNCTION(uint8_t) wxk_Timer_IsRunning(wxk_EvtHandler* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTimer*>(wxk::Unwrap(self))->IsRunning()) ? 1 : 0; });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_Timer(void) noexcept {
+	return wxEVT_TIMER;
+}
+

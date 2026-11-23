@@ -204,3 +204,11 @@ WXK_FUNCTION(uint8_t) wxk_SearchCtrl_SetMargins_Point(wxk_Window* self, wxk_Poin
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTextEntry*>(static_cast<wxSearchCtrl*>(wxk::Unwrap(self)))->SetMargins(wxk::FromPoint(point))) ? 1 : 0; });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_Search(void) noexcept {
+	return wxEVT_SEARCH;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_SearchCancel(void) noexcept {
+	return wxEVT_SEARCH_CANCEL;
+}
+

@@ -12,3 +12,7 @@ WXK_FUNCTION(wxk_Object*) wxk_ColorDialog_GetColourData(wxk_Window* self) noexce
 	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxColourData>(static_cast<wxColourDialog*>(wxk::Unwrap(self))->GetColourData()); });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_ColorChanged(void) noexcept {
+	return wxEVT_COLOUR_CHANGED;
+}
+

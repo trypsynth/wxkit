@@ -229,3 +229,59 @@ WXK_FUNCTION(uint8_t) wxk_WebView_SetUserAgent(wxk_Window* self, const char16_t*
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWebView*>(wxk::Unwrap(self))->SetUserAgent(wxk::FromUtf16(userAgent, userAgentLength))) ? 1 : 0; });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewBrowsingDataCleared(void) noexcept {
+	return wxEVT_WEBVIEW_BROWSING_DATA_CLEARED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewCreated(void) noexcept {
+	return wxEVT_WEBVIEW_CREATED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewError(void) noexcept {
+	return wxEVT_WEBVIEW_ERROR;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewFullScreenChanged(void) noexcept {
+	return wxEVT_WEBVIEW_FULLSCREEN_CHANGED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewLoaded(void) noexcept {
+	return wxEVT_WEBVIEW_LOADED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewNavigated(void) noexcept {
+	return wxEVT_WEBVIEW_NAVIGATED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewNavigating(void) noexcept {
+	return wxEVT_WEBVIEW_NAVIGATING;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewNewwindow(void) noexcept {
+	return wxEVT_WEBVIEW_NEWWINDOW;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewNewwindowFeatures(void) noexcept {
+	return wxEVT_WEBVIEW_NEWWINDOW_FEATURES;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewPdfSaved(void) noexcept {
+	return wxEVT_WEBVIEW_PDF_SAVED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewScriptMessageReceived(void) noexcept {
+	return wxEVT_WEBVIEW_SCRIPT_MESSAGE_RECEIVED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewScriptResult(void) noexcept {
+	return wxEVT_WEBVIEW_SCRIPT_RESULT;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewTitleChanged(void) noexcept {
+	return wxEVT_WEBVIEW_TITLE_CHANGED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_WebviewWindowCloseRequested(void) noexcept {
+	return wxEVT_WEBVIEW_WINDOW_CLOSE_REQUESTED;
+}
+

@@ -20,3 +20,15 @@ WXK_FUNCTION(void) wxk_ColorPickerCtrl_SetColour_Color(wxk_Window* self, wxk_Col
 	wxk::Guard([&] { static_cast<wxColourPickerCtrl*>(wxk::Unwrap(self))->SetColour(wxk::FromColour(column)); });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_ColorPickerChanged(void) noexcept {
+	return wxEVT_COLOURPICKER_CHANGED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_ColorPickerCurrentChanged(void) noexcept {
+	return wxEVT_COLOURPICKER_CURRENT_CHANGED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_ColorPickerDialogCancelled(void) noexcept {
+	return wxEVT_COLOURPICKER_DIALOG_CANCELLED;
+}
+

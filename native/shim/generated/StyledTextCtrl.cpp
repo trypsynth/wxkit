@@ -3056,3 +3056,139 @@ WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_SetMargins_Point(wxk_Window* self, wxk_
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTextEntryBase*>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self)))->SetMargins(wxk::FromPoint(point))) ? 1 : 0; });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_StcAutocompCancelled(void) noexcept {
+	return wxEVT_STC_AUTOCOMP_CANCELLED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcAutocompCharDeleted(void) noexcept {
+	return wxEVT_STC_AUTOCOMP_CHAR_DELETED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcAutocompCompleted(void) noexcept {
+	return wxEVT_STC_AUTOCOMP_COMPLETED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcAutocompSelection(void) noexcept {
+	return wxEVT_STC_AUTOCOMP_SELECTION;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcAutocompSelectionChange(void) noexcept {
+	return wxEVT_STC_AUTOCOMP_SELECTION_CHANGE;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcCalltipClick(void) noexcept {
+	return wxEVT_STC_CALLTIP_CLICK;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcChange(void) noexcept {
+	return wxEVT_STC_CHANGE;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcCharadded(void) noexcept {
+	return wxEVT_STC_CHARADDED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcClipboardCopy(void) noexcept {
+	return wxEVT_STC_CLIPBOARD_COPY;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcClipboardPaste(void) noexcept {
+	return wxEVT_STC_CLIPBOARD_PASTE;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcDoDrop(void) noexcept {
+	return wxEVT_STC_DO_DROP;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcDoubleclick(void) noexcept {
+	return wxEVT_STC_DOUBLECLICK;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcDragOver(void) noexcept {
+	return wxEVT_STC_DRAG_OVER;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcDwellend(void) noexcept {
+	return wxEVT_STC_DWELLEND;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcDwellstart(void) noexcept {
+	return wxEVT_STC_DWELLSTART;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcHotspotClick(void) noexcept {
+	return wxEVT_STC_HOTSPOT_CLICK;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcHotspotDclick(void) noexcept {
+	return wxEVT_STC_HOTSPOT_DCLICK;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcHotspotReleaseClick(void) noexcept {
+	return wxEVT_STC_HOTSPOT_RELEASE_CLICK;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcIndicatorClick(void) noexcept {
+	return wxEVT_STC_INDICATOR_CLICK;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcIndicatorRelease(void) noexcept {
+	return wxEVT_STC_INDICATOR_RELEASE;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcMacrorecord(void) noexcept {
+	return wxEVT_STC_MACRORECORD;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcMarginRightClick(void) noexcept {
+	return wxEVT_STC_MARGIN_RIGHT_CLICK;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcMarginclick(void) noexcept {
+	return wxEVT_STC_MARGINCLICK;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcModified(void) noexcept {
+	return wxEVT_STC_MODIFIED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcNeedshown(void) noexcept {
+	return wxEVT_STC_NEEDSHOWN;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcPainted(void) noexcept {
+	return wxEVT_STC_PAINTED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcRomodifyattempt(void) noexcept {
+	return wxEVT_STC_ROMODIFYATTEMPT;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcSavepointleft(void) noexcept {
+	return wxEVT_STC_SAVEPOINTLEFT;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcSavepointreached(void) noexcept {
+	return wxEVT_STC_SAVEPOINTREACHED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcStartDrag(void) noexcept {
+	return wxEVT_STC_START_DRAG;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcStyleneeded(void) noexcept {
+	return wxEVT_STC_STYLENEEDED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcUpdateui(void) noexcept {
+	return wxEVT_STC_UPDATEUI;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcUserlistselection(void) noexcept {
+	return wxEVT_STC_USERLISTSELECTION;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StcZoom(void) noexcept {
+	return wxEVT_STC_ZOOM;
+}
+

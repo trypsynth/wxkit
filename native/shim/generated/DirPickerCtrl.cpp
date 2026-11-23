@@ -20,3 +20,11 @@ WXK_FUNCTION(void) wxk_DirPickerCtrl_SetPath(wxk_Window* self, const char16_t* d
 	wxk::Guard([&] { static_cast<wxDirPickerCtrl*>(wxk::Unwrap(self))->SetPath(wxk::FromUtf16(dirname, dirnameLength)); });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_DirPickerChanged(void) noexcept {
+	return wxEVT_DIRPICKER_CHANGED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_FilePickerChanged(void) noexcept {
+	return wxEVT_FILEPICKER_CHANGED;
+}
+

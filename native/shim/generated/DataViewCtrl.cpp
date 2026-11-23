@@ -264,3 +264,79 @@ WXK_FUNCTION(void*) wxk_DataViewCtrl_GetTopItem(wxk_Window* self) noexcept {
 	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxDataViewCtrl*>(wxk::Unwrap(self))->GetTopItem()).GetID()); });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_DataViewCacheHint(void) noexcept {
+	return wxEVT_DATAVIEW_CACHE_HINT;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_DataViewColumnHeaderClick(void) noexcept {
+	return wxEVT_DATAVIEW_COLUMN_HEADER_CLICK;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_DataViewColumnHeaderRightClick(void) noexcept {
+	return wxEVT_DATAVIEW_COLUMN_HEADER_RIGHT_CLICK;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_DataViewColumnReordered(void) noexcept {
+	return wxEVT_DATAVIEW_COLUMN_REORDERED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_DataViewColumnSorted(void) noexcept {
+	return wxEVT_DATAVIEW_COLUMN_SORTED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemActivated(void) noexcept {
+	return wxEVT_DATAVIEW_ITEM_ACTIVATED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemBeginDrag(void) noexcept {
+	return wxEVT_DATAVIEW_ITEM_BEGIN_DRAG;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemCollapsed(void) noexcept {
+	return wxEVT_DATAVIEW_ITEM_COLLAPSED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemCollapsing(void) noexcept {
+	return wxEVT_DATAVIEW_ITEM_COLLAPSING;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemContextMenu(void) noexcept {
+	return wxEVT_DATAVIEW_ITEM_CONTEXT_MENU;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemDrop(void) noexcept {
+	return wxEVT_DATAVIEW_ITEM_DROP;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemDropPossible(void) noexcept {
+	return wxEVT_DATAVIEW_ITEM_DROP_POSSIBLE;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemEditingDone(void) noexcept {
+	return wxEVT_DATAVIEW_ITEM_EDITING_DONE;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemEditingStarted(void) noexcept {
+	return wxEVT_DATAVIEW_ITEM_EDITING_STARTED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemExpanded(void) noexcept {
+	return wxEVT_DATAVIEW_ITEM_EXPANDED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemExpanding(void) noexcept {
+	return wxEVT_DATAVIEW_ITEM_EXPANDING;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemStartEditing(void) noexcept {
+	return wxEVT_DATAVIEW_ITEM_START_EDITING;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemValueChanged(void) noexcept {
+	return wxEVT_DATAVIEW_ITEM_VALUE_CHANGED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_DataViewSelectionChanged(void) noexcept {
+	return wxEVT_DATAVIEW_SELECTION_CHANGED;
+}
+

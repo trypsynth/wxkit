@@ -32,3 +32,19 @@ WXK_FUNCTION(uint8_t) wxk_Treebook_IsNodeExpanded(wxk_Window* self, size_t pageI
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTreebook*>(wxk::Unwrap(self))->IsNodeExpanded(pageId)) ? 1 : 0; });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_TreebookNodeCollapsed(void) noexcept {
+	return wxEVT_TREEBOOK_NODE_COLLAPSED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreebookNodeExpanded(void) noexcept {
+	return wxEVT_TREEBOOK_NODE_EXPANDED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreebookPageChanged(void) noexcept {
+	return wxEVT_TREEBOOK_PAGE_CHANGED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreebookPageChanging(void) noexcept {
+	return wxEVT_TREEBOOK_PAGE_CHANGING;
+}
+

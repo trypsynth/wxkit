@@ -184,3 +184,31 @@ WXK_FUNCTION(wxk_Window*) wxk_TreeListCtrl_GetDataView(wxk_Window* self) noexcep
 	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(static_cast<wxTreeListCtrl*>(wxk::Unwrap(self))->GetDataView())); });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_TreeListColumnSorted(void) noexcept {
+	return wxEVT_TREELIST_COLUMN_SORTED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeListItemActivated(void) noexcept {
+	return wxEVT_TREELIST_ITEM_ACTIVATED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeListItemChecked(void) noexcept {
+	return wxEVT_TREELIST_ITEM_CHECKED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeListItemContextMenu(void) noexcept {
+	return wxEVT_TREELIST_ITEM_CONTEXT_MENU;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeListItemExpanded(void) noexcept {
+	return wxEVT_TREELIST_ITEM_EXPANDED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeListItemExpanding(void) noexcept {
+	return wxEVT_TREELIST_ITEM_EXPANDING;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TreeListSelectionChanged(void) noexcept {
+	return wxEVT_TREELIST_SELECTION_CHANGED;
+}
+

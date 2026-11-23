@@ -40,3 +40,7 @@ WXK_FUNCTION(void) wxk_FontPickerCtrl_SetSelectedFont(wxk_Window* self, const wx
 	wxk::Guard([&] { static_cast<wxFontPickerCtrl*>(wxk::Unwrap(self))->SetSelectedFont(wxk::ValueOf<wxFont>(font)); });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_FontPickerChanged(void) noexcept {
+	return wxEVT_FONTPICKER_CHANGED;
+}
+

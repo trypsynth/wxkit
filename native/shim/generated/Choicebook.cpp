@@ -12,3 +12,11 @@ WXK_FUNCTION(wxk_Window*) wxk_Choicebook_GetChoiceCtrl(wxk_Window* self) noexcep
 	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(static_cast<wxChoicebook*>(wxk::Unwrap(self))->GetChoiceCtrl())); });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_ChoicebookPageChanged(void) noexcept {
+	return wxEVT_CHOICEBOOK_PAGE_CHANGED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_ChoicebookPageChanging(void) noexcept {
+	return wxEVT_CHOICEBOOK_PAGE_CHANGING;
+}
+

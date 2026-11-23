@@ -28,3 +28,11 @@ WXK_FUNCTION(int32_t) wxk_Notebook_GetTabOrientation(wxk_Window* self) noexcept 
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxNotebook*>(wxk::Unwrap(self))->GetTabOrientation()); });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_NotebookPageChanged(void) noexcept {
+	return wxEVT_NOTEBOOK_PAGE_CHANGED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_NotebookPageChanging(void) noexcept {
+	return wxEVT_NOTEBOOK_PAGE_CHANGING;
+}
+

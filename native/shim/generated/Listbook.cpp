@@ -12,3 +12,11 @@ WXK_FUNCTION(wxk_Window*) wxk_Listbook_GetListView(wxk_Window* self) noexcept {
 	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(static_cast<wxListbook*>(wxk::Unwrap(self))->GetListView())); });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_ListbookPageChanged(void) noexcept {
+	return wxEVT_LISTBOOK_PAGE_CHANGED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_ListbookPageChanging(void) noexcept {
+	return wxEVT_LISTBOOK_PAGE_CHANGING;
+}
+

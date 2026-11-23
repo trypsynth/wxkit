@@ -60,3 +60,19 @@ WXK_FUNCTION(void) wxk_FileCtrl_SetWildcard(wxk_Window* self, const char16_t* wi
 	wxk::Guard([&] { static_cast<wxFileCtrl*>(wxk::Unwrap(self))->SetWildcard(wxk::FromUtf16(wildCard, wildCardLength)); });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_FileCtrlFileActivated(void) noexcept {
+	return wxEVT_FILECTRL_FILEACTIVATED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_FileCtrlFilterChanged(void) noexcept {
+	return wxEVT_FILECTRL_FILTERCHANGED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_FileCtrlFolderChanged(void) noexcept {
+	return wxEVT_FILECTRL_FOLDERCHANGED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_FileCtrlSelectionChanged(void) noexcept {
+	return wxEVT_FILECTRL_SELECTIONCHANGED;
+}
+

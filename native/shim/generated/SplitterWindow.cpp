@@ -112,3 +112,23 @@ WXK_FUNCTION(void) wxk_SplitterWindow_SetLastSplitPosition(wxk_Window* self, wxk
 	wxk::Guard([&] { static_cast<wxSplitterWindow*>(wxk::Unwrap(self))->SetLastSplitPosition(wxk::FromPoint(position)); });
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_SplitterDoubleclicked(void) noexcept {
+	return wxEVT_SPLITTER_DOUBLECLICKED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_SplitterSashPositionChanged(void) noexcept {
+	return wxEVT_SPLITTER_SASH_POS_CHANGED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_SplitterSashPositionChanging(void) noexcept {
+	return wxEVT_SPLITTER_SASH_POS_CHANGING;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_SplitterSashPositionResize(void) noexcept {
+	return wxEVT_SPLITTER_SASH_POS_RESIZE;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_SplitterUnsplit(void) noexcept {
+	return wxEVT_SPLITTER_UNSPLIT;
+}
+
