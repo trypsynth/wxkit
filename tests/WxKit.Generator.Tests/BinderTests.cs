@@ -34,6 +34,7 @@ public class BinderTests {
 					Overridable("OnGetLabel", "wxString", Parameter("long", "index")),
 					Overridable("OnGetNamed", "bool", Parameter("const wxString &", "name")),
 					Overridable("OnGetText", "bool", Parameter("long", "index"), Parameter("wxString *", "text"), Parameter("long *", "flags")),
+					Overridable("OnFill", "unsigned int", Parameter("wxVariant &", "value"), Parameter("unsigned int", "column")),
 					Function("Press"),
 				],
 				[new DoxygenStyle("wxBU_LEFT", "Left-justifies the label."), new DoxygenStyle("wxBU_TOP", "Aligns the label to the top.")],
@@ -197,6 +198,19 @@ public class BinderTests {
 		Assert.Contains("int64_t index, wxk_String** text, int64_t* flags", shim, StringComparison.Ordinal);
 		Assert.True(shim.IndexOf("Button_OnGetText)", StringComparison.Ordinal) < shim.IndexOf("#if wxUSE_BUTTON", StringComparison.Ordinal));
 		Assert.Throws<InvalidOperationException>(() => Bind(static tweaks => tweaks.Class("wxButton").Director("OnGetText")));
+	}
+
+	// A hand-written callback is lent an object for the call, as a model is the variant it fills,
+	// and can give back a count. A class can leave out its bound base, and the directors with it.
+	[Fact]
+	public void LendsHandwrittenCallbacksWhatTheyFill() {
+		BindingResult result = Bind(static tweaks => tweaks.Class("wxButton").InternalDirector("OnFill").NoBase());
+		string shim = Emitting.ShimEmitter.Files(result).Single(static file => file.FileName == "Button.cpp").Text;
+		Assert.Contains("uint32_t (*Button_OnFill)(wxk_Window* self, void* userdata, wxk_Variant* value, uint32_t column)", shim, StringComparison.Ordinal);
+		Assert.Contains("wxk::Wrap(&value), static_cast<uint32_t>(column))", shim, StringComparison.Ordinal);
+		Assert.Null(Bound(result, "wxButton").Base);
+		BindingResult usual = Bind();
+		Assert.Same(Bound(usual, "wxWindow"), Bound(usual, "wxButton").Base);
 	}
 
 	[Fact]

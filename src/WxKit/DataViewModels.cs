@@ -35,16 +35,17 @@ public abstract unsafe class DataViewModel {
 
 	private protected DataViewModel(bool isVirtualList, uint count) {
 		Application.VerifyAccess();
+		Directors.Install();
 		if (isVirtualList) {
 			DataViewVirtualListModel.SetCallbacks();
 		} else {
 			DataViewTreeModel.SetCallbacks();
 		}
 		// The shim reaches the model through a weak handle, since its controls keep it alive, and
-		// frees the handle when the native model goes.
+		// Directors frees the handle when the native model goes.
 		GCHandle self = GCHandle.Alloc(this, GCHandleType.Weak);
 		void* userdata = (void*)GCHandle.ToIntPtr(self);
-		WxkDataViewModel* native = isVirtualList ? WxKitNative.ManagedVirtualListModelNew(userdata, count) : WxKitNative.ManagedDataViewModelNew(userdata);
+		WxkDataViewModel* native = isVirtualList ? WxKitNative.DataViewVirtualListModelNew(userdata, count) : WxKitNative.DataViewModelNew(userdata);
 		if (native is null) {
 			self.Free();
 			throw new InvalidOperationException("The data view model could not be created.");
@@ -72,9 +73,6 @@ public abstract unsafe class DataViewModel {
 	public void Resort() => WxKitNative.DataViewModelResort(Native);
 
 	internal static T? Of<T>(void* userdata) where T : DataViewModel => GCHandle.FromIntPtr((nint)userdata).Target as T;
-
-	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	internal static void OnFree(void* userdata) => GCHandle.FromIntPtr((nint)userdata).Free();
 
 	// The model's reference, released on the GUI thread when the model is collected. Its controls
 	// hold references of their own.
@@ -135,21 +133,11 @@ public abstract unsafe class DataViewTreeModel : DataViewModel {
 	internal static void SetCallbacks() {
 		if (_callbacksSet) return;
 		_callbacksSet = true;
-		WxkDataViewModelCallbacks callbacks = new() {
-			GetValue = &CallGetValue,
-			SetValue = &CallSetValue,
-			GetParent = &CallGetParent,
-			IsContainer = &CallIsContainer,
-			GetChildren = &CallGetChildren,
-			IsEnabled = &CallIsEnabled,
-			HasContainerColumns = &CallHasContainerColumns,
-			OnFree = &OnFree,
-		};
-		WxKitNative.DataViewModelSetCallbacks(&callbacks);
+		WxKitNative.DataViewModelSetDirectors(&CallGetValue, &CallSetValue, &CallGetParent, &CallIsContainer, &CallGetChildren, &CallIsEnabled, &CallHasContainerColumns);
 	}
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static void CallGetValue(void* userdata, nint item, uint column, WxkVariant* value) {
+	private static void CallGetValue(WxkDataViewModel* self, void* userdata, WxkVariant* value, nint item, uint column) {
 		try {
 			if (Of<DataViewTreeModel>(userdata) is DataViewTreeModel model) NativeVariant.Set(value, model.GetValue(new DataViewItem(item), (int)column));
 		} catch (Exception error) {
@@ -158,7 +146,7 @@ public abstract unsafe class DataViewTreeModel : DataViewModel {
 	}
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static byte CallSetValue(void* userdata, WxkVariant* value, nint item, uint column) {
+	private static byte CallSetValue(WxkDataViewModel* self, void* userdata, WxkVariant* value, nint item, uint column) {
 		try {
 			return Of<DataViewTreeModel>(userdata) is DataViewTreeModel model && model.SetValue(NativeVariant.Get(value), new DataViewItem(item), (int)column) ? (byte)1 : (byte)0;
 		} catch (Exception error) {
@@ -168,7 +156,7 @@ public abstract unsafe class DataViewTreeModel : DataViewModel {
 	}
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static nint CallGetParent(void* userdata, nint item) {
+	private static nint CallGetParent(WxkDataViewModel* self, void* userdata, nint item) {
 		try {
 			return Of<DataViewTreeModel>(userdata) is DataViewTreeModel model ? model.GetParent(new DataViewItem(item)).Value : 0;
 		} catch (Exception error) {
@@ -178,7 +166,7 @@ public abstract unsafe class DataViewTreeModel : DataViewModel {
 	}
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static byte CallIsContainer(void* userdata, nint item) {
+	private static byte CallIsContainer(WxkDataViewModel* self, void* userdata, nint item) {
 		try {
 			return Of<DataViewTreeModel>(userdata) is DataViewTreeModel model && (item == 0 || model.IsContainer(new DataViewItem(item))) ? (byte)1 : (byte)0;
 		} catch (Exception error) {
@@ -188,17 +176,24 @@ public abstract unsafe class DataViewTreeModel : DataViewModel {
 	}
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static void CallGetChildren(void* userdata, nint item, WxkDataViewItems* children) {
+	private static uint CallGetChildren(WxkDataViewModel* self, void* userdata, nint item, WxkDataViewItems* children) {
+		// wxWidgets reads how many children were added, which are all of them, even if the model
+		// stopped partway through with an exception.
+		uint added = 0;
 		try {
-			if (Of<DataViewTreeModel>(userdata) is not DataViewTreeModel model) return;
-			foreach (DataViewItem child in model.GetChildren(new DataViewItem(item))) WxKitNative.DataViewItemsAdd(children, child.Value);
+			if (Of<DataViewTreeModel>(userdata) is not DataViewTreeModel model) return 0;
+			foreach (DataViewItem child in model.GetChildren(new DataViewItem(item))) {
+				WxKitNative.DataViewItemsAdd(children, child.Value);
+				added++;
+			}
 		} catch (Exception error) {
 			Application.ReportException(error);
 		}
+		return added;
 	}
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static byte CallIsEnabled(void* userdata, nint item, uint column) {
+	private static byte CallIsEnabled(WxkDataViewModel* self, void* userdata, nint item, uint column) {
 		try {
 			return Of<DataViewTreeModel>(userdata) is not DataViewTreeModel model || model.IsEnabled(new DataViewItem(item), (int)column) ? (byte)1 : (byte)0;
 		} catch (Exception error) {
@@ -208,7 +203,7 @@ public abstract unsafe class DataViewTreeModel : DataViewModel {
 	}
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static byte CallHasContainerColumns(void* userdata, nint item) {
+	private static byte CallHasContainerColumns(WxkDataViewModel* self, void* userdata, nint item) {
 		try {
 			return Of<DataViewTreeModel>(userdata) is DataViewTreeModel model && model.HasContainerColumns(new DataViewItem(item)) ? (byte)1 : (byte)0;
 		} catch (Exception error) {
@@ -329,34 +324,34 @@ public abstract unsafe class DataViewVirtualListModel : DataViewModel {
 	}
 
 	/// <summary>How many rows there are.</summary>
-	public int Count => (int)WxKitNative.VirtualListModelGetCount(Native);
+	public int Count => (int)WxKitNative.DataViewVirtualListModelGetCount(Native);
 
 	/// <summary>The item a row is.</summary>
-	public DataViewItem GetItem(int row) => new(WxKitNative.VirtualListModelGetItem(Native, checked((uint)row)));
+	public DataViewItem GetItem(int row) => new(WxKitNative.DataViewVirtualListModelGetItem(Native, checked((uint)row)));
 
 	/// <summary>The row an item is.</summary>
-	public int GetRow(DataViewItem item) => (int)WxKitNative.VirtualListModelGetRow(Native, item.Value);
+	public int GetRow(DataViewItem item) => (int)WxKitNative.DataViewVirtualListModelGetRow(Native, item.Value);
 
 	/// <summary>Changes how many rows there are, and tells the controls that every row changed.</summary>
-	public void Reset(int count) => WxKitNative.VirtualListModelReset(Native, checked((uint)count));
+	public void Reset(int count) => WxKitNative.DataViewVirtualListModelReset(Native, checked((uint)count));
 
 	/// <summary>Tells the controls that a row was added at the end.</summary>
-	public void RowAppended() => WxKitNative.VirtualListModelRowAppended(Native);
+	public void RowAppended() => WxKitNative.DataViewVirtualListModelRowAppended(Native);
 
 	/// <summary>Tells the controls that a row was added at the start.</summary>
-	public void RowPrepended() => WxKitNative.VirtualListModelRowPrepended(Native);
+	public void RowPrepended() => WxKitNative.DataViewVirtualListModelRowPrepended(Native);
 
 	/// <summary>Tells the controls that a row was added before another.</summary>
-	public void RowInserted(int before) => WxKitNative.VirtualListModelRowInserted(Native, checked((uint)before));
+	public void RowInserted(int before) => WxKitNative.DataViewVirtualListModelRowInserted(Native, checked((uint)before));
 
 	/// <summary>Tells the controls that a row was deleted.</summary>
-	public void RowDeleted(int row) => WxKitNative.VirtualListModelRowDeleted(Native, checked((uint)row));
+	public void RowDeleted(int row) => WxKitNative.DataViewVirtualListModelRowDeleted(Native, checked((uint)row));
 
 	/// <summary>Tells the controls that a row's values changed.</summary>
-	public void RowChanged(int row) => WxKitNative.VirtualListModelRowChanged(Native, checked((uint)row));
+	public void RowChanged(int row) => WxKitNative.DataViewVirtualListModelRowChanged(Native, checked((uint)row));
 
 	/// <summary>Tells the controls that one value of a row changed.</summary>
-	public void RowValueChanged(int row, int column) => WxKitNative.VirtualListModelRowValueChanged(Native, checked((uint)row), checked((uint)column));
+	public void RowValueChanged(int row, int column) => WxKitNative.DataViewVirtualListModelRowValueChanged(Native, checked((uint)row), checked((uint)column));
 
 	/// <summary>The row's value in a column.</summary>
 	protected abstract object? GetValue(int row, int column);
@@ -370,17 +365,11 @@ public abstract unsafe class DataViewVirtualListModel : DataViewModel {
 	internal static void SetCallbacks() {
 		if (_callbacksSet) return;
 		_callbacksSet = true;
-		WxkVirtualListModelCallbacks callbacks = new() {
-			GetValue = &CallGetValue,
-			SetValue = &CallSetValue,
-			IsEnabled = &CallIsEnabled,
-			OnFree = &OnFree,
-		};
-		WxKitNative.VirtualListModelSetCallbacks(&callbacks);
+		WxKitNative.DataViewVirtualListModelSetDirectors(&CallGetValue, &CallSetValue, &CallIsEnabled);
 	}
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static void CallGetValue(void* userdata, uint row, uint column, WxkVariant* value) {
+	private static void CallGetValue(WxkDataViewModel* self, void* userdata, WxkVariant* value, uint row, uint column) {
 		try {
 			if (Of<DataViewVirtualListModel>(userdata) is DataViewVirtualListModel model) NativeVariant.Set(value, model.GetValue((int)row, (int)column));
 		} catch (Exception error) {
@@ -389,7 +378,7 @@ public abstract unsafe class DataViewVirtualListModel : DataViewModel {
 	}
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static byte CallSetValue(void* userdata, WxkVariant* value, uint row, uint column) {
+	private static byte CallSetValue(WxkDataViewModel* self, void* userdata, WxkVariant* value, uint row, uint column) {
 		try {
 			return Of<DataViewVirtualListModel>(userdata) is DataViewVirtualListModel model && model.SetValue(NativeVariant.Get(value), (int)row, (int)column) ? (byte)1 : (byte)0;
 		} catch (Exception error) {
@@ -399,7 +388,7 @@ public abstract unsafe class DataViewVirtualListModel : DataViewModel {
 	}
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static byte CallIsEnabled(void* userdata, uint row, uint column) {
+	private static byte CallIsEnabled(WxkDataViewModel* self, void* userdata, uint row, uint column) {
 		try {
 			return Of<DataViewVirtualListModel>(userdata) is not DataViewVirtualListModel model || model.IsEnabled((int)row, (int)column) ? (byte)1 : (byte)0;
 		} catch (Exception error) {

@@ -68,6 +68,16 @@ internal static class ShimEmitter {
 		writer.Line(Banner).Line("#pragma once").Line().Line("#include \"../src/shim.h\"").Line();
 		IEnumerable<string?> headers = result.Classes.Select(static bound => bound.Source.Header).Concat(result.EventTypes.Select(static type => type.Header));
 		foreach (string header in headers.OfType<string>().Distinct().Order(StringComparer.Ordinal)) writer.Line($"#include <{header}>");
+		// A class that isn't a wxObject converts to and from its handle here, so every file that takes one can.
+		foreach (BoundClass bound in result.Classes.Where(static bound => bound.Handle.IsPlain && bound.Handle.CppBase == bound.CppName)) {
+			writer.Line();
+			if (bound.Tweak.ClassGuard is string guard) writer.Line($"#if {guard}");
+			writer.Line("namespace wxk {");
+			writer.Line($"inline {bound.CppName}* Unwrap({bound.Handle.CType}* value) {{ return reinterpret_cast<{bound.CppName}*>(value); }}");
+			writer.Line($"inline {bound.Handle.CType}* Wrap({bound.CppName}* value) {{ return reinterpret_cast<{bound.Handle.CType}*>(value); }}");
+			writer.Line("} // namespace wxk");
+			if (bound.Tweak.ClassGuard is not null) writer.Line("#endif");
+		}
 		return writer.ToString();
 	}
 
@@ -128,13 +138,6 @@ internal static class ShimEmitter {
 			writer.Line().Line("} // namespace wxk::directors").Line();
 		}
 		if (bound.Tweak.ClassGuard is string classGuard) writer.Line($"#if {classGuard}").Line();
-		if (bound.Handle.IsPlain) {
-			// Only this file uses the class's handle, so it converts here.
-			writer.Line("namespace wxk {").Line();
-			writer.Line($"inline {bound.CppName}* Unwrap({bound.Handle.CType}* value) {{ return reinterpret_cast<{bound.CppName}*>(value); }}");
-			writer.Line($"inline {bound.Handle.CType}* Wrap({bound.CppName}* value) {{ return reinterpret_cast<{bound.Handle.CType}*>(value); }}");
-			writer.Line().Line("} // namespace wxk").Line();
-		}
 		if (bound.Directors.Count > 0 || bound.HasDirector) {
 			writer.Line("namespace {").Line();
 			WriteDirectors(writer, bound);

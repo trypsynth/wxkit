@@ -35,7 +35,8 @@ internal static class Lists {
 			.ParameterName("GetSelections", "sel", "selections")
 			.ParameterName("SetSelections", "sel", "selections")
 			.DiscardUnboundReturns()
-			.Ignore("AssociateModel", "GetModel", "AppendColumn", "PrependColumn", "InsertColumn", "DeleteColumn", "ClearColumns", "GetSortingColumns")
+			.Internal("AssociateModel", "DeleteColumn", "ClearColumns")
+			.Ignore("GetModel", "AppendColumn", "PrependColumn", "InsertColumn", "GetSortingColumns")
 			.ParameterEnum("AppendTextColumn", "flags", "wxDataViewColumnFlags")
 			.ParameterEnum("AppendToggleColumn", "flags", "wxDataViewColumnFlags")
 			.ParameterEnum("AppendProgressColumn", "flags", "wxDataViewColumnFlags")
@@ -64,6 +65,23 @@ internal static class Lists {
 			.ParameterEnum("SetDragFlags", "flags", "DragFlags")
 			.ParameterEnum("GetDragFlags", "return", "DragFlags"));
 		tweaks.Class("wxDataViewIconText").ValueObject();
+		// The hand-written DataViewModel and VirtualListModel make directors, whose callbacks they
+		// give. A model is reference counted, so .NET releases its reference with DecRef. The
+		// virtual list model's base, wxDataViewListModel, answers the tree model's questions from
+		// rows, so its director only overrides the rows' members.
+		tweaks.Class("wxDataViewModel", model => model
+			.Handwritten()
+			.Plain()
+			.InheritUnboundBases()
+			.Internal("wxDataViewModel", "DecRef", "ItemAdded", "ItemDeleted", "ItemChanged", "ValueChanged", "Cleared", "Resort")
+			.InternalDirector("GetValue", "SetValue", "GetParent", "IsContainer", "GetChildren", "IsEnabled", "HasContainerColumns"));
+		tweaks.Class("wxDataViewVirtualListModel", model => model
+			.Handwritten()
+			.Plain("wxDataViewModel")
+			.NoBase()
+			.InheritUnboundBases()
+			.Internal("wxDataViewVirtualListModel", "Reset", "RowAppended", "RowPrepended", "RowInserted", "RowDeleted", "RowChanged", "RowValueChanged", "GetCount", "GetItem", "GetRow")
+			.InternalDirector("GetValueByRow", "SetValueByRow", "IsEnabledByRow"));
 		// Controls made of others that screen readers know: a tree of items with columns, the file
 		// system as a tree, a file chooser to put in a window, and a list that can be edited.
 		foreach (string control in (string[])["wxTreeListCtrl", "wxTreeListEvent", "wxGenericDirCtrl", "wxFileCtrl", "wxFileCtrlEvent", "wxEditableListBox"]) {

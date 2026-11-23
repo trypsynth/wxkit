@@ -2202,6 +2202,18 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* DataViewCtrlNew(WxkWindow* parent, int id, Point position, Size size, long style);
 
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewCtrl_AssociateModel")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte DataViewCtrlAssociateModel(WxkWindow* self, WxkDataViewModel* model);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewCtrl_ClearColumns")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte DataViewCtrlClearColumns(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewCtrl_DeleteColumn")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte DataViewCtrlDeleteColumn(WxkWindow* self, WxkDataViewColumn* column);
+
 	[LibraryImport(Library, EntryPoint = "wxk_DataViewCtrl_AppendBitmapColumn_StringUIntDataViewCellModeIntAlignmentDataViewColumnFlags")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkDataViewColumn* DataViewCtrlAppendBitmapColumnStringUIntDataViewCellModeIntAlignmentDataViewColumnFlags(WxkWindow* self, char* label, nuint labelLength, uint modelColumn, int mode, int width, int align, int flags);
@@ -2634,6 +2646,42 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial uint DataViewListCtrlGetItemCount(WxkWindow* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewModel_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkDataViewModel* DataViewModelNew(void* userdata);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewModel_Cleared")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte DataViewModelCleared(WxkDataViewModel* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewModel_ItemAdded")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte DataViewModelItemAdded(WxkDataViewModel* self, nint parent, nint item);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewModel_ItemChanged")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte DataViewModelItemChanged(WxkDataViewModel* self, nint item);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewModel_ItemDeleted")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte DataViewModelItemDeleted(WxkDataViewModel* self, nint parent, nint item);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewModel_Resort")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DataViewModelResort(WxkDataViewModel* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewModel_ValueChanged")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte DataViewModelValueChanged(WxkDataViewModel* self, nint item, uint column);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewModel_DecRef")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DataViewModelDecRef(WxkDataViewModel* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewModel_SetDirectors")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DataViewModelSetDirectors(delegate* unmanaged[Cdecl]<WxkDataViewModel*, void*, WxkVariant*, nint, uint, void> getValue, delegate* unmanaged[Cdecl]<WxkDataViewModel*, void*, WxkVariant*, nint, uint, byte> setValue, delegate* unmanaged[Cdecl]<WxkDataViewModel*, void*, nint, nint> getParent, delegate* unmanaged[Cdecl]<WxkDataViewModel*, void*, nint, byte> isContainer, delegate* unmanaged[Cdecl]<WxkDataViewModel*, void*, nint, WxkDataViewItems*, uint> getChildren, delegate* unmanaged[Cdecl]<WxkDataViewModel*, void*, nint, uint, byte> isEnabled, delegate* unmanaged[Cdecl]<WxkDataViewModel*, void*, nint, byte> hasContainerColumns);
+
 	[LibraryImport(Library, EntryPoint = "wxk_DataViewTreeCtrl_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* DataViewTreeCtrlNew(WxkWindow* parent, int id, Point position, Size size, long style);
@@ -2721,6 +2769,54 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_DataViewTreeCtrl_SetItemText")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DataViewTreeCtrlSetItemText(WxkWindow* self, nint item, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewVirtualListModel_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkDataViewModel* DataViewVirtualListModelNew(void* userdata, uint initialSize);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewVirtualListModel_GetItem")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial nint DataViewVirtualListModelGetItem(WxkDataViewModel* self, uint row);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewVirtualListModel_Reset")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DataViewVirtualListModelReset(WxkDataViewModel* self, uint newSize);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewVirtualListModel_RowAppended")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DataViewVirtualListModelRowAppended(WxkDataViewModel* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewVirtualListModel_RowChanged")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DataViewVirtualListModelRowChanged(WxkDataViewModel* self, uint row);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewVirtualListModel_RowDeleted")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DataViewVirtualListModelRowDeleted(WxkDataViewModel* self, uint row);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewVirtualListModel_RowInserted")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DataViewVirtualListModelRowInserted(WxkDataViewModel* self, uint before);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewVirtualListModel_RowPrepended")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DataViewVirtualListModelRowPrepended(WxkDataViewModel* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewVirtualListModel_RowValueChanged")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DataViewVirtualListModelRowValueChanged(WxkDataViewModel* self, uint row, uint column);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewVirtualListModel_GetCount")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial uint DataViewVirtualListModelGetCount(WxkDataViewModel* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewVirtualListModel_GetRow")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial uint DataViewVirtualListModelGetRow(WxkDataViewModel* self, nint item);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DataViewVirtualListModel_SetDirectors")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DataViewVirtualListModelSetDirectors(delegate* unmanaged[Cdecl]<WxkDataViewModel*, void*, WxkVariant*, uint, uint, void> getValueByRow, delegate* unmanaged[Cdecl]<WxkDataViewModel*, void*, WxkVariant*, uint, uint, byte> setValueByRow, delegate* unmanaged[Cdecl]<WxkDataViewModel*, void*, uint, uint, byte> isEnabledByRow);
 
 	[LibraryImport(Library, EntryPoint = "wxk_DateEvent_GetDate")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

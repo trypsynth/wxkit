@@ -76,26 +76,6 @@ typedef struct wxk_DataViewModel wxk_DataViewModel;
 // The wxDataViewItemArray a model fills with an item's children.
 typedef struct wxk_DataViewItems wxk_DataViewItems;
 
-// The callbacks of every model whose items come from .NET. An item is the id .NET gave it.
-typedef struct wxk_DataViewModelCallbacks {
-	void (*getValue)(void* userdata, void* item, uint32_t column, wxk_Variant* value);
-	uint8_t (*setValue)(void* userdata, const wxk_Variant* value, void* item, uint32_t column);
-	void* (*getParent)(void* userdata, void* item);
-	uint8_t (*isContainer)(void* userdata, void* item);
-	void (*getChildren)(void* userdata, void* item, wxk_DataViewItems* children);
-	uint8_t (*isEnabled)(void* userdata, void* item, uint32_t column);
-	uint8_t (*hasContainerColumns)(void* userdata, void* item);
-	void (*onFree)(void* userdata);
-} wxk_DataViewModelCallbacks;
-
-// The callbacks of every virtual list model whose rows come from .NET.
-typedef struct wxk_VirtualListModelCallbacks {
-	void (*getValue)(void* userdata, uint32_t row, uint32_t column, wxk_Variant* value);
-	uint8_t (*setValue)(void* userdata, const wxk_Variant* value, uint32_t row, uint32_t column);
-	uint8_t (*isEnabled)(void* userdata, uint32_t row, uint32_t column);
-	void (*onFree)(void* userdata);
-} wxk_VirtualListModelCallbacks;
-
 // Clipboard content in several formats, which wxk_Clipboard_SetContent takes ownership of.
 typedef struct wxk_ClipboardContent wxk_ClipboardContent;
 
@@ -299,34 +279,8 @@ WXK_FUNCTION(void) wxk_VariantList_Free(wxk_VariantList* list) WXK_NOEXCEPT;
 
 // Data view models
 
-WXK_FUNCTION(void) wxk_DataViewModel_SetCallbacks(const wxk_DataViewModelCallbacks* callbacks) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_VirtualListModel_SetCallbacks(const wxk_VirtualListModelCallbacks* callbacks) WXK_NOEXCEPT;
-// A model with one reference, which the caller releases with wxk_DataViewModel_DecRef.
-WXK_FUNCTION(wxk_DataViewModel*) wxk_ManagedDataViewModel_new(void* userdata) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_DataViewModel*) wxk_ManagedVirtualListModel_new(void* userdata, uint32_t count) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_DataViewModel_DecRef(wxk_DataViewModel* model) WXK_NOEXCEPT;
+// Adds a child to the array a model's GetChildren fills. The models' members and directors are generated.
 WXK_FUNCTION(void) wxk_DataViewItems_Add(wxk_DataViewItems* items, wxk_ItemId item) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_DataViewModel_ItemAdded(wxk_DataViewModel* model, wxk_ItemId parent, wxk_ItemId item) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_DataViewModel_ItemDeleted(wxk_DataViewModel* model, wxk_ItemId parent, wxk_ItemId item) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_DataViewModel_ItemChanged(wxk_DataViewModel* model, wxk_ItemId item) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_DataViewModel_ValueChanged(wxk_DataViewModel* model, wxk_ItemId item, uint32_t column) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_DataViewModel_Cleared(wxk_DataViewModel* model) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_DataViewModel_Resort(wxk_DataViewModel* model) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_VirtualListModel_Reset(wxk_DataViewModel* model, uint32_t count) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_VirtualListModel_RowAppended(wxk_DataViewModel* model) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_VirtualListModel_RowPrepended(wxk_DataViewModel* model) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_VirtualListModel_RowInserted(wxk_DataViewModel* model, uint32_t before) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_VirtualListModel_RowDeleted(wxk_DataViewModel* model, uint32_t row) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_VirtualListModel_RowChanged(wxk_DataViewModel* model, uint32_t row) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_VirtualListModel_RowValueChanged(wxk_DataViewModel* model, uint32_t row, uint32_t column) WXK_NOEXCEPT;
-WXK_FUNCTION(uint32_t) wxk_VirtualListModel_GetCount(wxk_DataViewModel* model) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_ItemId) wxk_VirtualListModel_GetItem(wxk_DataViewModel* model, uint32_t row) WXK_NOEXCEPT;
-WXK_FUNCTION(uint32_t) wxk_VirtualListModel_GetRow(wxk_DataViewModel* model, wxk_ItemId item) WXK_NOEXCEPT;
-// Shows the model in the control, which takes a reference to it.
-// Delete one or all of a data view's columns. The managed side marks their objects destroyed.
-WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_DeleteColumn(wxk_Window* control, wxk_DataViewColumn* column) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_ClearColumns(wxk_Window* control) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_AssociateModel(wxk_Window* control, wxk_DataViewModel* model) WXK_NOEXCEPT;
 
 // Accessibility
 

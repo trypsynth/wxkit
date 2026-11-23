@@ -24,13 +24,6 @@ int32_t (*Accessible_Select)(wxk_Accessible* self, void* userdata, int32_t child
 
 #if wxUSE_ACCESSIBILITY
 
-namespace wxk {
-
-inline wxAccessible* Unwrap(wxk_Accessible* value) { return reinterpret_cast<wxAccessible*>(value); }
-inline wxk_Accessible* Wrap(wxAccessible* value) { return reinterpret_cast<wxk_Accessible*>(value); }
-
-} // namespace wxk
-
 namespace {
 
 struct AccessibleDirector final : wxAccessible {

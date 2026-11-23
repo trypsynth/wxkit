@@ -65,14 +65,14 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		}
 		foreach (ClassTweak tweak in tweaks.Classes.Values) {
 			if (!api.Classes.TryGetValue(tweak.CppName, out DoxygenClass? source)) throw new InvalidOperationException($"A tweak names {tweak.CppName}, which the interface headers do not have.");
-			HandleKind handle = tweak.IsStaticOnly ? HandleKind.Static : tweak.IsPlain ? HandleKind.Plain(tweak.CppName) : tweak.IsValueObject ? HandleKind.Value : tweak.IsOwnedObject ? HandleKind.Owned : HandleFor(source.Name);
+			HandleKind handle = tweak.IsStaticOnly ? HandleKind.Static : tweak.IsPlain ? HandleKind.Plain(tweak.PlainHandle ?? tweak.CppName) : tweak.IsValueObject ? HandleKind.Value : tweak.IsOwnedObject ? HandleKind.Owned : HandleFor(source.Name);
 			_classes[tweak.CppName] = new BoundClass(source, tweak, handle);
 		}
 		foreach (BoundClass bound in _classes.Values) {
 			List<string> ancestors = Ancestors(bound.CppName);
 			// A base must share the class's lifetime, so a validator, which WxKit owns, does not
 			// derive from EvtHandler, which wxWidgets owns.
-			bound.Base = ancestors.Skip(1).Select(name => _classes.GetValueOrDefault(name)).FirstOrDefault(candidate => candidate is not null && candidate.Handle.IsOwned == bound.Handle.IsOwned);
+			bound.Base = bound.Tweak.HasNoBase ? null : ancestors.Skip(1).Select(name => _classes.GetValueOrDefault(name)).FirstOrDefault(candidate => candidate is not null && candidate.Handle.IsOwned == bound.Handle.IsOwned);
 			bound.IsTopLevel = ancestors.Contains("wxTopLevelWindow");
 		}
 		// Enums are bound first, so a default can name their members.
@@ -231,10 +231,10 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 			if (!bound.Tweak.DirectorMembers.Contains(named)) throw new InvalidOperationException($"A tweak calls .NET around {bound.CppName}::{named}, which isn't one of its directors.");
 		}
 		foreach (string name in bound.Tweak.DirectorMembers) {
-			DoxygenMember member = bound.Source.Members.FirstOrDefault(member => member.Name == name && member.IsVirtual && !member.IsStatic) ?? throw new InvalidOperationException($"A tweak lets C# override {bound.CppName}::{name}, which is not one of its virtual members.");
+			DoxygenMember member = MembersOf(bound.Source, bound.Tweak.InheritsUnboundBases).FirstOrDefault(member => member.Name == name && member.IsVirtual && !member.IsStatic) ?? throw new InvalidOperationException($"A tweak lets C# override {bound.CppName}::{name}, which is not one of its virtual members.");
 			BoundFunction? function = BindFunction(bound, member, isConstructor: false);
 			// A hand-written callback can also write through a number's pointer, as GetPageInfo's are.
-			bool CanCallBack(Conversion conversion) => conversion is BoolConversion or NumberConversion or EnumConversion || (bound.Tweak.IsDirectorInternal && conversion is OutConversion { CanCallBack: true } or CallbackOutConversion or GeometryConversion);
+			bool CanCallBack(Conversion conversion) => conversion is BoolConversion or NumberConversion or EnumConversion || (bound.Tweak.IsDirectorInternal && conversion is OutConversion { CanCallBack: true } or CallbackOutConversion or CallbackLentConversion or GeometryConversion or ItemIdConversion or CountConversion);
 			if (function is null || function.Parameters.Count != member.Parameters.Count || function.Returns.CallbackCType is null || !function.Parameters.All(parameter => CanCallBack(parameter.Conversion))) {
 				string problem = function is null ? "a type the generator can't bind" : function.Returns.CallbackCType is null ? $"its return, a {member.Type}" : string.Join(", ", function.Parameters.Where(parameter => !CanCallBack(parameter.Conversion)).Select(static parameter => $"{parameter.CppName}, as {parameter.Conversion.GetType().Name}").DefaultIfEmpty("a parameter it leaves out"));
 				throw new InvalidOperationException($"C# cannot override {bound.CppName}::{name} yet: a director cannot convert {problem}.");
@@ -409,7 +409,9 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 	// What a hand-written callback gives back through a pointer or a reference: text, a long, an
 	// enum, a rectangle, or an object's handle, such as an accessible object's name, state, role,
 	// location, and child.
-	private CallbackOutConversion? CallbackOutFor(CppType type, BoundClass owner) {
+	private Conversion? CallbackOutFor(CppType type, BoundClass owner) {
+		if (type is { Name: "wxVariant", IsReference: true, Pointers: 0 }) return new CallbackLentConversion("wxk_Variant*", "WxkVariant*", type.IsConst ? "wxk::Wrap(const_cast<wxVariant*>(&{0}))" : "wxk::Wrap(&{0})");
+		if (type is { Name: "wxDataViewItemArray", IsReference: true, IsConst: false, Pointers: 0 }) return new CallbackLentConversion("wxk_DataViewItems*", "WxkDataViewItems*", "reinterpret_cast<wxk_DataViewItems*>(&{0})");
 		if (type.IsConst) return null;
 		if (type.IsReference && type.Pointers == 0) return type.Name == "wxRect" ? new CallbackOutConversion("wxRect", "wxk_Rect", "Rect", byReference: true) : null;
 		if (type.IsReference) return null;
@@ -470,7 +472,8 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 			// Hand-written code takes any object's handle from an internal member, such as a printout's
 			// DC or a menu's item, and knows what it may do with it.
 			if (owner.Tweak.InternalMembers.Contains(member)) return new ObjectConversion(target);
-			if (target.Handle == HandleKind.MenuItem) return null;
+			// A menu item's handle, and a class's that isn't a wxObject, are only for hand-written code.
+			if (target.Handle == HandleKind.MenuItem || target.Handle.IsPlain) return null;
 			return isReturn && !target.Handle.IsEvtHandler && !target.Handle.IsKeptByOwner ? null : new ObjectConversion(target);
 		}
 		// A rectangle or strings a call fills by reference are out parameters. Only a getter's

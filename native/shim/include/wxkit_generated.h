@@ -692,6 +692,9 @@ WXK_FUNCTION(uint8_t) wxk_DataViewColumn_IsSortOrderAscending(wxk_DataViewColumn
 // wxDataViewCtrl
 
 WXK_FUNCTION(wxk_Window*) wxk_DataViewCtrl_new(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_AssociateModel(wxk_Window* self, wxk_DataViewModel* model) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_ClearColumns(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_DeleteColumn(wxk_Window* self, wxk_DataViewColumn* column) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_DataViewColumn*) wxk_DataViewCtrl_AppendBitmapColumn_StringUIntDataViewCellModeIntAlignmentDataViewColumnFlags(wxk_Window* self, const char16_t* label, size_t labelLength, uint32_t modelColumn, int32_t mode, int32_t width, int32_t align, int32_t flags) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_DataViewColumn*) wxk_DataViewCtrl_AppendBitmapColumn_BitmapUIntDataViewCellModeIntAlignmentDataViewColumnFlags(wxk_Window* self, const wxk_Object* label, uint32_t modelColumn, int32_t mode, int32_t width, int32_t align, int32_t flags) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_DataViewColumn*) wxk_DataViewCtrl_PrependBitmapColumn_StringUIntDataViewCellModeIntAlignmentDataViewColumnFlags(wxk_Window* self, const char16_t* label, size_t labelLength, uint32_t modelColumn, int32_t mode, int32_t width, int32_t align, int32_t flags) WXK_NOEXCEPT;
@@ -810,6 +813,18 @@ WXK_FUNCTION(void*) wxk_DataViewListCtrl_RowToItem(wxk_Window* self, int32_t row
 WXK_FUNCTION(int32_t) wxk_DataViewListCtrl_GetSelectedRow(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint32_t) wxk_DataViewListCtrl_GetItemCount(wxk_Window* self) WXK_NOEXCEPT;
 
+// wxDataViewModel
+
+WXK_FUNCTION(wxk_DataViewModel*) wxk_DataViewModel_new(void* userdata) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_DataViewModel_Cleared(wxk_DataViewModel* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_DataViewModel_ItemAdded(wxk_DataViewModel* self, void* parent, void* item) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_DataViewModel_ItemChanged(wxk_DataViewModel* self, void* item) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_DataViewModel_ItemDeleted(wxk_DataViewModel* self, void* parent, void* item) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DataViewModel_Resort(wxk_DataViewModel* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_DataViewModel_ValueChanged(wxk_DataViewModel* self, void* item, uint32_t column) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DataViewModel_DecRef(wxk_DataViewModel* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DataViewModel_SetDirectors(void (*getValue)(wxk_DataViewModel* self, void* userdata, wxk_Variant* variant, void* item, uint32_t col), uint8_t (*setValue)(wxk_DataViewModel* self, void* userdata, wxk_Variant* variant, void* item, uint32_t col), void* (*getParent)(wxk_DataViewModel* self, void* userdata, void* item), uint8_t (*isContainer)(wxk_DataViewModel* self, void* userdata, void* item), uint32_t (*getChildren)(wxk_DataViewModel* self, void* userdata, void* item, wxk_DataViewItems* children), uint8_t (*isEnabled)(wxk_DataViewModel* self, void* userdata, void* item, uint32_t col), uint8_t (*hasContainerColumns)(wxk_DataViewModel* self, void* userdata, void* item)) WXK_NOEXCEPT;
+
 // wxDataViewTreeCtrl
 
 WXK_FUNCTION(wxk_Window*) wxk_DataViewTreeCtrl_new(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
@@ -834,6 +849,21 @@ WXK_FUNCTION(void) wxk_DataViewTreeCtrl_SetItemData(wxk_Window* self, void* item
 WXK_FUNCTION(void) wxk_DataViewTreeCtrl_SetItemExpandedIcon(wxk_Window* self, void* item, const wxk_Object* icon) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DataViewTreeCtrl_SetItemIcon(wxk_Window* self, void* item, const wxk_Object* icon) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DataViewTreeCtrl_SetItemText(wxk_Window* self, void* item, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
+
+// wxDataViewVirtualListModel
+
+WXK_FUNCTION(wxk_DataViewModel*) wxk_DataViewVirtualListModel_new(void* userdata, uint32_t initialSize) WXK_NOEXCEPT;
+WXK_FUNCTION(void*) wxk_DataViewVirtualListModel_GetItem(wxk_DataViewModel* self, uint32_t row) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DataViewVirtualListModel_Reset(wxk_DataViewModel* self, uint32_t newSize) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DataViewVirtualListModel_RowAppended(wxk_DataViewModel* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DataViewVirtualListModel_RowChanged(wxk_DataViewModel* self, uint32_t row) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DataViewVirtualListModel_RowDeleted(wxk_DataViewModel* self, uint32_t row) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DataViewVirtualListModel_RowInserted(wxk_DataViewModel* self, uint32_t before) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DataViewVirtualListModel_RowPrepended(wxk_DataViewModel* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DataViewVirtualListModel_RowValueChanged(wxk_DataViewModel* self, uint32_t row, uint32_t column) WXK_NOEXCEPT;
+WXK_FUNCTION(uint32_t) wxk_DataViewVirtualListModel_GetCount(wxk_DataViewModel* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint32_t) wxk_DataViewVirtualListModel_GetRow(wxk_DataViewModel* self, void* item) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DataViewVirtualListModel_SetDirectors(void (*getValueByRow)(wxk_DataViewModel* self, void* userdata, wxk_Variant* variant, uint32_t row, uint32_t col), uint8_t (*setValueByRow)(wxk_DataViewModel* self, void* userdata, wxk_Variant* variant, uint32_t row, uint32_t col), uint8_t (*isEnabledByRow)(wxk_DataViewModel* self, void* userdata, uint32_t row, uint32_t col)) WXK_NOEXCEPT;
 
 // wxDateEvent
 

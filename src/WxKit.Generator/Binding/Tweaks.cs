@@ -275,10 +275,25 @@ internal sealed class ClassTweak(string name) {
 	/// <summary>Whether the class isn't a wxObject, and crosses as a handle of its own type, as <see cref="HandleKind.Plain"/> describes.</summary>
 	public bool IsPlain { get; private set; }
 
-	/// <summary>Binds a class that isn't a wxObject, such as wxDisplay, for hand-written code to call.</summary>
-	public ClassTweak Plain() {
+	/// <summary>The class whose handle a plain class crosses as, such as wxDataViewModel for wxDataViewVirtualListModel, or null for its own.</summary>
+	public string? PlainHandle { get; private set; }
+
+	/// <summary>Binds a class that isn't a wxObject, such as wxDisplay, for hand-written code to call, as its own handle or a base's.</summary>
+	public ClassTweak Plain(string? handleClass = null) {
 		IsPlain = true;
+		PlainHandle = handleClass;
 		return InteropOnly();
+	}
+
+	/// <summary>
+	/// Whether the class is bound without its nearest bound base, as wxDataViewVirtualListModel is
+	/// without wxDataViewModel, whose directors a base between them already overrides.
+	/// </summary>
+	public bool HasNoBase { get; private set; }
+
+	public ClassTweak NoBase() {
+		HasNoBase = true;
+		return this;
 	}
 
 	public ClassTweak InteropOnly() {

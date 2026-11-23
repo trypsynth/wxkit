@@ -117,3 +117,35 @@
 #include <wx/window.h>
 #include <wx/wizard.h>
 #include <wx/wrapsizer.h>
+
+#if wxUSE_ACCESSIBILITY
+namespace wxk {
+inline wxAccessible* Unwrap(wxk_Accessible* value) { return reinterpret_cast<wxAccessible*>(value); }
+inline wxk_Accessible* Wrap(wxAccessible* value) { return reinterpret_cast<wxk_Accessible*>(value); }
+} // namespace wxk
+#endif
+
+namespace wxk {
+inline wxDataViewModel* Unwrap(wxk_DataViewModel* value) { return reinterpret_cast<wxDataViewModel*>(value); }
+inline wxk_DataViewModel* Wrap(wxDataViewModel* value) { return reinterpret_cast<wxk_DataViewModel*>(value); }
+} // namespace wxk
+
+namespace wxk {
+inline wxDisplay* Unwrap(wxk_Display* value) { return reinterpret_cast<wxDisplay*>(value); }
+inline wxk_Display* Wrap(wxDisplay* value) { return reinterpret_cast<wxk_Display*>(value); }
+} // namespace wxk
+
+namespace wxk {
+inline wxSingleInstanceChecker* Unwrap(wxk_SingleInstanceChecker* value) { return reinterpret_cast<wxSingleInstanceChecker*>(value); }
+inline wxk_SingleInstanceChecker* Wrap(wxSingleInstanceChecker* value) { return reinterpret_cast<wxk_SingleInstanceChecker*>(value); }
+} // namespace wxk
+
+namespace wxk {
+inline wxUIActionSimulator* Unwrap(wxk_UIActionSimulator* value) { return reinterpret_cast<wxUIActionSimulator*>(value); }
+inline wxk_UIActionSimulator* Wrap(wxUIActionSimulator* value) { return reinterpret_cast<wxk_UIActionSimulator*>(value); }
+} // namespace wxk
+
+namespace wxk {
+inline wxWindowDisabler* Unwrap(wxk_WindowDisabler* value) { return reinterpret_cast<wxWindowDisabler*>(value); }
+inline wxk_WindowDisabler* Wrap(wxWindowDisabler* value) { return reinterpret_cast<wxk_WindowDisabler*>(value); }
+} // namespace wxk

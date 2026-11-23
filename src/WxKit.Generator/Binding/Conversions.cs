@@ -437,6 +437,9 @@ internal sealed class CountConversion(string suffix, string cType, string intero
 
 	public override string Suffix => suffix;
 
+	// A callback gives a count as its C type, as a model's GetChildren gives how many children it added.
+	public override string? CallbackCType => cType;
+
 	public override string CReturnType => cType;
 
 	public override string Fallback => "0";
@@ -1246,4 +1249,36 @@ internal sealed class CallbackOutConversion(string cppType, string cType, string
 	public override string CallbackParameterInteropType => interopType + "*";
 
 	public override string ToCallbackArgument(string name) => $"wxk::CallbackOut<{cppType}, {cType}>{{{(byReference ? "&" : string.Empty)}{name}}}";
+}
+
+// An object a director's hand-written callback is lent for the call, as its handle, such as the
+// variant a model fills with a value, or the array it fills with an item's children.
+internal sealed class CallbackLentConversion(string cType, string interopType, string argumentFormat) : Conversion {
+	public override string Suffix => interopType.TrimEnd('*');
+
+	public override string CReturnType => throw new InvalidOperationException("Only a director's callback is lent an object this way.");
+
+	public override string Fallback => "nullptr";
+
+	public override string InteropReturnType => throw new InvalidOperationException("Only a director's callback is lent an object this way.");
+
+	public override IEnumerable<string> CParameters(string name) => throw new InvalidOperationException("Only a director's callback is lent an object this way.");
+
+	public override string ToCpp(string name) => throw new InvalidOperationException("Only a director's callback is lent an object this way.");
+
+	public override string FromCpp(string expression) => throw new InvalidOperationException("Only a director's callback is lent an object this way.");
+
+	public override IEnumerable<string> InteropParameters(string name) => throw new InvalidOperationException("Only a director's callback is lent an object this way.");
+
+	public override string ManagedType(bool nullable) => interopType;
+
+	public override IEnumerable<string> InteropArguments(string name, bool nullable) => throw new InvalidOperationException("Only a director's callback is lent an object this way.");
+
+	public override string ManagedReturn(string expression) => throw new InvalidOperationException("Only a director's callback is lent an object this way.");
+
+	public override string CallbackParameterCType => cType;
+
+	public override string CallbackParameterInteropType => interopType;
+
+	public override string ToCallbackArgument(string name) => string.Format(System.Globalization.CultureInfo.InvariantCulture, argumentFormat, name);
 }

@@ -8,6 +8,18 @@ WXK_FUNCTION(wxk_Window*) wxk_DataViewCtrl_new(wxk_Window* parent, int32_t id, w
 	});
 }
 
+WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_AssociateModel(wxk_Window* self, wxk_DataViewModel* model) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDataViewCtrl*>(wxk::Unwrap(self))->AssociateModel(static_cast<wxDataViewModel*>(wxk::Unwrap(model)))) ? 1 : 0; });
+}
+
+WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_ClearColumns(wxk_Window* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDataViewCtrl*>(wxk::Unwrap(self))->ClearColumns()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_DeleteColumn(wxk_Window* self, wxk_DataViewColumn* column) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDataViewCtrl*>(wxk::Unwrap(self))->DeleteColumn(static_cast<wxDataViewColumn*>(wxk::Unwrap(column)))) ? 1 : 0; });
+}
+
 WXK_FUNCTION(wxk_DataViewColumn*) wxk_DataViewCtrl_AppendBitmapColumn_StringUIntDataViewCellModeIntAlignmentDataViewColumnFlags(wxk_Window* self, const char16_t* label, size_t labelLength, uint32_t modelColumn, int32_t mode, int32_t width, int32_t align, int32_t flags) noexcept {
 	return wxk::Guard<wxk_DataViewColumn*>(nullptr, [&]() -> wxk_DataViewColumn* { return wxk::Wrap(static_cast<wxDataViewColumn*>(static_cast<wxDataViewCtrl*>(wxk::Unwrap(self))->AppendBitmapColumn(wxk::FromUtf16(label, labelLength), modelColumn, static_cast<wxDataViewCellMode>(mode), static_cast<int>(width), static_cast<wxAlignment>(align), static_cast<int>(flags)))); });
 }

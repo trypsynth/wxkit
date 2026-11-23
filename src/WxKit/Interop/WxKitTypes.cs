@@ -124,26 +124,6 @@ public enum WxkVariantType {
 	IconText = 7,
 }
 
-/// <summary>The callbacks of every model whose items come from .NET, as wxk_DataViewModelCallbacks lays them out.</summary>
-public unsafe struct WxkDataViewModelCallbacks {
-	public delegate* unmanaged[Cdecl]<void*, nint, uint, WxkVariant*, void> GetValue;
-	public delegate* unmanaged[Cdecl]<void*, WxkVariant*, nint, uint, byte> SetValue;
-	public delegate* unmanaged[Cdecl]<void*, nint, nint> GetParent;
-	public delegate* unmanaged[Cdecl]<void*, nint, byte> IsContainer;
-	public delegate* unmanaged[Cdecl]<void*, nint, WxkDataViewItems*, void> GetChildren;
-	public delegate* unmanaged[Cdecl]<void*, nint, uint, byte> IsEnabled;
-	public delegate* unmanaged[Cdecl]<void*, nint, byte> HasContainerColumns;
-	public delegate* unmanaged[Cdecl]<void*, void> OnFree;
-}
-
-/// <summary>The callbacks of every virtual list model whose rows come from .NET, as wxk_VirtualListModelCallbacks lays them out.</summary>
-public unsafe struct WxkVirtualListModelCallbacks {
-	public delegate* unmanaged[Cdecl]<void*, uint, uint, WxkVariant*, void> GetValue;
-	public delegate* unmanaged[Cdecl]<void*, WxkVariant*, uint, uint, byte> SetValue;
-	public delegate* unmanaged[Cdecl]<void*, uint, uint, byte> IsEnabled;
-	public delegate* unmanaged[Cdecl]<void*, void> OnFree;
-}
-
 /// <summary>An accessible object, which its window owns.</summary>
 public struct WxkAccessible;
 

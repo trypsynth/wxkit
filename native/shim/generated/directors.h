@@ -28,6 +28,20 @@ extern int32_t (*Accessible_Navigate)(wxk_Accessible* self, void* userdata, int3
 extern int32_t (*Accessible_DoDefaultAction)(wxk_Accessible* self, void* userdata, int32_t childId);
 extern int32_t (*Accessible_Select)(wxk_Accessible* self, void* userdata, int32_t childId, int32_t selectFlags);
 
+// wxDataViewModel's overridable members call into .NET through these, once it sets them.
+extern void (*DataViewModel_GetValue)(wxk_DataViewModel* self, void* userdata, wxk_Variant* variant, void* item, uint32_t col);
+extern uint8_t (*DataViewModel_SetValue)(wxk_DataViewModel* self, void* userdata, wxk_Variant* variant, void* item, uint32_t col);
+extern void* (*DataViewModel_GetParent)(wxk_DataViewModel* self, void* userdata, void* item);
+extern uint8_t (*DataViewModel_IsContainer)(wxk_DataViewModel* self, void* userdata, void* item);
+extern uint32_t (*DataViewModel_GetChildren)(wxk_DataViewModel* self, void* userdata, void* item, wxk_DataViewItems* children);
+extern uint8_t (*DataViewModel_IsEnabled)(wxk_DataViewModel* self, void* userdata, void* item, uint32_t col);
+extern uint8_t (*DataViewModel_HasContainerColumns)(wxk_DataViewModel* self, void* userdata, void* item);
+
+// wxDataViewVirtualListModel's overridable members call into .NET through these, once it sets them.
+extern void (*DataViewVirtualListModel_GetValueByRow)(wxk_DataViewModel* self, void* userdata, wxk_Variant* variant, uint32_t row, uint32_t col);
+extern uint8_t (*DataViewVirtualListModel_SetValueByRow)(wxk_DataViewModel* self, void* userdata, wxk_Variant* variant, uint32_t row, uint32_t col);
+extern uint8_t (*DataViewVirtualListModel_IsEnabledByRow)(wxk_DataViewModel* self, void* userdata, uint32_t row, uint32_t col);
+
 // wxListCtrl's overridable members call into .NET through these, once it sets them.
 extern wxk_String* (*ListCtrl_OnGetItemText)(wxk_Window* self, void* userdata, int64_t item, int64_t column);
 extern int32_t (*ListCtrl_OnGetItemImage)(wxk_Window* self, void* userdata, int64_t item);
