@@ -35,9 +35,8 @@ Each of these holds a `userdata` pointer, a GC handle to its managed object, rat
 A tweak marks a class as one whose C++ director is generated for hand-written managed code, in the same way the `Internal` tweak binds members only for hand-written code. For such a class the generator writes:
 
 - The director in C++, deriving from the wxWidgets class, with an override for each listed member.
-- A struct of callback pointers, one for each override, and an export that sets it once, such as `wxk_Printout_SetCallbacks`.
+- A callback pointer for each override, and an export that sets them once, such as `wxk_Printout_SetDirectors`.
 - A constructor export for each constructor, which takes a `userdata` pointer after the constructor's own parameters.
-- An export for each member's wxWidgets implementation, as `wxk_ListCtrl_base_OnGetItemText` is today, for the managed default.
 - The struct and the delegate types in the interop imports.
 
 The hand-written managed class supplies the `UnmanagedCallersOnly` callbacks and sets them, as it does now. The generated `protected virtual` path stays for generated classes such as `ListCtrl`.
@@ -78,7 +77,7 @@ Before the callbacks are set, and when a callback pointer in the struct is null,
 
 ## Order of work
 
-1. Userdata identity and the generated callback struct, proven on `wxPrintout`, which needs only numbers, booleans, `int*` out parameters, and the wrap-the-base marker. printing.cpp's director goes, and `Printout` calls the generated exports.
+1. Userdata identity and the generated callbacks, proven on `wxPrintout`, which needs only numbers, booleans, `int*` out parameters, and the wrap-the-base marker. printing.cpp's director goes, and `Printout` calls the generated exports. Done: the printout's director is generated, and `ListCtrl`'s takes a userdata it doesn't use yet.
 2. Text and enum out parameters, and the per-member default, proven on `wxAccessible`. Most of accessible.cpp goes.
 3. Variants and item arrays by handle, proven on the two data view models. Most of dataview.cpp goes.
 4. Object parameters, and the drop target's overrides.

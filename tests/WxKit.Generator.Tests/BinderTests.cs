@@ -168,6 +168,23 @@ public class BinderTests {
 		Assert.DoesNotContain(button.Methods, static method => method.Name == "OnGetLabel");
 	}
 
+	// A director made with userdata, whose callbacks hand-written code gives, has no managed
+	// override and no export of the class's own member, and its constructor takes the userdata.
+	[Fact]
+	public void BindsDirectorsForHandwrittenCallbacks() {
+		BindingResult result = Bind(static tweaks => tweaks.Class("wxButton").InternalDirector("OnGetLabel"));
+		BoundClass button = Bound(result, "wxButton");
+		Assert.False(Assert.Single(button.Directors).HasBaseExport);
+		Assert.DoesNotContain(button.Functions, static function => function.ShimName == "wxk_Button_base_OnGetLabel");
+		Assert.All(button.Constructors, static constructor => Assert.True(constructor.TakesUserdata));
+		string shim = Emitting.ShimEmitter.Files(result).Single(static file => file.FileName == "Button.cpp").Text;
+		Assert.Contains("new ButtonDirector(userdata, ", shim, StringComparison.Ordinal);
+		Assert.Contains("wxk::directors::Button_OnGetLabel(wxk::Wrap(static_cast<wxWindow*>(const_cast<ButtonDirector*>(this))), _userdata, ", shim, StringComparison.Ordinal);
+		Assert.Contains(Emitting.ShimEmitter.Files(result), static file => file.FileName == "Directors.cpp");
+		Assert.DoesNotContain("OnGetLabel", Emitting.ManagedEmitter.Files(result).Single(static file => file.FileName == "Button.g.cs").Text, StringComparison.Ordinal);
+		Assert.Throws<InvalidOperationException>(() => Bind(static tweaks => tweaks.Class("wxButton").InternalDirector("OnGetLabel").DirectorBeforeBase("OnGetLabel")));
+	}
+
 	[Fact]
 	public void RefusesToOverrideWhatIsNotVirtual() => Assert.Throws<InvalidOperationException>(() => Bind(tweaks => tweaks.Class("wxButton").Director("Press")));
 

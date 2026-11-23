@@ -41,6 +41,6 @@ public unsafe partial class ListView : ListCtrl {
 		Application.VerifyAccess();
 		ListCtrl.InstallListCtrlDirectors();
 		ArgumentNullException.ThrowIfNull(parent);
-		return WxKitNative.ListViewNew((WxkWindow*)parent.Native, id, position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default, (long)style);
+		return WxKitNative.ListViewNew(null, (WxkWindow*)parent.Native, id, position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default, (long)style);
 	}
 }

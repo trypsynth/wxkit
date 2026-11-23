@@ -72,11 +72,11 @@ internal static class ManagedEmitter {
 			Gap();
 			WriteMethod(writer, bound, method);
 		}
-		foreach (BoundFunction director in bound.Directors.OrderBy(static director => director.Source.Name, StringComparer.Ordinal)) {
+		foreach (BoundFunction director in ManagedDirectors(bound).OrderBy(static director => director.Source.Name, StringComparer.Ordinal)) {
 			Gap();
 			WriteMethod(writer, bound, new BoundMethod(director.Source.Name, director), "protected virtual");
 		}
-		if (bound.Directors.Count > 0) {
+		if (ManagedDirectors(bound).Any()) {
 			Gap();
 			WriteDirectorCallbacks(writer, bound);
 		}
@@ -87,7 +87,7 @@ internal static class ManagedEmitter {
 			writer.Line("Application.VerifyAccess();");
 			if (bound.HasDirector) {
 				for (BoundClass? declaring = bound; declaring is not null; declaring = declaring.Base) {
-					if (declaring.Directors.Count > 0) writer.Line($"{declaring.Name}.Install{declaring.Name}Directors();");
+					if (ManagedDirectors(declaring).Any()) writer.Line($"{declaring.Name}.Install{declaring.Name}Directors();");
 				}
 			}
 			WriteCall(writer, constructor, self: null, result => $"return {result};");
@@ -155,7 +155,7 @@ internal static class ManagedEmitter {
 	// own implementation. They are set once, before the first object of the class is created.
 	private static void WriteDirectorCallbacks(CodeWriter writer, BoundClass bound) {
 		foreach (BoundFunction director in bound.Directors.OrderBy(static director => director.Source.Name, StringComparer.Ordinal)) {
-			IEnumerable<string> parameters = director.Parameters.Select(static parameter => $"{parameter.Conversion.InteropReturnType} {parameter.Name}").Prepend($"{bound.Handle.InteropType}* self");
+			IEnumerable<string> parameters = director.Parameters.Select(static parameter => $"{parameter.Conversion.CallbackParameterInteropType} {parameter.Name}").Prepend("void* userdata").Prepend($"{bound.Handle.InteropType}* self");
 			writer.Line("[global::System.Runtime.InteropServices.UnmanagedCallersOnly(CallConvs = [typeof(global::System.Runtime.CompilerServices.CallConvCdecl)])]");
 			writer.Open($"private static {director.Returns.CallbackInteropType} Director{director.Source.Name}({string.Join(", ", parameters)})");
 			writer.Open("try");
@@ -189,6 +189,9 @@ internal static class ManagedEmitter {
 		writer.Close();
 	}
 
+	// Directors whose callbacks the generated class gives, rather than hand-written code.
+	private static IEnumerable<BoundFunction> ManagedDirectors(BoundClass bound) => bound.Tweak.IsDirectorInternal ? [] : bound.Directors;
+
 	private static string Modifiers(BoundFunction function, bool hides) => $"public{(hides ? " new" : string.Empty)}{(function.IsStatic ? " static" : string.Empty)}";
 
 	// An instance member passes its object's handle. A static one has none.
@@ -202,6 +205,8 @@ internal static class ManagedEmitter {
 
 	private static string InteropCall(BoundFunction function, string? self) {
 		List<string> arguments = self is null ? [] : [self];
+		// The generated classes find their objects in the registry, so give their directors no userdata.
+		if (function.TakesUserdata) arguments.Add("null");
 		arguments.AddRange(function.Parameters.SelectMany(static parameter => parameter.Conversion.InteropArguments(parameter.Name, parameter.Nullable)));
 		return $"WxKitNative.{function.InteropName}({string.Join(", ", arguments)})";
 	}

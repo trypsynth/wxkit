@@ -4776,7 +4776,7 @@ public static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkWindow* ListCtrlNew(WxkWindow* parent, int id, Point position, Size size, long style);
+	public static partial WxkWindow* ListCtrlNew(void* userdata, WxkWindow* parent, int id, Point position, Size size, long style);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_base_OnGetItemText")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -5128,7 +5128,7 @@ public static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_SetDirectors")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ListCtrlSetDirectors(delegate* unmanaged[Cdecl]<WxkWindow*, long, long, WxkString*> onGetItemText, delegate* unmanaged[Cdecl]<WxkWindow*, long, int> onGetItemImage, delegate* unmanaged[Cdecl]<WxkWindow*, long, long, int> onGetItemColumnImage, delegate* unmanaged[Cdecl]<WxkWindow*, long, byte> onGetItemIsChecked);
+	public static partial void ListCtrlSetDirectors(delegate* unmanaged[Cdecl]<WxkWindow*, void*, long, long, WxkString*> onGetItemText, delegate* unmanaged[Cdecl]<WxkWindow*, void*, long, int> onGetItemImage, delegate* unmanaged[Cdecl]<WxkWindow*, void*, long, long, int> onGetItemColumnImage, delegate* unmanaged[Cdecl]<WxkWindow*, void*, long, byte> onGetItemIsChecked);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListEvent_GetCacheFrom")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -5312,7 +5312,7 @@ public static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListView_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkWindow* ListViewNew(WxkWindow* parent, int id, Point position, Size size, long style);
+	public static partial WxkWindow* ListViewNew(void* userdata, WxkWindow* parent, int id, Point position, Size size, long style);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListView_ClearColumnImage")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -6630,6 +6630,14 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int PrinterGetLastError();
 
+	[LibraryImport(Library, EntryPoint = "wxk_Printout_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* PrintoutNew(void* userdata, char* title, nuint titleLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Printout_GetDC")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* PrintoutGetDC(WxkObject* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Printout_FitThisSizeToPage")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void PrintoutFitThisSizeToPage(WxkObject* self, Size imageSize);
@@ -6705,6 +6713,10 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Printout_IsPreview")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte PrintoutIsPreview(WxkObject* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Printout_SetDirectors")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void PrintoutSetDirectors(delegate* unmanaged[Cdecl]<WxkObject*, void*, int, byte> onPrintPage, delegate* unmanaged[Cdecl]<WxkObject*, void*, int, byte> hasPage, delegate* unmanaged[Cdecl]<WxkObject*, void*, int*, int*, int*, int*, void> getPageInfo, delegate* unmanaged[Cdecl]<WxkObject*, void*, void> onPreparePrinting, delegate* unmanaged[Cdecl]<WxkObject*, void*, void> onBeginPrinting, delegate* unmanaged[Cdecl]<WxkObject*, void*, void> onEndPrinting, delegate* unmanaged[Cdecl]<WxkObject*, void*, int, int, byte> onBeginDocument, delegate* unmanaged[Cdecl]<WxkObject*, void*, void> onEndDocument);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ProgressDialog_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -14397,6 +14409,10 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_WrapSizer_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkSizer* WrapSizerNew(int orientation, int flags);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Directors_SetOnFree")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DirectorsSetOnFree(delegate* unmanaged[Cdecl]<void*, void> onFree);
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_Activate")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

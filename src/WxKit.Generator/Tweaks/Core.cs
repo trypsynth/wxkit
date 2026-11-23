@@ -430,10 +430,16 @@ internal static class Core {
 		// The page setup dialog's Enable setters pair with GetEnable getters, as properties of the same name.
 		foreach (string part in (string[])["Help", "Margins", "Orientation", "Paper", "Printer"]) tweaks.Class("wxPageSetupDialogData").Property("Enable" + part, "GetEnable" + part, "Enable" + part);
 		foreach (string owned in (string[])["wxPrinter", "wxPrintDialog", "wxPageSetupDialog"]) tweaks.Class(owned, value => value.Owned());
+		// The hand-written Printout makes a director, whose callbacks it gives, and draws on the DC it
+		// reads while a page prints. wxWidgets starts each copy's document before .NET's OnBeginDocument
+		// and ends it after its OnEndDocument.
 		tweaks.Class("wxPrintout", printout => printout
 			.Owned()
-			.NoConstructors()
-			.Ignore("GetDC", "GetPageInfo", "GetPagesInfo", "HasPage", "OnBeginDocument", "OnEndDocument", "OnBeginPrinting", "OnEndPrinting", "OnPreparePrinting", "OnPrintPage", "GetPreview"));
+			.Internal("wxPrintout", "GetDC")
+			.InternalDirector("OnPrintPage", "HasPage", "GetPageInfo", "OnPreparePrinting", "OnBeginPrinting", "OnEndPrinting", "OnBeginDocument", "OnEndDocument")
+			.DirectorAfterBase("OnBeginDocument")
+			.DirectorBeforeBase("OnEndDocument")
+			.Ignore("GetPageInfo", "GetPagesInfo", "HasPage", "OnBeginDocument", "OnEndDocument", "OnBeginPrinting", "OnEndPrinting", "OnPreparePrinting", "OnPrintPage", "GetPreview"));
 		// Notifications, which the application frees with Dispose, as it does timers. Only wxMSW has toasts.
 		// The icons a notification or an info bar shows, which are wxWidgets's message icons, without
 		// the synonyms and the masks.

@@ -26,6 +26,10 @@ internal static class ShimEmitter {
 			foreach (BoundClass bound in plain) writer.Line($"typedef struct {bound.Handle.CType} {bound.Handle.CType};");
 			writer.Line();
 		}
+		if (HasDirectors(result)) {
+			writer.Line("// Called with a director's userdata when the director is deleted.").Line();
+			writer.Line(OnFreeSignature + " WXK_NOEXCEPT;").Line();
+		}
 		foreach (BoundClass bound in result.Classes) {
 			List<BoundFunction> functions = [.. bound.Functions];
 			if (functions.Count == 0) continue;
@@ -48,7 +52,10 @@ internal static class ShimEmitter {
 	public static IEnumerable<(string FileName, string Text)> Files(BindingResult result) {
 		yield return ("includes.h", Includes(result));
 		yield return ("checks.cpp", Checks(result));
-		if (result.Classes.Any(static bound => bound.Directors.Count > 0)) yield return ("directors.h", DirectorDeclarations(result));
+		if (HasDirectors(result)) {
+			yield return ("directors.h", DirectorDeclarations(result));
+			yield return ("Directors.cpp", DirectorsFile());
+		}
 		foreach (BoundClass bound in result.Classes.Where(static bound => bound.Functions.Any())) yield return ($"{bound.Name}.cpp", ClassFile(bound));
 		foreach (IGrouping<string, BoundEventType> group in result.EventTypes.GroupBy(static type => type.Header ?? "wx/event.h").OrderBy(static group => group.Key, StringComparer.Ordinal)) {
 			string name = group.Key.Replace("wx/", string.Empty, StringComparison.Ordinal).Replace(".h", string.Empty, StringComparison.Ordinal).Replace('/', '_');
@@ -88,8 +95,10 @@ internal static class ShimEmitter {
 	// from it call too.
 	private static string DirectorDeclarations(BindingResult result) {
 		CodeWriter writer = new();
-		writer.Line(Banner).Line("#pragma once").Line().Line("#include \"includes.h\"").Line();
+		writer.Line(Banner).Line("#pragma once").Line().Line("#include \"includes.h\"").Line().Line("#include <utility>").Line();
 		writer.Line("namespace wxk::directors {").Line();
+		writer.Line("// Tells .NET a director is gone, with the userdata it was made with, which isn't null.");
+		writer.Line("extern void (*onFree)(void* userdata);").Line();
 		foreach (BoundClass bound in result.Classes.Where(static bound => bound.Directors.Count > 0)) {
 			writer.Line($"// {bound.CppName}'s overridable members call into .NET through these, once it sets them.");
 			foreach (BoundFunction director in bound.Directors) writer.Line($"extern {CallbackPointer(director, CallbackName(director))};");
@@ -97,9 +106,10 @@ internal static class ShimEmitter {
 			// Every director made from the class gives its own implementation of each member through
 			// this, which the managed default calls. A base call reaches it with dynamic_cast, which
 			// C++ checks, rather than casting the object to a class it isn't.
+			if (!HasBaseInterface(bound)) continue;
 			writer.Line($"// What {bound.CppName}'s own members do, which each director made from it gives.");
 			writer.Open($"struct {BaseInterface(bound)}");
-			foreach (BoundFunction director in bound.Directors) writer.Line($"virtual {director.Source.Type} Base{director.Source.Name}({Parameters(director)}){Constness(director)} = 0;");
+			foreach (BoundFunction director in bound.Directors.Where(static director => director.HasBaseExport)) writer.Line($"virtual {director.Source.Type} Base{director.Source.Name}({Parameters(director)}){Constness(director)} = 0;");
 			writer.Line().Line("protected:");
 			writer.Line($"~{BaseInterface(bound)}() = default;");
 			writer.Close("};").Line();
@@ -161,9 +171,9 @@ internal static class ShimEmitter {
 	// derives from the class that declares them calls the class's own, since they are often
 	// protected, for the managed defaults.
 	private static void WriteDirectors(CodeWriter writer, BoundClass bound) {
-		if (bound.Directors.Count > 0) {
+		if (HasBaseInterface(bound)) {
 			writer.Open($"struct {Access(bound)}");
-			foreach (BoundFunction director in bound.Directors) {
+			foreach (BoundFunction director in bound.Directors.Where(static director => director.HasBaseExport)) {
 				string constness = director.Source.IsConst ? "const " : string.Empty;
 				writer.Open($"static {director.Source.Type} {director.Source.Name}({constness}{bound.CppName}* self{string.Concat(director.Source.Parameters.Select(static parameter => $", {parameter.Type} {parameter.Name}"))})");
 				writer.Line($"auto* base = dynamic_cast<{constness}wxk::directors::{BaseInterface(bound)}*>(self);");
@@ -176,10 +186,18 @@ internal static class ShimEmitter {
 		if (!bound.HasDirector) return;
 		// The director derives from the class first, so its handle is the class's, and then from the
 		// base interface of each class whose overridable members it has.
-		List<BoundClass> declaring = [.. bound.AllDirectors.Select(static director => director.Owner).Distinct()];
+		List<BoundClass> declaring = [.. bound.AllDirectors.Select(static director => director.Owner).Distinct().Where(HasBaseInterface)];
 		writer.Open($"struct {Director(bound)} final : {string.Join(", ", declaring.Select(static owner => $"wxk::directors::{BaseInterface(owner)}").Prepend(bound.CppName))}");
-		writer.Line($"using {bound.CppName}::{bound.CppName};");
-		foreach (BoundFunction director in bound.AllDirectors) {
+		writer.Line("template <typename... Arguments>");
+		writer.Line($"explicit {Director(bound)}(void* userdata, Arguments&&... arguments) : {bound.CppName}(std::forward<Arguments>(arguments)...), _userdata(userdata) {{}}");
+		writer.Line();
+		writer.Line($"{Director(bound)}(const {Director(bound)}&) = delete;");
+		writer.Line($"{Director(bound)}& operator=(const {Director(bound)}&) = delete;");
+		writer.Line();
+		writer.Open($"~{Director(bound)}() override");
+		writer.Line("if (_userdata != nullptr && wxk::directors::onFree != nullptr) wxk::directors::onFree(_userdata);");
+		writer.Close();
+		foreach (BoundFunction director in bound.AllDirectors.Where(static director => director.HasBaseExport)) {
 			writer.Line();
 			writer.Open($"{director.Source.Type} Base{director.Source.Name}({Parameters(director)}){Constness(director)} override");
 			writer.Line($"return {bound.CppName}::{director.Source.Name}({Arguments(director)});");
@@ -190,12 +208,33 @@ internal static class ShimEmitter {
 			string parameters = string.Join(", ", director.Source.Parameters.Select(static parameter => $"{parameter.Type} {parameter.Name}"));
 			writer.Open($"{director.Source.Type} {director.Source.Name}({parameters}){(director.Source.IsConst ? " const" : string.Empty)} override");
 			string callback = $"wxk::directors::{CallbackName(director)}";
-			writer.Line($"if ({callback} == nullptr) return {bound.CppName}::{director.Source.Name}({Arguments(director)});");
+			string own = $"{bound.CppName}::{director.Source.Name}({Arguments(director)})";
 			string self = $"wxk::Wrap(static_cast<{bound.Handle.CppBase}*>(const_cast<{Director(bound)}*>(this)))";
-			string call = $"{callback}({string.Join(", ", director.Parameters.Select(static parameter => parameter.Conversion.FromCpp(parameter.CppName)).Prepend(self))})";
-			writer.Line(director.Returns is VoidConversion ? $"{call};" : $"return {director.Returns.FromCallback(call)};");
+			string call = $"{callback}({string.Join(", ", director.Parameters.Select(static parameter => parameter.Conversion.ToCallbackArgument(parameter.CppName)).Prepend("_userdata").Prepend(self))})";
+			bool isVoid = director.Returns is VoidConversion;
+			ClassTweak tweak = director.Owner.Tweak;
+			if (tweak.DirectorsBeforeBase.Contains(director.Source.Name)) {
+				writer.Line($"if ({callback} != nullptr) {call};");
+				writer.Line($"{own};");
+			} else if (tweak.DirectorsAfterBase.Contains(director.Source.Name)) {
+				if (isVoid) {
+					writer.Line($"{own};");
+					writer.Line($"if ({callback} != nullptr) {call};");
+				} else {
+					writer.Line($"if (!{own}) return false;");
+					writer.Line($"if ({callback} == nullptr) return true;");
+					writer.Line($"return {director.Returns.FromCallback(call)};");
+				}
+			} else {
+				// A pure virtual member has nothing of its own to fall back on, so gives nothing.
+				string fallback = !director.Source.IsPureVirtual ? $"return {own};" : isVoid ? "return;" : "return {};";
+				writer.Line($"if ({callback} == nullptr) {fallback}");
+				writer.Line(isVoid ? $"{call};" : $"return {director.Returns.FromCallback(call)};");
+			}
 			writer.Close();
 		}
+		writer.Line().Line("private:");
+		writer.Line("void* _userdata;");
 		writer.Close("};").Line();
 	}
 
@@ -207,6 +246,24 @@ internal static class ShimEmitter {
 	private static string DeleteSignature(BoundClass bound) => $"WXK_FUNCTION(void) wxk_{Naming.Type(bound.CppName)}_delete({bound.Handle.CType}* self)";
 
 	private static string BaseInterface(BoundClass bound) => Naming.Type(bound.CppName) + "Base";
+
+	private static bool HasBaseInterface(BoundClass bound) => bound.Directors.Any(static director => director.HasBaseExport);
+
+	private static bool HasDirectors(BindingResult result) => result.Classes.Any(static bound => bound.Directors.Count > 0);
+
+	private const string OnFreeSignature = "WXK_FUNCTION(void) wxk_Directors_SetOnFree(void (*onFree)(void* userdata))";
+
+	private static string DirectorsFile() {
+		CodeWriter writer = new();
+		writer.Line(Banner).Line("#include \"directors.h\"").Line();
+		writer.Line("namespace wxk::directors {").Line();
+		writer.Line("void (*onFree)(void* userdata) = nullptr;").Line();
+		writer.Line("} // namespace wxk::directors").Line();
+		writer.Open(OnFreeSignature + " noexcept");
+		writer.Line("wxk::directors::onFree = onFree;");
+		writer.Close();
+		return writer.ToString();
+	}
 
 	private static string Parameters(BoundFunction director) => string.Join(", ", director.Source.Parameters.Select(static parameter => $"{parameter.Type} {parameter.Name}"));
 
@@ -222,7 +279,7 @@ internal static class ShimEmitter {
 
 	// A callback takes the object, then each parameter as C++ hands it out.
 	private static string CallbackPointer(BoundFunction director, string name) {
-		IEnumerable<string> parameters = director.Parameters.Select(static parameter => $"{parameter.Conversion.CReturnType} {parameter.CppName}").Prepend($"{director.Owner.Handle.CType}* self");
+		IEnumerable<string> parameters = director.Parameters.Select(static parameter => $"{parameter.Conversion.CallbackParameterCType} {parameter.CppName}").Prepend("void* userdata").Prepend($"{director.Owner.Handle.CType}* self");
 		return $"{director.Returns.CallbackCType} (*{name})({string.Join(", ", parameters)})";
 	}
 
@@ -232,6 +289,7 @@ internal static class ShimEmitter {
 		BoundClass owner = function.Owner;
 		List<string> parameters = [];
 		if (!function.IsConstructor && !function.IsStatic) parameters.Add($"{owner.Handle.CType}* self");
+		if (function.TakesUserdata) parameters.Add("void* userdata");
 		parameters.AddRange(function.Parameters.SelectMany(static parameter => parameter.Conversion.CParameters(parameter.Name.TrimStart('@'))));
 		string returns = function.IsConstructor ? $"{owner.Handle.CType}*" : function.Returns.CReturnType;
 		return $"WXK_FUNCTION({returns}) {function.ShimName}({(parameters.Count == 0 ? "void" : string.Join(", ", parameters))})";
@@ -251,7 +309,8 @@ internal static class ShimEmitter {
 		if (guard is not null) writer.Line($"#if {guard}");
 		if (function.IsConstructor) {
 			writer.Open($"return wxk::Guard<{returns}>(nullptr, [&]");
-			writer.Line($"{owner.Handle.CppBase}* created = new {(owner.HasDirector ? Director(owner) : owner.CppName)}({arguments});");
+			string made = owner.HasDirector ? $"{Director(owner)}({string.Join(", ", new[] { "userdata", arguments }.Where(static part => part.Length > 0))})" : $"{owner.CppName}({arguments})";
+			writer.Line($"{owner.Handle.CppBase}* created = new {made};");
 			writer.Line("return wxk::Wrap(created);");
 			writer.Close("});");
 		} else {

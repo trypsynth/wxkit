@@ -39,6 +39,13 @@ internal abstract class Conversion {
 	/// <summary>The C type a director's callback returns this as, or null when a callback cannot return it.</summary>
 	public virtual string? CallbackCType => null;
 
+	// A parameter a director's callback takes, as the shim passes it on from the overridden member.
+	public virtual string CallbackParameterCType => CReturnType;
+
+	public virtual string CallbackParameterInteropType => InteropReturnType;
+
+	public virtual string ToCallbackArgument(string name) => FromCpp(name);
+
 	public virtual string CallbackInteropType => InteropReturnType;
 
 	/// <summary>C++ that turns what a callback returned into the C++ value.</summary>
@@ -945,6 +952,16 @@ internal sealed class OutConversion(string suffix, string cType, string csharpTy
 	public override string ToCpp(string name) => isLong ? $"wxk::OutLong{{{name}}}" : name;
 
 	public override string FromCpp(string expression) => throw new InvalidOperationException("Output pointers are only parameters.");
+
+	// A director's callback writes through the pointer wxWidgets gave the member.
+	public override string CallbackParameterCType => $"{cType}*";
+
+	public override string CallbackParameterInteropType => $"{csharpType}*";
+
+	public override string ToCallbackArgument(string name) => name;
+
+	// A long is 32 bits on Windows, so its pointer can't be passed on as an int64_t's.
+	public bool CanCallBack => !isLong;
 
 	public override IEnumerable<string> InteropParameters(string name) => [$"{csharpType}* {name}"];
 

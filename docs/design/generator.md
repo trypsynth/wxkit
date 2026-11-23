@@ -42,7 +42,7 @@ Today 168 classes bind 3303 functions and 260 event types. The report lists abou
 - A class's managed base is its nearest bound ancestor with the same lifetime. WxKit owns value objects, drawing contexts, and classes a tweak marks as owned, such as validators. Owned classes without such an ancestor derive from the hand-written `NativeObject`.
 - A secondary base's members, such as `wxTextEntry`'s on `wxTextCtrl`, are bound on the class and called through a cast to that base. A tweak can do the same for unbound primary bases, as `wxDataViewColumn` gets `wxHeaderColumn`'s.
 - A class with a pure virtual member gets no constructors. A template class is bound by a tweak that names the class and its argument, as `wxScrolledWindow` is `wxScrolled` over `wxPanel`.
-- A virtual member a tweak lists becomes a `protected virtual` method that C# can override, through a director the shim creates in place of the class. Director parameters can only be numbers, enums, and booleans for now. [Native layer](native-layer.md) covers directors.
+- A virtual member a tweak lists becomes a `protected virtual` method that C# can override, through a director the shim creates in place of the class. Director parameters can only be numbers, enums, and booleans for now. An `InternalDirector` tweak has hand-written code give the callbacks instead, as `Printout` does. [Native layer](native-layer.md) covers directors.
 - A constructor parameter a tweak keeps alive, such as a find dialog's data, stays referenced by the managed object.
 
 ## Rules for members

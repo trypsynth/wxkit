@@ -4,7 +4,15 @@
 namespace {
 
 struct ListViewDirector final : wxListView, wxk::directors::ListCtrlBase {
-	using wxListView::wxListView;
+	template <typename... Arguments>
+	explicit ListViewDirector(void* userdata, Arguments&&... arguments) : wxListView(std::forward<Arguments>(arguments)...), _userdata(userdata) {}
+
+	ListViewDirector(const ListViewDirector&) = delete;
+	ListViewDirector& operator=(const ListViewDirector&) = delete;
+
+	~ListViewDirector() override {
+		if (_userdata != nullptr && wxk::directors::onFree != nullptr) wxk::directors::onFree(_userdata);
+	}
 
 	wxString BaseOnGetItemText(long item, long column) const override {
 		return wxListView::OnGetItemText(item, column);
@@ -24,30 +32,33 @@ struct ListViewDirector final : wxListView, wxk::directors::ListCtrlBase {
 
 	wxString OnGetItemText(long item, long column) const override {
 		if (wxk::directors::ListCtrl_OnGetItemText == nullptr) return wxListView::OnGetItemText(item, column);
-		return wxk::TakeString(wxk::directors::ListCtrl_OnGetItemText(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListViewDirector*>(this))), static_cast<int64_t>(item), static_cast<int64_t>(column)));
+		return wxk::TakeString(wxk::directors::ListCtrl_OnGetItemText(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListViewDirector*>(this))), _userdata, static_cast<int64_t>(item), static_cast<int64_t>(column)));
 	}
 
 	int OnGetItemImage(long item) const override {
 		if (wxk::directors::ListCtrl_OnGetItemImage == nullptr) return wxListView::OnGetItemImage(item);
-		return static_cast<int>(wxk::directors::ListCtrl_OnGetItemImage(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListViewDirector*>(this))), static_cast<int64_t>(item)));
+		return static_cast<int>(wxk::directors::ListCtrl_OnGetItemImage(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListViewDirector*>(this))), _userdata, static_cast<int64_t>(item)));
 	}
 
 	int OnGetItemColumnImage(long item, long column) const override {
 		if (wxk::directors::ListCtrl_OnGetItemColumnImage == nullptr) return wxListView::OnGetItemColumnImage(item, column);
-		return static_cast<int>(wxk::directors::ListCtrl_OnGetItemColumnImage(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListViewDirector*>(this))), static_cast<int64_t>(item), static_cast<int64_t>(column)));
+		return static_cast<int>(wxk::directors::ListCtrl_OnGetItemColumnImage(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListViewDirector*>(this))), _userdata, static_cast<int64_t>(item), static_cast<int64_t>(column)));
 	}
 
 	bool OnGetItemIsChecked(long item) const override {
 		if (wxk::directors::ListCtrl_OnGetItemIsChecked == nullptr) return wxListView::OnGetItemIsChecked(item);
-		return wxk::directors::ListCtrl_OnGetItemIsChecked(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListViewDirector*>(this))), static_cast<int64_t>(item)) != 0;
+		return wxk::directors::ListCtrl_OnGetItemIsChecked(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListViewDirector*>(this))), _userdata, static_cast<int64_t>(item)) != 0;
 	}
+
+	private:
+	void* _userdata;
 };
 
 } // namespace
 
-WXK_FUNCTION(wxk_Window*) wxk_ListView_new(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, int64_t style) noexcept {
+WXK_FUNCTION(wxk_Window*) wxk_ListView_new(void* userdata, wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, int64_t style) noexcept {
 	return wxk::Guard<wxk_Window*>(nullptr, [&] {
-		wxWindow* created = new ListViewDirector(static_cast<wxWindow*>(wxk::Unwrap(parent)), static_cast<int>(id), wxk::FromPoint(position), wxk::FromSize(size), static_cast<long>(style));
+		wxWindow* created = new ListViewDirector(userdata, static_cast<wxWindow*>(wxk::Unwrap(parent)), static_cast<int>(id), wxk::FromPoint(position), wxk::FromSize(size), static_cast<long>(style));
 		return wxk::Wrap(created);
 	});
 }

@@ -181,7 +181,7 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 			if (tweak.IsHandwritten && !isInternal) continue;
 			if (isConstructor) {
 				// A class with pure virtual members, such as wxBookCtrlBase, cannot be created.
-				if (!tweak.HasConstructors || bound.Handle == HandleKind.Event || bound.Source.Members.Any(static own => own.IsPureVirtual)) continue;
+				if (!tweak.HasConstructors || bound.Handle == HandleKind.Event || bound.Source.Members.Any(own => own.IsPureVirtual && !tweak.DirectorMembers.Contains(own.Name))) continue;
 				// Two-step creation is not exposed, so a window's default constructor is not bound.
 				if (member.Parameters.Count == 0 && bound.Handle == HandleKind.Window) continue;
 				if (member.Parameters.Count == 1 && CppType.Parse(member.Parameters[0].Type).Name == shortName) continue;
@@ -207,7 +207,7 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		if (tweak.IsGlobal) {
 			foreach (BoundFunction function in functions.Where(static function => function.ExportName.StartsWith("wx", StringComparison.Ordinal))) function.ExportName = function.ExportName[2..];
 		}
-		bound.InternalFunctions.AddRange(functions.Where(function => !function.IsConstructor && tweak.InternalMembers.Contains(function.Source.Name)));
+		bound.InternalFunctions.AddRange(functions.Where(function => tweak.InternalMembers.Contains(function.Source.Name)));
 		functions.RemoveAll(bound.InternalFunctions.Contains);
 		// Two C++ constructors can have the same managed signature, as an int and a long do, and C#
 		// allows only one.
@@ -227,12 +227,23 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 	// managed override's default calls. Their parameters only take numbers, enums, and booleans for
 	// now, which a callback can pass on to that implementation as they are.
 	private void BindDirectors(BoundClass bound) {
+		foreach (string named in bound.Tweak.DirectorsAfterBase.Concat(bound.Tweak.DirectorsBeforeBase)) {
+			if (!bound.Tweak.DirectorMembers.Contains(named)) throw new InvalidOperationException($"A tweak calls .NET around {bound.CppName}::{named}, which isn't one of its directors.");
+		}
 		foreach (string name in bound.Tweak.DirectorMembers) {
 			DoxygenMember member = bound.Source.Members.FirstOrDefault(member => member.Name == name && member.IsVirtual && !member.IsStatic) ?? throw new InvalidOperationException($"A tweak lets C# override {bound.CppName}::{name}, which is not one of its virtual members.");
 			BoundFunction? function = BindFunction(bound, member, isConstructor: false);
-			if (function is null || function.Parameters.Count != member.Parameters.Count || function.Returns.CallbackCType is null || function.Parameters.Any(static parameter => parameter.Conversion is not (BoolConversion or NumberConversion or EnumConversion))) {
+			// A hand-written callback can also write through a number's pointer, as GetPageInfo's are.
+			bool CanCallBack(Conversion conversion) => conversion is BoolConversion or NumberConversion or EnumConversion || (bound.Tweak.IsDirectorInternal && conversion is OutConversion { CanCallBack: true });
+			if (function is null || function.Parameters.Count != member.Parameters.Count || function.Returns.CallbackCType is null || !function.Parameters.All(parameter => CanCallBack(parameter.Conversion))) {
 				throw new InvalidOperationException($"C# cannot override {bound.CppName}::{name} yet: a director cannot convert its types.");
 			}
+			bool afterBase = bound.Tweak.DirectorsAfterBase.Contains(name);
+			bool beforeBase = bound.Tweak.DirectorsBeforeBase.Contains(name);
+			if (afterBase && function.Returns is not (VoidConversion or BoolConversion)) throw new InvalidOperationException($"{bound.CppName}::{name} can only call .NET after its own member when it returns nothing or a bool.");
+			if (beforeBase && function.Returns is not VoidConversion) throw new InvalidOperationException($"{bound.CppName}::{name} can only call .NET before its own member when it returns nothing.");
+			// Hand-written callbacks give their own defaults, so need no export of the class's member.
+			function.HasBaseExport = !member.IsPureVirtual && !afterBase && !beforeBase && !bound.Tweak.IsDirectorInternal;
 			function.ExportName = "base_" + name;
 			function.ManagedParameters = function.Parameters;
 			function.IsDirectorBase = true;
@@ -438,7 +449,10 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 			// Only event handlers are tracked, so only they can be wrapped when wxWidgets hands one back.
 			// A tool cannot go in, since the only tools are a toolbar's own, which it has already.
 			if (!isReturn && target.Handle == HandleKind.Tool) return null;
-			if (target.Handle == HandleKind.MenuItem) return owner.Tweak.InternalMembers.Contains(member) ? new ObjectConversion(target) : null;
+			// Hand-written code takes any object's handle from an internal member, such as a printout's
+			// DC or a menu's item, and knows what it may do with it.
+			if (owner.Tweak.InternalMembers.Contains(member)) return new ObjectConversion(target);
+			if (target.Handle == HandleKind.MenuItem) return null;
 			return isReturn && !target.Handle.IsEvtHandler && !target.Handle.IsKeptByOwner ? null : new ObjectConversion(target);
 		}
 		// A rectangle or strings a call fills by reference are out parameters. Only a getter's

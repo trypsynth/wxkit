@@ -491,7 +491,7 @@ public unsafe partial class ListCtrl : Control {
 	protected virtual string OnGetItemText(long item, long column) => NativeString.Take(WxKitNative.ListCtrlBaseOnGetItemText(Native, item, column));
 
 	[global::System.Runtime.InteropServices.UnmanagedCallersOnly(CallConvs = [typeof(global::System.Runtime.CompilerServices.CallConvCdecl)])]
-	private static int DirectorOnGetItemColumnImage(WxkWindow* self, long item, long column) {
+	private static int DirectorOnGetItemColumnImage(WxkWindow* self, void* userdata, long item, long column) {
 		try {
 			if (ObjectRegistry.Find(self) is not ListCtrl owner) return WxKitNative.ListCtrlBaseOnGetItemColumnImage(self, item, column);
 			return owner.OnGetItemColumnImage(item, column);
@@ -502,7 +502,7 @@ public unsafe partial class ListCtrl : Control {
 	}
 
 	[global::System.Runtime.InteropServices.UnmanagedCallersOnly(CallConvs = [typeof(global::System.Runtime.CompilerServices.CallConvCdecl)])]
-	private static int DirectorOnGetItemImage(WxkWindow* self, long item) {
+	private static int DirectorOnGetItemImage(WxkWindow* self, void* userdata, long item) {
 		try {
 			if (ObjectRegistry.Find(self) is not ListCtrl owner) return WxKitNative.ListCtrlBaseOnGetItemImage(self, item);
 			return owner.OnGetItemImage(item);
@@ -513,7 +513,7 @@ public unsafe partial class ListCtrl : Control {
 	}
 
 	[global::System.Runtime.InteropServices.UnmanagedCallersOnly(CallConvs = [typeof(global::System.Runtime.CompilerServices.CallConvCdecl)])]
-	private static byte DirectorOnGetItemIsChecked(WxkWindow* self, long item) {
+	private static byte DirectorOnGetItemIsChecked(WxkWindow* self, void* userdata, long item) {
 		try {
 			if (ObjectRegistry.Find(self) is not ListCtrl owner) return WxKitNative.ListCtrlBaseOnGetItemIsChecked(self, item);
 			return owner.OnGetItemIsChecked(item) ? (byte)1 : (byte)0;
@@ -524,7 +524,7 @@ public unsafe partial class ListCtrl : Control {
 	}
 
 	[global::System.Runtime.InteropServices.UnmanagedCallersOnly(CallConvs = [typeof(global::System.Runtime.CompilerServices.CallConvCdecl)])]
-	private static WxkString* DirectorOnGetItemText(WxkWindow* self, long item, long column) {
+	private static WxkString* DirectorOnGetItemText(WxkWindow* self, void* userdata, long item, long column) {
 		try {
 			if (ObjectRegistry.Find(self) is not ListCtrl owner) return WxKitNative.ListCtrlBaseOnGetItemText(self, item, column);
 			return NativeString.Create(owner.OnGetItemText(item, column));
@@ -546,6 +546,6 @@ public unsafe partial class ListCtrl : Control {
 		Application.VerifyAccess();
 		ListCtrl.InstallListCtrlDirectors();
 		ArgumentNullException.ThrowIfNull(parent);
-		return WxKitNative.ListCtrlNew((WxkWindow*)parent.Native, id, position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default, (long)style);
+		return WxKitNative.ListCtrlNew(null, (WxkWindow*)parent.Native, id, position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default, (long)style);
 	}
 }

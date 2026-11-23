@@ -8,6 +8,10 @@ typedef struct wxk_SingleInstanceChecker wxk_SingleInstanceChecker;
 typedef struct wxk_UIActionSimulator wxk_UIActionSimulator;
 typedef struct wxk_WindowDisabler wxk_WindowDisabler;
 
+// Called with a director's userdata when the director is deleted.
+
+WXK_FUNCTION(void) wxk_Directors_SetOnFree(void (*onFree)(void* userdata)) WXK_NOEXCEPT;
+
 // BusyCursor
 
 WXK_FUNCTION(void) wxk_BusyCursor_BeginBusyCursor(void) WXK_NOEXCEPT;
@@ -1463,7 +1467,7 @@ WXK_FUNCTION(uint8_t) wxk_ListBox_SetStringSelection_String(wxk_Window* self, co
 
 // wxListCtrl
 
-WXK_FUNCTION(wxk_Window*) wxk_ListCtrl_new(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Window*) wxk_ListCtrl_new(void* userdata, wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_ListCtrl_base_OnGetItemText(wxk_Window* self, int64_t item, int64_t column) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListCtrl_base_OnGetItemImage(wxk_Window* self, int64_t item) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListCtrl_base_OnGetItemColumnImage(wxk_Window* self, int64_t item, int64_t column) WXK_NOEXCEPT;
@@ -1551,7 +1555,7 @@ WXK_FUNCTION(uint8_t) wxk_ListCtrl_IsVirtual(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_HasCheckBoxes(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListCtrl_GetSortIndicator(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_IsAscendingSortIndicator(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_ListCtrl_SetDirectors(wxk_String* (*onGetItemText)(wxk_Window* self, int64_t item, int64_t column), int32_t (*onGetItemImage)(wxk_Window* self, int64_t item), int32_t (*onGetItemColumnImage)(wxk_Window* self, int64_t item, int64_t column), uint8_t (*onGetItemIsChecked)(wxk_Window* self, int64_t item)) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_ListCtrl_SetDirectors(wxk_String* (*onGetItemText)(wxk_Window* self, void* userdata, int64_t item, int64_t column), int32_t (*onGetItemImage)(wxk_Window* self, void* userdata, int64_t item), int32_t (*onGetItemColumnImage)(wxk_Window* self, void* userdata, int64_t item, int64_t column), uint8_t (*onGetItemIsChecked)(wxk_Window* self, void* userdata, int64_t item)) WXK_NOEXCEPT;
 
 // wxListEvent
 
@@ -1606,7 +1610,7 @@ WXK_FUNCTION(void) wxk_ListItem_SetWidth(wxk_Object* self, int32_t width) WXK_NO
 
 // wxListView
 
-WXK_FUNCTION(wxk_Window*) wxk_ListView_new(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Window*) wxk_ListView_new(void* userdata, wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListView_ClearColumnImage(wxk_Window* self, int32_t column) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListView_Focus(wxk_Window* self, int64_t index) WXK_NOEXCEPT;
 WXK_FUNCTION(int64_t) wxk_ListView_GetNextSelected(wxk_Window* self, int64_t item) WXK_NOEXCEPT;
@@ -2020,6 +2024,8 @@ WXK_FUNCTION(int32_t) wxk_Printer_GetLastError(void) WXK_NOEXCEPT;
 
 // wxPrintout
 
+WXK_FUNCTION(wxk_Object*) wxk_Printout_new(void* userdata, const char16_t* title, size_t titleLength) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Object*) wxk_Printout_GetDC(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Printout_FitThisSizeToPage(wxk_Object* self, wxk_Size imageSize) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Printout_FitThisSizeToPageMargins(wxk_Object* self, wxk_Size imageSize, const wxk_Object* pageSetupData) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Printout_FitThisSizeToPaper(wxk_Object* self, wxk_Size imageSize) WXK_NOEXCEPT;
@@ -2039,6 +2045,7 @@ WXK_FUNCTION(wxk_Size) wxk_Printout_GetPageSizePixels(wxk_Object* self) WXK_NOEX
 WXK_FUNCTION(wxk_Rect) wxk_Printout_GetPaperRectPixels(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_Printout_GetTitle(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Printout_IsPreview(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Printout_SetDirectors(uint8_t (*onPrintPage)(wxk_Object* self, void* userdata, int32_t pageNum), uint8_t (*hasPage)(wxk_Object* self, void* userdata, int32_t pageNum), void (*getPageInfo)(wxk_Object* self, void* userdata, int32_t* minPage, int32_t* maxPage, int32_t* pageFrom, int32_t* pageTo), void (*onPreparePrinting)(wxk_Object* self, void* userdata), void (*onBeginPrinting)(wxk_Object* self, void* userdata), void (*onEndPrinting)(wxk_Object* self, void* userdata), uint8_t (*onBeginDocument)(wxk_Object* self, void* userdata, int32_t startPage, int32_t endPage), void (*onEndDocument)(wxk_Object* self, void* userdata)) WXK_NOEXCEPT;
 
 // wxProgressDialog
 

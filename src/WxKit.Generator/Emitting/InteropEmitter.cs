@@ -25,6 +25,7 @@ internal static class InteropEmitter {
 				first = false;
 				List<string> parameters = [];
 				if (!function.IsConstructor && !function.IsStatic) parameters.Add($"{bound.Handle.InteropType}* self");
+				if (function.TakesUserdata) parameters.Add("void* userdata");
 				parameters.AddRange(function.Parameters.SelectMany(static parameter => parameter.Conversion.InteropParameters(parameter.Name)));
 				string returns = function.IsConstructor ? $"{bound.Handle.InteropType}*" : function.Returns.InteropReturnType;
 				Import(writer, function.ShimName, $"public static partial {returns} {function.InteropName}({string.Join(", ", parameters)});");
@@ -36,11 +37,15 @@ internal static class InteropEmitter {
 			if (bound.Directors.Count > 0) {
 				writer.Line();
 				IEnumerable<string> callbacks = bound.Directors.Select(director => {
-					IEnumerable<string> types = director.Parameters.Select(static parameter => parameter.Conversion.InteropReturnType).Prepend($"{bound.Handle.InteropType}*").Append(director.Returns.CallbackInteropType);
+					IEnumerable<string> types = director.Parameters.Select(static parameter => parameter.Conversion.CallbackParameterInteropType).Prepend("void*").Prepend($"{bound.Handle.InteropType}*").Append(director.Returns.CallbackInteropType);
 					return $"delegate* unmanaged[Cdecl]<{string.Join(", ", types)}> {char.ToLowerInvariant(director.Source.Name[0])}{director.Source.Name[1..]}";
 				});
 				Import(writer, $"wxk_{Naming.Type(bound.CppName)}_SetDirectors", $"public static partial void {Naming.Type(bound.CppName)}SetDirectors({string.Join(", ", callbacks)});");
 			}
+		}
+		if (result.Classes.Any(static bound => bound.Directors.Count > 0)) {
+			writer.Line();
+			Import(writer, "wxk_Directors_SetOnFree", "public static partial void DirectorsSetOnFree(delegate* unmanaged[Cdecl]<void*, void> onFree);");
 		}
 		foreach (BoundEventType type in result.EventTypes) {
 			writer.Line();

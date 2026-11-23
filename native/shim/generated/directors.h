@@ -3,13 +3,18 @@
 
 #include "includes.h"
 
+#include <utility>
+
 namespace wxk::directors {
 
+// Tells .NET a director is gone, with the userdata it was made with, which isn't null.
+extern void (*onFree)(void* userdata);
+
 // wxListCtrl's overridable members call into .NET through these, once it sets them.
-extern wxk_String* (*ListCtrl_OnGetItemText)(wxk_Window* self, int64_t item, int64_t column);
-extern int32_t (*ListCtrl_OnGetItemImage)(wxk_Window* self, int64_t item);
-extern int32_t (*ListCtrl_OnGetItemColumnImage)(wxk_Window* self, int64_t item, int64_t column);
-extern uint8_t (*ListCtrl_OnGetItemIsChecked)(wxk_Window* self, int64_t item);
+extern wxk_String* (*ListCtrl_OnGetItemText)(wxk_Window* self, void* userdata, int64_t item, int64_t column);
+extern int32_t (*ListCtrl_OnGetItemImage)(wxk_Window* self, void* userdata, int64_t item);
+extern int32_t (*ListCtrl_OnGetItemColumnImage)(wxk_Window* self, void* userdata, int64_t item, int64_t column);
+extern uint8_t (*ListCtrl_OnGetItemIsChecked)(wxk_Window* self, void* userdata, int64_t item);
 
 // What wxListCtrl's own members do, which each director made from it gives.
 struct ListCtrlBase {
@@ -21,5 +26,15 @@ struct ListCtrlBase {
 	protected:
 	~ListCtrlBase() = default;
 };
+
+// wxPrintout's overridable members call into .NET through these, once it sets them.
+extern uint8_t (*Printout_OnPrintPage)(wxk_Object* self, void* userdata, int32_t pageNum);
+extern uint8_t (*Printout_HasPage)(wxk_Object* self, void* userdata, int32_t pageNum);
+extern void (*Printout_GetPageInfo)(wxk_Object* self, void* userdata, int32_t* minPage, int32_t* maxPage, int32_t* pageFrom, int32_t* pageTo);
+extern void (*Printout_OnPreparePrinting)(wxk_Object* self, void* userdata);
+extern void (*Printout_OnBeginPrinting)(wxk_Object* self, void* userdata);
+extern void (*Printout_OnEndPrinting)(wxk_Object* self, void* userdata);
+extern uint8_t (*Printout_OnBeginDocument)(wxk_Object* self, void* userdata, int32_t startPage, int32_t endPage);
+extern void (*Printout_OnEndDocument)(wxk_Object* self, void* userdata);
 
 } // namespace wxk::directors

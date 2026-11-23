@@ -209,6 +209,31 @@ internal sealed class ClassTweak(string name) {
 		return this;
 	}
 
+	/// <summary>Whether hand-written code gives the directors' callbacks, as Printout does, rather than a generated managed class.</summary>
+	public bool IsDirectorInternal { get; private set; }
+
+	/// <summary>Directors whose callbacks hand-written code sets, which can also write through out parameters.</summary>
+	public ClassTweak InternalDirector(params string[] members) {
+		IsDirectorInternal = true;
+		return Director(members);
+	}
+
+	/// <summary>Directors that call the class's own member first, and .NET only if it succeeds, as wxPrintout's OnBeginDocument starts the document.</summary>
+	public HashSet<string> DirectorsAfterBase { get; } = new(StringComparer.Ordinal);
+
+	/// <summary>Directors that call .NET first, and then the class's own member, as wxPrintout's OnEndDocument ends the document.</summary>
+	public HashSet<string> DirectorsBeforeBase { get; } = new(StringComparer.Ordinal);
+
+	public ClassTweak DirectorAfterBase(string member) {
+		DirectorsAfterBase.Add(member);
+		return this;
+	}
+
+	public ClassTweak DirectorBeforeBase(string member) {
+		DirectorsBeforeBase.Add(member);
+		return this;
+	}
+
 	/// <summary>The managed side creates and deletes objects of the class, though its ancestry says otherwise, as for wxValidator, an event handler.</summary>
 	public bool IsOwnedObject { get; private set; }
 

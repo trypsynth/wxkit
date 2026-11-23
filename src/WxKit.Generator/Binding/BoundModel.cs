@@ -119,9 +119,9 @@ internal sealed class BoundClass(DoxygenClass source, ClassTweak tweak, HandleKi
 	public IEnumerable<BoundFunction> AllDirectors => (Base?.AllDirectors ?? []).Concat(Directors);
 
 	/// <summary>Whether WxKit creates a director, a subclass whose virtual members call into .NET, instead of the class itself.</summary>
-	public bool HasDirector => Constructors.Count > 0 && AllDirectors.Any();
+	public bool HasDirector => (Constructors.Count > 0 || InternalFunctions.Any(static function => function.IsConstructor)) && AllDirectors.Any();
 
-	public IEnumerable<BoundFunction> Functions => Constructors.Concat(Directors).Concat(InternalFunctions).Concat(Methods.Select(static method => method.Function)).Concat(Properties.SelectMany(static property => property.Setter is null ? [property.Getter] : new[] { property.Getter, property.Setter }));
+	public IEnumerable<BoundFunction> Functions => Constructors.Concat(Directors.Where(static director => director.HasBaseExport)).Concat(InternalFunctions).Concat(Methods.Select(static method => method.Function)).Concat(Properties.SelectMany(static property => property.Setter is null ? [property.Getter] : new[] { property.Getter, property.Setter }));
 }
 
 internal sealed record BoundParameter(string CppName, string Name, Conversion Conversion, bool Nullable, string? Default);
@@ -160,6 +160,19 @@ internal sealed class BoundFunction(BoundClass owner, DoxygenMember source, Conv
 
 	/// <summary>Whether this calls wxWidgets's own implementation of an overridable member, which a managed override's default calls.</summary>
 	public bool IsDirectorBase { get; set; }
+
+	/// <summary>
+	/// Whether a director has an export of the class's own member, for the managed default. A pure
+	/// virtual member has none, nor does one the director calls around .NET's, nor one whose callback
+	/// is hand-written.
+	/// </summary>
+	public bool HasBaseExport { get; set; } = true;
+
+	/// <summary>
+	/// Whether the function creates a director, which takes the userdata it gives each callback
+	/// and, when it is deleted, the shim's onFree.
+	/// </summary>
+	public bool TakesUserdata => IsConstructor && Owner.HasDirector;
 }
 
 internal sealed record BoundMethod(string Name, BoundFunction Function) {

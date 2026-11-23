@@ -3,10 +3,10 @@
 
 namespace wxk::directors {
 
-wxk_String* (*ListCtrl_OnGetItemText)(wxk_Window* self, int64_t item, int64_t column) = nullptr;
-int32_t (*ListCtrl_OnGetItemImage)(wxk_Window* self, int64_t item) = nullptr;
-int32_t (*ListCtrl_OnGetItemColumnImage)(wxk_Window* self, int64_t item, int64_t column) = nullptr;
-uint8_t (*ListCtrl_OnGetItemIsChecked)(wxk_Window* self, int64_t item) = nullptr;
+wxk_String* (*ListCtrl_OnGetItemText)(wxk_Window* self, void* userdata, int64_t item, int64_t column) = nullptr;
+int32_t (*ListCtrl_OnGetItemImage)(wxk_Window* self, void* userdata, int64_t item) = nullptr;
+int32_t (*ListCtrl_OnGetItemColumnImage)(wxk_Window* self, void* userdata, int64_t item, int64_t column) = nullptr;
+uint8_t (*ListCtrl_OnGetItemIsChecked)(wxk_Window* self, void* userdata, int64_t item) = nullptr;
 
 } // namespace wxk::directors
 
@@ -36,7 +36,15 @@ struct ListCtrlAccess {
 };
 
 struct ListCtrlDirector final : wxListCtrl, wxk::directors::ListCtrlBase {
-	using wxListCtrl::wxListCtrl;
+	template <typename... Arguments>
+	explicit ListCtrlDirector(void* userdata, Arguments&&... arguments) : wxListCtrl(std::forward<Arguments>(arguments)...), _userdata(userdata) {}
+
+	ListCtrlDirector(const ListCtrlDirector&) = delete;
+	ListCtrlDirector& operator=(const ListCtrlDirector&) = delete;
+
+	~ListCtrlDirector() override {
+		if (_userdata != nullptr && wxk::directors::onFree != nullptr) wxk::directors::onFree(_userdata);
+	}
 
 	wxString BaseOnGetItemText(long item, long column) const override {
 		return wxListCtrl::OnGetItemText(item, column);
@@ -56,30 +64,33 @@ struct ListCtrlDirector final : wxListCtrl, wxk::directors::ListCtrlBase {
 
 	wxString OnGetItemText(long item, long column) const override {
 		if (wxk::directors::ListCtrl_OnGetItemText == nullptr) return wxListCtrl::OnGetItemText(item, column);
-		return wxk::TakeString(wxk::directors::ListCtrl_OnGetItemText(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListCtrlDirector*>(this))), static_cast<int64_t>(item), static_cast<int64_t>(column)));
+		return wxk::TakeString(wxk::directors::ListCtrl_OnGetItemText(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListCtrlDirector*>(this))), _userdata, static_cast<int64_t>(item), static_cast<int64_t>(column)));
 	}
 
 	int OnGetItemImage(long item) const override {
 		if (wxk::directors::ListCtrl_OnGetItemImage == nullptr) return wxListCtrl::OnGetItemImage(item);
-		return static_cast<int>(wxk::directors::ListCtrl_OnGetItemImage(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListCtrlDirector*>(this))), static_cast<int64_t>(item)));
+		return static_cast<int>(wxk::directors::ListCtrl_OnGetItemImage(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListCtrlDirector*>(this))), _userdata, static_cast<int64_t>(item)));
 	}
 
 	int OnGetItemColumnImage(long item, long column) const override {
 		if (wxk::directors::ListCtrl_OnGetItemColumnImage == nullptr) return wxListCtrl::OnGetItemColumnImage(item, column);
-		return static_cast<int>(wxk::directors::ListCtrl_OnGetItemColumnImage(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListCtrlDirector*>(this))), static_cast<int64_t>(item), static_cast<int64_t>(column)));
+		return static_cast<int>(wxk::directors::ListCtrl_OnGetItemColumnImage(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListCtrlDirector*>(this))), _userdata, static_cast<int64_t>(item), static_cast<int64_t>(column)));
 	}
 
 	bool OnGetItemIsChecked(long item) const override {
 		if (wxk::directors::ListCtrl_OnGetItemIsChecked == nullptr) return wxListCtrl::OnGetItemIsChecked(item);
-		return wxk::directors::ListCtrl_OnGetItemIsChecked(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListCtrlDirector*>(this))), static_cast<int64_t>(item)) != 0;
+		return wxk::directors::ListCtrl_OnGetItemIsChecked(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListCtrlDirector*>(this))), _userdata, static_cast<int64_t>(item)) != 0;
 	}
+
+	private:
+	void* _userdata;
 };
 
 } // namespace
 
-WXK_FUNCTION(wxk_Window*) wxk_ListCtrl_new(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, int64_t style) noexcept {
+WXK_FUNCTION(wxk_Window*) wxk_ListCtrl_new(void* userdata, wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, int64_t style) noexcept {
 	return wxk::Guard<wxk_Window*>(nullptr, [&] {
-		wxWindow* created = new ListCtrlDirector(static_cast<wxWindow*>(wxk::Unwrap(parent)), static_cast<int>(id), wxk::FromPoint(position), wxk::FromSize(size), static_cast<long>(style));
+		wxWindow* created = new ListCtrlDirector(userdata, static_cast<wxWindow*>(wxk::Unwrap(parent)), static_cast<int>(id), wxk::FromPoint(position), wxk::FromSize(size), static_cast<long>(style));
 		return wxk::Wrap(created);
 	});
 }
@@ -432,7 +443,7 @@ WXK_FUNCTION(uint8_t) wxk_ListCtrl_IsAscendingSortIndicator(wxk_Window* self) no
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->IsAscendingSortIndicator()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_ListCtrl_SetDirectors(wxk_String* (*onGetItemText)(wxk_Window* self, int64_t item, int64_t column), int32_t (*onGetItemImage)(wxk_Window* self, int64_t item), int32_t (*onGetItemColumnImage)(wxk_Window* self, int64_t item, int64_t column), uint8_t (*onGetItemIsChecked)(wxk_Window* self, int64_t item)) noexcept {
+WXK_FUNCTION(void) wxk_ListCtrl_SetDirectors(wxk_String* (*onGetItemText)(wxk_Window* self, void* userdata, int64_t item, int64_t column), int32_t (*onGetItemImage)(wxk_Window* self, void* userdata, int64_t item), int32_t (*onGetItemColumnImage)(wxk_Window* self, void* userdata, int64_t item, int64_t column), uint8_t (*onGetItemIsChecked)(wxk_Window* self, void* userdata, int64_t item)) noexcept {
 	wxk::directors::ListCtrl_OnGetItemText = onGetItemText;
 	wxk::directors::ListCtrl_OnGetItemImage = onGetItemImage;
 	wxk::directors::ListCtrl_OnGetItemColumnImage = onGetItemColumnImage;

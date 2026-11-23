@@ -398,23 +398,6 @@ WXK_FUNCTION(void) wxk_Window_SetAccessibleCurrentRow(wxk_Window* window, int64_
 
 // Printing
 
-// The callbacks every managed printout calls, with the userdata it was made with. A printout's
-// DC is only good during printPage.
-typedef struct wxk_PrintoutCallbacks {
-	uint8_t (*printPage)(void* userdata, int32_t page, wxk_Object* dc);
-	uint8_t (*hasPage)(void* userdata, int32_t page);
-	void (*getPageInfo)(void* userdata, int32_t* minPage, int32_t* maxPage, int32_t* fromPage, int32_t* toPage);
-	void (*preparePrinting)(void* userdata);
-	void (*beginPrinting)(void* userdata);
-	void (*endPrinting)(void* userdata);
-	uint8_t (*beginDocument)(void* userdata, int32_t startPage, int32_t endPage);
-	void (*endDocument)(void* userdata);
-	void (*onFree)(void* userdata);
-} wxk_PrintoutCallbacks;
-
-WXK_FUNCTION(void) wxk_Printout_SetCallbacks(const wxk_PrintoutCallbacks* callbacks) WXK_NOEXCEPT;
-// Makes a printout whose pages .NET draws.
-WXK_FUNCTION(wxk_Object*) wxk_ManagedPrintout_new(const char16_t* title, size_t titleLength, void* userdata) WXK_NOEXCEPT;
 // Shows a preview of printout in a frame of its own, and returns the frame, or null when the
 // preview could not be made. The preview takes the printouts, and deletes them when it closes.
 WXK_FUNCTION(wxk_Window*) wxk_PrintPreview_Show(wxk_Object* printout, wxk_Object* printoutForPrinting, wxk_Object* data, wxk_Window* parent, const char16_t* title, size_t titleLength, wxk_Size size) WXK_NOEXCEPT;

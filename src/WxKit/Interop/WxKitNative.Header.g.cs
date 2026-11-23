@@ -444,14 +444,6 @@ public static unsafe partial class WxKitNative {
 
 	// Printing
 
-	[LibraryImport(Library, EntryPoint = "wxk_Printout_SetCallbacks")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void PrintoutSetCallbacks(WxkPrintoutCallbacks* callbacks);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ManagedPrintout_new")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkObject* ManagedPrintoutNew(char* title, nuint titleLength, void* userdata);
-
 	[LibraryImport(Library, EntryPoint = "wxk_PrintPreview_Show")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* PrintPreviewShow(WxkObject* printout, WxkObject* printoutForPrinting, WxkObject* data, WxkWindow* parent, char* title, nuint titleLength, Size size);

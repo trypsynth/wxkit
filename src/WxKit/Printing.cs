@@ -25,7 +25,7 @@ public readonly record struct PageRange(int MinPage, int MaxPage, int FromPage, 
 /// closes, after which <see cref="NativeObject.IsDisposed"/> is true.
 /// </remarks>
 public abstract unsafe partial class Printout {
-	private static bool _callbacksSet;
+	private static bool _directorsSet;
 
 	/// <summary>Makes a printout, whose title the system's print queue shows.</summary>
 	protected Printout(string title = "Printout") : this(new Holder(), title) {
@@ -73,39 +73,33 @@ public abstract unsafe partial class Printout {
 	private static WxkObject* Create(Holder holder, string title) {
 		ArgumentNullException.ThrowIfNull(title);
 		Application.VerifyAccess();
-		SetCallbacks();
+		SetDirectors();
 		// The native printout holds the managed one strongly, so it can call it for as long as it
 		// lives, and frees the handle when it is deleted.
 		GCHandle handle = GCHandle.Alloc(holder);
 		fixed (char* titleText = title) {
-			WxkObject* native = WxKitNative.ManagedPrintoutNew(titleText, NativeString.Length(title), (void*)GCHandle.ToIntPtr(handle));
+			WxkObject* native = WxKitNative.PrintoutNew((void*)GCHandle.ToIntPtr(handle), titleText, NativeString.Length(title));
 			if (native is null) handle.Free();
 			return native;
 		}
 	}
 
-	private static void SetCallbacks() {
-		if (_callbacksSet) return;
-		_callbacksSet = true;
-		WxkPrintoutCallbacks callbacks = new() {
-			PrintPage = &PrintPage,
-			HasPage = &HasPageCallback,
-			GetPageInfo = &GetPageInfoCallback,
-			PreparePrinting = &PreparePrinting,
-			BeginPrinting = &BeginPrinting,
-			EndPrinting = &EndPrinting,
-			BeginDocument = &BeginDocument,
-			EndDocument = &EndDocument,
-			OnFree = &OnFree,
-		};
-		WxKitNative.PrintoutSetCallbacks(&callbacks);
+	// The callbacks every printout's director calls, with the userdata it was made with, which
+	// Directors frees when wxWidgets deletes the printout.
+	private static void SetDirectors() {
+		if (_directorsSet) return;
+		_directorsSet = true;
+		Directors.Install();
+		WxKitNative.PrintoutSetDirectors(&PrintPage, &HasPageCallback, &GetPageInfoCallback, &PreparePrinting, &BeginPrinting, &EndPrinting, &BeginDocument, &EndDocument);
 	}
 
 	private static Printout? Of(void* userdata) => ((Holder?)GCHandle.FromIntPtr((nint)userdata).Target)?.Printout;
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static byte PrintPage(void* userdata, int page, WxkObject* dc) {
+	private static byte PrintPage(WxkObject* self, void* userdata, int page) {
 		try {
+			// The DC is only good while the page prints.
+			WxkObject* dc = WxKitNative.PrintoutGetDC(self);
 			if (Of(userdata) is not Printout printout || dc is null) return 0;
 			using DC lent = DC.Lend(dc);
 			return printout.OnPrintPage(page, lent) ? (byte)1 : (byte)0;
@@ -116,7 +110,7 @@ public abstract unsafe partial class Printout {
 	}
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static byte HasPageCallback(void* userdata, int page) {
+	private static byte HasPageCallback(WxkObject* self, void* userdata, int page) {
 		try {
 			return Of(userdata)?.HasPage(page) == true ? (byte)1 : (byte)0;
 		} catch (Exception error) {
@@ -126,7 +120,9 @@ public abstract unsafe partial class Printout {
 	}
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static void GetPageInfoCallback(void* userdata, int* minPage, int* maxPage, int* fromPage, int* toPage) {
+	private static void GetPageInfoCallback(WxkObject* self, void* userdata, int* minPage, int* maxPage, int* fromPage, int* toPage) {
+		// wxWidgets doesn't set what it reads, so a printout that can't answer has one page.
+		*minPage = *maxPage = *fromPage = *toPage = 1;
 		try {
 			if (Of(userdata) is not Printout printout) return;
 			PageRange pages = printout.GetPageInfo();
@@ -140,16 +136,16 @@ public abstract unsafe partial class Printout {
 	}
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static void PreparePrinting(void* userdata) => Call(userdata, static printout => printout.OnPreparePrinting());
+	private static void PreparePrinting(WxkObject* self, void* userdata) => Call(userdata, static printout => printout.OnPreparePrinting());
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static void BeginPrinting(void* userdata) => Call(userdata, static printout => printout.OnBeginPrinting());
+	private static void BeginPrinting(WxkObject* self, void* userdata) => Call(userdata, static printout => printout.OnBeginPrinting());
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static void EndPrinting(void* userdata) => Call(userdata, static printout => printout.OnEndPrinting());
+	private static void EndPrinting(WxkObject* self, void* userdata) => Call(userdata, static printout => printout.OnEndPrinting());
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static byte BeginDocument(void* userdata, int startPage, int endPage) {
+	private static byte BeginDocument(WxkObject* self, void* userdata, int startPage, int endPage) {
 		try {
 			return Of(userdata)?.OnBeginDocument(startPage, endPage) != false ? (byte)1 : (byte)0;
 		} catch (Exception error) {
@@ -159,15 +155,7 @@ public abstract unsafe partial class Printout {
 	}
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static void EndDocument(void* userdata) => Call(userdata, static printout => printout.OnEndDocument());
-
-	// wxWidgets has deleted the printout, as the application disposing it or a preview closing does.
-	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static void OnFree(void* userdata) {
-		GCHandle handle = GCHandle.FromIntPtr((nint)userdata);
-		((Holder?)handle.Target)?.Printout?.Invalidate();
-		handle.Free();
-	}
+	private static void EndDocument(WxkObject* self, void* userdata) => Call(userdata, static printout => printout.OnEndDocument());
 
 	private static void Call(void* userdata, Action<Printout> call) {
 		try {
@@ -177,9 +165,12 @@ public abstract unsafe partial class Printout {
 		}
 	}
 
-	// The handle's target, made before the printout so the native one can be given it.
-	private sealed class Holder {
+	// The handle's target, made before the printout so the native one can be given it. wxWidgets
+	// deletes the printout when the application disposes it or a preview closes.
+	private sealed class Holder : IDirected {
 		public Printout? Printout { get; set; }
+
+		public void OnNativeFreed() => Printout?.Invalidate();
 	}
 }
 
