@@ -14,6 +14,8 @@ Run any project with `dotnet test --project <folder>`, and the smoke test with `
 
 `scripts/test-sanitizers.ps1` runs `WxKit.Tests` on Linux against a shared library whose own code is built with AddressSanitizer and UndefinedBehaviorSanitizer, through the `WXKIT_SANITIZE` CMake option. They report memory errors, such as a read after a free, and undefined behavior, such as a cast to a class an object isn't, as the tests run, and the script fails on any report, even when the tests pass. wxWidgets itself is built as usual, so a report is in code WxKit can fix. .NET isn't built with the sanitizers, so the script builds the tests first and then runs them with the sanitizers' runtime preloaded, with the checks that CoreCLR trips on its own turned off. CI runs it in a job of its own, which a release waits for.
 
+`scripts/check-tidy.ps1` runs clang-tidy over the shim's hand-written C++, with the checks `native/shim/.clang-tidy` lists, which look for bugs, including through the static analyzer, and slow code, and it fails on any warning in the shim's own files. It reads how each file compiles from a Linux build's `compile_commands.json`, which the native build and the sanitizer script write, and CI runs it in the sanitizer job, on Ubuntu 24.04, whose clang-tidy it's written against.
+
 The generator also checks the hand-written shim: every function wxkit.h declares is defined, and the other way round, and every one that calls into C++ runs the call in `wxk::Guard` or says why it can't throw, as [Generator](generator.md#what-it-writes) describes.
 
 ## Running tests on the main thread

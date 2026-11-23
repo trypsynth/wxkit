@@ -1,0 +1,19 @@
+# clang-tidy's checks for the shim's hand-written C++, which scripts/check-tidy.ps1 runs and CI
+# fails on. Each check left out is one that doesn't fit the shim:
+# - easily-swappable-parameters: a C function takes a string's characters and their length side by side.
+# - unhandled-exception-at-new: wxk::Guard handles it, in a function the check doesn't look in.
+# - enum-size: an enum that crosses into .NET is an int32_t, whatever its values.
+# - no-int-to-ptr: wxWidgets' client data is a pointer, which carries a number from .NET.
+# Only the shim's own files are reported, since what the analyzer finds inside wxWidgets' headers,
+# along a path from the shim, isn't the shim's to fix.
+Checks: >
+  -*,
+  bugprone-*,
+  clang-analyzer-*,
+  performance-*,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-unhandled-exception-at-new,
+  -performance-enum-size,
+  -performance-no-int-to-ptr
+WarningsAsErrors: '*'
+HeaderFilterRegex: '.*/native/shim/(src|include)/.*'

@@ -320,10 +320,13 @@ inline wxVector<wxBitmapBundle> ToBitmapBundles(wxk_Object* const* bitmaps, size
 }
 
 // Adds an image file format, unless it is already added, so calling twice does nothing.
+// wxImage::AddHandler takes ownership of the handler, which the analyzer can't see.
+// NOLINTBEGIN(clang-analyzer-cplusplus.NewDeleteLeaks)
 template <typename Handler>
 void AddImageHandler(wxBitmapType type) {
 	if (wxImage::FindHandler(type) == nullptr) wxImage::AddHandler(new Handler());
 }
+// NOLINTEND(clang-analyzer-cplusplus.NewDeleteLeaks)
 
 template <typename T>
 T* As(wxk_Window* window) {

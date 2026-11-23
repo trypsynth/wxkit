@@ -16,6 +16,7 @@ wxCredentialEntryDialog* Unwrap(wxk_Window* dialog) {
 // Linux, wxWidgets' stand-in for wxSecretValue gives back the password's UTF-8 bytes as if each
 // were a character.
 wxTextCtrl* PasswordBox(wxWindow* window) {
+	if (window == nullptr) return nullptr;
 	for (wxWindow* child : window->GetChildren()) {
 		wxTextCtrl* text = dynamic_cast<wxTextCtrl*>(child);
 		if (text != nullptr && text->HasFlag(wxTE_PASSWORD)) return text;

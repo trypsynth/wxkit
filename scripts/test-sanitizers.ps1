@@ -13,7 +13,8 @@ $build = Join-Path $root "artifacts/native-build/$Runtime-sanitize"
 $native = Join-Path $root "artifacts/native-sanitize"
 $log = Join-Path $root "artifacts/sanitizers.log"
 
-cmake -S (Join-Path $root "native/shim") -B $build -G Ninja "-DCMAKE_BUILD_TYPE=Release" "-DWXKIT_SANITIZE=ON"
+# The build's compile commands are also what scripts/check-tidy.ps1 reads.
+cmake -S (Join-Path $root "native/shim") -B $build -G Ninja "-DCMAKE_BUILD_TYPE=Release" "-DWXKIT_SANITIZE=ON" "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
 if ($LASTEXITCODE -ne 0) { throw "Configuring the sanitized build failed." }
 # The tests use the shared library built with the web view, as on Linux they always do.
 cmake --build $build --target wxkitnative_webview

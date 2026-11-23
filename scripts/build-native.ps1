@@ -115,7 +115,8 @@ function Build-Linux([string]$runtime) {
 	if ($machine -ne $linuxArchitectures[$runtime]) { throw "$runtime builds on a $($linuxArchitectures[$runtime]) machine, and this one is $machine." }
 	$build = Join-Path $root "artifacts/native-build/$runtime"
 	$output = Join-Path $root "artifacts/native/$runtime"
-	cmake -S $source -B $build -G Ninja "-DCMAKE_BUILD_TYPE=$Configuration"
+	# The compile commands are what scripts/check-tidy.ps1 reads.
+	cmake -S $source -B $build -G Ninja "-DCMAKE_BUILD_TYPE=$Configuration" "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
 	Invoke-Checked "Configuring $runtime"
 	cmake --build $build --target wxkitnative_static wxkitnative wxkitnative_webview
 	Invoke-Checked "Building $runtime"

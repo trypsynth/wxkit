@@ -168,8 +168,10 @@ jobs:
   # on Linux, which fail on any memory error or undefined behavior the sanitizers report. It runs
   # beside the builds, with a wxWidgets build of its own, and a release waits for it.
   sanitizers:
-    name: Test with sanitizers (linux-x64)
-    runs-on: ubuntu-22.04
+    name: Test with sanitizers and clang-tidy (linux-x64)
+    # It ships nothing, so it runs on a newer Ubuntu than the builds, whose clang-tidy is the one
+    # scripts/check-tidy.ps1 is written against.
+    runs-on: ubuntu-24.04
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
@@ -180,10 +182,10 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
-      - name: Install GTK 3, WebKitGTK, and Xvfb
+      - name: Install GTK 3, WebKitGTK, Xvfb, and clang-tidy
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq libgtk-3-dev libwebkit2gtk-4.1-dev ninja-build xvfb
+          sudo apt-get install -y -qq libgtk-3-dev libwebkit2gtk-4.1-dev ninja-build xvfb clang-tidy
 
       - name: Find the wxWidgets commit
         id: wx
@@ -206,6 +208,11 @@ jobs:
         run: |
           xvfb-run -a pwsh ./scripts/test-sanitizers.ps1
           exit $LASTEXITCODE
+
+      - name: Check the shim with clang-tidy
+        if: always()
+        shell: pwsh
+        run: ./scripts/check-tidy.ps1 -Build artifacts/native-build/linux-x64-sanitize
 
       - name: Save the sanitized build
         if: always() && steps.sanitize-cache.outputs.cache-hit != 'true'
