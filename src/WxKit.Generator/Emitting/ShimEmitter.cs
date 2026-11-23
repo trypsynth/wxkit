@@ -87,6 +87,15 @@ internal static class ShimEmitter {
 			writer.Line($"// {bound.CppName}'s overridable members call into .NET through these, once it sets them.");
 			foreach (BoundFunction director in bound.Directors) writer.Line($"extern {CallbackPointer(director, CallbackName(director))};");
 			writer.Line();
+			// Every director made from the class gives its own implementation of each member through
+			// this, which the managed default calls. A base call reaches it with dynamic_cast, which
+			// C++ checks, rather than casting the object to a class it isn't.
+			writer.Line($"// What {bound.CppName}'s own members do, which each director made from it gives.");
+			writer.Open($"struct {BaseInterface(bound)}");
+			foreach (BoundFunction director in bound.Directors) writer.Line($"virtual {director.Source.Type} Base{director.Source.Name}({Parameters(director)}){Constness(director)} = 0;");
+			writer.Line().Line("protected:");
+			writer.Line($"~{BaseInterface(bound)}() = default;");
+			writer.Close("};").Line();
 		}
 		writer.Line("} // namespace wxk::directors");
 		return writer.ToString();
@@ -134,18 +143,29 @@ internal static class ShimEmitter {
 	// protected, for the managed defaults.
 	private static void WriteDirectors(CodeWriter writer, BoundClass bound) {
 		if (bound.Directors.Count > 0) {
-			writer.Open($"struct {Access(bound)} : {bound.CppName}");
+			writer.Open($"struct {Access(bound)}");
 			foreach (BoundFunction director in bound.Directors) {
 				string constness = director.Source.IsConst ? "const " : string.Empty;
 				writer.Open($"static {director.Source.Type} {director.Source.Name}({constness}{bound.CppName}* self{string.Concat(director.Source.Parameters.Select(static parameter => $", {parameter.Type} {parameter.Name}"))})");
-				writer.Line($"return static_cast<{constness}{Access(bound)}*>(self)->{bound.CppName}::{director.Source.Name}({Arguments(director)});");
+				writer.Line($"auto* base = dynamic_cast<{constness}wxk::directors::{BaseInterface(bound)}*>(self);");
+				writer.Line($"if (base == nullptr) throw std::logic_error(\"Only a {bound.CppName} WxKit made can call its own {director.Source.Name}.\");");
+				writer.Line($"return base->Base{director.Source.Name}({Arguments(director)});");
 				writer.Close();
 			}
 			writer.Close("};").Line();
 		}
 		if (!bound.HasDirector) return;
-		writer.Open($"struct {Director(bound)} final : {bound.CppName}");
+		// The director derives from the class first, so its handle is the class's, and then from the
+		// base interface of each class whose overridable members it has.
+		List<BoundClass> declaring = [.. bound.AllDirectors.Select(static director => director.Owner).Distinct()];
+		writer.Open($"struct {Director(bound)} final : {string.Join(", ", declaring.Select(static owner => $"wxk::directors::{BaseInterface(owner)}").Prepend(bound.CppName))}");
 		writer.Line($"using {bound.CppName}::{bound.CppName};");
+		foreach (BoundFunction director in bound.AllDirectors) {
+			writer.Line();
+			writer.Open($"{director.Source.Type} Base{director.Source.Name}({Parameters(director)}){Constness(director)} override");
+			writer.Line($"return {bound.CppName}::{director.Source.Name}({Arguments(director)});");
+			writer.Close();
+		}
 		foreach (BoundFunction director in bound.AllDirectors) {
 			writer.Line();
 			string parameters = string.Join(", ", director.Source.Parameters.Select(static parameter => $"{parameter.Type} {parameter.Name}"));
@@ -161,6 +181,12 @@ internal static class ShimEmitter {
 	}
 
 	private static string Access(BoundClass bound) => Naming.Type(bound.CppName) + "Access";
+
+	private static string BaseInterface(BoundClass bound) => Naming.Type(bound.CppName) + "Base";
+
+	private static string Parameters(BoundFunction director) => string.Join(", ", director.Source.Parameters.Select(static parameter => $"{parameter.Type} {parameter.Name}"));
+
+	private static string Constness(BoundFunction director) => director.Source.IsConst ? " const" : string.Empty;
 
 	private static string Director(BoundClass bound) => Naming.Type(bound.CppName) + "Director";
 

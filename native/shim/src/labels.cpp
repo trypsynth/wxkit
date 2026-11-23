@@ -74,7 +74,7 @@ WXK_FUNCTION(void) wxk_Window_LinkLabel(wxk_Window* window) noexcept {
 	wxk::Guard([window] {
 		wxWindow* control = static_cast<wxWindow*>(wxk::Unwrap(window));
 		wxWindow* label = control->GetPrevSibling();
-		if (label == nullptr || wxDynamicCast(label, wxStaticText) == nullptr) return;
+		if (label == nullptr || dynamic_cast<wxStaticText*>(label) == nullptr) return;
 		GtkWidget* connect = control->GetConnectWidget();
 		void* inner = connect == nullptr ? nullptr : Focusable(connect);
 		// wxGTK's own mnemonic names a control whose outer widget gets the focus, such as an entry.
@@ -136,7 +136,7 @@ WXK_FUNCTION(void) wxk_Window_LinkLabel(wxk_Window* window) noexcept {
 	wxk::Guard([window] {
 		wxWindow* control = static_cast<wxWindow*>(wxk::Unwrap(window));
 		wxWindow* label = control->GetPrevSibling();
-		if (label == nullptr || wxDynamicCast(label, wxStaticText) == nullptr) return;
+		if (label == nullptr || dynamic_cast<wxStaticText*>(label) == nullptr) return;
 		void* target = wxkMacAccessibleElement(control);
 		void* source = wxkMacAccessibleElement(label);
 		if (target == nullptr || source == nullptr || wxkMacHasTitle(target)) return;
@@ -166,7 +166,7 @@ WXK_FUNCTION(void) wxk_Window_LinkLabel(wxk_Window*) noexcept {
 namespace {
 
 bool IsIconButton(wxWindow* window) {
-	return wxDynamicCast(window, wxAnyButton) != nullptr && window->GetLabel().empty();
+	return dynamic_cast<wxAnyButton*>(window) != nullptr && window->GetLabel().empty();
 }
 
 void NameIconButtons(wxWindow* window) {

@@ -39,11 +39,11 @@ WXK_FUNCTION(uint8_t) wxk_Variant_SetObject(wxk_Variant* variant, wxk_Object* va
 		wxObject* object = wxk::Unwrap(value);
 		wxVariant& target = *wxk::Unwrap(variant);
 		// wxIcon derives from wxBitmap on some ports, so it is checked first.
-		if (auto* icon = wxDynamicCast(object, wxIcon)) {
+		if (auto* icon = dynamic_cast<wxIcon*>(object)) {
 			target << *icon;
-		} else if (auto* bitmap = wxDynamicCast(object, wxBitmap)) {
+		} else if (auto* bitmap = dynamic_cast<wxBitmap*>(object)) {
 			target << *bitmap;
-		} else if (auto* iconText = wxDynamicCast(object, wxDataViewIconText)) {
+		} else if (auto* iconText = dynamic_cast<wxDataViewIconText*>(object)) {
 			target << *iconText;
 		} else {
 			return 0;

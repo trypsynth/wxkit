@@ -3,8 +3,24 @@
 
 namespace {
 
-struct ListViewDirector final : wxListView {
+struct ListViewDirector final : wxListView, wxk::directors::ListCtrlBase {
 	using wxListView::wxListView;
+
+	wxString BaseOnGetItemText(long item, long column) const override {
+		return wxListView::OnGetItemText(item, column);
+	}
+
+	int BaseOnGetItemImage(long item) const override {
+		return wxListView::OnGetItemImage(item);
+	}
+
+	int BaseOnGetItemColumnImage(long item, long column) const override {
+		return wxListView::OnGetItemColumnImage(item, column);
+	}
+
+	bool BaseOnGetItemIsChecked(long item) const override {
+		return wxListView::OnGetItemIsChecked(item);
+	}
 
 	wxString OnGetItemText(long item, long column) const override {
 		if (wxk::directors::ListCtrl_OnGetItemText == nullptr) return wxListView::OnGetItemText(item, column);

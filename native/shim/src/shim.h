@@ -9,6 +9,7 @@
 #include <wx/treebase.h>
 #include <wx/vector.h>
 
+#include <stdexcept>
 #include <string>
 #include <type_traits>
 #include <utility>

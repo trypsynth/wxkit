@@ -11,4 +11,15 @@ extern int32_t (*ListCtrl_OnGetItemImage)(wxk_Window* self, int64_t item);
 extern int32_t (*ListCtrl_OnGetItemColumnImage)(wxk_Window* self, int64_t item, int64_t column);
 extern uint8_t (*ListCtrl_OnGetItemIsChecked)(wxk_Window* self, int64_t item);
 
+// What wxListCtrl's own members do, which each director made from it gives.
+struct ListCtrlBase {
+	virtual wxString BaseOnGetItemText(long item, long column) const = 0;
+	virtual int BaseOnGetItemImage(long item) const = 0;
+	virtual int BaseOnGetItemColumnImage(long item, long column) const = 0;
+	virtual bool BaseOnGetItemIsChecked(long item) const = 0;
+
+	protected:
+	~ListCtrlBase() = default;
+};
+
 } // namespace wxk::directors

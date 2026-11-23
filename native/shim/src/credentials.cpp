@@ -17,7 +17,7 @@ wxCredentialEntryDialog* Unwrap(wxk_Window* dialog) {
 // were a character.
 wxTextCtrl* PasswordBox(wxWindow* window) {
 	for (wxWindow* child : window->GetChildren()) {
-		wxTextCtrl* text = wxDynamicCast(child, wxTextCtrl);
+		wxTextCtrl* text = dynamic_cast<wxTextCtrl*>(child);
 		if (text != nullptr && text->HasFlag(wxTE_PASSWORD)) return text;
 		if (wxTextCtrl* found = PasswordBox(child)) return found;
 	}

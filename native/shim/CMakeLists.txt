@@ -35,6 +35,7 @@ endif()
 # wxWidgets checks its preconditions with assertions, which it recommends keeping in release builds,
 # and a failed one raises Application.AssertFailed, so applications learn of misuse that would
 # otherwise go unnoticed. WXKIT_DEBUG_LEVEL 0 compiles them out.
+option(WXKIT_SANITIZE "Build the shared library's own code with AddressSanitizer and UndefinedBehaviorSanitizer" OFF)
 set(WXKIT_DEBUG_LEVEL 1 CACHE STRING "wxWidgets' debug level: 1 keeps its assertions, 0 compiles them out")
 set(wxBUILD_DEBUG_LEVEL ${WXKIT_DEBUG_LEVEL} CACHE STRING "" FORCE)
 
@@ -154,6 +155,12 @@ function(wxk_add_shared target directory)
 	target_compile_definitions(${target} PRIVATE WXK_BUILDING_SHARED)
 	target_link_libraries(${target} PRIVATE wx::stc wx::core wx::base)
 	target_precompile_headers(${target} PRIVATE generated/includes.h)
+	# For scripts/test-sanitizers.ps1: the shim's own code, not wxWidgets', reports memory errors and
+	# undefined behavior as the tests run, where WxKit can fix what they find.
+	if(WXKIT_SANITIZE)
+		target_compile_options(${target} PRIVATE -fsanitize=address,undefined -fno-omit-frame-pointer -g)
+		target_link_options(${target} PRIVATE -fsanitize=address,undefined)
+	endif()
 	set_target_properties(${target} PROPERTIES
 		OUTPUT_NAME wxkitnative
 		RUNTIME_OUTPUT_DIRECTORY $<1:${CMAKE_BINARY_DIR}/${directory}>

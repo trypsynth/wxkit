@@ -12,23 +12,47 @@ uint8_t (*ListCtrl_OnGetItemIsChecked)(wxk_Window* self, int64_t item) = nullptr
 
 namespace {
 
-struct ListCtrlAccess : wxListCtrl {
+struct ListCtrlAccess {
 	static wxString OnGetItemText(const wxListCtrl* self, long item, long column) {
-		return static_cast<const ListCtrlAccess*>(self)->wxListCtrl::OnGetItemText(item, column);
+		auto* base = dynamic_cast<const wxk::directors::ListCtrlBase*>(self);
+		if (base == nullptr) throw std::logic_error("Only a wxListCtrl WxKit made can call its own OnGetItemText.");
+		return base->BaseOnGetItemText(item, column);
 	}
 	static int OnGetItemImage(const wxListCtrl* self, long item) {
-		return static_cast<const ListCtrlAccess*>(self)->wxListCtrl::OnGetItemImage(item);
+		auto* base = dynamic_cast<const wxk::directors::ListCtrlBase*>(self);
+		if (base == nullptr) throw std::logic_error("Only a wxListCtrl WxKit made can call its own OnGetItemImage.");
+		return base->BaseOnGetItemImage(item);
 	}
 	static int OnGetItemColumnImage(const wxListCtrl* self, long item, long column) {
-		return static_cast<const ListCtrlAccess*>(self)->wxListCtrl::OnGetItemColumnImage(item, column);
+		auto* base = dynamic_cast<const wxk::directors::ListCtrlBase*>(self);
+		if (base == nullptr) throw std::logic_error("Only a wxListCtrl WxKit made can call its own OnGetItemColumnImage.");
+		return base->BaseOnGetItemColumnImage(item, column);
 	}
 	static bool OnGetItemIsChecked(const wxListCtrl* self, long item) {
-		return static_cast<const ListCtrlAccess*>(self)->wxListCtrl::OnGetItemIsChecked(item);
+		auto* base = dynamic_cast<const wxk::directors::ListCtrlBase*>(self);
+		if (base == nullptr) throw std::logic_error("Only a wxListCtrl WxKit made can call its own OnGetItemIsChecked.");
+		return base->BaseOnGetItemIsChecked(item);
 	}
 };
 
-struct ListCtrlDirector final : wxListCtrl {
+struct ListCtrlDirector final : wxListCtrl, wxk::directors::ListCtrlBase {
 	using wxListCtrl::wxListCtrl;
+
+	wxString BaseOnGetItemText(long item, long column) const override {
+		return wxListCtrl::OnGetItemText(item, column);
+	}
+
+	int BaseOnGetItemImage(long item) const override {
+		return wxListCtrl::OnGetItemImage(item);
+	}
+
+	int BaseOnGetItemColumnImage(long item, long column) const override {
+		return wxListCtrl::OnGetItemColumnImage(item, column);
+	}
+
+	bool BaseOnGetItemIsChecked(long item) const override {
+		return wxListCtrl::OnGetItemIsChecked(item);
+	}
 
 	wxString OnGetItemText(long item, long column) const override {
 		if (wxk::directors::ListCtrl_OnGetItemText == nullptr) return wxListCtrl::OnGetItemText(item, column);
