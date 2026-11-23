@@ -7,7 +7,8 @@ namespace WxKit;
 /// <summary>This class currently simply presents a simpler to use interface for the wxListCtrl it can be thought of as a façade for that complicated class. Wraps wxListView.</summary>
 public unsafe partial class ListView : ListCtrl {
 	/// <summary>Constructor, creating and showing a listview control.</summary>
-	public ListView(Window parent, int id = StandardId.Any, Point? position = null, Size? size = null, ListCtrlStyle style = ListCtrlStyle.Report) : this(CreateNative(parent, id, position, size, style)) {
+	public ListView(Window parent, int id = StandardId.Any, Point? position = null, Size? size = null, ListCtrlStyle style = ListCtrlStyle.Report) : this(CreateNative(out DirectorTarget director, parent, id, position, size, style)) {
+		director.Object = this;
 	}
 
 	internal ListView(WxkWindow* native) : base(native) {
@@ -37,10 +38,11 @@ public unsafe partial class ListView : ListCtrl {
 	/// <summary>Sets the column image for the specified column.</summary>
 	public void SetColumnImage(int column, int image) => WxKitNative.ListViewSetColumnImage(Native, column, image);
 
-	private static WxkWindow* CreateNative(Window parent, int id, Point? position, Size? size, ListCtrlStyle style) {
+	private static WxkWindow* CreateNative(out DirectorTarget director, Window parent, int id, Point? position, Size? size, ListCtrlStyle style) {
 		Application.VerifyAccess();
 		ListCtrl.InstallListCtrlDirectors();
+		director = new DirectorTarget();
 		ArgumentNullException.ThrowIfNull(parent);
-		return WxKitNative.ListViewNew(null, (WxkWindow*)parent.Native, id, position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default, (long)style);
+		return director.Created(WxKitNative.ListViewNew(director.Userdata, (WxkWindow*)parent.Native, id, position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default, (long)style));
 	}
 }

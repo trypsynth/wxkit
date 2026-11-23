@@ -7,7 +7,8 @@ namespace WxKit;
 /// <summary>A list control presents lists in a number of formats: list view, report view, icon view and small icon view. Wraps wxListCtrl.</summary>
 public unsafe partial class ListCtrl : Control {
 	/// <summary>Constructor, creating and showing a list control.</summary>
-	public ListCtrl(Window parent, int id = StandardId.Any, Point? position = null, Size? size = null, ListCtrlStyle style = ListCtrlStyle.Icon) : this(CreateNative(parent, id, position, size, style)) {
+	public ListCtrl(Window parent, int id = StandardId.Any, Point? position = null, Size? size = null, ListCtrlStyle style = ListCtrlStyle.Icon) : this(CreateNative(out DirectorTarget director, parent, id, position, size, style)) {
+		director.Object = this;
 	}
 
 	internal ListCtrl(WxkWindow* native) : base(native) {
@@ -493,7 +494,7 @@ public unsafe partial class ListCtrl : Control {
 	[global::System.Runtime.InteropServices.UnmanagedCallersOnly(CallConvs = [typeof(global::System.Runtime.CompilerServices.CallConvCdecl)])]
 	private static int DirectorOnGetItemColumnImage(WxkWindow* self, void* userdata, long item, long column) {
 		try {
-			if (ObjectRegistry.Find(self) is not ListCtrl owner) return WxKitNative.ListCtrlBaseOnGetItemColumnImage(self, item, column);
+			if (DirectorTarget.Find<ListCtrl>(userdata) is not ListCtrl owner) return WxKitNative.ListCtrlBaseOnGetItemColumnImage(self, item, column);
 			return owner.OnGetItemColumnImage(item, column);
 		} catch (Exception error) {
 			Application.ReportException(error);
@@ -504,7 +505,7 @@ public unsafe partial class ListCtrl : Control {
 	[global::System.Runtime.InteropServices.UnmanagedCallersOnly(CallConvs = [typeof(global::System.Runtime.CompilerServices.CallConvCdecl)])]
 	private static int DirectorOnGetItemImage(WxkWindow* self, void* userdata, long item) {
 		try {
-			if (ObjectRegistry.Find(self) is not ListCtrl owner) return WxKitNative.ListCtrlBaseOnGetItemImage(self, item);
+			if (DirectorTarget.Find<ListCtrl>(userdata) is not ListCtrl owner) return WxKitNative.ListCtrlBaseOnGetItemImage(self, item);
 			return owner.OnGetItemImage(item);
 		} catch (Exception error) {
 			Application.ReportException(error);
@@ -515,7 +516,7 @@ public unsafe partial class ListCtrl : Control {
 	[global::System.Runtime.InteropServices.UnmanagedCallersOnly(CallConvs = [typeof(global::System.Runtime.CompilerServices.CallConvCdecl)])]
 	private static byte DirectorOnGetItemIsChecked(WxkWindow* self, void* userdata, long item) {
 		try {
-			if (ObjectRegistry.Find(self) is not ListCtrl owner) return WxKitNative.ListCtrlBaseOnGetItemIsChecked(self, item);
+			if (DirectorTarget.Find<ListCtrl>(userdata) is not ListCtrl owner) return WxKitNative.ListCtrlBaseOnGetItemIsChecked(self, item);
 			return owner.OnGetItemIsChecked(item) ? (byte)1 : (byte)0;
 		} catch (Exception error) {
 			Application.ReportException(error);
@@ -526,7 +527,7 @@ public unsafe partial class ListCtrl : Control {
 	[global::System.Runtime.InteropServices.UnmanagedCallersOnly(CallConvs = [typeof(global::System.Runtime.CompilerServices.CallConvCdecl)])]
 	private static WxkString* DirectorOnGetItemText(WxkWindow* self, void* userdata, long item, long column) {
 		try {
-			if (ObjectRegistry.Find(self) is not ListCtrl owner) return WxKitNative.ListCtrlBaseOnGetItemText(self, item, column);
+			if (DirectorTarget.Find<ListCtrl>(userdata) is not ListCtrl owner) return WxKitNative.ListCtrlBaseOnGetItemText(self, item, column);
 			return NativeString.Create(owner.OnGetItemText(item, column));
 		} catch (Exception error) {
 			Application.ReportException(error);
@@ -539,13 +540,15 @@ public unsafe partial class ListCtrl : Control {
 	internal static void InstallListCtrlDirectors() {
 		if (_directorsInstalled) return;
 		_directorsInstalled = true;
+		Directors.Install();
 		WxKitNative.ListCtrlSetDirectors(&DirectorOnGetItemText, &DirectorOnGetItemImage, &DirectorOnGetItemColumnImage, &DirectorOnGetItemIsChecked);
 	}
 
-	private static WxkWindow* CreateNative(Window parent, int id, Point? position, Size? size, ListCtrlStyle style) {
+	private static WxkWindow* CreateNative(out DirectorTarget director, Window parent, int id, Point? position, Size? size, ListCtrlStyle style) {
 		Application.VerifyAccess();
 		ListCtrl.InstallListCtrlDirectors();
+		director = new DirectorTarget();
 		ArgumentNullException.ThrowIfNull(parent);
-		return WxKitNative.ListCtrlNew(null, (WxkWindow*)parent.Native, id, position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default, (long)style);
+		return director.Created(WxKitNative.ListCtrlNew(director.Userdata, (WxkWindow*)parent.Native, id, position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default, (long)style));
 	}
 }

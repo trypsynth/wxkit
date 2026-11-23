@@ -77,7 +77,7 @@ Before the callbacks are set, and when a callback pointer in the struct is null,
 
 ## Order of work
 
-1. Userdata identity and the generated callbacks, proven on `wxPrintout`, which needs only numbers, booleans, `int*` out parameters, and the wrap-the-base marker. printing.cpp's director goes, and `Printout` calls the generated exports. Done: the printout's director is generated, and `ListCtrl`'s takes a userdata it doesn't use yet.
+1. Userdata identity and the generated callbacks, proven on `wxPrintout`, which needs only numbers, booleans, `int*` out parameters, and the wrap-the-base marker. printing.cpp's director goes, and `Printout` calls the generated exports. Done: the printout's director is generated, and `ListCtrl`'s finds its object through its userdata.
 2. Text and enum out parameters, and the per-member default, proven on `wxAccessible`. Most of accessible.cpp goes.
 3. Variants and item arrays by handle, proven on the two data view models. Most of dataview.cpp goes.
 4. Object parameters, and the drop target's overrides.
@@ -86,7 +86,7 @@ Each step keeps the public API and the tests as they are, and is a commit of its
 
 ## One kind of director
 
-General directors replace today's registry-based ones, so the shim has one kind. A generated class such as `ListCtrl` already has a generated managed side, which allocates the GC handle it passes as `userdata` and frees it in `onFree`, where today it looks itself up in the registry. Nothing public changes. This comes after step 1, once the userdata form works, and before step 2, so the later steps build on one kind.
+General directors replace the registry-based ones, so the shim has one kind. A generated class such as `ListCtrl` has a generated managed side, which makes a `DirectorTarget` for each object, passes a GC handle to it as `userdata`, and points it at the object once the constructor runs. `onFree` frees the handle. Nothing public changed. This was done after step 1, so the later steps build on one kind.
 
 ## Open questions
 

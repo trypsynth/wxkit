@@ -34,8 +34,10 @@ internal static class ManagedEmitter {
 		foreach (BoundFunction constructor in bound.Constructors) {
 			Gap();
 			Summary(writer, constructor.Source.Brief);
-			string arguments = string.Join(", ", constructor.ManagedParameters.Select(static parameter => parameter.Name));
+			string arguments = string.Join(", ", constructor.ManagedParameters.Select(static parameter => parameter.Name).Prepend(bound.HasDirector ? "out DirectorTarget director" : null).OfType<string>());
 			writer.Open($"public {bound.Name}({ParameterList(constructor.ManagedParameters, withDefaults: true)}) : this(CreateNative({arguments}))");
+			// The director finds this object through the target it was made with.
+			if (bound.HasDirector) writer.Line("director.Object = this;");
 			// A parameter the native object goes on using stays alive as long as this object does.
 			foreach (BoundParameter kept in constructor.ManagedParameters.Where(parameter => bound.Tweak.KeptAlive.Contains(parameter.CppName))) writer.Line($"KeepAlive({kept.Name});");
 			writer.Close();
@@ -82,15 +84,18 @@ internal static class ManagedEmitter {
 		}
 		foreach (BoundFunction constructor in bound.Constructors) {
 			Gap();
-			writer.Open($"private static {bound.Handle.InteropType}* CreateNative({ParameterList(constructor.ManagedParameters, withDefaults: false)})");
+			string parameters = ParameterList(constructor.ManagedParameters, withDefaults: false);
+			if (bound.HasDirector) parameters = parameters.Length == 0 ? "out DirectorTarget director" : "out DirectorTarget director, " + parameters;
+			writer.Open($"private static {bound.Handle.InteropType}* CreateNative({parameters})");
 			// The thread is checked before anything is created, so a call on the wrong thread leaves nothing behind.
 			writer.Line("Application.VerifyAccess();");
 			if (bound.HasDirector) {
 				for (BoundClass? declaring = bound; declaring is not null; declaring = declaring.Base) {
 					if (ManagedDirectors(declaring).Any()) writer.Line($"{declaring.Name}.Install{declaring.Name}Directors();");
 				}
+				writer.Line("director = new DirectorTarget();");
 			}
-			WriteCall(writer, constructor, self: null, result => $"return {result};");
+			WriteCall(writer, constructor, self: null, result => bound.HasDirector ? $"return director.Created({result});" : $"return {result};");
 			writer.Close();
 		}
 		writer.Close();
@@ -162,7 +167,7 @@ internal static class ManagedEmitter {
 			string original = $"WxKitNative.{director.InteropName}({string.Join(", ", director.Parameters.Select(static parameter => parameter.Name).Prepend("self"))})";
 			string call = $"owner.{director.Source.Name}({string.Join(", ", director.Parameters.Select(static parameter => parameter.Conversion.ManagedReturn(parameter.Name)))})";
 			if (director.Returns is VoidConversion) {
-				writer.Open($"if (ObjectRegistry.Find(self) is not {bound.Name} owner)");
+				writer.Open($"if (DirectorTarget.Find<{bound.Name}>(userdata) is not {bound.Name} owner)");
 				writer.Line($"{original};");
 				writer.Line("return;");
 				writer.Close();
@@ -170,7 +175,7 @@ internal static class ManagedEmitter {
 				writer.Continue("catch (Exception error)");
 				writer.Line("Application.ReportException(error);");
 			} else {
-				writer.Line($"if (ObjectRegistry.Find(self) is not {bound.Name} owner) return {original};");
+				writer.Line($"if (DirectorTarget.Find<{bound.Name}>(userdata) is not {bound.Name} owner) return {original};");
 				writer.Line($"return {director.Returns.ToCallback(call)};");
 				writer.Continue("catch (Exception error)");
 				writer.Line("Application.ReportException(error);");
@@ -185,6 +190,7 @@ internal static class ManagedEmitter {
 		writer.Open($"internal static void Install{bound.Name}Directors()");
 		writer.Line("if (_directorsInstalled) return;");
 		writer.Line("_directorsInstalled = true;");
+		writer.Line("Directors.Install();");
 		writer.Line($"WxKitNative.{Naming.Type(bound.CppName)}SetDirectors({string.Join(", ", bound.Directors.Select(static director => "&Director" + director.Source.Name))});");
 		writer.Close();
 	}
@@ -205,8 +211,7 @@ internal static class ManagedEmitter {
 
 	private static string InteropCall(BoundFunction function, string? self) {
 		List<string> arguments = self is null ? [] : [self];
-		// The generated classes find their objects in the registry, so give their directors no userdata.
-		if (function.TakesUserdata) arguments.Add("null");
+		if (function.TakesUserdata) arguments.Add("director.Userdata");
 		arguments.AddRange(function.Parameters.SelectMany(static parameter => parameter.Conversion.InteropArguments(parameter.Name, parameter.Nullable)));
 		return $"WxKitNative.{function.InteropName}({string.Join(", ", arguments)})";
 	}

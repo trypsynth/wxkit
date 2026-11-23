@@ -30,3 +30,29 @@ internal static unsafe class Directors {
 		}
 	}
 }
+
+// What a generated class's director is made with: its userdata is a handle to this, which points
+// at the managed object once its constructor runs. Until then, and once wxWidgets deletes the
+// object, a callback finds nothing, and calls wxWidgets' own member.
+internal sealed unsafe class DirectorTarget : IDirected {
+	private GCHandle _handle;
+
+	public object? Object { get; set; }
+
+	public void* Userdata {
+		get {
+			if (!_handle.IsAllocated) _handle = GCHandle.Alloc(this);
+			return (void*)GCHandle.ToIntPtr(_handle);
+		}
+	}
+
+	// A director that couldn't be made never calls onFree, so the handle is freed here.
+	public T* Created<T>(T* native) where T : unmanaged {
+		if (native is null && _handle.IsAllocated) _handle.Free();
+		return native;
+	}
+
+	public void OnNativeFreed() => Object = null;
+
+	public static T? Find<T>(void* userdata) where T : class => userdata is not null && GCHandle.FromIntPtr((nint)userdata).Target is DirectorTarget { Object: T found } ? found : null;
+}
