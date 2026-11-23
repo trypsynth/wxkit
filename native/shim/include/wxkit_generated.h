@@ -26,6 +26,12 @@ WXK_FUNCTION(uint8_t) wxk_Desktop_LaunchDefaultApplication(const char16_t* docum
 WXK_FUNCTION(uint8_t) wxk_Desktop_GetKeyState(int32_t key) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Point) wxk_Desktop_GetMousePosition(void) WXK_NOEXCEPT;
 
+// wxAccessible
+
+WXK_FUNCTION(wxk_Accessible*) wxk_Accessible_new(void* userdata, wxk_Window* window) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Accessible_NotifyEvent(int32_t eventType, wxk_Window* window, int32_t objectType, int32_t objectId) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Accessible_SetDirectors(int32_t (*getName)(wxk_Accessible* self, void* userdata, int32_t childId, wxk_String** name), int32_t (*getDescription)(wxk_Accessible* self, void* userdata, int32_t childId, wxk_String** description), int32_t (*getHelpText)(wxk_Accessible* self, void* userdata, int32_t childId, wxk_String** helpText), int32_t (*getKeyboardShortcut)(wxk_Accessible* self, void* userdata, int32_t childId, wxk_String** shortcut), int32_t (*getDefaultAction)(wxk_Accessible* self, void* userdata, int32_t childId, wxk_String** actionName), int32_t (*getValue)(wxk_Accessible* self, void* userdata, int32_t childId, wxk_String** strValue), int32_t (*getRole)(wxk_Accessible* self, void* userdata, int32_t childId, int32_t* role), int32_t (*getState)(wxk_Accessible* self, void* userdata, int32_t childId, int64_t* state), int32_t (*getChildCount)(wxk_Accessible* self, void* userdata, int32_t* childCount), int32_t (*getLocation)(wxk_Accessible* self, void* userdata, wxk_Rect* rect, int32_t elementId), int32_t (*getChild)(wxk_Accessible* self, void* userdata, int32_t childId, wxk_Accessible** child), int32_t (*getFocus)(wxk_Accessible* self, void* userdata, int32_t* childId, wxk_Accessible** child), int32_t (*hitTest)(wxk_Accessible* self, void* userdata, wxk_Point pt, int32_t* childId, wxk_Accessible** childObject), int32_t (*navigate)(wxk_Accessible* self, void* userdata, int32_t navDir, int32_t fromId, int32_t* toId, wxk_Accessible** toObject), int32_t (*doDefaultAction)(wxk_Accessible* self, void* userdata, int32_t childId), int32_t (*select)(wxk_Accessible* self, void* userdata, int32_t childId, int32_t selectFlags)) WXK_NOEXCEPT;
+
 // wxActivateEvent
 
 WXK_FUNCTION(uint8_t) wxk_ActivateEvent_GetActive(wxk_Event* self) WXK_NOEXCEPT;

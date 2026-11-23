@@ -121,6 +121,13 @@ internal static class ShimEmitter {
 	private static string ClassFile(BoundClass bound) {
 		CodeWriter writer = new();
 		writer.Line(Banner).Line(bound.HasDirector || bound.Directors.Count > 0 ? "#include \"directors.h\"" : "#include \"includes.h\"").Line();
+		// The callbacks are C, so they're there even where the class isn't, as SetDirectors sets them.
+		if (bound.Directors.Count > 0) {
+			writer.Line("namespace wxk::directors {").Line();
+			foreach (BoundFunction director in bound.Directors) writer.Line($"{CallbackPointer(director, CallbackName(director))} = nullptr;");
+			writer.Line().Line("} // namespace wxk::directors").Line();
+		}
+		if (bound.Tweak.ClassGuard is string classGuard) writer.Line($"#if {classGuard}").Line();
 		if (bound.Handle.IsPlain) {
 			// Only this file uses the class's handle, so it converts here.
 			writer.Line("namespace wxk {").Line();
@@ -128,16 +135,12 @@ internal static class ShimEmitter {
 			writer.Line($"inline {bound.Handle.CType}* Wrap({bound.CppName}* value) {{ return reinterpret_cast<{bound.Handle.CType}*>(value); }}");
 			writer.Line().Line("} // namespace wxk").Line();
 		}
-		if (bound.Directors.Count > 0) {
-			writer.Line("namespace wxk::directors {").Line();
-			foreach (BoundFunction director in bound.Directors) writer.Line($"{CallbackPointer(director, CallbackName(director))} = nullptr;");
-			writer.Line().Line("} // namespace wxk::directors").Line();
-		}
 		if (bound.Directors.Count > 0 || bound.HasDirector) {
 			writer.Line("namespace {").Line();
 			WriteDirectors(writer, bound);
 			writer.Line("} // namespace").Line();
 		}
+		if (bound.Tweak.ClassGuard is not null) writer.Line("#endif").Line();
 		foreach (BoundFunction function in bound.Functions) {
 			WriteFunction(writer, function);
 			writer.Line();
@@ -305,7 +308,12 @@ internal static class ShimEmitter {
 		writer.Open(Signature(function).Replace(" WXK_NOEXCEPT", string.Empty) + " noexcept");
 		string? ports = function.OnlyFor.Count == 0 ? null : string.Join(" || ", function.OnlyFor.Select(static port => Ports.TryGetValue(port, out string? symbol) ? $"defined({symbol})" : "0"));
 		string? feature = owner.Tweak.MemberGuards.GetValueOrDefault(function.Source.Name) ?? owner.Tweak.OverloadGuards.FirstOrDefault(guard => guard.Matches(function.Source))?.Condition;
-		string? guard = ports is not null && feature is not null ? $"({ports}) && ({feature})" : ports ?? feature;
+		string[] conditions = [.. new[] { ports, feature, owner.Tweak.ClassGuard }.OfType<string>()];
+		string? guard = conditions.Length switch {
+			0 => null,
+			1 => conditions[0],
+			_ => string.Join(" && ", conditions.Select(static condition => $"({condition})")),
+		};
 		if (guard is not null) writer.Line($"#if {guard}");
 		if (function.IsConstructor) {
 			writer.Open($"return wxk::Guard<{returns}>(nullptr, [&]");

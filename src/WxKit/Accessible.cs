@@ -23,14 +23,14 @@ namespace WxKit;
 /// </para>
 /// <para>Microsoft Active Accessibility is Windows's, so on other platforms, nothing asks.</para>
 /// </remarks>
-public abstract unsafe class Accessible {
+public abstract unsafe class Accessible : IDirected {
 	private const int Failed = 0;
 	private const int False = 1;
 	private const int Ok = 2;
 	private const int NotImplemented = 3;
 	private const int NotSupported = 4;
 	private const int InvalidArgument = 5;
-	private static bool _callbacksSet;
+	private static bool _directorsSet;
 	private WxkAccessible* _native;
 
 	/// <summary>Gives the window this accessible object, which replaces the one it had. The window keeps it for as long as it exists.</summary>
@@ -42,12 +42,17 @@ public abstract unsafe class Accessible {
 		// Only Windows asks, through Microsoft Active Accessibility. Elsewhere the window keeps the
 		// accessibility its port gives it.
 		if (!OperatingSystem.IsWindows()) return;
-		SetCallbacks();
+		SetDirectors();
 		GCHandle handle = GCHandle.Alloc(this);
-		_native = WxKitNative.ManagedAccessibleNew(window.Native, (void*)GCHandle.ToIntPtr(handle));
+		_native = WxKitNative.AccessibleNew((void*)GCHandle.ToIntPtr(handle), window.Native);
 		if (_native is null) {
 			handle.Free();
 			window.AccessibleObject = null;
+			throw new InvalidOperationException("The window could not be given an accessible object.");
+		}
+		if (WxKitNative.WindowGiveAccessible(window.Native, _native) == 0) {
+			// Deleting it calls OnNativeFreed, which forgets it, and frees the handle.
+			WxKitNative.ObjectFree((WxkObject*)_native);
 			throw new InvalidOperationException("The window could not be given an accessible object.");
 		}
 	}
@@ -132,20 +137,19 @@ public abstract unsafe class Accessible {
 	/// <summary>Selects the window or a part, or moves the focus to it, as the flags say. Returns false when it cannot.</summary>
 	protected virtual bool? Select(int childId, AccessibleSelection flags) => null;
 
-	private static void SetCallbacks() {
-		if (_callbacksSet) return;
-		_callbacksSet = true;
-		WxkAccessibleCallbacks callbacks = new() {
-			GetText = &GetText,
-			GetRole = &GetRole,
-			GetState = &GetState,
-			GetChildCount = &GetChildCount,
-			GetLocation = &GetLocation,
-			GetElement = &GetElement,
-			Act = &Act,
-			OnFree = &OnFree,
-		};
-		WxKitNative.AccessibleSetCallbacks(&callbacks);
+	// The callbacks every accessible object's director calls, with the userdata it was made with,
+	// which Directors frees when the window deletes the object.
+	private static void SetDirectors() {
+		if (_directorsSet) return;
+		_directorsSet = true;
+		Directors.Install();
+		WxKitNative.AccessibleSetDirectors(&AnswerName, &AnswerDescription, &AnswerHelpText, &AnswerKeyboardShortcut, &AnswerDefaultAction, &AnswerValue, &AnswerRole, &AnswerState, &AnswerChildCount, &AnswerLocation, &AnswerChild, &AnswerFocus, &AnswerHitTest, &AnswerNavigate, &AnswerDoDefaultAction, &AnswerSelect);
+	}
+
+	// The window deleted its accessible object, as it does when it is destroyed or given another.
+	void IDirected.OnNativeFreed() {
+		_native = null;
+		if (Window.AccessibleObject == this) Window.AccessibleObject = null;
 	}
 
 	private static Accessible? Of(void* userdata) => (Accessible?)GCHandle.FromIntPtr((nint)userdata).Target;
@@ -159,18 +163,26 @@ public abstract unsafe class Accessible {
 	}
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static int GetText(void* userdata, int which, int childId, WxkString** text) {
+	private static int AnswerName(WxkAccessible* self, void* userdata, int childId, WxkString** name) => Text(userdata, name, accessible => accessible.GetName(childId));
+
+	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+	private static int AnswerDescription(WxkAccessible* self, void* userdata, int childId, WxkString** description) => Text(userdata, description, accessible => accessible.GetDescription(childId));
+
+	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+	private static int AnswerHelpText(WxkAccessible* self, void* userdata, int childId, WxkString** helpText) => Text(userdata, helpText, accessible => accessible.GetHelpText(childId));
+
+	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+	private static int AnswerKeyboardShortcut(WxkAccessible* self, void* userdata, int childId, WxkString** shortcut) => Text(userdata, shortcut, accessible => accessible.GetKeyboardShortcut(childId));
+
+	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+	private static int AnswerDefaultAction(WxkAccessible* self, void* userdata, int childId, WxkString** action) => Text(userdata, action, accessible => accessible.GetDefaultAction(childId));
+
+	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+	private static int AnswerValue(WxkAccessible* self, void* userdata, int childId, WxkString** value) => Text(userdata, value, accessible => accessible.GetValue(childId));
+
+	private static int Text(void* userdata, WxkString** text, Func<Accessible, string?> ask) {
 		try {
-			if (Of(userdata) is not Accessible accessible) return NotImplemented;
-			string? value = which switch {
-				0 => accessible.GetName(childId),
-				1 => accessible.GetDescription(childId),
-				2 => accessible.GetHelpText(childId),
-				3 => accessible.GetKeyboardShortcut(childId),
-				4 => accessible.GetDefaultAction(childId),
-				_ => accessible.GetValue(childId),
-			};
-			if (value is null) return NotImplemented;
+			if (Of(userdata) is not Accessible accessible || ask(accessible) is not string value) return NotImplemented;
 			*text = NativeString.Create(value);
 			return Ok;
 		} catch (Exception error) {
@@ -179,7 +191,7 @@ public abstract unsafe class Accessible {
 	}
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static int GetRole(void* userdata, int childId, int* role) {
+	private static int AnswerRole(WxkAccessible* self, void* userdata, int childId, int* role) {
 		try {
 			if (Of(userdata)?.GetRole(childId) is not AccessibleRole value) return NotImplemented;
 			*role = (int)value;
@@ -190,7 +202,7 @@ public abstract unsafe class Accessible {
 	}
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static int GetState(void* userdata, int childId, long* state) {
+	private static int AnswerState(WxkAccessible* self, void* userdata, int childId, long* state) {
 		try {
 			if (Of(userdata)?.GetState(childId) is not AccessibleStates value) return NotImplemented;
 			*state = (long)value;
@@ -201,7 +213,7 @@ public abstract unsafe class Accessible {
 	}
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static int GetChildCount(void* userdata, int* count) {
+	private static int AnswerChildCount(WxkAccessible* self, void* userdata, int* count) {
 		try {
 			if (Of(userdata)?.GetChildCount() is not int value) return NotImplemented;
 			*count = value;
@@ -212,7 +224,7 @@ public abstract unsafe class Accessible {
 	}
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static int GetLocation(void* userdata, int elementId, Rect* rect) {
+	private static int AnswerLocation(WxkAccessible* self, void* userdata, Rect* rect, int elementId) {
 		try {
 			if (Of(userdata)?.GetLocation(elementId) is not Rect value) return NotImplemented;
 			*rect = value;
@@ -222,27 +234,46 @@ public abstract unsafe class Accessible {
 		}
 	}
 
+	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+	private static int AnswerChild(WxkAccessible* self, void* userdata, int childId, WxkAccessible** child) => Element(userdata, ElementKind.Child, null, child, accessible => accessible.GetChild(childId));
+
+	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+	private static int AnswerFocus(WxkAccessible* self, void* userdata, int* childId, WxkAccessible** child) => Element(userdata, ElementKind.Focus, childId, child, static accessible => accessible.GetFocus());
+
+	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+	private static int AnswerHitTest(WxkAccessible* self, void* userdata, Point point, int* childId, WxkAccessible** child) => Element(userdata, ElementKind.HitTest, childId, child, accessible => accessible.HitTest(point));
+
+	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+	private static int AnswerNavigate(WxkAccessible* self, void* userdata, int direction, int fromId, int* toId, WxkAccessible** toObject) => Element(userdata, ElementKind.Navigate, toId, toObject, accessible => accessible.Navigate((NavigationDirection)direction, fromId));
+
+	private enum ElementKind {
+		Child,
+		Focus,
+		HitTest,
+		Navigate,
+	}
+
 	// A part comes back as its id, and an element with its own accessible object as that object.
 	// The focus on the window itself is the window's own object, as wxWidgets asks. An element
 	// that is not there is not a failure: a point outside the window is false, as is a direction
-	// with nothing in it, and a window without the focus is fine.
-	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static int GetElement(void* userdata, int which, int childId, int direction, Point point, int* resultId, WxkAccessible** resultObject) {
+	// with nothing in it, and a window without the focus is fine. A child is only asked for as an
+	// object, so it has no id to give.
+	private static int Element(void* userdata, ElementKind kind, int* resultId, WxkAccessible** resultObject, Func<Accessible, AccessibleElement?> ask) {
+		if (resultId is not null) *resultId = 0;
 		try {
-			if (Of(userdata) is not Accessible accessible) return NotImplemented;
-			AccessibleElement? answer = which switch {
-				0 => accessible.GetChild(childId),
-				1 => accessible.GetFocus(),
-				2 => accessible.HitTest(point),
-				_ => accessible.Navigate((NavigationDirection)direction, childId),
-			};
-			if (answer is not AccessibleElement element) return NotImplemented;
-			if (element.IsNone) return which == 1 ? Ok : which == 0 ? InvalidArgument : False;
+			if (Of(userdata) is not Accessible accessible || ask(accessible) is not AccessibleElement element) return NotImplemented;
+			if (element.IsNone) {
+				return kind switch {
+					ElementKind.Focus => Ok,
+					ElementKind.Child => InvalidArgument,
+					_ => False,
+				};
+			}
 			if (element.Object is Accessible other) {
 				*resultObject = other.Native;
 			} else {
-				*resultId = element.ChildId;
-				if (which == 1 && element.ChildId == 0) *resultObject = accessible.Native;
+				if (resultId is not null) *resultId = element.ChildId;
+				if (kind == ElementKind.Focus && element.ChildId == 0) *resultObject = accessible.Native;
 			}
 			return Ok;
 		} catch (Exception error) {
@@ -251,11 +282,15 @@ public abstract unsafe class Accessible {
 	}
 
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static int Act(void* userdata, int which, int childId, int flags) {
+	private static int AnswerDoDefaultAction(WxkAccessible* self, void* userdata, int childId) => Act(userdata, accessible => accessible.DoDefaultAction(childId));
+
+	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+	private static int AnswerSelect(WxkAccessible* self, void* userdata, int childId, int flags) => Act(userdata, accessible => accessible.Select(childId, (AccessibleSelection)flags));
+
+	private static int Act(void* userdata, Func<Accessible, bool?> act) {
 		try {
 			if (Of(userdata) is not Accessible accessible) return NotImplemented;
-			bool? done = which == 0 ? accessible.DoDefaultAction(childId) : accessible.Select(childId, (AccessibleSelection)flags);
-			return done switch {
+			return act(accessible) switch {
 				null => NotImplemented,
 				true => Ok,
 				false => NotSupported,
@@ -263,17 +298,6 @@ public abstract unsafe class Accessible {
 		} catch (Exception error) {
 			return Fail(error);
 		}
-	}
-
-	// The window deleted its accessible object, as it does when it is destroyed or given another.
-	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-	private static void OnFree(void* userdata) {
-		GCHandle handle = GCHandle.FromIntPtr((nint)userdata);
-		if (handle.Target is Accessible accessible) {
-			accessible._native = null;
-			if (accessible.Window.AccessibleObject == accessible) accessible.Window.AccessibleObject = null;
-		}
-		handle.Free();
 	}
 }
 

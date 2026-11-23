@@ -224,6 +224,14 @@ internal sealed class ClassTweak(string name) {
 	/// <summary>Directors that call .NET first, and then the class's own member, as wxPrintout's OnEndDocument ends the document.</summary>
 	public HashSet<string> DirectorsBeforeBase { get; } = new(StringComparer.Ordinal);
 
+	/// <summary>A condition the whole class is under, such as wxUSE_ACCESSIBILITY for wxAccessible, without which its functions do nothing.</summary>
+	public string? ClassGuard { get; private set; }
+
+	public ClassTweak GuardClass(string condition) {
+		ClassGuard = condition;
+		return this;
+	}
+
 	public ClassTweak DirectorAfterBase(string member) {
 		DirectorsAfterBase.Add(member);
 		return this;

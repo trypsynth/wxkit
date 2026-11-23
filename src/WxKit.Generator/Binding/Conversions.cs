@@ -1214,3 +1214,36 @@ internal sealed class VariantListConversion : Conversion {
 
 	private static string Native(string name) => name.TrimStart('@') + "Native";
 }
+
+// What a director's hand-written callback gives back through a pointer, such as an accessible
+// object's name. The callback writes a C value, which the shim's CallbackOut, a temporary in the
+// call, converts and writes through wxWidgets' own pointer, or reference, once the callback returns.
+internal sealed class CallbackOutConversion(string cppType, string cType, string interopType, bool byReference) : Conversion {
+	public override string Suffix => "Out" + interopType.TrimEnd('*');
+
+	public override string CReturnType => throw new InvalidOperationException("Only a director's callback gives a value through a pointer this way.");
+
+	public override string Fallback => "{}";
+
+	public override string InteropReturnType => throw new InvalidOperationException("Only a director's callback gives a value through a pointer this way.");
+
+	public override IEnumerable<string> CParameters(string name) => throw new InvalidOperationException("Only a director's callback gives a value through a pointer this way.");
+
+	public override string ToCpp(string name) => throw new InvalidOperationException("Only a director's callback gives a value through a pointer this way.");
+
+	public override string FromCpp(string expression) => throw new InvalidOperationException("Only a director's callback gives a value through a pointer this way.");
+
+	public override IEnumerable<string> InteropParameters(string name) => throw new InvalidOperationException("Only a director's callback gives a value through a pointer this way.");
+
+	public override string ManagedType(bool nullable) => interopType + "*";
+
+	public override IEnumerable<string> InteropArguments(string name, bool nullable) => throw new InvalidOperationException("Only a director's callback gives a value through a pointer this way.");
+
+	public override string ManagedReturn(string expression) => throw new InvalidOperationException("Only a director's callback gives a value through a pointer this way.");
+
+	public override string CallbackParameterCType => cType + "*";
+
+	public override string CallbackParameterInteropType => interopType + "*";
+
+	public override string ToCallbackArgument(string name) => $"wxk::CallbackOut<{cppType}, {cType}>{{{(byReference ? "&" : string.Empty)}{name}}}";
+}

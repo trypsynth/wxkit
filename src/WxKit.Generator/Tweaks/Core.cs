@@ -223,6 +223,14 @@ internal static class Core {
 		// Only wxMSW declares them, under wxUSE_ACCESSIBILITY.
 		const string accessibility = "wxUSE_ACCESSIBILITY";
 		tweaks.Enum("wxAccRole", "AccessibleRole", memberPrefix: "wxROLE_SYSTEM_", guard: accessibility);
+		// The hand-written Accessible makes a director, whose callbacks it gives, which answer what a
+		// screen reader asks, or leave wxWidgets to say they aren't implemented.
+		tweaks.Class("wxAccessible", accessible => accessible
+			.Handwritten()
+			.Plain()
+			.GuardClass(accessibility)
+			.Internal("wxAccessible", "NotifyEvent")
+			.InternalDirector("GetName", "GetDescription", "GetHelpText", "GetKeyboardShortcut", "GetDefaultAction", "GetValue", "GetRole", "GetState", "GetChildCount", "GetLocation", "GetChild", "GetFocus", "HitTest", "Navigate", "DoDefaultAction", "Select"));
 		tweaks.Enum("wxAccObject", "AccessibleObject", guard: accessibility);
 		tweaks.Enum("wxNavDir", "NavigationDirection", guard: accessibility);
 		tweaks.Enum("wxAccSelectionFlags", "AccessibleSelection", isFlags: true, guard: accessibility);

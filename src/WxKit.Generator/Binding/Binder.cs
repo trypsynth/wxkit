@@ -234,9 +234,10 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 			DoxygenMember member = bound.Source.Members.FirstOrDefault(member => member.Name == name && member.IsVirtual && !member.IsStatic) ?? throw new InvalidOperationException($"A tweak lets C# override {bound.CppName}::{name}, which is not one of its virtual members.");
 			BoundFunction? function = BindFunction(bound, member, isConstructor: false);
 			// A hand-written callback can also write through a number's pointer, as GetPageInfo's are.
-			bool CanCallBack(Conversion conversion) => conversion is BoolConversion or NumberConversion or EnumConversion || (bound.Tweak.IsDirectorInternal && conversion is OutConversion { CanCallBack: true });
+			bool CanCallBack(Conversion conversion) => conversion is BoolConversion or NumberConversion or EnumConversion || (bound.Tweak.IsDirectorInternal && conversion is OutConversion { CanCallBack: true } or CallbackOutConversion or GeometryConversion);
 			if (function is null || function.Parameters.Count != member.Parameters.Count || function.Returns.CallbackCType is null || !function.Parameters.All(parameter => CanCallBack(parameter.Conversion))) {
-				throw new InvalidOperationException($"C# cannot override {bound.CppName}::{name} yet: a director cannot convert its types.");
+				string problem = function is null ? "a type the generator can't bind" : function.Returns.CallbackCType is null ? $"its return, a {member.Type}" : string.Join(", ", function.Parameters.Where(parameter => !CanCallBack(parameter.Conversion)).Select(static parameter => $"{parameter.CppName}, as {parameter.Conversion.GetType().Name}").DefaultIfEmpty("a parameter it leaves out"));
+				throw new InvalidOperationException($"C# cannot override {bound.CppName}::{name} yet: a director cannot convert {problem}.");
 			}
 			bool afterBase = bound.Tweak.DirectorsAfterBase.Contains(name);
 			bool beforeBase = bound.Tweak.DirectorsBeforeBase.Contains(name);
@@ -405,7 +406,24 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		return [.. ordered.Where(static parameter => parameter.Default is null), .. ordered.Where(static parameter => parameter.Default is not null)];
 	}
 
+	// What a hand-written callback gives back through a pointer or a reference: text, a long, an
+	// enum, a rectangle, or an object's handle, such as an accessible object's name, state, role,
+	// location, and child.
+	private CallbackOutConversion? CallbackOutFor(CppType type, BoundClass owner) {
+		if (type.IsConst) return null;
+		if (type.IsReference && type.Pointers == 0) return type.Name == "wxRect" ? new CallbackOutConversion("wxRect", "wxk_Rect", "Rect", byReference: true) : null;
+		if (type.IsReference) return null;
+		if (type.Pointers == 2) return _classes.TryGetValue(type.Name, out BoundClass? target) && target.Handle != HandleKind.Static ? new CallbackOutConversion(type.Name + "*", target.Handle.CType + "*", target.Handle.InteropType + "*", byReference: false) : null;
+		if (type.Pointers != 1) return null;
+		if (type.Name == "wxString") return new CallbackOutConversion("wxString", "wxk_String*", "WxkString*", byReference: false);
+		if (type.Name == "long") return new CallbackOutConversion("long", "int64_t", "long", byReference: false);
+		string nested = Ancestors(owner.CppName).Select(ancestor => $"{ancestor}::{type.Name}").FirstOrDefault(api.Enums.ContainsKey) ?? type.Name;
+		return api.Enums.ContainsKey(nested) ? new CallbackOutConversion(nested, "int32_t", "int", byReference: false) : null;
+	}
+
 	private Conversion? Map(CppType type, BoundClass owner, string member, string? parameter, bool isReturn) {
+		bool isHandwrittenDirector = owner.Tweak.IsDirectorInternal && owner.Tweak.DirectorMembers.Contains(member);
+		if (!isReturn && isHandwrittenDirector && CallbackOutFor(type, owner) is Conversion given) return given;
 		if (!isReturn && _classes.TryGetValue(type.Name, out BoundClass? owned) && owned.Handle == HandleKind.Owned && (type.IsReference || type.Pointers == 1)) return new OwnedConversion(owned, type.IsReference);
 		// UTF-8 text, as wxUIActionSimulator::Text takes it.
 		if (!isReturn && type is { Name: "char", IsConst: true, Pointers: 1, IsReference: false }) return Utf8StringConversion.Instance;
@@ -481,6 +499,9 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		// An enum a class nests, which its own members name without the class, as wxStaticBitmap's
 		// SetScaleMode takes ScaleMode, is named with it, which the shim's cast needs.
 		string nestedName = type.Name.Contains("::", StringComparison.Ordinal) ? type.Name : Ancestors(owner.CppName).Select(ancestor => $"{ancestor}::{type.Name}").FirstOrDefault(api.Enums.ContainsKey) ?? type.Name;
+		// A hand-written callback's enum crosses as its number, such as wxAccStatus, unless a tweak binds
+		// it, so the callback adds no enum to the managed API, nor one the shim checks where it isn't.
+		if (isHandwrittenDirector && type.Pointers == 0 && !type.IsReference && api.Enums.ContainsKey(nestedName) && !tweaks.Enums.ContainsKey(nestedName)) return new EnumConversion("int", NumberConversion.Int, nestedName);
 		if (EnumFor(nestedName) is BoundEnum bound) return new EnumConversion(bound.Name, NumberConversion.Int, nestedName);
 		return type.Name switch {
 			"bool" => BoolConversion.Instance,

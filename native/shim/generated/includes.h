@@ -3,6 +3,7 @@
 
 #include "../src/shim.h"
 
+#include <wx/access.h>
 #include <wx/activityindicator.h>
 #include <wx/anybutton.h>
 #include <wx/artprov.h>

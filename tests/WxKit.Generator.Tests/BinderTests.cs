@@ -33,6 +33,7 @@ public class BinderTests {
 					Function("wxButton", "", Parameter("wxWindow *", "parent"), Parameter("wxWindowID", "id"), Parameter("const wxString &", "label", "wxEmptyString"), Parameter("const wxPoint &", "pos", "wxDefaultPosition"), Parameter("long", "style", "0"), Parameter("const wxValidator &", "validator", "wxDefaultValidator")),
 					Overridable("OnGetLabel", "wxString", Parameter("long", "index")),
 					Overridable("OnGetNamed", "bool", Parameter("const wxString &", "name")),
+					Overridable("OnGetText", "bool", Parameter("long", "index"), Parameter("wxString *", "text"), Parameter("long *", "flags")),
 					Function("Press"),
 				],
 				[new DoxygenStyle("wxBU_LEFT", "Left-justifies the label."), new DoxygenStyle("wxBU_TOP", "Aligns the label to the top.")],
@@ -183,6 +184,19 @@ public class BinderTests {
 		Assert.Contains(Emitting.ShimEmitter.Files(result), static file => file.FileName == "Directors.cpp");
 		Assert.DoesNotContain("OnGetLabel", Emitting.ManagedEmitter.Files(result).Single(static file => file.FileName == "Button.g.cs").Text, StringComparison.Ordinal);
 		Assert.Throws<InvalidOperationException>(() => Bind(static tweaks => tweaks.Class("wxButton").InternalDirector("OnGetLabel").DirectorBeforeBase("OnGetLabel")));
+	}
+
+	// A hand-written callback gives text and numbers back through pointers, which the director
+	// passes as temporaries that write them through wxWidgets' own once the callback returns. A
+	// class under a condition has only its callbacks outside it.
+	[Fact]
+	public void PassesHandwrittenCallbacksWhatTheyGiveBack() {
+		BindingResult result = Bind(static tweaks => tweaks.Class("wxButton").InternalDirector("OnGetText").GuardClass("wxUSE_BUTTON"));
+		string shim = Emitting.ShimEmitter.Files(result).Single(static file => file.FileName == "Button.cpp").Text;
+		Assert.Contains("wxk::CallbackOut<wxString, wxk_String*>{text}, wxk::CallbackOut<long, int64_t>{flags}", shim, StringComparison.Ordinal);
+		Assert.Contains("int64_t index, wxk_String** text, int64_t* flags", shim, StringComparison.Ordinal);
+		Assert.True(shim.IndexOf("Button_OnGetText)", StringComparison.Ordinal) < shim.IndexOf("#if wxUSE_BUTTON", StringComparison.Ordinal));
+		Assert.Throws<InvalidOperationException>(() => Bind(static tweaks => tweaks.Class("wxButton").Director("OnGetText")));
 	}
 
 	[Fact]

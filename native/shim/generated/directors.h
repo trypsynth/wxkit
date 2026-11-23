@@ -10,6 +10,24 @@ namespace wxk::directors {
 // Tells .NET a director is gone, with the userdata it was made with, which isn't null.
 extern void (*onFree)(void* userdata);
 
+// wxAccessible's overridable members call into .NET through these, once it sets them.
+extern int32_t (*Accessible_GetName)(wxk_Accessible* self, void* userdata, int32_t childId, wxk_String** name);
+extern int32_t (*Accessible_GetDescription)(wxk_Accessible* self, void* userdata, int32_t childId, wxk_String** description);
+extern int32_t (*Accessible_GetHelpText)(wxk_Accessible* self, void* userdata, int32_t childId, wxk_String** helpText);
+extern int32_t (*Accessible_GetKeyboardShortcut)(wxk_Accessible* self, void* userdata, int32_t childId, wxk_String** shortcut);
+extern int32_t (*Accessible_GetDefaultAction)(wxk_Accessible* self, void* userdata, int32_t childId, wxk_String** actionName);
+extern int32_t (*Accessible_GetValue)(wxk_Accessible* self, void* userdata, int32_t childId, wxk_String** strValue);
+extern int32_t (*Accessible_GetRole)(wxk_Accessible* self, void* userdata, int32_t childId, int32_t* role);
+extern int32_t (*Accessible_GetState)(wxk_Accessible* self, void* userdata, int32_t childId, int64_t* state);
+extern int32_t (*Accessible_GetChildCount)(wxk_Accessible* self, void* userdata, int32_t* childCount);
+extern int32_t (*Accessible_GetLocation)(wxk_Accessible* self, void* userdata, wxk_Rect* rect, int32_t elementId);
+extern int32_t (*Accessible_GetChild)(wxk_Accessible* self, void* userdata, int32_t childId, wxk_Accessible** child);
+extern int32_t (*Accessible_GetFocus)(wxk_Accessible* self, void* userdata, int32_t* childId, wxk_Accessible** child);
+extern int32_t (*Accessible_HitTest)(wxk_Accessible* self, void* userdata, wxk_Point pt, int32_t* childId, wxk_Accessible** childObject);
+extern int32_t (*Accessible_Navigate)(wxk_Accessible* self, void* userdata, int32_t navDir, int32_t fromId, int32_t* toId, wxk_Accessible** toObject);
+extern int32_t (*Accessible_DoDefaultAction)(wxk_Accessible* self, void* userdata, int32_t childId);
+extern int32_t (*Accessible_Select)(wxk_Accessible* self, void* userdata, int32_t childId, int32_t selectFlags);
+
 // wxListCtrl's overridable members call into .NET through these, once it sets them.
 extern wxk_String* (*ListCtrl_OnGetItemText)(wxk_Window* self, void* userdata, int64_t item, int64_t column);
 extern int32_t (*ListCtrl_OnGetItemImage)(wxk_Window* self, void* userdata, int64_t item);

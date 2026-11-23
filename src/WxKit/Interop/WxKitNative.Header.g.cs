@@ -418,17 +418,9 @@ public static unsafe partial class WxKitNative {
 
 	// Accessibility
 
-	[LibraryImport(Library, EntryPoint = "wxk_Accessible_SetCallbacks")]
+	[LibraryImport(Library, EntryPoint = "wxk_Window_GiveAccessible")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void AccessibleSetCallbacks(WxkAccessibleCallbacks* callbacks);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ManagedAccessible_new")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkAccessible* ManagedAccessibleNew(WxkWindow* window, void* userdata);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Accessible_NotifyEvent")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void AccessibleNotifyEvent(int eventType, WxkWindow* window, int objectType, int objectId);
+	public static partial byte WindowGiveAccessible(WxkWindow* window, WxkAccessible* accessible);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Window_SetAccessibleParts")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

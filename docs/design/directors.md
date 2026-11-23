@@ -78,7 +78,7 @@ Before the callbacks are set, and when a callback pointer in the struct is null,
 ## Order of work
 
 1. Userdata identity and the generated callbacks, proven on `wxPrintout`, which needs only numbers, booleans, `int*` out parameters, and the wrap-the-base marker. printing.cpp's director goes, and `Printout` calls the generated exports. Done: the printout's director is generated, and `ListCtrl`'s finds its object through its userdata.
-2. Text and enum out parameters, and the per-member default, proven on `wxAccessible`. Most of accessible.cpp goes.
+2. Text and enum out parameters, and the per-member default, proven on `wxAccessible`. Most of accessible.cpp goes. Done: the accessible object's director is generated, under a guard for the whole class, since only wxMSW has wxAccessible. Its callbacks give back text, numbers, enums, rectangles, and objects through the shim's `CallbackOut`, a temporary in the call that writes each through wxWidgets' pointer once the callback returns. wxAccessible's own members already say they aren't implemented, so it needed no per-member default. Attaching the object to its window stays hand-written, since it keeps the name through wxMSW's `SetNameOverride`, which the interface headers don't have.
 3. Variants and item arrays by handle, proven on the two data view models. Most of dataview.cpp goes.
 4. Object parameters, and the drop target's overrides.
 

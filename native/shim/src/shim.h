@@ -195,6 +195,46 @@ struct OutLong {
 	}
 };
 
+// What a director's callback gives back through a pointer, which it writes as a C value. The
+// director passes one as a temporary in the call, which converts the value and writes it through
+// wxWidgets' own pointer once the callback returns, whether or not the callback wrote it.
+template <typename Target, typename Value>
+struct CallbackOut {
+	Target* target;
+	Value value{};
+
+	operator Value*() { return &value; }
+
+	~CallbackOut() {
+		if constexpr (std::is_pointer_v<Target>) {
+			*target = reinterpret_cast<Target>(value);
+		} else {
+			*target = static_cast<Target>(value);
+		}
+	}
+};
+
+// Text, which the callback gives as a string the director takes.
+template <>
+struct CallbackOut<wxString, wxk_String*> {
+	wxString* target;
+	wxk_String* value = nullptr;
+
+	operator wxk_String**() { return &value; }
+
+	~CallbackOut() { *target = TakeString(value); }
+};
+
+template <>
+struct CallbackOut<wxRect, wxk_Rect> {
+	wxRect* target;
+	wxk_Rect value{};
+
+	operator wxk_Rect*() { return &value; }
+
+	~CallbackOut() { *target = FromRect(value); }
+};
+
 // Lists of ints or item ids, which cross as lists of 64-bit numbers.
 inline wxk_Numbers* ToNumbers(const wxArrayInt& values) {
 	auto* numbers = new wxk_Numbers;

@@ -50,6 +50,18 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Point DesktopGetMousePosition();
 
+	[LibraryImport(Library, EntryPoint = "wxk_Accessible_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkAccessible* AccessibleNew(void* userdata, WxkWindow* window);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Accessible_NotifyEvent")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void AccessibleNotifyEvent(int eventType, WxkWindow* window, int objectType, int objectId);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Accessible_SetDirectors")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void AccessibleSetDirectors(delegate* unmanaged[Cdecl]<WxkAccessible*, void*, int, WxkString**, int> getName, delegate* unmanaged[Cdecl]<WxkAccessible*, void*, int, WxkString**, int> getDescription, delegate* unmanaged[Cdecl]<WxkAccessible*, void*, int, WxkString**, int> getHelpText, delegate* unmanaged[Cdecl]<WxkAccessible*, void*, int, WxkString**, int> getKeyboardShortcut, delegate* unmanaged[Cdecl]<WxkAccessible*, void*, int, WxkString**, int> getDefaultAction, delegate* unmanaged[Cdecl]<WxkAccessible*, void*, int, WxkString**, int> getValue, delegate* unmanaged[Cdecl]<WxkAccessible*, void*, int, int*, int> getRole, delegate* unmanaged[Cdecl]<WxkAccessible*, void*, int, long*, int> getState, delegate* unmanaged[Cdecl]<WxkAccessible*, void*, int*, int> getChildCount, delegate* unmanaged[Cdecl]<WxkAccessible*, void*, Rect*, int, int> getLocation, delegate* unmanaged[Cdecl]<WxkAccessible*, void*, int, WxkAccessible**, int> getChild, delegate* unmanaged[Cdecl]<WxkAccessible*, void*, int*, WxkAccessible**, int> getFocus, delegate* unmanaged[Cdecl]<WxkAccessible*, void*, Point, int*, WxkAccessible**, int> hitTest, delegate* unmanaged[Cdecl]<WxkAccessible*, void*, int, int, int*, WxkAccessible**, int> navigate, delegate* unmanaged[Cdecl]<WxkAccessible*, void*, int, int> doDefaultAction, delegate* unmanaged[Cdecl]<WxkAccessible*, void*, int, int, int> select);
+
 	[LibraryImport(Library, EntryPoint = "wxk_ActivateEvent_GetActive")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ActivateEventGetActive(WxkEvent* self);

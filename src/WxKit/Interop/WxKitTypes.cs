@@ -147,18 +147,6 @@ public unsafe struct WxkVirtualListModelCallbacks {
 /// <summary>An accessible object, which its window owns.</summary>
 public struct WxkAccessible;
 
-/// <summary>The callbacks every managed accessible object calls, as the shim's wxk_AccessibleCallbacks lays them out.</summary>
-public unsafe struct WxkAccessibleCallbacks {
-	public delegate* unmanaged[Cdecl]<void*, int, int, WxkString**, int> GetText;
-	public delegate* unmanaged[Cdecl]<void*, int, int*, int> GetRole;
-	public delegate* unmanaged[Cdecl]<void*, int, long*, int> GetState;
-	public delegate* unmanaged[Cdecl]<void*, int*, int> GetChildCount;
-	public delegate* unmanaged[Cdecl]<void*, int, Rect*, int> GetLocation;
-	public delegate* unmanaged[Cdecl]<void*, int, int, int, Point, int*, WxkAccessible**, int> GetElement;
-	public delegate* unmanaged[Cdecl]<void*, int, int, int, int> Act;
-	public delegate* unmanaged[Cdecl]<void*, void> OnFree;
-}
-
 /// <summary>Clipboard content in several formats, which <see cref="WxKitNative.ClipboardSetContent"/> takes ownership of.</summary>
 public struct WxkClipboardContent;
 
