@@ -19,10 +19,12 @@ public unsafe partial class Image {
 		byte[] data;
 		int length;
 		if (stream is MemoryStream memory && memory.TryGetBuffer(out ArraySegment<byte> buffer)) {
-			// A memory stream's own buffer, from where it is to its end, without a copy.
+			// A memory stream's own buffer, from where it is to its end, without a copy. A stream can be
+			// positioned past its end, which leaves nothing to read.
 			data = buffer.Array!;
-			int start = buffer.Offset + (int)memory.Position;
-			length = buffer.Count - (int)memory.Position;
+			int position = (int)Math.Min(memory.Position, buffer.Count);
+			int start = buffer.Offset + position;
+			length = buffer.Count - position;
 			memory.Position = memory.Length;
 			fixed (byte* bytes = data) return WxKitNative.ImageLoadData(Native, bytes + start, (nuint)length, (int)type, index) != 0;
 		}

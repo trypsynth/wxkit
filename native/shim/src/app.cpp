@@ -1,6 +1,7 @@
 #include "shim.h"
 #include <atomic>
 #include <cstdio>
+#include <mutex>
 
 #ifdef __WXMSW__
 	#include <wx/msw/private.h>
@@ -18,6 +19,16 @@ void gtk_widget_set_default_direction(int direction);
 #endif
 
 namespace {
+
+// Whether the application takes calls to run later. .NET posts from any thread, including its
+// finalizer's, and the application is deleted once it exits, so a post and the exit take turns.
+std::mutex callsGate;
+bool takesCalls = false;
+
+void TakeCalls(bool take) {
+	const std::lock_guard<std::mutex> lock(callsGate);
+	takesCalls = take;
+}
 
 // Where a failed wxWidgets assertion goes: .NET's Application.AssertFailed, once it registers.
 std::atomic<wxk_AssertCallback> assertCallback{nullptr};
@@ -74,7 +85,15 @@ public:
 #ifdef __WXGTK__
 		if (layoutDirection != wxLayout_Default) ApplyGtkDirection();
 #endif
-		return _onInit(_userdata) != 0;
+		TakeCalls(true);
+		if (_onInit(_userdata) != 0) return true;
+		TakeCalls(false);
+		return false;
+	}
+
+	int OnExit() override {
+		TakeCalls(false);
+		return wxApp::OnExit();
 	}
 
 	wxLayoutDirection GetLayoutDirection() const override {
@@ -123,7 +142,8 @@ WXK_FUNCTION(uint8_t) wxk_App_CanRunOnThisThread(void) noexcept {
 
 WXK_FUNCTION(uint8_t) wxk_App_CallAfter(wxk_Callback callback, void* userdata) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t {
-		if (wxTheApp == nullptr) return 0;
+		const std::lock_guard<std::mutex> lock(callsGate);
+		if (!takesCalls || wxTheApp == nullptr) return 0;
 		wxTheApp->CallAfter([callback, userdata] { callback(userdata); });
 		return 1;
 	});

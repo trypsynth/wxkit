@@ -20,6 +20,18 @@ public class ImageStreamTests {
 		Assert.Equal(saved.Length, saved.Position);
 	});
 
+	// A memory stream can be positioned past its end, which leaves nothing to load.
+	[Fact]
+	public Task LoadsNothingPastAStreamsEnd() => Gui.Run(() => {
+		Image.AddPngHandler();
+		using Image original = Pattern();
+		using MemoryStream saved = new();
+		Assert.True(original.SaveFile(saved, BitmapType.Png));
+		saved.Position = saved.Length + 1000;
+		using Image loaded = new();
+		Assert.False(loaded.LoadFile(saved, BitmapType.Png));
+	});
+
 	[Fact]
 	public Task SavesABmpWithoutAHandler() => Gui.Run(() => {
 		using Image original = Pattern();

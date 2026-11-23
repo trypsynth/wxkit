@@ -86,7 +86,10 @@ public sealed unsafe class Translations : IDisposable {
 		get => _language;
 		set {
 			Application.VerifyAccessOrNotRunning();
-			fixed (char* text = value) WxKitNative.TranslationsSetLanguage(Native, text, value is null ? 0 : NativeString.Length(value));
+			// Lookups on other threads read the catalogs, so changing them waits for those, and they for it.
+			lock (Gate) {
+				fixed (char* text = value) WxKitNative.TranslationsSetLanguage(Native, text, value is null ? 0 : NativeString.Length(value));
+			}
 			_language = value;
 		}
 	}
@@ -118,7 +121,7 @@ public sealed unsafe class Translations : IDisposable {
 	/// <summary>Adds wxWidgets' own catalog, and returns whether there was one for the language.</summary>
 	public bool AddStdCatalog() {
 		Application.VerifyAccessOrNotRunning();
-		return WxKitNative.TranslationsAddStdCatalog(Native) != 0;
+		lock (Gate) return WxKitNative.TranslationsAddStdCatalog(Native) != 0;
 	}
 
 	/// <summary>
@@ -128,7 +131,9 @@ public sealed unsafe class Translations : IDisposable {
 	public bool AddCatalog(string domain) {
 		ArgumentException.ThrowIfNullOrEmpty(domain);
 		Application.VerifyAccessOrNotRunning();
-		fixed (char* text = domain) return WxKitNative.TranslationsAddCatalog(Native, text, NativeString.Length(domain)) != 0;
+		lock (Gate) {
+			fixed (char* text = domain) return WxKitNative.TranslationsAddCatalog(Native, text, NativeString.Length(domain)) != 0;
+		}
 	}
 
 	/// <summary>Whether the catalog of a domain was added.</summary>

@@ -13,6 +13,9 @@ namespace WxKit;
 public unsafe partial class Application {
 	private static int _guiThreadId;
 	private static LayoutDirection _layoutDirection = LayoutDirection.Default;
+	// What waits for an application to run, which its start-up posts.
+	private static readonly List<Action> WhenRunning = [];
+	private static readonly Lock WhenRunningGate = new();
 	private ExceptionDispatchInfo? _failure;
 
 	// wxWidgets reports its failed assertions here from the first use of the application on.
@@ -110,6 +113,14 @@ public unsafe partial class Application {
 		return false;
 	}
 
+	// Runs the action on the GUI thread once an application runs, or now when one does. The lock
+	// keeps an action from coming between a post that fails and the start-up that posts the rest.
+	internal static void PostWhenRunning(Action action) {
+		lock (WhenRunningGate) {
+			if (!TryPost(action)) WhenRunning.Add(action);
+		}
+	}
+
 	// For what wxWidgets can do before its application starts, such as translations, which a
 	// command-line mode or Main sets up: on the GUI thread while an application runs, and on any
 	// thread while none does.
@@ -195,6 +206,10 @@ public unsafe partial class Application {
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
 	private static byte OnInitCore(void* userdata) {
 		Application application = (Application)GCHandle.FromIntPtr((nint)userdata).Target!;
+		lock (WhenRunningGate) {
+			foreach (Action waiting in WhenRunning) TryPost(waiting);
+			WhenRunning.Clear();
+		}
 		try {
 			return application.OnInit() ? (byte)1 : (byte)0;
 		} catch (Exception error) {

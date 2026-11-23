@@ -65,7 +65,8 @@ public sealed unsafe class SingleInstanceChecker : IDisposable {
 /// what this copy was started with. When another copy is running, it gets the message, and Claim
 /// returns null, so this copy can exit. Otherwise this copy is the first, and Claim returns the
 /// <see cref="SingleInstance"/> that hears the copies started after it. Subscribe to
-/// <see cref="MessageReceived"/> in Run's start-up action. Messages that come before then wait for it.
+/// <see cref="MessageReceived"/> before Run, or in its start-up action. Messages that come before
+/// the application runs, or before there's a handler, wait for both.
 /// </para>
 /// <para>
 /// The copies talk over a named pipe on Windows, and a Unix socket on Linux and macOS, in a folder
@@ -364,8 +365,8 @@ public sealed partial class SingleInstance : IDisposable {
 		lock (_gate) {
 			if (_messageReceived is null || _pending.IsEmpty) return;
 		}
-		// Before the application runs, the messages wait for a handler added while it does.
-		Application.TryPost(RaisePending);
+		// Before the application runs, the messages wait for it to start.
+		Application.PostWhenRunning(RaisePending);
 	}
 
 	private void RaisePending() {
