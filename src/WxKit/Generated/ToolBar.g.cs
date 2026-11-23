@@ -155,10 +155,10 @@ public unsafe partial class ToolBar : Control {
 	public void EnableTool(int toolId, bool enable) => WxKitNative.ToolBarEnableTool(Native, toolId, enable ? (byte)1 : (byte)0);
 
 	/// <summary>Returns a pointer to the tool identified by id or nullptr if no corresponding tool is found.</summary>
-	public ToolBarTool? FindById(int id = StandardId.Any) => ToolBarTool.Wrap(WxKitNative.ToolBarFindById(Native, id));
+	public ToolBarTool? FindById(int id) => ToolBarTool.Wrap(WxKitNative.ToolBarFindById(Native, id));
 
 	/// <summary>Returns a pointer to the control identified by id or nullptr if no corresponding control is found.</summary>
-	public Control? FindControl(int id = StandardId.Any) => ObjectRegistry.Wrap<Control>(WxKitNative.ToolBarFindControl(Native, id));
+	public Control? FindControl(int id) => ObjectRegistry.Wrap<Control>(WxKitNative.ToolBarFindControl(Native, id));
 
 	/// <summary>Finds a tool for the given mouse position.</summary>
 	public ToolBarTool? FindToolForPosition(int x, int y) => ToolBarTool.Wrap(WxKitNative.ToolBarFindToolForPosition(Native, x, y));
@@ -219,7 +219,7 @@ public unsafe partial class ToolBar : Control {
 	public bool Realize() => WxKitNative.ToolBarRealize(Native) != 0;
 
 	/// <summary>Sets the dropdown menu for the tool given by its id.</summary>
-	public bool SetDropdownMenu(Menu menu, int id = StandardId.Any) {
+	public bool SetDropdownMenu(int id, Menu menu) {
 		ArgumentNullException.ThrowIfNull(menu);
 		return WxKitNative.ToolBarSetDropdownMenu(Native, id, (WxkMenu*)menu.Native) != 0;
 	}
@@ -228,7 +228,7 @@ public unsafe partial class ToolBar : Control {
 	public void SetMargins(int x, int y) => WxKitNative.ToolBarSetMarginsIntInt(Native, x, y);
 
 	/// <summary>Sets the bitmap to be used by the tool with the given ID when the tool is in a disabled state.</summary>
-	public void SetToolDisabledBitmap(Bitmap bitmap, int id = StandardId.Any) {
+	public void SetToolDisabledBitmap(int id, Bitmap bitmap) {
 		ArgumentNullException.ThrowIfNull(bitmap);
 		WxKitNative.ToolBarSetToolDisabledBitmap(Native, id, bitmap.Native);
 	}
@@ -242,7 +242,7 @@ public unsafe partial class ToolBar : Control {
 	}
 
 	/// <summary>Sets the bitmap to be used by the tool with the given ID.</summary>
-	public void SetToolNormalBitmap(Bitmap bitmap, int id = StandardId.Any) {
+	public void SetToolNormalBitmap(int id, Bitmap bitmap) {
 		ArgumentNullException.ThrowIfNull(bitmap);
 		WxKitNative.ToolBarSetToolNormalBitmap(Native, id, bitmap.Native);
 	}

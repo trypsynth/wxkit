@@ -36,6 +36,23 @@ public class MenuTests {
 		Assert.Equal("&Open...	Ctrl+O", open.Label);
 	});
 
+	// The menu bar reaches an item by its id, which it takes first, as wxWidgets does.
+	[Fact]
+	public Task ChecksAndEnablesItemsThroughTheMenuBar() => Gui.WithFrame(frame => {
+		Menu menu = new();
+		MenuItem wrap = menu.Append(StandardId.Any, "&Wrap", kind: MenuItemKind.Check);
+		MenuBar bar = new();
+		bar.Append(menu, "&View");
+		frame.MenuBar = bar;
+		bar.Check(wrap.Id, true);
+		Assert.True(bar.IsChecked(wrap.Id));
+		Assert.True(wrap.Checked);
+		bar.EnableItem(wrap.Id, false);
+		Assert.False(bar.IsItemEnabled(wrap.Id));
+		bar.SetLabel(wrap.Id, "&Word wrap");
+		Assert.Equal("&Word wrap", bar.GetLabel(wrap.Id));
+	});
+
 	[Fact]
 	public Task ReachesItemsInASubmenu() => Gui.WithFrame(frame => {
 		Menu presets = new();

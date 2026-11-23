@@ -1096,7 +1096,7 @@ public unsafe partial class Window : EvtHandler {
 	public bool UnregisterHotKey(int hotkeyId) => WxKitNative.WindowUnregisterHotKey(Native, hotkeyId) != 0;
 
 	/// <summary>Unreserve an ID or range of IDs that was reserved by NewControlId().</summary>
-	public static void UnreserveControlId(int count = 1, int id = StandardId.Any) {
+	public static void UnreserveControlId(int id, int count = 1) {
 		Application.VerifyAccess();
 		WxKitNative.WindowUnreserveControlId(id, count);
 	}

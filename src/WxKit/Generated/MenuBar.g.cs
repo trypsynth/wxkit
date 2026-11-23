@@ -35,12 +35,12 @@ public unsafe partial class MenuBar : Window {
 	}
 
 	/// <summary>Checks or unchecks a menu item.</summary>
-	public void Check(bool check, int id = StandardId.Any) => WxKitNative.MenuBarCheck(Native, id, check ? (byte)1 : (byte)0);
+	public void Check(int id, bool check) => WxKitNative.MenuBarCheck(Native, id, check ? (byte)1 : (byte)0);
 
 	public void Detach() => WxKitNative.MenuBarDetach(Native);
 
 	/// <summary>Enables or disables (greys out) a menu item.</summary>
-	public void EnableItem(bool enable, int id = StandardId.Any) => WxKitNative.MenuBarEnable(Native, id, enable ? (byte)1 : (byte)0);
+	public void EnableItem(int id, bool enable) => WxKitNative.MenuBarEnable(Native, id, enable ? (byte)1 : (byte)0);
 
 	/// <summary>Enables or disables a whole menu.</summary>
 	public void EnableTop(int position, bool enable) => WxKitNative.MenuBarEnableTop(Native, checked((nuint)position), enable ? (byte)1 : (byte)0);
@@ -64,10 +64,10 @@ public unsafe partial class MenuBar : Window {
 	}
 
 	/// <summary>Gets the help string associated with the menu item identifier.</summary>
-	public string GetHelpString(int id = StandardId.Any) => NativeString.Take(WxKitNative.MenuBarGetHelpString(Native, id));
+	public string GetHelpString(int id) => NativeString.Take(WxKitNative.MenuBarGetHelpString(Native, id));
 
 	/// <summary>Gets the label associated with a menu item.</summary>
-	public string GetLabel(int id = StandardId.Any) => NativeString.Take(WxKitNative.MenuBarGetLabel(Native, id));
+	public string GetLabel(int id) => NativeString.Take(WxKitNative.MenuBarGetLabel(Native, id));
 
 	/// <summary>Returns the menu at menuIndex (zero-based).</summary>
 	public Menu? GetMenu(int menuIndex) => ObjectRegistry.Wrap<Menu>(WxKitNative.MenuBarGetMenu(Native, checked((nuint)menuIndex)));
@@ -88,13 +88,13 @@ public unsafe partial class MenuBar : Window {
 	}
 
 	/// <summary>Determines whether an item is checked.</summary>
-	public bool IsChecked(int id = StandardId.Any) => WxKitNative.MenuBarIsChecked(Native, id) != 0;
+	public bool IsChecked(int id) => WxKitNative.MenuBarIsChecked(Native, id) != 0;
 
 	/// <summary>Returns true if the menu with the given index is enabled.</summary>
 	public bool IsEnabledTop(int position) => WxKitNative.MenuBarIsEnabledTop(Native, checked((nuint)position)) != 0;
 
 	/// <summary>Determines whether an item is enabled.</summary>
-	public bool IsItemEnabled(int id = StandardId.Any) => WxKitNative.MenuBarIsEnabled(Native, id) != 0;
+	public bool IsItemEnabled(int id) => WxKitNative.MenuBarIsEnabled(Native, id) != 0;
 
 	/// <summary>Enables you to get the global menubar on Mac, that is, the menubar displayed when the app is running without any frames open.</summary>
 	public static MenuBar? MacGetCommonMenuBar() {
@@ -125,7 +125,7 @@ public unsafe partial class MenuBar : Window {
 	}
 
 	/// <summary>Sets the help string associated with a menu item.</summary>
-	public void SetHelpString(string helpString, int id = StandardId.Any) {
+	public void SetHelpString(int id, string helpString) {
 		ArgumentNullException.ThrowIfNull(helpString);
 		fixed (char* helpStringText = helpString) {
 			WxKitNative.MenuBarSetHelpString(Native, id, helpStringText, NativeString.Length(helpString));
@@ -133,7 +133,7 @@ public unsafe partial class MenuBar : Window {
 	}
 
 	/// <summary>Sets the label of a menu item.</summary>
-	public void SetLabel(string label, int id = StandardId.Any) {
+	public void SetLabel(int id, string label) {
 		ArgumentNullException.ThrowIfNull(label);
 		fixed (char* labelText = label) {
 			WxKitNative.MenuBarSetLabel(Native, id, labelText, NativeString.Length(label));

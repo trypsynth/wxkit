@@ -346,15 +346,21 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 			parameters.Clear();
 		}
 		BoundFunction function = new(owner, member, returns, parameters, isConstructor) { FilledArguments = filled };
-		function.ManagedParameters = ManagedOrder(parameters);
+		function.ManagedParameters = ManagedOrder(parameters, CreatesWindow(member, isConstructor));
 		return function;
 	}
 
-	// Window ids are rarely needed, since WxKit binds events to objects rather than ids, so an id
-	// without a default gets wxID_ANY and moves after the label or title, before the position.
-	private static List<BoundParameter> ManagedOrder(List<BoundParameter> parameters) {
+	// A window's own id is rarely needed, since WxKit binds events to objects rather than ids, so
+	// where a window is made, an id without a default gets wxID_ANY and moves after the label or
+	// title, before the position. Elsewhere an id names what the call is about, such as the menu
+	// item MenuBar.Check checks, so it keeps its place and stays required.
+	// A constructor, or a function that makes a window and returns it, such as CreateStatusBar or
+	// wxBitmapButton::NewCloseButton.
+	private static bool CreatesWindow(DoxygenMember member, bool isConstructor) => isConstructor || member.Name.StartsWith("Create", StringComparison.Ordinal) || member.Name.StartsWith("New", StringComparison.Ordinal);
+
+	private static List<BoundParameter> ManagedOrder(List<BoundParameter> parameters, bool createsWindow) {
 		List<BoundParameter> ordered = [.. parameters];
-		int id = ordered.FindIndex(static parameter => parameter.CppName is "id" or "winid" && parameter.Conversion == NumberConversion.Int);
+		int id = createsWindow ? ordered.FindIndex(static parameter => parameter.CppName is "id" or "winid" && parameter.Conversion == NumberConversion.Int) : -1;
 		if (id >= 0) {
 			BoundParameter moved = ordered[id] with { Default = "StandardId.Any" };
 			ordered.RemoveAt(id);

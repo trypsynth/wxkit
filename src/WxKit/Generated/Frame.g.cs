@@ -86,7 +86,7 @@ public unsafe partial class Frame : TopLevelWindow {
 	public void PopStatusText(int number = 0) => WxKitNative.FramePopStatusText(Native, number);
 
 	/// <summary>Simulate a menu command.</summary>
-	public bool ProcessCommand(int id = StandardId.Any) => WxKitNative.FrameProcessCommand(Native, id) != 0;
+	public bool ProcessCommand(int id) => WxKitNative.FrameProcessCommand(Native, id) != 0;
 
 	public void PushStatusText(string text, int number = 0) {
 		ArgumentNullException.ThrowIfNull(text);

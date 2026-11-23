@@ -1356,7 +1356,7 @@ class WxKit.Dialog : TopLevelWindow, IDisposable
     Window? ContentWindow { get; }
     bool CanDoLayoutAdaptation { get; }
     bool DoLayoutAdaptation()
-    bool IsMainButtonId(int id = -1)
+    bool IsMainButtonId(int id)
     bool IsModal { get; }
     bool LayoutAdaptationDone { get; set; }
     event EventHandler<InitDialogEvent>? Initializing
@@ -1368,7 +1368,7 @@ class WxKit.Dialog : TopLevelWindow, IDisposable
     int[] MainButtonIds { get; }
     static bool IsLayoutAdaptationEnabled { get; }
     static void EnableLayoutAdaptation(bool enable)
-    void AddMainButtonId(int id = -1)
+    void AddMainButtonId(int id)
     void Dispose()
     void EndModal(int retCode)
     void SetIcon(Icon icon)
@@ -2172,7 +2172,7 @@ class WxKit.Frame : TopLevelWindow
     StatusBar? StatusBar { get; set; }
     ToolBar? CreateToolBar(ToolBarStyle style = ToolBarStyle.Default, string? name = null, int id = -1)
     ToolBar? ToolBar { get; set; }
-    bool ProcessCommand(int id = -1)
+    bool ProcessCommand(int id)
     event EventHandler<IconizeEvent>? Iconized
     event EventHandler<MenuEvent>? MenuClosed
     event EventHandler<MenuEvent>? MenuHighlighted
@@ -3007,25 +3007,25 @@ class WxKit.MenuBar : Window
     bool Append(Menu menu, string title)
     bool Insert(int position, Menu menu, string title)
     bool IsAttached { get; }
-    bool IsChecked(int id = -1)
+    bool IsChecked(int id)
     bool IsEnabledTop(int position)
-    bool IsItemEnabled(int id = -1)
+    bool IsItemEnabled(int id)
     int FindMenu(string title)
     int FindMenuItem(string menuString, string itemString)
     int MenuCount { get; }
     static MenuBar? MacGetCommonMenuBar()
     static void MacSetCommonMenuBar(MenuBar menubar)
-    string GetHelpString(int id = -1)
-    string GetLabel(int id = -1)
+    string GetHelpString(int id)
+    string GetLabel(int id)
     string GetMenuLabel(int position)
     string GetMenuLabelText(int position)
     void Attach(Frame frame)
-    void Check(bool check, int id = -1)
+    void Check(int id, bool check)
     void Detach()
-    void EnableItem(bool enable, int id = -1)
+    void EnableItem(int id, bool enable)
     void EnableTop(int position, bool enable)
-    void SetHelpString(string helpString, int id = -1)
-    void SetLabel(string label, int id = -1)
+    void SetHelpString(int id, string helpString)
+    void SetLabel(int id, string label)
     void SetMenuLabel(int position, string label)
 class WxKit.MenuEvent : Event
     Menu? Menu { get; }
@@ -8191,7 +8191,7 @@ class WxKit.ToggleButton : AnyButton
     bool IsChecked { get; set; }
     event EventHandler<CommandEvent>? Toggled
 class WxKit.ToolBar : Control
-    Control? FindControl(int id = -1)
+    Control? FindControl(int id)
     Size Margins { get; set; }
     Size ToolBitmapSize { get; set; }
     Size ToolSize { get; }
@@ -8203,7 +8203,7 @@ class WxKit.ToolBar : Control
     ToolBarTool? AddStretchableSpace()
     ToolBarTool? AddTool(int toolId, string label, Bitmap bitmap, Bitmap bmpDisabled, MenuItemKind kind = MenuItemKind.Normal, string shortHelp = "", string longHelp = "")
     ToolBarTool? AddTool(int toolId, string label, Bitmap bitmap, string shortHelp = "", MenuItemKind kind = MenuItemKind.Normal)
-    ToolBarTool? FindById(int id = -1)
+    ToolBarTool? FindById(int id)
     ToolBarTool? FindToolForPosition(int x, int y)
     ToolBarTool? GetToolByPosition(int position)
     ToolBarTool? InsertControl(int position, Control control, string label = "")
@@ -8216,7 +8216,7 @@ class WxKit.ToolBar : Control
     bool GetToolState(int toolId)
     bool OnLeftClick(int toolId, bool toggleDown)
     bool Realize()
-    bool SetDropdownMenu(Menu menu, int id = -1)
+    bool SetDropdownMenu(int id, Menu menu)
     event EventHandler<CommandEvent>? Menu
     event EventHandler<CommandEvent>? ToolClicked
     event EventHandler<CommandEvent>? ToolClickedRange
@@ -8234,9 +8234,9 @@ class WxKit.ToolBar : Control
     void EnableTool(int toolId, bool enable)
     void OnMouseEnter(int toolId)
     void SetMargins(int x, int y)
-    void SetToolDisabledBitmap(Bitmap bitmap, int id = -1)
+    void SetToolDisabledBitmap(int id, Bitmap bitmap)
     void SetToolLongHelp(int toolId, string helpString)
-    void SetToolNormalBitmap(Bitmap bitmap, int id = -1)
+    void SetToolNormalBitmap(int id, Bitmap bitmap)
     void SetToolShortHelp(int toolId, string helpString)
     void ToggleTool(int toolId, bool toggle)
 [Flags] enum WxKit.ToolBarStyle : long
@@ -8952,7 +8952,7 @@ class WxKit.Window : EvtHandler
     static int NewControlId(int count = 1)
     static int ToDip(int d, Window w)
     static int ToPhys(int d, Window w)
-    static void UnreserveControlId(int count = 1, int id = -1)
+    static void UnreserveControlId(int id, int count = 1)
     string GetHelpTextAtPoint(Point point, Origin origin)
     string HelpText { get; set; }
     string Label { get; set; }

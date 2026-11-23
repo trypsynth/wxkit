@@ -76,7 +76,7 @@ public unsafe partial class Dialog : TopLevelWindow {
 	}
 
 	/// <summary>Adds an identifier to be regarded as a main button for the non-scrolling area of a dialog.</summary>
-	public void AddMainButtonId(int id = StandardId.Any) => WxKitNative.DialogAddMainButtonId(Native, id);
+	public void AddMainButtonId(int id) => WxKitNative.DialogAddMainButtonId(Native, id);
 
 	/// <summary>Performs layout adaptation, usually if the dialog is too large to fit on the display.</summary>
 	public bool DoLayoutAdaptation() => WxKitNative.DialogDoLayoutAdaptation(Native) != 0;
@@ -91,7 +91,7 @@ public unsafe partial class Dialog : TopLevelWindow {
 	public void EndModal(int retCode) => WxKitNative.DialogEndModal(Native, retCode);
 
 	/// <summary>Returns true if id is in the array of identifiers to be regarded as the main buttons for the non-scrolling area of a dialog.</summary>
-	public bool IsMainButtonId(int id = StandardId.Any) => WxKitNative.DialogIsMainButtonId(Native, id) != 0;
+	public bool IsMainButtonId(int id) => WxKitNative.DialogIsMainButtonId(Native, id) != 0;
 
 	/// <summary>Sets the icon for this dialog.</summary>
 	public void SetIcon(Icon icon) {
