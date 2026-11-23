@@ -18,6 +18,13 @@ These are changes WxKit wants that need code changes, so they wait for 0.2.0, as
 - `Window.ToolTipText`, which can only be read, and `SetToolTip` become one property that can be set, `ToolTipText`.
 - `TextCtrl.PositionToXY(long position, out long x, out long y)` and the styled text control's become `TryGetColumnAndLine`, named as .NET's Try methods are, and giving the column and line it means rather than x and y.
 
+## Visual Basic
+
+Visual Basic isn't supported, as [Language support](languages.md) explains, since it can't publish with Native AOT and nothing tests it. 0.2.0 drops what's there only for it:
+
+- The public API rules that are only for Visual Basic. Members can be `required`, a `ReadOnlySpan<T>` overload no longer needs an array or `string` beside it, and names may differ only in case, though WxKit's naming doesn't make any that do.
+- The translation extractor's reading of Visual Basic, so it no longer extracts strings from `.vb` files.
+
 ## Considered and not planned
 
 - Naming the controls as .NET does, such as `TextBox` for `TextCtrl`. WxKit keeps wxWidgets' class names, so its documentation, and code written for wxWidgets in other languages, map to WxKit by dropping the `wx` prefix.

@@ -12,7 +12,7 @@ Publishing with Native AOT needs a native toolchain, as any Native AOT publish d
 - On Linux, `clang` and zlib's development files, such as Ubuntu's `zlib1g-dev`.
 - On macOS, Xcode's command line tools.
 
-This guide uses C#. F# works as well, with the `WxKit.FSharp` package, whose translation functions and layouts read as F#, and the [F# sample](../samples/HelloFSharp/Program.fs) is the C# Hello sample's counterpart, which CI publishes with Native AOT. Visual Basic should work, but it isn't tested, and Native AOT doesn't support it. [Language support](design/languages.md) has the details.
+This guide uses C#. F# works as well, with the `WxKit.FSharp` package, whose translation functions and layouts read as F#, and the [F# sample](../samples/HelloFSharp/Program.fs) is the C# Hello sample's counterpart, which CI publishes with Native AOT. Visual Basic isn't supported, as [Language support](design/languages.md) explains.
 
 ## Create the project
 

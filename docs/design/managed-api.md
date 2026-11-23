@@ -247,7 +247,7 @@ frame.Closing += (sender, e) => {
 };
 ```
 
-Each event is an `EventHandler<T>`, where `T` is the WxKit class for the wxWidgets event, such as `CommandEvent` or `CloseEvent`. These derive from `EventArgs`, which Visual Basic's `Handles` clause needs. Event names come from the wxWidgets event macros, so `EVT_BUTTON` becomes `Click` and `EVT_CLOSE` becomes `Closing`, and a binding tweak names the ones that read badly. For an event a class doesn't expose, `Bind` and `Unbind` take any of the event types on `EventType`, with an optional id or id range, as in `frame.Bind(EventType.Menu, StandardId.Exit, (sender, e) => frame.Close())`.
+Each event is an `EventHandler<T>`, where `T` is the WxKit class for the wxWidgets event, such as `CommandEvent` or `CloseEvent`. These derive from `EventArgs`, as .NET's conventions ask. Event names come from the wxWidgets event macros, so `EVT_BUTTON` becomes `Click` and `EVT_CLOSE` becomes `Closing`, and a binding tweak names the ones that read badly. For an event a class doesn't expose, `Bind` and `Unbind` take any of the event types on `EventType`, with an optional id or id range, as in `frame.Bind(EventType.Menu, StandardId.Exit, (sender, e) => frame.Close())`.
 
 The first handler for an event type and id range binds one functor in the shim, and later handlers join its list on the managed side. The functor is never unbound: with an empty list, it skips each event, and it's released when wxWidgets destroys the object. That costs at most one idle functor for each event a program ever handled.
 

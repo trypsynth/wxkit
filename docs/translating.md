@@ -126,9 +126,9 @@ Application.LayoutDirection = LanguageInfo.Find(language)?.LayoutDirection ?? La
 
 New windows with no parent, and message boxes, are laid out in that direction, and a window with a parent takes its parent's. Windows that are already open keep theirs. To change the language while the application runs, set `Application.LayoutDirection` again, and set each open top-level window's `LayoutDirection` before you make its contents again. On macOS, Cocoa takes the direction from the languages the application is localized in, not from WxKit.
 
-## Use F# or Visual Basic
+## Use F#
 
-Neither F# nor Visual Basic accepts `_` alone as a name. In F#, use WxKit.FSharp's `tr`, `trn`, `trp`, and `trpn`, as in `tr "&Open"` and `trn "{0} file" "{0} files" count`, which the extractor finds with the strings after them. Visual Basic can use `_n`, `_p`, and `_pn`, and for a plain string, `Translations.Translate`, written with `Translations.` before it, which the extractor looks for.
+F# doesn't accept `_` alone as a name, so use WxKit.FSharp's `tr`, `trn`, `trp`, and `trpn`, as in `tr "&Open"` and `trn "{0} file" "{0} files" count`, which the extractor finds with the strings after them.
 
 ## Ship wxWidgets' translations
 
