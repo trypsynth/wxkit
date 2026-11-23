@@ -105,6 +105,7 @@
 #include <wx/treebook.h>
 #include <wx/treectrl.h>
 #include <wx/treelist.h>
+#include <wx/utils.h>
 #include <wx/validate.h>
 #include <wx/valtext.h>
 #include <wx/webview.h>

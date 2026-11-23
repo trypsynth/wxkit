@@ -41,7 +41,12 @@ public class BinderTests {
 			Class("wxCommandEvent", "wxEvent", [Function("GetString", "wxString")]),
 		];
 		Dictionary<string, string> constants = new() { ["wxBU_LEFT"] = "0x0040", ["wxBU_TOP"] = "0x0080", ["wxBOTH"] = "0x000C", ["wxACC_STATE_SYSTEM_FOCUSED"] = "0x1000", ["wxACC_STATE_SYSTEM_BUSY"] = "0x0010" };
-		return new DoxygenApi(classes.ToDictionary(static found => found.Name), constants, new Dictionary<string, string> { ["wxEVT_BUTTON"] = "wx/button.h" }, new Dictionary<string, DoxygenEnum>());
+		return new DoxygenApi(classes.ToDictionary(static found => found.Name), constants, new Dictionary<string, string> { ["wxEVT_BUTTON"] = "wx/button.h" }, new Dictionary<string, DoxygenEnum>()) {
+			Functions = new Dictionary<string, IReadOnlyList<DoxygenMember>> {
+				["wxBell"] = [Function("wxBell")],
+				["wxLaunchDefaultBrowser"] = [Function("wxLaunchDefaultBrowser", "bool", Parameter("const wxString &", "url"), Parameter("int", "flags", "0"))],
+			},
+		};
 	}
 
 	private static BindingResult Bind(Action<Binding.Tweaks>? configure = null) {
@@ -56,6 +61,21 @@ public class BinderTests {
 	}
 
 	private static BoundClass Bound(BindingResult result, string name) => result.Classes.Single(bound => bound.CppName == name);
+
+	// Free functions bound as a group, which the shim calls without a class, and whose exports drop
+	// their wx, for hand-written code to call, since the group has no managed class.
+	[Fact]
+	public void BindsFreeFunctionsAsAGroup() {
+		BindingResult result = Bind(static tweaks => tweaks.Functions("Desktop", "wx/utils.h", "wxBell", "wxLaunchDefaultBrowser"));
+		BoundClass desktop = Bound(result, "Desktop");
+		Assert.Equal(["wxk_Desktop_Bell", "wxk_Desktop_LaunchDefaultBrowser"], desktop.Functions.Select(static function => function.ShimName).Order(StringComparer.Ordinal));
+		Assert.All(desktop.Functions, static function => Assert.True(function.IsStatic));
+		string shim = Emitting.ShimEmitter.Files(result).Single(static file => file.FileName == "Desktop.cpp").Text;
+		Assert.Contains("::wxBell();", shim, StringComparison.Ordinal);
+		Assert.Contains("::wxLaunchDefaultBrowser(wxk::FromUtf16(url, urlLength), static_cast<int>(flags))", shim, StringComparison.Ordinal);
+		Assert.DoesNotContain(Emitting.ManagedEmitter.Files(result), static file => file.FileName == "Desktop.g.cs");
+		Assert.Throws<InvalidOperationException>(() => Bind(static tweaks => tweaks.Functions("Nothing", "wx/utils.h", "wxNoSuchFunction")));
+	}
 
 	[Fact]
 	public void FindsEachClassesHandleAndNearestBoundBase() {

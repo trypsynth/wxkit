@@ -584,40 +584,6 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int DropTargetTestDrop(WxkWindow* window, WxkClipboardContent* content, int x, int y, int suggested);
 
-	// The desktop
-
-	[LibraryImport(Library, EntryPoint = "wxk_Desktop_Bell")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DesktopBell();
-
-	[LibraryImport(Library, EntryPoint = "wxk_Desktop_OpenUrl")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte DesktopOpenUrl(char* url, nuint urlLength);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Desktop_Open")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte DesktopOpen(char* document, nuint documentLength);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Keyboard_IsKeyDown")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte KeyboardIsKeyDown(int key);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Mouse_GetPosition")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial Point MouseGetPosition();
-
-	[LibraryImport(Library, EntryPoint = "wxk_BusyCursor_Begin")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void BusyCursorBegin();
-
-	[LibraryImport(Library, EntryPoint = "wxk_BusyCursor_End")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void BusyCursorEnd();
-
-	[LibraryImport(Library, EntryPoint = "wxk_BusyCursor_IsBusy")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte BusyCursorIsBusy();
-
 	[LibraryImport(Library, EntryPoint = "wxk_WindowDisabler_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void* WindowDisablerNew(WxkWindow* except);

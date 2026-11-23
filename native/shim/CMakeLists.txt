@@ -103,7 +103,6 @@ set(WXK_SOURCES
 	src/clipboard.cpp
 	src/credentials.cpp
 	src/dataview.cpp
-	src/desktop.cpp
 	src/display.cpp
 	src/dragdrop.cpp
 	src/dropfiles.cpp

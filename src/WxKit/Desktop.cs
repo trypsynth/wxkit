@@ -15,7 +15,7 @@ public static unsafe class Desktop {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(url);
 		fixed (char* text = url) {
-			return WxKitNative.DesktopOpenUrl(text, NativeString.Length(url)) != 0;
+			return WxKitNative.DesktopLaunchDefaultBrowser(text, NativeString.Length(url), 0) != 0;
 		}
 	}
 
@@ -33,7 +33,7 @@ public static unsafe class Desktop {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(path);
 		fixed (char* text = path) {
-			return WxKitNative.DesktopOpen(text, NativeString.Length(path)) != 0;
+			return WxKitNative.DesktopLaunchDefaultApplication(text, NativeString.Length(path), 0) != 0;
 		}
 	}
 }
@@ -47,7 +47,7 @@ public static class Keyboard {
 	/// </summary>
 	public static bool IsKeyDown(KeyCode key) {
 		Application.VerifyAccess();
-		return WxKitNative.KeyboardIsKeyDown((int)key) != 0;
+		return WxKitNative.DesktopGetKeyState((int)key) != 0;
 	}
 
 	/// <summary>Whether Caps Lock is on.</summary>
@@ -63,7 +63,7 @@ public static class Mouse {
 	public static Point Position {
 		get {
 			Application.VerifyAccess();
-			return WxKitNative.MouseGetPosition();
+			return WxKitNative.DesktopGetMousePosition();
 		}
 	}
 }
@@ -79,7 +79,7 @@ public sealed class BusyCursor : IDisposable {
 	/// <summary>Shows the busy cursor.</summary>
 	public BusyCursor() {
 		Application.VerifyAccess();
-		WxKitNative.BusyCursorBegin();
+		WxKitNative.BusyCursorBeginBusyCursor();
 	}
 
 	/// <summary>Whether a busy cursor is showing.</summary>
@@ -95,7 +95,7 @@ public sealed class BusyCursor : IDisposable {
 		if (_disposed) return;
 		Application.VerifyAccess();
 		_disposed = true;
-		WxKitNative.BusyCursorEnd();
+		WxKitNative.BusyCursorEndBusyCursor();
 	}
 }
 

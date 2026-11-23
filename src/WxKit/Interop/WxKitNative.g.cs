@@ -6,6 +6,38 @@ using System.Runtime.InteropServices;
 namespace WxKit.Interop;
 
 public static unsafe partial class WxKitNative {
+	[LibraryImport(Library, EntryPoint = "wxk_BusyCursor_BeginBusyCursor")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void BusyCursorBeginBusyCursor();
+
+	[LibraryImport(Library, EntryPoint = "wxk_BusyCursor_EndBusyCursor")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void BusyCursorEndBusyCursor();
+
+	[LibraryImport(Library, EntryPoint = "wxk_BusyCursor_IsBusy")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte BusyCursorIsBusy();
+
+	[LibraryImport(Library, EntryPoint = "wxk_Desktop_Bell")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DesktopBell();
+
+	[LibraryImport(Library, EntryPoint = "wxk_Desktop_LaunchDefaultBrowser")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte DesktopLaunchDefaultBrowser(char* url, nuint urlLength, int flags);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Desktop_LaunchDefaultApplication")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte DesktopLaunchDefaultApplication(char* document, nuint documentLength, int flags);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Desktop_GetKeyState")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte DesktopGetKeyState(int key);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Desktop_GetMousePosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial Point DesktopGetMousePosition();
+
 	[LibraryImport(Library, EntryPoint = "wxk_ActivateEvent_GetActive")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ActivateEventGetActive(WxkEvent* self);

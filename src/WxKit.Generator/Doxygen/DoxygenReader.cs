@@ -16,6 +16,8 @@ internal static partial class DoxygenReader {
 		Dictionary<string, string> constants = new(StringComparer.Ordinal);
 		Dictionary<string, string> eventTypes = new(StringComparer.Ordinal);
 		Dictionary<string, DoxygenEnum> enums = new(StringComparer.Ordinal);
+		Dictionary<string, List<DoxygenMember>> functions = new(StringComparer.Ordinal);
+		HashSet<string> functionIds = new(StringComparer.Ordinal);
 		foreach (XElement compound in index.Elements("compound")) {
 			string kind = (string)compound.Attribute("kind")!;
 			if (kind is not ("class" or "struct" or "file" or "group")) continue;
@@ -28,6 +30,16 @@ internal static partial class DoxygenReader {
 				string? file = (string?)variable.Element("location")?.Attribute("file");
 				if (name.StartsWith("wxEVT_", StringComparison.Ordinal) && file is not null && file.StartsWith("interface/", StringComparison.Ordinal)) eventTypes.TryAdd(name, file["interface/".Length..]);
 			}
+			// Functions outside any class, such as wxBell, defined in a group of related functions, such
+			// as the dialog functions, or in their header's own file. A file refers to those its groups define.
+			if (kind is "group" or "file") {
+				foreach (XElement function in definition.Elements("sectiondef").Where(static section => (string?)section.Attribute("kind") == "func").Elements("memberdef")) {
+					if (!functionIds.Add((string)function.Attribute("id")!)) continue;
+					DoxygenMember member = ReadMember(function);
+					if (!functions.TryGetValue(member.Name, out List<DoxygenMember>? overloads)) functions[member.Name] = overloads = [];
+					overloads.Add(member);
+				}
+			}
 			if (kind == "group") continue;
 			ReadConstants(definition, constants, enums, kind == "file" ? null : (string)definition.Element("compoundname")!);
 			if (kind == "file") continue;
@@ -35,7 +47,9 @@ internal static partial class DoxygenReader {
 			// A class documented twice, which wxWidgets does for a few platform-specific ones, keeps its first entry.
 			classes.TryAdd(read.Name, read);
 		}
-		return new DoxygenApi(classes, constants, eventTypes, enums);
+		return new DoxygenApi(classes, constants, eventTypes, enums) {
+			Functions = functions.ToDictionary(static pair => pair.Key, static pair => (IReadOnlyList<DoxygenMember>)pair.Value, StringComparer.Ordinal),
+		};
 	}
 
 	internal static DoxygenClass ReadClass(XElement definition) {

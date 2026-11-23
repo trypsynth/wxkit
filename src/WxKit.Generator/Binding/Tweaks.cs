@@ -61,10 +61,23 @@ internal sealed class Tweaks {
 	/// <summary>Classes wxWidgets makes from a template, such as wxScrolledWindow from wxScrolled&lt;wxPanel&gt;, which the interface headers only give as the template.</summary>
 	public List<TemplateInstanceTweak> TemplateInstances { get; } = [];
 
+	/// <summary>Groups of free functions, each bound as a static class's members.</summary>
+	public List<FunctionGroupTweak> FunctionGroups { get; } = [];
+
 	/// <param name="template">The template, such as wxScrolled, whose base is its parameter.</param>
 	/// <param name="name">The class made from it, such as wxScrolledWindow.</param>
 	/// <param name="baseClass">The template's argument, which is the class's base, such as wxPanel.</param>
 	public void TemplateInstance(string template, string name, string baseClass) => TemplateInstances.Add(new TemplateInstanceTweak(template, name, baseClass));
+
+	/// <summary>
+	/// Binds free functions, such as wxBell, as the members of a group the shim names them by, such
+	/// as wxk_Desktop_Bell, declared in <paramref name="header"/>. The group has no managed class, and
+	/// hand-written code calls its imports.
+	/// </summary>
+	public ClassTweak Functions(string group, string header, params string[] functions) {
+		FunctionGroups.Add(new FunctionGroupTweak(group, header, functions));
+		return Class(group, static tweak => tweak.StaticOnly().InteropOnly().Global());
+	}
 }
 
 internal sealed record OverloadGuard(string Member, string Parameter, string Type, string Condition) {
@@ -74,6 +87,8 @@ internal sealed record OverloadGuard(string Member, string Parameter, string Typ
 internal sealed record ConstantClassTweak(string Name, IReadOnlySet<string> Exclude);
 
 internal sealed record TemplateInstanceTweak(string Template, string Name, string BaseClass);
+
+internal sealed record FunctionGroupTweak(string Name, string Header, IReadOnlyList<string> Functions);
 
 internal sealed record EnumTweak(string Name, bool IsFlags, string? MemberPrefix, string? Guard);
 
@@ -203,6 +218,22 @@ internal sealed class ClassTweak(string name) {
 
 	public ClassTweak DiscardUnboundReturns() {
 		DiscardsUnboundReturns = true;
+		return this;
+	}
+
+	/// <summary>Whether only the shim and its imports are written, for hand-written code to call, rather than a managed class too.</summary>
+	public bool IsInteropOnly { get; private set; }
+
+	/// <summary>Whether the members are free functions, which the shim calls without a class.</summary>
+	public bool IsGlobal { get; private set; }
+
+	public ClassTweak InteropOnly() {
+		IsInteropOnly = true;
+		return this;
+	}
+
+	public ClassTweak Global() {
+		IsGlobal = true;
 		return this;
 	}
 

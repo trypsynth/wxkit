@@ -51,6 +51,18 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 			}
 			api = api with { Classes = classes };
 		}
+		if (tweaks.FunctionGroups.Count > 0) {
+			Dictionary<string, DoxygenClass> classes = new(api.Classes, StringComparer.Ordinal);
+			foreach (FunctionGroupTweak group in tweaks.FunctionGroups) {
+				List<DoxygenMember> members = [];
+				foreach (string name in group.Functions) {
+					if (!api.Functions.TryGetValue(name, out IReadOnlyList<DoxygenMember>? overloads)) throw new InvalidOperationException($"A tweak binds the function {name}, which the interface headers do not have.");
+					members.AddRange(overloads.Select(static member => member with { IsStatic = true }));
+				}
+				classes[group.Name] = new DoxygenClass(group.Name, [], group.Header, string.Empty, members, [], []);
+			}
+			api = api with { Classes = classes };
+		}
 		foreach (ClassTweak tweak in tweaks.Classes.Values) {
 			if (!api.Classes.TryGetValue(tweak.CppName, out DoxygenClass? source)) throw new InvalidOperationException($"A tweak names {tweak.CppName}, which the interface headers do not have.");
 			HandleKind handle = tweak.IsStaticOnly ? HandleKind.Static : tweak.IsValueObject ? HandleKind.Value : tweak.IsOwnedObject ? HandleKind.Owned : HandleFor(source.Name);
@@ -187,6 +199,10 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		functions = [.. functions.DistinctBy(static function => $"{function.Source.Name}({string.Join(",", function.Source.Parameters.Select(static parameter => parameter.Type))})")];
 		functions = [.. functions.Where(function => !HasStructOverload(function, functions))];
 		NameOverloads(functions);
+		// A free function's export drops the wx its name begins with, as wxk_Desktop_Bell does.
+		if (tweak.IsGlobal) {
+			foreach (BoundFunction function in functions.Where(static function => function.ExportName.StartsWith("wx", StringComparison.Ordinal))) function.ExportName = function.ExportName[2..];
+		}
 		// Two C++ constructors can have the same managed signature, as an int and a long do, and C#
 		// allows only one.
 		List<BoundFunction> constructors = [.. functions.Where(static function => function.IsConstructor).DistinctBy(static function => string.Join(",", function.ManagedParameters.Select(static parameter => parameter.Conversion.ManagedType(parameter.Nullable))))];

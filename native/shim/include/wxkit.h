@@ -520,21 +520,9 @@ WXK_FUNCTION(uint8_t*) wxk_DropData_GetBytes(wxk_DropData* data, size_t* size) W
 // it, without the system's drag loop, and returns the wxDragResult.
 WXK_FUNCTION(int32_t) wxk_DropTarget_TestDrop(wxk_Window* window, wxk_ClipboardContent* content, int32_t x, int32_t y, int32_t suggested) WXK_NOEXCEPT;
 
-// The desktop
+// The desktop. Its free functions, such as wxBell, are generated, as wxk_Desktop_Bell and
+// wxk_BusyCursor_IsBusy.
 
-// Plays the system's alert sound.
-WXK_FUNCTION(void) wxk_Desktop_Bell(void) WXK_NOEXCEPT;
-// Opens url in the default browser, and returns whether it could.
-WXK_FUNCTION(uint8_t) wxk_Desktop_OpenUrl(const char16_t* url, size_t urlLength) WXK_NOEXCEPT;
-// Opens a file in the application the system opens its kind of file with, and returns whether it could.
-WXK_FUNCTION(uint8_t) wxk_Desktop_Open(const char16_t* document, size_t documentLength) WXK_NOEXCEPT;
-// Whether a key, a wxKeyCode, is down, or for a lock key, such as Caps Lock, on.
-WXK_FUNCTION(uint8_t) wxk_Keyboard_IsKeyDown(int32_t key) WXK_NOEXCEPT;
-// The pointer's position on the screen.
-WXK_FUNCTION(wxk_Point) wxk_Mouse_GetPosition(void) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_BusyCursor_Begin(void) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_BusyCursor_End(void) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_BusyCursor_IsBusy(void) WXK_NOEXCEPT;
 // Disables every top-level window but except, which may be null, until the disabler is freed.
 WXK_FUNCTION(void*) wxk_WindowDisabler_new(wxk_Window* except) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_WindowDisabler_Free(void* disabler) WXK_NOEXCEPT;

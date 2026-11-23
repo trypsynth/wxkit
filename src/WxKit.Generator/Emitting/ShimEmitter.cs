@@ -236,7 +236,7 @@ internal static class ShimEmitter {
 			string target = $"static_cast<{owner.CppName}*>(wxk::Unwrap(self))";
 			string? mixin = function.Source.Mixin is string named ? owner.Tweak.MixinBases.GetValueOrDefault(named) ?? named : null;
 			if (mixin is not null) target = $"static_cast<{mixin}*>({target})";
-			string call = function.IsStatic ? $"{mixin ?? owner.CppName}::{function.Source.Name}({arguments})" : $"{target}->{function.Source.Name}({arguments})";
+			string call = function.IsStatic ? $"{(owner.Tweak.IsGlobal ? string.Empty : mixin ?? owner.CppName)}::{function.Source.Name}({arguments})" : $"{target}->{function.Source.Name}({arguments})";
 			if (function.IsDirectorBase) call = $"{Access(owner)}::{function.Source.Name}({string.Join(", ", function.Parameters.Select(static parameter => parameter.Conversion.ToCpp(parameter.Name.TrimStart('@'))).Prepend(target))})";
 			if (function.Returns is VoidConversion or SelfConversion) {
 				writer.Line($"wxk::Guard([&] {{ {call}; }});");

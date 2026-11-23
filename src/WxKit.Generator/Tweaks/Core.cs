@@ -494,6 +494,9 @@ internal static class Core {
 		tweaks.Class("wxDC").Rename("GetClippingBox", "TryGetClippingBox");
 		// The time is the Value property.
 		tweaks.Class("wxTimePickerCtrl").Ignore("GetTime");
+		// Free functions that the hand-written Desktop, Keyboard, Mouse, and BusyCursor call.
+		tweaks.Functions("Desktop", "wx/utils.h", "wxBell", "wxLaunchDefaultBrowser", "wxLaunchDefaultApplication", "wxGetKeyState", "wxGetMousePosition");
+		tweaks.Functions("BusyCursor", "wx/utils.h", "wxBeginBusyCursor", "wxEndBusyCursor", "wxIsBusy");
 		// A wizard's pages are each a WizardPageSimple, chained in order, or a WizardPage whose
 		// Next and Previous a subclass decides.
 		tweaks.Class("wxWizardPage").NoConstructors().Rename("GetPrev", "Previous");
