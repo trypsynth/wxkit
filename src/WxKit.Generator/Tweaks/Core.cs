@@ -354,7 +354,9 @@ internal static class Core {
 			.AddEvent("EVT_STC_STYLENEEDED", "wxEVT_STC_STYLENEEDED", "wxStyledTextEvent", "StyleNeeded")
 			.AddEvent("EVT_STC_UPDATEUI", "wxEVT_STC_UPDATEUI", "wxStyledTextEvent", "UIUpdated")
 			.AddEvent("EVT_STC_USERLISTSELECTION", "wxEVT_STC_USERLISTSELECTION", "wxStyledTextEvent", "UserListSelected")
-			.AddEvent("EVT_STC_ZOOM", "wxEVT_STC_ZOOM", "wxStyledTextEvent", "Zoomed"));
+			.AddEvent("EVT_STC_ZOOM", "wxEVT_STC_ZOOM", "wxStyledTextEvent", "Zoomed")
+			// UTF-8 versions of the string members, which .NET has no use for.
+			.Ignore("AddTextRaw", "AppendTextRaw", "InsertTextRaw", "ReplaceSelectionRaw", "ReplaceTargetRaw", "ReplaceTargetRERaw", "SetTextRaw"));
 		tweaks.Class("wxStyledTextEvent");
 		// The web view, the system's browser engine, linked only by an application that uses it. It
 		// is created in two steps, with a configuration that says where its data goes, and pages
@@ -497,6 +499,12 @@ internal static class Core {
 		// Free functions that the hand-written Desktop, Keyboard, Mouse, and BusyCursor call.
 		tweaks.Functions("Desktop", "wx/utils.h", "wxBell", "wxLaunchDefaultBrowser", "wxLaunchDefaultApplication", "wxGetKeyState", "wxGetMousePosition");
 		tweaks.Functions("BusyCursor", "wx/utils.h", "wxBeginBusyCursor", "wxEndBusyCursor", "wxIsBusy");
+		// Classes that aren't wxObjects, which the hand-written Display, UIActionSimulator,
+		// SingleInstanceChecker, and WindowDisabler call.
+		tweaks.Class("wxDisplay", display => display.Plain().Only("wxDisplay", "GetCount", "GetFromPoint", "GetFromWindow", "GetGeometry", "GetClientArea", "GetName", "IsPrimary", "GetScaleFactor"));
+		tweaks.Class("wxUIActionSimulator", simulator => simulator.Plain().Only("wxUIActionSimulator", "MouseMove", "MouseDown", "MouseUp", "MouseClick", "MouseDblClick", "KeyDown", "KeyUp", "Char", "Text", "Select"));
+		tweaks.Class("wxSingleInstanceChecker", checker => checker.Plain().Only("wxSingleInstanceChecker", "Create", "IsAnotherRunning"));
+		tweaks.Class("wxWindowDisabler").Plain();
 		// A wizard's pages are each a WizardPageSimple, chained in order, or a WizardPage whose
 		// Next and Previous a subclass decides.
 		tweaks.Class("wxWizardPage").NoConstructors().Rename("GetPrev", "Previous");

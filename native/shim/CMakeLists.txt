@@ -98,12 +98,10 @@ set(WXK_SOURCES
 	src/accessparts.cpp
 	src/app.cpp
 	src/appearance.cpp
-	src/busy.cpp
 	src/clientdata.cpp
 	src/clipboard.cpp
 	src/credentials.cpp
 	src/dataview.cpp
-	src/display.cpp
 	src/dragdrop.cpp
 	src/dropfiles.cpp
 	src/event.cpp
@@ -115,7 +113,6 @@ set(WXK_SOURCES
 	src/printing.cpp
 	src/imagedata.cpp
 	src/liveregion.cpp
-	src/singleinstance.cpp
 	src/translations.cpp
 	src/handlers/png.cpp
 	src/handlers/jpeg.cpp
@@ -134,7 +131,6 @@ set(WXK_SOURCES
 	src/string.cpp
 	src/taskbar.cpp
 	src/timer.cpp
-	src/uiaction.cpp
 	src/toolbar.cpp
 	src/validator.cpp
 	src/variant.cpp

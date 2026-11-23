@@ -11,8 +11,13 @@ internal static class InteropEmitter {
 			.Line("using System.Runtime.InteropServices;")
 			.Line()
 			.Line("namespace WxKit.Interop;")
-			.Line()
-			.Open("public static unsafe partial class WxKitNative");
+			.Line();
+		// A class that isn't a wxObject has a handle of its own type.
+		foreach (BoundClass bound in result.Classes.Where(static bound => !bound.Tweak.IsHandwritten && bound.Handle.IsPlain)) {
+			writer.Line($"/// <summary>A {bound.CppName}, which {bound.Handle.CType}'s functions take.</summary>");
+			writer.Line($"public struct {bound.Handle.InteropType};").Line();
+		}
+		writer.Open("public static unsafe partial class WxKitNative");
 		bool first = true;
 		foreach (BoundClass bound in result.Classes.Where(static bound => !bound.Tweak.IsHandwritten)) {
 			foreach (BoundFunction function in bound.Functions) {
@@ -23,6 +28,10 @@ internal static class InteropEmitter {
 				parameters.AddRange(function.Parameters.SelectMany(static parameter => parameter.Conversion.InteropParameters(parameter.Name)));
 				string returns = function.IsConstructor ? $"{bound.Handle.InteropType}*" : function.Returns.InteropReturnType;
 				Import(writer, function.ShimName, $"public static partial {returns} {function.InteropName}({string.Join(", ", parameters)});");
+			}
+			if (ShimEmitter.HasDelete(bound)) {
+				writer.Line();
+				Import(writer, $"wxk_{Naming.Type(bound.CppName)}_delete", $"public static partial void {Naming.Type(bound.CppName)}Delete({bound.Handle.InteropType}* self);");
 			}
 			if (bound.Directors.Count > 0) {
 				writer.Line();

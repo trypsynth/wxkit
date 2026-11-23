@@ -5,6 +5,18 @@ using System.Runtime.InteropServices;
 
 namespace WxKit.Interop;
 
+/// <summary>A wxDisplay, which wxk_Display's functions take.</summary>
+public struct WxkDisplay;
+
+/// <summary>A wxSingleInstanceChecker, which wxk_SingleInstanceChecker's functions take.</summary>
+public struct WxkSingleInstanceChecker;
+
+/// <summary>A wxUIActionSimulator, which wxk_UIActionSimulator's functions take.</summary>
+public struct WxkUIActionSimulator;
+
+/// <summary>A wxWindowDisabler, which wxk_WindowDisabler's functions take.</summary>
+public struct WxkWindowDisabler;
+
 public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_BusyCursor_BeginBusyCursor")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -2865,6 +2877,54 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_DirPickerCtrl_SetPath")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DirPickerCtrlSetPath(WxkWindow* self, char* dirname, nuint dirnameLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Display_new_Default")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkDisplay* DisplayNewDefault();
+
+	[LibraryImport(Library, EntryPoint = "wxk_Display_new_UInt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkDisplay* DisplayNewUInt(uint index);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Display_new_Window")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkDisplay* DisplayNewWindow(WxkWindow* window);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Display_GetFromPoint")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int DisplayGetFromPoint(Point point);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Display_GetFromWindow")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int DisplayGetFromWindow(WxkWindow* window);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Display_GetClientArea")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial Rect DisplayGetClientArea(WxkDisplay* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Display_GetGeometry")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial Rect DisplayGetGeometry(WxkDisplay* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Display_GetName")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* DisplayGetName(WxkDisplay* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Display_GetScaleFactor")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial double DisplayGetScaleFactor(WxkDisplay* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Display_IsPrimary")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte DisplayIsPrimary(WxkDisplay* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Display_GetCount")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial uint DisplayGetCount();
+
+	[LibraryImport(Library, EntryPoint = "wxk_Display_delete")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DisplayDelete(WxkDisplay* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_DropFilesEvent_GetNumberOfFiles")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -7373,6 +7433,26 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_SingleChoiceDialog_GetStringSelection")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkString* SingleChoiceDialogGetStringSelection(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_SingleInstanceChecker_new_Default")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkSingleInstanceChecker* SingleInstanceCheckerNewDefault();
+
+	[LibraryImport(Library, EntryPoint = "wxk_SingleInstanceChecker_new_StringString")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkSingleInstanceChecker* SingleInstanceCheckerNewStringString(char* name, nuint nameLength, char* path, nuint pathLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_SingleInstanceChecker_Create")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte SingleInstanceCheckerCreate(WxkSingleInstanceChecker* self, char* name, nuint nameLength, char* path, nuint pathLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_SingleInstanceChecker_IsAnotherRunning")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte SingleInstanceCheckerIsAnotherRunning(WxkSingleInstanceChecker* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_SingleInstanceChecker_delete")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void SingleInstanceCheckerDelete(WxkSingleInstanceChecker* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_SizeEvent_GetSize")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -12582,6 +12662,58 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte TreebookIsNodeExpanded(WxkWindow* self, nuint pageId);
 
+	[LibraryImport(Library, EntryPoint = "wxk_UIActionSimulator_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkUIActionSimulator* UIActionSimulatorNew();
+
+	[LibraryImport(Library, EntryPoint = "wxk_UIActionSimulator_MouseMove_LongLong")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte UIActionSimulatorMouseMoveLongLong(WxkUIActionSimulator* self, long x, long y);
+
+	[LibraryImport(Library, EntryPoint = "wxk_UIActionSimulator_MouseMove_Point")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte UIActionSimulatorMouseMovePoint(WxkUIActionSimulator* self, Point point);
+
+	[LibraryImport(Library, EntryPoint = "wxk_UIActionSimulator_MouseDown")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte UIActionSimulatorMouseDown(WxkUIActionSimulator* self, int button);
+
+	[LibraryImport(Library, EntryPoint = "wxk_UIActionSimulator_MouseUp")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte UIActionSimulatorMouseUp(WxkUIActionSimulator* self, int button);
+
+	[LibraryImport(Library, EntryPoint = "wxk_UIActionSimulator_MouseClick")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte UIActionSimulatorMouseClick(WxkUIActionSimulator* self, int button);
+
+	[LibraryImport(Library, EntryPoint = "wxk_UIActionSimulator_MouseDblClick")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte UIActionSimulatorMouseDblClick(WxkUIActionSimulator* self, int button);
+
+	[LibraryImport(Library, EntryPoint = "wxk_UIActionSimulator_KeyDown")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte UIActionSimulatorKeyDown(WxkUIActionSimulator* self, int keycode, int modifiers);
+
+	[LibraryImport(Library, EntryPoint = "wxk_UIActionSimulator_KeyUp")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte UIActionSimulatorKeyUp(WxkUIActionSimulator* self, int keycode, int modifiers);
+
+	[LibraryImport(Library, EntryPoint = "wxk_UIActionSimulator_Char")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte UIActionSimulatorChar(WxkUIActionSimulator* self, int keycode, int modifiers);
+
+	[LibraryImport(Library, EntryPoint = "wxk_UIActionSimulator_Select")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte UIActionSimulatorSelect(WxkUIActionSimulator* self, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_UIActionSimulator_Text")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte UIActionSimulatorText(WxkUIActionSimulator* self, char* text, nuint textLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_UIActionSimulator_delete")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void UIActionSimulatorDelete(WxkUIActionSimulator* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_UpdateUIEvent_Check")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void UpdateUIEventCheck(WxkEvent* self, byte check);
@@ -14005,6 +14137,18 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_WindowDC_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* WindowDCNew(WxkWindow* window);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WindowDisabler_new_Bool")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindowDisabler* WindowDisablerNewBool(byte disable);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WindowDisabler_new_WindowWindow")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindowDisabler* WindowDisablerNewWindowWindow(WxkWindow* winToSkip, WxkWindow* winToSkip2);
+
+	[LibraryImport(Library, EntryPoint = "wxk_WindowDisabler_delete")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WindowDisablerDelete(WxkWindowDisabler* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Wizard_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

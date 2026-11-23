@@ -271,7 +271,7 @@ internal sealed class PlatformDefaultConversion(EnumConversion inner, string cpp
 
 // Text goes in as UTF-16 with a length, pinned rather than copied, and comes out as a wxk_String
 // the managed side reads and frees.
-internal sealed class StringConversion : Conversion {
+internal class StringConversion : Conversion {
 	public static StringConversion Instance { get; } = new();
 
 	public override string Suffix => "String";
@@ -307,6 +307,16 @@ internal sealed class StringConversion : Conversion {
 	public override string ManagedReturn(string expression) => $"NativeString.Take({expression})";
 
 	private static string Pinned(string name) => name.TrimStart('@') + "Text";
+}
+
+// UTF-8 text a function takes as a const char*, as wxUIActionSimulator::Text does, which .NET
+// gives as a string, and the shim converts for the call.
+internal sealed class Utf8StringConversion : StringConversion {
+	public static new Utf8StringConversion Instance { get; } = new();
+
+	public override string Suffix => "Utf8String";
+
+	public override string ToCpp(string name) => $"wxk::FromUtf16({name}, {name}Length).utf8_str()";
 }
 
 // wxPoint and wxSize cross as structs with the same layout on both sides. wxDefaultPosition and

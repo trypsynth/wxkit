@@ -106,19 +106,19 @@ public sealed class BusyCursor : IDisposable {
 /// as they were, when it is disposed. Create and dispose it on the GUI thread.
 /// </summary>
 public sealed unsafe class WindowDisabler : IDisposable {
-	private void* _native;
+	private WxkWindowDisabler* _native;
 
 	/// <summary>Disables every top-level window but <paramref name="except"/>, or every one when it is null.</summary>
 	public WindowDisabler(Window? except = null) {
 		Application.VerifyAccess();
-		_native = WxKitNative.WindowDisablerNew(except is null ? null : (WxkWindow*)except.Native);
+		_native = WxKitNative.WindowDisablerNewWindowWindow(except is null ? null : (WxkWindow*)except.Native, null);
 	}
 
 	/// <summary>Enables the windows again.</summary>
 	public void Dispose() {
 		if (_native is null) return;
 		Application.VerifyAccess();
-		WxKitNative.WindowDisablerFree(_native);
+		WxKitNative.WindowDisablerDelete(_native);
 		_native = null;
 	}
 }

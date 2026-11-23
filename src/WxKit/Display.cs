@@ -18,7 +18,7 @@ public sealed unsafe record Display(int Index, string Name, Rect Bounds, Rect Wo
 	public static IReadOnlyList<Display> All {
 		get {
 			Application.VerifyAccess();
-			int count = WxKitNative.DisplayGetCount();
+			int count = checked((int)WxKitNative.DisplayGetCount());
 			Display[] displays = new Display[count];
 			for (int index = 0; index < count; index++) displays[index] = At(index);
 			return displays;
@@ -43,11 +43,12 @@ public sealed unsafe record Display(int Index, string Name, Rect Bounds, Rect Wo
 		return index < 0 ? null : At(index);
 	}
 
-	private static Display At(int index) => new(
-		index,
-		NativeString.Take(WxKitNative.DisplayGetName(index)),
-		WxKitNative.DisplayGetGeometry(index),
-		WxKitNative.DisplayGetClientArea(index),
-		WxKitNative.DisplayIsPrimary(index) != 0,
-		WxKitNative.DisplayGetScaleFactor(index));
+	private static Display At(int index) {
+		WxkDisplay* display = WxKitNative.DisplayNewUInt((uint)index);
+		try {
+			return new(index, NativeString.Take(WxKitNative.DisplayGetName(display)), WxKitNative.DisplayGetGeometry(display), WxKitNative.DisplayGetClientArea(display), WxKitNative.DisplayIsPrimary(display) != 0, WxKitNative.DisplayGetScaleFactor(display));
+		} finally {
+			WxKitNative.DisplayDelete(display);
+		}
+	}
 }

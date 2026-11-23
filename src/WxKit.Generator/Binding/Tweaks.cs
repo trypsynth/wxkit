@@ -227,6 +227,15 @@ internal sealed class ClassTweak(string name) {
 	/// <summary>Whether the members are free functions, which the shim calls without a class.</summary>
 	public bool IsGlobal { get; private set; }
 
+	/// <summary>Whether the class isn't a wxObject, and crosses as a handle of its own type, as <see cref="HandleKind.Plain"/> describes.</summary>
+	public bool IsPlain { get; private set; }
+
+	/// <summary>Binds a class that isn't a wxObject, such as wxDisplay, for hand-written code to call.</summary>
+	public ClassTweak Plain() {
+		IsPlain = true;
+		return InteropOnly();
+	}
+
 	public ClassTweak InteropOnly() {
 		IsInteropOnly = true;
 		return this;

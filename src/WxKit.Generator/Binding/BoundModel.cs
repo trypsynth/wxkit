@@ -65,6 +65,14 @@ internal sealed record HandleKind(string CType, string CppBase, string InteropTy
 	/// <summary>Whether the managed side owns the object, and deletes it when it is disposed.</summary>
 	public bool IsOwned => this == Value || this == Owned;
 
+	/// <summary>
+	/// A class that isn't a wxObject, such as wxDisplay, as a handle of its own type, wxk_Display,
+	/// which the shim deletes with wxk_Display_delete.
+	/// </summary>
+	public static HandleKind Plain(string cppName) => new($"wxk_{Naming.Type(cppName)}", cppName, $"Wxk{Naming.Type(cppName)}", "Handle", "Plain");
+
+	public bool IsPlain => Kind == "Plain";
+
 	public bool IsEvtHandler => this == Window || this == Menu || this == EvtHandler;
 }
 

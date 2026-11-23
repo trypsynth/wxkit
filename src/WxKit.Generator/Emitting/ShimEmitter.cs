@@ -20,11 +20,18 @@ internal static class ShimEmitter {
 	public static string Header(BindingResult result) {
 		CodeWriter writer = new();
 		writer.Line(Banner).Line("#pragma once").Line();
+		List<BoundClass> plain = [.. result.Classes.Where(static bound => !bound.Tweak.IsHandwritten && bound.Handle.IsPlain)];
+		if (plain.Count > 0) {
+			writer.Line("// Classes that aren't wxObjects, each a handle of its own type").Line();
+			foreach (BoundClass bound in plain) writer.Line($"typedef struct {bound.Handle.CType} {bound.Handle.CType};");
+			writer.Line();
+		}
 		foreach (BoundClass bound in result.Classes.Where(static bound => !bound.Tweak.IsHandwritten)) {
 			List<BoundFunction> functions = [.. bound.Functions];
 			if (functions.Count == 0) continue;
 			writer.Line($"// {bound.CppName}").Line();
 			foreach (BoundFunction function in functions) writer.Line(Signature(function) + " WXK_NOEXCEPT;");
+			if (HasDelete(bound)) writer.Line(DeleteSignature(bound) + " WXK_NOEXCEPT;");
 			if (bound.Directors.Count > 0) writer.Line(SetDirectorsSignature(bound) + " WXK_NOEXCEPT;");
 			writer.Line();
 		}
@@ -104,6 +111,13 @@ internal static class ShimEmitter {
 	private static string ClassFile(BoundClass bound) {
 		CodeWriter writer = new();
 		writer.Line(Banner).Line(bound.HasDirector || bound.Directors.Count > 0 ? "#include \"directors.h\"" : "#include \"includes.h\"").Line();
+		if (bound.Handle.IsPlain) {
+			// Only this file uses the class's handle, so it converts here.
+			writer.Line("namespace wxk {").Line();
+			writer.Line($"inline {bound.CppName}* Unwrap({bound.Handle.CType}* value) {{ return reinterpret_cast<{bound.CppName}*>(value); }}");
+			writer.Line($"inline {bound.Handle.CType}* Wrap({bound.CppName}* value) {{ return reinterpret_cast<{bound.Handle.CType}*>(value); }}");
+			writer.Line().Line("} // namespace wxk").Line();
+		}
 		if (bound.Directors.Count > 0) {
 			writer.Line("namespace wxk::directors {").Line();
 			foreach (BoundFunction director in bound.Directors) writer.Line($"{CallbackPointer(director, CallbackName(director))} = nullptr;");
@@ -121,6 +135,11 @@ internal static class ShimEmitter {
 		if (bound.Directors.Count > 0) {
 			writer.Open(SetDirectorsSignature(bound) + " noexcept");
 			foreach (BoundFunction director in bound.Directors) writer.Line($"wxk::directors::{CallbackName(director)} = {Camel(director.Source.Name)};");
+			writer.Close();
+		}
+		if (HasDelete(bound)) {
+			writer.Open(DeleteSignature(bound) + " noexcept");
+			writer.Line("wxk::Guard([&] { delete wxk::Unwrap(self); });");
 			writer.Close();
 		}
 		return writer.ToString();
@@ -181,6 +200,11 @@ internal static class ShimEmitter {
 	}
 
 	private static string Access(BoundClass bound) => Naming.Type(bound.CppName) + "Access";
+
+	// A class that isn't a wxObject, which .NET makes, the shim also deletes.
+	internal static bool HasDelete(BoundClass bound) => bound.Handle.IsPlain && bound.Constructors.Count > 0;
+
+	private static string DeleteSignature(BoundClass bound) => $"WXK_FUNCTION(void) wxk_{Naming.Type(bound.CppName)}_delete({bound.Handle.CType}* self)";
 
 	private static string BaseInterface(BoundClass bound) => Naming.Type(bound.CppName) + "Base";
 

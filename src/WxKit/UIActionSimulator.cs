@@ -15,41 +15,46 @@ namespace WxKit;
 /// </remarks>
 public static unsafe class UIActionSimulator {
 	/// <summary>Moves the mouse to a point, in screen coordinates.</summary>
-	public static bool MouseMove(Point point) => Send(() => WxKitNative.UIActionSimulatorMouseMove(point));
+	public static bool MouseMove(Point point) => WxKitNative.UIActionSimulatorMouseMovePoint(Simulator, point) != 0;
 
-	public static bool MouseDown(MouseButton button = MouseButton.Left) => Send(() => WxKitNative.UIActionSimulatorMouseDown((int)button));
+	public static bool MouseDown(MouseButton button = MouseButton.Left) => WxKitNative.UIActionSimulatorMouseDown(Simulator, (int)button) != 0;
 
-	public static bool MouseUp(MouseButton button = MouseButton.Left) => Send(() => WxKitNative.UIActionSimulatorMouseUp((int)button));
+	public static bool MouseUp(MouseButton button = MouseButton.Left) => WxKitNative.UIActionSimulatorMouseUp(Simulator, (int)button) != 0;
 
 	/// <summary>Presses and releases a mouse button where the mouse is.</summary>
-	public static bool MouseClick(MouseButton button = MouseButton.Left) => Send(() => WxKitNative.UIActionSimulatorMouseClick((int)button));
+	public static bool MouseClick(MouseButton button = MouseButton.Left) => WxKitNative.UIActionSimulatorMouseClick(Simulator, (int)button) != 0;
 
-	public static bool MouseDoubleClick(MouseButton button = MouseButton.Left) => Send(() => WxKitNative.UIActionSimulatorMouseDoubleClick((int)button));
+	public static bool MouseDoubleClick(MouseButton button = MouseButton.Left) => WxKitNative.UIActionSimulatorMouseDblClick(Simulator, (int)button) != 0;
 
 	/// <summary>Presses a key, holding the modifiers, without releasing it.</summary>
-	public static bool KeyDown(KeyCode key, KeyModifiers modifiers = KeyModifiers.None) => Send(() => WxKitNative.UIActionSimulatorKeyDown((int)key, (int)modifiers));
+	public static bool KeyDown(KeyCode key, KeyModifiers modifiers = KeyModifiers.None) => WxKitNative.UIActionSimulatorKeyDown(Simulator, (int)key, (int)modifiers) != 0;
 
-	public static bool KeyUp(KeyCode key, KeyModifiers modifiers = KeyModifiers.None) => Send(() => WxKitNative.UIActionSimulatorKeyUp((int)key, (int)modifiers));
+	public static bool KeyUp(KeyCode key, KeyModifiers modifiers = KeyModifiers.None) => WxKitNative.UIActionSimulatorKeyUp(Simulator, (int)key, (int)modifiers) != 0;
 
 	/// <summary>Presses and releases a key, holding the modifiers, such as Ctrl+S, which a letter's code is the character of, as in <c>(KeyCode)'S'</c>.</summary>
-	public static bool Char(KeyCode key, KeyModifiers modifiers = KeyModifiers.None) => Send(() => WxKitNative.UIActionSimulatorChar((int)key, (int)modifiers));
+	public static bool Char(KeyCode key, KeyModifiers modifiers = KeyModifiers.None) => WxKitNative.UIActionSimulatorChar(Simulator, (int)key, (int)modifiers) != 0;
 
 	/// <summary>Types text, one key at a time, which can only use the keys of a US keyboard.</summary>
 	public static bool Text(string text) {
 		ArgumentNullException.ThrowIfNull(text);
-		Application.VerifyAccess();
-		fixed (char* data = text) return WxKitNative.UIActionSimulatorText(data, NativeString.Length(text)) != 0;
+		fixed (char* data = text) return WxKitNative.UIActionSimulatorText(Simulator, data, NativeString.Length(text)) != 0;
 	}
 
 	/// <summary>Chooses the item with the text in the control with the keyboard focus, such as a choice or combo box, as a user would with the keyboard.</summary>
 	public static bool Select(string text) {
 		ArgumentNullException.ThrowIfNull(text);
-		Application.VerifyAccess();
-		fixed (char* data = text) return WxKitNative.UIActionSimulatorSelect(data, NativeString.Length(text)) != 0;
+		fixed (char* data = text) return WxKitNative.UIActionSimulatorSelect(Simulator, data, NativeString.Length(text)) != 0;
 	}
 
-	private static bool Send(Func<byte> send) {
-		Application.VerifyAccess();
-		return send() != 0;
+	// One simulator, made on the GUI thread the first time it's needed, serves every call, since it
+	// keeps no state between them that matters.
+	private static WxkUIActionSimulator* _simulator;
+
+	private static WxkUIActionSimulator* Simulator {
+		get {
+			Application.VerifyAccess();
+			if (_simulator is null) _simulator = WxKitNative.UIActionSimulatorNew();
+			return _simulator is not null ? _simulator : throw new InvalidOperationException("wxWidgets could not make an input simulator.");
+		}
 	}
 }

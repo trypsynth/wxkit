@@ -397,20 +397,6 @@ WXK_FUNCTION(void) wxk_Window_SetAccessibleRows(wxk_Window* window, const wxk_Ac
 // Tells screen readers which row, by its index, is the current one, or none for -1.
 WXK_FUNCTION(void) wxk_Window_SetAccessibleCurrentRow(wxk_Window* window, int64_t row) WXK_NOEXCEPT;
 
-// Input as if the user had given it, which goes to whatever window the system sends it to.
-// Each returns 0 when the system could not send it.
-
-WXK_FUNCTION(uint8_t) wxk_UIActionSimulator_MouseMove(wxk_Point point) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_UIActionSimulator_MouseDown(int32_t button) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_UIActionSimulator_MouseUp(int32_t button) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_UIActionSimulator_MouseClick(int32_t button) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_UIActionSimulator_MouseDoubleClick(int32_t button) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_UIActionSimulator_KeyDown(int32_t key, int32_t modifiers) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_UIActionSimulator_KeyUp(int32_t key, int32_t modifiers) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_UIActionSimulator_Char(int32_t key, int32_t modifiers) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_UIActionSimulator_Text(const char16_t* text, size_t textLength) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_UIActionSimulator_Select(const char16_t* text, size_t textLength) WXK_NOEXCEPT;
-
 // Printing
 
 // The callbacks every managed printout calls, with the userdata it was made with. A printout's
@@ -521,20 +507,9 @@ WXK_FUNCTION(uint8_t*) wxk_DropData_GetBytes(wxk_DropData* data, size_t* size) W
 WXK_FUNCTION(int32_t) wxk_DropTarget_TestDrop(wxk_Window* window, wxk_ClipboardContent* content, int32_t x, int32_t y, int32_t suggested) WXK_NOEXCEPT;
 
 // The desktop. Its free functions, such as wxBell, are generated, as wxk_Desktop_Bell and
-// wxk_BusyCursor_IsBusy.
+// wxk_BusyCursor_IsBusy, and so are wxDisplay's, wxUIActionSimulator's, wxSingleInstanceChecker's,
+// and wxWindowDisabler's, each a handle of its own type, as wxk_Display.
 
-// Disables every top-level window but except, which may be null, until the disabler is freed.
-WXK_FUNCTION(void*) wxk_WindowDisabler_new(wxk_Window* except) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_WindowDisabler_Free(void* disabler) WXK_NOEXCEPT;
-// The displays, by index, from 0 to the count, or -1 for none.
-WXK_FUNCTION(int32_t) wxk_Display_GetCount(void) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_Display_GetFromWindow(wxk_Window* window) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_Display_GetFromPoint(wxk_Point point) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Rect) wxk_Display_GetGeometry(int32_t index) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Rect) wxk_Display_GetClientArea(int32_t index) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_String*) wxk_Display_GetName(int32_t index) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Display_IsPrimary(int32_t index) WXK_NOEXCEPT;
-WXK_FUNCTION(double) wxk_Display_GetScaleFactor(int32_t index) WXK_NOEXCEPT;
 // Asks for the system's appearance, 0, light, 1, or dark, 2, and returns 1 when it could, and 0 when not.
 WXK_FUNCTION(int32_t) wxk_App_SetAppearance(int32_t appearance) WXK_NOEXCEPT;
 // Whether the system is dark, its background is, and its applications are, as the bits 1, 2, and 4.
@@ -565,17 +540,6 @@ WXK_FUNCTION(uint8_t) wxk_Image_LoadData(wxk_Object* image, const uint8_t* data,
 // The image as the bytes of a file in a format, which the caller frees with wxk_Bytes_Free, or null
 // when it cannot be saved in it. A failure is not logged.
 WXK_FUNCTION(uint8_t*) wxk_Image_SaveData(wxk_Object* image, int32_t type, size_t* size) WXK_NOEXCEPT;
-
-// One running copy
-
-typedef struct wxk_SingleInstanceChecker wxk_SingleInstanceChecker;
-
-// Makes a wxSingleInstanceChecker for name, with its lock file in path on Unix, or wxWidgets'
-// default folder when path is null, and returns null when it cannot be made. It needs no
-// application, so it can run before wxk_App_Run.
-WXK_FUNCTION(wxk_SingleInstanceChecker*) wxk_SingleInstanceChecker_new(const char16_t* name, size_t nameLength, const char16_t* path, size_t pathLength) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_SingleInstanceChecker_IsAnotherRunning(wxk_SingleInstanceChecker* checker) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_SingleInstanceChecker_delete(wxk_SingleInstanceChecker* checker) WXK_NOEXCEPT;
 
 // Translations
 

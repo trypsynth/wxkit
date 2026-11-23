@@ -40,6 +40,7 @@
 #include <wx/dialog.h>
 #include <wx/dirctrl.h>
 #include <wx/dirdlg.h>
+#include <wx/display.h>
 #include <wx/editlbox.h>
 #include <wx/event.h>
 #include <wx/fdrepdlg.h>
@@ -83,6 +84,7 @@
 #include <wx/simplebook.h>
 #include <wx/sizer.h>
 #include <wx/slider.h>
+#include <wx/snglinst.h>
 #include <wx/spinbutt.h>
 #include <wx/spinctrl.h>
 #include <wx/splitter.h>
@@ -105,6 +107,7 @@
 #include <wx/treebook.h>
 #include <wx/treectrl.h>
 #include <wx/treelist.h>
+#include <wx/uiaction.h>
 #include <wx/utils.h>
 #include <wx/validate.h>
 #include <wx/valtext.h>

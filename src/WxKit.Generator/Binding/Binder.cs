@@ -65,7 +65,7 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		}
 		foreach (ClassTweak tweak in tweaks.Classes.Values) {
 			if (!api.Classes.TryGetValue(tweak.CppName, out DoxygenClass? source)) throw new InvalidOperationException($"A tweak names {tweak.CppName}, which the interface headers do not have.");
-			HandleKind handle = tweak.IsStaticOnly ? HandleKind.Static : tweak.IsValueObject ? HandleKind.Value : tweak.IsOwnedObject ? HandleKind.Owned : HandleFor(source.Name);
+			HandleKind handle = tweak.IsStaticOnly ? HandleKind.Static : tweak.IsPlain ? HandleKind.Plain(tweak.CppName) : tweak.IsValueObject ? HandleKind.Value : tweak.IsOwnedObject ? HandleKind.Owned : HandleFor(source.Name);
 			_classes[tweak.CppName] = new BoundClass(source, tweak, handle);
 		}
 		foreach (BoundClass bound in _classes.Values) {
@@ -390,6 +390,8 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 
 	private Conversion? Map(CppType type, BoundClass owner, string member, string? parameter, bool isReturn) {
 		if (!isReturn && _classes.TryGetValue(type.Name, out BoundClass? owned) && owned.Handle == HandleKind.Owned && (type.IsReference || type.Pointers == 1)) return new OwnedConversion(owned, type.IsReference);
+		// UTF-8 text, as wxUIActionSimulator::Text takes it.
+		if (!isReturn && type is { Name: "char", IsConst: true, Pointers: 1, IsReference: false }) return Utf8StringConversion.Instance;
 		// A value object passed by a reference that can change, such as the bitmap a wxMemoryDC
 		// draws into, is the managed object's own copy, so the change shows there.
 		if (!isReturn && type.IsReference && !type.IsConst && _classes.TryGetValue(type.Name, out BoundClass? changed) && changed.Handle == HandleKind.Value) return new ValueConversion(changed, mutable: true);

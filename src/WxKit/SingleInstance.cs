@@ -31,11 +31,16 @@ public sealed unsafe class SingleInstanceChecker : IDisposable {
 	public SingleInstanceChecker(string name, string? folder = null) {
 		ArgumentException.ThrowIfNullOrEmpty(name);
 		if (name.AsSpan().IndexOfAny('/', '\\') >= 0) throw new ArgumentException("The name cannot have slashes or backslashes.", nameof(name));
+		_native = WxKitNative.SingleInstanceCheckerNewDefault();
+		bool created;
 		fixed (char* nameText = name)
 		fixed (char* folderText = folder) {
-			_native = WxKitNative.SingleInstanceCheckerNew(nameText, NativeString.Length(name), folderText, folder is null ? 0 : NativeString.Length(folder));
+			created = _native is not null && WxKitNative.SingleInstanceCheckerCreate(_native, nameText, NativeString.Length(name), folderText, folder is null ? 0 : NativeString.Length(folder)) != 0;
 		}
-		if (_native is null) throw new IOException($"wxWidgets could not check for another copy of {name}.");
+		if (!created) {
+			Dispose();
+			throw new IOException($"wxWidgets could not check for another copy of {name}.");
+		}
 	}
 
 	/// <summary>Whether another copy, which made a checker with the same name first, is still running.</summary>
