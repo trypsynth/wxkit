@@ -46,6 +46,7 @@ A call goes down the layers: `button.Label = "Save"` pins the string and calls `
 - [Testing](testing.md): testing GUI code on three platforms.
 - [Open questions](open-questions.md): what is still undecided.
 - [Planned changes](planned-changes.md): changes that need code changes, which wait for 0.2.0.
+- [General directors](directors.md): a design for generating the C++ that lets .NET override more of wxWidgets' virtual members.
 
 ## Conventions
 
