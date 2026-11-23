@@ -6,7 +6,7 @@ The native packages, such as `WxKit.Native.win-x64`, also contain wxWidgets and 
 
 ## wxWidgets
 
-- Version: 3.3.4.
+- Version: 3.3.4, with the fixes in `native/patches/wxWidgets` in WxKit's repository, each of which is also a pull request to wxWidgets. The exception lets binary versions of wxWidgets, changed or not, be distributed under their own terms.
 - Website: https://www.wxwidgets.org
 - License: the wxWindows Library Licence, version 3.1, in `licenses/wxWidgets/licence.txt`. It is the GNU Library General Public License, version 2 or later, in `licenses/wxWidgets/lgpl.txt`, with an exception that allows distributing applications linked with wxWidgets, statically or not, under their own terms.
 

@@ -53,6 +53,10 @@ On Linux:
 - The link targets name the system libraries that `readelf` finds the shared library needs by soname, such as `-l:libgtk-3.so.0`, so an application's build machine needs GTK but not its development files. GNU ld reads static libraries once, in order, so each is listed before the ones it uses. A Native AOT publish also needs `clang` and zlib's development files.
 - `wxAccessible` is Windows only, so `Accessible` does nothing on Linux, where GTK describes its controls through ATK.
 
+## Patches to wxWidgets
+
+WxKit fixes bugs in the wxWidgets it pins with the patches in `native/patches/wxWidgets`, until a wxWidgets release it moves to has them. Each is also a pull request to wxWidgets, named after it, as the folder's README lists. `scripts/patch-wxwidgets.ps1` applies them to the submodule, and `scripts/build-native.ps1`, the sanitizer script, and CI run it before building. It leaves a patch already applied as it is, and fails on one that wxWidgets already has, or that no longer applies, which is to be deleted. CI applies them before dating the sources, and its build caches' keys name the patches, so a cached build is reused only when it has the same ones.
+
 ## Native AOT and static linking
 
 With `PublishAot` on, `WxKitStaticLink` defaults to `true`. The package's `buildTransitive/WxKit.targets` then adds `DirectPInvoke` for `wxkitnative`, imports the runtime's `WxKit.Native.targets`, and drops the shared library from the publish, so nothing ships beside the executable. The targets fail with a clear message when the runtime has no static build. With `WxKitStaticLink` set to `false`, or without Native AOT, the shared library loads from the native package's `runtimes` folder. The managed library is `IsAotCompatible` and treats warnings as errors, so the trimming and AOT analyzers fail its build. `SYSLIB1054` is an error in `.editorconfig`, so every native call uses `LibraryImport`.

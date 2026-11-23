@@ -116,8 +116,14 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: artifacts/native-build/${{ matrix.runtime }}
-          key: native-${{ matrix.runtime }}-${{ steps.wx.outputs.commit }}-${{ hashFiles('scripts/build-native.ps1') }}-${{ hashFiles('native/shim/**') }}
-          restore-keys: native-${{ matrix.runtime }}-${{ steps.wx.outputs.commit }}-${{ hashFiles('scripts/build-native.ps1') }}-
+          key: native-${{ matrix.runtime }}-${{ steps.wx.outputs.commit }}-${{ hashFiles('scripts/build-native.ps1', 'native/patches/**') }}-${{ hashFiles('native/shim/**') }}
+          restore-keys: native-${{ matrix.runtime }}-${{ steps.wx.outputs.commit }}-${{ hashFiles('scripts/build-native.ps1', 'native/patches/**') }}-
+
+      # WxKit's fixes to wxWidgets, applied before the sources are dated, so a cached build
+      # that has them is reused, and the cache keys name the patches, so one without them isn't.
+      - name: Patch wxWidgets
+        shell: pwsh
+        run: ./scripts/patch-wxwidgets.ps1
 
       # A fresh checkout makes every source newer than the cached objects, so MSBuild would rebuild
       # wxWidgets from scratch. Its sources only change with its commit, which is in the cache key,
@@ -198,8 +204,14 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: artifacts/native-build/linux-x64-sanitize
-          key: sanitize-linux-x64-${{ steps.wx.outputs.commit }}-${{ hashFiles('scripts/test-sanitizers.ps1') }}-${{ hashFiles('native/shim/**') }}
-          restore-keys: sanitize-linux-x64-${{ steps.wx.outputs.commit }}-${{ hashFiles('scripts/test-sanitizers.ps1') }}-
+          key: sanitize-linux-x64-${{ steps.wx.outputs.commit }}-${{ hashFiles('scripts/test-sanitizers.ps1', 'native/patches/**') }}-${{ hashFiles('native/shim/**') }}
+          restore-keys: sanitize-linux-x64-${{ steps.wx.outputs.commit }}-${{ hashFiles('scripts/test-sanitizers.ps1', 'native/patches/**') }}-
+
+      # WxKit's fixes to wxWidgets, applied before the sources are dated, so a cached build
+      # that has them is reused, and the cache keys name the patches, so one without them isn't.
+      - name: Patch wxWidgets
+        shell: pwsh
+        run: ./scripts/patch-wxwidgets.ps1
 
       - name: Date the wxWidgets sources
         run: find native/wxWidgets -type f -not -path '*/.git/*' -exec touch -t 200001010000 {} +

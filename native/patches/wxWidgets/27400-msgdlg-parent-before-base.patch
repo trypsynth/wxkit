@@ -1,0 +1,57 @@
+From 7414d604a7c18725a586767285eb6649ca057f03 Mon Sep 17 00:00:00 2001
+From: Quin Gillespie
+Date: Sun, 22 Nov 2026 23:23:20 -0700
+Subject: [PATCH] Don't call GetParentForModalDialog() before the dialog exists
+
+wxGenericMessageDialog called GetParentForModalDialog(), a member of
+wxDialogBase, in its member initializer list, before wxDialogBase was
+constructed, which is undefined behaviour. UBSan reports it as a member
+call on an address which does not point to an object of type
+'wxDialogBase', and it's also what gcc 16 warned about.
+
+wxMessageDialogBase constructor already calls GetParentForModalDialog()
+itself, once the object exists, so just pass the parent to it, and
+remove the warning suppression which isn't needed any longer.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+---
+ src/generic/msgdlgg.cpp | 14 +-------------
+ 1 file changed, 1 insertion(+), 13 deletions(-)
+
+diff --git a/src/generic/msgdlgg.cpp b/src/generic/msgdlgg.cpp
+index f2560c7640..86509d2570 100644
+--- a/src/generic/msgdlgg.cpp
++++ b/src/generic/msgdlgg.cpp
+@@ -77,20 +77,12 @@ wxEND_EVENT_TABLE()
+ 
+ wxIMPLEMENT_CLASS(wxGenericMessageDialog, wxDialog);
+ 
+-// gcc 16 gives a bogus warning about "'<unknown>' may be used uninitialized"
+-// (sic) for GetParentForModalDialog() call below, this is almost certainly a
+-// compiler bug, so disable it for this version only for now.
+-#if wxCHECK_GCC_VERSION(16, 0) && !wxCHECK_GCC_VERSION(16, 3)
+-#define wxGCC_WARNING_SUPPRESS_MAYBE_UNINITIALIZED
+-wxGCC_WARNING_SUPPRESS(maybe-uninitialized)
+-#endif
+-
+ wxGenericMessageDialog::wxGenericMessageDialog( wxWindow *parent,
+                                                 const wxString& message,
+                                                 const wxString& caption,
+                                                 long style,
+                                                 const wxPoint& pos)
+-                      : wxMessageDialogBase(GetParentForModalDialog(parent, style),
++                      : wxMessageDialogBase(parent,
+                                             message,
+                                             caption,
+                                             style),
+@@ -99,10 +91,6 @@ wxGenericMessageDialog::wxGenericMessageDialog( wxWindow *parent,
+     m_created = false;
+ }
+ 
+-#ifdef wxGCC_WARNING_SUPPRESS_MAYBE_UNINITIALIZED
+-wxGCC_WARNING_RESTORE(maybe-uninitialized)
+-#endif
+-
+ #if wxUSE_BUTTON
+ wxSizer *wxGenericMessageDialog::CreateMsgDlgButtonSizer()
+ {

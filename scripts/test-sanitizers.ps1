@@ -1,8 +1,8 @@
-# Runs WxKit's tests on Linux against a shared library whose own code is built with AddressSanitizer
-# and UndefinedBehaviorSanitizer, which report memory errors, such as a read after a free, and
-# undefined behavior, such as a cast to a class an object isn't, as the tests run. wxWidgets itself
-# is built as usual, so what they report is in code WxKit can fix. It fails on any report, even
-# when every test passes. Run it under a display, such as with xvfb-run.
+# Runs WxKit's tests on Linux against a shared library built, wxWidgets and the shim alike, with
+# AddressSanitizer and UndefinedBehaviorSanitizer, which report memory errors, such as a read after
+# a free, and undefined behavior, such as a cast to a class an object isn't, as the tests run. It
+# fails on any report, even when every test passes. What they find in wxWidgets, WxKit fixes with a
+# patch in native/patches. Run it under a display, such as with xvfb-run.
 param(
 	[string]$Runtime = "linux-x64"
 )
@@ -13,6 +13,7 @@ $build = Join-Path $root "artifacts/native-build/$Runtime-sanitize"
 $native = Join-Path $root "artifacts/native-sanitize"
 $log = Join-Path $root "artifacts/sanitizers.log"
 
+& (Join-Path $PSScriptRoot "patch-wxwidgets.ps1")
 # The build's compile commands are also what scripts/check-tidy.ps1 reads.
 cmake -S (Join-Path $root "native/shim") -B $build -G Ninja "-DCMAKE_BUILD_TYPE=Release" "-DWXKIT_SANITIZE=ON" "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
 if ($LASTEXITCODE -ne 0) { throw "Configuring the sanitized build failed." }

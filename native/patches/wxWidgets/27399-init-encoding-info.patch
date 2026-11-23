@@ -1,0 +1,31 @@
+From 6a8783a45fc436624873dabd770cc72c2db0408b Mon Sep 17 00:00:00 2001
+From: Quin Gillespie
+Date: Sun, 22 Nov 2026 23:23:19 -0700
+Subject: [PATCH] Initialize wxNativeEncodingInfo::encoding
+
+wxFontData doesn't initialize its m_encodingInfo, so copying a default
+constructed wxFontData, as wxFontDialogBase::InitFontData() does, read
+an uninitialized wxFontEncoding, which UBSan reports as a load of a
+value which is not valid for type 'wxFontEncoding'.
+
+Give the member wxFONTENCODING_SYSTEM as its default value, which
+wxFontData::m_encoding already starts with.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+---
+ include/wx/encinfo.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/include/wx/encinfo.h b/include/wx/encinfo.h
+index 86d2bd5656..71fe000174 100644
+--- a/include/wx/encinfo.h
++++ b/include/wx/encinfo.h
+@@ -33,7 +33,7 @@
+ struct WXDLLIMPEXP_CORE wxNativeEncodingInfo
+ {
+     wxString facename;          // may be empty meaning "any"
+-    wxFontEncoding encoding;    // so that we know what this struct represents
++    wxFontEncoding encoding = wxFONTENCODING_SYSTEM; // so that we know what this struct represents
+ 
+ #if defined(__WXMSW__) || \
+     defined(__WXMAC__) || \

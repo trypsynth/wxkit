@@ -183,6 +183,9 @@ function Build-Mac([string]$runtime) {
 	Write-Host "Built $runtime into $output"
 }
 
+# WxKit's fixes to wxWidgets, until the release it pins has them.
+& (Join-Path $PSScriptRoot "patch-wxwidgets.ps1")
+
 $studio = $null
 foreach ($runtime in $Runtimes) {
 	if ($linuxArchitectures.ContainsKey($runtime)) {
