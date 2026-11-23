@@ -12,7 +12,7 @@ The generated files are checked in, so a normal build needs neither Doxygen nor 
 
 ## Binding tweaks
 
-Decisions the XML cannot carry come from tweaks, which are C# rather than a data format, so they get compile-time checking and can share helpers. All of them are in `src/WxKit.Generator/Tweaks/Core.cs`. A class is bound only when a tweak names it, so binding a new class starts with a line there:
+Decisions the XML cannot carry come from tweaks, which are C# rather than a data format, so they get compile-time checking and can share helpers. They are in `src/WxKit.Generator/Tweaks`, a file for each area, such as `Controls.cs` and `Printing.cs`, which `Core.cs` applies in turn. A class is bound only when a tweak names it, so binding a new class starts with a line in its area's file:
 
 ```csharp
 tweaks.Class("wxButton", button => button.Event("EVT_BUTTON", "Click"));
