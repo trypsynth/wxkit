@@ -85,7 +85,10 @@ Before the callbacks are set, and when a callback pointer in the struct is null,
 
 Each step keeps the public API and the tests as they are, and is a commit of its own.
 
+## One kind of director
+
+General directors replace today's registry-based ones, so the shim has one kind. A generated class such as `ListCtrl` already has a generated managed side, which allocates the GC handle it passes as `userdata` and frees it in `onFree`, where today it looks itself up in the registry. Nothing public changes. This comes after step 1, once the userdata form works, and before step 2, so the later steps build on one kind.
+
 ## Open questions
 
-- Whether a general director should replace today's registry-based directors too, so there's one kind. That changes nothing public, but `ListCtrl` would need a GC handle for each control, which the registry already gives it for free.
-- Whether the managed side of a general director should be generated as well, as a sealed internal class that a hand-written public class wraps. That would remove the `UnmanagedCallersOnly` boilerplate too, at the cost of another layer.
+- Whether the managed side of a general director should be generated for the hand-written classes too, as a sealed internal class that the hand-written public class wraps. That would remove the `UnmanagedCallersOnly` boilerplate, at the cost of another layer. The generated classes' managed side, as `ListCtrl` has, shows what it would look like. The decision waits until the printout and the accessible object are done, which shows how much of their managed code repeats.
