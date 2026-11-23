@@ -42,11 +42,11 @@ A call goes down the layers: `button.Label = "Save"` pins the string and calls `
 - [Managed API](managed-api.md): naming, object lifetime, events, threading, and the application model.
 - [Generator](generator.md): how bindings come from the wxWidgets interface headers.
 - [Building and packaging](building-and-packaging.md): native builds, static linking, NuGet packages, CI, and releases.
-- [Language support](languages.md): F# and Visual Basic.
+- [Language support](languages.md): F#, and why Visual Basic isn't supported.
 - [Testing](testing.md): testing GUI code on three platforms.
 - [Open questions](open-questions.md): what is still undecided.
 - [Planned changes](planned-changes.md): changes that need code changes, which wait for 0.2.0.
-- [General directors](directors.md): a design for generating the C++ that lets .NET override more of wxWidgets' virtual members.
+- [Directors](directors.md): how .NET overrides wxWidgets' virtual members, and what is still written by hand.
 
 ## Conventions
 
