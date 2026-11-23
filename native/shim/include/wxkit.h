@@ -635,11 +635,9 @@ WXK_FUNCTION(void) wxk_ManagedTaskBarIcon_Destroy(wxk_EvtHandler* icon) WXK_NOEX
 
 // Toolbar tools
 
+// The tool's toolbar. The interface headers don't document the wxToolBarBase it returns, so it
+// isn't generated, as the toolbar's other members are.
 WXK_FUNCTION(wxk_Window*) wxk_ToolBarTool_GetToolBar(wxk_ToolBarTool* tool) WXK_NOEXCEPT;
-// Delete one or all of a toolbar's tools. The managed side marks their objects destroyed.
-WXK_FUNCTION(uint8_t) wxk_ToolBar_DeleteTool(wxk_Window* toolBar, int32_t toolId) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_ToolBar_DeleteToolByPos(wxk_Window* toolBar, size_t position) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_ToolBar_ClearTools(wxk_Window* toolBar) WXK_NOEXCEPT;
 
 // Dropped files
 
@@ -677,27 +675,6 @@ WXK_FUNCTION(void) wxk_CloseEvent_Veto(wxk_Event* event, uint8_t veto) WXK_NOEXC
 
 // The platform's own handle: an HWND on Windows, an NSView* on macOS, and a GtkWidget* on Linux.
 WXK_FUNCTION(void*) wxk_Window_GetHandle(wxk_Window* window) WXK_NOEXCEPT;
-// Sets the window's sizer, deleting the one it had.
-WXK_FUNCTION(void) wxk_Window_SetSizer(wxk_Window* window, wxk_Sizer* sizer) WXK_NOEXCEPT;
-
-WXK_FUNCTION(void) wxk_Frame_SetMenuBar(wxk_Window* frame, wxk_Window* menuBar) WXK_NOEXCEPT;
-
-// Dialogs
-
-// Sizers
-
-// A negative border means the platform's default border.
-WXK_FUNCTION(void) wxk_Sizer_AddWindow(wxk_Sizer* sizer, wxk_Window* window, int32_t proportion, int32_t flags, int32_t border) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Sizer_AddSizer(wxk_Sizer* sizer, wxk_Sizer* child, int32_t proportion, int32_t flags, int32_t border) WXK_NOEXCEPT;
-// Add an item to a grid bag sizer at a cell, and return 0 without adding it when an item is there
-// already. wxWidgets would delete a sizer it could not add, which WxKit still tracks.
-WXK_FUNCTION(uint8_t) wxk_GridBagSizer_AddWindow(wxk_Sizer* sizer, wxk_Window* window, wxk_GridPosition position, wxk_GridSpan span, int32_t flags, int32_t border) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_GridBagSizer_AddSizer(wxk_Sizer* sizer, wxk_Sizer* child, wxk_GridPosition position, wxk_GridSpan span, int32_t flags, int32_t border) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_GridBagSizer_AddSpacer(wxk_Sizer* sizer, wxk_Size size, wxk_GridPosition position, wxk_GridSpan span, int32_t flags, int32_t border) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Sizer_AddSpacer(wxk_Sizer* sizer, int32_t size) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Sizer_AddStretchSpacer(wxk_Sizer* sizer, int32_t proportion) WXK_NOEXCEPT;
-// Deletes a sizer that no window or other sizer owns.
-WXK_FUNCTION(void) wxk_Sizer_Free(wxk_Sizer* sizer) WXK_NOEXCEPT;
 
 // Menus
 

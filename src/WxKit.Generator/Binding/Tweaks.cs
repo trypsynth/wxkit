@@ -102,6 +102,13 @@ internal sealed class ClassTweak(string name) {
 
 	public HashSet<string> IgnoredMembers { get; } = new(StringComparer.Ordinal);
 
+	/// <summary>
+	/// Members bound for hand-written code to call, which the shim and its imports have but the
+	/// managed class doesn't, such as wxToolBar's DeleteTool, which ToolBar wraps to forget the tool.
+	/// A hand-written class binds only these.
+	/// </summary>
+	public HashSet<string> InternalMembers { get; } = new(StringComparer.Ordinal);
+
 	/// <summary>The class is written by hand. The generator only uses it as a type, and lists it so it can be wrapped.</summary>
 	public bool IsHandwritten { get; private set; }
 
@@ -150,6 +157,11 @@ internal sealed class ClassTweak(string name) {
 
 	public ClassTweak Ignore(params string[] members) {
 		IgnoredMembers.UnionWith(members);
+		return this;
+	}
+
+	public ClassTweak Internal(params string[] members) {
+		InternalMembers.UnionWith(members);
 		return this;
 	}
 

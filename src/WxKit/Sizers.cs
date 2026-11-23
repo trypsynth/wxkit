@@ -21,7 +21,7 @@ public abstract unsafe class Sizer {
 	~Sizer() {
 		if (_native is null || _owner is not null) return;
 		nint native = (nint)_native;
-		Application.TryPost(() => WxKitNative.SizerFree((WxkSizer*)native));
+		Application.TryPost(() => WxKitNative.ObjectFree((WxkObject*)native));
 	}
 
 	/// <summary>Whether wxWidgets has destroyed the sizer, along with the window or sizer that owned it.</summary>
@@ -36,12 +36,12 @@ public abstract unsafe class Sizer {
 
 	public void Add(Window window, SizerFlags flags = default) {
 		ArgumentNullException.ThrowIfNull(window);
-		WxKitNative.SizerAddWindow(Native, window.Native, flags.ProportionValue, flags.FlagsValue, flags.BorderValue);
+		WxKitNative.SizerAddWindowIntIntInt(Native, window.Native, flags.ProportionValue, flags.FlagsValue, Border(flags));
 	}
 
 	/// <summary>Adds a sizer inside this one, which then owns it.</summary>
 	public void Add(Sizer sizer, SizerFlags flags = default) => Adopt(sizer, child => {
-		WxKitNative.SizerAddSizer(Native, (WxkSizer*)child, flags.ProportionValue, flags.FlagsValue, flags.BorderValue);
+		WxKitNative.SizerAddSizerIntIntInt(Native, (WxkSizer*)child, flags.ProportionValue, flags.FlagsValue, Border(flags));
 		return true;
 	});
 
@@ -52,6 +52,8 @@ public abstract unsafe class Sizer {
 	public void AddStretchSpacer(int proportion = 1) => WxKitNative.SizerAddStretchSpacer(Native, proportion);
 
 	internal void Attach(Window window) => Claim(window);
+
+	private protected static int Border(SizerFlags flags) => flags.BorderValue < 0 ? WxKitNative.SizerFlagsGetDefaultBorder() : flags.BorderValue;
 
 	// Makes a sizer this one's, if add, given the child's handle, adds it. A child it could not add
 	// is left to its own managed object, as before.
@@ -122,7 +124,7 @@ public readonly struct SizerFlags {
 
 	internal int FlagsValue => _flags;
 
-	// The shim reads a negative border as the platform's default.
+	// A negative border is the platform's default, which a sizer asks wxWidgets for as it adds the item.
 	internal int BorderValue => _defaultBorder ? -1 : _border;
 
 	public SizerFlags Proportion(int proportion) => new(proportion, _flags, _border, _defaultBorder);

@@ -1135,6 +1135,7 @@ WXK_FUNCTION(wxk_Object*) wxk_FontPickerEvent_GetFont(wxk_Event* self) WXK_NOEXC
 // wxFrame
 
 WXK_FUNCTION(wxk_Window*) wxk_Frame_new(wxk_Window* parent, int32_t id, const char16_t* title, size_t titleLength, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Frame_SetMenuBar(wxk_Window* self, wxk_Window* menuBar) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_Frame_CreateStatusBar(wxk_Window* self, int32_t number, int64_t style, int32_t id, const char16_t* name, size_t nameLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_Frame_CreateToolBar(wxk_Window* self, int64_t style, int32_t id, const char16_t* name, size_t nameLength) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Frame_DoGiveHelp(wxk_Window* self, const char16_t* text, size_t textLength, uint8_t show) WXK_NOEXCEPT;
@@ -1195,6 +1196,9 @@ WXK_FUNCTION(wxk_Window*) wxk_GenericDirCtrl_GetTreeCtrl(wxk_Window* self) WXK_N
 // wxGridBagSizer
 
 WXK_FUNCTION(wxk_Sizer*) wxk_GridBagSizer_new(int32_t vgap, int32_t hgap) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_GridBagSizer_Add_WindowGridPositionGridSpanIntInt(wxk_Sizer* self, wxk_Window* window, wxk_GridPosition position, wxk_GridSpan span, int32_t flag, int32_t border) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_GridBagSizer_Add_SizerGridPositionGridSpanIntInt(wxk_Sizer* self, wxk_Sizer* sizer, wxk_GridPosition position, wxk_GridSpan span, int32_t flag, int32_t border) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_GridBagSizer_Add_IntIntGridPositionGridSpanIntInt(wxk_Sizer* self, int32_t width, int32_t height, wxk_GridPosition position, wxk_GridSpan span, int32_t flag, int32_t border) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_GridBagSizer_CheckForIntersection(wxk_Sizer* self, wxk_GridPosition position, wxk_GridSpan span) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_GridPosition) wxk_GridBagSizer_GetItemPosition_Window(wxk_Sizer* self, wxk_Window* window) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_GridPosition) wxk_GridBagSizer_GetItemPosition_Sizer(wxk_Sizer* self, wxk_Sizer* sizer) WXK_NOEXCEPT;
@@ -2281,6 +2285,18 @@ WXK_FUNCTION(wxk_Size) wxk_SizeEvent_GetSize(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_SizeEvent_SetSize(wxk_Event* self, wxk_Size size) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Rect) wxk_SizeEvent_GetRect(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_SizeEvent_SetRect(wxk_Event* self, wxk_Rect rect) WXK_NOEXCEPT;
+
+// wxSizer
+
+WXK_FUNCTION(void) wxk_Sizer_Add_WindowIntIntInt(wxk_Sizer* self, wxk_Window* window, int32_t proportion, int32_t flag, int32_t border) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Sizer_Add_SizerIntIntInt(wxk_Sizer* self, wxk_Sizer* sizer, int32_t proportion, int32_t flag, int32_t border) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Sizer_Add_IntIntIntIntInt(wxk_Sizer* self, int32_t width, int32_t height, int32_t proportion, int32_t flag, int32_t border) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Sizer_AddSpacer(wxk_Sizer* self, int32_t size) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Sizer_AddStretchSpacer(wxk_Sizer* self, int32_t prop) WXK_NOEXCEPT;
+
+// wxSizerFlags
+
+WXK_FUNCTION(int32_t) wxk_SizerFlags_GetDefaultBorder(void) WXK_NOEXCEPT;
 
 // wxSlider
 
@@ -3434,6 +3450,9 @@ WXK_FUNCTION(void) wxk_ToggleButton_SetValue(wxk_Window* self, uint8_t state) WX
 // wxToolBar
 
 WXK_FUNCTION(wxk_Window*) wxk_ToolBar_new(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_ToolBar_ClearTools(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_ToolBar_DeleteTool(wxk_Window* self, int32_t toolId) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_ToolBar_DeleteToolByPos(wxk_Window* self, size_t position) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_ToolBarTool*) wxk_ToolBar_AddTool_IntStringBitmapStringMenuItemKind(wxk_Window* self, int32_t toolId, const char16_t* label, size_t labelLength, const wxk_Object* bitmap, const char16_t* shortHelp, size_t shortHelpLength, int32_t kind) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_ToolBarTool*) wxk_ToolBar_AddTool_IntStringBitmapBitmapMenuItemKindStringString(wxk_Window* self, int32_t toolId, const char16_t* label, size_t labelLength, const wxk_Object* bitmap, const wxk_Object* bmpDisabled, int32_t kind, const char16_t* shortHelp, size_t shortHelpLength, const char16_t* longHelp, size_t longHelpLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_ToolBarTool*) wxk_ToolBar_InsertTool(wxk_Window* self, size_t position, int32_t toolId, const char16_t* label, size_t labelLength, const wxk_Object* bitmap, const wxk_Object* bmpDisabled, int32_t kind, const char16_t* shortHelp, size_t shortHelpLength, const char16_t* longHelp, size_t longHelpLength) WXK_NOEXCEPT;
@@ -3813,6 +3832,7 @@ WXK_FUNCTION(uint8_t) wxk_WebViewEvent_IsTargetMainFrame(wxk_Event* self) WXK_NO
 
 // wxWindow
 
+WXK_FUNCTION(void) wxk_Window_SetSizer(wxk_Window* self, wxk_Sizer* sizer, uint8_t deleteOld) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_AcceptsFocus(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_AcceptsFocusFromKeyboard(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_AcceptsFocusRecursively(wxk_Window* self) WXK_NOEXCEPT;

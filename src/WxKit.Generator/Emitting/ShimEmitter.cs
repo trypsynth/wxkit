@@ -26,7 +26,7 @@ internal static class ShimEmitter {
 			foreach (BoundClass bound in plain) writer.Line($"typedef struct {bound.Handle.CType} {bound.Handle.CType};");
 			writer.Line();
 		}
-		foreach (BoundClass bound in result.Classes.Where(static bound => !bound.Tweak.IsHandwritten)) {
+		foreach (BoundClass bound in result.Classes) {
 			List<BoundFunction> functions = [.. bound.Functions];
 			if (functions.Count == 0) continue;
 			writer.Line($"// {bound.CppName}").Line();
@@ -49,7 +49,7 @@ internal static class ShimEmitter {
 		yield return ("includes.h", Includes(result));
 		yield return ("checks.cpp", Checks(result));
 		if (result.Classes.Any(static bound => bound.Directors.Count > 0)) yield return ("directors.h", DirectorDeclarations(result));
-		foreach (BoundClass bound in result.Classes.Where(static bound => !bound.Tweak.IsHandwritten && bound.Functions.Any())) yield return ($"{bound.Name}.cpp", ClassFile(bound));
+		foreach (BoundClass bound in result.Classes.Where(static bound => bound.Functions.Any())) yield return ($"{bound.Name}.cpp", ClassFile(bound));
 		foreach (IGrouping<string, BoundEventType> group in result.EventTypes.GroupBy(static type => type.Header ?? "wx/event.h").OrderBy(static group => group.Key, StringComparer.Ordinal)) {
 			string name = group.Key.Replace("wx/", string.Empty, StringComparison.Ordinal).Replace(".h", string.Empty, StringComparison.Ordinal).Replace('/', '_');
 			yield return ($"EventTypes_{name}.cpp", EventTypeFile(group));

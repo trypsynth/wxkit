@@ -105,7 +105,6 @@ set(WXK_SOURCES
 	src/dragdrop.cpp
 	src/dropfiles.cpp
 	src/event.cpp
-	src/gridbag.cpp
 	src/labels.cpp
 	src/handlers/all.cpp
 	src/notification.cpp
@@ -127,7 +126,6 @@ set(WXK_SOURCES
 	src/handlers/icon.cpp
 	src/menu.cpp
 	src/object.cpp
-	src/sizer.cpp
 	src/string.cpp
 	src/taskbar.cpp
 	src/toolbar.cpp

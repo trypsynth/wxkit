@@ -30,7 +30,7 @@ public unsafe partial class Window {
 			WxkWindow* native = Native;
 			if (ReferenceEquals(value, _sizer)) return;
 			value?.Attach(this);
-			WxKitNative.WindowSetSizer(native, value is null ? null : value.Native);
+			WxKitNative.WindowSetSizer(native, value is null ? null : value.Native, 1);
 			_sizer?.MarkDestroyed();
 			_sizer = value;
 		}

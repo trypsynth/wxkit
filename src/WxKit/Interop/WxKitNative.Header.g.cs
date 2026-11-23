@@ -706,18 +706,6 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* ToolBarToolGetToolBar(WxkToolBarTool* tool);
 
-	[LibraryImport(Library, EntryPoint = "wxk_ToolBar_DeleteTool")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ToolBarDeleteTool(WxkWindow* toolBar, int toolId);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ToolBar_DeleteToolByPos")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ToolBarDeleteToolByPos(WxkWindow* toolBar, nuint position);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ToolBar_ClearTools")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ToolBarClearTools(WxkWindow* toolBar);
-
 	// Dropped files
 
 	[LibraryImport(Library, EntryPoint = "wxk_DropFilesEvent_GetFiles")]
@@ -763,48 +751,6 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Window_GetHandle")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void* WindowGetHandle(WxkWindow* window);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_SetSizer")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void WindowSetSizer(WxkWindow* window, WxkSizer* sizer);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Frame_SetMenuBar")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void FrameSetMenuBar(WxkWindow* frame, WxkWindow* menuBar);
-
-	// Sizers
-
-	[LibraryImport(Library, EntryPoint = "wxk_Sizer_AddWindow")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void SizerAddWindow(WxkSizer* sizer, WxkWindow* window, int proportion, int flags, int border);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Sizer_AddSizer")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void SizerAddSizer(WxkSizer* sizer, WxkSizer* child, int proportion, int flags, int border);
-
-	[LibraryImport(Library, EntryPoint = "wxk_GridBagSizer_AddWindow")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte GridBagSizerAddWindow(WxkSizer* sizer, WxkWindow* window, GridPosition position, GridSpan span, int flags, int border);
-
-	[LibraryImport(Library, EntryPoint = "wxk_GridBagSizer_AddSizer")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte GridBagSizerAddSizer(WxkSizer* sizer, WxkSizer* child, GridPosition position, GridSpan span, int flags, int border);
-
-	[LibraryImport(Library, EntryPoint = "wxk_GridBagSizer_AddSpacer")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte GridBagSizerAddSpacer(WxkSizer* sizer, Size size, GridPosition position, GridSpan span, int flags, int border);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Sizer_AddSpacer")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void SizerAddSpacer(WxkSizer* sizer, int size);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Sizer_AddStretchSpacer")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void SizerAddStretchSpacer(WxkSizer* sizer, int proportion);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Sizer_Free")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void SizerFree(WxkSizer* sizer);
 
 	// Menus
 

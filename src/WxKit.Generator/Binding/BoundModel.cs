@@ -99,6 +99,9 @@ internal sealed class BoundClass(DoxygenClass source, ClassTweak tweak, HandleKi
 
 	public List<BoundProperty> Properties { get; } = [];
 
+	/// <summary>Functions only hand-written code calls, which the managed class leaves out.</summary>
+	public List<BoundFunction> InternalFunctions { get; } = [];
+
 	public List<BoundEvent> Events { get; } = [];
 
 	public BoundStyles? Styles { get; set; }
@@ -112,7 +115,7 @@ internal sealed class BoundClass(DoxygenClass source, ClassTweak tweak, HandleKi
 	/// <summary>Whether WxKit creates a director, a subclass whose virtual members call into .NET, instead of the class itself.</summary>
 	public bool HasDirector => Constructors.Count > 0 && AllDirectors.Any();
 
-	public IEnumerable<BoundFunction> Functions => Constructors.Concat(Directors).Concat(Methods.Select(static method => method.Function)).Concat(Properties.SelectMany(static property => property.Setter is null ? [property.Getter] : new[] { property.Getter, property.Setter }));
+	public IEnumerable<BoundFunction> Functions => Constructors.Concat(Directors).Concat(InternalFunctions).Concat(Methods.Select(static method => method.Function)).Concat(Properties.SelectMany(static property => property.Setter is null ? [property.Getter] : new[] { property.Getter, property.Setter }));
 }
 
 internal sealed record BoundParameter(string CppName, string Name, Conversion Conversion, bool Nullable, string? Default);

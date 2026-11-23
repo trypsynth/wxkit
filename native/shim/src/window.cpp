@@ -8,14 +8,6 @@ WXK_FUNCTION(void*) wxk_Window_GetHandle(wxk_Window* window) noexcept {
 	return reinterpret_cast<void*>(Unwrap(window)->GetHandle());
 }
 
-WXK_FUNCTION(void) wxk_Window_SetSizer(wxk_Window* window, wxk_Sizer* sizer) noexcept {
-	Guard([&] { Unwrap(window)->SetSizer(Unwrap(sizer), true); });
-}
-
-WXK_FUNCTION(void) wxk_Frame_SetMenuBar(wxk_Window* frame, wxk_Window* menuBar) noexcept {
-	Guard([&] { wxk::As<wxFrame>(frame)->SetMenuBar(wxk::As<wxMenuBar>(menuBar)); });
-}
-
 // Can't throw: a vector's size.
 WXK_FUNCTION(size_t) wxk_WindowList_GetCount(const wxk_WindowList* list) noexcept {
 	return reinterpret_cast<const wxk::WindowList*>(list)->windows.size();

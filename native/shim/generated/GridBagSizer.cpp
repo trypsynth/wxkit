@@ -8,6 +8,18 @@ WXK_FUNCTION(wxk_Sizer*) wxk_GridBagSizer_new(int32_t vgap, int32_t hgap) noexce
 	});
 }
 
+WXK_FUNCTION(void) wxk_GridBagSizer_Add_WindowGridPositionGridSpanIntInt(wxk_Sizer* self, wxk_Window* window, wxk_GridPosition position, wxk_GridSpan span, int32_t flag, int32_t border) noexcept {
+	wxk::Guard([&] { static_cast<wxGridBagSizer*>(wxk::Unwrap(self))->Add(static_cast<wxWindow*>(wxk::Unwrap(window)), wxk::FromGridPosition(position), wxk::FromGridSpan(span), static_cast<int>(flag), static_cast<int>(border)); });
+}
+
+WXK_FUNCTION(void) wxk_GridBagSizer_Add_SizerGridPositionGridSpanIntInt(wxk_Sizer* self, wxk_Sizer* sizer, wxk_GridPosition position, wxk_GridSpan span, int32_t flag, int32_t border) noexcept {
+	wxk::Guard([&] { static_cast<wxGridBagSizer*>(wxk::Unwrap(self))->Add(static_cast<wxSizer*>(wxk::Unwrap(sizer)), wxk::FromGridPosition(position), wxk::FromGridSpan(span), static_cast<int>(flag), static_cast<int>(border)); });
+}
+
+WXK_FUNCTION(void) wxk_GridBagSizer_Add_IntIntGridPositionGridSpanIntInt(wxk_Sizer* self, int32_t width, int32_t height, wxk_GridPosition position, wxk_GridSpan span, int32_t flag, int32_t border) noexcept {
+	wxk::Guard([&] { static_cast<wxGridBagSizer*>(wxk::Unwrap(self))->Add(static_cast<int>(width), static_cast<int>(height), wxk::FromGridPosition(position), wxk::FromGridSpan(span), static_cast<int>(flag), static_cast<int>(border)); });
+}
+
 WXK_FUNCTION(uint8_t) wxk_GridBagSizer_CheckForIntersection(wxk_Sizer* self, wxk_GridPosition position, wxk_GridSpan span) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxGridBagSizer*>(wxk::Unwrap(self))->CheckForIntersection(wxk::FromGridPosition(position), wxk::FromGridSpan(span))) ? 1 : 0; });
 }

@@ -95,6 +95,7 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		}
 		// Bases are bound before the classes derived from them, so a class can leave out the
 		// members its bases already bind.
+		foreach (BoundClass bound in _classes.Values.Where(static bound => bound.Tweak.IsHandwritten && bound.Tweak.InternalMembers.Count > 0)) BindMembers(bound);
 		foreach (BoundClass bound in _classes.Values.Where(static bound => !bound.Tweak.IsHandwritten).OrderBy(bound => Ancestors(bound.CppName).Count).ThenBy(static bound => bound.CppName, StringComparer.Ordinal)) {
 			bound.Styles = BindStyles(bound);
 			BindMembers(bound);
@@ -167,7 +168,7 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		foreach (string kept in tweak.KeptAlive) {
 			if (!candidates.Any(member => member.Name == bound.CppName && member.Parameters.Any(parameter => parameter.Name == kept))) throw new InvalidOperationException($"A tweak keeps {bound.CppName}'s constructor parameter {kept} alive, which no constructor has.");
 		}
-		foreach (string named in (tweak.OnlyMembers ?? []).Concat(tweak.IgnoredMembers).Concat(tweak.MemberGuards.Keys).Concat(tweak.OverloadGuards.Select(static guard => guard.Member)).Concat(tweak.Renames.Keys.Where(name => !tweak.PropertyPairs.ContainsKey(name))).Concat(tweak.PropertyPairs.Values.SelectMany(static pair => pair.Setter is null ? [pair.Getter] : new[] { pair.Getter, pair.Setter }))) {
+		foreach (string named in (tweak.OnlyMembers ?? []).Concat(tweak.IgnoredMembers).Concat(tweak.InternalMembers).Concat(tweak.MemberGuards.Keys).Concat(tweak.OverloadGuards.Select(static guard => guard.Member)).Concat(tweak.Renames.Keys.Where(name => !tweak.PropertyPairs.ContainsKey(name))).Concat(tweak.PropertyPairs.Values.SelectMany(static pair => pair.Setter is null ? [pair.Getter] : new[] { pair.Getter, pair.Setter }))) {
 			if (!known.Contains(named)) throw new InvalidOperationException($"A tweak names {bound.CppName}::{named}, which the interface headers do not have.");
 		}
 		string shortName = bound.CppName;
@@ -175,13 +176,15 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		foreach (DoxygenMember member in candidates) {
 			bool isConstructor = member.Name == shortName;
 			if (tweak.IgnoredMembers.Contains(member.Name)) continue;
+			bool isInternal = tweak.InternalMembers.Contains(member.Name);
+			if (tweak.IsHandwritten && !isInternal) continue;
 			if (isConstructor) {
 				// A class with pure virtual members, such as wxBookCtrlBase, cannot be created.
 				if (!tweak.HasConstructors || bound.Handle == HandleKind.Event || bound.Source.Members.Any(static own => own.IsPureVirtual)) continue;
 				// Two-step creation is not exposed, so a window's default constructor is not bound.
 				if (member.Parameters.Count == 0 && bound.Handle == HandleKind.Window) continue;
 				if (member.Parameters.Count == 1 && CppType.Parse(member.Parameters[0].Type).Name == shortName) continue;
-			} else if (tweak.OnlyMembers is not null && !tweak.OnlyMembers.Contains(member.Name)) {
+			} else if (tweak.OnlyMembers is not null && !tweak.OnlyMembers.Contains(member.Name) && !isInternal) {
 				continue;
 			} else if (member.Name == "Create" && bound.Handle == HandleKind.Window) {
 				// Two-step creation is not exposed, so the Create that completes it is not either.
@@ -203,6 +206,8 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		if (tweak.IsGlobal) {
 			foreach (BoundFunction function in functions.Where(static function => function.ExportName.StartsWith("wx", StringComparison.Ordinal))) function.ExportName = function.ExportName[2..];
 		}
+		bound.InternalFunctions.AddRange(functions.Where(function => !function.IsConstructor && tweak.InternalMembers.Contains(function.Source.Name)));
+		functions.RemoveAll(bound.InternalFunctions.Contains);
 		// Two C++ constructors can have the same managed signature, as an int and a long do, and C#
 		// allows only one.
 		List<BoundFunction> constructors = [.. functions.Where(static function => function.IsConstructor).DistinctBy(static function => string.Join(",", function.ManagedParameters.Select(static parameter => parameter.Conversion.ManagedType(parameter.Nullable))))];

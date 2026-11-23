@@ -19,7 +19,7 @@ internal static class InteropEmitter {
 		}
 		writer.Open("public static unsafe partial class WxKitNative");
 		bool first = true;
-		foreach (BoundClass bound in result.Classes.Where(static bound => !bound.Tweak.IsHandwritten)) {
+		foreach (BoundClass bound in result.Classes) {
 			foreach (BoundFunction function in bound.Functions) {
 				if (!first) writer.Line();
 				first = false;

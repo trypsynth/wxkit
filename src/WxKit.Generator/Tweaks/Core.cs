@@ -8,7 +8,9 @@ internal static class Core {
 	public static void Apply(Binding.Tweaks tweaks) {
 		// Written by hand, because they track ownership or need the shim's own helpers.
 		tweaks.Class("wxEvtHandler").Handwritten();
-		tweaks.Class("wxSizer").Handwritten();
+		tweaks.Class("wxSizer").Handwritten().Internal("Add", "AddSpacer", "AddStretchSpacer").DiscardUnboundReturns();
+		// The border SizerFlags.Border uses when it is not given one.
+		tweaks.Class("wxSizerFlags", flags => flags.StaticOnly().InteropOnly().Only("GetDefaultBorder"));
 		tweaks.Class("wxMenu").Handwritten().Wrappable();
 		tweaks.Class("wxWindow", window => window
 			.NoConstructors()
@@ -16,7 +18,8 @@ internal static class Core {
 			// the validator it was given, since the window holds a copy, and gives a window its
 			// accessible object through the hand-written Accessible. A name for screen readers, and a
 			// tooltip, which names a button that shows only an icon, are set by hand on Linux and macOS.
-			.Ignore("SetSizer", "SetSizerAndFit", "GetSizer", "GetHandle", "SetValidator", "GetValidator", "GetAccessible", "SetAccessible", "CreateAccessible", "GetOrCreateAccessible", "SetAccessibleName", "SetToolTip")
+			.Internal("SetSizer")
+			.Ignore("SetSizerAndFit", "GetSizer", "GetHandle", "SetValidator", "GetValidator", "GetAccessible", "SetAccessible", "CreateAccessible", "GetOrCreateAccessible", "SetAccessibleName", "SetToolTip")
 			.Property("IsEnabled", "IsEnabled", "Enable")
 			.ParameterEnum("Centre", "direction", "Orientation")
 			.ParameterEnum("Move", "flags", "SizeFlags")
@@ -73,7 +76,8 @@ internal static class Core {
 		// CreateStatusBar and CreateToolBar call, for a derived frame to override, not to call.
 		tweaks.Class("wxFrame", frame => frame
 			.ParameterName("SetStatusWidths", "widths_field", "widths")
-			.Ignore("SetMenuBar", "GetMenuBar", "OnCreateStatusBar", "OnCreateToolBar")
+			.Internal("SetMenuBar")
+			.Ignore("GetMenuBar", "OnCreateStatusBar", "OnCreateToolBar")
 			.ParameterEnum("CreateToolBar", "style", "ToolBarStyle")
 			.ParameterEnum("CreateStatusBar", "style", "StatusBarStyle"));
 		// wxMSW's wxDialog has no GetToolBar, though the documentation gives it one.
@@ -128,7 +132,7 @@ internal static class Core {
 		// and must not let wxWidgets delete a sizer it cannot add.
 		tweaks.ConstantEnumOf("WrapSizerFlags", isFlags: true, "wxEXTEND_LAST_ON_EACH_LINE", "wxREMOVE_LEADING_SPACES", "wxWRAPSIZER_DEFAULT_FLAGS");
 		tweaks.Class("wxWrapSizer", sizer => sizer.ParameterEnum("wxWrapSizer", "flags", "WrapSizerFlags"));
-		tweaks.Class("wxGridBagSizer", grid => grid.Ignore("Add", "FindItem", "FindItemAtPoint", "FindItemAtPosition", "FindItemWithData"));
+		tweaks.Class("wxGridBagSizer", grid => grid.Internal("Add").DiscardUnboundReturns().Ignore("FindItem", "FindItemAtPoint", "FindItemAtPosition", "FindItemWithData"));
 		// The controls most applications use.
 		foreach (string control in (string[])[
 			"wxControl", "wxAnyButton", "wxControlWithItems", "wxCheckBox", "wxRadioButton", "wxRadioBox",
@@ -205,7 +209,7 @@ internal static class Core {
 		// a tool nobody owns are left out. Deleting tools is written by hand, since the toolbar marks
 		// their objects destroyed. A tool's setters only change what the tool records, not what the
 		// toolbar shows, so its state is written by hand, through the toolbar.
-		tweaks.Class("wxToolBar").Ignore("CreateTool", "CreateSeparator", "RemoveTool", "DeleteTool", "DeleteToolByPos", "ClearTools", "GetToolClientData", "SetToolClientData");
+		tweaks.Class("wxToolBar").Internal("DeleteTool", "DeleteToolByPos", "ClearTools").Ignore("CreateTool", "CreateSeparator", "RemoveTool", "GetToolClientData", "SetToolClientData");
 		tweaks.Class("wxToolBarToolBase", tool => tool
 			.Named("ToolBarTool")
 			.NoConstructors()

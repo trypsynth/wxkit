@@ -8,6 +8,10 @@ WXK_FUNCTION(wxk_Window*) wxk_Frame_new(wxk_Window* parent, int32_t id, const ch
 	});
 }
 
+WXK_FUNCTION(void) wxk_Frame_SetMenuBar(wxk_Window* self, wxk_Window* menuBar) noexcept {
+	wxk::Guard([&] { static_cast<wxFrame*>(wxk::Unwrap(self))->SetMenuBar(static_cast<wxMenuBar*>(wxk::Unwrap(menuBar))); });
+}
+
 WXK_FUNCTION(wxk_Window*) wxk_Frame_CreateStatusBar(wxk_Window* self, int32_t number, int64_t style, int32_t id, const char16_t* name, size_t nameLength) noexcept {
 	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(static_cast<wxFrame*>(wxk::Unwrap(self))->CreateStatusBar(static_cast<int>(number), static_cast<long>(style), static_cast<int>(id), (name != nullptr ? wxk::FromUtf16(name, nameLength) : wxString(wxStatusBarNameStr))))); });
 }

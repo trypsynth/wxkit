@@ -77,6 +77,21 @@ public class BinderTests {
 		Assert.Throws<InvalidOperationException>(() => Bind(static tweaks => tweaks.Functions("Nothing", "wx/utils.h", "wxNoSuchFunction")));
 	}
 
+	// An internal member has a shim function and an import for hand-written code to call, and no
+	// managed member. A hand-written class binds only its internal members.
+	[Fact]
+	public void BindsInternalMembersForHandwrittenCode() {
+		BindingResult result = Bind(static tweaks => tweaks.Class("wxButton").Internal("Press"));
+		BoundClass button = Bound(result, "wxButton");
+		Assert.Equal("wxk_Button_Press", Assert.Single(button.InternalFunctions).ShimName);
+		Assert.DoesNotContain(button.Methods, static method => method.Function.Source.Name == "Press");
+		Assert.Contains("ButtonPress(", Emitting.InteropEmitter.Source(result), StringComparison.Ordinal);
+		Assert.DoesNotContain("Press", Emitting.ManagedEmitter.Files(result).Single(static file => file.FileName == "Button.g.cs").Text, StringComparison.Ordinal);
+		BoundClass handwritten = Bound(Bind(static tweaks => tweaks.Class("wxButton").Handwritten().Internal("Press")), "wxButton");
+		Assert.Equal(["wxk_Button_Press"], handwritten.Functions.Select(static function => function.ShimName));
+		Assert.Throws<InvalidOperationException>(() => Bind(static tweaks => tweaks.Class("wxButton").Internal("NoSuchMember")));
+	}
+
 	[Fact]
 	public void FindsEachClassesHandleAndNearestBoundBase() {
 		BindingResult result = Bind();

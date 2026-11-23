@@ -3654,6 +3654,10 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* FrameNew(WxkWindow* parent, int id, char* title, nuint titleLength, Point position, Size size, long style);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Frame_SetMenuBar")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void FrameSetMenuBar(WxkWindow* self, WxkWindow* menuBar);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Frame_CreateStatusBar")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* FrameCreateStatusBar(WxkWindow* self, int number, long style, int id, char* name, nuint nameLength);
@@ -3845,6 +3849,18 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_GridBagSizer_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkSizer* GridBagSizerNew(int vgap, int hgap);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GridBagSizer_Add_WindowGridPositionGridSpanIntInt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void GridBagSizerAddWindowGridPositionGridSpanIntInt(WxkSizer* self, WxkWindow* window, GridPosition position, GridSpan span, int flag, int border);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GridBagSizer_Add_SizerGridPositionGridSpanIntInt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void GridBagSizerAddSizerGridPositionGridSpanIntInt(WxkSizer* self, WxkSizer* sizer, GridPosition position, GridSpan span, int flag, int border);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GridBagSizer_Add_IntIntGridPositionGridSpanIntInt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void GridBagSizerAddIntIntGridPositionGridSpanIntInt(WxkSizer* self, int width, int height, GridPosition position, GridSpan span, int flag, int border);
 
 	[LibraryImport(Library, EntryPoint = "wxk_GridBagSizer_CheckForIntersection")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -7469,6 +7485,30 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_SizeEvent_SetRect")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void SizeEventSetRect(WxkEvent* self, Rect rect);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Sizer_Add_WindowIntIntInt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void SizerAddWindowIntIntInt(WxkSizer* self, WxkWindow* window, int proportion, int flag, int border);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Sizer_Add_SizerIntIntInt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void SizerAddSizerIntIntInt(WxkSizer* self, WxkSizer* sizer, int proportion, int flag, int border);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Sizer_Add_IntIntIntIntInt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void SizerAddIntIntIntIntInt(WxkSizer* self, int width, int height, int proportion, int flag, int border);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Sizer_AddSpacer")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void SizerAddSpacer(WxkSizer* self, int size);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Sizer_AddStretchSpacer")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void SizerAddStretchSpacer(WxkSizer* self, int prop);
+
+	[LibraryImport(Library, EntryPoint = "wxk_SizerFlags_GetDefaultBorder")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int SizerFlagsGetDefaultBorder();
 
 	[LibraryImport(Library, EntryPoint = "wxk_Slider_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -11758,6 +11798,18 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* ToolBarNew(WxkWindow* parent, int id, Point position, Size size, long style);
 
+	[LibraryImport(Library, EntryPoint = "wxk_ToolBar_ClearTools")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void ToolBarClearTools(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ToolBar_DeleteTool")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ToolBarDeleteTool(WxkWindow* self, int toolId);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ToolBar_DeleteToolByPos")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ToolBarDeleteToolByPos(WxkWindow* self, nuint position);
+
 	[LibraryImport(Library, EntryPoint = "wxk_ToolBar_AddTool_IntStringBitmapStringMenuItemKind")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkToolBarTool* ToolBarAddToolIntStringBitmapStringMenuItemKind(WxkWindow* self, int toolId, char* label, nuint labelLength, WxkObject* bitmap, char* shortHelp, nuint shortHelpLength, int kind);
@@ -13105,6 +13157,10 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_WebViewEvent_IsTargetMainFrame")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte WebViewEventIsTargetMainFrame(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Window_SetSizer")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WindowSetSizer(WxkWindow* self, WxkSizer* sizer, byte deleteOld);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Window_AcceptsFocus")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
