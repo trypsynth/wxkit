@@ -3411,6 +3411,16 @@ WXK_FUNCTION(uint8_t) wxk_TimePickerCtrl_SetTime(wxk_Window* self, int32_t hour,
 WXK_FUNCTION(wxk_DateTime) wxk_TimePickerCtrl_GetValue(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_TimePickerCtrl_SetValue(wxk_Window* self, wxk_DateTime dt) WXK_NOEXCEPT;
 
+// wxTimer
+
+WXK_FUNCTION(wxk_EvtHandler*) wxk_Timer_new_Default(void) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_EvtHandler*) wxk_Timer_new_EvtHandlerInt(wxk_EvtHandler* owner, int32_t id) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Timer_SetOwner(wxk_EvtHandler* self, wxk_EvtHandler* owner, int32_t id) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Timer_Start(wxk_EvtHandler* self, int32_t milliseconds) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Timer_StartOnce(wxk_EvtHandler* self, int32_t milliseconds) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Timer_Stop(wxk_EvtHandler* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Timer_IsRunning(wxk_EvtHandler* self) WXK_NOEXCEPT;
+
 // wxTimerEvent
 
 WXK_FUNCTION(int32_t) wxk_TimerEvent_GetInterval(wxk_Event* self) WXK_NOEXCEPT;

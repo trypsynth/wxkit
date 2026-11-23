@@ -130,7 +130,6 @@ set(WXK_SOURCES
 	src/sizer.cpp
 	src/string.cpp
 	src/taskbar.cpp
-	src/timer.cpp
 	src/toolbar.cpp
 	src/validator.cpp
 	src/variant.cpp

@@ -327,7 +327,7 @@ internal static class ManagedEmitter {
 		writer.Open("internal static unsafe partial class ObjectRegistry");
 		writer.Line("// The managed class to wrap each wxWidgets class in, for objects WxKit did not create.");
 		writer.Line("private static readonly Dictionary<string, Func<nint, EvtHandler>> Factories = new(StringComparer.Ordinal) {");
-		foreach (BoundClass bound in result.Classes.Where(static bound => bound.Handle.IsEvtHandler && (bound.Tweak.IsHandwritten ? bound.Tweak.IsWrappable : true))) {
+		foreach (BoundClass bound in result.Classes.Where(static bound => bound.Handle.IsEvtHandler && !bound.Tweak.IsInteropOnly && (bound.Tweak.IsHandwritten ? bound.Tweak.IsWrappable : true))) {
 			writer.Line($"\t[\"{bound.CppName}\"] = static native => new {bound.Name}(({bound.Handle.InteropType}*)native),");
 		}
 		writer.Line("};");

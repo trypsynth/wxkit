@@ -505,6 +505,8 @@ internal static class Core {
 		tweaks.Class("wxUIActionSimulator", simulator => simulator.Plain().Only("wxUIActionSimulator", "MouseMove", "MouseDown", "MouseUp", "MouseClick", "MouseDblClick", "KeyDown", "KeyUp", "Char", "Text", "Select"));
 		tweaks.Class("wxSingleInstanceChecker", checker => checker.Plain().Only("wxSingleInstanceChecker", "Create", "IsAnotherRunning"));
 		tweaks.Class("wxWindowDisabler").Plain();
+		// The hand-written Timer, which makes a timer its own owner, so it sends its events to itself.
+		tweaks.Class("wxTimer", timer => timer.InteropOnly().Only("wxTimer", "SetOwner", "Start", "StartOnce", "Stop", "IsRunning"));
 		// A wizard's pages are each a WizardPageSimple, chained in order, or a WizardPage whose
 		// Next and Previous a subclass decides.
 		tweaks.Class("wxWizardPage").NoConstructors().Rename("GetPrev", "Previous");

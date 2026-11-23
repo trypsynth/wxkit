@@ -165,7 +165,6 @@ WXK_HANDLE(wxk_DataViewColumn, wxDataViewColumn)
 WXK_HANDLE(wxk_ToolBarTool, wxToolBarToolBase)
 WXK_HANDLE(wxk_Menu, wxMenu)
 WXK_HANDLE(wxk_MenuItem, wxMenuItem)
-WXK_HANDLE(wxk_Timer, wxTimer)
 WXK_HANDLE(wxk_Event, wxEvent)
 WXK_HANDLE(wxk_StringArray, wxArrayString)
 

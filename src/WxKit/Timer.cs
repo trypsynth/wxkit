@@ -10,9 +10,7 @@ public sealed unsafe class Timer : EvtHandler, IDisposable {
 	public Timer() : base(Create()) {
 	}
 
-	public bool IsRunning => WxKitNative.TimerIsRunning(Native) != 0;
-
-	private WxkTimer* Native => (WxkTimer*)Handle;
+	public bool IsRunning => WxKitNative.TimerIsRunning(Handle) != 0;
 
 	public event EventHandler<TimerEvent>? Tick {
 		add => AddHandler(EventType.Timer, StandardId.Any, StandardId.Any, value, this);
@@ -22,17 +20,22 @@ public sealed unsafe class Timer : EvtHandler, IDisposable {
 	/// <summary>Starts the timer, or restarts it if it is running. Returns false when the system could not start it.</summary>
 	public bool Start(TimeSpan interval, bool oneShot = false) {
 		ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(interval, TimeSpan.Zero);
-		return WxKitNative.TimerStart(Native, checked((int)Math.Ceiling(interval.TotalMilliseconds)), oneShot ? (byte)1 : (byte)0) != 0;
+		int milliseconds = checked((int)Math.Ceiling(interval.TotalMilliseconds));
+		return (oneShot ? WxKitNative.TimerStartOnce(Handle, milliseconds) : WxKitNative.TimerStart(Handle, milliseconds)) != 0;
 	}
 
-	public void Stop() => WxKitNative.TimerStop(Native);
+	public void Stop() => WxKitNative.TimerStop(Handle);
 
 	public void Dispose() {
-		if (!IsDestroyed) WxKitNative.TimerFree(Native);
+		if (!IsDestroyed) WxKitNative.ObjectFree((WxkObject*)Handle);
 	}
 
 	private static WxkEvtHandler* Create() {
 		Application.VerifyAccess();
-		return (WxkEvtHandler*)WxKitNative.TimerNew();
+		WxkEvtHandler* timer = WxKitNative.TimerNewDefault();
+		// A timer without an owner has nowhere to send its events, so it sends them to itself, where
+		// WxKit binds them like any other handler's.
+		if (timer is not null) WxKitNative.TimerSetOwner(timer, timer, -1);
+		return timer;
 	}
 }

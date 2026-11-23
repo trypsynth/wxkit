@@ -37,7 +37,6 @@ typedef struct wxk_DataViewColumn wxk_DataViewColumn;
 typedef struct wxk_ToolBarTool wxk_ToolBarTool;
 typedef struct wxk_Menu wxk_Menu;
 typedef struct wxk_MenuItem wxk_MenuItem;
-typedef struct wxk_Timer wxk_Timer;
 typedef struct wxk_Event wxk_Event;
 typedef struct wxk_ClassInfo wxk_ClassInfo;
 
@@ -718,15 +717,6 @@ WXK_FUNCTION(void) wxk_Menu_SetLabel(wxk_Menu* menu, int32_t id, const char16_t*
 WXK_FUNCTION(wxk_String*) wxk_Menu_GetLabel(wxk_Menu* menu, int32_t id) WXK_NOEXCEPT;
 
 WXK_FUNCTION(int32_t) wxk_MenuItem_GetId(wxk_MenuItem* item) WXK_NOEXCEPT;
-
-// Timers
-
-// A timer that sends its events to itself.
-WXK_FUNCTION(wxk_Timer*) wxk_Timer_new(void) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Timer_Start(wxk_Timer* timer, int32_t milliseconds, uint8_t oneShot) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Timer_Stop(wxk_Timer* timer) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Timer_IsRunning(wxk_Timer* timer) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Timer_Free(wxk_Timer* timer) WXK_NOEXCEPT;
 
 // The functions generated from the wxWidgets interface headers.
 #include "wxkit_generated.h"

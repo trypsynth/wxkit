@@ -855,26 +855,4 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_MenuItem_GetId")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int MenuItemGetId(WxkMenuItem* item);
-
-	// Timers
-
-	[LibraryImport(Library, EntryPoint = "wxk_Timer_new")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkTimer* TimerNew();
-
-	[LibraryImport(Library, EntryPoint = "wxk_Timer_Start")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte TimerStart(WxkTimer* timer, int milliseconds, byte oneShot);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Timer_Stop")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void TimerStop(WxkTimer* timer);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Timer_IsRunning")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte TimerIsRunning(WxkTimer* timer);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Timer_Free")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void TimerFree(WxkTimer* timer);
 }

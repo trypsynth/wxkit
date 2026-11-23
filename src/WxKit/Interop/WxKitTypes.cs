@@ -89,9 +89,6 @@ public struct WxkMenu;
 /// <summary>A wxMenuItem.</summary>
 public struct WxkMenuItem;
 
-/// <summary>A wxTimer.</summary>
-public struct WxkTimer;
-
 /// <summary>A wxEvent, or any class derived from it. Only valid while its handlers run.</summary>
 public struct WxkEvent;
 

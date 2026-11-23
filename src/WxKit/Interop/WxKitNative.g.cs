@@ -11710,6 +11710,34 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void TimePickerCtrlSetValue(WxkWindow* self, WxkDateTime dt);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Timer_new_Default")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkEvtHandler* TimerNewDefault();
+
+	[LibraryImport(Library, EntryPoint = "wxk_Timer_new_EvtHandlerInt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkEvtHandler* TimerNewEvtHandlerInt(WxkEvtHandler* owner, int id);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Timer_SetOwner")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TimerSetOwner(WxkEvtHandler* self, WxkEvtHandler* owner, int id);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Timer_Start")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte TimerStart(WxkEvtHandler* self, int milliseconds);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Timer_StartOnce")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte TimerStartOnce(WxkEvtHandler* self, int milliseconds);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Timer_Stop")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TimerStop(WxkEvtHandler* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Timer_IsRunning")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte TimerIsRunning(WxkEvtHandler* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_TimerEvent_GetInterval")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int TimerEventGetInterval(WxkEvent* self);
