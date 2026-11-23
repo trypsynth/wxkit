@@ -47,8 +47,11 @@ internal static class Windows {
 			.Rename("GetScrollPos", "GetScrollPosition")
 			.Rename("SetScrollPos", "SetScrollPosition")
 			.Property("UsesBackgroundColor", "UseBgCol"));
+		// Null clears the default item.
 		tweaks.Class("wxTopLevelWindow", window => window
 			.NoConstructors()
+			.NullableParameter("SetDefaultItem", "win")
+			.NullableParameter("SetTmpDefaultItem", "win")
 			// Only wxUniversal has these, though the documentation does not mark them for one port.
 			.Ignore("UseNativeDecorations", "UseNativeDecorationsByDefault", "IsUsingNativeDecorations")
 			.Guard("defined(__WXMSW__)", "MSWGetSystemMenu")
@@ -65,7 +68,10 @@ internal static class Windows {
 		tweaks.Enum("wxUpdateUI", "UpdateUIFlags", isFlags: true);
 		// WxKit keeps the menu bar a frame owns. OnCreateStatusBar and OnCreateToolBar are what
 		// CreateStatusBar and CreateToolBar call, for a derived frame to override, not to call.
+		// Null removes the status bar or the toolbar.
 		tweaks.Class("wxFrame", frame => frame
+			.NullableParameter("SetStatusBar", "statusBar")
+			.NullableParameter("SetToolBar", "toolBar")
 			.ParameterName("SetStatusWidths", "widths_field", "widths")
 			.Internal("SetMenuBar")
 			.Ignore("GetMenuBar", "OnCreateStatusBar", "OnCreateToolBar")

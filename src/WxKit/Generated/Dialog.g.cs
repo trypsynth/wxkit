@@ -75,6 +75,11 @@ public unsafe partial class Dialog : TopLevelWindow {
 		remove => RemoveHandler(EventType.InitDialog, StandardId.Any, StandardId.Any, value);
 	}
 
+	public event EventHandler<WindowModalDialogEvent>? WindowModalClosed {
+		add => AddHandler(EventType.WindowModalDialogClosed, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.WindowModalDialogClosed, StandardId.Any, StandardId.Any, value);
+	}
+
 	/// <summary>Adds an identifier to be regarded as a main button for the non-scrolling area of a dialog.</summary>
 	public void AddMainButtonId(int id) => WxKitNative.DialogAddMainButtonId(Native, id);
 

@@ -27,6 +27,9 @@ public unsafe partial class ListEvent : NotifyEvent {
 		set => WxKitNative.ListEventSetColumn(Handle, value);
 	}
 
+	/// <summary>The data.</summary>
+	public long Data => WxKitNative.ListEventGetData(Handle);
+
 	/// <summary>The image.</summary>
 	public int Image => WxKitNative.ListEventGetImage(Handle);
 

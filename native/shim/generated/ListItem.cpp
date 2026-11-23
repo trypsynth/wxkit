@@ -20,6 +20,10 @@ WXK_FUNCTION(void) wxk_ListItem_SetStateMask(wxk_Object* self, int64_t stateMask
 	wxk::Guard([&] { static_cast<wxListItem*>(wxk::Unwrap(self))->SetStateMask(static_cast<long>(stateMask)); });
 }
 
+WXK_FUNCTION(int64_t) wxk_ListItem_GetData(wxk_Object* self) noexcept {
+	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListItem*>(wxk::Unwrap(self))->GetData()); });
+}
+
 WXK_FUNCTION(int32_t) wxk_ListItem_GetAlign(wxk_Object* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListItem*>(wxk::Unwrap(self))->GetAlign()); });
 }

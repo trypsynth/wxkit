@@ -83,10 +83,7 @@ public unsafe partial class SearchCtrl : Control {
 	/// <summary>Returns a pointer to the search control's menu object or nullptr if there is no menu attached.</summary>
 	public Menu? Menu {
 		get => ObjectRegistry.Wrap<Menu>(WxKitNative.SearchCtrlGetMenu(Native));
-		set {
-			ArgumentNullException.ThrowIfNull(value);
-			WxKitNative.SearchCtrlSetMenu(Native, (WxkMenu*)value.Native);
-		}
+		set => WxKitNative.SearchCtrlSetMenu(Native, value is null ? null : (WxkMenu*)value.Native);
 	}
 
 	/// <summary>Gets the text currently selected in the control.</summary>

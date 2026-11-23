@@ -147,6 +147,9 @@ internal sealed class NumberConversion(string suffix, string cType, string cppTy
 
 	public static NumberConversion Byte { get; } = new("Byte", "uint8_t", "unsigned char", "byte");
 
+	// Data a list keeps with an item, as wxListCtrl::GetItemData gives it, which SetItemData takes as a long.
+	public static NumberConversion ItemData { get; } = new("Long", "int64_t", "wxUIntPtr", "long");
+
 	public override string Suffix => suffix;
 
 	public override string? CallbackCType => cType;

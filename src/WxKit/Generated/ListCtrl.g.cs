@@ -267,6 +267,9 @@ public unsafe partial class ListCtrl : Control {
 		}
 	}
 
+	/// <summary>Find an item whose data matches this data, starting from start or the beginning if 'start' is -1.</summary>
+	public long FindItem(long start, long data) => WxKitNative.ListCtrlFindItemLongLong(Native, start, data);
+
 	/// <summary>Find an item nearest this position in the specified direction, starting from start or the beginning if start is -1.</summary>
 	public long FindItem(long start, Point point, int direction) => WxKitNative.ListCtrlFindItemLongPointInt(Native, start, point, direction);
 
@@ -293,6 +296,9 @@ public unsafe partial class ListCtrl : Control {
 
 	/// <summary>Returns the colour for this item.</summary>
 	public Color? GetItemBackgroundColor(long item) => global::WxKit.Color.FromNative(WxKitNative.ListCtrlGetItemBackgroundColour(Native, item));
+
+	/// <summary>Gets the application-defined data associated with this item.</summary>
+	public long GetItemData(long item) => WxKitNative.ListCtrlGetItemData(Native, item);
 
 	/// <summary>Returns the item's font.</summary>
 	public Font? GetItemFont(long item) => global::WxKit.Font.Take(WxKitNative.ListCtrlGetItemFont(Native, item));

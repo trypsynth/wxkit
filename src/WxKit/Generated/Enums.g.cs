@@ -2528,6 +2528,7 @@ public enum WebViewBrowsingDataTypes {
 }
 
 /// <summary>Wraps wxWebViewFindFlags.</summary>
+[Flags]
 public enum WebViewFindFlags {
 	/// <summary>Causes the search to restart when end or beginning reached. Wraps wxWEBVIEW_FIND_WRAP.</summary>
 	Wrap = 1,

@@ -1268,13 +1268,16 @@ class WxKit.DataViewTreeCtrl : DataViewCtrl
     DataViewTreeCtrl(Window parent, int id = -1, Point? position = null, Size? size = null, DataViewCtrlStyle style = DataViewCtrlStyle.NoHeader | DataViewCtrlStyle.RowLines)
     Icon? GetItemExpandedIcon(DataViewItem item)
     Icon? GetItemIcon(DataViewItem item)
+    bool HasImages { get; }
     bool IsContainer(DataViewItem item)
     int GetChildCount(DataViewItem parent)
+    int ImageCount { get; }
     object? GetItemData(DataViewItem item)
     string GetItemText(DataViewItem item)
     void DeleteAllItems()
     void DeleteChildren(DataViewItem item)
     void DeleteItem(DataViewItem item)
+    void SetImages(IEnumerable<Bitmap> images)
     void SetItemData(DataViewItem item, object? data)
     void SetItemExpandedIcon(DataViewItem item, Bitmap icon)
     void SetItemIcon(DataViewItem item, Bitmap icon)
@@ -1359,6 +1362,7 @@ class WxKit.Dialog : TopLevelWindow, IDisposable
     bool IsModal { get; }
     bool LayoutAdaptationDone { get; set; }
     event EventHandler<InitDialogEvent>? Initializing
+    event EventHandler<WindowModalDialogEvent>? WindowModalClosed
     int AffirmativeId { get; set; }
     int EscapeId { get; set; }
     int LayoutAdaptationLevel { get; set; }
@@ -1628,7 +1632,6 @@ static class WxKit.EventType
     static EventType<Event> GenericDirCtrlSelectionChanged { get; }
     static EventType<Event> MouseCaptureChanged { get; }
     static EventType<Event> MouseCaptureLost { get; }
-    static EventType<Event> SetCursor { get; }
     static EventType<FileCtrlEvent> FileCtrlFileActivated { get; }
     static EventType<FileCtrlEvent> FileCtrlFilterChanged { get; }
     static EventType<FileCtrlEvent> FileCtrlFolderChanged { get; }
@@ -1723,6 +1726,7 @@ static class WxKit.EventType
     static EventType<ScrollWinEvent> ScrollWinThumbRelease { get; }
     static EventType<ScrollWinEvent> ScrollWinThumbTrack { get; }
     static EventType<ScrollWinEvent> ScrollWinTop { get; }
+    static EventType<SetCursorEvent> SetCursor { get; }
     static EventType<ShowEvent> Show { get; }
     static EventType<SizeEvent> Size { get; }
     static EventType<SpinDoubleEvent> Spinctrldouble { get; }
@@ -1822,6 +1826,7 @@ static class WxKit.EventType
     static EventType<WebViewEvent> WebviewScriptResult { get; }
     static EventType<WebViewEvent> WebviewTitleChanged { get; }
     static EventType<WebViewEvent> WebviewWindowCloseRequested { get; }
+    static EventType<WindowModalDialogEvent> WindowModalDialogClosed { get; }
     static EventType<WizardEvent> WizardBeforePageChanged { get; }
     static EventType<WizardEvent> WizardCancel { get; }
     static EventType<WizardEvent> WizardFinished { get; }
@@ -2871,7 +2876,9 @@ class WxKit.ListCtrl : Control
     int[] ColumnsOrder { get; set; }
     long AppendColumn(string heading, ListColumnFormat format = ListColumnFormat.Left, int width = -1)
     long FindItem(long start, Point point, int direction)
+    long FindItem(long start, long data)
     long FindItem(long start, string text, bool partial = false)
+    long GetItemData(long item)
     long GetNextItem(long item, int geometry = 1, int state = 0)
     long InsertColumn(long column, ListItem info)
     long InsertColumn(long column, string heading, ListColumnFormat format = ListColumnFormat.Left, int width = -1)
@@ -2929,6 +2936,7 @@ class WxKit.ListEvent : NotifyEvent
     int KeyCode { get; set; }
     long CacheFrom { get; set; }
     long CacheTo { get; set; }
+    long Data { get; }
     long Index { get; set; }
     long Mask { get; }
     string Label { get; }
@@ -2942,6 +2950,7 @@ class WxKit.ListItem : NativeObject
     int Column { get; set; }
     int Image { get; set; }
     int Width { get; set; }
+    long Data { get; }
     long Id { get; set; }
     long Mask { get; set; }
     long State { get; set; }
@@ -3919,6 +3928,12 @@ class WxKit.SearchCtrl : Control
 [Flags] enum WxKit.SendSizeEventFlags : int
     None = 0
     Post = 1
+class WxKit.SetCursorEvent : Event
+    Cursor? Cursor { get; set; }
+    Point Position { get; }
+    bool HasCursor { get; }
+    int X { get; }
+    int Y { get; }
 enum WxKit.ShowEffect : int
     Blend = 9
     Expand = 10
@@ -8712,7 +8727,7 @@ class WxKit.WebViewEvent : NotifyEvent
     string MessageHandler { get; }
     string Target { get; }
     string Url { get; }
-enum WxKit.WebViewFindFlags : int
+[Flags] enum WxKit.WebViewFindFlags : int
     Backwards = 16
     Default = 0
     EntireWord = 2
@@ -8893,7 +8908,6 @@ class WxKit.Window : EvtHandler
     event EventHandler<EraseEvent>? EraseBackground
     event EventHandler<Event>? MouseCaptureChanged
     event EventHandler<Event>? MouseCaptureLost
-    event EventHandler<Event>? SetCursor
     event EventHandler<FocusEvent>? GotFocus
     event EventHandler<FocusEvent>? LostFocus
     event EventHandler<HelpEvent>? HelpRange
@@ -8916,6 +8930,7 @@ class WxKit.Window : EvtHandler
     event EventHandler<MouseEvent>? RightDown
     event EventHandler<MouseEvent>? RightUp
     event EventHandler<PaintEvent>? Paint
+    event EventHandler<SetCursorEvent>? SetCursor
     event EventHandler<SizeEvent>? SizeChanged
     event EventHandler<SysColorChangedEvent>? SystemColorsChanged
     int AdjustForLayoutDirection(int x, int width, int widthTotal)
@@ -9043,6 +9058,9 @@ sealed class WxKit.WindowDisabler : IDisposable
     ProcessUiUpdates = 32
     ThemedBackground = 8
     Transient = 4
+class WxKit.WindowModalDialogEvent : CommandEvent
+    Dialog? Dialog { get; }
+    int ReturnCode { get; }
 enum WxKit.WindowMode : int
     AppModal = 2
     Normal = 0
@@ -9110,8 +9128,8 @@ class WxKit.WizardPage : Panel
 class WxKit.WizardPageSimple : WizardPage
     WizardPageSimple(Wizard parent, WizardPage? previous = null, WizardPage? next = null, Bitmap? bitmap = null)
     static void Chain(WizardPageSimple first, WizardPageSimple second)
-    void SetNext(WizardPage next)
-    void SetPrevious(WizardPage previous)
+    void SetNext(WizardPage? next)
+    void SetPrevious(WizardPage? previous)
 class WxKit.WrapSizer : BoxSizer
     WrapSizer(Orientation orientation = Orientation.Horizontal, WrapSizerFlags flags = WrapSizerFlags.WrapSizerDefaultFlags)
 [Flags] enum WxKit.WrapSizerFlags : int

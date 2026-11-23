@@ -169,7 +169,7 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		foreach (string kept in tweak.KeptAlive) {
 			if (!candidates.Any(member => member.Name == bound.CppName && member.Parameters.Any(parameter => parameter.Name == kept))) throw new InvalidOperationException($"A tweak keeps {bound.CppName}'s constructor parameter {kept} alive, which no constructor has.");
 		}
-		foreach (string named in (tweak.OnlyMembers ?? []).Concat(tweak.IgnoredMembers).Concat(tweak.InternalMembers).Concat(tweak.MemberGuards.Keys).Concat(tweak.OverloadGuards.Select(static guard => guard.Member)).Concat(tweak.IgnoredOverloads.Select(static ignored => ignored.Member)).Concat(tweak.Renames.Keys.Where(name => !tweak.PropertyPairs.ContainsKey(name))).Concat(tweak.PropertyPairs.Values.SelectMany(static pair => pair.Setter is null ? [pair.Getter] : new[] { pair.Getter, pair.Setter }))) {
+		foreach (string named in (tweak.OnlyMembers ?? []).Concat(tweak.IgnoredMembers).Concat(tweak.InternalMembers).Concat(tweak.MemberGuards.Keys).Concat(tweak.OverloadGuards.Select(static guard => guard.Member)).Concat(tweak.IgnoredOverloads.Select(static ignored => ignored.Member)).Concat(tweak.NullableParameters.Select(static nullable => nullable.Member)).Concat(tweak.Renames.Keys.Where(name => !tweak.PropertyPairs.ContainsKey(name))).Concat(tweak.PropertyPairs.Values.SelectMany(static pair => pair.Setter is null ? [pair.Getter] : new[] { pair.Getter, pair.Setter }))) {
 			if (!known.Contains(named)) throw new InvalidOperationException($"A tweak names {bound.CppName}::{named}, which the interface headers do not have.");
 		}
 		string shortName = bound.CppName;
@@ -308,7 +308,7 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 			}
 			// A number that defaults to wxBOTH, wxHORIZONTAL, or wxVERTICAL is an orientation.
 			if (conversion == NumberConversion.Int && parameter.Default is string orientation && OrientationPattern().IsMatch(orientation)) conversion = new EnumConversion("Orientation", NumberConversion.Int);
-			bool nullable = parameter.Name == "parent" && isConstructor && owner.IsTopLevel;
+			bool nullable = (parameter.Name == "parent" && isConstructor && owner.IsTopLevel) || owner.Tweak.NullableParameters.Contains((member.Name, parameter.Name));
 			string? managedDefault = null;
 			bool resolved = true;
 			if (conversion is not null && parameter.Default is string cppDefault) {
@@ -512,6 +512,9 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		return type.Name switch {
 			"bool" => BoolConversion.Instance,
 			"int" or "wxWindowID" or "wxCoord" => NumberConversion.Int,
+			// Only the list control's, since the data view list's appends would gain a parameter that code
+			// built against WxKit 0.1.0 doesn't pass.
+			"wxUIntPtr" when owner.CppName is "wxListCtrl" or "wxListView" or "wxListItem" or "wxListEvent" => NumberConversion.ItemData,
 			"long" or "wxTextPos" => NumberConversion.Long,
 			"double" => NumberConversion.Double,
 			"float" => NumberConversion.Float,

@@ -16,6 +16,10 @@ public class ListTests {
 		list.Select(1);
 		Assert.True(list.IsSelected(1));
 		Assert.Equal(1, list.FirstSelected);
+		// An item's data, such as a key into the application's own records, can be read back and found.
+		Assert.True(list.SetItemData(1, 42));
+		Assert.Equal(42, list.GetItemData(1));
+		Assert.Equal(1, list.FindItem(-1, 42));
 	});
 
 	[Fact]

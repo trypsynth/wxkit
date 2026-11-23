@@ -53,6 +53,7 @@ internal static class Libraries {
 		// WebView's own, which WebView.cs has.
 		tweaks.Enum("wxWebViewBrowsingDataTypes", "WebViewBrowsingDataTypes", isFlags: true);
 		tweaks.Enum("wxWebViewPrintFlags", "WebViewPrintFlags", isFlags: true);
+		tweaks.Enum("wxWebViewFindFlags", "WebViewFindFlags", isFlags: true);
 		tweaks.Class("wxWebView", web => web
 			.NoConstructors()
 			.Ignore("New", "Create", "NewConfiguration", "RegisterFactory", "GetBackendVersionInfo", "IsBackendAvailable", "LoadURL", "GetCurrentURL", "SetPage", "RunScript", "RunScriptAsync", "GetNativeBackend", "RegisterHandler")

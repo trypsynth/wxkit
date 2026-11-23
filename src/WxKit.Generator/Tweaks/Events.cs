@@ -37,6 +37,9 @@ internal static class Events {
 		// The headers list the context menu among the command events, though it's sent as a
 		// wxContextMenuEvent, which says where the menu goes, as when the keyboard opens it.
 		tweaks.EventType("wxEVT_CONTEXT_MENU", "wxContextMenuEvent");
+		// A window asks for its cursor with a wxSetCursorEvent, whose handler gives one.
+		tweaks.Class("wxSetCursorEvent");
+		tweaks.EventType("wxEVT_SET_CURSOR", "wxSetCursorEvent");
 		// The headers give the color dialog's event the color picker's class, which it is not.
 		tweaks.EventType("wxEVT_COLOUR_CHANGED", "wxColourDialogEvent");
 	}

@@ -163,6 +163,10 @@ WXK_FUNCTION(int64_t) wxk_ListCtrl_FindItem_LongStringBool(wxk_Window* self, int
 	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->FindItem(static_cast<long>(start), wxk::FromUtf16(text, textLength), partial != 0)); });
 }
 
+WXK_FUNCTION(int64_t) wxk_ListCtrl_FindItem_LongLong(wxk_Window* self, int64_t start, int64_t data) noexcept {
+	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->FindItem(static_cast<long>(start), static_cast<wxUIntPtr>(data))); });
+}
+
 WXK_FUNCTION(int64_t) wxk_ListCtrl_FindItem_LongPointInt(wxk_Window* self, int64_t start, wxk_Point point, int32_t direction) noexcept {
 	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->FindItem(static_cast<long>(start), wxk::FromPoint(point), static_cast<int>(direction))); });
 }
@@ -189,6 +193,10 @@ WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetItem(wxk_Window* self, wxk_Object* info) n
 
 WXK_FUNCTION(wxk_Colour) wxk_ListCtrl_GetItemBackgroundColour(wxk_Window* self, int64_t item) noexcept {
 	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetItemBackgroundColour(static_cast<long>(item))); });
+}
+
+WXK_FUNCTION(int64_t) wxk_ListCtrl_GetItemData(wxk_Window* self, int64_t item) noexcept {
+	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetItemData(static_cast<long>(item))); });
 }
 
 WXK_FUNCTION(wxk_Object*) wxk_ListCtrl_GetItemFont(wxk_Window* self, int64_t item) noexcept {

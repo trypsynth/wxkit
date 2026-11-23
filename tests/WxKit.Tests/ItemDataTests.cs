@@ -62,6 +62,21 @@ public class ItemDataTests {
 		Assert.Null(tree.GetItemData(fiction));
 	});
 
+	// A data view tree's icons are indexes into the images it's given.
+	[Fact]
+	public Task ShowsADataViewTreesIcons() => Gui.WithFrame(frame => {
+		DataViewTreeCtrl tree = new(frame);
+		using Bitmap folder = new(16, 16);
+		using Bitmap file = new(16, 16);
+		tree.SetImages([folder, file]);
+		Assert.True(tree.HasImages);
+		Assert.Equal(2, tree.ImageCount);
+		DataViewItem fiction = tree.AppendContainer(default, "Fiction", icon: 0);
+		DataViewItem novel = tree.AppendItem(fiction, "A novel", icon: 1);
+		using Icon? icon = tree.GetItemIcon(novel);
+		Assert.True(icon is { IsOk: true });
+	});
+
 	[MethodImpl(MethodImplOptions.NoInlining)]
 	private static WeakReference AppendBook(ListBox list) {
 		Book book = new("Gone");

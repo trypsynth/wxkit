@@ -1168,10 +1168,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_SET_CURSOR.</summary>
-	public static EventType<Event> SetCursor => SetCursorType.Value;
+	public static EventType<SetCursorEvent> SetCursor => SetCursorType.Value;
 
 	private static class SetCursorType {
-		public static readonly EventType<Event> Value = new(WxKitNative.EventTypeSetCursor, static native => new Event((WxkEvent*)native));
+		public static readonly EventType<SetCursorEvent> Value = new(WxKitNative.EventTypeSetCursor, static native => new SetCursorEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_SET_FOCUS.</summary>
@@ -2012,6 +2012,13 @@ public static unsafe partial class EventType {
 
 	private static class WebviewWindowCloseRequestedType {
 		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewWindowCloseRequested, static native => new WebViewEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_WINDOW_MODAL_DIALOG_CLOSED.</summary>
+	public static EventType<WindowModalDialogEvent> WindowModalDialogClosed => WindowModalDialogClosedType.Value;
+
+	private static class WindowModalDialogClosedType {
+		public static readonly EventType<WindowModalDialogEvent> Value = new(WxKitNative.EventTypeWindowModalDialogClosed, static native => new WindowModalDialogEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_WIZARD_BEFORE_PAGE_CHANGED.</summary>

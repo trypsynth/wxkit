@@ -492,7 +492,7 @@ public unsafe partial class Window : EvtHandler {
 	}
 
 	/// <summary>Process a wxEVT_SET_CURSOR event. See wxSetCursorEvent.</summary>
-	public event EventHandler<Event>? SetCursor {
+	public event EventHandler<SetCursorEvent>? SetCursor {
 		add => AddHandler(EventType.SetCursor, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.SetCursor, StandardId.Any, StandardId.Any, value);
 	}

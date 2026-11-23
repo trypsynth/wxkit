@@ -18,10 +18,7 @@ public unsafe partial class TopLevelWindow : Window {
 	/// <summary>Returns a pointer to the button which is the default for this window, or nullptr.</summary>
 	public Window? DefaultItem {
 		get => ObjectRegistry.Wrap<Window>(WxKitNative.TopLevelWindowGetDefaultItem(Native));
-		set {
-			ArgumentNullException.ThrowIfNull(value);
-			WxKitNative.TopLevelWindowSetDefaultItem(Native, (WxkWindow*)value.Native);
-		}
+		set => WxKitNative.TopLevelWindowSetDefaultItem(Native, value is null ? null : (WxkWindow*)value.Native);
 	}
 
 	/// <summary>Get the default size for a new top level window.</summary>
@@ -66,10 +63,7 @@ public unsafe partial class TopLevelWindow : Window {
 
 	public Window? TmpDefaultItem {
 		get => ObjectRegistry.Wrap<Window>(WxKitNative.TopLevelWindowGetTmpDefaultItem(Native));
-		set {
-			ArgumentNullException.ThrowIfNull(value);
-			WxKitNative.TopLevelWindowSetTmpDefaultItem(Native, (WxkWindow*)value.Native);
-		}
+		set => WxKitNative.TopLevelWindowSetTmpDefaultItem(Native, value is null ? null : (WxkWindow*)value.Native);
 	}
 
 	public event EventHandler<CloseEvent>? Closing {

@@ -205,6 +205,14 @@ internal sealed class ClassTweak(string name) {
 		return this;
 	}
 
+	/// <summary>Parameters that can be null though the headers don't say so, as wxFrame::SetStatusBar's, which null removes.</summary>
+	public HashSet<(string Member, string Parameter)> NullableParameters { get; } = [];
+
+	public ClassTweak NullableParameter(string member, string parameter) {
+		NullableParameters.Add((member, parameter));
+		return this;
+	}
+
 	/// <summary>Overloads left out, told apart by one of their parameters, such as wxImage's SetAlpha that takes an alpha array.</summary>
 	public List<OverloadMatch> IgnoredOverloads { get; } = [];
 

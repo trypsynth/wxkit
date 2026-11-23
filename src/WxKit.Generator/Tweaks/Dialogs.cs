@@ -4,7 +4,11 @@ namespace WxKit.Generator.Tweaks;
 internal static class Dialogs {
 	public static void Apply(Binding.Tweaks tweaks) {
 		// wxMSW's wxDialog has no GetToolBar, though the documentation gives it one.
-		tweaks.Class("wxDialog").Ignore("GetToolBar");
+		// ShowWindowModal returns at once on macOS, so the dialog says when it closes, and with what.
+		tweaks.Class("wxDialog", dialog => dialog
+			.Ignore("GetToolBar")
+			.AddEvent("EVT_WINDOW_MODAL_DIALOG_CLOSED", "wxEVT_WINDOW_MODAL_DIALOG_CLOSED", "wxWindowModalDialogEvent", "WindowModalClosed"));
+		tweaks.Class("wxWindowModalDialogEvent");
 		tweaks.Class("wxMessageDialog");
 		foreach (string dialog in (string[])["wxTextEntryDialog", "wxPasswordEntryDialog", "wxFileDialog", "wxDirDialog", "wxProgressDialog", "wxSingleChoiceDialog", "wxMultiChoiceDialog", "wxNumberEntryDialog", "wxRichMessageDialog", "wxCredentialEntryDialog", "wxPropertySheetDialog", "wxWizard", "wxWizardPage", "wxWizardPageSimple"]) {
 			tweaks.Class(dialog);
@@ -66,6 +70,9 @@ internal static class Dialogs {
 		// Next and Previous a subclass decides.
 		tweaks.Class("wxWizardPage").NoConstructors().Rename("GetPrev", "Previous");
 		tweaks.Class("wxWizardPageSimple", page => page
+			// Null makes a page the last or the first.
+			.NullableParameter("SetNext", "next")
+			.NullableParameter("SetPrev", "prev")
 			.Rename("SetPrev", "SetPrevious")
 			.ParameterName("wxWizardPageSimple", "prev", "previous")
 			.ParameterName("SetPrev", "prev", "previous"));

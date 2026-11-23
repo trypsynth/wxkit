@@ -10,10 +10,13 @@ internal static class Lists {
 			.ParameterEnum("SetSingleStyle", "style", "ListCtrlStyle")
 			.ParameterEnum("SetWindowStyleFlag", "style", "ListCtrlStyle")
 			.Director("OnGetItemText", "OnGetItemImage", "OnGetItemColumnImage", "OnGetItemIsChecked")
+			// SetItemData takes the same data.
+			.Ignore("SetItemPtrData")
 			.Rename("GetItemRect", "TryGetItemRect")
 			.Rename("GetSubItemRect", "TryGetSubItemRect"));
 		tweaks.Class("wxListView");
-		tweaks.Class("wxListItem").ValueObject();
+		// SetData stays a method beside the data, as it was before the data could be read.
+		tweaks.Class("wxListItem", item => item.ValueObject().Property("Data", "GetData"));
 		tweaks.Class("wxListEvent");
 		// SetItemData is written by hand, since wxTreeCtrl does not delete the data it replaces.
 		tweaks.Class("wxTreeCtrl", tree => tree
@@ -56,8 +59,9 @@ internal static class Lists {
 			.ParameterEnum("AppendToggleColumn", "flags", "wxDataViewColumnFlags")
 			.ParameterEnum("AppendProgressColumn", "flags", "wxDataViewColumnFlags")
 			.ParameterEnum("AppendIconTextColumn", "flags", "wxDataViewColumnFlags"));
-		// Its images are an image list, which is not bound.
-		tweaks.Class("wxDataViewTreeCtrl", view => view.DiscardUnboundReturns().Ignore("GetStore", "GetImageList"));
+		// Its items' icons are indexes into images, which wxWithImages gives it, though the interface
+		// headers leave that base out. Its image list, which is not bound, is the old way to give them.
+		tweaks.Class("wxDataViewTreeCtrl", view => view.Bases("wxDataViewCtrl", "wxWithImages").DiscardUnboundReturns().Ignore("GetStore", "GetImageList", "SetImageList", "GetUpdatedImageListFor"));
 		// The interface headers document SetItem, which the real wxDataViewEvent does not have. Events
 		// are only received, so the column is only read.
 		tweaks.Class("wxDataViewEvent", dataViewEvent => dataViewEvent

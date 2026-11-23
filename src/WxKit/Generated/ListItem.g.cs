@@ -34,6 +34,9 @@ public unsafe partial class ListItem : NativeObject {
 		set => WxKitNative.ListItemSetColumn(Native, value);
 	}
 
+	/// <summary>Returns client data associated with the control.</summary>
+	public long Data => WxKitNative.ListItemGetData(Native);
+
 	/// <summary>Returns the font used to display the item.</summary>
 	public Font? Font {
 		get => global::WxKit.Font.Take(WxKitNative.ListItemGetFont(Native));

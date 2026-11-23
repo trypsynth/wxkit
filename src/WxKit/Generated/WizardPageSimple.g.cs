@@ -22,16 +22,10 @@ public unsafe partial class WizardPageSimple : WizardPage {
 	}
 
 	/// <summary>Sets the next page.</summary>
-	public void SetNext(WizardPage next) {
-		ArgumentNullException.ThrowIfNull(next);
-		WxKitNative.WizardPageSimpleSetNext(Native, (WxkWindow*)next.Native);
-	}
+	public void SetNext(WizardPage? next) => WxKitNative.WizardPageSimpleSetNext(Native, next is null ? null : (WxkWindow*)next.Native);
 
 	/// <summary>Sets the previous page.</summary>
-	public void SetPrevious(WizardPage previous) {
-		ArgumentNullException.ThrowIfNull(previous);
-		WxKitNative.WizardPageSimpleSetPrev(Native, (WxkWindow*)previous.Native);
-	}
+	public void SetPrevious(WizardPage? previous) => WxKitNative.WizardPageSimpleSetPrev(Native, previous is null ? null : (WxkWindow*)previous.Native);
 
 	private static WxkWindow* CreateNative(Wizard parent, WizardPage? previous, WizardPage? next, Bitmap? bitmap) {
 		Application.VerifyAccess();

@@ -23,6 +23,8 @@ internal static class Controls {
 		// An item's data is an object, which the control deletes with the item. Detaching it would
 		// leave no one to free it.
 		foreach (string container in (string[])["wxControlWithItems", "wxChoice", "wxComboBox", "wxListBox"]) tweaks.Class(container).Ignore("DetachClientObject");
+		// Null removes the search control's menu.
+		tweaks.Class("wxSearchCtrl").NullableParameter("SetMenu", "menu");
 		// A check box, a radio button, and a toggle button say whether they are checked, as WPF's do.
 		tweaks.Class("wxCheckBox").Ignore("IsChecked").Property("IsChecked", "GetValue", "SetValue");
 		tweaks.Class("wxRadioButton").Property("IsChecked", "GetValue", "SetValue");

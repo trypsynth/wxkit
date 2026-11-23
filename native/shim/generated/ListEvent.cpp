@@ -25,6 +25,10 @@ WXK_FUNCTION(void) wxk_ListEvent_SetColumn(wxk_Event* self, int32_t column) noex
 	wxk::Guard([&] { static_cast<wxListEvent*>(wxk::Unwrap(self))->SetColumn(static_cast<int>(column)); });
 }
 
+WXK_FUNCTION(int64_t) wxk_ListEvent_GetData(wxk_Event* self) noexcept {
+	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListEvent*>(wxk::Unwrap(self))->GetData()); });
+}
+
 WXK_FUNCTION(int32_t) wxk_ListEvent_GetImage(wxk_Event* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListEvent*>(wxk::Unwrap(self))->GetImage()); });
 }

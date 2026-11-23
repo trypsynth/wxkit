@@ -848,6 +848,9 @@ WXK_FUNCTION(void) wxk_DataViewTreeCtrl_SetItemData(wxk_Window* self, void* item
 WXK_FUNCTION(void) wxk_DataViewTreeCtrl_SetItemExpandedIcon(wxk_Window* self, void* item, const wxk_Object* icon) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DataViewTreeCtrl_SetItemIcon(wxk_Window* self, void* item, const wxk_Object* icon) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DataViewTreeCtrl_SetItemText(wxk_Window* self, void* item, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DataViewTreeCtrl_SetImages(wxk_Window* self, wxk_Object* const* images, size_t imagesCount) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_DataViewTreeCtrl_GetImageCount(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_DataViewTreeCtrl_HasImages(wxk_Window* self) WXK_NOEXCEPT;
 
 // wxDataViewVirtualListModel
 
@@ -1518,6 +1521,7 @@ WXK_FUNCTION(void) wxk_ListCtrl_EnableBellOnNoMatch(wxk_Window* self, uint8_t on
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_EndEditLabel(wxk_Window* self, uint8_t cancel) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_EnsureVisible(wxk_Window* self, int64_t item) WXK_NOEXCEPT;
 WXK_FUNCTION(int64_t) wxk_ListCtrl_FindItem_LongStringBool(wxk_Window* self, int64_t start, const char16_t* text, size_t textLength, uint8_t partial) WXK_NOEXCEPT;
+WXK_FUNCTION(int64_t) wxk_ListCtrl_FindItem_LongLong(wxk_Window* self, int64_t start, int64_t data) WXK_NOEXCEPT;
 WXK_FUNCTION(int64_t) wxk_ListCtrl_FindItem_LongPointInt(wxk_Window* self, int64_t start, wxk_Point point, int32_t direction) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetColumn(wxk_Window* self, int32_t column, wxk_Object* item) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListCtrl_GetColumnIndexFromOrder(wxk_Window* self, int32_t position) WXK_NOEXCEPT;
@@ -1525,6 +1529,7 @@ WXK_FUNCTION(int32_t) wxk_ListCtrl_GetColumnOrder(wxk_Window* self, int32_t colu
 WXK_FUNCTION(int32_t) wxk_ListCtrl_GetColumnWidth(wxk_Window* self, int32_t column) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetItem(wxk_Window* self, wxk_Object* info) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Colour) wxk_ListCtrl_GetItemBackgroundColour(wxk_Window* self, int64_t item) WXK_NOEXCEPT;
+WXK_FUNCTION(int64_t) wxk_ListCtrl_GetItemData(wxk_Window* self, int64_t item) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_ListCtrl_GetItemFont(wxk_Window* self, int64_t item) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetItemRect(wxk_Window* self, int64_t item, wxk_Rect* rect, int32_t code) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListCtrl_GetItemState(wxk_Window* self, int64_t item, int64_t stateMask) WXK_NOEXCEPT;
@@ -1598,6 +1603,7 @@ WXK_FUNCTION(int64_t) wxk_ListEvent_GetCacheTo(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListEvent_SetCacheTo(wxk_Event* self, int64_t cacheTo) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListEvent_GetColumn(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListEvent_SetColumn(wxk_Event* self, int32_t column) WXK_NOEXCEPT;
+WXK_FUNCTION(int64_t) wxk_ListEvent_GetData(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListEvent_GetImage(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int64_t) wxk_ListEvent_GetIndex(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListEvent_SetIndex(wxk_Event* self, int64_t index) WXK_NOEXCEPT;
@@ -1618,6 +1624,7 @@ WXK_FUNCTION(wxk_Object*) wxk_ListItem_new(void) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListItem_SetData(wxk_Object* self, int64_t data) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListItem_Clear(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListItem_SetStateMask(wxk_Object* self, int64_t stateMask) WXK_NOEXCEPT;
+WXK_FUNCTION(int64_t) wxk_ListItem_GetData(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListItem_GetAlign(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListItem_SetAlign(wxk_Object* self, int32_t align) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Colour) wxk_ListItem_GetBackgroundColour(wxk_Object* self) WXK_NOEXCEPT;
@@ -2319,6 +2326,15 @@ WXK_FUNCTION(wxk_String*) wxk_SearchCtrl_GetHint(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_SearchCtrl_SetHint(wxk_Window* self, const char16_t* hint, size_t hintLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Point) wxk_SearchCtrl_GetMargins(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_SearchCtrl_SetMargins_Point(wxk_Window* self, wxk_Point point) WXK_NOEXCEPT;
+
+// wxSetCursorEvent
+
+WXK_FUNCTION(wxk_Object*) wxk_SetCursorEvent_GetCursor(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_SetCursorEvent_SetCursor(wxk_Event* self, const wxk_Object* cursor) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Point) wxk_SetCursorEvent_GetPosition(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_SetCursorEvent_GetX(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_SetCursorEvent_GetY(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_SetCursorEvent_HasCursor(wxk_Event* self) WXK_NOEXCEPT;
 
 // wxShowEvent
 
@@ -4178,6 +4194,11 @@ WXK_FUNCTION(wxk_WindowDisabler*) wxk_WindowDisabler_new_Bool(uint8_t disable) W
 WXK_FUNCTION(wxk_WindowDisabler*) wxk_WindowDisabler_new_WindowWindow(wxk_Window* winToSkip, wxk_Window* winToSkip2) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_WindowDisabler_delete(wxk_WindowDisabler* self) WXK_NOEXCEPT;
 
+// wxWindowModalDialogEvent
+
+WXK_FUNCTION(wxk_Window*) wxk_WindowModalDialogEvent_GetDialog(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_WindowModalDialogEvent_GetReturnCode(wxk_Event* self) WXK_NOEXCEPT;
+
 // wxWizard
 
 WXK_FUNCTION(wxk_Window*) wxk_Wizard_new(wxk_Window* parent, int32_t id, const char16_t* title, size_t titleLength, const wxk_Object* bitmap, wxk_Point position, int64_t style) WXK_NOEXCEPT;
@@ -4509,6 +4530,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_WebviewScriptMessageReceived(void) WXK_NOEXC
 WXK_FUNCTION(int32_t) wxk_EventType_WebviewScriptResult(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_WebviewTitleChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_WebviewWindowCloseRequested(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_WindowModalDialogClosed(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_WizardBeforePageChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_WizardCancel(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_WizardFinished(void) WXK_NOEXCEPT;

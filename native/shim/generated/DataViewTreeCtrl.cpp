@@ -92,3 +92,15 @@ WXK_FUNCTION(void) wxk_DataViewTreeCtrl_SetItemText(wxk_Window* self, void* item
 	wxk::Guard([&] { static_cast<wxDataViewTreeCtrl*>(wxk::Unwrap(self))->SetItemText(wxDataViewItem(item), wxk::FromUtf16(text, textLength)); });
 }
 
+WXK_FUNCTION(void) wxk_DataViewTreeCtrl_SetImages(wxk_Window* self, wxk_Object* const* images, size_t imagesCount) noexcept {
+	wxk::Guard([&] { static_cast<wxWithImages*>(static_cast<wxDataViewTreeCtrl*>(wxk::Unwrap(self)))->SetImages(wxk::ToBitmapBundles(images, imagesCount)); });
+}
+
+WXK_FUNCTION(int32_t) wxk_DataViewTreeCtrl_GetImageCount(wxk_Window* self) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxWithImages*>(static_cast<wxDataViewTreeCtrl*>(wxk::Unwrap(self)))->GetImageCount()); });
+}
+
+WXK_FUNCTION(uint8_t) wxk_DataViewTreeCtrl_HasImages(wxk_Window* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWithImages*>(static_cast<wxDataViewTreeCtrl*>(wxk::Unwrap(self)))->HasImages()) ? 1 : 0; });
+}
+

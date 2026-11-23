@@ -16,10 +16,7 @@ public unsafe partial class Frame : TopLevelWindow {
 	/// <summary>Returns a pointer to the status bar currently associated with the frame (if any).</summary>
 	public StatusBar? StatusBar {
 		get => ObjectRegistry.Wrap<StatusBar>(WxKitNative.FrameGetStatusBar(Native));
-		set {
-			ArgumentNullException.ThrowIfNull(value);
-			WxKitNative.FrameSetStatusBar(Native, (WxkWindow*)value.Native);
-		}
+		set => WxKitNative.FrameSetStatusBar(Native, value is null ? null : (WxkWindow*)value.Native);
 	}
 
 	/// <summary>Returns the status bar pane used to display menu and toolbar help.</summary>
@@ -31,10 +28,7 @@ public unsafe partial class Frame : TopLevelWindow {
 	/// <summary>Returns a pointer to the toolbar currently associated with the frame (if any).</summary>
 	public ToolBar? ToolBar {
 		get => ObjectRegistry.Wrap<ToolBar>(WxKitNative.FrameGetToolBar(Native));
-		set {
-			ArgumentNullException.ThrowIfNull(value);
-			WxKitNative.FrameSetToolBar(Native, (WxkWindow*)value.Native);
-		}
+		set => WxKitNative.FrameSetToolBar(Native, value is null ? null : (WxkWindow*)value.Native);
 	}
 
 	/// <summary>Process a wxEVT_ICONIZE event. See wxIconizeEvent.</summary>

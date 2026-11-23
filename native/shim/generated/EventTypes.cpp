@@ -421,3 +421,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_UpdateUi(void) noexcept {
 	return wxEVT_UPDATE_UI;
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_WindowModalDialogClosed(void) noexcept {
+	return wxEVT_WINDOW_MODAL_DIALOG_CLOSED;
+}
+

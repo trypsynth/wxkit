@@ -13,6 +13,12 @@ public unsafe partial class DataViewTreeCtrl : DataViewCtrl {
 	internal DataViewTreeCtrl(WxkWindow* native) : base(native) {
 	}
 
+	/// <summary>Return true if the control has any images associated with it.</summary>
+	public bool HasImages => WxKitNative.DataViewTreeCtrlHasImages(Native) != 0;
+
+	/// <summary>Return the number of images in this control.</summary>
+	public int ImageCount => WxKitNative.DataViewTreeCtrlGetImageCount(Native);
+
 	/// <summary>Appends a container to the given parent.</summary>
 	public DataViewItem AppendContainer(DataViewItem parent, string text, int icon = -1, int expanded = -1, object? data = null) {
 		ArgumentNullException.ThrowIfNull(text);
@@ -91,6 +97,15 @@ public unsafe partial class DataViewTreeCtrl : DataViewCtrl {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
 			return new global::WxKit.DataViewItem(WxKitNative.DataViewTreeCtrlPrependItem(Native, parent.Value, textText, NativeString.Length(text), icon, ItemData.Alloc(data)));
+		}
+	}
+
+	/// <summary>Set the images to use for the items in the control.</summary>
+	public void SetImages(IEnumerable<Bitmap> images) {
+		ArgumentNullException.ThrowIfNull(images);
+		using NativeBitmapList imagesNative = new(images);
+		fixed (nint* imagesPointer = imagesNative.Handles) {
+			WxKitNative.DataViewTreeCtrlSetImages(Native, (WxkObject**)imagesPointer, (nuint)imagesNative.Handles.Length);
 		}
 	}
 
