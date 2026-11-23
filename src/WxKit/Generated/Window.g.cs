@@ -354,7 +354,7 @@ public unsafe partial class Window : EvtHandler {
 	}
 
 	/// <summary>A right click (or other context menu command depending on platform) has been detected. See wxContextMenuEvent.</summary>
-	public event EventHandler<CommandEvent>? ContextMenu {
+	public event EventHandler<ContextMenuEvent>? ContextMenu {
 		add => AddHandler(EventType.ContextMenu, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ContextMenu, StandardId.Any, StandardId.Any, value);
 	}

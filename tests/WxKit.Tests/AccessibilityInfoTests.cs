@@ -42,6 +42,20 @@ public partial class AccessibilityInfoTests {
 		Assert.True(gauge.Role == AccessibleRole.ProgressBar, gauge.ToString());
 	});
 
+	// A live region's text is announced, not read as a label, so a control after one is named by the
+	// label before it.
+	[Fact]
+	public Task NamesAControlPastALiveRegion() => Gui.WithFrame(async frame => {
+		Assert.SkipWhen(OperatingSystem.IsWindows(), "Windows names a control by the static text before it itself, which a live region is.");
+		Panel panel = new(frame);
+		_ = new StaticText(panel, "&Items:");
+		_ = new LiveRegion(panel);
+		ListBox items = new(panel, ["A", "B"]);
+		frame.Show();
+		await Gui.WaitUntil(() => AccessibilityInfo.Of(items).Name.Length > 0);
+		Expect(items, AccessibleRole.List, "Items:");
+	});
+
 	[Fact]
 	public Task SaysWhichControlHasTheFocus() => Gui.WithFrame(async frame => {
 		Assert.SkipUnless(OperatingSystem.IsWindows() || OperatingSystem.IsLinux(), "The focus moves only in an active window, which the macOS runner's isn't.");

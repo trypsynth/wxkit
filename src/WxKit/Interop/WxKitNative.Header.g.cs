@@ -292,7 +292,7 @@ public static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_Window_LinkLabel")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void WindowLinkLabel(WxkWindow* window);
+	public static partial void WindowLinkLabel(WxkWindow* window, WxkWindow* label);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Window_SetAccessibleName")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

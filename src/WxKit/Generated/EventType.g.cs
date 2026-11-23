@@ -265,10 +265,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_CONTEXT_MENU.</summary>
-	public static EventType<CommandEvent> ContextMenu => ContextMenuType.Value;
+	public static EventType<ContextMenuEvent> ContextMenu => ContextMenuType.Value;
 
 	private static class ContextMenuType {
-		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeContextMenu, static native => new CommandEvent((WxkEvent*)native));
+		public static readonly EventType<ContextMenuEvent> Value = new(WxKitNative.EventTypeContextMenu, static native => new ContextMenuEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_DATAVIEW_CACHE_HINT.</summary>

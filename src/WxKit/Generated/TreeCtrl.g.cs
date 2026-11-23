@@ -119,9 +119,9 @@ public unsafe partial class TreeCtrl : Control {
 	}
 
 	/// <summary>The context menu for the selected item has been requested, either by a right click or by using the menu key. Notice that these events always carry a valid tree item and so are not generated when (right) clicking outside of the items area. If you need to handle such events, consider using wxEVT_CONTEXT_MENU instead. Processes a wxEVT_TREE_ITEM_MENU event type.</summary>
-	public event EventHandler<CommandEvent>? ItemContextMenu {
-		add => AddHandler(EventType.ContextMenu, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ContextMenu, StandardId.Any, StandardId.Any, value);
+	public event EventHandler<TreeEvent>? ItemContextMenu {
+		add => AddHandler(EventType.TreeItemMenu, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TreeItemMenu, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>An item was deleted. Processes a wxEVT_TREE_DELETE_ITEM event type.</summary>

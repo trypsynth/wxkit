@@ -254,7 +254,8 @@ public abstract unsafe class Accessible : IDirected {
 	}
 
 	// A part comes back as its id, and an element with its own accessible object as that object.
-	// The focus on the window itself is the window's own object, as wxWidgets asks. An element
+	// The window itself, as the focus, the element at a point, or where navigation leads, is the
+	// window's own object, since wxWidgets reads an id of 0 without one as nothing there. An element
 	// that is not there is not a failure: a point outside the window is false, as is a direction
 	// with nothing in it, and a window without the focus is fine. A child is only asked for as an
 	// object, so it has no id to give.
@@ -273,7 +274,7 @@ public abstract unsafe class Accessible : IDirected {
 				*resultObject = other.Native;
 			} else {
 				if (resultId is not null) *resultId = element.ChildId;
-				if (kind == ElementKind.Focus && element.ChildId == 0) *resultObject = accessible.Native;
+				if (kind != ElementKind.Child && element.ChildId == 0) *resultObject = accessible.Native;
 			}
 			return Ok;
 		} catch (Exception error) {

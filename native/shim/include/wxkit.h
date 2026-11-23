@@ -329,7 +329,8 @@ WXK_FUNCTION(uint8_t) wxk_LiveRegion_Announce(wxk_Window* window, const char16_t
 WXK_FUNCTION(uint8_t) wxk_AccessibilityInfo_Get(wxk_Window* window, int32_t* role, uint32_t* states, wxk_String** name, wxk_String** platformRole) WXK_NOEXCEPT;
 
 // Gives a control the label before it, as screen readers read it, where the platform does not.
-WXK_FUNCTION(void) wxk_Window_LinkLabel(wxk_Window* window) WXK_NOEXCEPT;
+// .NET finds the label, past any live region, whose text is announced rather than read as a label.
+WXK_FUNCTION(void) wxk_Window_LinkLabel(wxk_Window* window, wxk_Window* label) WXK_NOEXCEPT;
 // Names a window for screen readers, through ATK and NSAccessibility on Linux and macOS, where
 // wxWidgets' SetAccessibleName does nothing.
 WXK_FUNCTION(void) wxk_Window_SetAccessibleName(wxk_Window* window, const char16_t* name, size_t nameLength) WXK_NOEXCEPT;

@@ -22,7 +22,7 @@ public abstract unsafe class EvtHandler {
 		ObjectRegistry.Register(this, native);
 		// A control is named by the label before it, which on Linux WxKit has to add for some, and
 		// an icon button inside a window, such as an editable list box's, by its tooltip.
-		if (this is Control and not StaticText) WxKitNative.WindowLinkLabel((WxkWindow*)native);
+		if (this is Control control and not StaticText && !OperatingSystem.IsWindows() && control.LabelBefore() is StaticText label) WxKitNative.WindowLinkLabel((WxkWindow*)native, label.Native);
 		if (this is Window) WxKitNative.WindowNameIconButtons((WxkWindow*)native);
 	}
 

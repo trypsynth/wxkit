@@ -70,11 +70,10 @@ void SetPlatformAccessibleName(wxWindow* window, const wxString& name) {
 
 }
 
-WXK_FUNCTION(void) wxk_Window_LinkLabel(wxk_Window* window) noexcept {
-	wxk::Guard([window] {
+WXK_FUNCTION(void) wxk_Window_LinkLabel(wxk_Window* window, wxk_Window* labelWindow) noexcept {
+	wxk::Guard([window, labelWindow] {
 		wxWindow* control = static_cast<wxWindow*>(wxk::Unwrap(window));
-		wxWindow* label = control->GetPrevSibling();
-		if (label == nullptr || dynamic_cast<wxStaticText*>(label) == nullptr) return;
+		wxWindow* label = static_cast<wxWindow*>(wxk::Unwrap(labelWindow));
 		GtkWidget* connect = control->GetConnectWidget();
 		void* inner = connect == nullptr ? nullptr : Focusable(connect);
 		// wxGTK's own mnemonic names a control whose outer widget gets the focus, such as an entry.
@@ -132,11 +131,10 @@ void SetPlatformAccessibleName(wxWindow* window, const wxString& name) {
 // title element of a control that has no title of its own, such as a button's, on the element
 // VoiceOver reads, which for a cell-based control is its cell: through NSAccessibility's property,
 // and the attribute override the older API reads, since the two aren't bridged for cells.
-WXK_FUNCTION(void) wxk_Window_LinkLabel(wxk_Window* window) noexcept {
-	wxk::Guard([window] {
+WXK_FUNCTION(void) wxk_Window_LinkLabel(wxk_Window* window, wxk_Window* labelWindow) noexcept {
+	wxk::Guard([window, labelWindow] {
 		wxWindow* control = static_cast<wxWindow*>(wxk::Unwrap(window));
-		wxWindow* label = control->GetPrevSibling();
-		if (label == nullptr || dynamic_cast<wxStaticText*>(label) == nullptr) return;
+		wxWindow* label = static_cast<wxWindow*>(wxk::Unwrap(labelWindow));
 		void* target = wxkMacAccessibleElement(control);
 		void* source = wxkMacAccessibleElement(label);
 		if (target == nullptr || source == nullptr || wxkMacHasTitle(target)) return;
@@ -151,7 +149,7 @@ WXK_FUNCTION(void) wxk_Window_LinkLabel(wxk_Window* window) noexcept {
 #else
 
 // Windows names a control by the label before it itself.
-WXK_FUNCTION(void) wxk_Window_LinkLabel(wxk_Window*) noexcept {
+WXK_FUNCTION(void) wxk_Window_LinkLabel(wxk_Window*, wxk_Window*) noexcept {
 }
 
 #endif

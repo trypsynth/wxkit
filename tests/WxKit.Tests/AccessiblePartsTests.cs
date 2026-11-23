@@ -68,11 +68,19 @@ public class AccessiblePartsTests {
 		Assert.Equal("Named first", Msaa.Of(named).GetName(0));
 	});
 
+	// On Windows, parts and rows answer through an accessible object of their own, which would replace
+	// the window's Accessible. Elsewhere only wxWidgets shows them, and an Accessible, which only
+	// Windows asks, sits beside them, so a window can describe itself to every platform's screen readers.
 	[Fact]
-	public Task RefusesAWindowWithAnAccessibleOfItsOwn() => Gui.WithFrame(frame => {
+	public Task RefusesAWindowWithAnAccessibleOfItsOwnOnWindows() => Gui.WithFrame(frame => {
 		Panel panel = new(frame);
 		_ = new Named(panel);
-		Assert.Throws<InvalidOperationException>(() => panel.SetAccessibleParts([]));
+		if (OperatingSystem.IsWindows()) {
+			Assert.Throws<InvalidOperationException>(() => panel.SetAccessibleParts([]));
+		} else {
+			panel.SetAccessibleRows([], 0);
+			panel.SetAccessibleCurrentRow(-1);
+		}
 		Assert.Throws<ArgumentOutOfRangeException>(() => new Panel(frame).SetAccessibleCurrentRow(-2));
 	});
 

@@ -122,7 +122,11 @@ internal static partial class DoxygenReader {
 					break;
 				case "listitem" when section.StartsWith(EventsHeadingPrefix, StringComparison.Ordinal):
 					if (ReadEntry(element) is (string macro, string about)) {
-						string? eventType = element.Descendants("computeroutput").Select(static code => Normalize(code.Value)).FirstOrDefault(static code => code.StartsWith("wxEVT_", StringComparison.Ordinal));
+						// The event type the macro is named after, rather than another the entry mentions, as
+						// EVT_TREE_ITEM_MENU's suggests wxEVT_CONTEXT_MENU before giving its own.
+						string named = "wx" + macro.Split('(')[0].Trim();
+						List<string> eventTypes = [.. element.Descendants("computeroutput").Select(static code => Normalize(code.Value)).Where(static code => code.StartsWith("wxEVT_", StringComparison.Ordinal))];
+						string? eventType = eventTypes.Contains(named) ? named : eventTypes.FirstOrDefault();
 						string? ownClass = element.Descendants("ref").Select(static reference => reference.Value).FirstOrDefault(static text => EventClassPattern().IsMatch(text));
 						events.Add(new DoxygenEvent(macro.Split('(')[0].Trim(), eventType, ownClass ?? eventClass, about));
 					}

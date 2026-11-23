@@ -17,6 +17,14 @@ public unsafe partial class Window {
 	/// </summary>
 	public nint NativeHandle => (nint)WxKitNative.WindowGetHandle(Native);
 
+	// The label a screen reader names the window by: the static text just before it, past any live
+	// region, whose text is announced rather than read as a label.
+	internal StaticText? LabelBefore() {
+		Window? sibling = PreviousSibling;
+		while (sibling is LiveRegion) sibling = sibling.PreviousSibling;
+		return sibling as StaticText;
+	}
+
 	/// <summary>
 	/// The sizer that lays out the window's children, or null for none. A sizer belongs to the
 	/// window it is set on: replacing it, or destroying the window, destroys it.

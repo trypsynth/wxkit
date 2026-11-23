@@ -1577,7 +1577,6 @@ static class WxKit.EventType
     static EventType<CommandEvent> CommandLeftDclick { get; }
     static EventType<CommandEvent> CommandRightClick { get; }
     static EventType<CommandEvent> CommandSetFocus { get; }
-    static EventType<CommandEvent> ContextMenu { get; }
     static EventType<CommandEvent> ListBox { get; }
     static EventType<CommandEvent> ListBoxDclick { get; }
     static EventType<CommandEvent> Menu { get; }
@@ -1601,6 +1600,7 @@ static class WxKit.EventType
     static EventType<CommandEvent> ToolDropdown { get; }
     static EventType<CommandEvent> ToolEnter { get; }
     static EventType<CommandEvent> ToolRclicked { get; }
+    static EventType<ContextMenuEvent> ContextMenu { get; }
     static EventType<DataViewEvent> DataViewCacheHint { get; }
     static EventType<DataViewEvent> DataViewColumnHeaderClick { get; }
     static EventType<DataViewEvent> DataViewColumnHeaderRightClick { get; }
@@ -8376,7 +8376,6 @@ class WxKit.TreeCtrl : Control
     bool ItemHasChildren(TreeItemId item)
     bool QuickBestSize { get; set; }
     bool TryGetBoundingRect(TreeItemId item, out Rect rect, bool textOnly = false)
-    event EventHandler<CommandEvent>? ItemContextMenu
     event EventHandler<TreeEvent>? BeginDrag
     event EventHandler<TreeEvent>? BeginLabelEdit
     event EventHandler<TreeEvent>? BeginRightDrag
@@ -8385,6 +8384,7 @@ class WxKit.TreeCtrl : Control
     event EventHandler<TreeEvent>? ItemActivated
     event EventHandler<TreeEvent>? ItemCollapsed
     event EventHandler<TreeEvent>? ItemCollapsing
+    event EventHandler<TreeEvent>? ItemContextMenu
     event EventHandler<TreeEvent>? ItemDeleted
     event EventHandler<TreeEvent>? ItemExpanded
     event EventHandler<TreeEvent>? ItemExpanding
@@ -8883,7 +8883,7 @@ class WxKit.Window : EvtHandler
     double DpiScaleFactor { get; }
     event EventHandler<ActivateEvent>? Activated
     event EventHandler<ChildFocusEvent>? ChildFocused
-    event EventHandler<CommandEvent>? ContextMenu
+    event EventHandler<ContextMenuEvent>? ContextMenu
     event EventHandler<DropFilesEvent>? DropFiles
     event EventHandler<EraseEvent>? EraseBackground
     event EventHandler<Event>? MouseCaptureChanged

@@ -86,9 +86,11 @@ public unsafe partial class Window {
 	// time. Elsewhere wxWidgets answers itself.
 	private PartsAccessible? DescribedByParts() {
 		_ = Native;
+		if (!OperatingSystem.IsWindows()) return null;
 		if (AccessibleObject is PartsAccessible parts) return parts;
+		// Only Windows asks an Accessible, so elsewhere one sits beside the parts and rows wxWidgets shows.
 		if (AccessibleObject is not null) throw new InvalidOperationException("The window is described by an Accessible of its own, which its parts or rows would replace.");
-		return OperatingSystem.IsWindows() ? new PartsAccessible(this) : null;
+		return new PartsAccessible(this);
 	}
 }
 
@@ -150,7 +152,7 @@ internal sealed class PartsAccessible(Window window) : Accessible(window) {
 
 	// The window itself is named by the label just before it, as a standard control is, unless
 	// SetAccessibleName named it, which wxWidgets answers before asking.
-	protected override string? GetName(int childId) => childId == 0 ? (Window.PreviousSibling as StaticText)?.LabelText : _isTable ? Name(Row(childId)) : Part(childId).Label;
+	protected override string? GetName(int childId) => childId == 0 ? Window.LabelBefore()?.LabelText : _isTable ? Name(Row(childId)) : Part(childId).Label;
 
 	protected override AccessibleRole? GetRole(int childId) => childId == 0 ? (_isTable ? AccessibleRole.List : null) : _isTable ? AccessibleRole.ListItem : AccessibleRole.StaticText;
 

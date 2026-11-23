@@ -42,6 +42,19 @@ public class AccessibleTests {
 		Assert.Equal(5, Msaa.Of(board).GetFocus());
 	});
 
+	// A screen reader asks what's at a point, or where navigation leads, and the window itself is an
+	// answer, not nothing there.
+	[Fact]
+	public Task AnswersWithTheWindowItself() => Gui.WithFrame(frame => {
+		Assert.SkipUnless(OperatingSystem.IsWindows(), "Microsoft Active Accessibility is Windows's.");
+		Panel panel = new(frame);
+		_ = new SelfAccessible(panel);
+		Point inside = panel.ClientToScreen(new Point(1, 1));
+		Assert.Equal(0, Msaa.Of(panel).HitTest(inside.X, inside.Y));
+		// wxWidgets gives navigation's answer as the object, which is the window's own.
+		Assert.True(Msaa.Of(panel).Navigate(5, 0) is IAccessible);
+	});
+
 	[Fact]
 	public Task LeavesWhatItDoesNotAnswerToWindows() => Gui.WithFrame(frame => {
 		Assert.SkipUnless(OperatingSystem.IsWindows(), "Microsoft Active Accessibility is Windows's.");
@@ -130,6 +143,15 @@ public class AccessibleTests {
 			Pressed = childId;
 			return true;
 		}
+	}
+
+	private sealed class SelfAccessible : Accessible {
+		public SelfAccessible(Window window) : base(window) {
+		}
+
+		protected override AccessibleElement? HitTest(Point point) => AccessibleElement.Self;
+
+		protected override AccessibleElement? Navigate(NavigationDirection direction, int fromId) => AccessibleElement.Self;
 	}
 
 	private sealed class NameOnly : Accessible {

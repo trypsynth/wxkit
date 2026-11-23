@@ -34,6 +34,9 @@ internal static class Events {
 		// Bound by hand-written classes: menu items' clicks and timers' ticks.
 		tweaks.EventType("wxEVT_MENU", "wxCommandEvent");
 		tweaks.EventType("wxEVT_TIMER", "wxTimerEvent");
+		// The headers list the context menu among the command events, though it's sent as a
+		// wxContextMenuEvent, which says where the menu goes, as when the keyboard opens it.
+		tweaks.EventType("wxEVT_CONTEXT_MENU", "wxContextMenuEvent");
 		// The headers give the color dialog's event the color picker's class, which it is not.
 		tweaks.EventType("wxEVT_COLOUR_CHANGED", "wxColourDialogEvent");
 	}
