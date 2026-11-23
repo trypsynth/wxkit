@@ -23,6 +23,20 @@ $shared = Join-Path $native "$Runtime/shared/webview"
 Remove-Item -Recurse -Force $native -ErrorAction SilentlyContinue
 New-Item -ItemType Directory -Force $shared | Out-Null
 Copy-Item (Join-Path $build "shared/webview/libwxkitnative.so") $shared
+# wxWidgets' own catalogs, which the translation tests embed, compiled as scripts/build-native.ps1
+# compiles them. Without msgfmt, those tests skip, but CI has it.
+$catalogs = Get-ChildItem (Join-Path $root "native/wxWidgets/locale") -Filter *.po
+if (-not (Get-Command msgfmt -ErrorAction SilentlyContinue)) {
+	if ($env:CI) { throw "msgfmt, from GNU gettext, is not installed, so wxWidgets' catalogs cannot be compiled." }
+	Write-Warning "msgfmt, from GNU gettext, is not installed, so the translation tests skip."
+	$catalogs = @()
+}
+foreach ($catalog in $catalogs) {
+	$directory = Join-Path $native "$Runtime/locale/$($catalog.BaseName)"
+	New-Item -ItemType Directory -Force $directory | Out-Null
+	msgfmt --output-file (Join-Path $directory "wxstd.mo") $catalog.FullName
+	if ($LASTEXITCODE -ne 0) { throw "Compiling $($catalog.Name) failed." }
+}
 
 # The tests are built first, without the sanitizers' runtime, which .NET's own build tools would
 # otherwise run under too.
