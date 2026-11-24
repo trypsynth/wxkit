@@ -1,6 +1,6 @@
 # Planned changes
 
-These are changes WxKit wants that need code changes, so they wait for 0.2.0, as [Versions and names](building-and-packaging.md#versions-and-names) says. Each is collected here as it's found, and made in 0.2.0's previews, whose notes say what to change. A bug that leaves a member unusable as it's meant to be is the exception, and is fixed in a 0.1.x release, as 0.1.1 fixed the ids that 0.1.0 gave in the wrong place.
+These are changes WxKit wants that need code changes, so they're for 0.2.0, as [Versions and names](building-and-packaging.md#versions-and-names) says. Each is collected here as it's found, and made in 0.2.0's previews, whose notes say what to change. The bugs the review found, including those whose fix needed a change too, are fixed on `master` already, and in the first preview's notes.
 
 Most of these are patterns, which a change to the generator's rules fixes everywhere at once, rather than a member at a time. A review of the whole API on 2026-11-23 found most of them.
 
