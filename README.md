@@ -4,13 +4,13 @@
 
 WxKit 0.1 is the first release that isn't a preview. Its API follows .NET's names and types, and 0.1.x releases add to it without changes that need code changes, as [Versions and names](docs/design/building-and-packaging.md#versions-and-names) describes. 0.2.0, which `master` is heading for, changes the API where 0.1 got it wrong. Parts of wxWidgets are not bound yet. It runs on Windows, Linux, and macOS, each on x64 and ARM64, from C# or F#. The bindings are generated from wxWidgets's own headers, and cover windows and the common controls, list, tree, and data view controls, the styled text control, the web view, toolbars, sizers, menus, the standard and composite dialogs, wizards, drawing, images, the clipboard, drag and drop, translations, and accessibility, including for controls that draw themselves. Screen readers read its controls, and tests can check what they read, on all three platforms.
 
-To write a first application, follow [Getting started](docs/getting-started.md). The samples show more:
+To write a first application, follow [Getting started](docs/getting-started.md). The samples show more, each in C#, in `samples/csharp`, and in F#, in `samples/fsharp`, written as F# is:
 
-- [Hello](samples/csharp/Hello/Program.cs) publishes with Native AOT as one executable of about 6 MB, since an application links only the classes it uses. [Its F# version](samples/fsharp/Hello/Program.fs) is in `samples/fsharp`, with the samples ported to F# so far.
-- [Editor](samples/csharp/Editor/EditorFrame.cs) is a text editor, with menus, files, find and replace, fonts, and printing.
-- [Settings](samples/csharp/Settings/SettingsDialog.cs) is a settings dialog, with pages, a form, pickers, and a validator, translated into German as [Translating an application](docs/translating.md) describes.
-- [Checklist](samples/csharp/Checklist/ChecklistControl.cs) is a control that draws itself, which screen readers read on all three platforms.
-- [Browser](samples/csharp/Browser/Program.cs) is a small web browser, with an address, Back, Forward, and Reload, around a web view.
+- Hello, in [C#](samples/csharp/Hello/Program.cs) and [F#](samples/fsharp/Hello/Program.fs), publishes with Native AOT as one executable of about 6 MB, since an application links only the classes it uses.
+- Editor, in [C#](samples/csharp/Editor/EditorFrame.cs) and [F#](samples/fsharp/Editor/EditorFrame.fs), is a text editor, with menus, files, find and replace, fonts, and printing.
+- Settings, in [C#](samples/csharp/Settings/SettingsDialog.cs) and [F#](samples/fsharp/Settings/SettingsDialog.fs), is a settings dialog, with pages, a form, pickers, and a validator, translated into German as [Translating an application](docs/translating.md) describes.
+- Checklist, in [C#](samples/csharp/Checklist/ChecklistControl.cs) and [F#](samples/fsharp/Checklist/ChecklistControl.fs), is a control that draws itself, which screen readers read on all three platforms.
+- Browser, in [C#](samples/csharp/Browser/Program.cs) and [F#](samples/fsharp/Browser/Program.fs), is a small web browser, with an address, Back, Forward, and Reload, around a web view.
 
 How WxKit is built is in the [design overview](docs/design/overview.md), and what is still undecided in [Open questions](docs/design/open-questions.md).
 

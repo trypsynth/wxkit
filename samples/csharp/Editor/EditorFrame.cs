@@ -364,7 +364,7 @@ internal sealed class EditorFrame : Frame {
 
 	private TextPrintout CreatePrintout() {
 		using Font? font = _text.Font;
-		return new TextPrintout(DocumentName, _text.Value, font);
+		return new TextPrintout(DocumentName, _text.Value, font?.NativeFontInfoDescription);
 	}
 
 	// The preview takes its printouts, one to show and one for its Print button.
@@ -374,10 +374,17 @@ internal sealed class EditorFrame : Frame {
 		if (preview is null) MessageBox.Show("There is no printer to preview for.", AppName, MessageDialogStyle.Ok | MessageDialogStyle.IconWarning, this);
 	}
 
-	// For the smoke test: makes a preview, which counts and draws the first page, and closes it.
-	internal void PreviewAndClose() {
+	// For the smoke test: makes a preview, waits for it to lay out and draw the first page, which
+	// wxWidgets does the first time it shows one, and closes it. Without a printer, some platforms
+	// can't make a preview.
+	internal async Task PreviewAndCloseAsync() {
 		using PrintDialogData data = new() { PrintData = _printData };
-		PrintPreview.Show(CreatePrintout(), null, this, "Smoke test", data)?.Close(force: true);
+		TextPrintout printout = CreatePrintout();
+		Frame? preview = PrintPreview.Show(printout, null, this, "Smoke test", data);
+		if (preview is null) return;
+		for (int waited = 0; !printout.HasPrinted && waited < 200; waited++) await Task.Delay(50);
+		preview.Close(force: true);
+		if (!printout.HasPrinted) throw new InvalidOperationException("The print preview drew no page.");
 	}
 
 	private void Print() {

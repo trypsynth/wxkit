@@ -4,12 +4,17 @@ namespace Editor;
 
 // The editor's text, wrapped to the page in the editor's font, half an inch from each edge. It
 // draws in screen units, which MapScreenSizeToPage scales to the page, so it can measure the
-// lines with a screen DC before the pages are counted.
-internal sealed class TextPrintout(string title, string text, Font? font) : Printout(title) {
+// lines with a screen DC before the pages are counted. The font is its description, which the
+// printout makes a font from each time it needs one, since it prints after the editor's font, which
+// the editor disposes, is gone.
+internal sealed class TextPrintout(string title, string text, string? fontDescription) : Printout(title) {
 	private readonly List<string> _lines = [];
 	private int _lineHeight = 1;
 	private int _linesPerPage = 1;
 	private int _margin;
+
+	// Whether a page has been printed or previewed, which the smoke test waits for.
+	public bool HasPrinted { get; private set; }
 
 	protected override void OnPreparePrinting() {
 		Size screen = PpiScreen;
@@ -20,6 +25,7 @@ internal sealed class TextPrintout(string title, string text, Font? font) : Prin
 		int height = (int)((long)page.Height * screen.Height / Math.Max(printer.Height, 1));
 		_margin = screen.Height / 2;
 		using ScreenDC measure = new();
+		using Font? font = CreateFont();
 		if (font is not null) measure.Font = font;
 		_lineHeight = Math.Max(measure.CharHeight, 1);
 		_linesPerPage = Math.Max((height - 2 * _margin) / _lineHeight, 1);
@@ -32,6 +38,7 @@ internal sealed class TextPrintout(string title, string text, Font? font) : Prin
 
 	protected override bool OnPrintPage(int page, DC dc) {
 		MapScreenSizeToPage();
+		using Font? font = CreateFont();
 		if (font is not null) dc.Font = font;
 		dc.TextForeground = new Color(0, 0, 0);
 		int y = _margin;
@@ -39,8 +46,11 @@ internal sealed class TextPrintout(string title, string text, Font? font) : Prin
 			dc.DrawText(line, _margin, y);
 			y += _lineHeight;
 		}
+		HasPrinted = true;
 		return true;
 	}
+
+	private Font? CreateFont() => fontDescription is null ? null : new Font(fontDescription);
 
 	// Breaks a line at spaces so each part fits the width, or within a word too long to fit.
 	private void Wrap(string line, int width, DC measure) {

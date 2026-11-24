@@ -21,6 +21,7 @@
 	<Folder Name="/samples/fsharp/">
 		<Project Path="samples/fsharp/Browser/Browser.fsproj" />
 		<Project Path="samples/fsharp/Checklist/Checklist.fsproj" />
+		<Project Path="samples/fsharp/Editor/Editor.fsproj" />
 		<Project Path="samples/fsharp/Hello/Hello.fsproj" />
 		<Project Path="samples/fsharp/Settings/Settings.fsproj" />
 	</Folder>
