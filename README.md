@@ -6,17 +6,17 @@ WxKit 0.1 is the first release that isn't a preview. Its API follows .NET's name
 
 To write a first application, follow [Getting started](docs/getting-started.md). The samples show more:
 
-- [Hello](samples/Hello/Program.cs) publishes with Native AOT as one executable of about 6 MB, since an application links only the classes it uses. [HelloFSharp](samples/HelloFSharp/Program.fs) is its F# counterpart.
-- [Editor](samples/Editor/EditorFrame.cs) is a text editor, with menus, files, find and replace, fonts, and printing.
-- [Settings](samples/Settings/SettingsDialog.cs) is a settings dialog, with pages, a form, pickers, and a validator, translated into German as [Translating an application](docs/translating.md) describes.
-- [Checklist](samples/Checklist/ChecklistControl.cs) is a control that draws itself, which screen readers read on all three platforms.
-- [Browser](samples/Browser/Program.cs) is a small web browser, with an address, Back, Forward, and Reload, around a web view.
+- [Hello](samples/csharp/Hello/Program.cs) publishes with Native AOT as one executable of about 6 MB, since an application links only the classes it uses. [Its F# version](samples/fsharp/Hello/Program.fs) is in `samples/fsharp`, with the samples ported to F# so far.
+- [Editor](samples/csharp/Editor/EditorFrame.cs) is a text editor, with menus, files, find and replace, fonts, and printing.
+- [Settings](samples/csharp/Settings/SettingsDialog.cs) is a settings dialog, with pages, a form, pickers, and a validator, translated into German as [Translating an application](docs/translating.md) describes.
+- [Checklist](samples/csharp/Checklist/ChecklistControl.cs) is a control that draws itself, which screen readers read on all three platforms.
+- [Browser](samples/csharp/Browser/Program.cs) is a small web browser, with an address, Back, Forward, and Reload, around a web view.
 
 How WxKit is built is in the [design overview](docs/design/overview.md), and what is still undecided in [Open questions](docs/design/open-questions.md).
 
 ## Building
 
-The samples build with WxKit's own source and the native libraries `./scripts/build-native.ps1` builds, once there are ones for the machine's runtime. Until then, they use the released WxKit package from nuget.org, so a fresh clone can run one at once, such as with `dotnet run --project samples/Editor`. A sample that uses something newer than the release needs the native build. The tests always do, and fail with a message that says so without it.
+The samples build with WxKit's own source and the native libraries `./scripts/build-native.ps1` builds, once there are ones for the machine's runtime. Until then, they use the released WxKit package from nuget.org, so a fresh clone can run one at once, such as with `dotnet run --project samples/csharp/Editor`. A sample that uses something newer than the release needs the native build. The tests always do, and fail with a message that says so without it.
 
 On Windows, you need the following:
 

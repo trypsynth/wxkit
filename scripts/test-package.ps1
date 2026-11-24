@@ -60,7 +60,7 @@ dotnet build $project -c Release -nologo
 if ($LASTEXITCODE -ne 0) { throw "Building the template's project failed." }
 # The copy keeps the sample's time, older than the build just made, so it is marked as changed now,
 # or the next build would keep the template's program, which waits for a person to close it.
-Copy-Item (Join-Path $root "samples/Hello/Program.cs") $project -Force
+Copy-Item (Join-Path $root "samples/csharp/Hello/Program.cs") $project -Force
 (Get-Item (Join-Path $project "Program.cs")).LastWriteTime = Get-Date
 
 function Test-Executable([string]$Path, [string]$What) {
@@ -102,7 +102,7 @@ dotnet build $fsharp -c Release -nologo
 if ($LASTEXITCODE -ne 0) { throw "Building the F# template's project failed." }
 # Then it publishes the F# sample's code with Native AOT, which can close itself, so WxKit's
 # native library and link targets reach an application through WxKit.FSharp.
-Copy-Item (Join-Path $root "samples/HelloFSharp/Program.fs") $fsharp -Force
+Copy-Item (Join-Path $root "samples/fsharp/Hello/Program.fs") $fsharp -Force
 (Get-Item (Join-Path $fsharp "Program.fs")).LastWriteTime = Get-Date
 $fsharpPublished = Join-Path $fsharp "published"
 dotnet publish $fsharp -c Release -r $Runtime -o $fsharpPublished -nologo

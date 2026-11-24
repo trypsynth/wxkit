@@ -1,6 +1,6 @@
 # Translating an application
 
-WxKit translates an application with [gettext](https://www.gnu.org/software/gettext/), as wxWidgets translates its own text. You mark the strings to translate, the build extracts them into a template for translators, and each language's translations are compiled and embedded in the application. wxWidgets' own text, such as stock button labels, follows the same language, from catalogs WxKit ships for the 46 languages wxWidgets is translated into. The [settings sample](../samples/Settings), translated into German with a language picker, is where this guide's code comes from.
+WxKit translates an application with [gettext](https://www.gnu.org/software/gettext/), as wxWidgets translates its own text. You mark the strings to translate, the build extracts them into a template for translators, and each language's translations are compiled and embedded in the application. wxWidgets' own text, such as stock button labels, follows the same language, from catalogs WxKit ships for the 46 languages wxWidgets is translated into. The [settings sample](../samples/csharp/Settings), translated into German with a language picker, is where this guide's code comes from.
 
 ## Before you begin
 

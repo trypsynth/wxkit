@@ -2,8 +2,8 @@
 
 WxKit is written in C# and designed for C# first. F# is supported too. Visual Basic isn't.
 
-- C# gets the whole API, as [Managed API](managed-api.md) describes. The samples and docs are in C#.
-- F# uses the C# API, and `WxKit.FSharp` adds translation functions and layouts that read as F#. It publishes with Native AOT. The HelloFSharp sample shows it, and CI tests WxKit.FSharp and publishes and runs the sample on every platform.
+- C# gets the whole API, as [Managed API](managed-api.md) describes. The docs are in C#, and each sample is in C# and F#.
+- F# uses the C# API, and `WxKit.FSharp` adds translation functions and layouts that read as F#. It publishes with Native AOT. The samples in `samples/fsharp`, F# versions of the C# ones in `samples/csharp`, show it written as F#, and CI tests WxKit.FSharp and publishes and runs every sample on every platform.
 - Visual Basic isn't supported. It can't use the C#-only source generators that Native AOT relies on, such as System.Text.Json's and `LibraryImport`, so a Visual Basic application can't publish as one native executable, which is much of WxKit's point, and nothing in CI builds or tests it. WxKit's public API used to follow rules only Visual Basic needed, and its translation extractor read Visual Basic. 0.2.0 dropped both, so members can be `required`, and the extractor reads C# and F#.
 
 ## Rules for the public API

@@ -1,10 +1,12 @@
 # Publishes each sample with Native AOT and runs it in smoke test mode, which shows its window,
 # waits for the event loop to start, and exits. This catches what a normal build cannot: a native
-# library missing from the link, or one the published executable still needs beside it. Each
-# sample's executable, and on macOS its app bundle, is named after the sample.
+# library missing from the link, or one the published executable still needs beside it. A sample
+# is a folder in samples/csharp or samples/fsharp, named as csharp/Hello is, and its executable,
+# and on macOS its app bundle, is named after its folder.
 param(
 	[string]$Runtime = "win-x64",
-	[string[]]$Samples = @("Hello", "HelloFSharp", "Editor", "Settings", "Checklist", "Browser"),
+	# Every sample, unless this names some.
+	[string[]]$Samples = @(),
 	[int]$TimeoutSeconds = 30
 )
 $ErrorActionPreference = "Stop"
@@ -19,8 +21,13 @@ if ($IsWindows) {
 	}
 }
 
-# A list given as one string, such as from bash, is "Hello,Editor".
-foreach ($sample in ($Samples -split "," | ForEach-Object { $_.Trim() } | Where-Object { $_ })) {
+# A list given as one string, such as from bash, is "csharp/Hello,fsharp/Hello".
+$Samples = @($Samples -split "," | ForEach-Object { $_.Trim() } | Where-Object { $_ })
+if ($Samples.Count -eq 0) {
+	$Samples = @(Get-ChildItem (Join-Path $root "samples/*/*/*.*proj") | ForEach-Object { "$($_.Directory.Parent.Name)/$($_.Directory.Name)" })
+}
+foreach ($sample in $Samples) {
+	$name = Split-Path $sample -Leaf
 	$output = Join-Path $root "artifacts/aot/$Runtime/$sample"
 	Remove-Item -Recurse -Force $output -ErrorAction SilentlyContinue
 	# Native AOT analyzes the whole application as it compiles it, so a trim or AOT warning, which
@@ -33,14 +40,14 @@ foreach ($sample in ($Samples -split "," | ForEach-Object { $_.Trim() } | Where-
 	# On macOS, the publish makes an app bundle too, which is what an application ships, so the
 	# test checks its Info.plist and signature, and runs the executable inside it.
 	if ($IsMacOS) {
-		$bundle = Join-Path $output "$sample.app"
+		$bundle = Join-Path $output "$name.app"
 		plutil -lint (Join-Path $bundle "Contents/Info.plist") | Out-Null
 		if ($LASTEXITCODE -ne 0) { throw "The $sample sample's Info.plist is not valid." }
 		codesign --verify --strict $bundle
 		if ($LASTEXITCODE -ne 0) { throw "The $sample sample's bundle is not validly signed." }
-		$executable = Join-Path $bundle "Contents/MacOS/$sample"
+		$executable = Join-Path $bundle "Contents/MacOS/$name"
 	} else {
-		$executable = Join-Path $output ($IsWindows ? "$sample.exe" : $sample)
+		$executable = Join-Path $output ($IsWindows ? "$name.exe" : $name)
 	}
 	$extras = Get-ChildItem $output -File | Where-Object { $_.Name -like "*wxkitnative*" }
 	if ($extras) { throw "The published $sample sample still ships $($extras.Name -join ', ') beside it." }

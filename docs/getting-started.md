@@ -12,7 +12,7 @@ Publishing with Native AOT needs a native toolchain, as any Native AOT publish d
 - On Linux, `clang` and zlib's development files, such as Ubuntu's `zlib1g-dev`.
 - On macOS, Xcode's command line tools.
 
-This guide uses C#. F# works as well, with the `WxKit.FSharp` package, whose translation functions and layouts read as F#, and the [F# sample](../samples/HelloFSharp/Program.fs) is the C# Hello sample's counterpart, which CI publishes with Native AOT. Visual Basic isn't supported, as [Language support](design/languages.md) explains.
+This guide uses C#. F# works as well, with the `WxKit.FSharp` package, whose translation functions and layouts read as F#, and the [F# sample](../samples/fsharp/Hello/Program.fs) is the C# Hello sample's counterpart, which CI publishes with Native AOT. Visual Basic isn't supported, as [Language support](design/languages.md) explains.
 
 ## Create the project
 
@@ -157,7 +157,7 @@ A sizer places a window's children, and moves and resizes them with the window. 
 - `Expand()` fills the space across the sizer's direction, so the list is as wide as the window.
 - `Border()` puts the platform's usual space around a control, and `Border(Direction.Left | Direction.Right)` puts it on those sides only.
 
-Setting the panel's `Sizer` gives the sizer to the panel, which owns it from then on. For a grid of labels and fields, use a `FlexGridSizer` or a `GridBagSizer`, as the [settings sample](../samples/Settings/SettingsDialog.cs) does.
+Setting the panel's `Sizer` gives the sizer to the panel, which owns it from then on. For a grid of labels and fields, use a `FlexGridSizer` or a `GridBagSizer`, as the [settings sample](../samples/csharp/Settings/SettingsDialog.cs) does.
 
 ## Handle events
 
@@ -176,7 +176,7 @@ Two more rules apply to handlers:
 
 ## Add menus and dialogs
 
-A menu item with a standard id, such as `StandardId.Save`, gets the platform's usual label and shortcut, such as Ctrl+S on Windows and Linux and Command+S on macOS. For a command of your own, pass an id above the ones wxWidgets keeps, such as 6001, and a label, as the [text editor sample](../samples/Editor/EditorFrame.cs) does. On macOS, wxWidgets moves About and Exit to the application menu, and names Exit Quit.
+A menu item with a standard id, such as `StandardId.Save`, gets the platform's usual label and shortcut, such as Ctrl+S on Windows and Linux and Command+S on macOS. For a command of your own, pass an id above the ones wxWidgets keeps, such as 6001, and a label, as the [text editor sample](../samples/csharp/Editor/EditorFrame.cs) does. On macOS, wxWidgets moves About and Exit to the application menu, and names Exit Quit.
 
 `MessageBox.Show` and a dialog's `ShowModal` return the id of the button that closed them, such as `StandardId.Yes` or `StandardId.Ok`. Unlike a control, a dialog is disposed of when you're done with it, as the `using` declaration does with the file dialog.
 
@@ -206,10 +206,10 @@ On Windows, if publishing fails with "'vswhere.exe' is not recognized", add `%Pr
 
 ## Next steps
 
-- The [Hello sample](../samples/Hello/Program.cs) adds a timer and an async handler, and the [F# sample](../samples/HelloFSharp/Program.fs) shows the same API from F#.
-- The [text editor sample](../samples/Editor/EditorFrame.cs) is a frame of its own class, with files opened and saved without blocking, find and replace, fonts, word wrap, and printing.
-- The [settings sample](../samples/Settings/SettingsDialog.cs) is a settings dialog with a notebook of pages, a grid bag layout, pickers, a scrolled page, and a validator. It's translated into German.
-- The [checklist sample](../samples/Checklist/ChecklistControl.cs) is a control that draws itself, and describes itself to screen readers on Windows, macOS, and Linux.
+- The [Hello sample](../samples/csharp/Hello/Program.cs) adds a timer and an async handler, and the [F# sample](../samples/fsharp/Hello/Program.fs) shows the same API from F#.
+- The [text editor sample](../samples/csharp/Editor/EditorFrame.cs) is a frame of its own class, with files opened and saved without blocking, find and replace, fonts, word wrap, and printing.
+- The [settings sample](../samples/csharp/Settings/SettingsDialog.cs) is a settings dialog with a notebook of pages, a grid bag layout, pickers, a scrolled page, and a validator. It's translated into German.
+- The [checklist sample](../samples/csharp/Checklist/ChecklistControl.cs) is a control that draws itself, and describes itself to screen readers on Windows, macOS, and Linux.
 - [Translating an application](translating.md) shows how to translate your text, and have wxWidgets' own text follow the same language.
 - The [managed API](design/managed-api.md) explains how WxKit maps wxWidgets to .NET: naming, object lifetimes, events, threading, and accessibility.
 - [Building and packaging](design/building-and-packaging.md) covers Native AOT, static linking, and macOS app bundles in depth.

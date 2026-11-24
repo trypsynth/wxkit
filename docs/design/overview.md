@@ -64,7 +64,7 @@ A call goes down the layers: `button.Label = "Save"` pins the string and calls `
 - `src/WxKit.Native`: the native packages.
 - `src/WxKit.Generator`: the generator, which is not packed.
 - `tests/WxKit.Tests`, `tests/WxKit.Generator.Tests`, and `tests/WxKit.Build.Tests`: the tests of the managed API, the generator, and the MSBuild targets.
-- `samples`: Hello, its F# counterpart HelloFSharp, a text editor, a translated settings dialog, a checklist control that draws itself, and a browser around a web view.
+- `samples`: in `csharp` and `fsharp`, each in both languages: Hello, a text editor, a translated settings dialog, a checklist control that draws itself, and a browser around a web view.
 - `scripts`: building the native libraries, generating, packing, and testing the packages and Native AOT.
 - `docs`: the guides, these design documents, and each release's notes, in `docs/releases`.
 

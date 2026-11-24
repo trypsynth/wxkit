@@ -1,0 +1,23 @@
+<Project>
+
+	<Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
+	<!--
+		What every sample is: a desktop application, published with Native AOT, for the machine's own
+		system and architecture unless the publish names another. Each sample's project adds its title
+		and identifier, which on macOS name the app bundle, and what it needs beyond these.
+	-->
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net10.0</TargetFramework>
+		<_SampleSystem Condition="$([MSBuild]::IsOSPlatform('Linux'))">linux</_SampleSystem>
+		<_SampleSystem Condition="$([MSBuild]::IsOSPlatform('OSX'))">osx</_SampleSystem>
+		<_SampleSystem Condition="'$(_SampleSystem)' == ''">win</_SampleSystem>
+		<_SampleArchitecture Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64'">arm64</_SampleArchitecture>
+		<_SampleArchitecture Condition="'$(_SampleArchitecture)' == ''">x64</_SampleArchitecture>
+		<RuntimeIdentifier Condition="'$(RuntimeIdentifier)' == ''">$(_SampleSystem)-$(_SampleArchitecture)</RuntimeIdentifier>
+		<PublishAot>true</PublishAot>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+</Project>
