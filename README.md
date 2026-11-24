@@ -13,6 +13,7 @@ To write a first application, follow [Getting started](docs/getting-started.md).
 - Library, in [C#](samples/csharp/Library/LibraryFrame.cs) and [F#](samples/fsharp/Library/LibraryFrame.fs), is a list of books in a data view, whose model gives the rows on screen as it draws them, filtered as a search is typed, with a column of check boxes.
 - Checksums, in [C#](samples/csharp/Checksums/ChecksumsFrame.cs) and [F#](samples/fsharp/Checksums/ChecksumsFrame.fs), hashes a folder's files on another thread, with a progress dialog that can cancel it.
 - Scrapbook, in [C#](samples/csharp/Scrapbook/ScrapbookFrame.cs) and [F#](samples/fsharp/Scrapbook/ScrapbookFrame.fs), keeps snippets of text and lists of files, pasted or dropped in, and copied or dragged back out.
+- ProjectWizard, in [C#](samples/csharp/ProjectWizard/NewProjectWizard.cs) and [F#](samples/fsharp/ProjectWizard/NewProjectWizard.fs), is a wizard that skips a page that doesn't apply and keeps you on a page until it's filled in.
 - Browser, in [C#](samples/csharp/Browser/Program.cs) and [F#](samples/fsharp/Browser/Program.fs), is a small web browser, with an address, Back, Forward, and Reload, around a web view.
 
 How WxKit is built is in the [design overview](docs/design/overview.md), and what is still undecided in [Open questions](docs/design/open-questions.md).
