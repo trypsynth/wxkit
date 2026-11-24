@@ -30,6 +30,11 @@
 		<Using Include="WxKit.Timer" Alias="Timer" />
 	</ItemGroup>
 
+	<!-- An F# record, union, or exception gets a ToString that prints it with %A, by reflection, which Native AOT can't keep, so publishing warns. With reflectionfree, F# gives them none, and ToString is object's, unless the type overrides it. Set WxKitReflectionFree to false to leave it out. -->
+	<PropertyGroup Condition="'$(WxKitReflectionFree)' != 'false' and '$(MSBuildProjectExtension)' == '.fsproj' and '$(PublishAot)' == 'true'">
+		<OtherFlags>$(OtherFlags) --reflectionfree</OtherFlags>
+	</PropertyGroup>
+
 	<!--
 		wxWidgets' own text, such as stock button labels and the text of its dialogs, is translated
 		from its catalogs, which are embedded for each language the application has, so that it

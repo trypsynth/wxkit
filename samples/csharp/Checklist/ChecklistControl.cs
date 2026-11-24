@@ -11,7 +11,7 @@ internal sealed class ChecklistControl : Panel {
 	private int _current;
 
 	public ChecklistControl(Window parent, IEnumerable<string> items) : base(parent, style: WindowStyle.WantsChars) {
-		_items = [.. items.Select(static text => new ChecklistItem(text))];
+		_items = [.. items.Select(static text => new ChecklistItem { Text = text })];
 		// A window that draws itself has no name of its own, so it takes the label's, which macOS
 		// needs given, and Windows also finds as the label before the control.
 		if (PreviousSibling is StaticText label) SetAccessibleName(label.LabelText);
@@ -136,8 +136,9 @@ internal sealed class ChecklistControl : Panel {
 	}
 }
 
-internal sealed class ChecklistItem(string text) {
-	public string Text { get; } = text;
+// An item on the list, which has to be given its text, and starts not done.
+internal sealed class ChecklistItem {
+	public required string Text { get; init; }
 
 	public bool IsDone { get; set; }
 }
