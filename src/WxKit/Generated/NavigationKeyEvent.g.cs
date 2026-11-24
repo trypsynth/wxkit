@@ -19,7 +19,7 @@ public unsafe partial class NavigationKeyEvent : Event {
 	}
 
 	/// <summary>Returns true if the navigation was in the forward direction.</summary>
-	public bool Direction {
+	public bool IsForward {
 		get => WxKitNative.NavigationKeyEventGetDirection(Handle) != 0;
 		set => WxKitNative.NavigationKeyEventSetDirection(Handle, value ? (byte)1 : (byte)0);
 	}

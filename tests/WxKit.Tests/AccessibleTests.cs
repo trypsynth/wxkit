@@ -12,7 +12,7 @@ public class AccessibleTests {
 		Assert.SkipUnless(OperatingSystem.IsWindows(), "Microsoft Active Accessibility is Windows's.");
 		Panel board = new(frame);
 		BoardAccessible accessible = new(board);
-		Assert.Same(accessible, board.AccessibleObject);
+		Assert.Same(accessible, board.Accessible);
 		IAccessible msaa = Msaa.Of(board);
 		Assert.Equal("Board", msaa.GetName(0));
 		Assert.Equal(Msaa.RoleTable, msaa.GetRole(0));
@@ -90,7 +90,7 @@ public class AccessibleTests {
 		Panel panel = new(frame);
 		_ = new NameOnly(panel);
 		BoardAccessible second = new(panel);
-		Assert.Same(second, panel.AccessibleObject);
+		Assert.Same(second, panel.Accessible);
 		Assert.Equal("Board", Msaa.Of(panel).GetName(0));
 	});
 
@@ -99,16 +99,17 @@ public class AccessibleTests {
 		Assert.SkipUnless(OperatingSystem.IsWindows(), "Microsoft Active Accessibility is Windows's.");
 		Panel panel = new(frame);
 		_ = new NameOnly(panel);
-		Assert.NotNull(panel.AccessibleObject);
+		Assert.NotNull(panel.Accessible);
 		panel.Destroy();
-		Assert.Null(panel.AccessibleObject);
+		Assert.Null(panel.Accessible);
 	});
 
 	[Fact]
 	public Task NotifiesScreenReaders() => Gui.WithFrame(frame => {
 		Panel board = new(frame);
 		_ = new BoardAccessible(board);
-		Accessible.NotifyEvent(AccessibleEvent.ObjectFocus, board, AccessibleObject.Client, 5);
+		Accessible.NotifyEvent(AccessibleEvent.ObjectFocus, board, AccessibleObjectId.Client, 5);
+		Accessible.NotifyEvent(AccessibleEvent.ObjectNameChange, board, 5);
 	});
 
 	// A three by three board, with the middle cell focused and marked.

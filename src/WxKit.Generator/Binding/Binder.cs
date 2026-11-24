@@ -679,10 +679,10 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		ClassTweak tweak = bound.Tweak;
 		List<DoxygenEvent> events = [.. bound.Source.Events, .. tweak.AddedEvents.Select(static added => new DoxygenEvent(added.Macro, added.Constant, added.EventClass, string.Empty))];
 		HashSet<string> macros = [.. events.Select(static found => found.Macro)];
-		foreach (string named in tweak.EventNames.Keys) {
+		foreach (string named in tweak.EventNames.Keys.Concat(tweak.IgnoredEvents)) {
 			if (!macros.Contains(named)) throw new InvalidOperationException($"A tweak names the event {named} of {bound.CppName}, which its event table does not list.");
 		}
-		foreach (DoxygenEvent found in events) {
+		foreach (DoxygenEvent found in events.Where(found => !tweak.IgnoredEvents.Contains(found.Macro))) {
 			// With a list of members to bind, events are bound only when a tweak names them too.
 			if (!tweak.EventNames.TryGetValue(found.Macro, out string? name)) {
 				if (tweak.OnlyMembers is not null) continue;

@@ -13,6 +13,8 @@ internal static class Events {
 		tweaks.Enum("wxKeyCode", "KeyCode");
 		// Which way, and how, the focus moves, as Tab and Shift+Tab move it.
 		tweaks.Enum("wxNavigationKeyEvent::wxNavigationKeyEventFlags", "NavigationFlags", isFlags: true);
+		// Whether the focus moves forward, a bool, which a Direction property would read as the enum.
+		tweaks.Class("wxNavigationKeyEvent").Property("IsForward", "GetDirection", "SetDirection");
 		tweaks.Enum("wxKeyModifier", "KeyModifiers", isFlags: true);
 		tweaks.Class("wxKeyEvent", e => e.ParameterEnum("GetKeyCode", "return", "wxKeyCode").ParameterEnum("GetModifiers", "return", "wxKeyModifier"));
 		// Button(button) asks whether the event came from that button. GetButton is the Button

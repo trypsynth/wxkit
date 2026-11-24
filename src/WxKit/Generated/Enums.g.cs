@@ -92,7 +92,7 @@ public enum AccessibleEvent {
 }
 
 /// <summary>Wraps wxAccObject.</summary>
-public enum AccessibleObject {
+public enum AccessibleObjectId {
 	/// <summary>Wraps wxOBJID_WINDOW.</summary>
 	Window = 0,
 	/// <summary>Wraps wxOBJID_SYSMENU.</summary>
@@ -986,7 +986,7 @@ public enum FullScreenStyle {
 }
 
 /// <summary>Wraps wxHitTest.</summary>
-public enum HitTest {
+public enum HitTestResult {
 	/// <summary>Wraps wxHT_NOWHERE.</summary>
 	Nowhere = 0,
 	/// <summary>Wraps wxHT_SCROLLBAR_FIRST.</summary>
@@ -1568,7 +1568,7 @@ public enum Origin {
 }
 
 /// <summary>Wraps wxPaperSize.</summary>
-public enum PaperSize {
+public enum PaperKind {
 	/// <summary>10 x 11 in. Wraps wxPAPER_10X11.</summary>
 	One0x11 = 45,
 	/// <summary>10-by-14-inch sheet. Wraps wxPAPER_10X14.</summary>

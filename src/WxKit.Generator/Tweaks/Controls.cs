@@ -87,7 +87,9 @@ internal static class Controls {
 		// a tool nobody owns are left out. Deleting tools is written by hand, since the toolbar marks
 		// their objects destroyed. A tool's setters only change what the tool records, not what the
 		// toolbar shows, so its state is written by hand, through the toolbar.
+		// EVT_MENU is EVT_TOOL, which ToolClicked is, and a Menu event would hide the Menu class.
 		tweaks.Class("wxToolBar", toolBar => toolBar
+			.IgnoreEvent("EVT_MENU")
 			.Internal("DeleteTool", "DeleteToolByPos", "ClearTools")
 			.Ignore("CreateTool", "CreateSeparator", "RemoveTool", "GetToolClientData", "SetToolClientData")
 			.Rename("GetToolByPos", "GetToolByPosition")

@@ -5,20 +5,20 @@ WXK_FUNCTION(void) wxk_NavigationKeyEvent_SetFlags(wxk_Event* self, int64_t flag
 	wxk::Guard([&] { static_cast<wxNavigationKeyEvent*>(wxk::Unwrap(self))->SetFlags(static_cast<long>(flags)); });
 }
 
-WXK_FUNCTION(wxk_Window*) wxk_NavigationKeyEvent_GetCurrentFocus(wxk_Event* self) noexcept {
-	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(static_cast<wxNavigationKeyEvent*>(wxk::Unwrap(self))->GetCurrentFocus())); });
-}
-
-WXK_FUNCTION(void) wxk_NavigationKeyEvent_SetCurrentFocus(wxk_Event* self, wxk_Window* currentFocus) noexcept {
-	wxk::Guard([&] { static_cast<wxNavigationKeyEvent*>(wxk::Unwrap(self))->SetCurrentFocus(static_cast<wxWindow*>(wxk::Unwrap(currentFocus))); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_NavigationKeyEvent_GetDirection(wxk_Event* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxNavigationKeyEvent*>(wxk::Unwrap(self))->GetDirection()) ? 1 : 0; });
 }
 
 WXK_FUNCTION(void) wxk_NavigationKeyEvent_SetDirection(wxk_Event* self, uint8_t direction) noexcept {
 	wxk::Guard([&] { static_cast<wxNavigationKeyEvent*>(wxk::Unwrap(self))->SetDirection(direction != 0); });
+}
+
+WXK_FUNCTION(wxk_Window*) wxk_NavigationKeyEvent_GetCurrentFocus(wxk_Event* self) noexcept {
+	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(static_cast<wxNavigationKeyEvent*>(wxk::Unwrap(self))->GetCurrentFocus())); });
+}
+
+WXK_FUNCTION(void) wxk_NavigationKeyEvent_SetCurrentFocus(wxk_Event* self, wxk_Window* currentFocus) noexcept {
+	wxk::Guard([&] { static_cast<wxNavigationKeyEvent*>(wxk::Unwrap(self))->SetCurrentFocus(static_cast<wxWindow*>(wxk::Unwrap(currentFocus))); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_NavigationKeyEvent_IsFromTab(wxk_Event* self) noexcept {

@@ -116,4 +116,24 @@ public class WindowTests {
 	private sealed class LabeledFrame() : Frame(null, "Derived") {
 		public string Note { get; set; } = string.Empty;
 	}
+
+	// Code inside a control can name WxKit's types and .NET's, which a member of the same name would hide.
+	[Fact]
+	public Task NamesTypesFromInsideAControl() => Gui.WithFrame(frame => {
+		Board board = new(frame);
+		Assert.True(board.Check());
+		Assert.NotNull(new Tools(frame).MakeMenu());
+	});
+
+	private sealed class Board(Window parent) : Panel(parent) {
+		public bool Check() {
+			Accessible.NotifyEvent(AccessibleEvent.ObjectFocus, this, AccessibleObjectId.Client, 0);
+			HitTestResult result = HitTest(new Point(1, 1));
+			return Enum.IsDefined(result) && Char.IsDigit('1');
+		}
+	}
+
+	private sealed class Tools(Window parent) : ToolBar(parent) {
+		public Menu MakeMenu() => new();
+	}
 }

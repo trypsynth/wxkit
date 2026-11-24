@@ -87,9 +87,9 @@ public unsafe partial class Window {
 	private PartsAccessible? DescribedByParts() {
 		_ = Native;
 		if (!OperatingSystem.IsWindows()) return null;
-		if (AccessibleObject is PartsAccessible parts) return parts;
+		if (Accessible is PartsAccessible parts) return parts;
 		// Only Windows asks an Accessible, so elsewhere one sits beside the parts and rows wxWidgets shows.
-		if (AccessibleObject is not null) throw new InvalidOperationException("The window is described by an Accessible of its own, which its parts or rows would replace.");
+		if (Accessible is not null) throw new InvalidOperationException("The window is described by an Accessible of its own, which its parts or rows would replace.");
 		return new PartsAccessible(this);
 	}
 }
@@ -204,5 +204,5 @@ internal sealed class PartsAccessible(Window window) : Accessible(window) {
 
 	private static string Name(AccessibleRow row) => string.Join(", ", row.Cells.Select(static cell => cell.Label).Where(static label => label.Length > 0));
 
-	private void Notify(AccessibleEvent eventType, int childId) => NotifyEvent(eventType, Window, AccessibleObject.Client, childId);
+	private void Notify(AccessibleEvent eventType, int childId) => NotifyEvent(eventType, Window, childId);
 }

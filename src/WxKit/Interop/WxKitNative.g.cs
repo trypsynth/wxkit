@@ -6066,14 +6066,6 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void NavigationKeyEventSetFlags(WxkEvent* self, long flags);
 
-	[LibraryImport(Library, EntryPoint = "wxk_NavigationKeyEvent_GetCurrentFocus")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkWindow* NavigationKeyEventGetCurrentFocus(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_NavigationKeyEvent_SetCurrentFocus")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void NavigationKeyEventSetCurrentFocus(WxkEvent* self, WxkWindow* currentFocus);
-
 	[LibraryImport(Library, EntryPoint = "wxk_NavigationKeyEvent_GetDirection")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte NavigationKeyEventGetDirection(WxkEvent* self);
@@ -6081,6 +6073,14 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_NavigationKeyEvent_SetDirection")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void NavigationKeyEventSetDirection(WxkEvent* self, byte direction);
+
+	[LibraryImport(Library, EntryPoint = "wxk_NavigationKeyEvent_GetCurrentFocus")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* NavigationKeyEventGetCurrentFocus(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_NavigationKeyEvent_SetCurrentFocus")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void NavigationKeyEventSetCurrentFocus(WxkEvent* self, WxkWindow* currentFocus);
 
 	[LibraryImport(Library, EntryPoint = "wxk_NavigationKeyEvent_IsFromTab")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -6210,6 +6210,14 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* PageSetupDialogDataNewPrintData(WxkObject* printData);
 
+	[LibraryImport(Library, EntryPoint = "wxk_PageSetupDialogData_GetPaperId")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int PageSetupDialogDataGetPaperId(WxkObject* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_PageSetupDialogData_SetPaperId")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void PageSetupDialogDataSetPaperId(WxkObject* self, int id);
+
 	[LibraryImport(Library, EntryPoint = "wxk_PageSetupDialogData_GetEnableHelp")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte PageSetupDialogDataGetEnableHelp(WxkObject* self);
@@ -6297,14 +6305,6 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_PageSetupDialogData_SetMinMarginTopLeft")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void PageSetupDialogDataSetMinMarginTopLeft(WxkObject* self, Point point);
-
-	[LibraryImport(Library, EntryPoint = "wxk_PageSetupDialogData_GetPaperId")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int PageSetupDialogDataGetPaperId(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_PageSetupDialogData_SetPaperId")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void PageSetupDialogDataSetPaperId(WxkObject* self, int id);
 
 	[LibraryImport(Library, EntryPoint = "wxk_PageSetupDialogData_GetPaperSize")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -6490,6 +6490,22 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void PrintDataSetPaperSize(WxkObject* self, Size size);
 
+	[LibraryImport(Library, EntryPoint = "wxk_PrintData_GetPaperId")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int PrintDataGetPaperId(WxkObject* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_PrintData_SetPaperId")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void PrintDataSetPaperId(WxkObject* self, int paperId);
+
+	[LibraryImport(Library, EntryPoint = "wxk_PrintData_GetColour")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte PrintDataGetColour(WxkObject* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_PrintData_SetColour")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void PrintDataSetColour(WxkObject* self, byte flag);
+
 	[LibraryImport(Library, EntryPoint = "wxk_PrintData_GetBin")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int PrintDataGetBin(WxkObject* self);
@@ -6505,14 +6521,6 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_PrintData_SetCollate")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void PrintDataSetCollate(WxkObject* self, byte flag);
-
-	[LibraryImport(Library, EntryPoint = "wxk_PrintData_GetColour")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte PrintDataGetColour(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_PrintData_SetColour")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void PrintDataSetColour(WxkObject* self, byte flag);
 
 	[LibraryImport(Library, EntryPoint = "wxk_PrintData_GetDuplex")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -6537,14 +6545,6 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_PrintData_SetOrientation")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void PrintDataSetOrientation(WxkObject* self, int orientation);
-
-	[LibraryImport(Library, EntryPoint = "wxk_PrintData_GetPaperId")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int PrintDataGetPaperId(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_PrintData_SetPaperId")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void PrintDataSetPaperId(WxkObject* self, int paperId);
 
 	[LibraryImport(Library, EntryPoint = "wxk_PrintData_GetPrinterName")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

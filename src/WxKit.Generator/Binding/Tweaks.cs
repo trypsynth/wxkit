@@ -378,6 +378,14 @@ internal sealed class ClassTweak(string name) {
 		return this;
 	}
 
+	/// <summary>Events a class's event table lists that aren't bound, such as one another already is under another name.</summary>
+	public HashSet<string> IgnoredEvents { get; } = new(StringComparer.Ordinal);
+
+	public ClassTweak IgnoreEvent(params string[] macros) {
+		IgnoredEvents.UnionWith(macros);
+		return this;
+	}
+
 	/// <summary>Names the event a class's event table lists under <paramref name="macro"/>.</summary>
 	public ClassTweak Event(string macro, string eventName) {
 		EventNames[macro] = eventName;

@@ -12,6 +12,22 @@ WXK_FUNCTION(void) wxk_PrintData_SetPaperSize(wxk_Object* self, wxk_Size size) n
 	wxk::Guard([&] { static_cast<wxPrintData*>(wxk::Unwrap(self))->SetPaperSize(wxk::FromSize(size)); });
 }
 
+WXK_FUNCTION(int32_t) wxk_PrintData_GetPaperId(wxk_Object* self) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxPrintData*>(wxk::Unwrap(self))->GetPaperId()); });
+}
+
+WXK_FUNCTION(void) wxk_PrintData_SetPaperId(wxk_Object* self, int32_t paperId) noexcept {
+	wxk::Guard([&] { static_cast<wxPrintData*>(wxk::Unwrap(self))->SetPaperId(static_cast<wxPaperSize>(paperId)); });
+}
+
+WXK_FUNCTION(uint8_t) wxk_PrintData_GetColour(wxk_Object* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxPrintData*>(wxk::Unwrap(self))->GetColour()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(void) wxk_PrintData_SetColour(wxk_Object* self, uint8_t flag) noexcept {
+	wxk::Guard([&] { static_cast<wxPrintData*>(wxk::Unwrap(self))->SetColour(flag != 0); });
+}
+
 WXK_FUNCTION(int32_t) wxk_PrintData_GetBin(wxk_Object* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxPrintData*>(wxk::Unwrap(self))->GetBin()); });
 }
@@ -26,14 +42,6 @@ WXK_FUNCTION(uint8_t) wxk_PrintData_GetCollate(wxk_Object* self) noexcept {
 
 WXK_FUNCTION(void) wxk_PrintData_SetCollate(wxk_Object* self, uint8_t flag) noexcept {
 	wxk::Guard([&] { static_cast<wxPrintData*>(wxk::Unwrap(self))->SetCollate(flag != 0); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_PrintData_GetColour(wxk_Object* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxPrintData*>(wxk::Unwrap(self))->GetColour()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(void) wxk_PrintData_SetColour(wxk_Object* self, uint8_t flag) noexcept {
-	wxk::Guard([&] { static_cast<wxPrintData*>(wxk::Unwrap(self))->SetColour(flag != 0); });
 }
 
 WXK_FUNCTION(int32_t) wxk_PrintData_GetDuplex(wxk_Object* self) noexcept {
@@ -58,14 +66,6 @@ WXK_FUNCTION(int32_t) wxk_PrintData_GetOrientation(wxk_Object* self) noexcept {
 
 WXK_FUNCTION(void) wxk_PrintData_SetOrientation(wxk_Object* self, int32_t orientation) noexcept {
 	wxk::Guard([&] { static_cast<wxPrintData*>(wxk::Unwrap(self))->SetOrientation(static_cast<wxPrintOrientation>(orientation)); });
-}
-
-WXK_FUNCTION(int32_t) wxk_PrintData_GetPaperId(wxk_Object* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxPrintData*>(wxk::Unwrap(self))->GetPaperId()); });
-}
-
-WXK_FUNCTION(void) wxk_PrintData_SetPaperId(wxk_Object* self, int32_t paperId) noexcept {
-	wxk::Guard([&] { static_cast<wxPrintData*>(wxk::Unwrap(self))->SetPaperId(static_cast<wxPaperSize>(paperId)); });
 }
 
 WXK_FUNCTION(wxk_String*) wxk_PrintData_GetPrinterName(wxk_Object* self) noexcept {

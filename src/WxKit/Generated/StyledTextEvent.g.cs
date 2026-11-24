@@ -9,19 +9,13 @@ public unsafe partial class StyledTextEvent : CommandEvent {
 	internal StyledTextEvent(WxkEvent* native) : base(native) {
 	}
 
-	/// <summary>Returns true if the Alt key is pressed.</summary>
-	public bool Alt => WxKitNative.StyledTextEventGetAlt(Handle) != 0;
-
 	/// <summary>Returns the number of lines that have been added to or removed from an annotation.</summary>
 	public int AnnotationsLinesAdded => WxKitNative.StyledTextEventGetAnnotationsLinesAdded(Handle);
 
-	/// <summary>Returns true if the Control key is pressed.</summary>
-	public bool Control => WxKitNative.StyledTextEventGetControl(Handle) != 0;
-
 	/// <summary>Returns flags for the drag operation associated with this event.</summary>
-	public int DragFlags {
-		get => WxKitNative.StyledTextEventGetDragFlags(Handle);
-		set => WxKitNative.StyledTextEventSetDragFlags(Handle, value);
+	public DragFlags DragFlags {
+		get => (DragFlags)WxKitNative.StyledTextEventGetDragFlags(Handle);
+		set => WxKitNative.StyledTextEventSetDragFlags(Handle, (int)value);
 	}
 
 	/// <summary>Returns drag result for this event.</summary>
@@ -41,6 +35,15 @@ public unsafe partial class StyledTextEvent : CommandEvent {
 		get => WxKitNative.StyledTextEventGetFoldLevelPrev(Handle);
 		set => WxKitNative.StyledTextEventSetFoldLevelPrev(Handle, value);
 	}
+
+	/// <summary>Returns true if the Alt key is pressed.</summary>
+	public bool IsAltDown => WxKitNative.StyledTextEventGetAlt(Handle) != 0;
+
+	/// <summary>Returns true if the Control key is pressed.</summary>
+	public bool IsControlDown => WxKitNative.StyledTextEventGetControl(Handle) != 0;
+
+	/// <summary>Returns true if the Shift key is pressed.</summary>
+	public bool IsShiftDown => WxKitNative.StyledTextEventGetShift(Handle) != 0;
 
 	/// <summary>Returns the key code of the key that generated this event.</summary>
 	public int Key {
@@ -113,9 +116,6 @@ public unsafe partial class StyledTextEvent : CommandEvent {
 		get => WxKitNative.StyledTextEventGetPosition(Handle);
 		set => WxKitNative.StyledTextEventSetPosition(Handle, value);
 	}
-
-	/// <summary>Returns true if the Shift key is pressed.</summary>
-	public bool Shift => WxKitNative.StyledTextEventGetShift(Handle) != 0;
 
 	/// <summary>Returns the token value for this event.</summary>
 	public int Token {

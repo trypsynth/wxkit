@@ -38,7 +38,7 @@ public abstract unsafe class Accessible : IDirected {
 		ArgumentNullException.ThrowIfNull(window);
 		Application.VerifyAccess();
 		Window = window;
-		window.AccessibleObject = this;
+		window.Accessible = this;
 		// Only Windows asks, through Microsoft Active Accessibility. Elsewhere the window keeps the
 		// accessibility its port gives it.
 		if (!OperatingSystem.IsWindows()) return;
@@ -47,7 +47,7 @@ public abstract unsafe class Accessible : IDirected {
 		_native = WxKitNative.AccessibleNew((void*)GCHandle.ToIntPtr(handle), window.Native);
 		if (_native is null) {
 			handle.Free();
-			window.AccessibleObject = null;
+			window.Accessible = null;
 			throw new InvalidOperationException("The window could not be given an accessible object.");
 		}
 		if (WxKitNative.WindowGiveAccessible(window.Native, _native) == 0) {
@@ -68,13 +68,23 @@ public abstract unsafe class Accessible : IDirected {
 	/// </summary>
 	/// <param name="eventType">What changed, such as <see cref="AccessibleEvent.ObjectFocus"/>.</param>
 	/// <param name="window">The window it changed in.</param>
-	/// <param name="objectType">Which of the window's objects, usually <see cref="AccessibleObject.Client"/>.</param>
+	/// <param name="objectType">Which of the window's objects, usually <see cref="AccessibleObjectId.Client"/>.</param>
 	/// <param name="objectId">The part that changed, or 0 for the window itself.</param>
-	public static void NotifyEvent(AccessibleEvent eventType, Window window, AccessibleObject objectType, int objectId) {
+	public static void NotifyEvent(AccessibleEvent eventType, Window window, AccessibleObjectId objectType, int objectId) {
 		ArgumentNullException.ThrowIfNull(window);
 		Application.VerifyAccess();
 		WxKitNative.AccessibleNotifyEvent((int)eventType, window.Native, (int)objectType, objectId);
 	}
+
+	/// <summary>
+	/// Tells screen readers that something changed in the window's client area, where a control's parts
+	/// are, as <see cref="NotifyEvent(AccessibleEvent, Window, AccessibleObjectId, int)"/> does with
+	/// <see cref="AccessibleObjectId.Client"/>.
+	/// </summary>
+	/// <param name="eventType">What changed, such as <see cref="AccessibleEvent.ObjectFocus"/>.</param>
+	/// <param name="window">The window it changed in.</param>
+	/// <param name="objectId">The part that changed, or 0 for the window itself.</param>
+	public static void NotifyEvent(AccessibleEvent eventType, Window window, int objectId) => NotifyEvent(eventType, window, AccessibleObjectId.Client, objectId);
 
 	/// <summary>The name of the window or a part, which a screen reader says first, such as a cell's text.</summary>
 	protected virtual string? GetName(int childId) => null;
@@ -149,7 +159,7 @@ public abstract unsafe class Accessible : IDirected {
 	// The window deleted its accessible object, as it does when it is destroyed or given another.
 	void IDirected.OnNativeFreed() {
 		_native = null;
-		if (Window.AccessibleObject == this) Window.AccessibleObject = null;
+		if (Window.Accessible == this) Window.Accessible = null;
 	}
 
 	private static Accessible? Of(void* userdata) => (Accessible?)GCHandle.FromIntPtr((nint)userdata).Target;
@@ -340,8 +350,9 @@ public readonly struct AccessibleElement {
 	}
 }
 
-// The accessible object WxKit gave a window, if any.
+// The accessible object WxKit gave a window, if any. It's named after its type, which C# allows, so
+// Accessible.NotifyEvent still names the class inside a control.
 public partial class Window {
 	/// <summary>The accessible object a class derived from <see cref="WxKit.Accessible"/> gave the window, or null when it has the standard one.</summary>
-	public Accessible? AccessibleObject { get; internal set; }
+	public Accessible? Accessible { get; internal set; }
 }

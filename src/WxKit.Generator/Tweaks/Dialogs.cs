@@ -81,7 +81,8 @@ internal static class Dialogs {
 			.Rename("HasPrevPage", "HasPreviousPage")
 			.ParameterEnum("SetBitmapPlacement", "placement", "WizardBitmapPlacement")
 			.ParameterEnum("GetBitmapPlacement", "return", "WizardBitmapPlacement"));
-		tweaks.Class("wxWizardEvent");
+		// Whether the wizard is going forward, a bool, which a Direction property would read as the enum.
+		tweaks.Class("wxWizardEvent").Rename("GetDirection", "IsForward");
 		// The buttons a dialog makes for itself, such as OK and Cancel.
 		tweaks.ConstantEnumOf("DialogButtons", isFlags: true, "wxOK", "wxCANCEL", "wxYES", "wxNO", "wxAPPLY", "wxCLOSE", "wxHELP", "wxNO_DEFAULT");
 		tweaks.ConstantEnumOf("PropertySheetStyle", isFlags: true, "wxPROPSHEET_DEFAULT", "wxPROPSHEET_NOTEBOOK", "wxPROPSHEET_TOOLBOOK", "wxPROPSHEET_CHOICEBOOK", "wxPROPSHEET_LISTBOOK", "wxPROPSHEET_BUTTONTOOLBOOK", "wxPROPSHEET_TREEBOOK", "wxPROPSHEET_SHRINKTOFIT");

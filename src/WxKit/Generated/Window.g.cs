@@ -335,16 +335,16 @@ public unsafe partial class Window : EvtHandler {
 		remove => RemoveHandler(EventType.Activate, StandardId.Any, StandardId.Any, value);
 	}
 
-	/// <summary>Process a wxEVT_CHAR event. See wxKeyEvent.</summary>
-	public event EventHandler<KeyEvent>? Char {
-		add => AddHandler(EventType.Char, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.Char, StandardId.Any, StandardId.Any, value);
-	}
-
 	/// <summary>Process a wxEVT_CHAR_HOOK event. See wxKeyEvent.</summary>
 	public event EventHandler<KeyEvent>? CharHook {
 		add => AddHandler(EventType.CharHook, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.CharHook, StandardId.Any, StandardId.Any, value);
+	}
+
+	/// <summary>Process a wxEVT_CHAR event. See wxKeyEvent.</summary>
+	public event EventHandler<KeyEvent>? CharTyped {
+		add => AddHandler(EventType.Char, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.Char, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_CHILD_FOCUS event. See wxChildFocusEvent.</summary>
@@ -766,10 +766,10 @@ public unsafe partial class Window : EvtHandler {
 	public bool HideWithEffect(ShowEffect effect, int timeout = 0) => WxKitNative.WindowHideWithEffect(Native, (int)effect, checked((uint)timeout)) != 0;
 
 	/// <summary>Return where the given point lies, exactly.</summary>
-	public HitTest HitTest(int x, int y) => (HitTest)WxKitNative.WindowHitTestIntInt(Native, x, y);
+	public HitTestResult HitTest(int x, int y) => (HitTestResult)WxKitNative.WindowHitTestIntInt(Native, x, y);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public HitTest HitTest(Point point) => (HitTest)WxKitNative.WindowHitTestPoint(Native, point);
+	public HitTestResult HitTest(Point point) => (HitTestResult)WxKitNative.WindowHitTestPoint(Native, point);
 
 	/// <summary>Compatibility function called by GetMinSizeFromKnownDirection().</summary>
 	public bool InformFirstDirection(int direction, int size, int availableOtherDir) => WxKitNative.WindowInformFirstDirection(Native, direction, size, availableOtherDir) != 0;

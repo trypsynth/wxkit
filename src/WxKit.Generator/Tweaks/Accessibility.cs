@@ -7,7 +7,8 @@ internal static class Accessibility {
 	public static void Apply(Binding.Tweaks tweaks) {
 		const string accessibility = "wxUSE_ACCESSIBILITY";
 		tweaks.Enum("wxAccRole", "AccessibleRole", memberPrefix: "wxROLE_SYSTEM_", guard: accessibility);
-		tweaks.Enum("wxAccObject", "AccessibleObject", guard: accessibility);
+		// MSAA's OBJID values, named so the enum isn't confused with a window's accessible object.
+		tweaks.Enum("wxAccObject", "AccessibleObjectId", guard: accessibility);
 		tweaks.Enum("wxNavDir", "NavigationDirection", guard: accessibility);
 		tweaks.Enum("wxAccSelectionFlags", "AccessibleSelection", isFlags: true, guard: accessibility);
 		tweaks.ConstantEnum("AccessibleStates", "wxACC_STATE_SYSTEM_", isFlags: true, guard: accessibility);

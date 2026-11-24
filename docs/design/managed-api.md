@@ -105,7 +105,7 @@ sealed class BoardAccessible(Board board) : Accessible(board) {
 }
 ```
 
-Each member answers for the window when the id is 0, or for a part, numbered from 1. Null means no answer, and Windows answers from the window's standard accessible object. `GetChild`, `GetFocus`, `HitTest`, and `Navigate` return an `AccessibleElement`: `Self`, `Child` for a part, `Of` for an element with an accessible object of its own, or `None`. Throwing `ArgumentOutOfRangeException` tells the screen reader the part doesn't exist, and any other exception goes to `Application.UnhandledException` and tells it the question failed. Creating the object gives it to the window, which keeps it until it is destroyed or given another, and `Window.AccessibleObject` is the one it has. Call `Accessible.NotifyEvent` when something changes, such as the focus moving to another cell.
+Each member answers for the window when the id is 0, or for a part, numbered from 1. Null means no answer, and Windows answers from the window's standard accessible object. `GetChild`, `GetFocus`, `HitTest`, and `Navigate` return an `AccessibleElement`: `Self`, `Child` for a part, `Of` for an element with an accessible object of its own, or `None`. Throwing `ArgumentOutOfRangeException` tells the screen reader the part doesn't exist, and any other exception goes to `Application.UnhandledException` and tells it the question failed. Creating the object gives it to the window, which keeps it until it is destroyed or given another, and `Window.Accessible` is the one it has. Call `Accessible.NotifyEvent` when something changes, such as the focus moving to another cell.
 
 Window members, which wxWidgets 3.3.4 added for its own list control and status bar, describe the control on every platform:
 

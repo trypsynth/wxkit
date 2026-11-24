@@ -90,8 +90,8 @@ public unsafe partial class PageSetupDialogData : NativeObject {
 	}
 
 	/// <summary>Returns the paper id (stored in the internal wxPrintData object).</summary>
-	public PaperSize PaperId {
-		get => (PaperSize)WxKitNative.PageSetupDialogDataGetPaperId(Native);
+	public PaperKind PaperKind {
+		get => (PaperKind)WxKitNative.PageSetupDialogDataGetPaperId(Native);
 		set => WxKitNative.PageSetupDialogDataSetPaperId(Native, (int)value);
 	}
 

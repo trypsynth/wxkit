@@ -10,7 +10,7 @@ public unsafe partial class WizardEvent : NotifyEvent {
 	}
 
 	/// <summary>Return the direction in which the page is changing: for EVT_WIZARD_PAGE_CHANGING, return true if we're going forward or false otherwise and for EVT_WIZARD_PAGE_CHANGED return true if we came from the previous page and false if we returned from the next one.</summary>
-	public bool Direction => WxKitNative.WizardEventGetDirection(Handle) != 0;
+	public bool IsForward => WxKitNative.WizardEventGetDirection(Handle) != 0;
 
 	/// <summary>Returns the wxWizardPage which was active when this event was generated.</summary>
 	public WizardPage? Page => ObjectRegistry.Wrap<WizardPage>(WxKitNative.WizardEventGetPage(Handle));

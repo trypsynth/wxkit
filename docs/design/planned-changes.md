@@ -4,16 +4,6 @@ These are changes WxKit wants that need code changes, so they're for 0.2.0, as [
 
 Most of these are patterns, which a change to the generator's rules fixes everywhere at once, rather than a member at a time. A review of the whole API on 2026-11-23 found most of them.
 
-## Names that clash inside a control
-
-Inside a class that derives from `Window`, a name that's both a type and one of `Window`'s members means the member, so code in a custom control can't name the type without `WxKit.` before it.
-
-- The enum `AccessibleObject`, beside the property `Window.AccessibleObject`. The enum becomes `AccessibleObjectId`, after MSAA's `OBJID_` values, and the property becomes `Accessible`, which C# allows beside the type of the same name. `Accessible.NotifyEvent`'s object type defaults to `Client`.
-- The enum `HitTest`, beside the method `Window.HitTest`. It becomes `HitTestResult`, as `TextCtrlHitTestResult` is named.
-- `System.Char`, beside the event `Window.Char`, which becomes `CharTyped`.
-- The class `Menu`, beside `ToolBar`'s `Menu` event, which goes, as a copy of `ToolClicked`.
-- Members whose names are types they aren't: `PrintData.Color` and `StyledTextEvent.Control`, which are booleans, `NavigationKeyEvent.Direction` and `WizardEvent.Direction`, which become `IsForward`, and `PageSetupDialogData.PaperSize`, a `Size`, beside the enum `PaperSize`.
-
 ## The generator's naming
 
 - Words that run together, which the word tables don't split:
@@ -26,7 +16,7 @@ Inside a class that derives from `Window`, a name that's both a type and one of 
 - Parameter names, which break only named arguments:
   - The rule that makes `col` a `column` makes six color parameters `column` too, such as `DC.FloodFill(Point, Color? column)`. It applies only to numbers now.
   - Hungarian and abbreviated names that are left, such as `nPage`, `colFg`, `ptStart`, `xdest`, `bCase`, `but`, `minW`, and `selImage`, and the same thing named differently across classes, as `FileDialog`'s `defaultDir` and `FileCtrl`'s `defaultDirectory` are.
-- Generic names of enums a class nested: `Reason` becomes `ActivationReason`, `Origin` becomes `HelpOrigin`, and `PaperSize` becomes `PaperKind`, as System.Drawing.Printing names it, along with `PaperId`.
+- Generic names of enums a class nested: `Reason` becomes `ActivationReason`, and `Origin` becomes `HelpOrigin`.
 - Booleans named as booleans, as `IsChecked` is: `ActivateEvent.Active`, `CloseEvent.LoggingOff`, `Font.Underlined`, `HyperlinkCtrl.Visited`, `Printer.Abort`, and `UpdateUIEvent.Shown` take `Is`, and `NavigationFlags.IsBackward` and `IsForward` lose it. `MenuItem.Checked` and `Enabled`, and `UpdateUIEvent.Checked` and `Enabled`, become `IsChecked` and `IsEnabled`.
 - Members that read as commands: `UpdateUIEvent.SetChecked`, `SetEnabled`, `SetShown`, and `SetText`, which say whether a handler set the state, become `IsCheckedSet` and so on. `FindReplaceDialog.Find`, `Replace`, and their siblings become `FindRequested` and so on, as `SearchRequested` is named, and `StyledTextCtrl.DoDrop` becomes `TextDropping`. `DataViewCtrl.ItemStartEditing` becomes `ItemEditingStarting`. `TextValidator.IsValid`, which returns an error message, becomes `GetError`.
 

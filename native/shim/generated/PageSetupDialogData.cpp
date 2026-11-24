@@ -15,6 +15,14 @@ WXK_FUNCTION(wxk_Object*) wxk_PageSetupDialogData_new_PrintData(const wxk_Object
 	});
 }
 
+WXK_FUNCTION(int32_t) wxk_PageSetupDialogData_GetPaperId(wxk_Object* self) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxPageSetupDialogData*>(wxk::Unwrap(self))->GetPaperId()); });
+}
+
+WXK_FUNCTION(void) wxk_PageSetupDialogData_SetPaperId(wxk_Object* self, int32_t id) noexcept {
+	wxk::Guard([&] { static_cast<wxPageSetupDialogData*>(wxk::Unwrap(self))->SetPaperId(static_cast<wxPaperSize>(id)); });
+}
+
 WXK_FUNCTION(uint8_t) wxk_PageSetupDialogData_GetEnableHelp(wxk_Object* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxPageSetupDialogData*>(wxk::Unwrap(self))->GetEnableHelp()) ? 1 : 0; });
 }
@@ -101,14 +109,6 @@ WXK_FUNCTION(wxk_Point) wxk_PageSetupDialogData_GetMinMarginTopLeft(wxk_Object* 
 
 WXK_FUNCTION(void) wxk_PageSetupDialogData_SetMinMarginTopLeft(wxk_Object* self, wxk_Point point) noexcept {
 	wxk::Guard([&] { static_cast<wxPageSetupDialogData*>(wxk::Unwrap(self))->SetMinMarginTopLeft(wxk::FromPoint(point)); });
-}
-
-WXK_FUNCTION(int32_t) wxk_PageSetupDialogData_GetPaperId(wxk_Object* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxPageSetupDialogData*>(wxk::Unwrap(self))->GetPaperId()); });
-}
-
-WXK_FUNCTION(void) wxk_PageSetupDialogData_SetPaperId(wxk_Object* self, int32_t id) noexcept {
-	wxk::Guard([&] { static_cast<wxPageSetupDialogData*>(wxk::Unwrap(self))->SetPaperId(static_cast<wxPaperSize>(id)); });
 }
 
 WXK_FUNCTION(wxk_Size) wxk_PageSetupDialogData_GetPaperSize(wxk_Object* self) noexcept {

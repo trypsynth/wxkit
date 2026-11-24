@@ -43,12 +43,6 @@ public unsafe partial class ToolBar : Control {
 	/// <summary>Returns the number of tools in the toolbar.</summary>
 	public int ToolsCount => checked((int)WxKitNative.ToolBarGetToolsCount(Native));
 
-	/// <summary>The same as EVT_TOOL().</summary>
-	public event EventHandler<CommandEvent>? Menu {
-		add => AddHandler(EventType.Menu, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.Menu, StandardId.Any, StandardId.Any, value);
-	}
-
 	/// <summary>Process a wxEVT_TOOL event (a synonym for wxEVT_MENU). Pass the id of the tool.</summary>
 	public event EventHandler<CommandEvent>? ToolClicked {
 		add => AddHandler(EventType.Tool, StandardId.Any, StandardId.Any, value, this);

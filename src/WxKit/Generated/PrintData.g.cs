@@ -28,12 +28,6 @@ public unsafe partial class PrintData : NativeObject {
 		set => WxKitNative.PrintDataSetCollate(Native, value ? (byte)1 : (byte)0);
 	}
 
-	/// <summary>Returns true if colour printing is on.</summary>
-	public bool Color {
-		get => WxKitNative.PrintDataGetColour(Native) != 0;
-		set => WxKitNative.PrintDataSetColour(Native, value ? (byte)1 : (byte)0);
-	}
-
 	/// <summary>Returns the duplex mode.</summary>
 	public DuplexMode Duplex {
 		get => (DuplexMode)WxKitNative.PrintDataGetDuplex(Native);
@@ -48,6 +42,12 @@ public unsafe partial class PrintData : NativeObject {
 				WxKitNative.PrintDataSetFilename(Native, valueText, NativeString.Length(value));
 			}
 		}
+	}
+
+	/// <summary>Returns true if colour printing is on.</summary>
+	public bool IsColor {
+		get => WxKitNative.PrintDataGetColour(Native) != 0;
+		set => WxKitNative.PrintDataSetColour(Native, value ? (byte)1 : (byte)0);
 	}
 
 	/// <summary>Returns true if the print data is valid for using in print dialogs.</summary>
@@ -66,8 +66,8 @@ public unsafe partial class PrintData : NativeObject {
 	}
 
 	/// <summary>Returns the paper size id.</summary>
-	public PaperSize PaperId {
-		get => (PaperSize)WxKitNative.PrintDataGetPaperId(Native);
+	public PaperKind PaperKind {
+		get => (PaperKind)WxKitNative.PrintDataGetPaperId(Native);
 		set => WxKitNative.PrintDataSetPaperId(Native, (int)value);
 	}
 

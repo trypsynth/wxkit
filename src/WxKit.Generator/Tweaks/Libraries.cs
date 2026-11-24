@@ -52,7 +52,14 @@ internal static class Libraries {
 			.IgnoreOverload("SetMargins", "top", "wxCoord")
 			// UTF-8 versions of the string members, which .NET has no use for.
 			.Ignore("AddTextRaw", "AppendTextRaw", "InsertTextRaw", "ReplaceSelectionRaw", "ReplaceTargetRaw", "ReplaceTargetRERaw", "SetTextRaw"));
-		tweaks.Class("wxStyledTextEvent");
+		// The modifier keys are booleans named as booleans, Control would hide the Control class, and
+		// the drag flags are DragFlags.
+		tweaks.Class("wxStyledTextEvent", e => e
+			.Rename("GetAlt", "IsAltDown")
+			.Rename("GetControl", "IsControlDown")
+			.Rename("GetShift", "IsShiftDown")
+			.ParameterEnum("GetDragFlags", "return", "DragFlags")
+			.ParameterEnum("SetDragFlags", "flags", "DragFlags"));
 		// The web view, the system's browser engine. It is created in two steps, with a configuration
 		// that says where its data goes, and pages and scripts are given to it through members of
 		// WebView's own, which WebView.cs has.

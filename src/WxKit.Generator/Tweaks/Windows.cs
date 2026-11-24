@@ -41,6 +41,8 @@ internal static class Windows {
 			.ParameterEnum("GetExtraStyle", "return", "WindowExtraStyle")
 			.ParameterEnum("SetExtraStyle", "exStyle", "WindowExtraStyle")
 			.ParameterEnum("HasExtraStyle", "exFlag", "WindowExtraStyle")
+			// Char would hide System.Char inside a control.
+			.Event("EVT_CHAR", "CharTyped")
 			// wxGTK has no system-wide hot keys.
 			.Guard("wxUSE_HOTKEY", "RegisterHotKey", "UnregisterHotKey")
 			// Abbreviations .NET spells out, as its naming guidelines ask.
@@ -59,6 +61,8 @@ internal static class Windows {
 			.ParameterEnum("EnableFullScreenView", "style", "FullScreenStyle")
 			.ParameterEnum("RequestUserAttention", "flags", "UserAttention")
 			.AddEvent("EVT_CLOSE", "wxEVT_CLOSE_WINDOW", "wxCloseEvent", "Closing"));
+		// What's at a point in a window, named so the enum isn't hidden by Window.HitTest inside a control.
+		tweaks.Enum("wxHitTest", "HitTestResult");
 		// The flags these take, which wxWidgets declares as constants rather than a named enum.
 		tweaks.ConstantEnum("WindowExtraStyle", "wxWS_EX_", isFlags: true);
 		tweaks.ConstantEnum("SizeFlags", "wxSIZE_", isFlags: true, excludePrefixes: ["wxSIZE_CONV_", "wxSIZE_SET_"]);
