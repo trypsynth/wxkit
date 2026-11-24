@@ -12,6 +12,19 @@ public class EventTests {
 		Assert.Equal("hello", change.Value);
 	});
 
+	// A search control's documentation lists only its search events, but it's typed in as a text
+	// control is, and says so, for filtering as the user types.
+	[Fact]
+	public Task RaisesASearchControlsTextChanged() => Gui.WithFrame(frame => {
+		SearchCtrl search = new(frame);
+		List<(object? Sender, string Value)> changes = [];
+		search.TextChanged += (sender, e) => changes.Add((sender, e.String));
+		search.Value = "books";
+		var change = Assert.Single(changes);
+		Assert.Same(search, change.Sender);
+		Assert.Equal("books", change.Value);
+	});
+
 	[Fact]
 	public Task DoesNotRaiseTextChangedForChangeValue() => Gui.WithFrame(frame => {
 		TextCtrl text = new(frame);

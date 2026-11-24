@@ -112,6 +112,11 @@ public unsafe partial class SearchCtrl : Control {
 		remove => RemoveHandler(EventType.Search, StandardId.Any, StandardId.Any, value);
 	}
 
+	public event EventHandler<CommandEvent>? TextChanged {
+		add => AddHandler(EventType.Text, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.Text, StandardId.Any, StandardId.Any, value);
+	}
+
 	/// <summary>Appends the text to the end of the text control.</summary>
 	public void AppendText(string text) {
 		ArgumentNullException.ThrowIfNull(text);

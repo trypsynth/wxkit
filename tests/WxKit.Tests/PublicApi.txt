@@ -3887,6 +3887,7 @@ class WxKit.SearchCtrl : Control
     bool SetMargins(int left, int top = -1)
     event EventHandler<CommandEvent>? SearchCanceled
     event EventHandler<CommandEvent>? SearchRequested
+    event EventHandler<CommandEvent>? TextChanged
     long InsertionPoint { get; set; }
     long LastPosition { get; }
     long SelectionLength { get; set; }
