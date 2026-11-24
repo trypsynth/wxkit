@@ -14,6 +14,7 @@
 	<Folder Name="/samples/csharp/">
 		<Project Path="samples/csharp/Browser/Browser.csproj" />
 		<Project Path="samples/csharp/Checklist/Checklist.csproj" />
+		<Project Path="samples/csharp/Checksums/Checksums.csproj" />
 		<Project Path="samples/csharp/Editor/Editor.csproj" />
 		<Project Path="samples/csharp/Hello/Hello.csproj" />
 		<Project Path="samples/csharp/Library/Library.csproj" />
@@ -22,6 +23,7 @@
 	<Folder Name="/samples/fsharp/">
 		<Project Path="samples/fsharp/Browser/Browser.fsproj" />
 		<Project Path="samples/fsharp/Checklist/Checklist.fsproj" />
+		<Project Path="samples/fsharp/Checksums/Checksums.fsproj" />
 		<Project Path="samples/fsharp/Editor/Editor.fsproj" />
 		<Project Path="samples/fsharp/Hello/Hello.fsproj" />
 		<Project Path="samples/fsharp/Library/Library.fsproj" />

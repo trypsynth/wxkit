@@ -11,6 +11,7 @@ To write a first application, follow [Getting started](docs/getting-started.md).
 - Settings, in [C#](samples/csharp/Settings/SettingsDialog.cs) and [F#](samples/fsharp/Settings/SettingsDialog.fs), is a settings dialog, with pages, a form, pickers, and a validator, translated into German as [Translating an application](docs/translating.md) describes.
 - Checklist, in [C#](samples/csharp/Checklist/ChecklistControl.cs) and [F#](samples/fsharp/Checklist/ChecklistControl.fs), is a control that draws itself, which screen readers read on all three platforms.
 - Library, in [C#](samples/csharp/Library/LibraryFrame.cs) and [F#](samples/fsharp/Library/LibraryFrame.fs), is a list of books in a data view, whose model gives the rows on screen as it draws them, filtered as a search is typed, with a column of check boxes.
+- Checksums, in [C#](samples/csharp/Checksums/ChecksumsFrame.cs) and [F#](samples/fsharp/Checksums/ChecksumsFrame.fs), hashes a folder's files on another thread, with a progress dialog that can cancel it.
 - Browser, in [C#](samples/csharp/Browser/Program.cs) and [F#](samples/fsharp/Browser/Program.fs), is a small web browser, with an address, Back, Forward, and Reload, around a web view.
 
 How WxKit is built is in the [design overview](docs/design/overview.md), and what is still undecided in [Open questions](docs/design/open-questions.md).
