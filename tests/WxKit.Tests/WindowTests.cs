@@ -129,7 +129,10 @@ public class WindowTests {
 		public bool Check() {
 			Accessible.NotifyEvent(AccessibleEvent.ObjectFocus, this, AccessibleObjectId.Client, 0);
 			HitTestResult result = HitTest(new Point(1, 1));
+			// Char, not char, since a member named Char would hide the type.
+#pragma warning disable IDE0049
 			return Enum.IsDefined(result) && Char.IsDigit('1');
+#pragma warning restore IDE0049
 		}
 	}
 
