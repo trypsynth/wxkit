@@ -87,13 +87,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 - A window's accessible object and drop target are set the same way, as `window.DropTarget = new DropTarget(...)` would be, rather than as a side effect of their constructors.
 - A `PaintDC` is lent through the paint event, as a printout's DC is, so a handler can't forget to dispose it.
 
-## Visual Basic
-
-Visual Basic isn't supported, as [Language support](languages.md) explains, since it can't publish with Native AOT and nothing tests it. 0.2.0 drops what's there only for it:
-
-- The public API rules that are only for Visual Basic. Members can be `required`, a `ReadOnlySpan<T>` overload no longer needs an array or `string` beside it, and names may differ only in case, though WxKit's naming doesn't make any that do.
-- The translation extractor's reading of Visual Basic, so it no longer extracts strings from `.vb` files.
-
 ## Considered and not planned
 
 - Naming the controls as .NET does, such as `TextBox` for `TextCtrl`. WxKit keeps wxWidgets' class names, so its documentation, and code written for wxWidgets in other languages, map to WxKit by dropping the `wx` prefix.

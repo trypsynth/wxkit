@@ -10,9 +10,9 @@ using Microsoft.Build.Utilities;
 
 // Extracts the strings an application passes to Gettext's shortcuts and Translations' lookups into
 // a gettext template, <domain>.pot, which translators' catalogs are made and updated from. It reads
-// C#, Visual Basic, and F# with a lexer for each, so that strings in comments, char literals, and
+// C# and F# with a lexer for each, so that strings in comments, char literals, and
 // verbatim, raw, and interpolated strings are told apart from the ones a call passes, and it takes
-// only string literals, and literals joined with + (or & in Visual Basic), since it reads the source
+// only string literals, and literals joined with +, since it reads the source
 // and does not run it. A comment just above a call that starts with TRANSLATORS: goes to translators
 // with the string, and a call that formats the string with arguments marks it csharp-format, so
 // that msgfmt checks each translation formats as the original does.
@@ -55,7 +55,6 @@ public sealed class WxKitExtractStrings : Task {
 
 public enum SourceLanguage {
 	CSharp,
-	VisualBasic,
 	FSharp,
 }
 
@@ -238,7 +237,6 @@ public static class StringExtractor {
 	public static SourceLanguage? LanguageOf(string path) {
 		switch (Path.GetExtension(path).ToLowerInvariant()) {
 			case ".cs": case ".csx": return SourceLanguage.CSharp;
-			case ".vb": return SourceLanguage.VisualBasic;
 			case ".fs": case ".fsx": case ".fsi": return SourceLanguage.FSharp;
 			default: return null;
 		}
@@ -265,14 +263,14 @@ public static class StringExtractor {
 				// A curried call has no arguments to format with, so it counts as taking them all.
 				if (arguments.Count < keyword.Arguments) arguments.AddRange(Enumerable.Repeat(new List<Token>(), keyword.Arguments - arguments.Count));
 			} else {
-				if (!IsCall(tokens, index, language, out keyword)) continue;
+				if (!IsCall(tokens, index, out keyword)) continue;
 				arguments = Arguments(tokens, index + 1, language);
 				if (arguments is null || arguments.Count < keyword!.Arguments) continue;
 			}
 			string?[] literals = new string?[keyword.Literals];
 			bool usable = true;
 			for (int position = 0; position < keyword.Literals; position++) {
-				literals[position] = Literal(arguments[position], language, out string? why);
+				literals[position] = Literal(arguments[position], out string? why);
 				if (literals[position] is null) {
 					Token at = arguments[position].Count > 0 ? arguments[position][0] : token;
 					problems.Add(new ExtractionProblem(at.Line, at.Column, why == "interpolated" ? "WXKIT2002" : "WXKIT2001", why == "interpolated" ? $"{token.Text}'s string is interpolated, so it cannot be translated. Use a placeholder such as {{0}}, and pass the value as an argument to format with." : $"{token.Text}'s argument is not a string literal, so it cannot be extracted for translators."));
@@ -335,22 +333,21 @@ public static class StringExtractor {
 	}
 
 	// A shortcut, bare or as Gettext's, or a lookup as Translations', followed by its arguments in
-	// parentheses. Visual Basic's _ alone continues a line, and its names are not case sensitive.
-	private static bool IsCall(List<Token> tokens, int index, SourceLanguage language, out Keyword? keyword) {
-		StringComparison comparison = language == SourceLanguage.VisualBasic ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+	// parentheses.
+	private static bool IsCall(List<Token> tokens, int index, out Keyword? keyword) {
 		string name = tokens[index].Text;
 		keyword = null;
 		if (index + 1 >= tokens.Count || !tokens[index + 1].Is('(')) return false;
 		bool qualified = index >= 1 && tokens[index - 1].Is('.');
 		string? qualifier = qualified && index >= 2 && tokens[index - 2].Kind == TokenKind.Identifier ? tokens[index - 2].Text : null;
 		foreach (KeyValuePair<string, Keyword> shortcut in Shortcuts) {
-			if (!string.Equals(shortcut.Key, name, comparison) || (language == SourceLanguage.VisualBasic && shortcut.Key == "_")) continue;
-			if (qualified && !string.Equals(qualifier, "Gettext", comparison)) return false;
+			if (shortcut.Key != name) continue;
+			if (qualified && qualifier != "Gettext") return false;
 			keyword = shortcut.Value;
 			return true;
 		}
 		foreach (KeyValuePair<string, Keyword> lookup in Lookups) {
-			if (!string.Equals(lookup.Key, name, comparison) || !string.Equals(qualifier, "Translations", comparison)) continue;
+			if (lookup.Key != name || qualifier != "Translations") continue;
 			keyword = lookup.Value;
 			return true;
 		}
@@ -367,17 +364,13 @@ public static class StringExtractor {
 	};
 
 	// A method named as a shortcut or a lookup, which an application declares to wrap Gettext's
-	// or Translations', rather than a call of one: after a return type in C#, Function or Sub in
-	// Visual Basic, and let or member in F#.
+	// or Translations', rather than a call of one: after a return type in C#, and let or member in F#.
 	private static bool IsDeclaration(List<Token> tokens, int index, SourceLanguage language) {
-		StringComparison comparison = language == SourceLanguage.VisualBasic ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
 		string name = tokens[index].Text;
-		bool named = Shortcuts.Keys.Concat(Lookups.Keys).Any(key => string.Equals(key, name, comparison) && !(language == SourceLanguage.VisualBasic && key == "_"));
+		bool named = Shortcuts.ContainsKey(name) || Lookups.ContainsKey(name);
 		if (!named || index == 0 || index + 1 >= tokens.Count || !tokens[index + 1].Is('(')) return false;
 		Token before = tokens[index - 1];
 		switch (language) {
-			case SourceLanguage.VisualBasic:
-				return string.Equals(before.Text, "Function", comparison) || string.Equals(before.Text, "Sub", comparison);
 			case SourceLanguage.FSharp:
 				return before.Kind == TokenKind.Identifier && FSharpDeclarationKeywords.Contains(before.Text);
 			default:
@@ -387,15 +380,10 @@ public static class StringExtractor {
 		}
 	}
 
-	// Where the body of the declaration at index ends: its block or expression body's ; in C#, its
-	// End Function or End Sub in Visual Basic, and the next line indented no deeper in F#.
+	// Where the body of the declaration at index ends: its block or expression body's ; in C#, and
+	// the next line indented no deeper in F#.
 	private static int BodyEnd(List<Token> tokens, int index, SourceLanguage language) {
 		switch (language) {
-			case SourceLanguage.VisualBasic:
-				for (int at = index + 1; at + 1 < tokens.Count; at++) {
-					if (string.Equals(tokens[at].Text, "End", StringComparison.OrdinalIgnoreCase) && (string.Equals(tokens[at + 1].Text, "Function", StringComparison.OrdinalIgnoreCase) || string.Equals(tokens[at + 1].Text, "Sub", StringComparison.OrdinalIgnoreCase))) return at + 2;
-				}
-				return tokens.Count;
 			case SourceLanguage.FSharp:
 				int line = tokens[index].Line;
 				int start = index;
@@ -452,15 +440,15 @@ public static class StringExtractor {
 		return null;
 	}
 
-	// A string literal, or literals joined with + (or & in Visual Basic), or null.
-	private static string? Literal(List<Token> argument, SourceLanguage language, out string? why) {
+	// A string literal, or literals joined with +, or null.
+	private static string? Literal(List<Token> argument, out string? why) {
 		why = null;
 		if (argument.Count == 0 || argument.Count % 2 == 0) return null;
 		StringBuilder text = new StringBuilder();
 		for (int index = 0; index < argument.Count; index++) {
 			Token token = argument[index];
 			if (index % 2 == 1) {
-				if (!(token.Is('+') || (language == SourceLanguage.VisualBasic && token.Is('&')))) return null;
+				if (!token.Is('+')) return null;
 				continue;
 			}
 			if (token.Kind == TokenKind.Interpolated) {
@@ -577,19 +565,6 @@ public sealed class Lexer {
 					return Identifier(line, column);
 				}
 				break;
-			case SourceLanguage.VisualBasic:
-				if (character == '\'' || character == '\u2018' || character == '\u2019') return LineComment(1);
-				if (character == '"' || character == '\u201C' || character == '\u201D') return BasicString(line, column, false);
-				if (character == '$' && IsQuote(Peek(1))) {
-					Advance();
-					return BasicString(line, column, true);
-				}
-				if (IsIdentifierStart(character)) {
-					Token identifier = Identifier(line, column);
-					if (string.Equals(identifier.Text, "REM", StringComparison.OrdinalIgnoreCase)) return LineComment(0);
-					return identifier;
-				}
-				break;
 			case SourceLanguage.FSharp:
 				if (character == '/' && Peek(1) == '/') return LineComment(2);
 				if (character == '(' && Peek(1) == '*' && Peek(2) != ')') return BlockComment("(*", "*)", true);
@@ -620,7 +595,6 @@ public sealed class Lexer {
 
 	private static bool IsIdentifierStart(char character) => char.IsLetter(character) || character == '_';
 
-	private static bool IsQuote(char character) => character == '"' || character == '\u201C' || character == '\u201D';
 
 	private Token? LineComment(int skip) {
 		int start = _line;
@@ -629,8 +603,8 @@ public sealed class Lexer {
 		int end = _source.IndexOf('\n', _index);
 		if (end < 0) end = _source.Length;
 		string text = _source.Substring(_index, end - _index).TrimEnd('\r');
-		// A Visual Basic or C# XML documentation comment's extra marker is not part of the text.
-		if (text.StartsWith("/", StringComparison.Ordinal) || (_language == SourceLanguage.VisualBasic && text.StartsWith("''", StringComparison.Ordinal))) text = text.TrimStart('/', '\'');
+		// An XML documentation comment's extra marker is not part of the text.
+		if (text.StartsWith("/", StringComparison.Ordinal)) text = text.TrimStart('/');
 		_comments.Add((start, start, column, text));
 		AdvanceTo(end);
 		return null;
@@ -905,46 +879,6 @@ public sealed class Lexer {
 			if (token.Is(')') || token.Is(']')) depth--;
 			if (token.Is('}')) depth--;
 		}
-	}
-
-	// Visual Basic: "" is a quote, "a"c is a char, and an interpolated string's holes are in braces.
-	private Token BasicString(int line, int column, bool interpolated) {
-		Advance();
-		StringBuilder text = new StringBuilder();
-		while (_index < _source.Length) {
-			char character = Current;
-			if (IsQuote(character)) {
-				if (IsQuote(Peek(1))) {
-					AdvanceTo(_index + 2);
-					text.Append('"');
-					continue;
-				}
-				Advance();
-				break;
-			}
-			if (character == '\n') break;
-			if (interpolated && character == '{') {
-				if (Peek(1) == '{') {
-					AdvanceTo(_index + 2);
-					text.Append('{');
-					continue;
-				}
-				SkipHole(1);
-				continue;
-			}
-			if (interpolated && character == '}' && Peek(1) == '}') {
-				AdvanceTo(_index + 2);
-				text.Append('}');
-				continue;
-			}
-			if (character != '\r') text.Append(character);
-			Advance();
-		}
-		if ((Current == 'c' || Current == 'C') && !char.IsLetterOrDigit(Peek(1))) {
-			Advance();
-			return new Token(TokenKind.Other, string.Empty, line, column);
-		}
-		return interpolated ? new Token(TokenKind.Interpolated, string.Empty, line, column) : new Token(TokenKind.String, text.ToString(), line, column);
 	}
 
 	// F#: 'a' and '\n' are chars, but 'T is a type variable and x' an identifier, so a quote only

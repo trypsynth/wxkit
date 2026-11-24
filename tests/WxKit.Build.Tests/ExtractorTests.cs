@@ -113,22 +113,6 @@ public class ExtractorTests {
 	}
 
 	[Fact]
-	public void ReadsVisualBasic() {
-		StringTemplate template = Extract("""""
-			' _("not in a comment")
-			REM _("nor in a REM")
-			Dim quote = """"c
-			Dim a = _n("{0} ""file""", "{0} files", count, count)
-			Dim b = gettext._P("state", "Open")
-			Dim c = TRANSLATIONS.TRANSLATE("any " & "case")
-			Dim d = $"{name} and {{braces}}" & _p("after", "interpolation")
-			Dim e = Foo(x, _
-				y)
-			""""", SourceLanguage.VisualBasic);
-		Assert.Equal(["{0} \"file\"", "Open", "any case", "interpolation"], template.Strings.Select(found => found.Id));
-	}
-
-	[Fact]
 	public void ReadsFSharp() {
 		StringTemplate template = Extract("""""
 			// _n("not in a comment", "", 1)
@@ -210,13 +194,6 @@ public class ExtractorTests {
 		}
 		string name = _(label);
 		string title = _("Title");
-		""")]
-	[InlineData(SourceLanguage.VisualBasic, """
-		Public Function _n(text As String, plural As String, n As Long) As String
-			Return Gettext._n(text, plural, n)
-		End Function
-		Dim name = Translations.Translate(label)
-		Dim title = Translations.Translate("Title")
 		""")]
 	[InlineData(SourceLanguage.FSharp, """
 		let _p (context: string) (text: string) = Gettext._p(context, text)
