@@ -132,6 +132,24 @@ public class ExtractorTests {
 		Assert.Equal(["context", null, "verbatim \"quoted\"", "spans lines", "after"], template.Strings.Select(found => found.Context));
 	}
 
+	// A string passed first to String.Format is formatted, so msgfmt checks each translation's
+	// placeholders, as it does for a C# call that takes the arguments itself.
+	[Fact]
+	public void MarksAStringFormatted() {
+		StringTemplate fsharp = Extract("""
+			let a = String.Format(tr "{0} files", count)
+			let b = String.Format(Translation.tr "{0} folders", count)
+			let c = tr "Plain"
+			""", SourceLanguage.FSharp);
+		Assert.Equal([true, true, false], fsharp.Strings.Select(found => found.IsFormat));
+		StringTemplate csharp = Extract("""
+			string a = string.Format(Translations.Translate("{0} files"), count);
+			string b = Format(Translations.Translate("Not String's"));
+			string c = Translations.Translate("Plain");
+			""");
+		Assert.Equal([true, true, false], csharp.Strings.Select(found => found.IsFormat));
+	}
+
 	// WxKit.FSharp's functions take their strings one after another, or one in parentheses. A
 	// declaration of the same name, a member of something else, and the function passed as a
 	// value are not calls.
@@ -157,7 +175,7 @@ public class ExtractorTests {
 			found => Assert.Equal((null, "{0} file", "{0} files", false), Describe(found)),
 			found => Assert.Equal(("verb", "Open", null, false), Describe(found)),
 			found => Assert.Equal(("menu", "{0} item", "{0} items", false), Describe(found)),
-			found => Assert.Equal((null, "Hello, {0}!", null, false), Describe(found)),
+			found => Assert.Equal((null, "Hello, {0}!", null, true), Describe(found)),
 			found => Assert.Equal((null, "qualified", null, false), Describe(found)),
 			found => Assert.Equal((null, "in parentheses", null, false), Describe(found)),
 			found => Assert.Equal((null, "one", null, false), Describe(found)));

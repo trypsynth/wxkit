@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<!-- On macOS, the app bundle is named after the title and known by the identifier. -->
+		<ApplicationTitle>Settings</ApplicationTitle>
+		<ApplicationId>io.github.trypsynth.wxkit.settings.fsharp</ApplicationId>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="AppSettings.fs" />
+		<Compile Include="Languages.fs" />
+		<Compile Include="SettingsDialog.fs" />
+		<Compile Include="MainFrame.fs" />
+		<Compile Include="Program.fs" />
+	</ItemGroup>
+
+	<!-- WxKit comes from its source or from its package, as samples/Directory.Build.targets says, and what a sample is from samples/Directory.Build.props. -->
+
+</Project>

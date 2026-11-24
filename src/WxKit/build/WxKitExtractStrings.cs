@@ -283,10 +283,18 @@ public static class StringExtractor {
 			string? context = keyword.HasContext ? literals[next++] : null;
 			string id = literals[next++]!;
 			string? plural = keyword.HasPlural ? literals[next] : null;
-			string? conflict = template.Add(context, id, plural, $"{reference}:{token.Line}", lexer.CommentBefore(token), arguments.Count > keyword.Arguments);
+			string? conflict = template.Add(context, id, plural, $"{reference}:{token.Line}", lexer.CommentBefore(token), arguments.Count > keyword.Arguments || IsFormatted(tokens, index));
 			if (conflict is not null) problems.Add(new ExtractionProblem(token.Line, token.Column, "WXKIT2003", $"\"{id}\" {conflict}, and a string has one set of forms in a catalog."));
 		}
 		return problems;
+	}
+
+	// Whether the call is String.Format's first argument, as F# formats a translation, in
+	// String.Format(tr "{0} files", count), and C# can, in string.Format(Translations.Translate(...), ...).
+	private static bool IsFormatted(List<Token> tokens, int index) {
+		int before = index - 1;
+		if (before >= 1 && tokens[before].Is('.')) before -= 2;
+		return before >= 1 && tokens[before].Is('(') && tokens[before - 1].Text == "Format";
 	}
 
 	// WxKit.FSharp's functions, as tr "text" or Translation.tr "text", which F# calls with its

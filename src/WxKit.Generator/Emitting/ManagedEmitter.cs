@@ -104,18 +104,18 @@ internal static class ManagedEmitter {
 
 	private static void WriteProperty(CodeWriter writer, BoundClass bound, BoundProperty property) {
 		Summary(writer, property.Getter.Source.Brief);
-		string type = property.Getter.Returns.ManagedReturnType(nullable: property.Getter.Returns is ObjectConversion or AnyObjectConversion);
+		string type = property.Getter.Returns.ManagedReturnType(nullable: property.Getter.ReturnsNullable);
 		string modifiers = Modifiers(property.Getter, property.Hides);
 		if (property.Setter is null && IsSimple(property.Getter)) {
-			writer.Line($"{modifiers} {type} {property.Name} => {Call(bound, property.Getter, property.Getter.Returns.ManagedReturn)};");
+			writer.Line($"{modifiers} {type} {property.Name} => {Call(bound, property.Getter, property.Getter.ManagedReturn)};");
 			return;
 		}
 		writer.Open($"{modifiers} {type} {property.Name}");
 		if (IsSimple(property.Getter)) {
-			writer.Line($"get => {Call(bound, property.Getter, property.Getter.Returns.ManagedReturn)};");
+			writer.Line($"get => {Call(bound, property.Getter, property.Getter.ManagedReturn)};");
 		} else {
 			writer.Open("get");
-			WriteCall(writer, property.Getter, Self(bound, property.Getter), result => $"return {property.Getter.Returns.ManagedReturn(result)};");
+			WriteCall(writer, property.Getter, Self(bound, property.Getter), result => $"return {property.Getter.ManagedReturn(result)};");
 			writer.Close();
 		}
 		if (property.Setter is BoundFunction setter) {
@@ -136,7 +136,7 @@ internal static class ManagedEmitter {
 	private static void WriteMethod(CodeWriter writer, BoundClass bound, BoundMethod method, string? modifiers = null) {
 		BoundFunction function = method.Function;
 		Summary(writer, function.Source.Brief);
-		string returns = function.Returns.ManagedReturnType(nullable: function.Returns is ObjectConversion or AnyObjectConversion);
+		string returns = function.Returns.ManagedReturnType(nullable: function.ReturnsNullable);
 		string signature = $"{modifiers ?? Modifiers(function, method.Hides)} {returns} {method.Name}({ParameterList(function.ManagedParameters, withDefaults: true)})";
 		bool isVoid = function.Returns is VoidConversion;
 		if (function.Returns is SelfConversion) {
@@ -147,11 +147,11 @@ internal static class ManagedEmitter {
 			return;
 		}
 		if (IsSimple(function)) {
-			writer.Line($"{signature} => {Call(bound, function, function.Returns.ManagedReturn)};");
+			writer.Line($"{signature} => {Call(bound, function, function.ManagedReturn)};");
 			return;
 		}
 		writer.Open(signature);
-		WriteCall(writer, function, Self(bound, function), result => isVoid ? $"{result};" : $"return {function.Returns.ManagedReturn(result)};");
+		WriteCall(writer, function, Self(bound, function), result => isVoid ? $"{result};" : $"return {function.ManagedReturn(result)};");
 		writer.Close();
 	}
 

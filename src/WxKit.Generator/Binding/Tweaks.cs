@@ -213,6 +213,14 @@ internal sealed class ClassTweak(string name) {
 		return this;
 	}
 
+	/// <summary>Members that return a pointer that's never null, such as wxStaticBoxSizer::GetStaticBox, whose sizer always has its box.</summary>
+	public HashSet<string> NonNullReturns { get; } = new(StringComparer.Ordinal);
+
+	public ClassTweak NonNullReturn(params string[] members) {
+		NonNullReturns.UnionWith(members);
+		return this;
+	}
+
 	/// <summary>Overloads left out, told apart by one of their parameters, such as wxImage's SetAlpha that takes an alpha array.</summary>
 	public List<OverloadMatch> IgnoredOverloads { get; } = [];
 

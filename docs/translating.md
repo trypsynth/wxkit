@@ -89,7 +89,7 @@ This extracts the strings again, and merges each catalog with the template, with
 
 ## Check the translations
 
-The build checks each catalog it compiles. `msgfmt` fails the build when a translation of a formatted string loses or adds a placeholder, since `string.Format` would throw. WxKit warns about translations that break what wxWidgets reads out of a label:
+The build checks each catalog it compiles. `msgfmt` fails the build when a translation of a formatted string loses or adds a placeholder, since `string.Format` would throw. A string is formatted when the call that translates it is given arguments, or when it's the first argument of `String.Format`, as F# formats a translation, in `String.Format(tr "{0} files", count)`. WxKit warns about translations that break what wxWidgets reads out of a label:
 
 - WXKIT1001: The translation loses its original's accelerator, the `&` before the letter that chooses a menu item or control from the keyboard.
 - WXKIT1002: The translation adds an accelerator that its original doesn't have. An ampersand that isn't one is written `&&`.

@@ -4321,7 +4321,7 @@ class WxKit.StaticBox : Control
     StaticBox(Window parent, string label, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
     bool Enable(bool enable = true)
 class WxKit.StaticBoxSizer : BoxSizer
-    StaticBox? StaticBox { get; }
+    StaticBox StaticBox { get; }
     StaticBoxSizer(Orientation orientation, Window parent, string label = "")
     StaticBoxSizer(StaticBox box, Orientation orientation)
 class WxKit.StaticLine : Control

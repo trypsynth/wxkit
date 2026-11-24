@@ -60,7 +60,7 @@ internal sealed class SettingsDialog : Dialog {
 		StaticBoxSizer group = new(Orientation.Vertical, notifications, _("Notify me when"));
 		string[] events = AppSettings.Events;
 		for (int index = 0; index < events.Length; index++) {
-			CheckBox box = new(group.StaticBox!, events[index]) {
+			CheckBox box = new(group.StaticBox, events[index]) {
 				IsChecked = settings.Notifications.Contains(index),
 			};
 			group.Add(box, SizerFlags.Default.Border(Direction.Top | Direction.Bottom));

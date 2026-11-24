@@ -18,7 +18,7 @@ public unsafe partial class StaticBoxSizer : BoxSizer {
 	}
 
 	/// <summary>Returns the static box associated with the sizer.</summary>
-	public StaticBox? StaticBox => ObjectRegistry.Wrap<StaticBox>(WxKitNative.StaticBoxSizerGetStaticBox(Native));
+	public StaticBox StaticBox => ObjectRegistry.Wrap<StaticBox>(WxKitNative.StaticBoxSizerGetStaticBox(Native))!;
 
 	private static WxkSizer* CreateNative(StaticBox box, Orientation orientation) {
 		Application.VerifyAccess();
