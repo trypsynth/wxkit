@@ -16,6 +16,7 @@
 		<Project Path="samples/csharp/Checklist/Checklist.csproj" />
 		<Project Path="samples/csharp/Editor/Editor.csproj" />
 		<Project Path="samples/csharp/Hello/Hello.csproj" />
+		<Project Path="samples/csharp/Library/Library.csproj" />
 		<Project Path="samples/csharp/Settings/Settings.csproj" />
 	</Folder>
 	<Folder Name="/samples/fsharp/">
@@ -23,6 +24,7 @@
 		<Project Path="samples/fsharp/Checklist/Checklist.fsproj" />
 		<Project Path="samples/fsharp/Editor/Editor.fsproj" />
 		<Project Path="samples/fsharp/Hello/Hello.fsproj" />
+		<Project Path="samples/fsharp/Library/Library.fsproj" />
 		<Project Path="samples/fsharp/Settings/Settings.fsproj" />
 	</Folder>
 </Solution>
