@@ -45,6 +45,11 @@ internal static class Libraries {
 			.AddEvent("EVT_STC_UPDATEUI", "wxEVT_STC_UPDATEUI", "wxStyledTextEvent", "UIUpdated")
 			.AddEvent("EVT_STC_USERLISTSELECTION", "wxEVT_STC_USERLISTSELECTION", "wxStyledTextEvent", "UserListSelected")
 			.AddEvent("EVT_STC_ZOOM", "wxEVT_STC_ZOOM", "wxStyledTextEvent", "Zoomed")
+			// wxTextEntry's members it has without their implementation, which do nothing, or with a
+			// hint, stop its value from being set. Its own SetMargins, which takes a left and a right, stays.
+			.Ignore("SetHint", "GetHint", "SetMaxLength", "AutoComplete", "AutoCompleteFileNames", "AutoCompleteDirectories", "ForceUpper", "GetMargins")
+			.IgnoreOverload("SetMargins", "pt", "const wxPoint &")
+			.IgnoreOverload("SetMargins", "top", "wxCoord")
 			// UTF-8 versions of the string members, which .NET has no use for.
 			.Ignore("AddTextRaw", "AppendTextRaw", "InsertTextRaw", "ReplaceSelectionRaw", "ReplaceTargetRaw", "ReplaceTargetRERaw", "SetTextRaw"));
 		tweaks.Class("wxStyledTextEvent");

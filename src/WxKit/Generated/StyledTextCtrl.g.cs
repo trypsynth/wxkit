@@ -270,17 +270,6 @@ public unsafe partial class StyledTextCtrl : Control {
 		set => WxKitNative.StyledTextCtrlSetHighlightGuide(Native, value);
 	}
 
-	/// <summary>Returns the current hint string.</summary>
-	public string Hint {
-		get => NativeString.Take(WxKitNative.StyledTextCtrlGetHint(Native));
-		set {
-			ArgumentNullException.ThrowIfNull(value);
-			fixed (char* valueText = value) {
-				WxKitNative.StyledTextCtrlSetHint(Native, valueText, NativeString.Length(value));
-			}
-		}
-	}
-
 	/// <summary>Get the back colour for active hotspots.</summary>
 	public Color? HotspotActiveBackground => global::WxKit.Color.FromNative(WxKitNative.StyledTextCtrlGetHotspotActiveBackground(Native));
 
@@ -437,12 +426,6 @@ public unsafe partial class StyledTextCtrl : Control {
 	public int MarginRight {
 		get => WxKitNative.StyledTextCtrlGetMarginRight(Native);
 		set => WxKitNative.StyledTextCtrlSetMarginRight(Native, value);
-	}
-
-	/// <summary>Returns the margins used by the control.</summary>
-	public Point Margins {
-		get => WxKitNative.StyledTextCtrlGetMargins(Native);
-		set => WxKitNative.StyledTextCtrlSetMarginsPoint(Native, value);
 	}
 
 	/// <summary>Retrieve the last line number that has line state.</summary>
@@ -1247,19 +1230,6 @@ public unsafe partial class StyledTextCtrl : Control {
 		}
 	}
 
-	/// <summary>Call this function to enable auto-completion of the text typed in a single-line text control using the given choices.</summary>
-	public bool AutoComplete(IEnumerable<string> choices) {
-		ArgumentNullException.ThrowIfNull(choices);
-		using NativeStringArray choicesNative = new(choices);
-		return WxKitNative.StyledTextCtrlAutoComplete(Native, choicesNative.Handle) != 0;
-	}
-
-	/// <summary>Call this function to enable auto-completion of the text using the file system directories.</summary>
-	public bool AutoCompleteDirectories() => WxKitNative.StyledTextCtrlAutoCompleteDirectories(Native) != 0;
-
-	/// <summary>Call this function to enable auto-completion of the text typed in a single-line text control using all valid file system paths.</summary>
-	public bool AutoCompleteFileNames() => WxKitNative.StyledTextCtrlAutoCompleteFileNames(Native) != 0;
-
 	/// <summary>Dedent the selected lines.</summary>
 	public void BackTab() => WxKitNative.StyledTextCtrlBackTab(Native);
 
@@ -1601,9 +1571,6 @@ public unsafe partial class StyledTextCtrl : Control {
 
 	/// <summary>Expand or contract a fold header.</summary>
 	public void FoldLine(int line, int action) => WxKitNative.StyledTextCtrlFoldLine(Native, line, action);
-
-	/// <summary>Convert all text entered into the control to upper case.</summary>
-	public void ForceUpper() => WxKitNative.StyledTextCtrlForceUpper(Native);
 
 	/// <summary>Insert a Form Feed character.</summary>
 	public void FormFeed() => WxKitNative.StyledTextCtrlFormFeed(Native);
@@ -2398,10 +2365,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void SetMarginWidth(int margin, int pixelWidth) => WxKitNative.StyledTextCtrlSetMarginWidth(Native, margin, pixelWidth);
 
 	/// <summary>Set the left and right margin in the edit area, measured in pixels.</summary>
-	public void SetMargins(int left, int right) => WxKitNative.StyledTextCtrlSetMarginsIntInt(Native, left, right);
-
-	/// <summary>This function sets the maximum number of characters the user can enter into the control.</summary>
-	public void SetMaxLength(int len) => WxKitNative.StyledTextCtrlSetMaxLength(Native, checked((nuint)len));
+	public void SetMargins(int left, int right) => WxKitNative.StyledTextCtrlSetMargins(Native, left, right);
 
 	/// <summary>Specify a control to synchronize with this control.</summary>
 	public void SetMirrorCtrl(StyledTextCtrl mirrorCtrl) {

@@ -3644,15 +3644,12 @@ class WxKit.ProgressDialog : Dialog
     Smooth = 32
 class WxKit.PropertySheetDialog : Dialog
     BookCtrlBase? BookCtrl { get; set; }
-    BookCtrlBase? CreateBookCtrl()
     PropertySheetDialog(Window? parent, string title, int id = -1, Point? position = null, Size? size = null, DialogStyle style = DialogStyle.Default)
     PropertySheetStyle SheetStyle { get; set; }
     int SheetInnerBorder { get; set; }
     int SheetOuterBorder { get; set; }
-    void AddBookCtrl(Sizer sizer)
     void CreateButtons(DialogButtons flags = DialogButtons.Ok | DialogButtons.Cancel)
     void LayoutDialog(Orientation centerFlags = Orientation.Both)
-    void SetInnerSizer(Sizer sizer)
 [Flags] enum WxKit.PropertySheetStyle : int
     Buttontoolbook = 32
     Choicebook = 8
@@ -7225,7 +7222,6 @@ class WxKit.StyledTextCtrl : Control
     DragResult DoDragEnter(int x, int y, DragResult defaultRes)
     DragResult DoDragOver(int x, int y, DragResult defaultRes)
     Font? StyleGetFont(int style)
-    Point Margins { get; set; }
     Point PointFromPosition(int position)
     StyledTextCtrl(Window parent, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
     TextCtrlHitTestResult HitTest(Point point, out long position)
@@ -7239,9 +7235,6 @@ class WxKit.StyledTextCtrl : Control
     bool AutoCompGetChooseSingle()
     bool AutoCompGetDropRestOfWord()
     bool AutoCompGetIgnoreCase()
-    bool AutoComplete(IEnumerable<string> choices)
-    bool AutoCompleteDirectories()
-    bool AutoCompleteFileNames()
     bool BackSpaceUnIndents { get; set; }
     bool BufferedDraw { get; set; }
     bool CallTipActive()
@@ -7552,7 +7545,6 @@ class WxKit.StyledTextCtrl : Control
     string GetRepresentation(string encodedCharacter)
     string GetTag(int tagNumber)
     string GetTextRange(int startPos, int endPos)
-    string Hint { get; set; }
     string LexerLanguage { get; set; }
     string MarginGetStyles(int line)
     string MarginGetText(int line)
@@ -7674,7 +7666,6 @@ class WxKit.StyledTextCtrl : Control
     void FoldChildren(int line, int action)
     void FoldDisplayTextSetStyle(int style)
     void FoldLine(int line, int action)
-    void ForceUpper()
     void FormFeed()
     void FreeSubStyles()
     void GetSelection(out long from, out long to)
@@ -7802,7 +7793,6 @@ class WxKit.StyledTextCtrl : Control
     void SetMarginType(int margin, int marginType)
     void SetMarginWidth(int margin, int pixelWidth)
     void SetMargins(int left, int right)
-    void SetMaxLength(int len)
     void SetMirrorCtrl(StyledTextCtrl mirrorCtrl)
     void SetProperty(string key, string value)
     void SetRepresentation(string encodedCharacter, string representation)

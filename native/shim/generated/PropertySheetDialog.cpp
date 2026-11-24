@@ -8,20 +8,8 @@ WXK_FUNCTION(wxk_Window*) wxk_PropertySheetDialog_new(wxk_Window* parent, int32_
 	});
 }
 
-WXK_FUNCTION(void) wxk_PropertySheetDialog_AddBookCtrl(wxk_Window* self, wxk_Sizer* sizer) noexcept {
-	wxk::Guard([&] { static_cast<wxPropertySheetDialog*>(wxk::Unwrap(self))->AddBookCtrl(static_cast<wxSizer*>(wxk::Unwrap(sizer))); });
-}
-
-WXK_FUNCTION(wxk_Window*) wxk_PropertySheetDialog_CreateBookCtrl(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(static_cast<wxPropertySheetDialog*>(wxk::Unwrap(self))->CreateBookCtrl())); });
-}
-
 WXK_FUNCTION(void) wxk_PropertySheetDialog_CreateButtons(wxk_Window* self, int32_t flags) noexcept {
 	wxk::Guard([&] { static_cast<wxPropertySheetDialog*>(wxk::Unwrap(self))->CreateButtons(static_cast<int>(flags)); });
-}
-
-WXK_FUNCTION(void) wxk_PropertySheetDialog_SetInnerSizer(wxk_Window* self, wxk_Sizer* sizer) noexcept {
-	wxk::Guard([&] { static_cast<wxPropertySheetDialog*>(wxk::Unwrap(self))->SetInnerSizer(static_cast<wxSizer*>(wxk::Unwrap(sizer))); });
 }
 
 WXK_FUNCTION(void) wxk_PropertySheetDialog_LayoutDialog(wxk_Window* self, int32_t centerFlags) noexcept {

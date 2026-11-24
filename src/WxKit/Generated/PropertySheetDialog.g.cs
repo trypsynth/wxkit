@@ -40,26 +40,11 @@ public unsafe partial class PropertySheetDialog : Dialog {
 		set => WxKitNative.PropertySheetDialogSetSheetStyle(Native, (long)value);
 	}
 
-	/// <summary>Override this if you wish to add the book control in a way different from the standard way (for example, using different spacing).</summary>
-	public void AddBookCtrl(Sizer sizer) {
-		ArgumentNullException.ThrowIfNull(sizer);
-		WxKitNative.PropertySheetDialogAddBookCtrl(Native, (WxkSizer*)sizer.Native);
-	}
-
-	/// <summary>Override this if you wish to create a different kind of book control; by default, the value passed to SetSheetStyle() is used to determine the control.</summary>
-	public BookCtrlBase? CreateBookCtrl() => ObjectRegistry.Wrap<BookCtrlBase>(WxKitNative.PropertySheetDialogCreateBookCtrl(Native));
-
 	/// <summary>Call this to create the buttons for the dialog.</summary>
 	public void CreateButtons(DialogButtons flags = DialogButtons.Ok | DialogButtons.Cancel) => WxKitNative.PropertySheetDialogCreateButtons(Native, (int)flags);
 
 	/// <summary>Call this to lay out the dialog.</summary>
 	public void LayoutDialog(Orientation centerFlags = Orientation.Both) => WxKitNative.PropertySheetDialogLayoutDialog(Native, (int)centerFlags);
-
-	/// <summary>Set the inner sizer that contains the book control and button sizer.</summary>
-	public void SetInnerSizer(Sizer sizer) {
-		ArgumentNullException.ThrowIfNull(sizer);
-		WxKitNative.PropertySheetDialogSetInnerSizer(Native, (WxkSizer*)sizer.Native);
-	}
 
 	private static WxkWindow* CreateNative(Window? parent, string title, int id, Point? position, Size? size, DialogStyle style) {
 		Application.VerifyAccess();

@@ -85,7 +85,10 @@ internal static class Dialogs {
 		// The buttons a dialog makes for itself, such as OK and Cancel.
 		tweaks.ConstantEnumOf("DialogButtons", isFlags: true, "wxOK", "wxCANCEL", "wxYES", "wxNO", "wxAPPLY", "wxCLOSE", "wxHELP", "wxNO_DEFAULT");
 		tweaks.ConstantEnumOf("PropertySheetStyle", isFlags: true, "wxPROPSHEET_DEFAULT", "wxPROPSHEET_NOTEBOOK", "wxPROPSHEET_TOOLBOOK", "wxPROPSHEET_CHOICEBOOK", "wxPROPSHEET_LISTBOOK", "wxPROPSHEET_BUTTONTOOLBOOK", "wxPROPSHEET_TREEBOOK", "wxPROPSHEET_SHRINKTOFIT");
+		// SetInnerSizer only keeps the sizer it's given, which nothing owns then, and AddBookCtrl and
+		// CreateBookCtrl are what the dialog calls to make itself, for a derived dialog to override.
 		tweaks.Class("wxPropertySheetDialog", sheet => sheet
+			.Ignore("SetInnerSizer", "AddBookCtrl", "CreateBookCtrl")
 			.ParameterEnum("CreateButtons", "flags", "DialogButtons")
 			.ParameterEnum("SetSheetStyle", "style", "PropertySheetStyle")
 			.ParameterEnum("GetSheetStyle", "return", "PropertySheetStyle"));

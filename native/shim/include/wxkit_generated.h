@@ -2104,10 +2104,7 @@ WXK_FUNCTION(wxk_String*) wxk_ProgressDialog_GetMessage(wxk_Window* self) WXK_NO
 // wxPropertySheetDialog
 
 WXK_FUNCTION(wxk_Window*) wxk_PropertySheetDialog_new(wxk_Window* parent, int32_t id, const char16_t* title, size_t titleLength, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_PropertySheetDialog_AddBookCtrl(wxk_Window* self, wxk_Sizer* sizer) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Window*) wxk_PropertySheetDialog_CreateBookCtrl(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_PropertySheetDialog_CreateButtons(wxk_Window* self, int32_t flags) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_PropertySheetDialog_SetInnerSizer(wxk_Window* self, wxk_Sizer* sizer) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_PropertySheetDialog_LayoutDialog(wxk_Window* self, int32_t centerFlags) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_PropertySheetDialog_GetBookCtrl(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_PropertySheetDialog_SetBookCtrl(wxk_Window* self, wxk_Window* bookCtrl) WXK_NOEXCEPT;
@@ -3023,7 +3020,7 @@ WXK_FUNCTION(void) wxk_StyledTextCtrl_StyleSetFont(wxk_Window* self, int32_t sty
 WXK_FUNCTION(void) wxk_StyledTextCtrl_StyleSetFontAttr(wxk_Window* self, int32_t styleNum, int32_t size, const char16_t* faceName, size_t faceNameLength, uint8_t bold, uint8_t italic, uint8_t underline, int32_t encoding) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_StyleSetFontEncoding(wxk_Window* self, int32_t style, int32_t encoding) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_CmdKeyExecute(wxk_Window* self, int32_t cmd) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_StyledTextCtrl_SetMargins_IntInt(wxk_Window* self, int32_t left, int32_t right) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_StyledTextCtrl_SetMargins(wxk_Window* self, int32_t left, int32_t right) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_ScrollToLine(wxk_Window* self, int32_t line) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_ScrollToColumn(wxk_Window* self, int32_t column) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_SetVScrollBar(wxk_Window* self, wxk_Window* bar) WXK_NOEXCEPT;
@@ -3053,14 +3050,9 @@ WXK_FUNCTION(void) wxk_StyledTextCtrl_ShowPosition(wxk_Window* self, int64_t pos
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_HitTest(wxk_Window* self, wxk_Point point, int64_t* position) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_SetMirrorCtrl(wxk_Window* self, wxk_Window* mirrorCtrl) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_SetCustomDrawn(wxk_Window* self, uint8_t customDrawn) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_AutoComplete(wxk_Window* self, const wxk_StringArray* choices) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_AutoCompleteFileNames(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_AutoCompleteDirectories(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_ChangeValue(wxk_Window* self, const char16_t* value, size_t valueLength) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_StyledTextCtrl_ForceUpper(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetRange(wxk_Window* self, int64_t from, int64_t to) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_SetInsertionPointEnd(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_StyledTextCtrl_SetMaxLength(wxk_Window* self, size_t len) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_GetReadOnly(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_SetReadOnly(wxk_Window* self, uint8_t readOnly) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetText(wxk_Window* self) WXK_NOEXCEPT;
@@ -3330,10 +3322,6 @@ WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetStringSelection(wxk_Window* self
 WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetValue(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_SetValue(wxk_Window* self, const char16_t* value, size_t valueLength) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_IsEmpty(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetHint(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_SetHint(wxk_Window* self, const char16_t* hint, size_t hintLength) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Point) wxk_StyledTextCtrl_GetMargins(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_SetMargins_Point(wxk_Window* self, wxk_Point point) WXK_NOEXCEPT;
 
 // wxStyledTextEvent
 

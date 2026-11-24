@@ -6890,21 +6890,9 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* PropertySheetDialogNew(WxkWindow* parent, int id, char* title, nuint titleLength, Point position, Size size, long style);
 
-	[LibraryImport(Library, EntryPoint = "wxk_PropertySheetDialog_AddBookCtrl")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void PropertySheetDialogAddBookCtrl(WxkWindow* self, WxkSizer* sizer);
-
-	[LibraryImport(Library, EntryPoint = "wxk_PropertySheetDialog_CreateBookCtrl")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkWindow* PropertySheetDialogCreateBookCtrl(WxkWindow* self);
-
 	[LibraryImport(Library, EntryPoint = "wxk_PropertySheetDialog_CreateButtons")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void PropertySheetDialogCreateButtons(WxkWindow* self, int flags);
-
-	[LibraryImport(Library, EntryPoint = "wxk_PropertySheetDialog_SetInnerSizer")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void PropertySheetDialogSetInnerSizer(WxkWindow* self, WxkSizer* sizer);
 
 	[LibraryImport(Library, EntryPoint = "wxk_PropertySheetDialog_LayoutDialog")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -10134,9 +10122,9 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlCmdKeyExecute(WxkWindow* self, int cmd);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMargins_IntInt")]
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMargins")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlSetMarginsIntInt(WxkWindow* self, int left, int right);
+	public static partial void StyledTextCtrlSetMargins(WxkWindow* self, int left, int right);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ScrollToLine")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -10254,25 +10242,9 @@ public static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlSetCustomDrawn(WxkWindow* self, byte customDrawn);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoComplete")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte StyledTextCtrlAutoComplete(WxkWindow* self, WxkStringArray* choices);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompleteFileNames")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte StyledTextCtrlAutoCompleteFileNames(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompleteDirectories")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte StyledTextCtrlAutoCompleteDirectories(WxkWindow* self);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ChangeValue")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlChangeValue(WxkWindow* self, char* value, nuint valueLength);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ForceUpper")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlForceUpper(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetRange")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -10281,10 +10253,6 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetInsertionPointEnd")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlSetInsertionPointEnd(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMaxLength")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlSetMaxLength(WxkWindow* self, nuint len);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetReadOnly")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -11361,22 +11329,6 @@ public static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_IsEmpty")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte StyledTextCtrlIsEmpty(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetHint")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkString* StyledTextCtrlGetHint(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetHint")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte StyledTextCtrlSetHint(WxkWindow* self, char* hint, nuint hintLength);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMargins")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial Point StyledTextCtrlGetMargins(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetMargins_Point")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte StyledTextCtrlSetMarginsPoint(WxkWindow* self, Point point);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetAnnotationLinesAdded")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
