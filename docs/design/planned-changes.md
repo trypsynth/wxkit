@@ -48,6 +48,7 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
   - `Window.AddChild`, `RemoveChild`, `SetContainingSizer`, `PushEventHandler`, `PopEventHandler`, `SetNextHandler`, `SetPreviousHandler`, `OnInternalIdle`, `InformFirstDirection`, `CacheBestSize`, and the `AcceptsFocus` family.
   - The sizers' `CalcMin` and `RepositionChildren`, the splitter's `OnSashPositionChange`, `OnDoubleClickSash`, and `OnUnsplit`, the property sheet's `CreateBookCtrl`, `AddBookCtrl`, and `SetInnerSizer`, and `ScrolledWindow.PrepareDC`.
   - `Image` and `Bitmap`'s `CleanUpHandlers` and `InitStandardHandlers`, `Dialog`'s layout adaptation, `DC.StartDoc` and its page members, `MenuBar.Attach` and `Detach`, `Event.EventUserData`, `EventCategory`, and `IsCommandEvent`, and the styled text control's `DoDragEnter` family.
+  - `Frame.ProcessCommand` and `DoGiveHelp`, `ScrolledWindow.DoPrepareDC`, `ToolBar.OnLeftClick` and `OnMouseEnter`, and `Window.ShouldInheritColors` and `InheritAttributes`, which a review of what is public and shouldn't be found on 2026-11-25. The same review made `WxKit.Interop` internal, as the first preview's notes say.
   - `TreeCtrl.OnCompareItems` becomes an override, as `ListCtrl.OnGetItemText` is.
 - Two-step creation: `Bitmap()` and its `Create` members become static factories, such as `Bitmap.FromDipSize`, and `Image.Create` goes.
 - Members that only repeat another:
