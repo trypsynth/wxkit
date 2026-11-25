@@ -14,29 +14,29 @@ public unsafe partial class FindReplaceDialog : Dialog {
 	internal FindReplaceDialog(WxkWindow* native) : base(native) {
 	}
 
-	public event EventHandler<FindDialogEvent>? Find {
-		add => AddHandler(EventType.Find, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.Find, StandardId.Any, StandardId.Any, value);
-	}
-
-	public event EventHandler<FindDialogEvent>? FindClose {
+	public event EventHandler<FindDialogEvent>? FindClosed {
 		add => AddHandler(EventType.FindClose, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.FindClose, StandardId.Any, StandardId.Any, value);
 	}
 
-	public event EventHandler<FindDialogEvent>? FindNext {
+	public event EventHandler<FindDialogEvent>? FindNextRequested {
 		add => AddHandler(EventType.FindNext, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.FindNext, StandardId.Any, StandardId.Any, value);
 	}
 
-	public event EventHandler<FindDialogEvent>? Replace {
-		add => AddHandler(EventType.FindReplace, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.FindReplace, StandardId.Any, StandardId.Any, value);
+	public event EventHandler<FindDialogEvent>? FindRequested {
+		add => AddHandler(EventType.Find, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.Find, StandardId.Any, StandardId.Any, value);
 	}
 
-	public event EventHandler<FindDialogEvent>? ReplaceAll {
+	public event EventHandler<FindDialogEvent>? ReplaceAllRequested {
 		add => AddHandler(EventType.FindReplaceAll, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.FindReplaceAll, StandardId.Any, StandardId.Any, value);
+	}
+
+	public event EventHandler<FindDialogEvent>? ReplaceRequested {
+		add => AddHandler(EventType.FindReplace, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.FindReplace, StandardId.Any, StandardId.Any, value);
 	}
 
 	private static WxkWindow* CreateNative(Window? parent, FindReplaceData data, string title, FindReplaceDialogStyle style) {

@@ -905,11 +905,6 @@ public unsafe partial class StyledTextCtrl : Control {
 		remove => RemoveHandler(EventType.StyledTextClipboardPaste, StandardId.Any, StandardId.Any, value);
 	}
 
-	public event EventHandler<StyledTextEvent>? DoDrop {
-		add => AddHandler(EventType.StyledTextDoDrop, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StyledTextDoDrop, StandardId.Any, StandardId.Any, value);
-	}
-
 	public event EventHandler<StyledTextEvent>? DoubleClick {
 		add => AddHandler(EventType.StyledTextDoubleClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextDoubleClick, StandardId.Any, StandardId.Any, value);
@@ -1008,6 +1003,11 @@ public unsafe partial class StyledTextCtrl : Control {
 	public event EventHandler<StyledTextEvent>? StyleNeeded {
 		add => AddHandler(EventType.StyledTextStyleNeeded, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextStyleNeeded, StandardId.Any, StandardId.Any, value);
+	}
+
+	public event EventHandler<StyledTextEvent>? TextDropping {
+		add => AddHandler(EventType.StyledTextDoDrop, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextDoDrop, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? UIUpdated {

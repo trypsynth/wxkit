@@ -1170,9 +1170,9 @@ class WxKit.DataViewCtrl : Control
     event EventHandler<DataViewEvent>? ItemDropPossible
     event EventHandler<DataViewEvent>? ItemEditingDone
     event EventHandler<DataViewEvent>? ItemEditingStarted
+    event EventHandler<DataViewEvent>? ItemEditingStarting
     event EventHandler<DataViewEvent>? ItemExpanded
     event EventHandler<DataViewEvent>? ItemExpanding
-    event EventHandler<DataViewEvent>? ItemStartEditing
     event EventHandler<DataViewEvent>? ItemValueChanged
     event EventHandler<DataViewEvent>? SelectionChanged
     int ColumnCount { get; }
@@ -1928,11 +1928,11 @@ class WxKit.FindReplaceData : NativeObject
     string ReplaceString { get; set; }
 class WxKit.FindReplaceDialog : Dialog
     FindReplaceDialog(Window? parent, FindReplaceData data, string title, FindReplaceDialogStyle style = FindReplaceDialogStyle.0)
-    event EventHandler<FindDialogEvent>? Find
-    event EventHandler<FindDialogEvent>? FindClose
-    event EventHandler<FindDialogEvent>? FindNext
-    event EventHandler<FindDialogEvent>? Replace
-    event EventHandler<FindDialogEvent>? ReplaceAll
+    event EventHandler<FindDialogEvent>? FindClosed
+    event EventHandler<FindDialogEvent>? FindNextRequested
+    event EventHandler<FindDialogEvent>? FindRequested
+    event EventHandler<FindDialogEvent>? ReplaceAllRequested
+    event EventHandler<FindDialogEvent>? ReplaceRequested
 [Flags] enum WxKit.FindReplaceDialogStyle : int
     NoMatchCase = 4
     NoUpDown = 2
@@ -7301,7 +7301,6 @@ class WxKit.StyledTextCtrl : Control
     event EventHandler<StyledTextEvent>? CharAdded
     event EventHandler<StyledTextEvent>? ClipboardCopy
     event EventHandler<StyledTextEvent>? ClipboardPaste
-    event EventHandler<StyledTextEvent>? DoDrop
     event EventHandler<StyledTextEvent>? DoubleClick
     event EventHandler<StyledTextEvent>? DragOver
     event EventHandler<StyledTextEvent>? DwellEnd
@@ -7322,6 +7321,7 @@ class WxKit.StyledTextCtrl : Control
     event EventHandler<StyledTextEvent>? SavePointReached
     event EventHandler<StyledTextEvent>? StartDrag
     event EventHandler<StyledTextEvent>? StyleNeeded
+    event EventHandler<StyledTextEvent>? TextDropping
     event EventHandler<StyledTextEvent>? UIUpdated
     event EventHandler<StyledTextEvent>? UserListSelected
     event EventHandler<StyledTextEvent>? Zoomed
@@ -8162,7 +8162,7 @@ class WxKit.TextValidator : Validator
     bool HasFlag(TextValidatorStyle style)
     string CharExcludes { get; set; }
     string CharIncludes { get; set; }
-    string IsValid(string val)
+    string GetError(string val)
     string[] Excludes { get; set; }
     string[] Includes { get; set; }
     void AddCharExcludes(string chars)

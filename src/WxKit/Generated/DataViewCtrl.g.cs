@@ -154,6 +154,12 @@ public unsafe partial class DataViewCtrl : Control {
 		remove => RemoveHandler(EventType.DataViewItemEditingStarted, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_DATAVIEW_ITEM_START_EDITING event. This event can be vetoed in order to prevent editing on an item by item basis.</summary>
+	public event EventHandler<DataViewEvent>? ItemEditingStarting {
+		add => AddHandler(EventType.DataViewItemStartEditing, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.DataViewItemStartEditing, StandardId.Any, StandardId.Any, value);
+	}
+
 	/// <summary>Process a wxEVT_DATAVIEW_ITEM_EXPANDED event.</summary>
 	public event EventHandler<DataViewEvent>? ItemExpanded {
 		add => AddHandler(EventType.DataViewItemExpanded, StandardId.Any, StandardId.Any, value, this);
@@ -164,12 +170,6 @@ public unsafe partial class DataViewCtrl : Control {
 	public event EventHandler<DataViewEvent>? ItemExpanding {
 		add => AddHandler(EventType.DataViewItemExpanding, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.DataViewItemExpanding, StandardId.Any, StandardId.Any, value);
-	}
-
-	/// <summary>Process a wxEVT_DATAVIEW_ITEM_START_EDITING event. This event can be vetoed in order to prevent editing on an item by item basis.</summary>
-	public event EventHandler<DataViewEvent>? ItemStartEditing {
-		add => AddHandler(EventType.DataViewItemStartEditing, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.DataViewItemStartEditing, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_DATAVIEW_ITEM_VALUE_CHANGED event.</summary>

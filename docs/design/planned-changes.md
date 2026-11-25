@@ -9,7 +9,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 - Parameter names, which break only named arguments:
   - Hungarian and abbreviated names that are left, such as `nPage`, `colFg`, `ptStart`, `xdest`, `bCase`, `but`, `minW`, and `selImage`, and the same thing named differently across classes, as `FileDialog`'s `defaultDir` and `FileCtrl`'s `defaultDirectory` are.
 - `UpdateUIEvent.Checked` is named as a boolean, as `IsChecked` is. It can't take that name, which is its base's, `CommandEvent.IsChecked`, and means something else.
-- Members that read as commands: `FindReplaceDialog.Find`, `Replace`, and their siblings become `FindRequested` and so on, as `SearchRequested` is named, and `StyledTextCtrl.DoDrop` becomes `TextDropping`. `DataViewCtrl.ItemStartEditing` becomes `ItemEditingStarting`. `TextValidator.IsValid`, which returns an error message, becomes `GetError`.
 
 ## Types
 

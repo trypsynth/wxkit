@@ -22,7 +22,7 @@ internal static class Libraries {
 			.AddEvent("EVT_STC_CLIPBOARD_COPY", "wxEVT_STC_CLIPBOARD_COPY", "wxStyledTextEvent", "ClipboardCopy")
 			.AddEvent("EVT_STC_CLIPBOARD_PASTE", "wxEVT_STC_CLIPBOARD_PASTE", "wxStyledTextEvent", "ClipboardPaste")
 			.AddEvent("EVT_STC_DOUBLECLICK", "wxEVT_STC_DOUBLECLICK", "wxStyledTextEvent", "DoubleClick")
-			.AddEvent("EVT_STC_DO_DROP", "wxEVT_STC_DO_DROP", "wxStyledTextEvent", "DoDrop")
+			.AddEvent("EVT_STC_DO_DROP", "wxEVT_STC_DO_DROP", "wxStyledTextEvent", "TextDropping")
 			.AddEvent("EVT_STC_DRAG_OVER", "wxEVT_STC_DRAG_OVER", "wxStyledTextEvent", "DragOver")
 			.AddEvent("EVT_STC_DWELLEND", "wxEVT_STC_DWELLEND", "wxStyledTextEvent", "DwellEnd")
 			.AddEvent("EVT_STC_DWELLSTART", "wxEVT_STC_DWELLSTART", "wxStyledTextEvent", "DwellStart")

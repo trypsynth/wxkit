@@ -178,11 +178,11 @@ type EditorFrame() as this =
             open' |> Option.iter (fun (dialog, _) -> dialog.Destroy() |> ignore)
             let style = if replace then FindReplaceDialogStyle.ReplaceDialog else enum 0
             let dialog = new FindReplaceDialog(this, findData, (if replace then "Replace" else "Find"), style)
-            dialog.Find.Add(fun e -> findNext e.FindString e.Flags |> ignore)
-            dialog.FindNext.Add(fun e -> findNext e.FindString e.Flags |> ignore)
-            dialog.Replace.Add(fun e -> replaceOne e.FindString e.ReplaceString e.Flags)
-            dialog.ReplaceAll.Add(fun e -> replaceAll e.FindString e.ReplaceString e.Flags)
-            dialog.FindClose.Add(fun _ ->
+            dialog.FindRequested.Add(fun e -> findNext e.FindString e.Flags |> ignore)
+            dialog.FindNextRequested.Add(fun e -> findNext e.FindString e.Flags |> ignore)
+            dialog.ReplaceRequested.Add(fun e -> replaceOne e.FindString e.ReplaceString e.Flags)
+            dialog.ReplaceAllRequested.Add(fun e -> replaceAll e.FindString e.ReplaceString e.Flags)
+            dialog.FindClosed.Add(fun _ ->
                 dialog.Destroy() |> ignore
                 findDialog <- None)
             findDialog <- Some(dialog, replace)

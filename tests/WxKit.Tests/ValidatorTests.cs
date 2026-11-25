@@ -9,8 +9,8 @@ public class ValidatorTests {
 		using TextValidator validator = new(TextValidatorStyle.Digits);
 		Assert.Equal(TextValidatorStyle.Digits, validator.Style);
 		Assert.True(validator.HasFlag(TextValidatorStyle.Digits));
-		Assert.Empty(validator.IsValid("123"));
-		Assert.NotEmpty(validator.IsValid("12a"));
+		Assert.Empty(validator.GetError("123"));
+		Assert.NotEmpty(validator.GetError("12a"));
 	});
 
 	[Fact]
@@ -19,8 +19,8 @@ public class ValidatorTests {
 		validator.Includes = ["red", "green"];
 		validator.AddInclude("blue");
 		Assert.Equal(["red", "green", "blue"], validator.Includes);
-		Assert.Empty(validator.IsValid("blue"));
-		Assert.NotEmpty(validator.IsValid("cyan"));
+		Assert.Empty(validator.GetError("blue"));
+		Assert.NotEmpty(validator.GetError("cyan"));
 	});
 
 	[Fact]

@@ -236,11 +236,11 @@ internal sealed class EditorFrame : Frame {
 			_findDialog.Destroy();
 		}
 		FindReplaceDialog dialog = new(this, _findData, replace ? "Replace" : "Find", replace ? FindReplaceDialogStyle.ReplaceDialog : 0);
-		dialog.Find += (_, e) => FindNext(e.FindString, e.Flags);
-		dialog.FindNext += (_, e) => FindNext(e.FindString, e.Flags);
-		dialog.Replace += (_, e) => Replace(e.FindString, e.ReplaceString, e.Flags);
-		dialog.ReplaceAll += (_, e) => ReplaceAll(e.FindString, e.ReplaceString, e.Flags);
-		dialog.FindClose += (_, _) => {
+		dialog.FindRequested += (_, e) => FindNext(e.FindString, e.Flags);
+		dialog.FindNextRequested += (_, e) => FindNext(e.FindString, e.Flags);
+		dialog.ReplaceRequested += (_, e) => Replace(e.FindString, e.ReplaceString, e.Flags);
+		dialog.ReplaceAllRequested += (_, e) => ReplaceAll(e.FindString, e.ReplaceString, e.Flags);
+		dialog.FindClosed += (_, _) => {
 			_findDialog?.Destroy();
 			_findDialog = null;
 		};

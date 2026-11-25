@@ -459,7 +459,7 @@ internal static class Naming {
 		{ "EVT_DATAVIEW_ITEM_DROP_POSSIBLE", "ItemDropPossible" },
 		{ "EVT_DATAVIEW_ITEM_EDITING_DONE", "ItemEditingDone" },
 		{ "EVT_DATAVIEW_ITEM_EDITING_STARTED", "ItemEditingStarted" },
-		{ "EVT_DATAVIEW_ITEM_START_EDITING", "ItemStartEditing" },
+		{ "EVT_DATAVIEW_ITEM_START_EDITING", "ItemEditingStarting" },
 		{ "EVT_DATAVIEW_ITEM_VALUE_CHANGED", "ItemValueChanged" },
 		{ "EVT_DATAVIEW_SELECTION_CHANGED", "SelectionChanged" },
 		{ "EVT_TOOL", "ToolClicked" },

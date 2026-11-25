@@ -93,16 +93,16 @@ public unsafe partial class TextValidator : Validator {
 		}
 	}
 
-	/// <summary>Returns true if the given style bit is set in the current style.</summary>
-	public bool HasFlag(TextValidatorStyle style) => WxKitNative.TextValidatorHasFlag(Native, (int)style) != 0;
-
 	/// <summary>Returns the error message if the contents of val are invalid or the empty string if val is valid.</summary>
-	public string IsValid(string val) {
+	public string GetError(string val) {
 		ArgumentNullException.ThrowIfNull(val);
 		fixed (char* valText = val) {
 			return NativeString.Take(WxKitNative.TextValidatorIsValid(Native, valText, NativeString.Length(val)));
 		}
 	}
+
+	/// <summary>Returns true if the given style bit is set in the current style.</summary>
+	public bool HasFlag(TextValidatorStyle style) => WxKitNative.TextValidatorHasFlag(Native, (int)style) != 0;
 
 	private static WxkObject* CreateNative(TextValidatorStyle style) {
 		Application.VerifyAccess();

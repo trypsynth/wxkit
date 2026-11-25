@@ -84,6 +84,8 @@ internal static class Controls {
 		tweaks.Class("wxTextValidator", validator => validator
 			.Owned()
 			.Ignore("Clone", "OnChar")
+			// It returns what is wrong with the text, or nothing, rather than whether it is valid.
+			.Rename("IsValid", "GetError")
 			.ParameterEnum("wxTextValidator", "style", "wxTextValidatorStyle")
 			.ParameterEnum("SetStyle", "style", "wxTextValidatorStyle")
 			.ParameterEnum("GetStyle", "return", "wxTextValidatorStyle"));
