@@ -13,5 +13,5 @@ public unsafe partial class ActivateEvent : Event {
 	public ActivationReason ActivationReason => (ActivationReason)WxKitNative.ActivateEventGetActivationReason(Handle);
 
 	/// <summary>Returns true if the application or window is being activated, false otherwise.</summary>
-	public bool Active => WxKitNative.ActivateEventGetActive(Handle) != 0;
+	public bool IsActive => WxKitNative.ActivateEventGetActive(Handle) != 0;
 }

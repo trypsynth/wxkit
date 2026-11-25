@@ -240,7 +240,7 @@ sealed record WxKit.AccessibleRow : IEquatable<AccessibleRow>
     Unavailable = 33554432
 class WxKit.ActivateEvent : Event
     ActivationReason ActivationReason { get; }
-    bool Active { get; }
+    bool IsActive { get; }
 enum WxKit.ActivationReason : int
     Mouse = 0
     Unknown = 1
@@ -738,8 +738,8 @@ sealed class WxKit.ClipboardContent
     void Add(string format, ReadOnlySpan<byte> data)
 class WxKit.CloseEvent : Event
     bool CanVeto { get; }
+    bool IsLoggingOff { get; set; }
     bool IsVetoed { get; }
-    bool LoggingOff { get; set; }
     void SetCanVeto(bool canVeto)
     void Veto(bool veto = true)
 class WxKit.CollapsiblePane : Control
@@ -1993,9 +1993,9 @@ class WxKit.Font : NativeObject
     Size PixelSize { get; set; }
     bool IsFixedWidth { get; }
     bool IsOk { get; }
+    bool IsUnderlined { get; set; }
     bool SetNativeFontInfo(string info)
     bool Strikethrough { get; set; }
-    bool Underlined { get; set; }
     double FractionalPointSize { get; set; }
     int NumericWeight { get; set; }
     int PointSize { get; set; }
@@ -2355,7 +2355,7 @@ class WxKit.HyperlinkCtrl : Control
     Color? NormalColor { get; set; }
     Color? VisitedColor { get; set; }
     HyperlinkCtrl(Window parent, string label, string url, int id = -1, Point? position = null, Size? size = null, HyperlinkCtrlStyle style = HyperlinkCtrlStyle.Default)
-    bool Visited { get; set; }
+    bool IsVisited { get; set; }
     event EventHandler<HyperlinkEvent>? Click
     string Url { get; set; }
 [Flags] enum WxKit.HyperlinkCtrlStyle : long
@@ -3046,8 +3046,8 @@ class WxKit.MenuEvent : Event
     int MenuId { get; }
 sealed class WxKit.MenuItem
     Menu Menu { get; }
-    bool Checked { get; set; }
-    bool Enabled { get; set; }
+    bool IsChecked { get; set; }
+    bool IsEnabled { get; set; }
     event EventHandler<CommandEvent>? Click
     int Id { get; }
     string Label { get; set; }
@@ -3216,9 +3216,9 @@ enum WxKit.NavigationDirection : int
     Right = 6
     Up = 7
 [Flags] enum WxKit.NavigationFlags : int
+    Backward = 0
+    Forward = 1
     FromTab = 4
-    IsBackward = 0
-    IsForward = 1
     WinChange = 2
 class WxKit.NavigationKeyEvent : Event
     Window? CurrentFocus { get; set; }
@@ -3588,7 +3588,7 @@ enum WxKit.PrintQuality : int
 class WxKit.Printer : NativeObject
     PrintDialogData? PrintDialogData { get; }
     Printer(PrintDialogData? data = null)
-    bool Abort { get; }
+    bool IsAborted { get; }
     bool Print(Window parent, Printout printout, bool prompt = true)
     static PrinterError LastError { get; }
     void ReportError(Window parent, Printout printout, string message)
@@ -8597,14 +8597,14 @@ static class WxKit.UILocale
 class WxKit.UpdateUIEvent : CommandEvent
     CheckBoxState ThreeStateValue { get; set; }
     bool Checked { get; }
-    bool Enabled { get; }
     bool Is3State()
     bool IsCheckable { get; }
-    bool SetChecked { get; }
-    bool SetEnabled { get; }
-    bool SetShown { get; }
-    bool SetText { get; }
-    bool Shown { get; }
+    bool IsCheckedSet { get; }
+    bool IsEnabled { get; }
+    bool IsEnabledSet { get; }
+    bool IsShown { get; }
+    bool IsShownSet { get; }
+    bool IsTextSet { get; }
     static UpdateUIMode Mode { get; set; }
     static bool CanUpdate(Window window)
     static long UpdateInterval { get; set; }
@@ -8862,8 +8862,8 @@ class WxKit.Window : EvtHandler
     bool Layout()
     bool LineDown()
     bool LineUp()
-    bool Navigate(NavigationFlags flags = NavigationFlags.IsForward)
-    bool NavigateIn(NavigationFlags flags = NavigationFlags.IsForward)
+    bool Navigate(NavigationFlags flags = NavigationFlags.Forward)
+    bool NavigateIn(NavigationFlags flags = NavigationFlags.Forward)
     bool PageDown()
     bool PageUp()
     bool PopupMenu(Menu menu, Point? position = null)

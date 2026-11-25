@@ -14,7 +14,7 @@ public unsafe partial class Printer : NativeObject {
 	}
 
 	/// <summary>Returns true if the user has aborted the print job.</summary>
-	public bool Abort => WxKitNative.PrinterGetAbort(Native) != 0;
+	public bool IsAborted => WxKitNative.PrinterGetAbort(Native) != 0;
 
 	/// <summary>Return last error.</summary>
 	public static PrinterError LastError {

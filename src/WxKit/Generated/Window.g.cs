@@ -832,10 +832,10 @@ public unsafe partial class Window : EvtHandler {
 	}
 
 	/// <summary>Performs a keyboard navigation action starting from this window.</summary>
-	public bool Navigate(NavigationFlags flags = NavigationFlags.IsForward) => WxKitNative.WindowNavigate(Native, (int)flags) != 0;
+	public bool Navigate(NavigationFlags flags = NavigationFlags.Forward) => WxKitNative.WindowNavigate(Native, (int)flags) != 0;
 
 	/// <summary>Performs a keyboard navigation action inside this window.</summary>
-	public bool NavigateIn(NavigationFlags flags = NavigationFlags.IsForward) => WxKitNative.WindowNavigateIn(Native, (int)flags) != 0;
+	public bool NavigateIn(NavigationFlags flags = NavigationFlags.Forward) => WxKitNative.WindowNavigateIn(Native, (int)flags) != 0;
 
 	/// <summary>Create a new ID or range of IDs that are not currently in use.</summary>
 	public static int NewControlId(int count = 1) {

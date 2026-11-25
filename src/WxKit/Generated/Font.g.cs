@@ -78,6 +78,12 @@ public unsafe partial class Font : NativeObject {
 	/// <summary>Returns true if this object is a valid font, false otherwise.</summary>
 	public bool IsOk => WxKitNative.FontIsOk(Native) != 0;
 
+	/// <summary>Returns true if the font is underlined, false otherwise.</summary>
+	public bool IsUnderlined {
+		get => WxKitNative.FontGetUnderlined(Native) != 0;
+		set => WxKitNative.FontSetUnderlined(Native, value ? (byte)1 : (byte)0);
+	}
+
 	/// <summary>Returns the platform-dependent string completely describing this font.</summary>
 	public string NativeFontInfoDescription => NativeString.Take(WxKitNative.FontGetNativeFontInfoDesc(Native));
 
@@ -120,12 +126,6 @@ public unsafe partial class Font : NativeObject {
 	public FontStyle Style {
 		get => (FontStyle)WxKitNative.FontGetStyle(Native);
 		set => WxKitNative.FontSetStyle(Native, (int)value);
-	}
-
-	/// <summary>Returns true if the font is underlined, false otherwise.</summary>
-	public bool Underlined {
-		get => WxKitNative.FontGetUnderlined(Native) != 0;
-		set => WxKitNative.FontSetUnderlined(Native, value ? (byte)1 : (byte)0);
 	}
 
 	/// <summary>Gets the font weight.</summary>

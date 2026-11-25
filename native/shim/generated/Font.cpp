@@ -111,6 +111,14 @@ WXK_FUNCTION(int32_t) wxk_Font_GetNumericWeightOf(int32_t weight) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(wxFont::GetNumericWeightOf(static_cast<wxFontWeight>(weight))); });
 }
 
+WXK_FUNCTION(uint8_t) wxk_Font_GetUnderlined(wxk_Object* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxFont*>(wxk::Unwrap(self))->GetUnderlined()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(void) wxk_Font_SetUnderlined(wxk_Object* self, uint8_t underlined) noexcept {
+	wxk::Guard([&] { static_cast<wxFont*>(wxk::Unwrap(self))->SetUnderlined(underlined != 0); });
+}
+
 WXK_FUNCTION(wxk_String*) wxk_Font_GetNativeFontInfoUserDesc(wxk_Object* self) noexcept {
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxFont*>(wxk::Unwrap(self))->GetNativeFontInfoUserDesc()); });
 }
@@ -181,14 +189,6 @@ WXK_FUNCTION(int32_t) wxk_Font_GetStyle(wxk_Object* self) noexcept {
 
 WXK_FUNCTION(void) wxk_Font_SetStyle(wxk_Object* self, int32_t style) noexcept {
 	wxk::Guard([&] { static_cast<wxFont*>(wxk::Unwrap(self))->SetStyle(static_cast<wxFontStyle>(style)); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Font_GetUnderlined(wxk_Object* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxFont*>(wxk::Unwrap(self))->GetUnderlined()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(void) wxk_Font_SetUnderlined(wxk_Object* self, uint8_t underlined) noexcept {
-	wxk::Guard([&] { static_cast<wxFont*>(wxk::Unwrap(self))->SetUnderlined(underlined != 0); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Font_GetStrikethrough(wxk_Object* self) noexcept {

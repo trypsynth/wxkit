@@ -12,11 +12,26 @@ public unsafe partial class UpdateUIEvent : CommandEvent {
 	/// <summary>Returns true if the UI element should be checked.</summary>
 	public bool Checked => WxKitNative.UpdateUIEventGetChecked(Handle) != 0;
 
-	/// <summary>Returns true if the UI element should be enabled.</summary>
-	public bool Enabled => WxKitNative.UpdateUIEventGetEnabled(Handle) != 0;
-
 	/// <summary>Returns true if the UI element can be checked.</summary>
 	public bool IsCheckable => WxKitNative.UpdateUIEventIsCheckable(Handle) != 0;
+
+	/// <summary>Returns true if the application has called Check() or SetSet3StateValue().</summary>
+	public bool IsCheckedSet => WxKitNative.UpdateUIEventGetSetChecked(Handle) != 0;
+
+	/// <summary>Returns true if the UI element should be enabled.</summary>
+	public bool IsEnabled => WxKitNative.UpdateUIEventGetEnabled(Handle) != 0;
+
+	/// <summary>Returns true if the application has called Enable().</summary>
+	public bool IsEnabledSet => WxKitNative.UpdateUIEventGetSetEnabled(Handle) != 0;
+
+	/// <summary>Returns true if the UI element should be shown.</summary>
+	public bool IsShown => WxKitNative.UpdateUIEventGetShown(Handle) != 0;
+
+	/// <summary>Returns true if the application has called Show().</summary>
+	public bool IsShownSet => WxKitNative.UpdateUIEventGetSetShown(Handle) != 0;
+
+	/// <summary>Returns true if the application has called SetText().</summary>
+	public bool IsTextSet => WxKitNative.UpdateUIEventGetSetText(Handle) != 0;
 
 	/// <summary>Static function returning a value specifying how wxWidgets will send update events: to all windows, or only to those which specify that they will process the events.</summary>
 	public static UpdateUIMode Mode {
@@ -29,21 +44,6 @@ public unsafe partial class UpdateUIEvent : CommandEvent {
 			WxKitNative.UpdateUIEventSetMode((int)value);
 		}
 	}
-
-	/// <summary>Returns true if the application has called Check() or SetSet3StateValue().</summary>
-	public bool SetChecked => WxKitNative.UpdateUIEventGetSetChecked(Handle) != 0;
-
-	/// <summary>Returns true if the application has called Enable().</summary>
-	public bool SetEnabled => WxKitNative.UpdateUIEventGetSetEnabled(Handle) != 0;
-
-	/// <summary>Returns true if the application has called Show().</summary>
-	public bool SetShown => WxKitNative.UpdateUIEventGetSetShown(Handle) != 0;
-
-	/// <summary>Returns true if the application has called SetText().</summary>
-	public bool SetText => WxKitNative.UpdateUIEventGetSetText(Handle) != 0;
-
-	/// <summary>Returns true if the UI element should be shown.</summary>
-	public bool Shown => WxKitNative.UpdateUIEventGetShown(Handle) != 0;
 
 	/// <summary>Returns the text that should be set for the UI element.</summary>
 	public string Text {

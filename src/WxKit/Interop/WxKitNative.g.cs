@@ -894,10 +894,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void CloseEventSetCanVeto(WxkEvent* self, byte canVeto);
 
-	[LibraryImport(Library, EntryPoint = "wxk_CloseEvent_CanVeto")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte CloseEventCanVeto(WxkEvent* self);
-
 	[LibraryImport(Library, EntryPoint = "wxk_CloseEvent_GetLoggingOff")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte CloseEventGetLoggingOff(WxkEvent* self);
@@ -905,6 +901,10 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_CloseEvent_SetLoggingOff")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void CloseEventSetLoggingOff(WxkEvent* self, byte loggingOff);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CloseEvent_CanVeto")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte CloseEventCanVeto(WxkEvent* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_CloseEvent_GetVeto")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -3530,6 +3530,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int FontGetNumericWeightOf(int weight);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Font_GetUnderlined")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte FontGetUnderlined(WxkObject* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Font_SetUnderlined")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void FontSetUnderlined(WxkObject* self, byte underlined);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Font_GetNativeFontInfoUserDesc")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkString* FontGetNativeFontInfoUserDesc(WxkObject* self);
@@ -3601,14 +3609,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Font_SetStyle")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void FontSetStyle(WxkObject* self, int style);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Font_GetUnderlined")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte FontGetUnderlined(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Font_SetUnderlined")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void FontSetUnderlined(WxkObject* self, byte underlined);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Font_GetStrikethrough")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4118,6 +4118,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* HyperlinkCtrlNew(WxkWindow* parent, int id, char* label, nuint labelLength, char* url, nuint urlLength, Point position, Size size, long style);
 
+	[LibraryImport(Library, EntryPoint = "wxk_HyperlinkCtrl_GetVisited")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte HyperlinkCtrlGetVisited(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_HyperlinkCtrl_SetVisited")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void HyperlinkCtrlSetVisited(WxkWindow* self, byte visited);
+
 	[LibraryImport(Library, EntryPoint = "wxk_HyperlinkCtrl_GetHoverColour")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkColor HyperlinkCtrlGetHoverColour(WxkWindow* self);
@@ -4141,14 +4149,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_HyperlinkCtrl_SetURL")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void HyperlinkCtrlSetURL(WxkWindow* self, char* url, nuint urlLength);
-
-	[LibraryImport(Library, EntryPoint = "wxk_HyperlinkCtrl_GetVisited")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte HyperlinkCtrlGetVisited(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_HyperlinkCtrl_SetVisited")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void HyperlinkCtrlSetVisited(WxkWindow* self, byte visited);
 
 	[LibraryImport(Library, EntryPoint = "wxk_HyperlinkCtrl_GetVisitedColour")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -13014,25 +13014,13 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void UpdateUIEventResetUpdateTime();
 
-	[LibraryImport(Library, EntryPoint = "wxk_UpdateUIEvent_GetChecked")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte UpdateUIEventGetChecked(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_UpdateUIEvent_Get3StateValue")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int UpdateUIEventGet3StateValue(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_UpdateUIEvent_Set3StateValue")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void UpdateUIEventSet3StateValue(WxkEvent* self, int check);
-
 	[LibraryImport(Library, EntryPoint = "wxk_UpdateUIEvent_GetEnabled")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte UpdateUIEventGetEnabled(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_UpdateUIEvent_IsCheckable")]
+	[LibraryImport(Library, EntryPoint = "wxk_UpdateUIEvent_GetShown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte UpdateUIEventIsCheckable(WxkEvent* self);
+	public static partial byte UpdateUIEventGetShown(WxkEvent* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_UpdateUIEvent_GetSetChecked")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -13050,9 +13038,21 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte UpdateUIEventGetSetText(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_UpdateUIEvent_GetShown")]
+	[LibraryImport(Library, EntryPoint = "wxk_UpdateUIEvent_GetChecked")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte UpdateUIEventGetShown(WxkEvent* self);
+	public static partial byte UpdateUIEventGetChecked(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_UpdateUIEvent_Get3StateValue")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int UpdateUIEventGet3StateValue(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_UpdateUIEvent_Set3StateValue")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void UpdateUIEventSet3StateValue(WxkEvent* self, int check);
+
+	[LibraryImport(Library, EntryPoint = "wxk_UpdateUIEvent_IsCheckable")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte UpdateUIEventIsCheckable(WxkEvent* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_UpdateUIEvent_GetText")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

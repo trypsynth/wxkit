@@ -25,24 +25,12 @@ WXK_FUNCTION(void) wxk_UpdateUIEvent_ResetUpdateTime(void) noexcept {
 	wxk::Guard([&] { wxUpdateUIEvent::ResetUpdateTime(); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetChecked(wxk_Event* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxUpdateUIEvent*>(wxk::Unwrap(self))->GetChecked()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(int32_t) wxk_UpdateUIEvent_Get3StateValue(wxk_Event* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxUpdateUIEvent*>(wxk::Unwrap(self))->Get3StateValue()); });
-}
-
-WXK_FUNCTION(void) wxk_UpdateUIEvent_Set3StateValue(wxk_Event* self, int32_t check) noexcept {
-	wxk::Guard([&] { static_cast<wxUpdateUIEvent*>(wxk::Unwrap(self))->Set3StateValue(static_cast<wxCheckBoxState>(check)); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetEnabled(wxk_Event* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxUpdateUIEvent*>(wxk::Unwrap(self))->GetEnabled()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_IsCheckable(wxk_Event* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxUpdateUIEvent*>(wxk::Unwrap(self))->IsCheckable()) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetShown(wxk_Event* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxUpdateUIEvent*>(wxk::Unwrap(self))->GetShown()) ? 1 : 0; });
 }
 
 WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetSetChecked(wxk_Event* self) noexcept {
@@ -61,8 +49,20 @@ WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetSetText(wxk_Event* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxUpdateUIEvent*>(wxk::Unwrap(self))->GetSetText()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetShown(wxk_Event* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxUpdateUIEvent*>(wxk::Unwrap(self))->GetShown()) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetChecked(wxk_Event* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxUpdateUIEvent*>(wxk::Unwrap(self))->GetChecked()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(int32_t) wxk_UpdateUIEvent_Get3StateValue(wxk_Event* self) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxUpdateUIEvent*>(wxk::Unwrap(self))->Get3StateValue()); });
+}
+
+WXK_FUNCTION(void) wxk_UpdateUIEvent_Set3StateValue(wxk_Event* self, int32_t check) noexcept {
+	wxk::Guard([&] { static_cast<wxUpdateUIEvent*>(wxk::Unwrap(self))->Set3StateValue(static_cast<wxCheckBoxState>(check)); });
+}
+
+WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_IsCheckable(wxk_Event* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxUpdateUIEvent*>(wxk::Unwrap(self))->IsCheckable()) ? 1 : 0; });
 }
 
 WXK_FUNCTION(wxk_String*) wxk_UpdateUIEvent_GetText(wxk_Event* self) noexcept {

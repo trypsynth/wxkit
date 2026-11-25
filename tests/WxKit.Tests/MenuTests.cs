@@ -31,12 +31,12 @@ public class MenuTests {
 		MenuBar bar = new();
 		bar.Append(menu, "&File");
 		frame.MenuBar = bar;
-		Assert.True(open.Enabled);
-		open.Enabled = false;
-		Assert.False(open.Enabled);
-		Assert.False(wrap.Checked);
-		wrap.Checked = true;
-		Assert.True(wrap.Checked);
+		Assert.True(open.IsEnabled);
+		open.IsEnabled = false;
+		Assert.False(open.IsEnabled);
+		Assert.False(wrap.IsChecked);
+		wrap.IsChecked = true;
+		Assert.True(wrap.IsChecked);
 		Assert.Equal("&Open	Ctrl+O", open.Label);
 		open.Label = "&Open...	Ctrl+O";
 		Assert.Equal("&Open...	Ctrl+O", open.Label);
@@ -52,7 +52,7 @@ public class MenuTests {
 		frame.MenuBar = bar;
 		bar.Check(wrap.Id, true);
 		Assert.True(bar.IsChecked(wrap.Id));
-		Assert.True(wrap.Checked);
+		Assert.True(wrap.IsChecked);
 		bar.EnableItem(wrap.Id, false);
 		Assert.False(bar.IsItemEnabled(wrap.Id));
 		bar.SetLabel(wrap.Id, "&Word wrap");
@@ -68,8 +68,8 @@ public class MenuTests {
 		MenuBar bar = new();
 		bar.Append(convert, "&Convert");
 		frame.MenuBar = bar;
-		empty.Enabled = false;
-		Assert.False(empty.Enabled);
+		empty.IsEnabled = false;
+		Assert.False(empty.IsEnabled);
 		Assert.False(convert.Append(StandardId.Any, "x").Id == submenu.Id);
 		Assert.Equal("&Presets", submenu.Label);
 	});

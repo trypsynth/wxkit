@@ -19,6 +19,12 @@ public unsafe partial class HyperlinkCtrl : Control {
 		set => WxKitNative.HyperlinkCtrlSetHoverColour(Native, global::WxKit.Color.ToNative(value));
 	}
 
+	/// <summary>Returns true if the hyperlink has already been clicked by the user at least one time.</summary>
+	public bool IsVisited {
+		get => WxKitNative.HyperlinkCtrlGetVisited(Native) != 0;
+		set => WxKitNative.HyperlinkCtrlSetVisited(Native, value ? (byte)1 : (byte)0);
+	}
+
 	/// <summary>Returns the colour used to print the label when the link has never been clicked before (i.e. the link has not been visited) and the mouse is not over the control.</summary>
 	public Color? NormalColor {
 		get => global::WxKit.Color.FromNative(WxKitNative.HyperlinkCtrlGetNormalColour(Native));
@@ -34,12 +40,6 @@ public unsafe partial class HyperlinkCtrl : Control {
 				WxKitNative.HyperlinkCtrlSetURL(Native, valueText, NativeString.Length(value));
 			}
 		}
-	}
-
-	/// <summary>Returns true if the hyperlink has already been clicked by the user at least one time.</summary>
-	public bool Visited {
-		get => WxKitNative.HyperlinkCtrlGetVisited(Native) != 0;
-		set => WxKitNative.HyperlinkCtrlSetVisited(Native, value ? (byte)1 : (byte)0);
 	}
 
 	/// <summary>Returns the colour used to print the label when the mouse is not over the control and the link has already been clicked before (i.e. the link has been visited).</summary>

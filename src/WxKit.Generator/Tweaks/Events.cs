@@ -8,14 +8,29 @@ internal static class Events {
 		// An event does not delete the item data it is given, so only the item's data comes out.
 		tweaks.Class("wxCommandEvent").Ignore("SetClientObject");
 		// Veto is written by hand, since it refuses when the close cannot be vetoed.
-		tweaks.Class("wxCloseEvent", e => e.Ignore("Veto").Rename("GetVeto", "IsVetoed"));
+		tweaks.Class("wxCloseEvent", e => e.Ignore("Veto").Rename("GetVeto", "IsVetoed").Property("IsLoggingOff", "GetLoggingOff", "SetLoggingOff"));
+		// Booleans are named as IsChecked is, and whether a handler set a state as IsCheckedSet is,
+		// rather than as SetChecked, which reads as a command.
+		tweaks.Class("wxActivateEvent").Property("IsActive", "GetActive");
+		// An update event's Checked keeps its name, since IsChecked is its base's, which says
+		// whether the control that sent a command is checked.
+		tweaks.Class("wxUpdateUIEvent", e => e
+			.Property("IsEnabled", "GetEnabled")
+			.Property("IsShown", "GetShown")
+			.Property("IsCheckedSet", "GetSetChecked")
+			.Property("IsEnabledSet", "GetSetEnabled")
+			.Property("IsShownSet", "GetSetShown")
+			.Property("IsTextSet", "GetSetText"));
+		tweaks.Class("wxFont").Property("IsUnderlined", "GetUnderlined", "SetUnderlined");
+		tweaks.Class("wxHyperlinkCtrl").Property("IsVisited", "GetVisited", "SetVisited");
+		tweaks.Class("wxPrinter").Property("IsAborted", "GetAbort");
 		// The keys a key event names, which a letter's or digit's code is the character of, as 'A' is.
 		tweaks.Enum("wxKeyCode", "KeyCode");
 		// Enums an event class nests, whose names say nothing outside it.
 		tweaks.Enum("wxActivateEvent::Reason", "ActivationReason");
 		tweaks.Enum("wxHelpEvent::Origin", "HelpOrigin");
 		// Which way, and how, the focus moves, as Tab and Shift+Tab move it.
-		tweaks.Enum("wxNavigationKeyEvent::wxNavigationKeyEventFlags", "NavigationFlags", isFlags: true);
+		tweaks.Enum("wxNavigationKeyEvent::wxNavigationKeyEventFlags", "NavigationFlags", isFlags: true, memberPrefix: "Is");
 		// Whether the focus moves forward, a bool, which a Direction property would read as the enum.
 		tweaks.Class("wxNavigationKeyEvent").Property("IsForward", "GetDirection", "SetDirection");
 		tweaks.Enum("wxKeyModifier", "KeyModifiers", isFlags: true);

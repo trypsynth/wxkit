@@ -8,6 +8,14 @@ WXK_FUNCTION(wxk_Window*) wxk_HyperlinkCtrl_new(wxk_Window* parent, int32_t id, 
 	});
 }
 
+WXK_FUNCTION(uint8_t) wxk_HyperlinkCtrl_GetVisited(wxk_Window* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxHyperlinkCtrl*>(wxk::Unwrap(self))->GetVisited()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(void) wxk_HyperlinkCtrl_SetVisited(wxk_Window* self, uint8_t visited) noexcept {
+	wxk::Guard([&] { static_cast<wxHyperlinkCtrl*>(wxk::Unwrap(self))->SetVisited(visited != 0); });
+}
+
 WXK_FUNCTION(wxk_Colour) wxk_HyperlinkCtrl_GetHoverColour(wxk_Window* self) noexcept {
 	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(static_cast<wxHyperlinkCtrl*>(wxk::Unwrap(self))->GetHoverColour()); });
 }
@@ -30,14 +38,6 @@ WXK_FUNCTION(wxk_String*) wxk_HyperlinkCtrl_GetURL(wxk_Window* self) noexcept {
 
 WXK_FUNCTION(void) wxk_HyperlinkCtrl_SetURL(wxk_Window* self, const char16_t* url, size_t urlLength) noexcept {
 	wxk::Guard([&] { static_cast<wxHyperlinkCtrl*>(wxk::Unwrap(self))->SetURL(wxk::FromUtf16(url, urlLength)); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_HyperlinkCtrl_GetVisited(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxHyperlinkCtrl*>(wxk::Unwrap(self))->GetVisited()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(void) wxk_HyperlinkCtrl_SetVisited(wxk_Window* self, uint8_t visited) noexcept {
-	wxk::Guard([&] { static_cast<wxHyperlinkCtrl*>(wxk::Unwrap(self))->SetVisited(visited != 0); });
 }
 
 WXK_FUNCTION(wxk_Colour) wxk_HyperlinkCtrl_GetVisitedColour(wxk_Window* self) noexcept {

@@ -308,9 +308,9 @@ WXK_FUNCTION(uint8_t) wxk_ClientDC_CanBeUsedForDrawing(wxk_Window* window) WXK_N
 // wxCloseEvent
 
 WXK_FUNCTION(void) wxk_CloseEvent_SetCanVeto(wxk_Event* self, uint8_t canVeto) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_CloseEvent_CanVeto(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_CloseEvent_GetLoggingOff(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_CloseEvent_SetLoggingOff(wxk_Event* self, uint8_t loggingOff) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_CloseEvent_CanVeto(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_CloseEvent_GetVeto(wxk_Event* self) WXK_NOEXCEPT;
 
 // wxCollapsiblePane
@@ -1102,6 +1102,8 @@ WXK_FUNCTION(uint8_t) wxk_Font_SetNativeFontInfo(wxk_Object* self, const char16_
 WXK_FUNCTION(void) wxk_Font_SetSymbolicSize(wxk_Object* self, int32_t size) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Font_SetSymbolicSizeRelativeTo(wxk_Object* self, int32_t size, int32_t base) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Font_GetNumericWeightOf(int32_t weight) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Font_GetUnderlined(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Font_SetUnderlined(wxk_Object* self, uint8_t underlined) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_Font_GetNativeFontInfoUserDesc(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Font_SetNativeFontInfoUserDesc(wxk_Object* self, const char16_t* info, size_t infoLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Font_GetBaseFont(wxk_Object* self) WXK_NOEXCEPT;
@@ -1120,8 +1122,6 @@ WXK_FUNCTION(wxk_Size) wxk_Font_GetPixelSize(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Font_SetPixelSize(wxk_Object* self, wxk_Size pixelSize) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Font_GetStyle(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Font_SetStyle(wxk_Object* self, int32_t style) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Font_GetUnderlined(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Font_SetUnderlined(wxk_Object* self, uint8_t underlined) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Font_GetStrikethrough(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Font_SetStrikethrough(wxk_Object* self, uint8_t strikethrough) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Font_GetWeight(wxk_Object* self) WXK_NOEXCEPT;
@@ -1285,14 +1285,14 @@ WXK_FUNCTION(void) wxk_HelpEvent_SetPosition(wxk_Event* self, wxk_Point point) W
 // wxHyperlinkCtrl
 
 WXK_FUNCTION(wxk_Window*) wxk_HyperlinkCtrl_new(wxk_Window* parent, int32_t id, const char16_t* label, size_t labelLength, const char16_t* url, size_t urlLength, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_HyperlinkCtrl_GetVisited(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_HyperlinkCtrl_SetVisited(wxk_Window* self, uint8_t visited) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Colour) wxk_HyperlinkCtrl_GetHoverColour(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_HyperlinkCtrl_SetHoverColour(wxk_Window* self, wxk_Colour color) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Colour) wxk_HyperlinkCtrl_GetNormalColour(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_HyperlinkCtrl_SetNormalColour(wxk_Window* self, wxk_Colour color) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_HyperlinkCtrl_GetURL(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_HyperlinkCtrl_SetURL(wxk_Window* self, const char16_t* url, size_t urlLength) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_HyperlinkCtrl_GetVisited(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_HyperlinkCtrl_SetVisited(wxk_Window* self, uint8_t visited) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Colour) wxk_HyperlinkCtrl_GetVisitedColour(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_HyperlinkCtrl_SetVisitedColour(wxk_Window* self, wxk_Colour color) WXK_NOEXCEPT;
 
@@ -3806,16 +3806,16 @@ WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_Is3State(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_UpdateUIEvent_Show(wxk_Event* self, uint8_t show) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_CanUpdate(wxk_Window* window) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_UpdateUIEvent_ResetUpdateTime(void) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetChecked(wxk_Event* self) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_UpdateUIEvent_Get3StateValue(wxk_Event* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_UpdateUIEvent_Set3StateValue(wxk_Event* self, int32_t check) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetEnabled(wxk_Event* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_IsCheckable(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetShown(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetSetChecked(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetSetEnabled(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetSetShown(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetSetText(wxk_Event* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetShown(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetChecked(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_UpdateUIEvent_Get3StateValue(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_UpdateUIEvent_Set3StateValue(wxk_Event* self, int32_t check) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_IsCheckable(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_UpdateUIEvent_GetText(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_UpdateUIEvent_SetText(wxk_Event* self, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_UpdateUIEvent_GetMode(void) WXK_NOEXCEPT;

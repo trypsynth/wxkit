@@ -62,7 +62,7 @@ public sealed unsafe class MenuItem {
 	public int Id { get; }
 
 	/// <summary>Whether the user can choose the item. A disabled one is grayed out, and screen readers say it is unavailable.</summary>
-	public bool Enabled {
+	public bool IsEnabled {
 		get {
 			Application.VerifyAccess();
 			return WxKitNative.MenuIsEnabled(Menu.Native, Id) != 0;
@@ -74,7 +74,7 @@ public sealed unsafe class MenuItem {
 	}
 
 	/// <summary>Whether a check or radio item is checked.</summary>
-	public bool Checked {
+	public bool IsChecked {
 		get {
 			Application.VerifyAccess();
 			return WxKitNative.MenuIsChecked(Menu.Native, Id) != 0;

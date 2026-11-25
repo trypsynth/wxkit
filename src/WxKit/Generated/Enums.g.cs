@@ -1566,9 +1566,9 @@ public enum NavigationDirection {
 [Flags]
 public enum NavigationFlags {
 	/// <summary>Wraps IsBackward.</summary>
-	IsBackward = 0,
+	Backward = 0,
 	/// <summary>Wraps IsForward.</summary>
-	IsForward = 1,
+	Forward = 1,
 	/// <summary>Wraps WinChange.</summary>
 	WinChange = 2,
 	/// <summary>Wraps FromTab.</summary>
