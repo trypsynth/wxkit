@@ -125,13 +125,14 @@ public abstract unsafe class EvtHandler {
 		public EventHandler<TEvent>? Handlers { get; set; }
 
 		public override void Dispatch(WxkEvent* native) {
+			// With no handler left, the event goes on as if nothing were bound, and no object is made for it.
+			EventHandler<TEvent>? handlers = Handlers;
+			if (handlers is null) {
+				WxKitNative.EventSkip(native, 1);
+				return;
+			}
 			TEvent e = type.Create(native);
 			try {
-				EventHandler<TEvent>? handlers = Handlers;
-				if (handlers is null) {
-					e.Skip();
-					return;
-				}
 				handlers(sender, e);
 				e.OnHandled();
 			} finally {
