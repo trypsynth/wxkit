@@ -60,6 +60,10 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq libgtk-3-dev libwebkit2gtk-4.1-dev ninja-build xvfb gettext
+          # WebKitGTK brings the desktop portal, which nothing on a runner answers for, and GTK
+          # waits 25 seconds for it each time an application starts. Without its D-Bus service,
+          # GTK is told at once that there is none.
+          sudo rm -f /usr/share/dbus-1/services/org.freedesktop.portal.Desktop.service
 
       # Xcode, its clang, and a window server come with the runner.
       - name: Install CMake, Ninja, and gettext
@@ -131,6 +135,13 @@ jobs:
       - name: Date the wxWidgets sources
         shell: bash
         run: find native/wxWidgets -type f -not -path '*/.git/*' -exec touch -t 200001010000 {} +
+
+      # An exact hit means the cached objects were built from these very shim sources, which are in
+      # the key, so they are dated too, and the shim is not rebuilt either.
+      - name: Date the shim's sources
+        if: steps.native-cache.outputs.cache-hit == 'true'
+        shell: bash
+        run: find native/shim -type f -exec touch -t 200001010000 {} +
 
       - name: Build wxWidgets and the shim
         shell: pwsh
@@ -215,6 +226,10 @@ jobs:
 
       - name: Date the wxWidgets sources
         run: find native/wxWidgets -type f -not -path '*/.git/*' -exec touch -t 200001010000 {} +
+
+      - name: Date the shim's sources
+        if: steps.sanitize-cache.outputs.cache-hit == 'true'
+        run: find native/shim -type f -exec touch -t 200001010000 {} +
 
       - name: Test with sanitizers
         shell: pwsh
