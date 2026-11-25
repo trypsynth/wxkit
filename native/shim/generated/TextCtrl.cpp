@@ -83,8 +83,8 @@ WXK_FUNCTION(int32_t) wxk_TextCtrl_HitTest(wxk_Window* self, wxk_Point point, in
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxTextCtrl*>(wxk::Unwrap(self))->HitTest(wxk::FromPoint(point), wxk::OutLong{position})); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_TextCtrl_LoadFile(wxk_Window* self, const char16_t* filename, size_t filenameLength, int32_t fileType) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTextCtrl*>(wxk::Unwrap(self))->LoadFile(wxk::FromUtf16(filename, filenameLength), static_cast<int>(fileType))) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_TextCtrl_LoadFile(wxk_Window* self, const char16_t* fileName, size_t fileNameLength, int32_t fileType) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTextCtrl*>(wxk::Unwrap(self))->LoadFile(wxk::FromUtf16(fileName, fileNameLength), static_cast<int>(fileType))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(void) wxk_TextCtrl_MarkDirty(wxk_Window* self) noexcept {
@@ -105,8 +105,8 @@ WXK_FUNCTION(wxk_Point) wxk_TextCtrl_PositionToCoords(wxk_Window* self, int64_t 
 	#endif
 }
 
-WXK_FUNCTION(uint8_t) wxk_TextCtrl_SaveFile(wxk_Window* self, const char16_t* filename, size_t filenameLength, int32_t fileType) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTextCtrl*>(wxk::Unwrap(self))->SaveFile(wxk::FromUtf16(filename, filenameLength), static_cast<int>(fileType))) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_TextCtrl_SaveFile(wxk_Window* self, const char16_t* fileName, size_t fileNameLength, int32_t fileType) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTextCtrl*>(wxk::Unwrap(self))->SaveFile(wxk::FromUtf16(fileName, fileNameLength), static_cast<int>(fileType))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(void) wxk_TextCtrl_ShowPosition(wxk_Window* self, int64_t position) noexcept {

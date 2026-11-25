@@ -2058,7 +2058,7 @@ public enum ScaleMode {
 }
 
 /// <summary>Wraps wxScrollbarVisibility.</summary>
-public enum ScrollbarVisibility {
+public enum ScrollBarVisibility {
 	/// <summary>Never show the scrollbar at all. Wraps wxSHOW_SB_NEVER.</summary>
 	Never = -1,
 	/// <summary>Show scrollbar only if it is needed. Wraps wxSHOW_SB_DEFAULT.</summary>

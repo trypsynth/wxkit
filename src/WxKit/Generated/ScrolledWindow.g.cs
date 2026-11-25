@@ -90,7 +90,7 @@ public unsafe partial class ScrolledWindow : Panel {
 		remove => RemoveHandler(EventType.ScrollWinTop, StandardId.Any, StandardId.Any, value);
 	}
 
-	public void AdjustScrollbars() => WxKitNative.ScrolledWindowAdjustScrollbars(Native);
+	public void AdjustScrollBars() => WxKitNative.ScrolledWindowAdjustScrollbars(Native);
 
 	public Point CalcScrolledPosition(Point point) => WxKitNative.ScrolledWindowCalcScrolledPosition(Native, point);
 
@@ -100,7 +100,7 @@ public unsafe partial class ScrolledWindow : Panel {
 	public void DisableAutoScrollOutside() => WxKitNative.ScrolledWindowDisableAutoScrollOutside(Native);
 
 	/// <summary>Undo EnableAutoscrollWithoutCapture().</summary>
-	public void DisableAutoscrollWithoutCapture() => WxKitNative.ScrolledWindowDisableAutoscrollWithoutCapture(Native);
+	public void DisableAutoScrollWithoutCapture() => WxKitNative.ScrolledWindowDisableAutoscrollWithoutCapture(Native);
 
 	/// <summary>Disable use of keyboard keys for scrolling.</summary>
 	public void DisableKeyboardScrolling() => WxKitNative.ScrolledWindowDisableKeyboardScrolling(Native);
@@ -115,7 +115,7 @@ public unsafe partial class ScrolledWindow : Panel {
 	public void EnableAutoScrollInside(int insideWidth) => WxKitNative.ScrolledWindowEnableAutoScrollInside(Native, insideWidth);
 
 	/// <summary>Set this window to autoscroll even if it has not captured the mouse (assuming the mouse cursor is in its autoscroll zone).</summary>
-	public void EnableAutoscrollWithoutCapture() => WxKitNative.ScrolledWindowEnableAutoscrollWithoutCapture(Native);
+	public void EnableAutoScrollWithoutCapture() => WxKitNative.ScrolledWindowEnableAutoscrollWithoutCapture(Native);
 
 	/// <summary>Enable or disable use of wxWindow::ScrollWindow() for scrolling.</summary>
 	public void EnableScrolling(bool xScrolling, bool yScrolling) => WxKitNative.ScrolledWindowEnableScrolling(Native, xScrolling ? (byte)1 : (byte)0, yScrolling ? (byte)1 : (byte)0);
@@ -149,16 +149,16 @@ public unsafe partial class ScrolledWindow : Panel {
 	/// <summary>Set the scaling factor for the window.</summary>
 	public void SetScale(double xs, double ys) => WxKitNative.ScrolledWindowSetScale(Native, xs, ys);
 
+	/// <summary>Sets up vertical and/or horizontal scrollbars.</summary>
+	public void SetScrollBars(int pixelsPerUnitX, int pixelsPerUnitY, int noUnitsX, int noUnitsY, int xPos = 0, int yPos = 0, bool noRefresh = false) => WxKitNative.ScrolledWindowSetScrollbars(Native, pixelsPerUnitX, pixelsPerUnitY, noUnitsX, noUnitsY, xPos, yPos, noRefresh ? (byte)1 : (byte)0);
+
 	public void SetScrollPageSize(Orientation orientation, int pageSize) => WxKitNative.ScrolledWindowSetScrollPageSize(Native, (int)orientation, pageSize);
 
 	/// <summary>Set the horizontal and vertical scrolling increment only.</summary>
 	public void SetScrollRate(int xStep, int yStep) => WxKitNative.ScrolledWindowSetScrollRate(Native, xStep, yStep);
 
-	/// <summary>Sets up vertical and/or horizontal scrollbars.</summary>
-	public void SetScrollbars(int pixelsPerUnitX, int pixelsPerUnitY, int noUnitsX, int noUnitsY, int xPos = 0, int yPos = 0, bool noRefresh = false) => WxKitNative.ScrolledWindowSetScrollbars(Native, pixelsPerUnitX, pixelsPerUnitY, noUnitsX, noUnitsY, xPos, yPos, noRefresh ? (byte)1 : (byte)0);
-
 	/// <summary>Set the scrollbar visibility.</summary>
-	public void ShowScrollbars(ScrollbarVisibility horz, ScrollbarVisibility vert) => WxKitNative.ScrolledWindowShowScrollbars(Native, (int)horz, (int)vert);
+	public void ShowScrollBars(ScrollBarVisibility horz, ScrollBarVisibility vert) => WxKitNative.ScrolledWindowShowScrollbars(Native, (int)horz, (int)vert);
 
 	/// <summary>Stop generating the scroll events when mouse is held outside the window.</summary>
 	public void StopAutoScrolling() => WxKitNative.ScrolledWindowStopAutoScrolling(Native);

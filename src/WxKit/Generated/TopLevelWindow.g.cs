@@ -156,10 +156,10 @@ public unsafe partial class TopLevelWindow : Window {
 	public void SetMinSize(Size size) => WxKitNative.TopLevelWindowSetMinSize(Native, size);
 
 	/// <summary>Sets the file name represented by this wxTopLevelWindow.</summary>
-	public void SetRepresentedFilename(string filename) {
-		ArgumentNullException.ThrowIfNull(filename);
-		fixed (char* filenameText = filename) {
-			WxKitNative.TopLevelWindowSetRepresentedFilename(Native, filenameText, NativeString.Length(filename));
+	public void SetRepresentedFileName(string fileName) {
+		ArgumentNullException.ThrowIfNull(fileName);
+		fixed (char* fileNameText = fileName) {
+			WxKitNative.TopLevelWindowSetRepresentedFilename(Native, fileNameText, NativeString.Length(fileName));
 		}
 	}
 

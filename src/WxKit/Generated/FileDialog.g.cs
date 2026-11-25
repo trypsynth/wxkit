@@ -14,7 +14,7 @@ public unsafe partial class FileDialog : Dialog {
 	}
 
 	/// <summary>Returns the path of the file currently selected in dialog.</summary>
-	public string CurrentlySelectedFilename => NativeString.Take(WxKitNative.FileDialogGetCurrentlySelectedFilename(Native));
+	public string CurrentlySelectedFileName => NativeString.Take(WxKitNative.FileDialogGetCurrentlySelectedFilename(Native));
 
 	/// <summary>Returns the file type filter index currently selected in dialog.</summary>
 	public int CurrentlySelectedFilterIndex => WxKitNative.FileDialogGetCurrentlySelectedFilterIndex(Native);
@@ -34,7 +34,7 @@ public unsafe partial class FileDialog : Dialog {
 	public Window? ExtraControl => ObjectRegistry.Wrap<Window>(WxKitNative.FileDialogGetExtraControl(Native));
 
 	/// <summary>Returns the default filename.</summary>
-	public string Filename {
+	public string FileName {
 		get => NativeString.Take(WxKitNative.FileDialogGetFilename(Native));
 		set {
 			ArgumentNullException.ThrowIfNull(value);
@@ -45,7 +45,7 @@ public unsafe partial class FileDialog : Dialog {
 	}
 
 	/// <summary>Fills the array filenames with the names of the files chosen.</summary>
-	public string[] Filenames => NativeStringArray.Take(WxKitNative.FileDialogGetFilenames(Native));
+	public string[] FileNames => NativeStringArray.Take(WxKitNative.FileDialogGetFilenames(Native));
 
 	/// <summary>Returns the index into the list of filters supplied, optionally, in the wildcard parameter.</summary>
 	public int FilterIndex {

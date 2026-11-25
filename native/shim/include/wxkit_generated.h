@@ -974,12 +974,12 @@ WXK_FUNCTION(uint8_t) wxk_Event_IsCommandEvent(wxk_Event* self) WXK_NOEXCEPT;
 
 // wxFileCtrl
 
-WXK_FUNCTION(wxk_Window*) wxk_FileCtrl_new(wxk_Window* parent, int32_t id, const char16_t* defaultDirectory, size_t defaultDirectoryLength, const char16_t* defaultFilename, size_t defaultFilenameLength, const char16_t* wildcard, size_t wildcardLength, int64_t style, wxk_Point position, wxk_Size size) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Window*) wxk_FileCtrl_new(wxk_Window* parent, int32_t id, const char16_t* defaultDirectory, size_t defaultDirectoryLength, const char16_t* defaultFileName, size_t defaultFileNameLength, const char16_t* wildcard, size_t wildcardLength, int64_t style, wxk_Point position, wxk_Size size) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_FileCtrl_ShowHidden(wxk_Window* self, uint8_t show) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_FileCtrl_GetDirectory(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_FileCtrl_SetDirectory(wxk_Window* self, const char16_t* directory, size_t directoryLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_FileCtrl_GetFilename(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_FileCtrl_SetFilename(wxk_Window* self, const char16_t* filename, size_t filenameLength) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_FileCtrl_SetFilename(wxk_Window* self, const char16_t* fileName, size_t fileNameLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_StringArray*) wxk_FileCtrl_GetFilenames(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_FileCtrl_GetFilterIndex(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_FileCtrl_SetFilterIndex(wxk_Window* self, int32_t filterIndex) WXK_NOEXCEPT;
@@ -1030,7 +1030,7 @@ WXK_FUNCTION(wxk_String*) wxk_FileDirPickerEvent_GetPath(wxk_Event* self) WXK_NO
 WXK_FUNCTION(wxk_Window*) wxk_FilePickerCtrl_new(wxk_Window* parent, int32_t id, const char16_t* path, size_t pathLength, const char16_t* message, size_t messageLength, const char16_t* wildcard, size_t wildcardLength, wxk_Point position, wxk_Size size, int64_t style, uint8_t styleGiven) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_FilePickerCtrl_SetInitialDirectory(wxk_Window* self, const char16_t* directory, size_t directoryLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_FilePickerCtrl_GetPath(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_FilePickerCtrl_SetPath(wxk_Window* self, const char16_t* filename, size_t filenameLength) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_FilePickerCtrl_SetPath(wxk_Window* self, const char16_t* fileName, size_t fileNameLength) WXK_NOEXCEPT;
 
 // wxFindDialogEvent
 
@@ -1083,7 +1083,7 @@ WXK_FUNCTION(wxk_Object*) wxk_Font_new_Default(void) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Font_new_IntFontFamilyFontStyleFontWeightBoolStringFontEncoding(int32_t pointSize, int32_t family, int32_t style, int32_t weight, uint8_t underline, const char16_t* faceName, size_t faceNameLength, int32_t encoding) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Font_new_SizeFontFamilyFontStyleFontWeightBoolStringFontEncoding(wxk_Size pixelSize, int32_t family, int32_t style, int32_t weight, uint8_t underline, const char16_t* faceName, size_t faceNameLength, int32_t encoding) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Font_new_String(const char16_t* nativeInfoString, size_t nativeInfoStringLength) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Font_AddPrivateFont(const char16_t* filename, size_t filenameLength) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Font_AddPrivateFont(const char16_t* fileName, size_t fileNameLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Font_Bold(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Font_Italic(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Font_Larger(wxk_Object* self) WXK_NOEXCEPT;
@@ -1393,8 +1393,8 @@ WXK_FUNCTION(void) wxk_Image_SetRGB_RectByteByteByte(wxk_Object* self, wxk_Rect 
 WXK_FUNCTION(void) wxk_Image_CleanUpHandlers(void) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_InitStandardHandlers(void) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Image_RemoveHandler(const char16_t* name, size_t nameLength) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_Image_GetImageCount(const char16_t* filename, size_t filenameLength, int32_t type) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Image_CanRead(const char16_t* filename, size_t filenameLength) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_Image_GetImageCount(const char16_t* fileName, size_t fileNameLength, int32_t type) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Image_CanRead(const char16_t* fileName, size_t fileNameLength) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Image_GetMaskRed(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Image_GetMaskGreen(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Image_GetMaskBlue(wxk_Object* self) WXK_NOEXCEPT;
@@ -2005,7 +2005,7 @@ WXK_FUNCTION(int32_t) wxk_PrintData_GetQuality(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_PrintData_SetQuality(wxk_Object* self, int32_t quality) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_PrintData_IsOk(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_PrintData_GetFilename(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_PrintData_SetFilename(wxk_Object* self, const char16_t* filename, size_t filenameLength) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_PrintData_SetFilename(wxk_Object* self, const char16_t* fileName, size_t fileNameLength) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_PrintData_GetPrintMode(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_PrintData_SetPrintMode(wxk_Object* self, int32_t printMode) WXK_NOEXCEPT;
 
@@ -3024,8 +3024,8 @@ WXK_FUNCTION(void) wxk_StyledTextCtrl_ScrollToLine(wxk_Window* self, int32_t lin
 WXK_FUNCTION(void) wxk_StyledTextCtrl_ScrollToColumn(wxk_Window* self, int32_t column) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_SetVScrollBar(wxk_Window* self, wxk_Window* bar) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_SetHScrollBar(wxk_Window* self, wxk_Window* bar) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_SaveFile(wxk_Window* self, const char16_t* filename, size_t filenameLength) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_LoadFile(wxk_Window* self, const char16_t* filename, size_t filenameLength) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_SaveFile(wxk_Window* self, const char16_t* fileName, size_t fileNameLength) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_LoadFile(wxk_Window* self, const char16_t* fileName, size_t fileNameLength) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_DoDragEnter(wxk_Window* self, int32_t x, int32_t y, int32_t defaultRes) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_DoDragOver(wxk_Window* self, int32_t x, int32_t y, int32_t defaultRes) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_DoDragLeave(wxk_Window* self) WXK_NOEXCEPT;
@@ -3405,11 +3405,11 @@ WXK_FUNCTION(uint8_t) wxk_TextCtrl_EnableProofCheck(wxk_Window* self) WXK_NOEXCE
 WXK_FUNCTION(int32_t) wxk_TextCtrl_GetLineLength(wxk_Window* self, int64_t lineNo) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_TextCtrl_GetLineText(wxk_Window* self, int64_t lineNo) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_TextCtrl_HitTest(wxk_Window* self, wxk_Point point, int64_t* position) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_TextCtrl_LoadFile(wxk_Window* self, const char16_t* filename, size_t filenameLength, int32_t fileType) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_TextCtrl_LoadFile(wxk_Window* self, const char16_t* fileName, size_t fileNameLength, int32_t fileType) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_TextCtrl_MarkDirty(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_TextCtrl_PositionToXY(wxk_Window* self, int64_t position, int64_t* x, int64_t* y) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Point) wxk_TextCtrl_PositionToCoords(wxk_Window* self, int64_t position) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_TextCtrl_SaveFile(wxk_Window* self, const char16_t* filename, size_t filenameLength, int32_t fileType) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_TextCtrl_SaveFile(wxk_Window* self, const char16_t* fileName, size_t fileNameLength, int32_t fileType) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_TextCtrl_ShowPosition(wxk_Window* self, int64_t position) WXK_NOEXCEPT;
 WXK_FUNCTION(int64_t) wxk_TextCtrl_XYToPosition(wxk_Window* self, int64_t x, int64_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_TextCtrl_SetMargins_IntInt(wxk_Window* self, int32_t left, int32_t top) WXK_NOEXCEPT;
@@ -3603,7 +3603,7 @@ WXK_FUNCTION(void) wxk_TopLevelWindow_SetMinSize(wxk_Window* self, wxk_Size size
 WXK_FUNCTION(uint8_t) wxk_TopLevelWindow_ShouldPreventAppExit(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_TopLevelWindow_OSXSetModified(wxk_Window* self, uint8_t modified) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_TopLevelWindow_OSXIsModified(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_TopLevelWindow_SetRepresentedFilename(wxk_Window* self, const char16_t* filename, size_t filenameLength) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_TopLevelWindow_SetRepresentedFilename(wxk_Window* self, const char16_t* fileName, size_t fileNameLength) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_TopLevelWindow_ShowWithoutActivating(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_TopLevelWindow_EnableFullScreenView(wxk_Window* self, uint8_t enable, int64_t style) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_TopLevelWindow_ShowFullScreen(wxk_Window* self, uint8_t show, int64_t style) WXK_NOEXCEPT;

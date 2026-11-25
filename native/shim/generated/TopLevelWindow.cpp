@@ -66,8 +66,8 @@ WXK_FUNCTION(uint8_t) wxk_TopLevelWindow_OSXIsModified(wxk_Window* self) noexcep
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTopLevelWindow*>(wxk::Unwrap(self))->OSXIsModified()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_TopLevelWindow_SetRepresentedFilename(wxk_Window* self, const char16_t* filename, size_t filenameLength) noexcept {
-	wxk::Guard([&] { static_cast<wxTopLevelWindow*>(wxk::Unwrap(self))->SetRepresentedFilename(wxk::FromUtf16(filename, filenameLength)); });
+WXK_FUNCTION(void) wxk_TopLevelWindow_SetRepresentedFilename(wxk_Window* self, const char16_t* fileName, size_t fileNameLength) noexcept {
+	wxk::Guard([&] { static_cast<wxTopLevelWindow*>(wxk::Unwrap(self))->SetRepresentedFilename(wxk::FromUtf16(fileName, fileNameLength)); });
 }
 
 WXK_FUNCTION(void) wxk_TopLevelWindow_ShowWithoutActivating(wxk_Window* self) noexcept {

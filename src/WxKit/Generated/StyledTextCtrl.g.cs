@@ -1944,10 +1944,10 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void LinesSplit(int pixelWidth) => WxKitNative.StyledTextCtrlLinesSplit(Native, pixelWidth);
 
 	/// <summary>Load the contents of filename into the editor.</summary>
-	public bool LoadFile(string filename) {
-		ArgumentNullException.ThrowIfNull(filename);
-		fixed (char* filenameText = filename) {
-			return WxKitNative.StyledTextCtrlLoadFile(Native, filenameText, NativeString.Length(filename)) != 0;
+	public bool LoadFile(string fileName) {
+		ArgumentNullException.ThrowIfNull(fileName);
+		fixed (char* fileNameText = fileName) {
+			return WxKitNative.StyledTextCtrlLoadFile(Native, fileNameText, NativeString.Length(fileName)) != 0;
 		}
 	}
 
@@ -2218,10 +2218,10 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void RotateSelection() => WxKitNative.StyledTextCtrlRotateSelection(Native);
 
 	/// <summary>Write the contents of the editor to filename.</summary>
-	public bool SaveFile(string filename) {
-		ArgumentNullException.ThrowIfNull(filename);
-		fixed (char* filenameText = filename) {
-			return WxKitNative.StyledTextCtrlSaveFile(Native, filenameText, NativeString.Length(filename)) != 0;
+	public bool SaveFile(string fileName) {
+		ArgumentNullException.ThrowIfNull(fileName);
+		fixed (char* fileNameText = fileName) {
+			return WxKitNative.StyledTextCtrlSaveFile(Native, fileNameText, NativeString.Length(fileName)) != 0;
 		}
 	}
 

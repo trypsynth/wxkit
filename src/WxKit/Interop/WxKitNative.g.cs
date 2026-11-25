@@ -3140,7 +3140,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_FileCtrl_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkWindow* FileCtrlNew(WxkWindow* parent, int id, char* defaultDirectory, nuint defaultDirectoryLength, char* defaultFilename, nuint defaultFilenameLength, char* wildcard, nuint wildcardLength, long style, Point position, Size size);
+	public static partial WxkWindow* FileCtrlNew(WxkWindow* parent, int id, char* defaultDirectory, nuint defaultDirectoryLength, char* defaultFileName, nuint defaultFileNameLength, char* wildcard, nuint wildcardLength, long style, Point position, Size size);
 
 	[LibraryImport(Library, EntryPoint = "wxk_FileCtrl_ShowHidden")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -3160,7 +3160,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_FileCtrl_SetFilename")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte FileCtrlSetFilename(WxkWindow* self, char* filename, nuint filenameLength);
+	public static partial byte FileCtrlSetFilename(WxkWindow* self, char* fileName, nuint fileNameLength);
 
 	[LibraryImport(Library, EntryPoint = "wxk_FileCtrl_GetFilenames")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -3316,7 +3316,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_FilePickerCtrl_SetPath")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void FilePickerCtrlSetPath(WxkWindow* self, char* filename, nuint filenameLength);
+	public static partial void FilePickerCtrlSetPath(WxkWindow* self, char* fileName, nuint fileNameLength);
 
 	[LibraryImport(Library, EntryPoint = "wxk_FindDialogEvent_GetDialog")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -3456,7 +3456,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_Font_AddPrivateFont")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte FontAddPrivateFont(char* filename, nuint filenameLength);
+	public static partial byte FontAddPrivateFont(char* fileName, nuint fileNameLength);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Font_Bold")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4492,11 +4492,11 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_Image_GetImageCount")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int ImageGetImageCount(char* filename, nuint filenameLength, int type);
+	public static partial int ImageGetImageCount(char* fileName, nuint fileNameLength, int type);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Image_CanRead")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ImageCanRead(char* filename, nuint filenameLength);
+	public static partial byte ImageCanRead(char* fileName, nuint fileNameLength);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Image_GetMaskRed")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -6568,7 +6568,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_PrintData_SetFilename")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void PrintDataSetFilename(WxkObject* self, char* filename, nuint filenameLength);
+	public static partial void PrintDataSetFilename(WxkObject* self, char* fileName, nuint fileNameLength);
 
 	[LibraryImport(Library, EntryPoint = "wxk_PrintData_GetPrintMode")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -10140,11 +10140,11 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SaveFile")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte StyledTextCtrlSaveFile(WxkWindow* self, char* filename, nuint filenameLength);
+	public static partial byte StyledTextCtrlSaveFile(WxkWindow* self, char* fileName, nuint fileNameLength);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LoadFile")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte StyledTextCtrlLoadFile(WxkWindow* self, char* filename, nuint filenameLength);
+	public static partial byte StyledTextCtrlLoadFile(WxkWindow* self, char* fileName, nuint fileNameLength);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_DoDragEnter")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -11616,7 +11616,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_TextCtrl_LoadFile")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte TextCtrlLoadFile(WxkWindow* self, char* filename, nuint filenameLength, int fileType);
+	public static partial byte TextCtrlLoadFile(WxkWindow* self, char* fileName, nuint fileNameLength, int fileType);
 
 	[LibraryImport(Library, EntryPoint = "wxk_TextCtrl_MarkDirty")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -11632,7 +11632,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_TextCtrl_SaveFile")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte TextCtrlSaveFile(WxkWindow* self, char* filename, nuint filenameLength, int fileType);
+	public static partial byte TextCtrlSaveFile(WxkWindow* self, char* fileName, nuint fileNameLength, int fileType);
 
 	[LibraryImport(Library, EntryPoint = "wxk_TextCtrl_ShowPosition")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -12288,7 +12288,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_TopLevelWindow_SetRepresentedFilename")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void TopLevelWindowSetRepresentedFilename(WxkWindow* self, char* filename, nuint filenameLength);
+	public static partial void TopLevelWindowSetRepresentedFilename(WxkWindow* self, char* fileName, nuint fileNameLength);
 
 	[LibraryImport(Library, EntryPoint = "wxk_TopLevelWindow_ShowWithoutActivating")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

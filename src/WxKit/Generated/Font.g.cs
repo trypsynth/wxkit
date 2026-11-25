@@ -135,11 +135,11 @@ public unsafe partial class Font : NativeObject {
 	}
 
 	/// <summary>Specify the name of a file containing a TrueType font to be made available to the current application.</summary>
-	public static bool AddPrivateFont(string filename) {
+	public static bool AddPrivateFont(string fileName) {
 		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(filename);
-		fixed (char* filenameText = filename) {
-			return WxKitNative.FontAddPrivateFont(filenameText, NativeString.Length(filename)) != 0;
+		ArgumentNullException.ThrowIfNull(fileName);
+		fixed (char* fileNameText = fileName) {
+			return WxKitNative.FontAddPrivateFont(fileNameText, NativeString.Length(fileName)) != 0;
 		}
 	}
 

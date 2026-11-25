@@ -34,7 +34,7 @@ public unsafe partial class PrintData : NativeObject {
 		set => WxKitNative.PrintDataSetDuplex(Native, (int)value);
 	}
 
-	public string Filename {
+	public string FileName {
 		get => NativeString.Take(WxKitNative.PrintDataGetFilename(Native));
 		set {
 			ArgumentNullException.ThrowIfNull(value);

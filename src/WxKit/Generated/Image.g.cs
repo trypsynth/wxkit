@@ -101,11 +101,11 @@ public unsafe partial class Image : NativeObject {
 	public Image? BlurVertical(int blurRadius) => global::WxKit.Image.Take(WxKitNative.ImageBlurVertical(Native, blurRadius));
 
 	/// <summary>Returns true if at least one of the available image handlers can read the file with the given name.</summary>
-	public static bool CanRead(string filename) {
+	public static bool CanRead(string fileName) {
 		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(filename);
-		fixed (char* filenameText = filename) {
-			return WxKitNative.ImageCanRead(filenameText, NativeString.Length(filename)) != 0;
+		ArgumentNullException.ThrowIfNull(fileName);
+		fixed (char* fileNameText = fileName) {
+			return WxKitNative.ImageCanRead(fileNameText, NativeString.Length(fileName)) != 0;
 		}
 	}
 
@@ -173,11 +173,11 @@ public unsafe partial class Image : NativeObject {
 	public byte GetGreen(int x, int y) => WxKitNative.ImageGetGreen(Native, x, y);
 
 	/// <summary>If the image file contains more than one image and the image handler is capable of retrieving these individually, this function will return the number of available images.</summary>
-	public static int GetImageCount(string filename, BitmapType type = BitmapType.Any) {
+	public static int GetImageCount(string fileName, BitmapType type = BitmapType.Any) {
 		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(filename);
-		fixed (char* filenameText = filename) {
-			return WxKitNative.ImageGetImageCount(filenameText, NativeString.Length(filename), (int)type);
+		ArgumentNullException.ThrowIfNull(fileName);
+		fixed (char* fileNameText = fileName) {
+			return WxKitNative.ImageGetImageCount(fileNameText, NativeString.Length(fileName), (int)type);
 		}
 	}
 

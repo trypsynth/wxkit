@@ -23,6 +23,12 @@ internal static class Naming {
 		{ "Cancelling", "Canceling" },
 		{ "Greyscale", "Grayscale" },
 		{ "Colourise", "Colorize" },
+		// Words wxWidgets spells two ways, spelled one way: as the class is, or as .NET does.
+		{ "Scrollbar", "ScrollBar" },
+		{ "Scrollbars", "ScrollBars" },
+		{ "Filename", "FileName" },
+		{ "Filenames", "FileNames" },
+		{ "Autoscroll", "AutoScroll" },
 		// Abbreviations .NET spells out, as in PreviousSibling.
 		{ "Prev", "Previous" },
 		{ "Desc", "Description" },
@@ -642,7 +648,8 @@ internal static class Naming {
 
 	/// <summary>
 	/// An acronym of three letters or more in Pascal case, as .NET writes them, so GetURL's URL is
-	/// Url and FromDIP is FromDip. Two letters stay upper case, as UI and DC do in .NET. An acronym
+	/// Url and FromDIP is FromDip. Two letters stay upper case, as UI and DC do in .NET, except OK,
+	/// which is Ok, as StandardId.Ok is. An acronym
 	/// ends where a capital starts a lowercase word, so RGBAImage is RgbaImage and VCHome keeps VC.
 	/// </summary>
 	public static string Acronyms(string identifier) {
@@ -658,7 +665,7 @@ internal static class Naming {
 			// The last capital of a run that a lowercase letter follows starts the next word.
 			int acronymEnd = end < identifier.Length && char.IsLower(identifier[end]) && end - index > 1 ? end - 1 : end;
 			string run = identifier[index..acronymEnd];
-			result.Append(run.Length >= 3 ? run[0] + run[1..].ToLower(CultureInfo.InvariantCulture) : run);
+			result.Append(run.Length >= 3 || run == "OK" ? run[0] + run[1..].ToLower(CultureInfo.InvariantCulture) : run);
 			index = acronymEnd;
 		}
 		return result.ToString();

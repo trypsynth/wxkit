@@ -81,7 +81,7 @@ public unsafe partial class RichMessageDialog : Dialog {
 
 	public string NoLabel => NativeString.Take(WxKitNative.RichMessageDialogGetNoLabel(Native));
 
-	public string OKLabel {
+	public string OkLabel {
 		get => NativeString.Take(WxKitNative.RichMessageDialogGetOKLabel(Native));
 		set {
 			ArgumentNullException.ThrowIfNull(value);
@@ -94,7 +94,7 @@ public unsafe partial class RichMessageDialog : Dialog {
 	public string YesLabel => NativeString.Take(WxKitNative.RichMessageDialogGetYesLabel(Native));
 
 	/// <summary>Overrides the default labels of the OK and Cancel buttons.</summary>
-	public bool SetOKCancelLabels(string ok, string cancel) {
+	public bool SetOkCancelLabels(string ok, string cancel) {
 		ArgumentNullException.ThrowIfNull(ok);
 		ArgumentNullException.ThrowIfNull(cancel);
 		fixed (char* okText = ok)

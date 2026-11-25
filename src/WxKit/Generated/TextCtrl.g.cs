@@ -216,10 +216,10 @@ public unsafe partial class TextCtrl : Control {
 	}
 
 	/// <summary>Loads and displays the named file, if it exists.</summary>
-	public bool LoadFile(string filename, int fileType = 0) {
-		ArgumentNullException.ThrowIfNull(filename);
-		fixed (char* filenameText = filename) {
-			return WxKitNative.TextCtrlLoadFile(Native, filenameText, NativeString.Length(filename), fileType) != 0;
+	public bool LoadFile(string fileName, int fileType = 0) {
+		ArgumentNullException.ThrowIfNull(fileName);
+		fixed (char* fileNameText = fileName) {
+			return WxKitNative.TextCtrlLoadFile(Native, fileNameText, NativeString.Length(fileName), fileType) != 0;
 		}
 	}
 
@@ -269,10 +269,10 @@ public unsafe partial class TextCtrl : Control {
 	}
 
 	/// <summary>Saves the contents of the control in a text file.</summary>
-	public bool SaveFile(string filename = "", int fileType = 0) {
-		ArgumentNullException.ThrowIfNull(filename);
-		fixed (char* filenameText = filename) {
-			return WxKitNative.TextCtrlSaveFile(Native, filenameText, NativeString.Length(filename), fileType) != 0;
+	public bool SaveFile(string fileName = "", int fileType = 0) {
+		ArgumentNullException.ThrowIfNull(fileName);
+		fixed (char* fileNameText = fileName) {
+			return WxKitNative.TextCtrlSaveFile(Native, fileNameText, NativeString.Length(fileName), fileType) != 0;
 		}
 	}
 

@@ -55,7 +55,7 @@ public unsafe partial class MessageDialog : Dialog {
 
 	public string NoLabel => NativeString.Take(WxKitNative.MessageDialogGetNoLabel(Native));
 
-	public string OKLabel {
+	public string OkLabel {
 		get => NativeString.Take(WxKitNative.MessageDialogGetOKLabel(Native));
 		set {
 			ArgumentNullException.ThrowIfNull(value);
@@ -68,7 +68,7 @@ public unsafe partial class MessageDialog : Dialog {
 	public string YesLabel => NativeString.Take(WxKitNative.MessageDialogGetYesLabel(Native));
 
 	/// <summary>Overrides the default labels of the OK and Cancel buttons.</summary>
-	public bool SetOKCancelLabels(string ok, string cancel) {
+	public bool SetOkCancelLabels(string ok, string cancel) {
 		ArgumentNullException.ThrowIfNull(ok);
 		ArgumentNullException.ThrowIfNull(cancel);
 		fixed (char* okText = ok)

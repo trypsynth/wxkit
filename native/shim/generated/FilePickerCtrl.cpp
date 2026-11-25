@@ -16,7 +16,7 @@ WXK_FUNCTION(wxk_String*) wxk_FilePickerCtrl_GetPath(wxk_Window* self) noexcept 
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxFilePickerCtrl*>(wxk::Unwrap(self))->GetPath()); });
 }
 
-WXK_FUNCTION(void) wxk_FilePickerCtrl_SetPath(wxk_Window* self, const char16_t* filename, size_t filenameLength) noexcept {
-	wxk::Guard([&] { static_cast<wxFilePickerCtrl*>(wxk::Unwrap(self))->SetPath(wxk::FromUtf16(filename, filenameLength)); });
+WXK_FUNCTION(void) wxk_FilePickerCtrl_SetPath(wxk_Window* self, const char16_t* fileName, size_t fileNameLength) noexcept {
+	wxk::Guard([&] { static_cast<wxFilePickerCtrl*>(wxk::Unwrap(self))->SetPath(wxk::FromUtf16(fileName, fileNameLength)); });
 }
 

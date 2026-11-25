@@ -1832,12 +1832,12 @@ WXK_FUNCTION(void) wxk_StyledTextCtrl_SetHScrollBar(wxk_Window* self, wxk_Window
 	wxk::Guard([&] { static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->SetHScrollBar(static_cast<wxScrollBar*>(wxk::Unwrap(bar))); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_SaveFile(wxk_Window* self, const char16_t* filename, size_t filenameLength) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->SaveFile(wxk::FromUtf16(filename, filenameLength))) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_SaveFile(wxk_Window* self, const char16_t* fileName, size_t fileNameLength) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->SaveFile(wxk::FromUtf16(fileName, fileNameLength))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_LoadFile(wxk_Window* self, const char16_t* filename, size_t filenameLength) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->LoadFile(wxk::FromUtf16(filename, filenameLength))) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_LoadFile(wxk_Window* self, const char16_t* fileName, size_t fileNameLength) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->LoadFile(wxk::FromUtf16(fileName, fileNameLength))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_DoDragEnter(wxk_Window* self, int32_t x, int32_t y, int32_t defaultRes) noexcept {

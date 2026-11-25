@@ -7,7 +7,7 @@ namespace WxKit;
 /// <summary>This control allows the user to select a file. Wraps wxFileCtrl.</summary>
 public unsafe partial class FileCtrl : Control {
 	/// <summary>Constructs the window.</summary>
-	public FileCtrl(Window parent, string defaultDirectory = "", string defaultFilename = "", string? wildcard = null, FileCtrlStyle style = FileCtrlStyle.Default, int id = StandardId.Any, Point? position = null, Size? size = null) : this(CreateNative(parent, defaultDirectory, defaultFilename, wildcard, style, id, position, size)) {
+	public FileCtrl(Window parent, string defaultDirectory = "", string defaultFileName = "", string? wildcard = null, FileCtrlStyle style = FileCtrlStyle.Default, int id = StandardId.Any, Point? position = null, Size? size = null) : this(CreateNative(parent, defaultDirectory, defaultFileName, wildcard, style, id, position, size)) {
 	}
 
 	internal FileCtrl(WxkWindow* native) : base(native) {
@@ -25,7 +25,7 @@ public unsafe partial class FileCtrl : Control {
 	}
 
 	/// <summary>Returns the currently selected filename.</summary>
-	public string Filename {
+	public string FileName {
 		get => NativeString.Take(WxKitNative.FileCtrlGetFilename(Native));
 		set {
 			ArgumentNullException.ThrowIfNull(value);
@@ -36,7 +36,7 @@ public unsafe partial class FileCtrl : Control {
 	}
 
 	/// <summary>Fills the array filenames with the filenames only of selected items.</summary>
-	public string[] Filenames => NativeStringArray.Take(WxKitNative.FileCtrlGetFilenames(Native));
+	public string[] FileNames => NativeStringArray.Take(WxKitNative.FileCtrlGetFilenames(Native));
 
 	/// <summary>Returns the zero-based index of the currently selected filter.</summary>
 	public int FilterIndex {
@@ -96,15 +96,15 @@ public unsafe partial class FileCtrl : Control {
 	/// <summary>Sets whether hidden files and folders are shown or not.</summary>
 	public void ShowHidden(bool show) => WxKitNative.FileCtrlShowHidden(Native, show ? (byte)1 : (byte)0);
 
-	private static WxkWindow* CreateNative(Window parent, string defaultDirectory, string defaultFilename, string? wildcard, FileCtrlStyle style, int id, Point? position, Size? size) {
+	private static WxkWindow* CreateNative(Window parent, string defaultDirectory, string defaultFileName, string? wildcard, FileCtrlStyle style, int id, Point? position, Size? size) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(parent);
 		ArgumentNullException.ThrowIfNull(defaultDirectory);
-		ArgumentNullException.ThrowIfNull(defaultFilename);
+		ArgumentNullException.ThrowIfNull(defaultFileName);
 		fixed (char* defaultDirectoryText = defaultDirectory)
-		fixed (char* defaultFilenameText = defaultFilename)
+		fixed (char* defaultFileNameText = defaultFileName)
 		fixed (char* wildcardText = wildcard) {
-			return WxKitNative.FileCtrlNew((WxkWindow*)parent.Native, id, defaultDirectoryText, NativeString.Length(defaultDirectory), defaultFilenameText, NativeString.Length(defaultFilename), wildcardText, wildcard is null ? 0 : NativeString.Length(wildcard), (long)style, position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default);
+			return WxKitNative.FileCtrlNew((WxkWindow*)parent.Native, id, defaultDirectoryText, NativeString.Length(defaultDirectory), defaultFileNameText, NativeString.Length(defaultFileName), wildcardText, wildcard is null ? 0 : NativeString.Length(wildcard), (long)style, position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default);
 		}
 	}
 }

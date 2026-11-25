@@ -1846,17 +1846,17 @@ abstract class WxKit.EvtHandler
     void Unbind<TEvent>(EventType<TEvent> type, int id, EventHandler<TEvent> handler)
     void Unbind<TEvent>(EventType<TEvent> type, int id, int lastId, EventHandler<TEvent> handler)
 class WxKit.FileCtrl : Control
-    FileCtrl(Window parent, string defaultDirectory = "", string defaultFilename = "", string? wildcard = null, FileCtrlStyle style = FileCtrlStyle.Open, int id = -1, Point? position = null, Size? size = null)
+    FileCtrl(Window parent, string defaultDirectory = "", string defaultFileName = "", string? wildcard = null, FileCtrlStyle style = FileCtrlStyle.Open, int id = -1, Point? position = null, Size? size = null)
     event EventHandler<FileCtrlEvent>? FileActivated
     event EventHandler<FileCtrlEvent>? FilterChanged
     event EventHandler<FileCtrlEvent>? FolderChanged
     event EventHandler<FileCtrlEvent>? SelectionChanged
     int FilterIndex { get; set; }
     string Directory { get; set; }
-    string Filename { get; set; }
+    string FileName { get; set; }
     string Path { get; set; }
     string Wildcard { get; set; }
-    string[] Filenames { get; }
+    string[] FileNames { get; }
     string[] Paths { get; }
     void ShowHidden(bool show)
 class WxKit.FileCtrlEvent : CommandEvent
@@ -1877,13 +1877,13 @@ class WxKit.FileDialog : Dialog
     bool AddShortcut(string directory, int flags = 0)
     int CurrentlySelectedFilterIndex { get; }
     int FilterIndex { get; set; }
-    string CurrentlySelectedFilename { get; }
+    string CurrentlySelectedFileName { get; }
     string Directory { get; set; }
-    string Filename { get; set; }
+    string FileName { get; set; }
     string Message { get; set; }
     string Path { get; set; }
     string Wildcard { get; set; }
-    string[] Filenames { get; }
+    string[] FileNames { get; }
     string[] Paths { get; }
 [Flags] enum WxKit.FileDialogStyle : long
     ChangeDirectory = 128
@@ -1997,7 +1997,7 @@ class WxKit.Font : NativeObject
     int NumericWeight { get; set; }
     int PointSize { get; set; }
     static FontEncoding DefaultEncoding { get; set; }
-    static bool AddPrivateFont(string filename)
+    static bool AddPrivateFont(string fileName)
     static int GetNumericWeightOf(FontWeight weight)
     string FaceName { get; set; }
     string NativeFontInfoDescription { get; }
@@ -2439,10 +2439,10 @@ class WxKit.Image : NativeObject
     int Height { get; }
     int LoadFlags { get; set; }
     int Width { get; }
-    static bool CanRead(string filename)
+    static bool CanRead(string fileName)
     static bool RemoveHandler(string name)
     static int DefaultLoadFlags { get; set; }
-    static int GetImageCount(string filename, BitmapType type = BitmapType.Any)
+    static int GetImageCount(string fileName, BitmapType type = BitmapType.Any)
     static string ImageExtensionWildcard { get; }
     static void AddAllHandlers()
     static void AddGifHandler()
@@ -3054,7 +3054,7 @@ class WxKit.MessageDialog : Dialog
     MessageDialog(Window? parent, string message, string caption = "Message", MessageDialogStyle style = MessageDialogStyle.Center | MessageDialogStyle.Ok, Point? position = null)
     MessageDialogStyle MessageDialogStyle { get; }
     bool HasCustomLabels { get; }
-    bool SetOKCancelLabels(string ok, string cancel)
+    bool SetOkCancelLabels(string ok, string cancel)
     bool SetYesNoCancelLabels(string yes, string no, string cancel)
     bool SetYesNoLabels(string yes, string no)
     long EffectiveIcon { get; }
@@ -3064,7 +3064,7 @@ class WxKit.MessageDialog : Dialog
     string HelpLabel { get; set; }
     string Message { get; set; }
     string NoLabel { get; }
-    string OKLabel { get; set; }
+    string OkLabel { get; set; }
     string YesLabel { get; }
 [Flags] enum WxKit.MessageDialogStyle : long
     Cancel = 16
@@ -3535,7 +3535,7 @@ class WxKit.PrintData : NativeObject
     bool IsColor { get; set; }
     bool IsOk { get; }
     int NoCopies { get; set; }
-    string Filename { get; set; }
+    string FileName { get; set; }
     string PrinterName { get; set; }
     void SetPaperSize(Size size)
 class WxKit.PrintDialog : NativeObject
@@ -3755,7 +3755,7 @@ class WxKit.RichMessageDialog : Dialog
     RichMessageDialog(Window? parent, string message, string caption = "Message", MessageDialogStyle style = MessageDialogStyle.Center | MessageDialogStyle.Ok)
     bool HasCustomLabels { get; }
     bool IsCheckBoxChecked { get; }
-    bool SetOKCancelLabels(string ok, string cancel)
+    bool SetOkCancelLabels(string ok, string cancel)
     bool SetYesNoCancelLabels(string yes, string no, string cancel)
     bool SetYesNoLabels(string yes, string no)
     long EffectiveIcon { get; }
@@ -3768,7 +3768,7 @@ class WxKit.RichMessageDialog : Dialog
     string HelpLabel { get; set; }
     string Message { get; set; }
     string NoLabel { get; }
-    string OKLabel { get; set; }
+    string OkLabel { get; set; }
     string YesLabel { get; }
     void ShowCheckBox(string checkBoxText, bool checked = false)
     void ShowDetailedText(string detailedText)
@@ -3811,6 +3811,10 @@ class WxKit.ScrollBar : Control
     Horizontal = 4
     None = 0
     Vertical = 8
+enum WxKit.ScrollBarVisibility : int
+    Always = 1
+    Default = 0
+    Never = -1
 class WxKit.ScrollEvent : CommandEvent
     int Orientation { get; set; }
     int Position { get; set; }
@@ -3818,10 +3822,6 @@ class WxKit.ScrollWinEvent : Event
     int Orientation { get; set; }
     int PixelOffset { get; }
     int Position { get; set; }
-enum WxKit.ScrollbarVisibility : int
-    Always = 1
-    Default = 0
-    Never = -1
 class WxKit.ScrolledWindow : Panel
     Point CalcScrolledPosition(Point point)
     Point CalcUnscrolledPosition(Point point)
@@ -3844,23 +3844,23 @@ class WxKit.ScrolledWindow : Panel
     event EventHandler<ScrollWinEvent>? ScrollWinTop
     int GetScrollLines(Orientation orientation)
     int GetScrollPageSize(Orientation orientation)
-    void AdjustScrollbars()
+    void AdjustScrollBars()
     void DisableAutoScrollOutside()
-    void DisableAutoscrollWithoutCapture()
+    void DisableAutoScrollWithoutCapture()
     void DisableKeyboardScrolling()
     void DoPrepareDC(DC dc)
     void EnableAutoScrollInside(int insideWidth)
-    void EnableAutoscrollWithoutCapture()
+    void EnableAutoScrollWithoutCapture()
     void EnableScrolling(bool xScrolling, bool yScrolling)
     void GetVirtualSize(out int x, out int y)
     void PrepareDC(DC dc)
     void Scroll(Point point)
     void Scroll(int x, int y)
     void SetScale(double xs, double ys)
+    void SetScrollBars(int pixelsPerUnitX, int pixelsPerUnitY, int noUnitsX, int noUnitsY, int xPos = 0, int yPos = 0, bool noRefresh = false)
     void SetScrollPageSize(Orientation orientation, int pageSize)
     void SetScrollRate(int xStep, int yStep)
-    void SetScrollbars(int pixelsPerUnitX, int pixelsPerUnitY, int noUnitsX, int noUnitsY, int xPos = 0, int yPos = 0, bool noRefresh = false)
-    void ShowScrollbars(ScrollbarVisibility horz, ScrollbarVisibility vert)
+    void ShowScrollBars(ScrollBarVisibility horz, ScrollBarVisibility vert)
     void StopAutoScrolling()
 [Flags] enum WxKit.ScrolledWindowStyle : long
     AlwaysShowSb = 8388608
@@ -7260,7 +7260,7 @@ class WxKit.StyledTextCtrl : Control
     bool IsModified { get; }
     bool IsRangeWord(int start, int end)
     bool LastKeydownProcessed { get; set; }
-    bool LoadFile(string filename)
+    bool LoadFile(string fileName)
     bool Modify { get; }
     bool MouseDownCaptures { get; set; }
     bool MouseSelectionRectangularSwitch { get; set; }
@@ -7271,7 +7271,7 @@ class WxKit.StyledTextCtrl : Control
     bool PasteConvertEndings { get; set; }
     bool PositionToXY(long position, out long x, out long y)
     bool ReadOnly { get; set; }
-    bool SaveFile(string filename)
+    bool SaveFile(string fileName)
     bool ScrollWidthTracking { get; set; }
     bool SelEolFilled { get; set; }
     bool SelectionEmpty { get; }
@@ -8075,9 +8075,9 @@ class WxKit.TextCtrl : Control
     bool IsMultiLine { get; }
     bool IsRtfSupported { get; }
     bool IsSingleLine { get; }
-    bool LoadFile(string filename, int fileType = 0)
+    bool LoadFile(string fileName, int fileType = 0)
     bool PositionToXY(long position, out long x, out long y)
-    bool SaveFile(string filename = "", int fileType = 0)
+    bool SaveFile(string fileName = "", int fileType = 0)
     bool SetMargins(int left, int top = -1)
     event EventHandler<CommandEvent>? MaxLengthReached
     event EventHandler<CommandEvent>? TextChanged
@@ -8327,7 +8327,7 @@ class WxKit.TopLevelWindow : Window
     void SetIcons(Icon icons)
     void SetMaxSize(Size size)
     void SetMinSize(Size size)
-    void SetRepresentedFilename(string filename)
+    void SetRepresentedFileName(string fileName)
     void ShowWithoutActivating()
 sealed class WxKit.Translations : IDisposable
     IReadOnlyList<string> GetAvailableTranslations(string domain)
@@ -8836,7 +8836,7 @@ class WxKit.Window : EvtHandler
     bool HasFlag(int flag)
     bool HasFocus { get; }
     bool HasMultiplePages { get; }
-    bool HasScrollbar(int orientation)
+    bool HasScrollBar(int orientation)
     bool HasTransparentBackground { get; }
     bool Hide()
     bool HideWithEffect(ShowEffect effect, int timeout = 0)
@@ -8853,7 +8853,7 @@ class WxKit.Window : EvtHandler
     bool IsFrozen { get; }
     bool IsInputMethodEnabled { get; }
     bool IsRetained { get; }
-    bool IsScrollbarAlwaysShown(int orientation)
+    bool IsScrollBarAlwaysShown(int orientation)
     bool IsShown { get; }
     bool IsShownOnScreen { get; }
     bool IsThisEnabled { get; }
@@ -8928,10 +8928,10 @@ class WxKit.Window : EvtHandler
     int GetBestHeight(int width)
     int GetBestWidth(int height)
     int GetHelpIdAtPoint(Point point)
+    int GetScrollBarSize(int orientation)
     int GetScrollPosition(int orientation)
     int GetScrollRange(int orientation)
     int GetScrollThumb(int orientation)
-    int GetScrollbarSize(int orientation)
     int Id { get; set; }
     int MaxHeight { get; }
     int MaxWidth { get; }
@@ -8966,7 +8966,7 @@ class WxKit.Window : EvtHandler
     string Name { get; set; }
     string ToolTipText { get; }
     void AddChild(Window child)
-    void AlwaysShowScrollbars(bool hflag = true, bool vflag = true)
+    void AlwaysShowScrollBars(bool hflag = true, bool vflag = true)
     void CacheBestSize(Size size)
     void CaptureMouse()
     void Center(Orientation direction = Orientation.Both)
@@ -9015,8 +9015,8 @@ class WxKit.Window : EvtHandler
     void SetOwnFont(Font font)
     void SetOwnForegroundColor(Color? color)
     void SetPreviousHandler(EvtHandler handler)
+    void SetScrollBar(int orientation, int position, int thumbSize, int range, bool refresh = true)
     void SetScrollPosition(int orientation, int position, bool refresh = true)
-    void SetScrollbar(int orientation, int position, int thumbSize, int range, bool refresh = true)
     void SetSize(Rect rect)
     void SetSize(int width, int height)
     void SetSize(int x, int y, int width, int height, SizeFlags sizeFlags = SizeFlags.Auto)

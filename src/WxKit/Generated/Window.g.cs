@@ -528,7 +528,7 @@ public unsafe partial class Window : EvtHandler {
 	public int AdjustForLayoutDirection(int x, int width, int widthTotal) => WxKitNative.WindowAdjustForLayoutDirection(Native, x, width, widthTotal);
 
 	/// <summary>Call this function to force one or both scrollbars to be always shown, even if the window is big enough to show its entire contents without scrolling.</summary>
-	public void AlwaysShowScrollbars(bool hflag = true, bool vflag = true) => WxKitNative.WindowAlwaysShowScrollbars(Native, hflag ? (byte)1 : (byte)0, vflag ? (byte)1 : (byte)0);
+	public void AlwaysShowScrollBars(bool hflag = true, bool vflag = true) => WxKitNative.WindowAlwaysShowScrollbars(Native, hflag ? (byte)1 : (byte)0, vflag ? (byte)1 : (byte)0);
 
 	/// <summary>Prepare for changing positions of multiple child windows.</summary>
 	public bool BeginRepositioningChildren() => WxKitNative.WindowBeginRepositioningChildren(Native) != 0;
@@ -730,6 +730,9 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>May be overridden if the control minimal size depends on the layout direction.</summary>
 	public Size GetMinSizeFromKnownDirection(int direction, int size, int availableOtherDir) => WxKitNative.WindowGetMinSizeFromKnownDirection(Native, direction, size, availableOtherDir);
 
+	/// <summary>Returns the space taken by the scrollbar of the given orientation when it is shown in this window.</summary>
+	public int GetScrollBarSize(int orientation) => WxKitNative.WindowGetScrollbarSize(Native, orientation);
+
 	/// <summary>Returns the built-in scrollbar position.</summary>
 	public int GetScrollPosition(int orientation) => WxKitNative.WindowGetScrollPos(Native, orientation);
 
@@ -738,9 +741,6 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>Returns the built-in scrollbar thumb size.</summary>
 	public int GetScrollThumb(int orientation) => WxKitNative.WindowGetScrollThumb(Native, orientation);
-
-	/// <summary>Returns the space taken by the scrollbar of the given orientation when it is shown in this window.</summary>
-	public int GetScrollbarSize(int orientation) => WxKitNative.WindowGetScrollbarSize(Native, orientation);
 
 	/// <summary>Gets the dimensions of the string as it would be drawn on the window with the currently selected font.</summary>
 	public Size GetTextExtent(string text) {
@@ -757,7 +757,7 @@ public unsafe partial class Window : EvtHandler {
 	public bool HasFlag(int flag) => WxKitNative.WindowHasFlag(Native, flag) != 0;
 
 	/// <summary>Returns true if this window currently has a scroll bar for this orientation.</summary>
-	public bool HasScrollbar(int orientation) => WxKitNative.WindowHasScrollbar(Native, orientation) != 0;
+	public bool HasScrollBar(int orientation) => WxKitNative.WindowHasScrollbar(Native, orientation) != 0;
 
 	/// <summary>Equivalent to calling wxWindow::Show(false).</summary>
 	public bool Hide() => WxKitNative.WindowHide(Native) != 0;
@@ -799,7 +799,7 @@ public unsafe partial class Window : EvtHandler {
 	public bool IsExposed(int x, int y, int w, int h) => WxKitNative.WindowIsExposedIntIntIntInt(Native, x, y, w, h) != 0;
 
 	/// <summary>Return whether a scrollbar is always shown.</summary>
-	public bool IsScrollbarAlwaysShown(int orientation) => WxKitNative.WindowIsScrollbarAlwaysShown(Native, orientation) != 0;
+	public bool IsScrollBarAlwaysShown(int orientation) => WxKitNative.WindowIsScrollbarAlwaysShown(Native, orientation) != 0;
 
 	/// <summary>Lays out the children of this window using the associated sizer.</summary>
 	public bool Layout() => WxKitNative.WindowLayout(Native) != 0;
@@ -978,11 +978,11 @@ public unsafe partial class Window : EvtHandler {
 		WxKitNative.WindowSetPreviousHandler(Native, (WxkEvtHandler*)handler.NativeHandler);
 	}
 
+	/// <summary>Sets the scrollbar properties of a built-in scrollbar.</summary>
+	public void SetScrollBar(int orientation, int position, int thumbSize, int range, bool refresh = true) => WxKitNative.WindowSetScrollbar(Native, orientation, position, thumbSize, range, refresh ? (byte)1 : (byte)0);
+
 	/// <summary>Sets the position of one of the built-in scrollbars.</summary>
 	public void SetScrollPosition(int orientation, int position, bool refresh = true) => WxKitNative.WindowSetScrollPos(Native, orientation, position, refresh ? (byte)1 : (byte)0);
-
-	/// <summary>Sets the scrollbar properties of a built-in scrollbar.</summary>
-	public void SetScrollbar(int orientation, int position, int thumbSize, int range, bool refresh = true) => WxKitNative.WindowSetScrollbar(Native, orientation, position, thumbSize, range, refresh ? (byte)1 : (byte)0);
 
 	/// <summary>Sets the size of the window in pixels.</summary>
 	public void SetSize(int x, int y, int width, int height, SizeFlags sizeFlags = SizeFlags.Auto) => WxKitNative.WindowSetSizeIntIntIntIntSizeFlags(Native, x, y, width, height, (int)sizeFlags);

@@ -92,8 +92,8 @@ WXK_FUNCTION(wxk_String*) wxk_PrintData_GetFilename(wxk_Object* self) noexcept {
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxPrintData*>(wxk::Unwrap(self))->GetFilename()); });
 }
 
-WXK_FUNCTION(void) wxk_PrintData_SetFilename(wxk_Object* self, const char16_t* filename, size_t filenameLength) noexcept {
-	wxk::Guard([&] { static_cast<wxPrintData*>(wxk::Unwrap(self))->SetFilename(wxk::FromUtf16(filename, filenameLength)); });
+WXK_FUNCTION(void) wxk_PrintData_SetFilename(wxk_Object* self, const char16_t* fileName, size_t fileNameLength) noexcept {
+	wxk::Guard([&] { static_cast<wxPrintData*>(wxk::Unwrap(self))->SetFilename(wxk::FromUtf16(fileName, fileNameLength)); });
 }
 
 WXK_FUNCTION(int32_t) wxk_PrintData_GetPrintMode(wxk_Object* self) noexcept {
