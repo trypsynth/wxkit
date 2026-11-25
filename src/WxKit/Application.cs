@@ -275,7 +275,13 @@ public unsafe partial class Application {
 				}
 			});
 			if (!posted) throw new InvalidOperationException("No application is running.");
-			done.Wait();
+			// wxWidgets drops a call it took but had not run when the event loop ended, so the wait
+			// looks out for the application ending, rather than going on for good.
+			while (!done.Wait(100)) {
+				if (Volatile.Read(ref _guiThreadId) != 0) continue;
+				if (done.IsSet) break;
+				throw new InvalidOperationException("The application ended before it ran the call.");
+			}
 			failure?.Throw();
 		}
 
