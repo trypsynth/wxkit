@@ -32,11 +32,14 @@ public unsafe partial class Window {
 		ArgumentNullException.ThrowIfNull(parts);
 		AccessiblePart[] given = [.. parts];
 		foreach (AccessiblePart part in given) ArgumentNullException.ThrowIfNull(part.Label, nameof(parts));
-		PartsAccessible? windows = DescribedByParts();
+		// On Windows, wxWidgets does nothing with the parts, so they are not handed to it.
+		if (DescribedByParts() is PartsAccessible windows) {
+			windows.SetParts(given);
+			return;
+		}
 		using NativeStringArray labels = new(given.Select(static part => part.Label));
 		Rect[] rects = [.. given.Select(static part => part.Bounds)];
 		fixed (Rect* bounds = rects) WxKitNative.WindowSetAccessibleParts(Native, labels.Handle, bounds);
-		windows?.SetParts(given);
 	}
 
 	/// <summary>
@@ -61,13 +64,20 @@ public unsafe partial class Window {
 			native[index] = new WxkAccessibleRow { Index = row.Index, Bounds = row.Bounds, Selected = row.IsSelected ? (byte)1 : (byte)0, FirstCell = cells.Count, CellCount = row.Cells.Count };
 			cells.AddRange(row.Cells);
 		}
-		using NativeStringArray labels = new(cells.Select(static cell => cell.Label ?? throw new ArgumentNullException(nameof(rows), "A cell's label cannot be null.")));
+		foreach (AccessiblePart cell in cells) {
+			if (cell.Label is null) throw new ArgumentNullException(nameof(rows), "A cell's label cannot be null.");
+		}
+		// On Windows, wxWidgets does nothing with the rows, so they are not handed to it.
+		if (windows is not null) {
+			windows.SetRows(given);
+			return;
+		}
+		using NativeStringArray labels = new(cells.Select(static cell => cell.Label));
 		Rect[] rects = [.. cells.Select(static cell => cell.Bounds)];
 		fixed (WxkAccessibleRow* rowsPointer = native)
 		fixed (Rect* bounds = rects) {
 			WxKitNative.WindowSetAccessibleRows(Native, rowsPointer, (nuint)native.Length, labels.Handle, bounds, rowCount);
 		}
-		windows?.SetRows(given);
 	}
 
 	/// <summary>
@@ -77,9 +87,8 @@ public unsafe partial class Window {
 	/// </summary>
 	public void SetAccessibleCurrentRow(int index) {
 		ArgumentOutOfRangeException.ThrowIfLessThan(index, -1);
-		PartsAccessible? windows = DescribedByParts();
-		WxKitNative.WindowSetAccessibleCurrentRow(Native, index);
-		windows?.SetCurrentRow(index);
+		if (DescribedByParts() is PartsAccessible windows) windows.SetCurrentRow(index);
+		else WxKitNative.WindowSetAccessibleCurrentRow(Native, index);
 	}
 
 	// On Windows, the accessible object that answers from the parts or rows, which is made the first
