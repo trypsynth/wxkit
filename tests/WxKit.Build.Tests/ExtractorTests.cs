@@ -228,6 +228,57 @@ public class ExtractorTests {
 		Assert.Equal(source.Split('\n').Length - 1, problem.Line);
 	}
 
+	// A verbatim string that starts with a doubled quote is not a raw string, which would run to the
+	// end of the file.
+	[Fact]
+	public void ReadsAVerbatimStringThatStartsWithAQuote() {
+		StringTemplate csharp = Extract(""""
+			var a = _(@"""Hi"" he said");
+			var b = _("second");
+			"""");
+		Assert.Equal(["\"Hi\" he said", "second"], csharp.Strings.Select(found => found.Id));
+		StringTemplate fsharp = Extract(""""
+			let a = tr @"""Hi"" he said"
+			let b = tr "second"
+			"""", SourceLanguage.FSharp);
+		Assert.Equal(["\"Hi\" he said", "second"], fsharp.Strings.Select(found => found.Id));
+	}
+
+	[Fact]
+	public void ReadsFSharpsEscapes() {
+		StringTemplate template = Extract("""
+			let a = tr "\065BC"
+			let b = tr "\x41BD"
+			let c = tr "\120"
+			(* the '"' char *)
+			let d = tr "after a comment"
+			""", SourceLanguage.FSharp);
+		Assert.Equal(["ABC", "ABD", "x", "after a comment"], template.Strings.Select(found => found.Id));
+	}
+
+	// A string or comment that never ends takes the rest of the file with it, which is said once,
+	// where it starts.
+	[Theory]
+	[InlineData(SourceLanguage.CSharp, "var a = _(\"first\");\nvar b = $\"{t:d'}\";\nvar c = _(\"lost\");\n", 2)]
+	[InlineData(SourceLanguage.CSharp, "var a = _(\"first\");\n/* never closed\nvar c = _(\"lost\");\n", 2)]
+	[InlineData(SourceLanguage.FSharp, "let a = tr \"first\"\nlet b = \"\"\"never closed\nlet c = tr \"lost\"\n", 2)]
+	public void WarnsAboutWhatNeverEnds(SourceLanguage language, string source, int line) {
+		List<ExtractionProblem> problems = Extract(source, out StringTemplate template, language);
+		Assert.Equal(["first"], template.Strings.Select(found => found.Id));
+		ExtractionProblem problem = Assert.Single(problems);
+		Assert.Equal(("WXKIT2004", line), (problem.Code, problem.Line));
+	}
+
+	[Fact]
+	public void LeavesOutAnEmptyString() {
+		List<ExtractionProblem> problems = Extract("""
+			var a = _("");
+			var b = _("kept");
+			""", out StringTemplate template);
+		Assert.Equal(["kept"], template.Strings.Select(found => found.Id));
+		Assert.Equal(("WXKIT2005", 1), (Assert.Single(problems).Code, problems[0].Line));
+	}
+
 	private static StringTemplate Extract(string source, SourceLanguage language = SourceLanguage.CSharp) {
 		List<ExtractionProblem> problems = Extract(source, out StringTemplate template, language);
 		Assert.Empty(problems);

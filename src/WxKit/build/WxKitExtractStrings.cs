@@ -283,6 +283,11 @@ public static class StringExtractor {
 			string? context = keyword.HasContext ? literals[next++] : null;
 			string id = literals[next++]!;
 			string? plural = keyword.HasPlural ? literals[next] : null;
+			// A catalog keeps its header under the empty string, so a second one would break it.
+			if (id.Length == 0) {
+				problems.Add(new ExtractionProblem(token.Line, token.Column, "WXKIT2005", $"{token.Text}'s string is empty, which a catalog keeps its header under, so it is left out."));
+				continue;
+			}
 			string? conflict = template.Add(context, id, plural, $"{reference}:{token.Line}", lexer.CommentBefore(token), arguments.Count > keyword.Arguments || IsFormatted(tokens, index));
 			if (conflict is not null) problems.Add(new ExtractionProblem(token.Line, token.Column, "WXKIT2003", $"\"{id}\" {conflict}, and a string has one set of forms in a catalog."));
 		}
@@ -637,7 +642,13 @@ public sealed class Lexer {
 				AdvanceTo(_index + open.Length);
 				continue;
 			}
-			// F# strings in a comment are read as strings, so a *) in one does not end it.
+			// F# strings in a comment are read as strings, so a *) in one does not end it. A char that
+			// holds a quote is not one.
+			if (nests && Current == '\'' && Peek(1) == '"' && Peek(2) == '\'') {
+				text.Append(_source, _index, 3);
+				AdvanceTo(_index + 3);
+				continue;
+			}
 			if (nests && Current == '"') {
 				int stringStart = _index;
 				FSharpString(_line, Column);
@@ -647,6 +658,7 @@ public sealed class Lexer {
 			if (Current != '\r') text.Append(Current);
 			Advance();
 		}
+		if (depth > 0) Unterminated(start, column, "comment");
 		string comment = text.ToString();
 		// The asterisks that start the lines of a block comment are not part of the text.
 		comment = string.Join("\n", comment.Split('\n').Select(line => line.TrimStart().StartsWith("*", StringComparison.Ordinal) ? line.TrimStart().Substring(1) : line));
@@ -687,7 +699,8 @@ public sealed class Lexer {
 		int quotes = 0;
 		while (Peek(quotes) == '"') quotes++;
 		string? text;
-		if (quotes >= 3) {
+		// A verbatim string can start with a doubled quote, as in @"""Hi"" there", which is not a raw one.
+		if (!verbatim && quotes >= 3) {
 			text = RawString(quotes, dollars);
 		} else if (verbatim) {
 			text = VerbatimString(dollars > 0 ? 1 : 0);
@@ -705,9 +718,15 @@ public sealed class Lexer {
 	// A string with backslash escapes, as C# and F# have, which holes interrupt when it is interpolated.
 	// An F# one can span lines.
 	private string EscapedString(int holeBraces, bool fsharp) {
+		int line = _line;
+		int column = Column;
 		Advance();
 		StringBuilder text = new StringBuilder();
-		while (_index < _source.Length) {
+		while (true) {
+			if (_index >= _source.Length) {
+				Unterminated(line, column, "string");
+				break;
+			}
 			char character = Current;
 			if (character == '"') {
 				Advance();
@@ -742,6 +761,12 @@ public sealed class Lexer {
 		Advance();
 		char character = Current;
 		Advance();
+		// F#'s trigraphs, such as \065, are decimal, and one can start with a 0.
+		if (fsharp && char.IsDigit(character) && char.IsDigit(Current) && char.IsDigit(Peek(1))) {
+			int value = (character - '0') * 100 + (Current - '0') * 10 + (Peek(1) - '0');
+			AdvanceTo(_index + 2);
+			return ((char)value).ToString();
+		}
 		switch (character) {
 			case 'n': return "\n";
 			case 't': return "\t";
@@ -752,7 +777,8 @@ public sealed class Lexer {
 			case 'f': return "\f";
 			case 'v': return "\v";
 			case 'e': return "\u001B";
-			case 'x': return CodePoint(Hex(1, 4));
+			// F#'s \x takes two digits, and C#'s one to four.
+			case 'x': return CodePoint(fsharp ? Hex(2, 2) : Hex(1, 4));
 			case 'u': return CodePoint(Hex(4, 4));
 			case 'U': return CodePoint(Hex(8, 8));
 			case '\n':
@@ -770,12 +796,6 @@ public sealed class Lexer {
 				}
 				return "\\";
 			default:
-				// F#'s trigraphs, such as \065, are decimal.
-				if (fsharp && char.IsDigit(character) && char.IsDigit(Current) && char.IsDigit(Peek(1))) {
-					int value = (character - '0') * 100 + (Current - '0') * 10 + (Peek(1) - '0');
-					AdvanceTo(_index + 2);
-					return ((char)value).ToString();
-				}
 				return character.ToString();
 		}
 	}
@@ -795,9 +815,15 @@ public sealed class Lexer {
 	}
 
 	private string VerbatimString(int holeBraces) {
+		int line = _line;
+		int column = Column;
 		Advance();
 		StringBuilder text = new StringBuilder();
-		while (_index < _source.Length) {
+		while (true) {
+			if (_index >= _source.Length) {
+				Unterminated(line, column, "string");
+				break;
+			}
 			char character = Current;
 			if (character == '"') {
 				if (Peek(1) == '"') {
@@ -832,12 +858,18 @@ public sealed class Lexer {
 	// its line takes the lines up to the closing quotes, less the closing line's indentation. In an
 	// interpolated one, a hole opens with as many braces as there are dollar signs.
 	private string RawString(int quotes, int dollars) {
+		int line = _line;
+		int column = Column;
 		AdvanceTo(_index + quotes);
 		int lineEnd = _source.IndexOf('\n', _index);
 		bool multiline = lineEnd >= 0 && _source.Substring(_index, lineEnd - _index).Trim().Length == 0;
 		StringBuilder text = new StringBuilder();
 		if (multiline) AdvanceTo(lineEnd + 1);
-		while (_index < _source.Length) {
+		while (true) {
+			if (_index >= _source.Length) {
+				Unterminated(line, column, "string");
+				break;
+			}
 			if (Current == '"' && Count('"') >= quotes) {
 				AdvanceTo(_index + Count('"'));
 				break;
@@ -916,7 +948,7 @@ public sealed class Lexer {
 			Advance();
 		}
 		string text;
-		if (Peek(0) == '"' && Peek(1) == '"' && Peek(2) == '"') {
+		if (!verbatim && Peek(0) == '"' && Peek(1) == '"' && Peek(2) == '"') {
 			text = TripleQuoted(dollars);
 		} else if (verbatim) {
 			text = VerbatimString(dollars > 0 ? 1 : 0);
@@ -934,9 +966,15 @@ public sealed class Lexer {
 	// F#'s triple-quoted strings have no escapes, and end at the first three quotes. In an
 	// interpolated one, a hole opens with as many braces as there are dollar signs.
 	private string TripleQuoted(int dollars) {
+		int line = _line;
+		int column = Column;
 		AdvanceTo(_index + 3);
 		StringBuilder text = new StringBuilder();
-		while (_index < _source.Length) {
+		while (true) {
+			if (_index >= _source.Length) {
+				Unterminated(line, column, "string");
+				break;
+			}
 			if (Current == '"' && Peek(1) == '"' && Peek(2) == '"') {
 				AdvanceTo(_index + 3);
 				break;
@@ -952,6 +990,12 @@ public sealed class Lexer {
 			Advance();
 		}
 		return text.ToString();
+	}
+
+	// A string or comment that runs to the end of the file takes every string after it along, so the
+	// first one is reported, where it starts.
+	private void Unterminated(int line, int column, string what) {
+		if (Problems.Count == 0) Problems.Add(new ExtractionProblem(line, column, "WXKIT2004", $"This {what} never ends, so no string after it in the file is extracted."));
 	}
 
 	private char Peek(int offset) => _index + offset < _source.Length ? _source[_index + offset] : '\0';
