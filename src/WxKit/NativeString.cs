@@ -3,13 +3,12 @@ using WxKit.Interop;
 namespace WxKit;
 
 internal static unsafe class NativeString {
-	// Takes ownership of the shim's string and frees it.
+	// Takes ownership of the shim's string and frees it. Its text follows its length, so it is read
+	// where it is, without a call.
 	internal static string Take(WxkString* text) {
 		if (text is null) return string.Empty;
 		try {
-			nuint length;
-			char* data = WxKitNative.StringGetData(text, &length);
-			return new string(data, 0, checked((int)length));
+			return new string((char*)(text + 1), 0, checked((int)text->Length));
 		} finally {
 			WxKitNative.StringFree(text);
 		}

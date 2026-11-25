@@ -117,8 +117,8 @@ private:
 	static std::u16string NameOf(int32_t kind, const wxDataFormat& format) {
 		if (kind != WXK_DROP_NAMED) return std::u16string();
 		wxk_String* id = wxk::ToUtf16(format.GetId());
-		std::u16string name = id->text;
-		delete id;
+		std::u16string name(wxk::StringText(id), id->length);
+		wxk::FreeString(id);
 		return name;
 	}
 

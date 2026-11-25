@@ -1,21 +1,12 @@
 #include "shim.h"
 
-// Can't throw: a string's size and data.
-WXK_FUNCTION(const char16_t*) wxk_String_GetData(const wxk_String* text, size_t* length) noexcept {
-	if (text == nullptr) {
-		*length = 0;
-		return nullptr;
-	}
-	*length = text->text.size();
-	return text->text.data();
-}
-
+// Can't throw: freeing memory.
 WXK_FUNCTION(void) wxk_String_Free(wxk_String* text) noexcept {
-	delete text;
+	wxk::FreeString(text);
 }
 
 WXK_FUNCTION(wxk_String*) wxk_String_new(const char16_t* text, size_t textLength) noexcept {
-	return wxk::Guard<wxk_String*>(nullptr, [&] { return new wxk_String{std::u16string(text, textLength)}; });
+	return wxk::Guard<wxk_String*>(nullptr, [&] { return wxk::NewString(text, textLength); });
 }
 
 WXK_FUNCTION(wxk_StringArray*) wxk_StringArray_new(void) noexcept {

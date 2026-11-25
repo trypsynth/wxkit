@@ -76,10 +76,6 @@ public static unsafe partial class WxKitNative {
 
 	// Text, lists, and bytes
 
-	[LibraryImport(Library, EntryPoint = "wxk_String_GetData")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial char* StringGetData(WxkString* text, nuint* length);
-
 	[LibraryImport(Library, EntryPoint = "wxk_String_Free")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StringFree(WxkString* text);

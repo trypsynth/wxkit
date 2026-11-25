@@ -42,8 +42,11 @@ typedef struct wxk_ClassInfo wxk_ClassInfo;
 // An accessible object, which describes a window to screen readers. The window owns it.
 typedef struct wxk_Accessible wxk_Accessible;
 
-// Text that the shim hands out, which the caller frees with wxk_String_Free.
-typedef struct wxk_String wxk_String;
+// Text that the shim hands out, as one block: its length, in UTF-16 code units, and then the
+// text itself, which the caller reads where it is, and frees with wxk_String_Free.
+typedef struct wxk_String {
+	size_t length;
+} wxk_String;
 
 // A list of ints or item ids, as 64-bit numbers, which the caller frees with wxk_Numbers_Free.
 typedef struct wxk_Numbers wxk_Numbers;
@@ -199,8 +202,6 @@ WXK_FUNCTION(void) wxk_CloseEvent_Veto(wxk_Event* event, uint8_t veto) WXK_NOEXC
 WXK_FUNCTION(wxk_StringArray*) wxk_DropFilesEvent_GetFiles(wxk_Event* event) WXK_NOEXCEPT;
 
 // Text, lists, and bytes
-
-WXK_FUNCTION(const char16_t*) wxk_String_GetData(const wxk_String* text, size_t* length) WXK_NOEXCEPT;
 
 WXK_FUNCTION(void) wxk_String_Free(wxk_String* text) WXK_NOEXCEPT;
 

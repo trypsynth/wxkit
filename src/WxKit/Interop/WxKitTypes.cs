@@ -82,8 +82,13 @@ public struct WxkEvent;
 /// <summary>A wxClassInfo, which lives as long as the program.</summary>
 public struct WxkClassInfo;
 
-/// <summary>Text the shim hands out, freed with <see cref="WxKitNative.StringFree"/>.</summary>
-public struct WxkString;
+/// <summary>
+/// Text the shim hands out, as the shim's wxk_String lays it out: its length, and then its UTF-16
+/// text in the same block. Freed with <see cref="WxKitNative.StringFree"/>.
+/// </summary>
+public struct WxkString {
+	public nuint Length;
+}
 
 /// <summary>A wxColour's channels, and whether it is set, as the shim passes them.</summary>
 public readonly record struct WxkColor(byte Red, byte Green, byte Blue, byte Alpha, byte Valid);

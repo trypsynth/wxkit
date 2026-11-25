@@ -9,6 +9,8 @@
 #include <wx/treebase.h>
 #include <wx/vector.h>
 
+#include <cstring>
+#include <new>
 #include <stdexcept>
 #include <string>
 #include <type_traits>
@@ -23,10 +25,6 @@ class wxTreeItemData;
 
 struct wxk_Numbers {
 	std::vector<int64_t> values;
-};
-
-struct wxk_String {
-	std::u16string text;
 };
 
 namespace wxk {
@@ -69,24 +67,38 @@ inline wxString FromUtf16(const char16_t* text, size_t length) {
 	}
 }
 
+// A string's text, which follows its length in the same block.
+inline char16_t* StringText(wxk_String* text) {
+	return reinterpret_cast<char16_t*>(text + 1);
+}
+
+// A string that holds a copy of the text, in one allocation, which .NET reads without a call.
+inline wxk_String* NewString(const char16_t* text, size_t length) {
+	auto* result = static_cast<wxk_String*>(::operator new(sizeof(wxk_String) + length * sizeof(char16_t)));
+	result->length = length;
+	if (length > 0) std::memcpy(StringText(result), text, length * sizeof(char16_t));
+	return result;
+}
+
+inline void FreeString(wxk_String* text) {
+	::operator delete(text);
+}
+
 // Takes a string .NET handed over, which can be null for an empty one, and frees it.
 inline wxString TakeString(wxk_String* text) {
 	if (text == nullptr) return wxString();
-	wxString result = FromUtf16(text->text.data(), text->text.size());
-	delete text;
+	wxString result = FromUtf16(StringText(text), text->length);
+	FreeString(text);
 	return result;
 }
 
 inline wxk_String* ToUtf16(const wxString& text) {
-	auto* result = new wxk_String();
 	if constexpr (sizeof(wchar_t) == sizeof(char16_t)) {
-		const wchar_t* data = text.wc_str();
-		result->text.assign(reinterpret_cast<const char16_t*>(data), text.length());
+		return NewString(reinterpret_cast<const char16_t*>(text.wc_str()), text.length());
 	} else {
 		const wxCharBuffer buffer = text.mb_str(wxMBConvUTF16());
-		result->text.assign(reinterpret_cast<const char16_t*>(buffer.data()), buffer.length() / sizeof(char16_t));
+		return NewString(reinterpret_cast<const char16_t*>(buffer.data()), buffer.length() / sizeof(char16_t));
 	}
-	return result;
 }
 
 inline wxPoint FromPoint(wxk_Point point) {
