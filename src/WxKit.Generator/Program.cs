@@ -30,23 +30,20 @@ WxKit.Generator.Tweaks.Core.Apply(tweaks);
 BindingResult result = new Binder(api, tweaks).Bind();
 string shim = Path.Combine(root, "native", "shim");
 string managed = Path.Combine(root, "src", "WxKit", "Generated");
-Write(Path.Combine(shim, "include", "wxkit_generated.h"), ShimEmitter.Header(result));
-// As with the managed files, a shim file for a class no longer bound must not linger.
+// Everything is made before anything is written, so a run that fails leaves the files as they were.
+List<(string Path, string Text)> files = [(Path.Combine(shim, "include", "wxkit_generated.h"), ShimEmitter.Header(result))];
 string generated = Path.Combine(shim, "generated");
-if (Directory.Exists(generated)) {
-	foreach (string stale in Directory.GetFiles(generated)) File.Delete(stale);
-}
-foreach ((string fileName, string text) in ShimEmitter.Files(result)) Write(Path.Combine(generated, fileName), text);
-Write(Path.Combine(root, "src", "WxKit", "Interop", "WxKitNative.g.cs"), InteropEmitter.Source(result));
+foreach ((string fileName, string text) in ShimEmitter.Files(result)) files.Add((Path.Combine(generated, fileName), text));
+files.Add((Path.Combine(root, "src", "WxKit", "Interop", "WxKitNative.g.cs"), InteropEmitter.Source(result)));
 // The hand-written functions' imports come from wxkit.h, which declares them, and which every
 // function the shim's sources define has to be declared in.
 string[] handwritten = Directory.GetFiles(Path.Combine(shim, "src"), "*.cpp", SearchOption.AllDirectories);
-Write(Path.Combine(root, "src", "WxKit", "Interop", "WxKitNative.Header.g.cs"), HeaderInteropEmitter.Source(Path.Combine(shim, "include", "wxkit.h"), handwritten));
-// Every generated class file is rewritten, so one for a class no longer bound must not linger.
-if (Directory.Exists(managed)) {
-	foreach (string stale in Directory.GetFiles(managed, "*.g.cs")) File.Delete(stale);
-}
-foreach ((string fileName, string text) in ManagedEmitter.Files(result)) Write(Path.Combine(managed, fileName), text);
+files.Add((Path.Combine(root, "src", "WxKit", "Interop", "WxKitNative.Header.g.cs"), HeaderInteropEmitter.Source(Path.Combine(shim, "include", "wxkit.h"), handwritten)));
+foreach ((string fileName, string text) in ManagedEmitter.Files(result)) files.Add((Path.Combine(managed, fileName), text));
+foreach ((string path, string text) in files) Write(path, text);
+// A file for a class no longer bound must not linger, in the shim or in the managed code.
+HashSet<string> written = new(files.Select(static file => Path.GetFullPath(file.Path)), OperatingSystem.IsWindows() ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
+foreach (string stale in Directory.GetFiles(generated).Concat(Directory.GetFiles(managed, "*.g.cs")).Where(file => !written.Contains(Path.GetFullPath(file)))) File.Delete(stale);
 int functions = result.Classes.Sum(static bound => bound.Functions.Count());
 Console.WriteLine($"Bound {result.Classes.Count(static bound => !bound.Tweak.IsHandwritten)} classes, {functions} functions, and {result.EventTypes.Count} event types.");
 string report = Path.Combine(root, "artifacts", "generator-report.txt");
@@ -54,7 +51,11 @@ Write(report, string.Join('\n', result.Skipped) + "\n");
 Console.WriteLine($"Skipped {result.Skipped.Count} members; see {report}.");
 return 0;
 
+// A file that would not change is left alone, so the native build compiles only what did: the
+// generated headers are in the precompiled header every shim source uses.
 static void Write(string path, string text) {
+	text = text.ReplaceLineEndings("\n");
+	if (File.Exists(path) && File.ReadAllText(path) == text) return;
 	Directory.CreateDirectory(Path.GetDirectoryName(path)!);
-	File.WriteAllText(path, text.ReplaceLineEndings("\n"));
+	File.WriteAllText(path, text);
 }
