@@ -6,7 +6,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 
 ## The generator's naming
 
-- Abbreviations .NET spells out: `GridSizer.Cols`, `HGap`, and `VGap`, `PrintData.NoCopies`, which becomes `Copies`, `Slider.TickFreq`, `DC.MapMode`, `DC.SizeMM`, `DataViewColumn.IsResizeable`, the `FromPhys` and `ToPhys` members, and the calendar's `Fg` and `Bg` colors.
 - Parameter names, which break only named arguments:
   - The rule that makes `col` a `column` makes six color parameters `column` too, such as `DC.FloodFill(Point, Color? column)`. It applies only to numbers now.
   - Hungarian and abbreviated names that are left, such as `nPage`, `colFg`, `ptStart`, `xdest`, `bCase`, `but`, `minW`, and `selImage`, and the same thing named differently across classes, as `FileDialog`'s `defaultDir` and `FileCtrl`'s `defaultDirectory` are.

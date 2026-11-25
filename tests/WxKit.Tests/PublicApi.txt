@@ -592,12 +592,12 @@ class WxKit.Button : AnyButton
     Top = 128
 class WxKit.CalendarCtrl : Control
     CalendarCtrl(Window parent, DateTime? date = null, int id = -1, Point? position = null, Size? size = null, CalendarCtrlStyle style = CalendarCtrlStyle.ShowHolidays)
-    Color? HeaderColorBg { get; }
-    Color? HeaderColorFg { get; }
-    Color? HighlightColorBg { get; }
-    Color? HighlightColorFg { get; }
-    Color? HolidayColorBg { get; }
-    Color? HolidayColorFg { get; }
+    Color? HeaderBackgroundColor { get; }
+    Color? HeaderForegroundColor { get; }
+    Color? HighlightBackgroundColor { get; }
+    Color? HighlightForegroundColor { get; }
+    Color? HolidayBackgroundColor { get; }
+    Color? HolidayForegroundColor { get; }
     DateTime? Date { get; set; }
     bool EnableMonthChange(bool enable = true)
     bool SetDateRange(DateTime? earliest = null, DateTime? latest = null)
@@ -609,10 +609,10 @@ class WxKit.CalendarCtrl : Control
     void EnableHolidayDisplay(bool display = true)
     void Mark(int day, bool mark)
     void ResetAttributes(int day)
-    void SetHeaderColors(Color? colFg, Color? colBg)
-    void SetHighlightColors(Color? colFg, Color? colBg)
+    void SetHeaderColors(Color? foreground, Color? background)
+    void SetHighlightColors(Color? foreground, Color? background)
     void SetHoliday(int day)
-    void SetHolidayColors(Color? colFg, Color? colBg)
+    void SetHolidayColors(Color? foreground, Color? background)
 [Flags] enum WxKit.CalendarCtrlStyle : long
     MondayFirst = 1
     NoMonthChange = 12
@@ -957,7 +957,7 @@ class WxKit.DC : NativeObject
     Color? TextForeground { get; set; }
     Font? Font { get; set; }
     LayoutDirection LayoutDirection { get; set; }
-    MappingMode MapMode { get; set; }
+    MappingMode MappingMode { get; set; }
     Pen? Pen { get; set; }
     Point DeviceOrigin { get; }
     Point DeviceToLogical(Point point)
@@ -977,7 +977,7 @@ class WxKit.DC : NativeObject
     Size LogicalToDeviceRel(int x, int y)
     Size Ppi { get; }
     Size Size { get; }
-    Size SizeMM { get; }
+    Size SizeInMillimeters { get; }
     Size ToDip(Size size)
     bool AreAutomaticBoundingBoxUpdatesEnabled { get; }
     bool Blit(int xdest, int ydest, int width, int height, DC source, int xsrc, int ysrc, RasterOperationMode logicalFunc = RasterOperationMode.Copy, bool useMask = false, int xsrcMask = -1, int ysrcMask = -1)
@@ -1091,7 +1091,7 @@ sealed class WxKit.DataViewColumn
     bool IsDestroyed { get; }
     bool IsHidden { get; set; }
     bool IsReorderable { get; set; }
-    bool IsResizeable { get; set; }
+    bool IsResizable { get; set; }
     bool IsShown { get; }
     bool IsSortKey { get; }
     bool IsSortOrderAscending { get; }
@@ -1940,10 +1940,10 @@ class WxKit.FindReplaceDialog : Dialog
     MatchCase = 4
     WholeWord = 2
 class WxKit.FlexGridSizer : GridSizer
-    FlexGridSizer(int cols)
-    FlexGridSizer(int cols, int vgap, int hgap)
-    FlexGridSizer(int rows, int cols, Size gap)
-    FlexGridSizer(int rows, int cols, int vgap, int hgap)
+    FlexGridSizer(int columns)
+    FlexGridSizer(int columns, int vgap, int hgap)
+    FlexGridSizer(int rows, int columns, Size gap)
+    FlexGridSizer(int rows, int columns, int vgap, int hgap)
     FlexSizerGrowMode NonFlexibleGrowMode { get; set; }
     bool IsColumnGrowable(int index)
     bool IsRowGrowable(int index)
@@ -2299,17 +2299,17 @@ readonly record struct WxKit.GridPosition : IEquatable<GridPosition>
     static bool op_Inequality(GridPosition left, GridPosition right)
     void Deconstruct(out int Row, out int Column)
 class WxKit.GridSizer : Sizer
-    GridSizer(int cols)
-    GridSizer(int cols, int vgap, int hgap)
-    GridSizer(int rows, int cols, Size gap)
-    GridSizer(int rows, int cols, int vgap, int hgap)
+    GridSizer(int columns)
+    GridSizer(int columns, int vgap, int hgap)
+    GridSizer(int rows, int columns, Size gap)
+    GridSizer(int rows, int columns, int vgap, int hgap)
     Size CalcMin()
-    int Cols { get; set; }
-    int EffectiveColsCount { get; }
+    int Columns { get; set; }
+    int EffectiveColumnsCount { get; }
     int EffectiveRowsCount { get; }
-    int HGap { get; set; }
+    int HorizontalGap { get; set; }
     int Rows { get; set; }
-    int VGap { get; set; }
+    int VerticalGap { get; set; }
     void RepositionChildren(Size minSize)
 readonly record struct WxKit.GridSpan : IEquatable<GridSpan>
     GridSpan(int Rows, int Columns)
@@ -3534,7 +3534,7 @@ class WxKit.PrintData : NativeObject
     bool Collate { get; set; }
     bool IsColor { get; set; }
     bool IsOk { get; }
-    int NoCopies { get; set; }
+    int Copies { get; set; }
     string FileName { get; set; }
     string PrinterName { get; set; }
     void SetPaperSize(Size size)
@@ -3555,11 +3555,11 @@ class WxKit.PrintDialogData : NativeObject
     bool PrintToFile { get; set; }
     bool Selection { get; set; }
     bool SpecifiedPages { get; }
+    int Copies { get; set; }
     int FromPage { get; set; }
     int MaxPage { get; set; }
     int MaxPageRanges { get; set; }
     int MinPage { get; set; }
-    int NoCopies { get; set; }
     int ToPage { get; set; }
     void EnableCurrentPage(bool flag)
     void EnableHelp(bool flag)
@@ -3598,7 +3598,7 @@ abstract class WxKit.Printout : NativeObject
     Rect LogicalPageRect { get; }
     Rect LogicalPaperRect { get; }
     Rect PaperRectPixels { get; }
-    Size PageSizeMM { get; }
+    Size PageSizeInMillimeters { get; }
     Size PageSizePixels { get; }
     Size PpiPrinter { get; }
     Size PpiScreen { get; }
@@ -3661,7 +3661,7 @@ class WxKit.PropertySheetDialog : Dialog
     Toolbook = 4
     Treebook = 64
 class WxKit.RadioBox : Control
-    RadioBox(Window parent, string label, IEnumerable<string> choices, int id = -1, Point? position = null, Size? size = null, int majorDimension = 0, RadioBoxStyle style = RadioBoxStyle.SpecifyCols)
+    RadioBox(Window parent, string label, IEnumerable<string> choices, int id = -1, Point? position = null, Size? size = null, int majorDimension = 0, RadioBoxStyle style = RadioBoxStyle.SpecifyColumns)
     RadioBox(Window parent, string label, int id = -1, Point? position = null, Size? size = null)
     bool Enable(int index, bool enable = true)
     bool IsEmpty { get; }
@@ -3685,7 +3685,7 @@ class WxKit.RadioBox : Control
     void SetString(int index, string text)
 [Flags] enum WxKit.RadioBoxStyle : long
     None = 0
-    SpecifyCols = 4
+    SpecifyColumns = 4
     SpecifyRows = 8
 class WxKit.RadioButton : Control
     RadioButton(Window parent, string label, int id = -1, Point? position = null, Size? size = null, RadioButtonStyle style = RadioButtonStyle.None)
@@ -4049,7 +4049,7 @@ class WxKit.Slider : Control
     int SelectionEnd { get; }
     int SelectionStart { get; }
     int ThumbLength { get; set; }
-    int TickFreq { get; set; }
+    int TickFrequency { get; set; }
     int Value { get; set; }
     void ClearSelection()
     void ClearTicks()
@@ -8772,12 +8772,12 @@ class WxKit.Window : EvtHandler
     Point ConvertDialogToPixels(Point point)
     Point ConvertPixelsToDialog(Point point)
     Point FromDip(Point point)
-    Point FromPhys(Point point)
+    Point FromPhysical(Point point)
     Point Position { get; set; }
     Point ScreenPosition { get; }
     Point ScreenToClient(Point point)
     Point ToDip(Point point)
-    Point ToPhys(Point point)
+    Point ToPhysical(Point point)
     Rect ClientRect { get; }
     Rect InputMethodCursorRect { get; }
     Rect Rect { get; }
@@ -8792,7 +8792,7 @@ class WxKit.Window : EvtHandler
     Size Dpi { get; }
     Size EffectiveMinSize { get; }
     Size FromDip(Size size)
-    Size FromPhys(Size size)
+    Size FromPhysical(Size size)
     Size GetMinSizeFromKnownDirection(int direction, int size, int availableOtherDir)
     Size GetTextExtent(string text)
     Size MaxClientSize { get; set; }
@@ -8801,7 +8801,7 @@ class WxKit.Window : EvtHandler
     Size MinSize { get; set; }
     Size Size { get; set; }
     Size ToDip(Size size)
-    Size ToPhys(Size size)
+    Size ToPhysical(Size size)
     Size VirtualSize { get; set; }
     Size WindowBorderSize { get; }
     Size WindowToClientSize(Size size)
@@ -8924,7 +8924,7 @@ class WxKit.Window : EvtHandler
     int CharHeight { get; }
     int CharWidth { get; }
     int FromDip(int d)
-    int FromPhys(int d)
+    int FromPhysical(int d)
     int GetBestHeight(int width)
     int GetBestWidth(int height)
     int GetHelpIdAtPoint(Point point)
@@ -8938,27 +8938,27 @@ class WxKit.Window : EvtHandler
     int MinHeight { get; }
     int MinWidth { get; }
     int ToDip(int d)
-    int ToPhys(int d)
+    int ToPhysical(int d)
     long WindowStyleFlag { get; set; }
     nint NativeHandle { get; }
     static Point FromDip(Point point, Window w)
-    static Point FromPhys(Point point, Window w)
+    static Point FromPhysical(Point point, Window w)
     static Point ToDip(Point point, Window w)
-    static Point ToPhys(Point point, Window w)
+    static Point ToPhysical(Point point, Window w)
     static Size FromDip(Size size, Window w)
-    static Size FromPhys(Size size, Window w)
+    static Size FromPhysical(Size size, Window w)
     static Size ToDip(Size size, Window w)
-    static Size ToPhys(Size size, Window w)
+    static Size ToPhysical(Size size, Window w)
     static Window? Capture { get; }
     static Window? FindFocus()
     static Window? FindWindowById(long id, Window? parent = null)
     static Window? FindWindowByLabel(string label, Window? parent = null)
     static Window? FindWindowByName(string name, Window? parent = null)
     static int FromDip(int d, Window w)
-    static int FromPhys(int d, Window w)
+    static int FromPhysical(int d, Window w)
     static int NewControlId(int count = 1)
     static int ToDip(int d, Window w)
-    static int ToPhys(int d, Window w)
+    static int ToPhysical(int d, Window w)
     static void UnreserveControlId(int id, int count = 1)
     string GetHelpTextAtPoint(Point point, Origin origin)
     string HelpText { get; set; }

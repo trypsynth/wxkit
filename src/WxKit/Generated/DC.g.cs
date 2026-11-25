@@ -82,7 +82,7 @@ public unsafe partial class DC : NativeObject {
 	public Point LogicalOrigin => WxKitNative.DCGetLogicalOrigin(Native);
 
 	/// <summary>Gets the current mapping mode for the device context.</summary>
-	public MappingMode MapMode {
+	public MappingMode MappingMode {
 		get => (MappingMode)WxKitNative.DCGetMapMode(Native);
 		set => WxKitNative.DCSetMapMode(Native, (int)value);
 	}
@@ -100,7 +100,7 @@ public unsafe partial class DC : NativeObject {
 	public Size Size => WxKitNative.DCGetSizeDefault(Native);
 
 	/// <summary>Returns the horizontal and vertical resolution in millimetres.</summary>
-	public Size SizeMM => WxKitNative.DCGetSizeMMDefault(Native);
+	public Size SizeInMillimeters => WxKitNative.DCGetSizeMMDefault(Native);
 
 	/// <summary>Gets the current text background colour.</summary>
 	public Color? TextBackground {

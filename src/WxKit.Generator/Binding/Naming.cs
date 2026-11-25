@@ -32,6 +32,13 @@ internal static class Naming {
 		// Abbreviations .NET spells out, as in PreviousSibling.
 		{ "Prev", "Previous" },
 		{ "Desc", "Description" },
+		{ "Cols", "Columns" },
+		{ "Freq", "Frequency" },
+		{ "Phys", "Physical" },
+		{ "Fg", "Foreground" },
+		{ "Bg", "Background" },
+		// A misspelling.
+		{ "Resizeable", "Resizable" },
 	};
 
 	// Words that wxWidgets writes run together in upper case, so they cannot be split on their own.
@@ -339,6 +346,8 @@ internal static class Naming {
 		{ "pos", "position" },
 		{ "orient", "orientation" },
 		{ "winid", "id" },
+		{ "colFg", "foreground" },
+		{ "colBg", "background" },
 		{ "dir", "direction" },
 		{ "sz", "size" },
 		{ "pt", "point" },

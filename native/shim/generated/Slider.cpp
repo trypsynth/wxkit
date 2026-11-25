@@ -124,12 +124,12 @@ WXK_FUNCTION(int32_t) wxk_Slider_GetTickFreq(wxk_Window* self) noexcept {
 	#endif
 }
 
-WXK_FUNCTION(void) wxk_Slider_SetTickFreq(wxk_Window* self, int32_t freq) noexcept {
+WXK_FUNCTION(void) wxk_Slider_SetTickFreq(wxk_Window* self, int32_t frequency) noexcept {
 	#if defined(__WXMSW__) || defined(__WXGTK__)
-	wxk::Guard([&] { static_cast<wxSlider*>(wxk::Unwrap(self))->SetTickFreq(static_cast<int>(freq)); });
+	wxk::Guard([&] { static_cast<wxSlider*>(wxk::Unwrap(self))->SetTickFreq(static_cast<int>(frequency)); });
 	#else
 	(void)self;
-	(void)freq;
+	(void)frequency;
 	#endif
 }
 

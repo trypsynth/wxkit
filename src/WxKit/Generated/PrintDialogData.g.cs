@@ -32,6 +32,12 @@ public unsafe partial class PrintDialogData : NativeObject {
 		set => WxKitNative.PrintDialogDataSetCollate(Native, value ? (byte)1 : (byte)0);
 	}
 
+	/// <summary>Returns the number of copies requested by the user.</summary>
+	public int Copies {
+		get => WxKitNative.PrintDialogDataGetNoCopies(Native);
+		set => WxKitNative.PrintDialogDataSetNoCopies(Native, value);
+	}
+
 	/// <summary>Returns true if the user requested that the current page be printed.</summary>
 	public bool CurrentPage {
 		get => WxKitNative.PrintDialogDataGetCurrentPage(Native) != 0;
@@ -63,12 +69,6 @@ public unsafe partial class PrintDialogData : NativeObject {
 	public int MinPage {
 		get => WxKitNative.PrintDialogDataGetMinPage(Native);
 		set => WxKitNative.PrintDialogDataSetMinPage(Native, value);
-	}
-
-	/// <summary>Returns the number of copies requested by the user.</summary>
-	public int NoCopies {
-		get => WxKitNative.PrintDialogDataGetNoCopies(Native);
-		set => WxKitNative.PrintDialogDataSetNoCopies(Native, value);
 	}
 
 	/// <summary>Returns a reference to the internal wxPrintData object.</summary>

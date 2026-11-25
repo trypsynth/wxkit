@@ -50,7 +50,7 @@ public unsafe partial class Slider : Control {
 	}
 
 	/// <summary>Returns the tick frequency.</summary>
-	public int TickFreq {
+	public int TickFrequency {
 		get => WxKitNative.SliderGetTickFreq(Native);
 		set => WxKitNative.SliderSetTickFreq(Native, value);
 	}

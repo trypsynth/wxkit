@@ -221,19 +221,19 @@ WXK_FUNCTION(uint8_t) wxk_CalendarCtrl_SetDateRange(wxk_Window* self, wxk_DateTi
 WXK_FUNCTION(void) wxk_CalendarCtrl_EnableHolidayDisplay(wxk_Window* self, uint8_t display) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_CalendarCtrl_EnableMonthChange(wxk_Window* self, uint8_t enable) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_CalendarCtrl_ResetAttr(wxk_Window* self, size_t day) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_CalendarCtrl_SetHeaderColours(wxk_Window* self, wxk_Colour colFg, wxk_Colour colBg) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_CalendarCtrl_SetHighlightColours(wxk_Window* self, wxk_Colour colFg, wxk_Colour colBg) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_CalendarCtrl_SetHeaderColours(wxk_Window* self, wxk_Colour foreground, wxk_Colour background) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_CalendarCtrl_SetHighlightColours(wxk_Window* self, wxk_Colour foreground, wxk_Colour background) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_CalendarCtrl_SetHoliday(wxk_Window* self, size_t day) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_CalendarCtrl_SetHolidayColours(wxk_Window* self, wxk_Colour colFg, wxk_Colour colBg) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_CalendarCtrl_SetHolidayColours(wxk_Window* self, wxk_Colour foreground, wxk_Colour background) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_CalendarCtrl_Mark(wxk_Window* self, size_t day, uint8_t mark) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHeaderColourFg(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHeaderColourBg(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHighlightColourFg(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHighlightColourBg(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHolidayColourFg(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHolidayColourBg(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_DateTime) wxk_CalendarCtrl_GetDate(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_CalendarCtrl_SetDate(wxk_Window* self, wxk_DateTime date) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHeaderColourBg(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHeaderColourFg(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHighlightColourBg(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHighlightColourFg(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHolidayColourBg(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHolidayColourFg(wxk_Window* self) WXK_NOEXCEPT;
 
 // wxCalendarEvent
 
@@ -611,6 +611,8 @@ WXK_FUNCTION(wxk_Size) wxk_DC_ToDIP_Size(wxk_Object* self, wxk_Size size) WXK_NO
 WXK_FUNCTION(wxk_Point) wxk_DC_ToDIP_Point(wxk_Object* self, wxk_Point point) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_DC_ToDIP_Int(wxk_Object* self, int32_t d) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_GetUserScale(wxk_Object* self, double* x, double* y) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_DC_GetMapMode(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DC_SetMapMode(wxk_Object* self, int32_t mode) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_DC_AreAutomaticBoundingBoxUpdatesEnabled(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_DC_GetBackgroundMode(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_SetBackgroundMode(wxk_Object* self, int32_t mode) WXK_NOEXCEPT;
@@ -637,8 +639,6 @@ WXK_FUNCTION(uint8_t) wxk_DC_IsOk(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(double) wxk_DC_GetContentScaleFactor(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_DC_GetDepth(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Point) wxk_DC_GetDeviceOrigin(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_DC_GetMapMode(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_DC_SetMapMode(wxk_Object* self, int32_t mode) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_DC_GetPPI(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_DC_GetSize_Default(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_DC_GetSizeMM_Default(wxk_Object* self) WXK_NOEXCEPT;
@@ -1055,10 +1055,10 @@ WXK_FUNCTION(wxk_Window*) wxk_FindReplaceDialog_new(wxk_Window* parent, wxk_Obje
 
 // wxFlexGridSizer
 
-WXK_FUNCTION(wxk_Sizer*) wxk_FlexGridSizer_new_IntIntInt(int32_t cols, int32_t vgap, int32_t hgap) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Sizer*) wxk_FlexGridSizer_new_Int(int32_t cols) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Sizer*) wxk_FlexGridSizer_new_IntIntIntInt(int32_t rows, int32_t cols, int32_t vgap, int32_t hgap) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Sizer*) wxk_FlexGridSizer_new_IntIntSize(int32_t rows, int32_t cols, wxk_Size gap) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Sizer*) wxk_FlexGridSizer_new_IntIntInt(int32_t columns, int32_t vgap, int32_t hgap) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Sizer*) wxk_FlexGridSizer_new_Int(int32_t columns) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Sizer*) wxk_FlexGridSizer_new_IntIntIntInt(int32_t rows, int32_t columns, int32_t vgap, int32_t hgap) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Sizer*) wxk_FlexGridSizer_new_IntIntSize(int32_t rows, int32_t columns, wxk_Size gap) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_FlexGridSizer_AddGrowableCol(wxk_Sizer* self, size_t index, int32_t proportion) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_FlexGridSizer_AddGrowableRow(wxk_Sizer* self, size_t index, int32_t proportion) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_FlexGridSizer_IsColGrowable(wxk_Sizer* self, size_t index) WXK_NOEXCEPT;
@@ -1258,22 +1258,22 @@ WXK_FUNCTION(void) wxk_GridBagSizer_SetEmptyCellSize(wxk_Sizer* self, wxk_Size s
 
 // wxGridSizer
 
-WXK_FUNCTION(wxk_Sizer*) wxk_GridSizer_new_IntIntInt(int32_t cols, int32_t vgap, int32_t hgap) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Sizer*) wxk_GridSizer_new_Int(int32_t cols) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Sizer*) wxk_GridSizer_new_IntIntIntInt(int32_t rows, int32_t cols, int32_t vgap, int32_t hgap) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Sizer*) wxk_GridSizer_new_IntIntSize(int32_t rows, int32_t cols, wxk_Size gap) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Sizer*) wxk_GridSizer_new_IntIntInt(int32_t columns, int32_t vgap, int32_t hgap) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Sizer*) wxk_GridSizer_new_Int(int32_t columns) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Sizer*) wxk_GridSizer_new_IntIntIntInt(int32_t rows, int32_t columns, int32_t vgap, int32_t hgap) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Sizer*) wxk_GridSizer_new_IntIntSize(int32_t rows, int32_t columns, wxk_Size gap) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_GridSizer_CalcMin(wxk_Sizer* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_GridSizer_RepositionChildren(wxk_Sizer* self, wxk_Size minSize) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_GridSizer_GetCols(wxk_Sizer* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_GridSizer_SetCols(wxk_Sizer* self, int32_t cols) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_GridSizer_GetRows(wxk_Sizer* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_GridSizer_SetRows(wxk_Sizer* self, int32_t rows) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_GridSizer_GetEffectiveColsCount(wxk_Sizer* self) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_GridSizer_GetEffectiveRowsCount(wxk_Sizer* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_GridSizer_GetHGap(wxk_Sizer* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_GridSizer_SetHGap(wxk_Sizer* self, int32_t gap) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_GridSizer_GetVGap(wxk_Sizer* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_GridSizer_SetVGap(wxk_Sizer* self, int32_t gap) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_GridSizer_GetCols(wxk_Sizer* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_GridSizer_SetCols(wxk_Sizer* self, int32_t columns) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_GridSizer_GetRows(wxk_Sizer* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_GridSizer_SetRows(wxk_Sizer* self, int32_t rows) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_GridSizer_GetEffectiveColsCount(wxk_Sizer* self) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_GridSizer_GetEffectiveRowsCount(wxk_Sizer* self) WXK_NOEXCEPT;
 
 // wxHelpEvent
 
@@ -1985,6 +1985,8 @@ WXK_FUNCTION(void) wxk_PickerBase_SetTextCtrlGrowable(wxk_Window* self, uint8_t 
 
 WXK_FUNCTION(wxk_Object*) wxk_PrintData_new(void) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_PrintData_SetPaperSize(wxk_Object* self, wxk_Size size) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_PrintData_GetNoCopies(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_PrintData_SetNoCopies(wxk_Object* self, int32_t index) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_PrintData_GetPaperId(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_PrintData_SetPaperId(wxk_Object* self, int32_t paperId) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_PrintData_GetColour(wxk_Object* self) WXK_NOEXCEPT;
@@ -1995,8 +1997,6 @@ WXK_FUNCTION(uint8_t) wxk_PrintData_GetCollate(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_PrintData_SetCollate(wxk_Object* self, uint8_t flag) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_PrintData_GetDuplex(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_PrintData_SetDuplex(wxk_Object* self, int32_t mode) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_PrintData_GetNoCopies(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_PrintData_SetNoCopies(wxk_Object* self, int32_t index) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_PrintData_GetOrientation(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_PrintData_SetOrientation(wxk_Object* self, int32_t orientation) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_PrintData_GetPrinterName(wxk_Object* self) WXK_NOEXCEPT;
@@ -2026,6 +2026,8 @@ WXK_FUNCTION(void) wxk_PrintDialogData_EnablePageNumbers(wxk_Object* self, uint8
 WXK_FUNCTION(void) wxk_PrintDialogData_EnablePrintToFile(wxk_Object* self, uint8_t flag) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_PrintDialogData_EnableSelection(wxk_Object* self, uint8_t flag) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_PrintDialogData_EnableCurrentPage(wxk_Object* self, uint8_t flag) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_PrintDialogData_GetNoCopies(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_PrintDialogData_SetNoCopies(wxk_Object* self, int32_t index) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_PrintDialogData_GetAllPages(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_PrintDialogData_SetAllPages(wxk_Object* self, uint8_t flag) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_PrintDialogData_GetCollate(wxk_Object* self) WXK_NOEXCEPT;
@@ -2036,8 +2038,6 @@ WXK_FUNCTION(int32_t) wxk_PrintDialogData_GetMaxPage(wxk_Object* self) WXK_NOEXC
 WXK_FUNCTION(void) wxk_PrintDialogData_SetMaxPage(wxk_Object* self, int32_t page) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_PrintDialogData_GetMinPage(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_PrintDialogData_SetMinPage(wxk_Object* self, int32_t page) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_PrintDialogData_GetNoCopies(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_PrintDialogData_SetNoCopies(wxk_Object* self, int32_t index) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_PrintDialogData_GetPrintData(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_PrintDialogData_SetPrintData(wxk_Object* self, const wxk_Object* printData) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_PrintDialogData_GetPrintToFile(wxk_Object* self) WXK_NOEXCEPT;
@@ -2076,11 +2076,11 @@ WXK_FUNCTION(void) wxk_Printout_MapScreenSizeToPageMargins(wxk_Object* self, con
 WXK_FUNCTION(void) wxk_Printout_MapScreenSizeToPaper(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Printout_OffsetLogicalOrigin(wxk_Object* self, int32_t xoff, int32_t yoff) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Printout_SetLogicalOrigin(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Size) wxk_Printout_GetPageSizeMM(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Rect) wxk_Printout_GetLogicalPageRect(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Rect) wxk_Printout_GetLogicalPaperRect(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_Printout_GetPPIPrinter(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_Printout_GetPPIScreen(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Size) wxk_Printout_GetPageSizeMM(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_Printout_GetPageSizePixels(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Rect) wxk_Printout_GetPaperRectPixels(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_Printout_GetTitle(wxk_Object* self) WXK_NOEXCEPT;
@@ -2401,7 +2401,7 @@ WXK_FUNCTION(int32_t) wxk_Slider_GetSelStart(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Slider_GetThumbLength(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Slider_SetThumbLength(wxk_Window* self, int32_t len) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Slider_GetTickFreq(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Slider_SetTickFreq(wxk_Window* self, int32_t freq) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Slider_SetTickFreq(wxk_Window* self, int32_t frequency) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Slider_GetValue(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Slider_SetValue(wxk_Window* self, int32_t value) WXK_NOEXCEPT;
 

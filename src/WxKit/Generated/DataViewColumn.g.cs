@@ -37,7 +37,7 @@ public unsafe partial class DataViewColumn {
 	}
 
 	/// <summary>Return true if the column can be resized by the user.</summary>
-	public bool IsResizeable {
+	public bool IsResizable {
 		get => WxKitNative.DataViewColumnIsResizeable(Native) != 0;
 		set => WxKitNative.DataViewColumnSetResizeable(Native, value ? (byte)1 : (byte)0);
 	}

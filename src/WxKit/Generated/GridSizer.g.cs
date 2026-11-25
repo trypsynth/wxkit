@@ -7,38 +7,38 @@ namespace WxKit;
 /// <summary>A grid sizer is a sizer which lays out its children in a two-dimensional table with all table fields having the same size, i.e. Wraps wxGridSizer.</summary>
 public unsafe partial class GridSizer : Sizer {
 	/// <summary>wxGridSizer constructors.</summary>
-	public GridSizer(int cols, int vgap, int hgap) : this(CreateNative(cols, vgap, hgap)) {
+	public GridSizer(int columns, int vgap, int hgap) : this(CreateNative(columns, vgap, hgap)) {
 	}
 
 	/// <summary>wxGridSizer constructors.</summary>
-	public GridSizer(int cols) : this(CreateNative(cols)) {
+	public GridSizer(int columns) : this(CreateNative(columns)) {
 	}
 
 	/// <summary>wxGridSizer constructors.</summary>
-	public GridSizer(int rows, int cols, int vgap, int hgap) : this(CreateNative(rows, cols, vgap, hgap)) {
+	public GridSizer(int rows, int columns, int vgap, int hgap) : this(CreateNative(rows, columns, vgap, hgap)) {
 	}
 
 	/// <summary>wxGridSizer constructors.</summary>
-	public GridSizer(int rows, int cols, Size gap) : this(CreateNative(rows, cols, gap)) {
+	public GridSizer(int rows, int columns, Size gap) : this(CreateNative(rows, columns, gap)) {
 	}
 
 	internal GridSizer(WxkSizer* native) : base(native) {
 	}
 
 	/// <summary>Returns the number of columns that has been specified for the sizer.</summary>
-	public int Cols {
+	public int Columns {
 		get => WxKitNative.GridSizerGetCols(Native);
 		set => WxKitNative.GridSizerSetCols(Native, value);
 	}
 
 	/// <summary>Returns the number of columns currently used by the sizer.</summary>
-	public int EffectiveColsCount => WxKitNative.GridSizerGetEffectiveColsCount(Native);
+	public int EffectiveColumnsCount => WxKitNative.GridSizerGetEffectiveColsCount(Native);
 
 	/// <summary>Returns the number of rows currently used by the sizer.</summary>
 	public int EffectiveRowsCount => WxKitNative.GridSizerGetEffectiveRowsCount(Native);
 
 	/// <summary>Returns the horizontal gap (in pixels) between cells in the sizer.</summary>
-	public int HGap {
+	public int HorizontalGap {
 		get => WxKitNative.GridSizerGetHGap(Native);
 		set => WxKitNative.GridSizerSetHGap(Native, value);
 	}
@@ -50,7 +50,7 @@ public unsafe partial class GridSizer : Sizer {
 	}
 
 	/// <summary>Returns the vertical gap (in pixels) between the cells in the sizer.</summary>
-	public int VGap {
+	public int VerticalGap {
 		get => WxKitNative.GridSizerGetVGap(Native);
 		set => WxKitNative.GridSizerSetVGap(Native, value);
 	}
@@ -61,23 +61,23 @@ public unsafe partial class GridSizer : Sizer {
 	/// <summary>Method which must be overridden in the derived sizer classes.</summary>
 	public void RepositionChildren(Size minSize) => WxKitNative.GridSizerRepositionChildren(Native, minSize);
 
-	private static WxkSizer* CreateNative(int cols, int vgap, int hgap) {
+	private static WxkSizer* CreateNative(int columns, int vgap, int hgap) {
 		Application.VerifyAccess();
-		return WxKitNative.GridSizerNewIntIntInt(cols, vgap, hgap);
+		return WxKitNative.GridSizerNewIntIntInt(columns, vgap, hgap);
 	}
 
-	private static WxkSizer* CreateNative(int cols) {
+	private static WxkSizer* CreateNative(int columns) {
 		Application.VerifyAccess();
-		return WxKitNative.GridSizerNewInt(cols);
+		return WxKitNative.GridSizerNewInt(columns);
 	}
 
-	private static WxkSizer* CreateNative(int rows, int cols, int vgap, int hgap) {
+	private static WxkSizer* CreateNative(int rows, int columns, int vgap, int hgap) {
 		Application.VerifyAccess();
-		return WxKitNative.GridSizerNewIntIntIntInt(rows, cols, vgap, hgap);
+		return WxKitNative.GridSizerNewIntIntIntInt(rows, columns, vgap, hgap);
 	}
 
-	private static WxkSizer* CreateNative(int rows, int cols, Size gap) {
+	private static WxkSizer* CreateNative(int rows, int columns, Size gap) {
 		Application.VerifyAccess();
-		return WxKitNative.GridSizerNewIntIntSize(rows, cols, gap);
+		return WxKitNative.GridSizerNewIntIntSize(rows, columns, gap);
 	}
 }

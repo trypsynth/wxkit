@@ -683,30 +683,30 @@ public unsafe partial class Window : EvtHandler {
 	}
 
 	/// <summary>Convert from physical pixels to logical pixels.</summary>
-	public Size FromPhys(Size size) => WxKitNative.WindowFromPhysSize(Native, size);
+	public Size FromPhysical(Size size) => WxKitNative.WindowFromPhysSize(Native, size);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Point FromPhys(Point point) => WxKitNative.WindowFromPhysPoint(Native, point);
+	public Point FromPhysical(Point point) => WxKitNative.WindowFromPhysPoint(Native, point);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public int FromPhys(int d) => WxKitNative.WindowFromPhysInt(Native, d);
+	public int FromPhysical(int d) => WxKitNative.WindowFromPhysInt(Native, d);
 
 	/// <summary>Convert from physical pixels to logical pixels for any window.</summary>
-	public static Size FromPhys(Size size, Window w) {
+	public static Size FromPhysical(Size size, Window w) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(w);
 		return WxKitNative.WindowFromPhysSizeWindow(size, (WxkWindow*)w.Native);
 	}
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public static Point FromPhys(Point point, Window w) {
+	public static Point FromPhysical(Point point, Window w) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(w);
 		return WxKitNative.WindowFromPhysPointWindow(point, (WxkWindow*)w.Native);
 	}
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public static int FromPhys(int d, Window w) {
+	public static int FromPhysical(int d, Window w) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(w);
 		return WxKitNative.WindowFromPhysIntWindow(d, (WxkWindow*)w.Native);
@@ -1048,30 +1048,30 @@ public unsafe partial class Window : EvtHandler {
 	}
 
 	/// <summary>Convert from logical pixels to physical pixels.</summary>
-	public Size ToPhys(Size size) => WxKitNative.WindowToPhysSize(Native, size);
+	public Size ToPhysical(Size size) => WxKitNative.WindowToPhysSize(Native, size);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Point ToPhys(Point point) => WxKitNative.WindowToPhysPoint(Native, point);
+	public Point ToPhysical(Point point) => WxKitNative.WindowToPhysPoint(Native, point);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public int ToPhys(int d) => WxKitNative.WindowToPhysInt(Native, d);
+	public int ToPhysical(int d) => WxKitNative.WindowToPhysInt(Native, d);
 
 	/// <summary>Convert from logical pixels to physical pixels for any window.</summary>
-	public static Size ToPhys(Size size, Window w) {
+	public static Size ToPhysical(Size size, Window w) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(w);
 		return WxKitNative.WindowToPhysSizeWindow(size, (WxkWindow*)w.Native);
 	}
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public static Point ToPhys(Point point, Window w) {
+	public static Point ToPhysical(Point point, Window w) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(w);
 		return WxKitNative.WindowToPhysPointWindow(point, (WxkWindow*)w.Native);
 	}
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public static int ToPhys(int d, Window w) {
+	public static int ToPhysical(int d, Window w) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(w);
 		return WxKitNative.WindowToPhysIntWindow(d, (WxkWindow*)w.Native);

@@ -12,6 +12,14 @@ WXK_FUNCTION(void) wxk_PrintData_SetPaperSize(wxk_Object* self, wxk_Size size) n
 	wxk::Guard([&] { static_cast<wxPrintData*>(wxk::Unwrap(self))->SetPaperSize(wxk::FromSize(size)); });
 }
 
+WXK_FUNCTION(int32_t) wxk_PrintData_GetNoCopies(wxk_Object* self) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxPrintData*>(wxk::Unwrap(self))->GetNoCopies()); });
+}
+
+WXK_FUNCTION(void) wxk_PrintData_SetNoCopies(wxk_Object* self, int32_t index) noexcept {
+	wxk::Guard([&] { static_cast<wxPrintData*>(wxk::Unwrap(self))->SetNoCopies(static_cast<int>(index)); });
+}
+
 WXK_FUNCTION(int32_t) wxk_PrintData_GetPaperId(wxk_Object* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxPrintData*>(wxk::Unwrap(self))->GetPaperId()); });
 }
@@ -50,14 +58,6 @@ WXK_FUNCTION(int32_t) wxk_PrintData_GetDuplex(wxk_Object* self) noexcept {
 
 WXK_FUNCTION(void) wxk_PrintData_SetDuplex(wxk_Object* self, int32_t mode) noexcept {
 	wxk::Guard([&] { static_cast<wxPrintData*>(wxk::Unwrap(self))->SetDuplex(static_cast<wxDuplexMode>(mode)); });
-}
-
-WXK_FUNCTION(int32_t) wxk_PrintData_GetNoCopies(wxk_Object* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxPrintData*>(wxk::Unwrap(self))->GetNoCopies()); });
-}
-
-WXK_FUNCTION(void) wxk_PrintData_SetNoCopies(wxk_Object* self, int32_t index) noexcept {
-	wxk::Guard([&] { static_cast<wxPrintData*>(wxk::Unwrap(self))->SetNoCopies(static_cast<int>(index)); });
 }
 
 WXK_FUNCTION(int32_t) wxk_PrintData_GetOrientation(wxk_Object* self) noexcept {

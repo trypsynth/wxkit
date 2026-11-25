@@ -369,6 +369,14 @@ WXK_FUNCTION(void) wxk_DC_GetUserScale(wxk_Object* self, double* x, double* y) n
 	wxk::Guard([&] { static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->GetUserScale(x, y); });
 }
 
+WXK_FUNCTION(int32_t) wxk_DC_GetMapMode(wxk_Object* self) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->GetMapMode()); });
+}
+
+WXK_FUNCTION(void) wxk_DC_SetMapMode(wxk_Object* self, int32_t mode) noexcept {
+	wxk::Guard([&] { static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->SetMapMode(static_cast<wxMappingMode>(mode)); });
+}
+
 WXK_FUNCTION(uint8_t) wxk_DC_AreAutomaticBoundingBoxUpdatesEnabled(wxk_Object* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDC*>(wxk::Unwrap(self))->AreAutomaticBoundingBoxUpdatesEnabled()) ? 1 : 0; });
 }
@@ -471,14 +479,6 @@ WXK_FUNCTION(int32_t) wxk_DC_GetDepth(wxk_Object* self) noexcept {
 
 WXK_FUNCTION(wxk_Point) wxk_DC_GetDeviceOrigin(wxk_Object* self) noexcept {
 	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->GetDeviceOrigin()); });
-}
-
-WXK_FUNCTION(int32_t) wxk_DC_GetMapMode(wxk_Object* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->GetMapMode()); });
-}
-
-WXK_FUNCTION(void) wxk_DC_SetMapMode(wxk_Object* self, int32_t mode) noexcept {
-	wxk::Guard([&] { static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->SetMapMode(static_cast<wxMappingMode>(mode)); });
 }
 
 WXK_FUNCTION(wxk_Size) wxk_DC_GetPPI(wxk_Object* self) noexcept {

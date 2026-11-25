@@ -20,22 +20,22 @@ public unsafe partial class CalendarCtrl : Control {
 	}
 
 	/// <summary>Gets the background colour of the header part of the calendar window.</summary>
-	public Color? HeaderColorBg => global::WxKit.Color.FromNative(WxKitNative.CalendarCtrlGetHeaderColourBg(Native));
+	public Color? HeaderBackgroundColor => global::WxKit.Color.FromNative(WxKitNative.CalendarCtrlGetHeaderColourBg(Native));
 
 	/// <summary>Gets the foreground colour of the header part of the calendar window.</summary>
-	public Color? HeaderColorFg => global::WxKit.Color.FromNative(WxKitNative.CalendarCtrlGetHeaderColourFg(Native));
+	public Color? HeaderForegroundColor => global::WxKit.Color.FromNative(WxKitNative.CalendarCtrlGetHeaderColourFg(Native));
 
 	/// <summary>Gets the background highlight colour.</summary>
-	public Color? HighlightColorBg => global::WxKit.Color.FromNative(WxKitNative.CalendarCtrlGetHighlightColourBg(Native));
+	public Color? HighlightBackgroundColor => global::WxKit.Color.FromNative(WxKitNative.CalendarCtrlGetHighlightColourBg(Native));
 
 	/// <summary>Gets the foreground highlight colour.</summary>
-	public Color? HighlightColorFg => global::WxKit.Color.FromNative(WxKitNative.CalendarCtrlGetHighlightColourFg(Native));
+	public Color? HighlightForegroundColor => global::WxKit.Color.FromNative(WxKitNative.CalendarCtrlGetHighlightColourFg(Native));
 
 	/// <summary>Return the background colour currently used for holiday highlighting.</summary>
-	public Color? HolidayColorBg => global::WxKit.Color.FromNative(WxKitNative.CalendarCtrlGetHolidayColourBg(Native));
+	public Color? HolidayBackgroundColor => global::WxKit.Color.FromNative(WxKitNative.CalendarCtrlGetHolidayColourBg(Native));
 
 	/// <summary>Return the foreground colour currently used for holiday highlighting.</summary>
-	public Color? HolidayColorFg => global::WxKit.Color.FromNative(WxKitNative.CalendarCtrlGetHolidayColourFg(Native));
+	public Color? HolidayForegroundColor => global::WxKit.Color.FromNative(WxKitNative.CalendarCtrlGetHolidayColourFg(Native));
 
 	public event EventHandler<CalendarEvent>? DateActivated {
 		add => AddHandler(EventType.CalendarDoubleClicked, StandardId.Any, StandardId.Any, value, this);
@@ -82,16 +82,16 @@ public unsafe partial class CalendarCtrl : Control {
 	public bool SetDateRange(DateTime? earliest = null, DateTime? latest = null) => WxKitNative.CalendarCtrlSetDateRange(Native, global::WxKit.NativeDateTime.ToNative(earliest), global::WxKit.NativeDateTime.ToNative(latest)) != 0;
 
 	/// <summary>Set the colours used for painting the weekdays at the top of the control.</summary>
-	public void SetHeaderColors(Color? colFg, Color? colBg) => WxKitNative.CalendarCtrlSetHeaderColours(Native, global::WxKit.Color.ToNative(colFg), global::WxKit.Color.ToNative(colBg));
+	public void SetHeaderColors(Color? foreground, Color? background) => WxKitNative.CalendarCtrlSetHeaderColours(Native, global::WxKit.Color.ToNative(foreground), global::WxKit.Color.ToNative(background));
 
 	/// <summary>Set the colours to be used for highlighting the currently selected date.</summary>
-	public void SetHighlightColors(Color? colFg, Color? colBg) => WxKitNative.CalendarCtrlSetHighlightColours(Native, global::WxKit.Color.ToNative(colFg), global::WxKit.Color.ToNative(colBg));
+	public void SetHighlightColors(Color? foreground, Color? background) => WxKitNative.CalendarCtrlSetHighlightColours(Native, global::WxKit.Color.ToNative(foreground), global::WxKit.Color.ToNative(background));
 
 	/// <summary>Marks the specified day as being a holiday in the current month.</summary>
 	public void SetHoliday(int day) => WxKitNative.CalendarCtrlSetHoliday(Native, checked((nuint)day));
 
 	/// <summary>Sets the colours to be used for the holidays highlighting.</summary>
-	public void SetHolidayColors(Color? colFg, Color? colBg) => WxKitNative.CalendarCtrlSetHolidayColours(Native, global::WxKit.Color.ToNative(colFg), global::WxKit.Color.ToNative(colBg));
+	public void SetHolidayColors(Color? foreground, Color? background) => WxKitNative.CalendarCtrlSetHolidayColours(Native, global::WxKit.Color.ToNative(foreground), global::WxKit.Color.ToNative(background));
 
 	private static WxkWindow* CreateNative(Window parent, DateTime? date, int id, Point? position, Size? size, CalendarCtrlStyle style) {
 		Application.VerifyAccess();

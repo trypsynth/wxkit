@@ -24,24 +24,48 @@ WXK_FUNCTION(void) wxk_CalendarCtrl_ResetAttr(wxk_Window* self, size_t day) noex
 	wxk::Guard([&] { static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->ResetAttr(day); });
 }
 
-WXK_FUNCTION(void) wxk_CalendarCtrl_SetHeaderColours(wxk_Window* self, wxk_Colour colFg, wxk_Colour colBg) noexcept {
-	wxk::Guard([&] { static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->SetHeaderColours(wxk::FromColour(colFg), wxk::FromColour(colBg)); });
+WXK_FUNCTION(void) wxk_CalendarCtrl_SetHeaderColours(wxk_Window* self, wxk_Colour foreground, wxk_Colour background) noexcept {
+	wxk::Guard([&] { static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->SetHeaderColours(wxk::FromColour(foreground), wxk::FromColour(background)); });
 }
 
-WXK_FUNCTION(void) wxk_CalendarCtrl_SetHighlightColours(wxk_Window* self, wxk_Colour colFg, wxk_Colour colBg) noexcept {
-	wxk::Guard([&] { static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->SetHighlightColours(wxk::FromColour(colFg), wxk::FromColour(colBg)); });
+WXK_FUNCTION(void) wxk_CalendarCtrl_SetHighlightColours(wxk_Window* self, wxk_Colour foreground, wxk_Colour background) noexcept {
+	wxk::Guard([&] { static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->SetHighlightColours(wxk::FromColour(foreground), wxk::FromColour(background)); });
 }
 
 WXK_FUNCTION(void) wxk_CalendarCtrl_SetHoliday(wxk_Window* self, size_t day) noexcept {
 	wxk::Guard([&] { static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->SetHoliday(day); });
 }
 
-WXK_FUNCTION(void) wxk_CalendarCtrl_SetHolidayColours(wxk_Window* self, wxk_Colour colFg, wxk_Colour colBg) noexcept {
-	wxk::Guard([&] { static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->SetHolidayColours(wxk::FromColour(colFg), wxk::FromColour(colBg)); });
+WXK_FUNCTION(void) wxk_CalendarCtrl_SetHolidayColours(wxk_Window* self, wxk_Colour foreground, wxk_Colour background) noexcept {
+	wxk::Guard([&] { static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->SetHolidayColours(wxk::FromColour(foreground), wxk::FromColour(background)); });
 }
 
 WXK_FUNCTION(void) wxk_CalendarCtrl_Mark(wxk_Window* self, size_t day, uint8_t mark) noexcept {
 	wxk::Guard([&] { static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->Mark(day, mark != 0); });
+}
+
+WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHeaderColourFg(wxk_Window* self) noexcept {
+	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->GetHeaderColourFg()); });
+}
+
+WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHeaderColourBg(wxk_Window* self) noexcept {
+	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->GetHeaderColourBg()); });
+}
+
+WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHighlightColourFg(wxk_Window* self) noexcept {
+	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->GetHighlightColourFg()); });
+}
+
+WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHighlightColourBg(wxk_Window* self) noexcept {
+	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->GetHighlightColourBg()); });
+}
+
+WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHolidayColourFg(wxk_Window* self) noexcept {
+	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->GetHolidayColourFg()); });
+}
+
+WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHolidayColourBg(wxk_Window* self) noexcept {
+	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->GetHolidayColourBg()); });
 }
 
 WXK_FUNCTION(wxk_DateTime) wxk_CalendarCtrl_GetDate(wxk_Window* self) noexcept {
@@ -50,30 +74,6 @@ WXK_FUNCTION(wxk_DateTime) wxk_CalendarCtrl_GetDate(wxk_Window* self) noexcept {
 
 WXK_FUNCTION(uint8_t) wxk_CalendarCtrl_SetDate(wxk_Window* self, wxk_DateTime date) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->SetDate(wxk::FromDateTime(date))) ? 1 : 0; });
-}
-
-WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHeaderColourBg(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->GetHeaderColourBg()); });
-}
-
-WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHeaderColourFg(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->GetHeaderColourFg()); });
-}
-
-WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHighlightColourBg(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->GetHighlightColourBg()); });
-}
-
-WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHighlightColourFg(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->GetHighlightColourFg()); });
-}
-
-WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHolidayColourBg(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->GetHolidayColourBg()); });
-}
-
-WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHolidayColourFg(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->GetHolidayColourFg()); });
 }
 
 WXK_FUNCTION(int32_t) wxk_EventType_CalendarDoubleClicked(void) noexcept {

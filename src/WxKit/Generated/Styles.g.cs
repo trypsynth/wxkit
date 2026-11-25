@@ -639,7 +639,7 @@ public enum RadioBoxStyle : long {
 	/// <summary>The major dimension parameter refers to the maximum number of rows. Wraps wxRA_SPECIFY_ROWS.</summary>
 	SpecifyRows = 0x8,
 	/// <summary>The major dimension parameter refers to the maximum number of columns. Wraps wxRA_SPECIFY_COLS.</summary>
-	SpecifyCols = 0x4,
+	SpecifyColumns = 0x4,
 }
 
 /// <summary>Styles for <see cref="RadioButton"/>.</summary>

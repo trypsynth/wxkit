@@ -28,6 +28,8 @@ internal static class Drawing {
 			tweaks.Class(dc);
 		}
 		tweaks.Class("wxDC", dc => dc
+			.Property("MappingMode", "GetMapMode", "SetMapMode")
+			.Rename("GetSizeMM", "SizeInMillimeters")
 			.InheritUnboundBases()
 			.ParameterEnum("SetBackgroundMode", "mode", "BrushStyle")
 			.ParameterEnum("GetBackgroundMode", "return", "BrushStyle")

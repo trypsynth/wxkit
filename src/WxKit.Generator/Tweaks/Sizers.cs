@@ -13,7 +13,9 @@ internal static class Sizers {
 			.ParameterEnum("SetOrientation", "orient", "Orientation"));
 		// A static box sizer always has its box, which it makes or is given.
 		tweaks.Class("wxStaticBoxSizer", sizer => sizer.ParameterEnum("wxStaticBoxSizer", "orient", "Orientation").NonNullReturn("GetStaticBox"));
-		tweaks.Class("wxGridSizer");
+		tweaks.Class("wxGridSizer", sizer => sizer
+			.Property("HorizontalGap", "GetHGap", "SetHGap")
+			.Property("VerticalGap", "GetVGap", "SetVGap"));
 		tweaks.Class("wxFlexGridSizer", sizer => sizer
 			.Rename("IsColGrowable", "IsColumnGrowable")
 			.Rename("AddGrowableCol", "AddGrowableColumn")

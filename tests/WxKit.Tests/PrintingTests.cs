@@ -5,9 +5,9 @@ namespace WxKit.Tests;
 public class PrintingTests {
 	[Fact]
 	public Task KeepsPrintSettings() => Gui.Run(() => {
-		using PrintData print = new() { Orientation = PrintOrientation.Landscape, NoCopies = 2, PaperKind = PaperKind.A4, Quality = PrintQuality.Draft };
+		using PrintData print = new() { Orientation = PrintOrientation.Landscape, Copies = 2, PaperKind = PaperKind.A4, Quality = PrintQuality.Draft };
 		Assert.Equal(PrintOrientation.Landscape, print.Orientation);
-		Assert.Equal(2, print.NoCopies);
+		Assert.Equal(2, print.Copies);
 		Assert.Equal(PaperKind.A4, print.PaperKind);
 		Assert.Equal(PrintQuality.Draft, print.Quality);
 		using PrintDialogData dialog = new() { MinPage = 1, MaxPage = 9, FromPage = 2, ToPage = 4 };

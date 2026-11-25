@@ -28,6 +28,12 @@ public unsafe partial class PrintData : NativeObject {
 		set => WxKitNative.PrintDataSetCollate(Native, value ? (byte)1 : (byte)0);
 	}
 
+	/// <summary>Returns the number of copies requested by the user.</summary>
+	public int Copies {
+		get => WxKitNative.PrintDataGetNoCopies(Native);
+		set => WxKitNative.PrintDataSetNoCopies(Native, value);
+	}
+
 	/// <summary>Returns the duplex mode.</summary>
 	public DuplexMode Duplex {
 		get => (DuplexMode)WxKitNative.PrintDataGetDuplex(Native);
@@ -52,12 +58,6 @@ public unsafe partial class PrintData : NativeObject {
 
 	/// <summary>Returns true if the print data is valid for using in print dialogs.</summary>
 	public bool IsOk => WxKitNative.PrintDataIsOk(Native) != 0;
-
-	/// <summary>Returns the number of copies requested by the user.</summary>
-	public int NoCopies {
-		get => WxKitNative.PrintDataGetNoCopies(Native);
-		set => WxKitNative.PrintDataSetNoCopies(Native, value);
-	}
 
 	/// <summary>Gets the orientation.</summary>
 	public PrintOrientation Orientation {

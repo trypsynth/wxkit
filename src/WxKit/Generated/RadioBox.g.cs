@@ -11,7 +11,7 @@ public unsafe partial class RadioBox : Control {
 	}
 
 	/// <summary>Constructor, creating and showing a radiobox.</summary>
-	public RadioBox(Window parent, string label, IEnumerable<string> choices, int id = StandardId.Any, Point? position = null, Size? size = null, int majorDimension = 0, RadioBoxStyle style = RadioBoxStyle.SpecifyCols) : this(CreateNative(parent, label, choices, id, position, size, majorDimension, style)) {
+	public RadioBox(Window parent, string label, IEnumerable<string> choices, int id = StandardId.Any, Point? position = null, Size? size = null, int majorDimension = 0, RadioBoxStyle style = RadioBoxStyle.SpecifyColumns) : this(CreateNative(parent, label, choices, id, position, size, majorDimension, style)) {
 	}
 
 	internal RadioBox(WxkWindow* native) : base(native) {

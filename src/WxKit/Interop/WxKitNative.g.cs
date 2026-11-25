@@ -644,11 +644,11 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_SetHeaderColours")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void CalendarCtrlSetHeaderColours(WxkWindow* self, WxkColor colFg, WxkColor colBg);
+	public static partial void CalendarCtrlSetHeaderColours(WxkWindow* self, WxkColor foreground, WxkColor background);
 
 	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_SetHighlightColours")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void CalendarCtrlSetHighlightColours(WxkWindow* self, WxkColor colFg, WxkColor colBg);
+	public static partial void CalendarCtrlSetHighlightColours(WxkWindow* self, WxkColor foreground, WxkColor background);
 
 	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_SetHoliday")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -656,11 +656,35 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_SetHolidayColours")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void CalendarCtrlSetHolidayColours(WxkWindow* self, WxkColor colFg, WxkColor colBg);
+	public static partial void CalendarCtrlSetHolidayColours(WxkWindow* self, WxkColor foreground, WxkColor background);
 
 	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_Mark")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void CalendarCtrlMark(WxkWindow* self, nuint day, byte mark);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHeaderColourFg")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor CalendarCtrlGetHeaderColourFg(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHeaderColourBg")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor CalendarCtrlGetHeaderColourBg(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHighlightColourFg")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor CalendarCtrlGetHighlightColourFg(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHighlightColourBg")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor CalendarCtrlGetHighlightColourBg(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHolidayColourFg")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor CalendarCtrlGetHolidayColourFg(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHolidayColourBg")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor CalendarCtrlGetHolidayColourBg(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetDate")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -669,30 +693,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_SetDate")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte CalendarCtrlSetDate(WxkWindow* self, WxkDateTime date);
-
-	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHeaderColourBg")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkColor CalendarCtrlGetHeaderColourBg(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHeaderColourFg")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkColor CalendarCtrlGetHeaderColourFg(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHighlightColourBg")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkColor CalendarCtrlGetHighlightColourBg(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHighlightColourFg")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkColor CalendarCtrlGetHighlightColourFg(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHolidayColourBg")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkColor CalendarCtrlGetHolidayColourBg(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHolidayColourFg")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkColor CalendarCtrlGetHolidayColourFg(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_CalendarEvent_GetWeekDay")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -1914,6 +1914,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DCGetUserScale(WxkObject* self, double* x, double* y);
 
+	[LibraryImport(Library, EntryPoint = "wxk_DC_GetMapMode")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int DCGetMapMode(WxkObject* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DC_SetMapMode")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DCSetMapMode(WxkObject* self, int mode);
+
 	[LibraryImport(Library, EntryPoint = "wxk_DC_AreAutomaticBoundingBoxUpdatesEnabled")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte DCAreAutomaticBoundingBoxUpdatesEnabled(WxkObject* self);
@@ -2017,14 +2025,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_DC_GetDeviceOrigin")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Point DCGetDeviceOrigin(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DC_GetMapMode")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int DCGetMapMode(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DC_SetMapMode")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DCSetMapMode(WxkObject* self, int mode);
 
 	[LibraryImport(Library, EntryPoint = "wxk_DC_GetPPI")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -3368,19 +3368,19 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_FlexGridSizer_new_IntIntInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkSizer* FlexGridSizerNewIntIntInt(int cols, int vgap, int hgap);
+	public static partial WxkSizer* FlexGridSizerNewIntIntInt(int columns, int vgap, int hgap);
 
 	[LibraryImport(Library, EntryPoint = "wxk_FlexGridSizer_new_Int")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkSizer* FlexGridSizerNewInt(int cols);
+	public static partial WxkSizer* FlexGridSizerNewInt(int columns);
 
 	[LibraryImport(Library, EntryPoint = "wxk_FlexGridSizer_new_IntIntIntInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkSizer* FlexGridSizerNewIntIntIntInt(int rows, int cols, int vgap, int hgap);
+	public static partial WxkSizer* FlexGridSizerNewIntIntIntInt(int rows, int columns, int vgap, int hgap);
 
 	[LibraryImport(Library, EntryPoint = "wxk_FlexGridSizer_new_IntIntSize")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkSizer* FlexGridSizerNewIntIntSize(int rows, int cols, Size gap);
+	public static partial WxkSizer* FlexGridSizerNewIntIntSize(int rows, int columns, Size gap);
 
 	[LibraryImport(Library, EntryPoint = "wxk_FlexGridSizer_AddGrowableCol")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4036,19 +4036,19 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_new_IntIntInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkSizer* GridSizerNewIntIntInt(int cols, int vgap, int hgap);
+	public static partial WxkSizer* GridSizerNewIntIntInt(int columns, int vgap, int hgap);
 
 	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_new_Int")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkSizer* GridSizerNewInt(int cols);
+	public static partial WxkSizer* GridSizerNewInt(int columns);
 
 	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_new_IntIntIntInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkSizer* GridSizerNewIntIntIntInt(int rows, int cols, int vgap, int hgap);
+	public static partial WxkSizer* GridSizerNewIntIntIntInt(int rows, int columns, int vgap, int hgap);
 
 	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_new_IntIntSize")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkSizer* GridSizerNewIntIntSize(int rows, int cols, Size gap);
+	public static partial WxkSizer* GridSizerNewIntIntSize(int rows, int columns, Size gap);
 
 	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_CalcMin")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4057,30 +4057,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_RepositionChildren")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void GridSizerRepositionChildren(WxkSizer* self, Size minSize);
-
-	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_GetCols")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int GridSizerGetCols(WxkSizer* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_SetCols")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void GridSizerSetCols(WxkSizer* self, int cols);
-
-	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_GetRows")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int GridSizerGetRows(WxkSizer* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_SetRows")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void GridSizerSetRows(WxkSizer* self, int rows);
-
-	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_GetEffectiveColsCount")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int GridSizerGetEffectiveColsCount(WxkSizer* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_GetEffectiveRowsCount")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int GridSizerGetEffectiveRowsCount(WxkSizer* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_GetHGap")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4097,6 +4073,30 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_SetVGap")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void GridSizerSetVGap(WxkSizer* self, int gap);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_GetCols")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int GridSizerGetCols(WxkSizer* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_SetCols")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void GridSizerSetCols(WxkSizer* self, int columns);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_GetRows")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int GridSizerGetRows(WxkSizer* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_SetRows")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void GridSizerSetRows(WxkSizer* self, int rows);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_GetEffectiveColsCount")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int GridSizerGetEffectiveColsCount(WxkSizer* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_GetEffectiveRowsCount")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int GridSizerGetEffectiveRowsCount(WxkSizer* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_HelpEvent_GetOrigin")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -6486,6 +6486,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void PrintDataSetPaperSize(WxkObject* self, Size size);
 
+	[LibraryImport(Library, EntryPoint = "wxk_PrintData_GetNoCopies")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int PrintDataGetNoCopies(WxkObject* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_PrintData_SetNoCopies")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void PrintDataSetNoCopies(WxkObject* self, int index);
+
 	[LibraryImport(Library, EntryPoint = "wxk_PrintData_GetPaperId")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int PrintDataGetPaperId(WxkObject* self);
@@ -6525,14 +6533,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_PrintData_SetDuplex")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void PrintDataSetDuplex(WxkObject* self, int mode);
-
-	[LibraryImport(Library, EntryPoint = "wxk_PrintData_GetNoCopies")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int PrintDataGetNoCopies(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_PrintData_SetNoCopies")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void PrintDataSetNoCopies(WxkObject* self, int index);
 
 	[LibraryImport(Library, EntryPoint = "wxk_PrintData_GetOrientation")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -6626,6 +6626,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void PrintDialogDataEnableCurrentPage(WxkObject* self, byte flag);
 
+	[LibraryImport(Library, EntryPoint = "wxk_PrintDialogData_GetNoCopies")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int PrintDialogDataGetNoCopies(WxkObject* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_PrintDialogData_SetNoCopies")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void PrintDialogDataSetNoCopies(WxkObject* self, int index);
+
 	[LibraryImport(Library, EntryPoint = "wxk_PrintDialogData_GetAllPages")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte PrintDialogDataGetAllPages(WxkObject* self);
@@ -6665,14 +6673,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_PrintDialogData_SetMinPage")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void PrintDialogDataSetMinPage(WxkObject* self, int page);
-
-	[LibraryImport(Library, EntryPoint = "wxk_PrintDialogData_GetNoCopies")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int PrintDialogDataGetNoCopies(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_PrintDialogData_SetNoCopies")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void PrintDialogDataSetNoCopies(WxkObject* self, int index);
 
 	[LibraryImport(Library, EntryPoint = "wxk_PrintDialogData_GetPrintData")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -6802,6 +6802,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void PrintoutSetLogicalOrigin(WxkObject* self, int x, int y);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Printout_GetPageSizeMM")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial Size PrintoutGetPageSizeMM(WxkObject* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Printout_GetLogicalPageRect")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Rect PrintoutGetLogicalPageRect(WxkObject* self);
@@ -6817,10 +6821,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Printout_GetPPIScreen")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Size PrintoutGetPPIScreen(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Printout_GetPageSizeMM")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial Size PrintoutGetPageSizeMM(WxkObject* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Printout_GetPageSizePixels")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -7828,7 +7828,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_Slider_SetTickFreq")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void SliderSetTickFreq(WxkWindow* self, int freq);
+	public static partial void SliderSetTickFreq(WxkWindow* self, int frequency);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Slider_GetValue")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

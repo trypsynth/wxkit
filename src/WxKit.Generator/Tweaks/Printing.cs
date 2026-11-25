@@ -10,6 +10,7 @@ internal static class Printing {
 		// A paper size is a PaperKind, as System.Drawing.Printing names it, so the enum doesn't share a
 		// name with the page setup's PaperSize, a size. Whether to print in color is IsColor, a bool.
 		tweaks.Enum("wxPaperSize", "PaperKind");
+		foreach (string data in (string[])["wxPrintData", "wxPrintDialogData"]) tweaks.Class(data, value => value.Property("Copies", "GetNoCopies", "SetNoCopies"));
 		tweaks.Class("wxPrintData", data => data
 			.ParameterEnum("GetQuality", "return", "PrintQuality")
 			.ParameterEnum("SetQuality", "quality", "PrintQuality")
@@ -23,6 +24,7 @@ internal static class Printing {
 		// reads while a page prints. wxWidgets starts each copy's document before .NET's OnBeginDocument
 		// and ends it after its OnEndDocument.
 		tweaks.Class("wxPrintout", printout => printout
+			.Property("PageSizeInMillimeters", "GetPageSizeMM")
 			.Owned()
 			.Internal("wxPrintout", "GetDC")
 			.InternalDirector("OnPrintPage", "HasPage", "GetPageInfo", "OnPreparePrinting", "OnBeginPrinting", "OnEndPrinting", "OnBeginDocument", "OnEndDocument")

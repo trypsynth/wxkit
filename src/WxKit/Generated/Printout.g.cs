@@ -19,7 +19,7 @@ public unsafe partial class Printout : NativeObject {
 	public Rect LogicalPaperRect => WxKitNative.PrintoutGetLogicalPaperRect(Native);
 
 	/// <summary>Returns the size of the printer page in millimetres.</summary>
-	public Size PageSizeMM => WxKitNative.PrintoutGetPageSizeMM(Native);
+	public Size PageSizeInMillimeters => WxKitNative.PrintoutGetPageSizeMM(Native);
 
 	/// <summary>Returns the size of the printer page in pixels, called the page rectangle.</summary>
 	public Size PageSizePixels => WxKitNative.PrintoutGetPageSizePixels(Native);

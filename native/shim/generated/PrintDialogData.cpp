@@ -35,6 +35,14 @@ WXK_FUNCTION(void) wxk_PrintDialogData_EnableCurrentPage(wxk_Object* self, uint8
 	wxk::Guard([&] { static_cast<wxPrintDialogData*>(wxk::Unwrap(self))->EnableCurrentPage(flag != 0); });
 }
 
+WXK_FUNCTION(int32_t) wxk_PrintDialogData_GetNoCopies(wxk_Object* self) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxPrintDialogData*>(wxk::Unwrap(self))->GetNoCopies()); });
+}
+
+WXK_FUNCTION(void) wxk_PrintDialogData_SetNoCopies(wxk_Object* self, int32_t index) noexcept {
+	wxk::Guard([&] { static_cast<wxPrintDialogData*>(wxk::Unwrap(self))->SetNoCopies(static_cast<int>(index)); });
+}
+
 WXK_FUNCTION(uint8_t) wxk_PrintDialogData_GetAllPages(wxk_Object* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxPrintDialogData*>(wxk::Unwrap(self))->GetAllPages()) ? 1 : 0; });
 }
@@ -73,14 +81,6 @@ WXK_FUNCTION(int32_t) wxk_PrintDialogData_GetMinPage(wxk_Object* self) noexcept 
 
 WXK_FUNCTION(void) wxk_PrintDialogData_SetMinPage(wxk_Object* self, int32_t page) noexcept {
 	wxk::Guard([&] { static_cast<wxPrintDialogData*>(wxk::Unwrap(self))->SetMinPage(static_cast<int>(page)); });
-}
-
-WXK_FUNCTION(int32_t) wxk_PrintDialogData_GetNoCopies(wxk_Object* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxPrintDialogData*>(wxk::Unwrap(self))->GetNoCopies()); });
-}
-
-WXK_FUNCTION(void) wxk_PrintDialogData_SetNoCopies(wxk_Object* self, int32_t index) noexcept {
-	wxk::Guard([&] { static_cast<wxPrintDialogData*>(wxk::Unwrap(self))->SetNoCopies(static_cast<int>(index)); });
 }
 
 WXK_FUNCTION(wxk_Object*) wxk_PrintDialogData_GetPrintData(wxk_Object* self) noexcept {
