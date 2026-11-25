@@ -15,9 +15,9 @@ internal static class InteropEmitter {
 		// A class that isn't a wxObject has a handle of its own type.
 		foreach (BoundClass bound in result.Classes.Where(static bound => !bound.Tweak.IsHandwritten && bound.Handle.IsPlain)) {
 			writer.Line($"/// <summary>A {bound.CppName}, which {bound.Handle.CType}'s functions take.</summary>");
-			writer.Line($"public struct {bound.Handle.InteropType};").Line();
+			writer.Line($"internal struct {bound.Handle.InteropType};").Line();
 		}
-		writer.Open("public static unsafe partial class WxKitNative");
+		writer.Open("internal static unsafe partial class WxKitNative");
 		bool first = true;
 		foreach (BoundClass bound in result.Classes) {
 			foreach (BoundFunction function in bound.Functions) {

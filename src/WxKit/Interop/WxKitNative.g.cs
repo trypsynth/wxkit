@@ -6,18 +6,18 @@ using System.Runtime.InteropServices;
 namespace WxKit.Interop;
 
 /// <summary>A wxDisplay, which wxk_Display's functions take.</summary>
-public struct WxkDisplay;
+internal struct WxkDisplay;
 
 /// <summary>A wxSingleInstanceChecker, which wxk_SingleInstanceChecker's functions take.</summary>
-public struct WxkSingleInstanceChecker;
+internal struct WxkSingleInstanceChecker;
 
 /// <summary>A wxUIActionSimulator, which wxk_UIActionSimulator's functions take.</summary>
-public struct WxkUIActionSimulator;
+internal struct WxkUIActionSimulator;
 
 /// <summary>A wxWindowDisabler, which wxk_WindowDisabler's functions take.</summary>
-public struct WxkWindowDisabler;
+internal struct WxkWindowDisabler;
 
-public static unsafe partial class WxKitNative {
+internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_BusyCursor_BeginBusyCursor")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void BusyCursorBeginBusyCursor();

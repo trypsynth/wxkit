@@ -48,7 +48,7 @@ internal static partial class HeaderInteropEmitter {
 			.Line()
 			.Line("namespace WxKit.Interop;")
 			.Line()
-			.Open("public static unsafe partial class WxKitNative");
+			.Open("internal static unsafe partial class WxKitNative");
 		HashSet<string> declared = new(StringComparer.Ordinal);
 		bool first = true;
 		string? section = null;

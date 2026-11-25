@@ -289,4 +289,4 @@ The generator turns the brief description of each class and member in the wxWidg
 
 ## The raw interop layer
 
-`WxKit.Interop.WxKitNative` declares every shim function, one to one, and it is public, as an escape hatch for anything the managed API doesn't wrap yet. Code that uses it is unsafe and gives up the lifetime and threading checks. The shim can change between preview releases, so code that calls it directly may need updating.
+`WxKit.Interop.WxKitNative` declares every shim function, one to one, and it is internal, with the handle types its functions take. It was public in 0.1, as an escape hatch for anything the managed API doesn't wrap yet, but nothing public gave the native object a call needs, so it could reach only what takes none, and it made every shim function part of the API. Something the managed API doesn't wrap is a reason to wrap it.

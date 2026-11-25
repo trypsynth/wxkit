@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace WxKit.Interop;
 
-public static unsafe partial class WxKitNative {
+internal static unsafe partial class WxKitNative {
 	// The application
 
 	[LibraryImport(Library, EntryPoint = "wxk_App_Run")]

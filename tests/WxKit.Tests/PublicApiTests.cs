@@ -6,7 +6,7 @@ namespace WxKit.Tests;
 
 // WxKit's public API, written out and compared with PublicApi.txt, so a change to it, such as a
 // generator rule that renames members, shows up in review rather than in an application. The raw
-// interop layer is left out, since it follows the shim and can change between previews.
+// interop layer is internal, and fails this test if any of it becomes public.
 //
 // When a change is meant, set WXKIT_UPDATE_API to 1 and run this test, which rewrites the file.
 public class PublicApiTests {
@@ -62,7 +62,7 @@ internal static class PublicApi {
 
 	public static string Describe(Assembly assembly) {
 		StringBuilder text = new();
-		foreach (Type type in assembly.GetExportedTypes().Where(static type => type.Namespace != "WxKit.Interop").OrderBy(static type => type.FullName, StringComparer.Ordinal)) {
+		foreach (Type type in assembly.GetExportedTypes().OrderBy(static type => type.FullName, StringComparer.Ordinal)) {
 			text.Append(Header(type)).Append('\n');
 			foreach (string member in Members(type).Order(StringComparer.Ordinal)) text.Append("    ").Append(member).Append('\n');
 		}
