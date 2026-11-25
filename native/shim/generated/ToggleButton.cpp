@@ -16,7 +16,7 @@ WXK_FUNCTION(void) wxk_ToggleButton_SetValue(wxk_Window* self, uint8_t state) no
 	wxk::Guard([&] { static_cast<wxToggleButton*>(wxk::Unwrap(self))->SetValue(state != 0); });
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_Togglebutton(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_ToggleButton(void) noexcept {
 	return wxEVT_TOGGLEBUTTON;
 }
 

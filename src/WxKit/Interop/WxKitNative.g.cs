@@ -14550,9 +14550,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeActivateApp();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_Aux1Dclick")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_Aux1DoubleClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeAux1Dclick();
+	public static partial int EventTypeAux1DoubleClick();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_Aux1Down")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -14562,9 +14562,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeAux1Up();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_Aux2Dclick")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_Aux2DoubleClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeAux2Dclick();
+	public static partial int EventTypeAux2DoubleClick();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_Aux2Down")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -14578,9 +14578,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeButton();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_CalendarDoubleclicked")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_CalendarDoubleClicked")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeCalendarDoubleclicked();
+	public static partial int EventTypeCalendarDoubleClicked();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_CalendarPageChanged")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -14610,9 +14610,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeCheckBox();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_Checklistbox")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_CheckListBox")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeChecklistbox();
+	public static partial int EventTypeCheckListBox();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_ChildFocus")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -14634,9 +14634,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeCloseWindow();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_CollapsiblepaneChanged")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_CollapsiblePaneChanged")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeCollapsiblepaneChanged();
+	public static partial int EventTypeCollapsiblePaneChanged();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_ColorChanged")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -14658,13 +14658,13 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeComboBox();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_ComboBoxCloseup")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_ComboBoxCloseUp")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeComboBoxCloseup();
+	public static partial int EventTypeComboBoxCloseUp();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_ComboBoxDropdown")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_ComboBoxDropDown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeComboBoxDropdown();
+	public static partial int EventTypeComboBoxDropDown();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_CommandEnter")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -14678,9 +14678,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeCommandLeftClick();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_CommandLeftDclick")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_CommandLeftDoubleClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeCommandLeftDclick();
+	public static partial int EventTypeCommandLeftDoubleClick();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_CommandRightClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -14693,6 +14693,10 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_ContextMenu")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeContextMenu();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_CursorRequested")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeCursorRequested();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_DataViewCacheHint")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -14854,6 +14858,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeGenericDirCtrlSelectionChanged();
 
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_GotFocus")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeGotFocus();
+
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_Help")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeHelp();
@@ -14882,17 +14890,13 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeKeyUp();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_KillFocus")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeKillFocus();
-
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_LeaveWindow")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeLeaveWindow();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_LeftDclick")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_LeftDoubleClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeLeftDclick();
+	public static partial int EventTypeLeftDoubleClick();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_LeftDown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -14910,17 +14914,17 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeListBeginLabelEdit();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_ListBeginRdrag")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_ListBeginRightDrag")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeListBeginRdrag();
+	public static partial int EventTypeListBeginRightDrag();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_ListBox")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeListBox();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_ListBoxDclick")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_ListBoxDoubleClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeListBoxDclick();
+	public static partial int EventTypeListBoxDoubleClick();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_ListCacheHint")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -15006,6 +15010,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeListbookPageChanging();
 
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_LostFocus")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeLostFocus();
+
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_Magnify")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeMagnify();
@@ -15030,9 +15038,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeMenuOpen();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_MiddleDclick")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_MiddleDoubleClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeMiddleDclick();
+	public static partial int EventTypeMiddleDoubleClick();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_MiddleDown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -15054,9 +15062,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeMouseCaptureLost();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_Mousewheel")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_MouseWheel")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeMousewheel();
+	public static partial int EventTypeMouseWheel();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_Move")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -15106,17 +15114,17 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeQueryEndSession();
 
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_RadioBox")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeRadioBox();
+
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_RadioButton")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeRadioButton();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_Radiobox")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_RightDoubleClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeRadiobox();
-
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_RightDclick")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeRightDclick();
+	public static partial int EventTypeRightDoubleClick();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_RightDown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -15206,14 +15214,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeSearchCancel();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_SetCursor")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeSetCursor();
-
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_SetFocus")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeSetFocus();
-
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_Show")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeShow();
@@ -15230,6 +15230,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeSpin();
 
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_SpinCtrl")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeSpinCtrl();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_SpinCtrlDouble")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeSpinCtrlDouble();
+
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_SpinDown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeSpinDown();
@@ -15238,17 +15246,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeSpinUp();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_Spinctrl")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_SplitterDoubleClicked")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeSpinctrl();
-
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_Spinctrldouble")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeSpinctrldouble();
-
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_SplitterDoubleclicked")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeSplitterDoubleclicked();
+	public static partial int EventTypeSplitterDoubleClicked();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_SplitterSashPositionChanged")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -15266,177 +15266,177 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeSplitterUnsplit();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcAutocompCancelled")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextAutoCompCancelled")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcAutocompCancelled();
+	public static partial int EventTypeStyledTextAutoCompCancelled();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcAutocompCharDeleted")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextAutoCompCharDeleted")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcAutocompCharDeleted();
+	public static partial int EventTypeStyledTextAutoCompCharDeleted();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcAutocompCompleted")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextAutoCompCompleted")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcAutocompCompleted();
+	public static partial int EventTypeStyledTextAutoCompCompleted();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcAutocompSelection")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextAutoCompSelection")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcAutocompSelection();
+	public static partial int EventTypeStyledTextAutoCompSelection();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcAutocompSelectionChange")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextAutoCompSelectionChange")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcAutocompSelectionChange();
+	public static partial int EventTypeStyledTextAutoCompSelectionChange();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcCalltipClick")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextCallTipClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcCalltipClick();
+	public static partial int EventTypeStyledTextCallTipClick();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcChange")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextChange")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcChange();
+	public static partial int EventTypeStyledTextChange();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcCharadded")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextCharAdded")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcCharadded();
+	public static partial int EventTypeStyledTextCharAdded();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcClipboardCopy")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextClipboardCopy")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcClipboardCopy();
+	public static partial int EventTypeStyledTextClipboardCopy();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcClipboardPaste")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextClipboardPaste")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcClipboardPaste();
+	public static partial int EventTypeStyledTextClipboardPaste();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcDoDrop")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextDoDrop")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcDoDrop();
+	public static partial int EventTypeStyledTextDoDrop();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcDoubleclick")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextDoubleClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcDoubleclick();
+	public static partial int EventTypeStyledTextDoubleClick();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcDragOver")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextDragOver")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcDragOver();
+	public static partial int EventTypeStyledTextDragOver();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcDwellend")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextDwellEnd")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcDwellend();
+	public static partial int EventTypeStyledTextDwellEnd();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcDwellstart")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextDwellStart")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcDwellstart();
+	public static partial int EventTypeStyledTextDwellStart();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcHotspotClick")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextHotspotClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcHotspotClick();
+	public static partial int EventTypeStyledTextHotspotClick();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcHotspotDclick")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextHotspotDoubleClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcHotspotDclick();
+	public static partial int EventTypeStyledTextHotspotDoubleClick();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcHotspotReleaseClick")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextHotspotReleaseClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcHotspotReleaseClick();
+	public static partial int EventTypeStyledTextHotspotReleaseClick();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcIndicatorClick")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextIndicatorClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcIndicatorClick();
+	public static partial int EventTypeStyledTextIndicatorClick();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcIndicatorRelease")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextIndicatorRelease")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcIndicatorRelease();
+	public static partial int EventTypeStyledTextIndicatorRelease();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcMacrorecord")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextMacroRecord")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcMacrorecord();
+	public static partial int EventTypeStyledTextMacroRecord();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcMarginRightClick")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextMarginClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcMarginRightClick();
+	public static partial int EventTypeStyledTextMarginClick();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcMarginclick")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextMarginRightClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcMarginclick();
+	public static partial int EventTypeStyledTextMarginRightClick();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcModified")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextModified")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcModified();
+	public static partial int EventTypeStyledTextModified();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcNeedshown")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextNeedShown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcNeedshown();
+	public static partial int EventTypeStyledTextNeedShown();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcPainted")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextPainted")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcPainted();
+	public static partial int EventTypeStyledTextPainted();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcRomodifyattempt")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextReadOnlyModifyAttempt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcRomodifyattempt();
+	public static partial int EventTypeStyledTextReadOnlyModifyAttempt();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcSavepointleft")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextSavePointLeft")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcSavepointleft();
+	public static partial int EventTypeStyledTextSavePointLeft();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcSavepointreached")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextSavePointReached")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcSavepointreached();
+	public static partial int EventTypeStyledTextSavePointReached();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcStartDrag")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextStartDrag")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcStartDrag();
+	public static partial int EventTypeStyledTextStartDrag();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcStyleneeded")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextStyleNeeded")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcStyleneeded();
+	public static partial int EventTypeStyledTextStyleNeeded();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcUpdateui")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextUpdateUi")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcUpdateui();
+	public static partial int EventTypeStyledTextUpdateUi();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcUserlistselection")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextUserListSelection")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcUserlistselection();
+	public static partial int EventTypeStyledTextUserListSelection();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StcZoom")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextZoom")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStcZoom();
+	public static partial int EventTypeStyledTextZoom();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_SysColorChanged")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeSysColorChanged();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_TaskbarClick")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_TaskBarClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeTaskbarClick();
+	public static partial int EventTypeTaskBarClick();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_TaskbarLeftDclick")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_TaskBarLeftDoubleClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeTaskbarLeftDclick();
+	public static partial int EventTypeTaskBarLeftDoubleClick();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_TaskbarLeftDown")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_TaskBarLeftDown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeTaskbarLeftDown();
+	public static partial int EventTypeTaskBarLeftDown();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_TaskbarLeftUp")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_TaskBarLeftUp")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeTaskbarLeftUp();
+	public static partial int EventTypeTaskBarLeftUp();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_TaskbarMove")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_TaskBarMove")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeTaskbarMove();
+	public static partial int EventTypeTaskBarMove();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_TaskbarRightDclick")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_TaskBarRightDoubleClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeTaskbarRightDclick();
+	public static partial int EventTypeTaskBarRightDoubleClick();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_TaskbarRightDown")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_TaskBarRightDown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeTaskbarRightDown();
+	public static partial int EventTypeTaskBarRightDown();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_TaskbarRightUp")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_TaskBarRightUp")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeTaskbarRightUp();
+	public static partial int EventTypeTaskBarRightUp();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_Text")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -15454,9 +15454,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeTextEnter();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_TextMaxlen")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_TextMaxLength")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeTextMaxlen();
+	public static partial int EventTypeTextMaxLength();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_TextPaste")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -15474,25 +15474,25 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeTimer();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_Togglebutton")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_ToggleButton")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeTogglebutton();
+	public static partial int EventTypeToggleButton();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_Tool")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeTool();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_ToolDropdown")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_ToolDropDown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeToolDropdown();
+	public static partial int EventTypeToolDropDown();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_ToolEnter")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeToolEnter();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_ToolRclicked")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_ToolRightClicked")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeToolRclicked();
+	public static partial int EventTypeToolRightClicked();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_ToolbookPageChanged")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -15510,9 +15510,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeTreeBeginLabelEdit();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_TreeBeginRdrag")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_TreeBeginRightDrag")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeTreeBeginRdrag();
+	public static partial int EventTypeTreeBeginRightDrag();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_TreeDeleteItem")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -15550,9 +15550,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeTreeItemExpanding();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_TreeItemGettooltip")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_TreeItemGetToolTip")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeTreeItemGettooltip();
+	public static partial int EventTypeTreeItemGetToolTip();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_TreeItemMenu")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -15634,61 +15634,61 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeUpdateUi();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewBrowsingDataCleared")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebViewBrowsingDataCleared")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeWebviewBrowsingDataCleared();
+	public static partial int EventTypeWebViewBrowsingDataCleared();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewCreated")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebViewCreated")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeWebviewCreated();
+	public static partial int EventTypeWebViewCreated();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewError")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebViewError")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeWebviewError();
+	public static partial int EventTypeWebViewError();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewFullScreenChanged")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebViewFullScreenChanged")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeWebviewFullScreenChanged();
+	public static partial int EventTypeWebViewFullScreenChanged();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewLoaded")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebViewLoaded")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeWebviewLoaded();
+	public static partial int EventTypeWebViewLoaded();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewNavigated")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebViewNavigated")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeWebviewNavigated();
+	public static partial int EventTypeWebViewNavigated();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewNavigating")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebViewNavigating")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeWebviewNavigating();
+	public static partial int EventTypeWebViewNavigating();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewNewwindow")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebViewNewWindow")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeWebviewNewwindow();
+	public static partial int EventTypeWebViewNewWindow();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewNewwindowFeatures")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebViewNewWindowFeatures")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeWebviewNewwindowFeatures();
+	public static partial int EventTypeWebViewNewWindowFeatures();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewPdfSaved")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebViewPdfSaved")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeWebviewPdfSaved();
+	public static partial int EventTypeWebViewPdfSaved();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewScriptMessageReceived")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebViewScriptMessageReceived")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeWebviewScriptMessageReceived();
+	public static partial int EventTypeWebViewScriptMessageReceived();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewScriptResult")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebViewScriptResult")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeWebviewScriptResult();
+	public static partial int EventTypeWebViewScriptResult();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewTitleChanged")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebViewTitleChanged")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeWebviewTitleChanged();
+	public static partial int EventTypeWebViewTitleChanged();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebviewWindowCloseRequested")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_WebViewWindowCloseRequested")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeWebviewWindowCloseRequested();
+	public static partial int EventTypeWebViewWindowCloseRequested();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_WindowModalDialogClosed")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

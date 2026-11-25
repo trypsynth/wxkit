@@ -22,8 +22,8 @@ public unsafe partial class CheckListBox : ListBox {
 
 	/// <summary>Process a wxEVT_CHECKLISTBOX event, when an item in the check list box is checked or unchecked. wxCommandEvent::GetInt() will contain the index of the item that was checked or unchecked. wxCommandEvent::IsChecked() is not valid! Use wxCheckListBox::IsChecked() instead.</summary>
 	public event EventHandler<CommandEvent>? ItemCheckedChanged {
-		add => AddHandler(EventType.Checklistbox, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.Checklistbox, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.CheckListBox, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.CheckListBox, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Checks the given item.</summary>

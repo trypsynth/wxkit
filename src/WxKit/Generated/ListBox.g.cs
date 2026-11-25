@@ -69,8 +69,8 @@ public unsafe partial class ListBox : Control {
 
 	/// <summary>Process a wxEVT_LISTBOX_DCLICK event, when the listbox is double-clicked. On some platforms (notably wxGTK2) pressing the enter key is handled as an equivalent of a double-click.</summary>
 	public event EventHandler<CommandEvent>? ItemDoubleClicked {
-		add => AddHandler(EventType.ListBoxDclick, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ListBoxDclick, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.ListBoxDoubleClick, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.ListBoxDoubleClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_LISTBOX event, when an item on the list is selected or the selection changes.</summary>

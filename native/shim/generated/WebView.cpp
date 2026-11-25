@@ -229,59 +229,59 @@ WXK_FUNCTION(uint8_t) wxk_WebView_SetUserAgent(wxk_Window* self, const char16_t*
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWebView*>(wxk::Unwrap(self))->SetUserAgent(wxk::FromUtf16(userAgent, userAgentLength))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_WebviewBrowsingDataCleared(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_WebViewBrowsingDataCleared(void) noexcept {
 	return wxEVT_WEBVIEW_BROWSING_DATA_CLEARED;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_WebviewCreated(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_WebViewCreated(void) noexcept {
 	return wxEVT_WEBVIEW_CREATED;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_WebviewError(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_WebViewError(void) noexcept {
 	return wxEVT_WEBVIEW_ERROR;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_WebviewFullScreenChanged(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_WebViewFullScreenChanged(void) noexcept {
 	return wxEVT_WEBVIEW_FULLSCREEN_CHANGED;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_WebviewLoaded(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_WebViewLoaded(void) noexcept {
 	return wxEVT_WEBVIEW_LOADED;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_WebviewNavigated(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_WebViewNavigated(void) noexcept {
 	return wxEVT_WEBVIEW_NAVIGATED;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_WebviewNavigating(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_WebViewNavigating(void) noexcept {
 	return wxEVT_WEBVIEW_NAVIGATING;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_WebviewNewwindow(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_WebViewNewWindow(void) noexcept {
 	return wxEVT_WEBVIEW_NEWWINDOW;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_WebviewNewwindowFeatures(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_WebViewNewWindowFeatures(void) noexcept {
 	return wxEVT_WEBVIEW_NEWWINDOW_FEATURES;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_WebviewPdfSaved(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_WebViewPdfSaved(void) noexcept {
 	return wxEVT_WEBVIEW_PDF_SAVED;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_WebviewScriptMessageReceived(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_WebViewScriptMessageReceived(void) noexcept {
 	return wxEVT_WEBVIEW_SCRIPT_MESSAGE_RECEIVED;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_WebviewScriptResult(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_WebViewScriptResult(void) noexcept {
 	return wxEVT_WEBVIEW_SCRIPT_RESULT;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_WebviewTitleChanged(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_WebViewTitleChanged(void) noexcept {
 	return wxEVT_WEBVIEW_TITLE_CHANGED;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_WebviewWindowCloseRequested(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_WebViewWindowCloseRequested(void) noexcept {
 	return wxEVT_WEBVIEW_WINDOW_CLOSE_REQUESTED;
 }
 

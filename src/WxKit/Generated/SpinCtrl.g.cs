@@ -42,8 +42,8 @@ public unsafe partial class SpinCtrl : Control {
 
 	/// <summary>Process a wxEVT_SPINCTRL event, which is generated whenever the numeric value of the spin control is updated.</summary>
 	public event EventHandler<SpinEvent>? ValueChanged {
-		add => AddHandler(EventType.Spinctrl, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.Spinctrl, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.SpinCtrl, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.SpinCtrl, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Sets range of allowable values.</summary>

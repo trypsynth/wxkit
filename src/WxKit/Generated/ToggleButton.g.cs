@@ -21,8 +21,8 @@ public unsafe partial class ToggleButton : AnyButton {
 
 	/// <summary>Handles a wxEVT_TOGGLEBUTTON event.</summary>
 	public event EventHandler<CommandEvent>? Toggled {
-		add => AddHandler(EventType.Togglebutton, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.Togglebutton, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.ToggleButton, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.ToggleButton, StandardId.Any, StandardId.Any, value);
 	}
 
 	private static WxkWindow* CreateNative(Window parent, string label, int id, Point? position, Size? size, WindowStyle style) {

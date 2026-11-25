@@ -9,7 +9,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_ActivateApp(void) noexcept {
 	return wxEVT_ACTIVATE_APP;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_Aux1Dclick(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_Aux1DoubleClick(void) noexcept {
 	return wxEVT_AUX1_DCLICK;
 }
 
@@ -21,7 +21,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_Aux1Up(void) noexcept {
 	return wxEVT_AUX1_UP;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_Aux2Dclick(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_Aux2DoubleClick(void) noexcept {
 	return wxEVT_AUX2_DCLICK;
 }
 
@@ -49,7 +49,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_CheckBox(void) noexcept {
 	return wxEVT_CHECKBOX;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_Checklistbox(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_CheckListBox(void) noexcept {
 	return wxEVT_CHECKLISTBOX;
 }
 
@@ -69,11 +69,11 @@ WXK_FUNCTION(int32_t) wxk_EventType_ComboBox(void) noexcept {
 	return wxEVT_COMBOBOX;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_ComboBoxCloseup(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_ComboBoxCloseUp(void) noexcept {
 	return wxEVT_COMBOBOX_CLOSEUP;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_ComboBoxDropdown(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_ComboBoxDropDown(void) noexcept {
 	return wxEVT_COMBOBOX_DROPDOWN;
 }
 
@@ -89,7 +89,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_CommandLeftClick(void) noexcept {
 	return wxEVT_COMMAND_LEFT_CLICK;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_CommandLeftDclick(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_CommandLeftDoubleClick(void) noexcept {
 	return wxEVT_COMMAND_LEFT_DCLICK;
 }
 
@@ -103,6 +103,10 @@ WXK_FUNCTION(int32_t) wxk_EventType_CommandSetFocus(void) noexcept {
 
 WXK_FUNCTION(int32_t) wxk_EventType_ContextMenu(void) noexcept {
 	return wxEVT_CONTEXT_MENU;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_CursorRequested(void) noexcept {
+	return wxEVT_SET_CURSOR;
 }
 
 WXK_FUNCTION(int32_t) wxk_EventType_DpiChanged(void) noexcept {
@@ -129,6 +133,10 @@ WXK_FUNCTION(int32_t) wxk_EventType_FullScreen(void) noexcept {
 	return wxEVT_FULLSCREEN;
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_GotFocus(void) noexcept {
+	return wxEVT_SET_FOCUS;
+}
+
 WXK_FUNCTION(int32_t) wxk_EventType_Help(void) noexcept {
 	return wxEVT_HELP;
 }
@@ -153,15 +161,11 @@ WXK_FUNCTION(int32_t) wxk_EventType_KeyUp(void) noexcept {
 	return wxEVT_KEY_UP;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_KillFocus(void) noexcept {
-	return wxEVT_KILL_FOCUS;
-}
-
 WXK_FUNCTION(int32_t) wxk_EventType_LeaveWindow(void) noexcept {
 	return wxEVT_LEAVE_WINDOW;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_LeftDclick(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_LeftDoubleClick(void) noexcept {
 	return wxEVT_LEFT_DCLICK;
 }
 
@@ -177,8 +181,12 @@ WXK_FUNCTION(int32_t) wxk_EventType_ListBox(void) noexcept {
 	return wxEVT_LISTBOX;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_ListBoxDclick(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_ListBoxDoubleClick(void) noexcept {
 	return wxEVT_LISTBOX_DCLICK;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_LostFocus(void) noexcept {
+	return wxEVT_KILL_FOCUS;
 }
 
 WXK_FUNCTION(int32_t) wxk_EventType_Magnify(void) noexcept {
@@ -205,7 +213,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_MenuOpen(void) noexcept {
 	return wxEVT_MENU_OPEN;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_MiddleDclick(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_MiddleDoubleClick(void) noexcept {
 	return wxEVT_MIDDLE_DCLICK;
 }
 
@@ -229,7 +237,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_MouseCaptureLost(void) noexcept {
 	return wxEVT_MOUSE_CAPTURE_LOST;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_Mousewheel(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_MouseWheel(void) noexcept {
 	return wxEVT_MOUSEWHEEL;
 }
 
@@ -261,15 +269,15 @@ WXK_FUNCTION(int32_t) wxk_EventType_QueryEndSession(void) noexcept {
 	return wxEVT_QUERY_END_SESSION;
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_RadioBox(void) noexcept {
+	return wxEVT_RADIOBOX;
+}
+
 WXK_FUNCTION(int32_t) wxk_EventType_RadioButton(void) noexcept {
 	return wxEVT_RADIOBUTTON;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_Radiobox(void) noexcept {
-	return wxEVT_RADIOBOX;
-}
-
-WXK_FUNCTION(int32_t) wxk_EventType_RightDclick(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_RightDoubleClick(void) noexcept {
 	return wxEVT_RIGHT_DCLICK;
 }
 
@@ -353,14 +361,6 @@ WXK_FUNCTION(int32_t) wxk_EventType_ScrollWinTop(void) noexcept {
 	return wxEVT_SCROLLWIN_TOP;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_SetCursor(void) noexcept {
-	return wxEVT_SET_CURSOR;
-}
-
-WXK_FUNCTION(int32_t) wxk_EventType_SetFocus(void) noexcept {
-	return wxEVT_SET_FOCUS;
-}
-
 WXK_FUNCTION(int32_t) wxk_EventType_Show(void) noexcept {
 	return wxEVT_SHOW;
 }
@@ -405,7 +405,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_Tool(void) noexcept {
 	return wxEVT_TOOL;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_ToolDropdown(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_ToolDropDown(void) noexcept {
 	return wxEVT_TOOL_DROPDOWN;
 }
 
@@ -413,7 +413,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_ToolEnter(void) noexcept {
 	return wxEVT_TOOL_ENTER;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_ToolRclicked(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_ToolRightClicked(void) noexcept {
 	return wxEVT_TOOL_RCLICKED;
 }
 

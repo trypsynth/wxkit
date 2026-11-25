@@ -321,7 +321,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_TextEnter(void) noexcept {
 	return wxEVT_TEXT_ENTER;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_TextMaxlen(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_TextMaxLength(void) noexcept {
 	return wxEVT_TEXT_MAXLEN;
 }
 

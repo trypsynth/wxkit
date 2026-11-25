@@ -38,8 +38,8 @@ public unsafe partial class CalendarCtrl : Control {
 	public Color? HolidayColorFg => global::WxKit.Color.FromNative(WxKitNative.CalendarCtrlGetHolidayColourFg(Native));
 
 	public event EventHandler<CalendarEvent>? DateActivated {
-		add => AddHandler(EventType.CalendarDoubleclicked, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.CalendarDoubleclicked, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.CalendarDoubleClicked, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.CalendarDoubleClicked, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>The selected month (and/or year) changed.</summary>

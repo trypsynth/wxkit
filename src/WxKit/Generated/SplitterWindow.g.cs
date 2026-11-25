@@ -63,8 +63,8 @@ public unsafe partial class SplitterWindow : Window {
 
 	/// <summary>The sash was double clicked. The default behaviour is to unsplit the window when this happens (unless the minimum pane size has been set to a value greater than zero). Processes a wxEVT_SPLITTER_DOUBLECLICKED event.</summary>
 	public event EventHandler<SplitterEvent>? SashDoubleClicked {
-		add => AddHandler(EventType.SplitterDoubleclicked, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.SplitterDoubleclicked, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.SplitterDoubleClicked, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.SplitterDoubleClicked, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>The sash position was changed. May be used to modify the sash position before it is set, or to prevent the change from taking place. Processes a wxEVT_SPLITTER_SASH_POS_CHANGED event.</summary>

@@ -51,8 +51,8 @@ public unsafe partial class RadioBox : Control {
 
 	/// <summary>Process a wxEVT_RADIOBOX event, when a radiobutton is clicked.</summary>
 	public event EventHandler<CommandEvent>? SelectionChanged {
-		add => AddHandler(EventType.Radiobox, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.Radiobox, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.RadioBox, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.RadioBox, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Enables or disables an individual button in the radiobox.</summary>

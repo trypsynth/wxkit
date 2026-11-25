@@ -24,8 +24,8 @@ public unsafe partial class CollapsiblePane : Control {
 
 	/// <summary>The user expanded or collapsed the collapsible pane.</summary>
 	public event EventHandler<CollapsiblePaneEvent>? CollapsedChanged {
-		add => AddHandler(EventType.CollapsiblepaneChanged, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.CollapsiblepaneChanged, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.CollapsiblePaneChanged, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.CollapsiblePaneChanged, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a navigation key event.</summary>

@@ -97,8 +97,8 @@ public unsafe partial class ListCtrl : Control {
 
 	/// <summary>Begin dragging with the right mouse button. Processes a wxEVT_LIST_BEGIN_RDRAG event type.</summary>
 	public event EventHandler<ListEvent>? BeginRightDrag {
-		add => AddHandler(EventType.ListBeginRdrag, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ListBeginRdrag, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.ListBeginRightDrag, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.ListBeginRightDrag, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Prepare cache for a virtual list control. Processes a wxEVT_LIST_CACHE_HINT event type.</summary>

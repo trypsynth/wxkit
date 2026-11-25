@@ -409,7 +409,15 @@ internal static class Naming {
 	public static string Event(string macro) => EventNames.TryGetValue(macro, out string? name) ? name : Words(macro["EVT_".Length..]);
 
 	/// <summary>wxEVT_CLOSE_WINDOW to CloseWindow, with abbreviations spelled out, so wxEVT_TREE_SEL_CHANGED is TreeSelectionChanged.</summary>
-	public static string EventType(string constant) => Words(string.Join('_', constant["wxEVT_".Length..].Split('_').Select(static word => EventTypeWords.GetValueOrDefault(word, word))));
+	public static string EventType(string constant) => EventTypeNames.TryGetValue(constant, out string? name) ? name : Words(string.Join('_', constant["wxEVT_".Length..].Split('_').Select(static word => EventTypeWords.GetValueOrDefault(word, word))));
+
+	// Event types named for what wxWidgets does, rather than for what happened, named as their
+	// events are.
+	private static readonly Dictionary<string, string> EventTypeNames = new(StringComparer.Ordinal) {
+		{ "wxEVT_SET_FOCUS", "GotFocus" },
+		{ "wxEVT_KILL_FOCUS", "LostFocus" },
+		{ "wxEVT_SET_CURSOR", "CursorRequested" },
+	};
 
 	private static readonly Dictionary<string, string> EventTypeWords = new(StringComparer.Ordinal) {
 		{ "SEL", "SELECTION" },
@@ -423,6 +431,42 @@ internal static class Naming {
 		{ "SELECTIONCHANGED", "SELECTION_CHANGED" },
 		{ "FILTERCHANGED", "FILTER_CHANGED" },
 		{ "FOLDERCHANGED", "FOLDER_CHANGED" },
+		{ "DCLICK", "DOUBLE_CLICK" },
+		{ "DOUBLECLICK", "DOUBLE_CLICK" },
+		{ "DOUBLECLICKED", "DOUBLE_CLICKED" },
+		{ "RCLICKED", "RIGHT_CLICKED" },
+		{ "RDRAG", "RIGHT_DRAG" },
+		{ "MOUSEWHEEL", "MOUSE_WHEEL" },
+		{ "CLOSEUP", "CLOSE_UP" },
+		{ "DROPDOWN", "DROP_DOWN" },
+		{ "MAXLEN", "MAX_LENGTH" },
+		{ "GETTOOLTIP", "GET_TOOL_TIP" },
+		{ "NEWWINDOW", "NEW_WINDOW" },
+		// Controls, spelled as their classes are.
+		{ "CHECKLISTBOX", "CheckListBox" },
+		{ "COLLAPSIBLEPANE", "CollapsiblePane" },
+		{ "RADIOBOX", "RadioBox" },
+		{ "SPINCTRL", "SpinCtrl" },
+		{ "SPINCTRLDOUBLE", "SpinCtrlDouble" },
+		{ "TOGGLEBUTTON", "ToggleButton" },
+		{ "WEBVIEW", "WebView" },
+		{ "TASKBAR", "TaskBar" },
+		{ "STC", "StyledText" },
+		// The styled text control's, which Scintilla runs together.
+		{ "AUTOCOMP", "AutoComp" },
+		{ "CALLTIP", "CALL_TIP" },
+		{ "CHARADDED", "CHAR_ADDED" },
+		{ "DWELLEND", "DWELL_END" },
+		{ "DWELLSTART", "DWELL_START" },
+		{ "MACRORECORD", "MACRO_RECORD" },
+		{ "MARGINCLICK", "MARGIN_CLICK" },
+		{ "NEEDSHOWN", "NEED_SHOWN" },
+		{ "ROMODIFYATTEMPT", "READ_ONLY_MODIFY_ATTEMPT" },
+		{ "SAVEPOINTLEFT", "SAVE_POINT_LEFT" },
+		{ "SAVEPOINTREACHED", "SAVE_POINT_REACHED" },
+		{ "STYLENEEDED", "STYLE_NEEDED" },
+		{ "UPDATEUI", "UPDATE_UI" },
+		{ "USERLISTSELECTION", "USER_LIST_SELECTION" },
 	};
 
 	/// <summary>

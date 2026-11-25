@@ -25,50 +25,50 @@ public unsafe partial class TaskBarIcon : EvtHandler {
 
 	/// <summary>This is a synonym for either EVT_TASKBAR_RIGHT_DOWN or UP depending on the platform, use this event macro to catch the event which should result in the menu being displayed on the current platform.</summary>
 	public event EventHandler<TaskBarIconEvent>? Click {
-		add => AddHandler(EventType.TaskbarClick, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.TaskbarClick, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.TaskBarClick, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TaskBarClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_TASKBAR_LEFT_DCLICK event.</summary>
 	public event EventHandler<TaskBarIconEvent>? LeftDoubleClick {
-		add => AddHandler(EventType.TaskbarLeftDclick, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.TaskbarLeftDclick, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.TaskBarLeftDoubleClick, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TaskBarLeftDoubleClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_TASKBAR_LEFT_DOWN event.</summary>
 	public event EventHandler<TaskBarIconEvent>? LeftDown {
-		add => AddHandler(EventType.TaskbarLeftDown, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.TaskbarLeftDown, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.TaskBarLeftDown, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TaskBarLeftDown, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_TASKBAR_LEFT_UP event.</summary>
 	public event EventHandler<TaskBarIconEvent>? LeftUp {
-		add => AddHandler(EventType.TaskbarLeftUp, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.TaskbarLeftUp, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.TaskBarLeftUp, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TaskBarLeftUp, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_TASKBAR_MOVE event.</summary>
 	public event EventHandler<TaskBarIconEvent>? MouseMoved {
-		add => AddHandler(EventType.TaskbarMove, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.TaskbarMove, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.TaskBarMove, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TaskBarMove, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_TASKBAR_RIGHT_DCLICK event.</summary>
 	public event EventHandler<TaskBarIconEvent>? RightDoubleClick {
-		add => AddHandler(EventType.TaskbarRightDclick, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.TaskbarRightDclick, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.TaskBarRightDoubleClick, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TaskBarRightDoubleClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_TASKBAR_RIGHT_DOWN event.</summary>
 	public event EventHandler<TaskBarIconEvent>? RightDown {
-		add => AddHandler(EventType.TaskbarRightDown, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.TaskbarRightDown, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.TaskBarRightDown, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TaskBarRightDown, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_TASKBAR_RIGHT_UP event.</summary>
 	public event EventHandler<TaskBarIconEvent>? RightUp {
-		add => AddHandler(EventType.TaskbarRightUp, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.TaskbarRightUp, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.TaskBarRightUp, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TaskBarRightUp, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Pops up a menu at the current mouse position.</summary>

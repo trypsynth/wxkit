@@ -28,7 +28,7 @@ WXK_FUNCTION(uint8_t) wxk_CollapsiblePane_IsExpanded(wxk_Window* self) noexcept 
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxCollapsiblePane*>(wxk::Unwrap(self))->IsExpanded()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_CollapsiblepaneChanged(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_CollapsiblePaneChanged(void) noexcept {
 	return wxEVT_COLLAPSIBLEPANE_CHANGED;
 }
 

@@ -373,8 +373,8 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>Process a wxEVT_SET_FOCUS event. See wxFocusEvent.</summary>
 	public event EventHandler<FocusEvent>? GotFocus {
-		add => AddHandler(EventType.SetFocus, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.SetFocus, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.GotFocus, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.GotFocus, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_HELP event for a range of ids. See wxHelpEvent.</summary>
@@ -408,8 +408,8 @@ public unsafe partial class Window : EvtHandler {
 	}
 
 	public event EventHandler<MouseEvent>? LeftDoubleClick {
-		add => AddHandler(EventType.LeftDclick, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.LeftDclick, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.LeftDoubleClick, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.LeftDoubleClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<MouseEvent>? LeftDown {
@@ -424,8 +424,8 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>Process a wxEVT_KILL_FOCUS event. See wxFocusEvent.</summary>
 	public event EventHandler<FocusEvent>? LostFocus {
-		add => AddHandler(EventType.KillFocus, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.KillFocus, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.LostFocus, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.LostFocus, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<MouseEvent>? MiddleDown {
@@ -466,8 +466,8 @@ public unsafe partial class Window : EvtHandler {
 	}
 
 	public event EventHandler<MouseEvent>? MouseWheel {
-		add => AddHandler(EventType.Mousewheel, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.Mousewheel, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.MouseWheel, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.MouseWheel, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_PAINT event. See wxPaintEvent.</summary>
@@ -477,8 +477,8 @@ public unsafe partial class Window : EvtHandler {
 	}
 
 	public event EventHandler<MouseEvent>? RightDoubleClick {
-		add => AddHandler(EventType.RightDclick, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.RightDclick, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.RightDoubleClick, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.RightDoubleClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<MouseEvent>? RightDown {
@@ -493,8 +493,8 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>Process a wxEVT_SET_CURSOR event. See wxSetCursorEvent.</summary>
 	public event EventHandler<SetCursorEvent>? SetCursor {
-		add => AddHandler(EventType.SetCursor, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.SetCursor, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.CursorRequested, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.CursorRequested, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_SIZE event. See wxSizeEvent.</summary>

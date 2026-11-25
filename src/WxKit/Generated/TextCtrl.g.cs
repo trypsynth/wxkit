@@ -108,8 +108,8 @@ public unsafe partial class TextCtrl : Control {
 
 	/// <summary>This event is generated when the user tries to enter more text into the control than the limit set by wxTextCtrl::SetMaxLength(), see its description.</summary>
 	public event EventHandler<CommandEvent>? MaxLengthReached {
-		add => AddHandler(EventType.TextMaxlen, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.TextMaxlen, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.TextMaxLength, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TextMaxLength, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Respond to a wxEVT_TEXT event, generated when the text changes. Notice that this event will be sent when the text controls contents changes whether this is due to user input or comes from the program itself (for example, if wxTextCtrl::SetValue() is called); see wxTextCtrl::ChangeValue() for a function which does not send this event. This event is however not sent during the control creation.</summary>

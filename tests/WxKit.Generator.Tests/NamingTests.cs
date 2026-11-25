@@ -51,6 +51,10 @@ public class NamingTests {
 	[Theory]
 	[InlineData("wxEVT_BUTTON", "Button")]
 	[InlineData("wxEVT_CLOSE_WINDOW", "CloseWindow")]
+	[InlineData("wxEVT_LEFT_DCLICK", "LeftDoubleClick")]
+	[InlineData("wxEVT_STC_SAVEPOINTREACHED", "StyledTextSavePointReached")]
+	[InlineData("wxEVT_WEBVIEW_NEWWINDOW", "WebViewNewWindow")]
+	[InlineData("wxEVT_KILL_FOCUS", "LostFocus")]
 	public void NamesEventTypes(string constant, string name) => Assert.Equal(name, Naming.EventType(constant));
 
 	[Theory]

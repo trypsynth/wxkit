@@ -84,8 +84,8 @@ public unsafe partial class TreeCtrl : Control {
 
 	/// <summary>Begin dragging with the right mouse button. If you want to enable right-dragging you need to intercept this event and explicitly call wxTreeEvent::Allow(), as it's vetoed by default. Processes a wxEVT_TREE_BEGIN_RDRAG event type.</summary>
 	public event EventHandler<TreeEvent>? BeginRightDrag {
-		add => AddHandler(EventType.TreeBeginRdrag, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.TreeBeginRdrag, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.TreeBeginRightDrag, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TreeBeginRightDrag, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>End dragging with the left or right mouse button. Processes a wxEVT_TREE_END_DRAG event type.</summary>
@@ -174,8 +174,8 @@ public unsafe partial class TreeCtrl : Control {
 
 	/// <summary>The opportunity to set the item tooltip is being given to the application (call wxTreeEvent::SetToolTip). Windows only. Processes a wxEVT_TREE_ITEM_GETTOOLTIP event type.</summary>
 	public event EventHandler<TreeEvent>? ItemToolTipRequested {
-		add => AddHandler(EventType.TreeItemGettooltip, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.TreeItemGettooltip, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.TreeItemGetToolTip, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TreeItemGetToolTip, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Selection has changed. Processes a wxEVT_TREE_SEL_CHANGED event type.</summary>

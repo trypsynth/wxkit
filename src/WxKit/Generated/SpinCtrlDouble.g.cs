@@ -42,8 +42,8 @@ public unsafe partial class SpinCtrlDouble : Control {
 
 	/// <summary>Generated whenever the numeric value of the spin control is changed, that is, when the up/down spin button is clicked, when ENTER is pressed, or the control loses focus and the new value is different from the last. See wxSpinDoubleEvent.</summary>
 	public event EventHandler<SpinDoubleEvent>? ValueChanged {
-		add => AddHandler(EventType.Spinctrldouble, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.Spinctrldouble, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.SpinCtrlDouble, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.SpinCtrlDouble, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Sets range of allowable values.</summary>

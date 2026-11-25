@@ -336,7 +336,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_TreeBeginLabelEdit(void) noexcept {
 	return wxEVT_TREE_BEGIN_LABEL_EDIT;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_TreeBeginRdrag(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_TreeBeginRightDrag(void) noexcept {
 	return wxEVT_TREE_BEGIN_RDRAG;
 }
 
@@ -376,7 +376,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_TreeItemExpanding(void) noexcept {
 	return wxEVT_TREE_ITEM_EXPANDING;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_TreeItemGettooltip(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_TreeItemGetToolTip(void) noexcept {
 	return wxEVT_TREE_ITEM_GETTOOLTIP;
 }
 

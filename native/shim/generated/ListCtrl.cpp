@@ -465,7 +465,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_ListBeginLabelEdit(void) noexcept {
 	return wxEVT_LIST_BEGIN_LABEL_EDIT;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_ListBeginRdrag(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_ListBeginRightDrag(void) noexcept {
 	return wxEVT_LIST_BEGIN_RDRAG;
 }
 

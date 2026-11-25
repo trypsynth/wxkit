@@ -105,86 +105,86 @@ public unsafe partial class WebView : Control {
 	}
 
 	public event EventHandler<WebViewEvent>? BrowsingDataCleared {
-		add => AddHandler(EventType.WebviewBrowsingDataCleared, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.WebviewBrowsingDataCleared, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.WebViewBrowsingDataCleared, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.WebViewBrowsingDataCleared, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_WEBVIEW_CREATED event, generated when the object is fully initialized. For the backends using asynchronous initialization, such as wxWebViewChromium, most of this class member functions can be only used once this event is received. Available only in wxWidgets 3.3.0 or later.</summary>
 	public event EventHandler<WebViewEvent>? Created {
-		add => AddHandler(EventType.WebviewCreated, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.WebviewCreated, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.WebViewCreated, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.WebViewCreated, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_WEBVIEW_FULLSCREEN_CHANGED event, generated when the page wants to enter or leave fullscreen. Use GetInt to get the status. Not implemented for the IE backend. Available only in wxWidgets 3.1.5 or later.</summary>
 	public event EventHandler<WebViewEvent>? FullScreenChanged {
-		add => AddHandler(EventType.WebviewFullScreenChanged, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.WebviewFullScreenChanged, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.WebViewFullScreenChanged, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.WebViewFullScreenChanged, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_WEBVIEW_LOADED event generated when the document is fully loaded and displayed. Note that if the displayed HTML document has several frames, one such event will be generated per frame.</summary>
 	public event EventHandler<WebViewEvent>? Loaded {
-		add => AddHandler(EventType.WebviewLoaded, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.WebviewLoaded, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.WebViewLoaded, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.WebViewLoaded, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_WEBVIEW_NAVIGATED event generated after it was confirmed that a resource would be requested. This event may not be vetoed. Note that if the displayed HTML document has several frames, one such event will be generated per frame.</summary>
 	public event EventHandler<WebViewEvent>? Navigated {
-		add => AddHandler(EventType.WebviewNavigated, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.WebviewNavigated, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.WebViewNavigated, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.WebViewNavigated, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_WEBVIEW_NAVIGATING event, generated before trying to get a resource. This event may be vetoed to prevent navigating to this resource. Note that if the displayed HTML document has several frames, one such event will be generated per frame.</summary>
 	public event EventHandler<WebViewEvent>? Navigating {
-		add => AddHandler(EventType.WebviewNavigating, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.WebviewNavigating, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.WebViewNavigating, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.WebViewNavigating, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_WEBVIEW_ERROR event generated when a navigation error occurs. The integer associated with this event will be a wxWebNavigationError item. The string associated with this event may contain a backend-specific more precise error message/code.</summary>
 	public event EventHandler<WebViewEvent>? NavigationFailed {
-		add => AddHandler(EventType.WebviewError, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.WebviewError, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.WebViewError, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.WebViewError, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_WEBVIEW_NEWWINDOW_FEATURES event, generated when window features are available for the new window. For usage details see wxWebViewWindowFeatures. Available only in wxWidgets 3.3.0 or later.</summary>
 	public event EventHandler<WebViewEvent>? NewWindowFeatures {
-		add => AddHandler(EventType.WebviewNewwindowFeatures, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.WebviewNewwindowFeatures, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.WebViewNewWindowFeatures, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.WebViewNewWindowFeatures, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_WEBVIEW_NEWWINDOW event, generated when a new window is created. You must handle this event if you want anything to happen, for example to load the page in a new window or tab. For usage details see wxWebViewWindowFeatures.</summary>
 	public event EventHandler<WebViewEvent>? NewWindowRequested {
-		add => AddHandler(EventType.WebviewNewwindow, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.WebviewNewwindow, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.WebViewNewWindow, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.WebViewNewWindow, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_WEBVIEW_PDF_SAVED event, generated when a PrintToPDF() operation completes. Use wxWebViewEvent::GetURL() to retrieve the output file path and wxWebViewEvent::IsError() to check whether the save succeeded. Only available in wxWidgets 3.3.3 or later.</summary>
 	public event EventHandler<WebViewEvent>? PdfSaved {
-		add => AddHandler(EventType.WebviewPdfSaved, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.WebviewPdfSaved, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.WebViewPdfSaved, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.WebViewPdfSaved, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_WEBVIEW_SCRIPT_MESSAGE_RECEIVED event. Available only in wxWidgets 3.1.5 or later. For usage details see AddScriptMessageHandler().</summary>
 	public event EventHandler<WebViewEvent>? ScriptMessageReceived {
-		add => AddHandler(EventType.WebviewScriptMessageReceived, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.WebviewScriptMessageReceived, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.WebViewScriptMessageReceived, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.WebViewScriptMessageReceived, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_WEBVIEW_SCRIPT_RESULT event. Available only in wxWidgets 3.1.6 or later. For usage details see RunScriptAsync().</summary>
 	public event EventHandler<WebViewEvent>? ScriptResult {
-		add => AddHandler(EventType.WebviewScriptResult, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.WebviewScriptResult, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.WebViewScriptResult, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.WebViewScriptResult, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_WEBVIEW_TITLE_CHANGED event, generated when the page title changes. Use GetString to get the title.</summary>
 	public event EventHandler<WebViewEvent>? TitleChanged {
-		add => AddHandler(EventType.WebviewTitleChanged, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.WebviewTitleChanged, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.WebViewTitleChanged, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.WebViewTitleChanged, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_WEBVIEW_WINDOW_CLOSE_REQUESTED event, generated when a window is requested to be closed. Available only in wxWidgets 3.3.0 or later.</summary>
 	public event EventHandler<WebViewEvent>? WindowCloseRequested {
-		add => AddHandler(EventType.WebviewWindowCloseRequested, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.WebviewWindowCloseRequested, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.WebViewWindowCloseRequested, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.WebViewWindowCloseRequested, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Add a script message handler with the given name.</summary>

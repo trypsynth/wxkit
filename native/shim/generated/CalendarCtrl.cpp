@@ -76,7 +76,7 @@ WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHolidayColourFg(wxk_Window* self) n
 	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->GetHolidayColourFg()); });
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_CalendarDoubleclicked(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_CalendarDoubleClicked(void) noexcept {
 	return wxEVT_CALENDAR_DOUBLECLICKED;
 }
 

@@ -7,7 +7,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 ## The generator's naming
 
 - Words that run together, which the word tables don't split:
-  - About 85 of `EventType`'s members, such as `LeftDclick`, `ToolRclicked`, `CalendarDoubleclicked`, `Togglebutton`, `Mousewheel`, every `Webview` one, which becomes `WebView`, every `Taskbar` one, which becomes `TaskBar`, and every `Stc` one, which becomes `StyledText`. `SetFocus`, `KillFocus`, and `SetCursor` become `GotFocus`, `LostFocus`, and `CursorRequested`.
   - Enum members, such as `ListCtrlStyle.Hrules` and `Autoarrange`, `ComboBoxStyle.TeProcessEnter`, `DatePickerCtrlStyle.Allownone`, `StockCursor.Sizenesw`, `SystemMetric.DclickMsec`, `FontWeight.Extrabold`, `FontEncoding.Macarabic`, and `ToolBarStyle.Nodivider`.
   - Paper sizes whose leading number lost all but its first digit, such as `One0x11` for 10 by 11, and `PrintBin`'s `Onlyone` and `Largefmt`.
 - British spellings the respelling table misses: `Cancelled` and `Cancelling` become `Canceled` and `Canceling`, as `SearchCtrl.SearchCanceled` has it, `ConvertToGreyscale` becomes `ConvertToGrayscale`, and `Colourise` becomes `Colorize`.

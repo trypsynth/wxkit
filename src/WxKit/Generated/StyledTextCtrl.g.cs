@@ -856,173 +856,173 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	public event EventHandler<StyledTextEvent>? AutoCompleteCancelled {
-		add => AddHandler(EventType.StcAutocompCancelled, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcAutocompCancelled, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextAutoCompCancelled, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextAutoCompCancelled, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? AutoCompleteCharDeleted {
-		add => AddHandler(EventType.StcAutocompCharDeleted, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcAutocompCharDeleted, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextAutoCompCharDeleted, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextAutoCompCharDeleted, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? AutoCompleteCompleted {
-		add => AddHandler(EventType.StcAutocompCompleted, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcAutocompCompleted, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextAutoCompCompleted, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextAutoCompCompleted, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? AutoCompleteSelected {
-		add => AddHandler(EventType.StcAutocompSelection, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcAutocompSelection, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextAutoCompSelection, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextAutoCompSelection, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? AutoCompleteSelectionChanged {
-		add => AddHandler(EventType.StcAutocompSelectionChange, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcAutocompSelectionChange, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextAutoCompSelectionChange, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextAutoCompSelectionChange, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? CallTipClick {
-		add => AddHandler(EventType.StcCalltipClick, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcCalltipClick, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextCallTipClick, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextCallTipClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? Changed {
-		add => AddHandler(EventType.StcChange, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcChange, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextChange, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextChange, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? CharAdded {
-		add => AddHandler(EventType.StcCharadded, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcCharadded, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextCharAdded, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextCharAdded, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? ClipboardCopy {
-		add => AddHandler(EventType.StcClipboardCopy, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcClipboardCopy, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextClipboardCopy, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextClipboardCopy, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? ClipboardPaste {
-		add => AddHandler(EventType.StcClipboardPaste, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcClipboardPaste, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextClipboardPaste, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextClipboardPaste, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? DoDrop {
-		add => AddHandler(EventType.StcDoDrop, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcDoDrop, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextDoDrop, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextDoDrop, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? DoubleClick {
-		add => AddHandler(EventType.StcDoubleclick, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcDoubleclick, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextDoubleClick, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextDoubleClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? DragOver {
-		add => AddHandler(EventType.StcDragOver, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcDragOver, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextDragOver, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextDragOver, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? DwellEnd {
-		add => AddHandler(EventType.StcDwellend, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcDwellend, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextDwellEnd, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextDwellEnd, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? DwellStart {
-		add => AddHandler(EventType.StcDwellstart, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcDwellstart, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextDwellStart, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextDwellStart, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? HotspotClick {
-		add => AddHandler(EventType.StcHotspotClick, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcHotspotClick, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextHotspotClick, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextHotspotClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? HotspotDoubleClick {
-		add => AddHandler(EventType.StcHotspotDclick, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcHotspotDclick, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextHotspotDoubleClick, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextHotspotDoubleClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? HotspotReleaseClick {
-		add => AddHandler(EventType.StcHotspotReleaseClick, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcHotspotReleaseClick, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextHotspotReleaseClick, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextHotspotReleaseClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? IndicatorClick {
-		add => AddHandler(EventType.StcIndicatorClick, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcIndicatorClick, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextIndicatorClick, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextIndicatorClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? IndicatorRelease {
-		add => AddHandler(EventType.StcIndicatorRelease, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcIndicatorRelease, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextIndicatorRelease, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextIndicatorRelease, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? MacroRecord {
-		add => AddHandler(EventType.StcMacrorecord, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcMacrorecord, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextMacroRecord, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextMacroRecord, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? MarginClick {
-		add => AddHandler(EventType.StcMarginclick, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcMarginclick, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextMarginClick, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextMarginClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? MarginRightClick {
-		add => AddHandler(EventType.StcMarginRightClick, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcMarginRightClick, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextMarginRightClick, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextMarginRightClick, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? Modified {
-		add => AddHandler(EventType.StcModified, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcModified, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextModified, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextModified, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? NeedShown {
-		add => AddHandler(EventType.StcNeedshown, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcNeedshown, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextNeedShown, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextNeedShown, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? Painted {
-		add => AddHandler(EventType.StcPainted, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcPainted, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextPainted, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextPainted, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? ReadOnlyModifyAttempt {
-		add => AddHandler(EventType.StcRomodifyattempt, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcRomodifyattempt, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextReadOnlyModifyAttempt, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextReadOnlyModifyAttempt, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? SavePointLeft {
-		add => AddHandler(EventType.StcSavepointleft, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcSavepointleft, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextSavePointLeft, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextSavePointLeft, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? SavePointReached {
-		add => AddHandler(EventType.StcSavepointreached, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcSavepointreached, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextSavePointReached, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextSavePointReached, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? StartDrag {
-		add => AddHandler(EventType.StcStartDrag, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcStartDrag, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextStartDrag, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextStartDrag, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? StyleNeeded {
-		add => AddHandler(EventType.StcStyleneeded, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcStyleneeded, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextStyleNeeded, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextStyleNeeded, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? UIUpdated {
-		add => AddHandler(EventType.StcUpdateui, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcUpdateui, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextUpdateUi, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextUpdateUi, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? UserListSelected {
-		add => AddHandler(EventType.StcUserlistselection, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcUserlistselection, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextUserListSelection, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextUserListSelection, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? Zoomed {
-		add => AddHandler(EventType.StcZoom, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StcZoom, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextZoom, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextZoom, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Add a selection.</summary>

@@ -112,7 +112,7 @@ WXK_FUNCTION(void) wxk_SplitterWindow_SetLastSplitPosition(wxk_Window* self, wxk
 	wxk::Guard([&] { static_cast<wxSplitterWindow*>(wxk::Unwrap(self))->SetLastSplitPosition(wxk::FromPoint(position)); });
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_SplitterDoubleclicked(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_SplitterDoubleClicked(void) noexcept {
 	return wxEVT_SPLITTER_DOUBLECLICKED;
 }
 

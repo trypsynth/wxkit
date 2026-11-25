@@ -121,14 +121,14 @@ public unsafe partial class ComboBox : Control {
 
 	/// <summary>Process a wxEVT_COMBOBOX_CLOSEUP event, which is generated when the list box of the combo box disappears (closes up). This event is only generated for the same platforms as wxEVT_COMBOBOX_DROPDOWN above.</summary>
 	public event EventHandler<CommandEvent>? DropDownClosed {
-		add => AddHandler(EventType.ComboBoxCloseup, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ComboBoxCloseup, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.ComboBoxCloseUp, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.ComboBoxCloseUp, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_COMBOBOX_DROPDOWN event, which is generated when the list box part of the combo box is shown (drops down). Notice that this event is only supported by wxMSW, wxGTK with GTK+ 2.10 or later, and wxOSX/Cocoa.</summary>
 	public event EventHandler<CommandEvent>? DropDownOpened {
-		add => AddHandler(EventType.ComboBoxDropdown, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ComboBoxDropdown, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.ComboBoxDropDown, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.ComboBoxDropDown, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_COMBOBOX event, when an item on the list is selected. Note that calling GetValue() returns the new value of selection.</summary>

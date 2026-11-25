@@ -20,10 +20,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_AUX1_DCLICK.</summary>
-	public static EventType<MouseEvent> Aux1Dclick => Aux1DclickType.Value;
+	public static EventType<MouseEvent> Aux1DoubleClick => Aux1DoubleClickType.Value;
 
-	private static class Aux1DclickType {
-		public static readonly EventType<MouseEvent> Value = new(WxKitNative.EventTypeAux1Dclick, static native => new MouseEvent((WxkEvent*)native));
+	private static class Aux1DoubleClickType {
+		public static readonly EventType<MouseEvent> Value = new(WxKitNative.EventTypeAux1DoubleClick, static native => new MouseEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_AUX1_DOWN.</summary>
@@ -41,10 +41,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_AUX2_DCLICK.</summary>
-	public static EventType<MouseEvent> Aux2Dclick => Aux2DclickType.Value;
+	public static EventType<MouseEvent> Aux2DoubleClick => Aux2DoubleClickType.Value;
 
-	private static class Aux2DclickType {
-		public static readonly EventType<MouseEvent> Value = new(WxKitNative.EventTypeAux2Dclick, static native => new MouseEvent((WxkEvent*)native));
+	private static class Aux2DoubleClickType {
+		public static readonly EventType<MouseEvent> Value = new(WxKitNative.EventTypeAux2DoubleClick, static native => new MouseEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_AUX2_DOWN.</summary>
@@ -69,10 +69,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_CALENDAR_DOUBLECLICKED.</summary>
-	public static EventType<CalendarEvent> CalendarDoubleclicked => CalendarDoubleclickedType.Value;
+	public static EventType<CalendarEvent> CalendarDoubleClicked => CalendarDoubleClickedType.Value;
 
-	private static class CalendarDoubleclickedType {
-		public static readonly EventType<CalendarEvent> Value = new(WxKitNative.EventTypeCalendarDoubleclicked, static native => new CalendarEvent((WxkEvent*)native));
+	private static class CalendarDoubleClickedType {
+		public static readonly EventType<CalendarEvent> Value = new(WxKitNative.EventTypeCalendarDoubleClicked, static native => new CalendarEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_CALENDAR_PAGE_CHANGED.</summary>
@@ -125,10 +125,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_CHECKLISTBOX.</summary>
-	public static EventType<CommandEvent> Checklistbox => ChecklistboxType.Value;
+	public static EventType<CommandEvent> CheckListBox => CheckListBoxType.Value;
 
-	private static class ChecklistboxType {
-		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeChecklistbox, static native => new CommandEvent((WxkEvent*)native));
+	private static class CheckListBoxType {
+		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeCheckListBox, static native => new CommandEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_CHILD_FOCUS.</summary>
@@ -167,10 +167,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_COLLAPSIBLEPANE_CHANGED.</summary>
-	public static EventType<CollapsiblePaneEvent> CollapsiblepaneChanged => CollapsiblepaneChangedType.Value;
+	public static EventType<CollapsiblePaneEvent> CollapsiblePaneChanged => CollapsiblePaneChangedType.Value;
 
-	private static class CollapsiblepaneChangedType {
-		public static readonly EventType<CollapsiblePaneEvent> Value = new(WxKitNative.EventTypeCollapsiblepaneChanged, static native => new CollapsiblePaneEvent((WxkEvent*)native));
+	private static class CollapsiblePaneChangedType {
+		public static readonly EventType<CollapsiblePaneEvent> Value = new(WxKitNative.EventTypeCollapsiblePaneChanged, static native => new CollapsiblePaneEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_COLOUR_CHANGED.</summary>
@@ -209,17 +209,17 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_COMBOBOX_CLOSEUP.</summary>
-	public static EventType<CommandEvent> ComboBoxCloseup => ComboBoxCloseupType.Value;
+	public static EventType<CommandEvent> ComboBoxCloseUp => ComboBoxCloseUpType.Value;
 
-	private static class ComboBoxCloseupType {
-		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeComboBoxCloseup, static native => new CommandEvent((WxkEvent*)native));
+	private static class ComboBoxCloseUpType {
+		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeComboBoxCloseUp, static native => new CommandEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_COMBOBOX_DROPDOWN.</summary>
-	public static EventType<CommandEvent> ComboBoxDropdown => ComboBoxDropdownType.Value;
+	public static EventType<CommandEvent> ComboBoxDropDown => ComboBoxDropDownType.Value;
 
-	private static class ComboBoxDropdownType {
-		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeComboBoxDropdown, static native => new CommandEvent((WxkEvent*)native));
+	private static class ComboBoxDropDownType {
+		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeComboBoxDropDown, static native => new CommandEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_COMMAND_ENTER.</summary>
@@ -244,10 +244,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_COMMAND_LEFT_DCLICK.</summary>
-	public static EventType<CommandEvent> CommandLeftDclick => CommandLeftDclickType.Value;
+	public static EventType<CommandEvent> CommandLeftDoubleClick => CommandLeftDoubleClickType.Value;
 
-	private static class CommandLeftDclickType {
-		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeCommandLeftDclick, static native => new CommandEvent((WxkEvent*)native));
+	private static class CommandLeftDoubleClickType {
+		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeCommandLeftDoubleClick, static native => new CommandEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_COMMAND_RIGHT_CLICK.</summary>
@@ -269,6 +269,13 @@ public static unsafe partial class EventType {
 
 	private static class ContextMenuType {
 		public static readonly EventType<ContextMenuEvent> Value = new(WxKitNative.EventTypeContextMenu, static native => new ContextMenuEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_SET_CURSOR.</summary>
+	public static EventType<SetCursorEvent> CursorRequested => CursorRequestedType.Value;
+
+	private static class CursorRequestedType {
+		public static readonly EventType<SetCursorEvent> Value = new(WxKitNative.EventTypeCursorRequested, static native => new SetCursorEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_DATAVIEW_CACHE_HINT.</summary>
@@ -551,6 +558,13 @@ public static unsafe partial class EventType {
 		public static readonly EventType<Event> Value = new(WxKitNative.EventTypeGenericDirCtrlSelectionChanged, static native => new Event((WxkEvent*)native));
 	}
 
+	/// <summary>Wraps wxEVT_SET_FOCUS.</summary>
+	public static EventType<FocusEvent> GotFocus => GotFocusType.Value;
+
+	private static class GotFocusType {
+		public static readonly EventType<FocusEvent> Value = new(WxKitNative.EventTypeGotFocus, static native => new FocusEvent((WxkEvent*)native));
+	}
+
 	/// <summary>Wraps wxEVT_HELP.</summary>
 	public static EventType<HelpEvent> Help => HelpType.Value;
 
@@ -600,13 +614,6 @@ public static unsafe partial class EventType {
 		public static readonly EventType<KeyEvent> Value = new(WxKitNative.EventTypeKeyUp, static native => new KeyEvent((WxkEvent*)native));
 	}
 
-	/// <summary>Wraps wxEVT_KILL_FOCUS.</summary>
-	public static EventType<FocusEvent> KillFocus => KillFocusType.Value;
-
-	private static class KillFocusType {
-		public static readonly EventType<FocusEvent> Value = new(WxKitNative.EventTypeKillFocus, static native => new FocusEvent((WxkEvent*)native));
-	}
-
 	/// <summary>Wraps wxEVT_LEAVE_WINDOW.</summary>
 	public static EventType<MouseEvent> LeaveWindow => LeaveWindowType.Value;
 
@@ -615,10 +622,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_LEFT_DCLICK.</summary>
-	public static EventType<MouseEvent> LeftDclick => LeftDclickType.Value;
+	public static EventType<MouseEvent> LeftDoubleClick => LeftDoubleClickType.Value;
 
-	private static class LeftDclickType {
-		public static readonly EventType<MouseEvent> Value = new(WxKitNative.EventTypeLeftDclick, static native => new MouseEvent((WxkEvent*)native));
+	private static class LeftDoubleClickType {
+		public static readonly EventType<MouseEvent> Value = new(WxKitNative.EventTypeLeftDoubleClick, static native => new MouseEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_LEFT_DOWN.</summary>
@@ -650,10 +657,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_LIST_BEGIN_RDRAG.</summary>
-	public static EventType<ListEvent> ListBeginRdrag => ListBeginRdragType.Value;
+	public static EventType<ListEvent> ListBeginRightDrag => ListBeginRightDragType.Value;
 
-	private static class ListBeginRdragType {
-		public static readonly EventType<ListEvent> Value = new(WxKitNative.EventTypeListBeginRdrag, static native => new ListEvent((WxkEvent*)native));
+	private static class ListBeginRightDragType {
+		public static readonly EventType<ListEvent> Value = new(WxKitNative.EventTypeListBeginRightDrag, static native => new ListEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_LISTBOX.</summary>
@@ -664,10 +671,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_LISTBOX_DCLICK.</summary>
-	public static EventType<CommandEvent> ListBoxDclick => ListBoxDclickType.Value;
+	public static EventType<CommandEvent> ListBoxDoubleClick => ListBoxDoubleClickType.Value;
 
-	private static class ListBoxDclickType {
-		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeListBoxDclick, static native => new CommandEvent((WxkEvent*)native));
+	private static class ListBoxDoubleClickType {
+		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeListBoxDoubleClick, static native => new CommandEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_LIST_CACHE_HINT.</summary>
@@ -817,6 +824,13 @@ public static unsafe partial class EventType {
 		public static readonly EventType<BookCtrlEvent> Value = new(WxKitNative.EventTypeListbookPageChanging, static native => new BookCtrlEvent((WxkEvent*)native));
 	}
 
+	/// <summary>Wraps wxEVT_KILL_FOCUS.</summary>
+	public static EventType<FocusEvent> LostFocus => LostFocusType.Value;
+
+	private static class LostFocusType {
+		public static readonly EventType<FocusEvent> Value = new(WxKitNative.EventTypeLostFocus, static native => new FocusEvent((WxkEvent*)native));
+	}
+
 	/// <summary>Wraps wxEVT_MAGNIFY.</summary>
 	public static EventType<MouseEvent> Magnify => MagnifyType.Value;
 
@@ -860,10 +874,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_MIDDLE_DCLICK.</summary>
-	public static EventType<MouseEvent> MiddleDclick => MiddleDclickType.Value;
+	public static EventType<MouseEvent> MiddleDoubleClick => MiddleDoubleClickType.Value;
 
-	private static class MiddleDclickType {
-		public static readonly EventType<MouseEvent> Value = new(WxKitNative.EventTypeMiddleDclick, static native => new MouseEvent((WxkEvent*)native));
+	private static class MiddleDoubleClickType {
+		public static readonly EventType<MouseEvent> Value = new(WxKitNative.EventTypeMiddleDoubleClick, static native => new MouseEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_MIDDLE_DOWN.</summary>
@@ -902,10 +916,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_MOUSEWHEEL.</summary>
-	public static EventType<MouseEvent> Mousewheel => MousewheelType.Value;
+	public static EventType<MouseEvent> MouseWheel => MouseWheelType.Value;
 
-	private static class MousewheelType {
-		public static readonly EventType<MouseEvent> Value = new(WxKitNative.EventTypeMousewheel, static native => new MouseEvent((WxkEvent*)native));
+	private static class MouseWheelType {
+		public static readonly EventType<MouseEvent> Value = new(WxKitNative.EventTypeMouseWheel, static native => new MouseEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_MOVE.</summary>
@@ -992,6 +1006,13 @@ public static unsafe partial class EventType {
 		public static readonly EventType<CloseEvent> Value = new(WxKitNative.EventTypeQueryEndSession, static native => new CloseEvent((WxkEvent*)native));
 	}
 
+	/// <summary>Wraps wxEVT_RADIOBOX.</summary>
+	public static EventType<CommandEvent> RadioBox => RadioBoxType.Value;
+
+	private static class RadioBoxType {
+		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeRadioBox, static native => new CommandEvent((WxkEvent*)native));
+	}
+
 	/// <summary>Wraps wxEVT_RADIOBUTTON.</summary>
 	public static EventType<CommandEvent> RadioButton => RadioButtonType.Value;
 
@@ -999,18 +1020,11 @@ public static unsafe partial class EventType {
 		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeRadioButton, static native => new CommandEvent((WxkEvent*)native));
 	}
 
-	/// <summary>Wraps wxEVT_RADIOBOX.</summary>
-	public static EventType<CommandEvent> Radiobox => RadioboxType.Value;
-
-	private static class RadioboxType {
-		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeRadiobox, static native => new CommandEvent((WxkEvent*)native));
-	}
-
 	/// <summary>Wraps wxEVT_RIGHT_DCLICK.</summary>
-	public static EventType<MouseEvent> RightDclick => RightDclickType.Value;
+	public static EventType<MouseEvent> RightDoubleClick => RightDoubleClickType.Value;
 
-	private static class RightDclickType {
-		public static readonly EventType<MouseEvent> Value = new(WxKitNative.EventTypeRightDclick, static native => new MouseEvent((WxkEvent*)native));
+	private static class RightDoubleClickType {
+		public static readonly EventType<MouseEvent> Value = new(WxKitNative.EventTypeRightDoubleClick, static native => new MouseEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_RIGHT_DOWN.</summary>
@@ -1167,20 +1181,6 @@ public static unsafe partial class EventType {
 		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeSearchCancel, static native => new CommandEvent((WxkEvent*)native));
 	}
 
-	/// <summary>Wraps wxEVT_SET_CURSOR.</summary>
-	public static EventType<SetCursorEvent> SetCursor => SetCursorType.Value;
-
-	private static class SetCursorType {
-		public static readonly EventType<SetCursorEvent> Value = new(WxKitNative.EventTypeSetCursor, static native => new SetCursorEvent((WxkEvent*)native));
-	}
-
-	/// <summary>Wraps wxEVT_SET_FOCUS.</summary>
-	public static EventType<FocusEvent> SetFocus => SetFocusType.Value;
-
-	private static class SetFocusType {
-		public static readonly EventType<FocusEvent> Value = new(WxKitNative.EventTypeSetFocus, static native => new FocusEvent((WxkEvent*)native));
-	}
-
 	/// <summary>Wraps wxEVT_SHOW.</summary>
 	public static EventType<ShowEvent> Show => ShowType.Value;
 
@@ -1209,6 +1209,20 @@ public static unsafe partial class EventType {
 		public static readonly EventType<SpinEvent> Value = new(WxKitNative.EventTypeSpin, static native => new SpinEvent((WxkEvent*)native));
 	}
 
+	/// <summary>Wraps wxEVT_SPINCTRL.</summary>
+	public static EventType<SpinEvent> SpinCtrl => SpinCtrlType.Value;
+
+	private static class SpinCtrlType {
+		public static readonly EventType<SpinEvent> Value = new(WxKitNative.EventTypeSpinCtrl, static native => new SpinEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_SPINCTRLDOUBLE.</summary>
+	public static EventType<SpinDoubleEvent> SpinCtrlDouble => SpinCtrlDoubleType.Value;
+
+	private static class SpinCtrlDoubleType {
+		public static readonly EventType<SpinDoubleEvent> Value = new(WxKitNative.EventTypeSpinCtrlDouble, static native => new SpinDoubleEvent((WxkEvent*)native));
+	}
+
 	/// <summary>Wraps wxEVT_SPIN_DOWN.</summary>
 	public static EventType<SpinEvent> SpinDown => SpinDownType.Value;
 
@@ -1223,25 +1237,11 @@ public static unsafe partial class EventType {
 		public static readonly EventType<SpinEvent> Value = new(WxKitNative.EventTypeSpinUp, static native => new SpinEvent((WxkEvent*)native));
 	}
 
-	/// <summary>Wraps wxEVT_SPINCTRL.</summary>
-	public static EventType<SpinEvent> Spinctrl => SpinctrlType.Value;
-
-	private static class SpinctrlType {
-		public static readonly EventType<SpinEvent> Value = new(WxKitNative.EventTypeSpinctrl, static native => new SpinEvent((WxkEvent*)native));
-	}
-
-	/// <summary>Wraps wxEVT_SPINCTRLDOUBLE.</summary>
-	public static EventType<SpinDoubleEvent> Spinctrldouble => SpinctrldoubleType.Value;
-
-	private static class SpinctrldoubleType {
-		public static readonly EventType<SpinDoubleEvent> Value = new(WxKitNative.EventTypeSpinctrldouble, static native => new SpinDoubleEvent((WxkEvent*)native));
-	}
-
 	/// <summary>Wraps wxEVT_SPLITTER_DOUBLECLICKED.</summary>
-	public static EventType<SplitterEvent> SplitterDoubleclicked => SplitterDoubleclickedType.Value;
+	public static EventType<SplitterEvent> SplitterDoubleClicked => SplitterDoubleClickedType.Value;
 
-	private static class SplitterDoubleclickedType {
-		public static readonly EventType<SplitterEvent> Value = new(WxKitNative.EventTypeSplitterDoubleclicked, static native => new SplitterEvent((WxkEvent*)native));
+	private static class SplitterDoubleClickedType {
+		public static readonly EventType<SplitterEvent> Value = new(WxKitNative.EventTypeSplitterDoubleClicked, static native => new SplitterEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_SPLITTER_SASH_POS_CHANGED.</summary>
@@ -1273,241 +1273,241 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_STC_AUTOCOMP_CANCELLED.</summary>
-	public static EventType<StyledTextEvent> StcAutocompCancelled => StcAutocompCancelledType.Value;
+	public static EventType<StyledTextEvent> StyledTextAutoCompCancelled => StyledTextAutoCompCancelledType.Value;
 
-	private static class StcAutocompCancelledType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcAutocompCancelled, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextAutoCompCancelledType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextAutoCompCancelled, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_AUTOCOMP_CHAR_DELETED.</summary>
-	public static EventType<StyledTextEvent> StcAutocompCharDeleted => StcAutocompCharDeletedType.Value;
+	public static EventType<StyledTextEvent> StyledTextAutoCompCharDeleted => StyledTextAutoCompCharDeletedType.Value;
 
-	private static class StcAutocompCharDeletedType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcAutocompCharDeleted, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextAutoCompCharDeletedType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextAutoCompCharDeleted, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_AUTOCOMP_COMPLETED.</summary>
-	public static EventType<StyledTextEvent> StcAutocompCompleted => StcAutocompCompletedType.Value;
+	public static EventType<StyledTextEvent> StyledTextAutoCompCompleted => StyledTextAutoCompCompletedType.Value;
 
-	private static class StcAutocompCompletedType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcAutocompCompleted, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextAutoCompCompletedType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextAutoCompCompleted, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_AUTOCOMP_SELECTION.</summary>
-	public static EventType<StyledTextEvent> StcAutocompSelection => StcAutocompSelectionType.Value;
+	public static EventType<StyledTextEvent> StyledTextAutoCompSelection => StyledTextAutoCompSelectionType.Value;
 
-	private static class StcAutocompSelectionType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcAutocompSelection, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextAutoCompSelectionType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextAutoCompSelection, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_AUTOCOMP_SELECTION_CHANGE.</summary>
-	public static EventType<StyledTextEvent> StcAutocompSelectionChange => StcAutocompSelectionChangeType.Value;
+	public static EventType<StyledTextEvent> StyledTextAutoCompSelectionChange => StyledTextAutoCompSelectionChangeType.Value;
 
-	private static class StcAutocompSelectionChangeType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcAutocompSelectionChange, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextAutoCompSelectionChangeType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextAutoCompSelectionChange, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_CALLTIP_CLICK.</summary>
-	public static EventType<StyledTextEvent> StcCalltipClick => StcCalltipClickType.Value;
+	public static EventType<StyledTextEvent> StyledTextCallTipClick => StyledTextCallTipClickType.Value;
 
-	private static class StcCalltipClickType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcCalltipClick, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextCallTipClickType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextCallTipClick, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_CHANGE.</summary>
-	public static EventType<StyledTextEvent> StcChange => StcChangeType.Value;
+	public static EventType<StyledTextEvent> StyledTextChange => StyledTextChangeType.Value;
 
-	private static class StcChangeType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcChange, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextChangeType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextChange, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_CHARADDED.</summary>
-	public static EventType<StyledTextEvent> StcCharadded => StcCharaddedType.Value;
+	public static EventType<StyledTextEvent> StyledTextCharAdded => StyledTextCharAddedType.Value;
 
-	private static class StcCharaddedType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcCharadded, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextCharAddedType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextCharAdded, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_CLIPBOARD_COPY.</summary>
-	public static EventType<StyledTextEvent> StcClipboardCopy => StcClipboardCopyType.Value;
+	public static EventType<StyledTextEvent> StyledTextClipboardCopy => StyledTextClipboardCopyType.Value;
 
-	private static class StcClipboardCopyType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcClipboardCopy, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextClipboardCopyType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextClipboardCopy, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_CLIPBOARD_PASTE.</summary>
-	public static EventType<StyledTextEvent> StcClipboardPaste => StcClipboardPasteType.Value;
+	public static EventType<StyledTextEvent> StyledTextClipboardPaste => StyledTextClipboardPasteType.Value;
 
-	private static class StcClipboardPasteType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcClipboardPaste, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextClipboardPasteType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextClipboardPaste, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_DO_DROP.</summary>
-	public static EventType<StyledTextEvent> StcDoDrop => StcDoDropType.Value;
+	public static EventType<StyledTextEvent> StyledTextDoDrop => StyledTextDoDropType.Value;
 
-	private static class StcDoDropType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcDoDrop, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextDoDropType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextDoDrop, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_DOUBLECLICK.</summary>
-	public static EventType<StyledTextEvent> StcDoubleclick => StcDoubleclickType.Value;
+	public static EventType<StyledTextEvent> StyledTextDoubleClick => StyledTextDoubleClickType.Value;
 
-	private static class StcDoubleclickType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcDoubleclick, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextDoubleClickType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextDoubleClick, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_DRAG_OVER.</summary>
-	public static EventType<StyledTextEvent> StcDragOver => StcDragOverType.Value;
+	public static EventType<StyledTextEvent> StyledTextDragOver => StyledTextDragOverType.Value;
 
-	private static class StcDragOverType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcDragOver, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextDragOverType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextDragOver, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_DWELLEND.</summary>
-	public static EventType<StyledTextEvent> StcDwellend => StcDwellendType.Value;
+	public static EventType<StyledTextEvent> StyledTextDwellEnd => StyledTextDwellEndType.Value;
 
-	private static class StcDwellendType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcDwellend, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextDwellEndType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextDwellEnd, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_DWELLSTART.</summary>
-	public static EventType<StyledTextEvent> StcDwellstart => StcDwellstartType.Value;
+	public static EventType<StyledTextEvent> StyledTextDwellStart => StyledTextDwellStartType.Value;
 
-	private static class StcDwellstartType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcDwellstart, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextDwellStartType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextDwellStart, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_HOTSPOT_CLICK.</summary>
-	public static EventType<StyledTextEvent> StcHotspotClick => StcHotspotClickType.Value;
+	public static EventType<StyledTextEvent> StyledTextHotspotClick => StyledTextHotspotClickType.Value;
 
-	private static class StcHotspotClickType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcHotspotClick, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextHotspotClickType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextHotspotClick, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_HOTSPOT_DCLICK.</summary>
-	public static EventType<StyledTextEvent> StcHotspotDclick => StcHotspotDclickType.Value;
+	public static EventType<StyledTextEvent> StyledTextHotspotDoubleClick => StyledTextHotspotDoubleClickType.Value;
 
-	private static class StcHotspotDclickType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcHotspotDclick, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextHotspotDoubleClickType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextHotspotDoubleClick, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_HOTSPOT_RELEASE_CLICK.</summary>
-	public static EventType<StyledTextEvent> StcHotspotReleaseClick => StcHotspotReleaseClickType.Value;
+	public static EventType<StyledTextEvent> StyledTextHotspotReleaseClick => StyledTextHotspotReleaseClickType.Value;
 
-	private static class StcHotspotReleaseClickType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcHotspotReleaseClick, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextHotspotReleaseClickType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextHotspotReleaseClick, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_INDICATOR_CLICK.</summary>
-	public static EventType<StyledTextEvent> StcIndicatorClick => StcIndicatorClickType.Value;
+	public static EventType<StyledTextEvent> StyledTextIndicatorClick => StyledTextIndicatorClickType.Value;
 
-	private static class StcIndicatorClickType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcIndicatorClick, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextIndicatorClickType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextIndicatorClick, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_INDICATOR_RELEASE.</summary>
-	public static EventType<StyledTextEvent> StcIndicatorRelease => StcIndicatorReleaseType.Value;
+	public static EventType<StyledTextEvent> StyledTextIndicatorRelease => StyledTextIndicatorReleaseType.Value;
 
-	private static class StcIndicatorReleaseType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcIndicatorRelease, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextIndicatorReleaseType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextIndicatorRelease, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_MACRORECORD.</summary>
-	public static EventType<StyledTextEvent> StcMacrorecord => StcMacrorecordType.Value;
+	public static EventType<StyledTextEvent> StyledTextMacroRecord => StyledTextMacroRecordType.Value;
 
-	private static class StcMacrorecordType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcMacrorecord, static native => new StyledTextEvent((WxkEvent*)native));
-	}
-
-	/// <summary>Wraps wxEVT_STC_MARGIN_RIGHT_CLICK.</summary>
-	public static EventType<StyledTextEvent> StcMarginRightClick => StcMarginRightClickType.Value;
-
-	private static class StcMarginRightClickType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcMarginRightClick, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextMacroRecordType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextMacroRecord, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_MARGINCLICK.</summary>
-	public static EventType<StyledTextEvent> StcMarginclick => StcMarginclickType.Value;
+	public static EventType<StyledTextEvent> StyledTextMarginClick => StyledTextMarginClickType.Value;
 
-	private static class StcMarginclickType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcMarginclick, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextMarginClickType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextMarginClick, static native => new StyledTextEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_STC_MARGIN_RIGHT_CLICK.</summary>
+	public static EventType<StyledTextEvent> StyledTextMarginRightClick => StyledTextMarginRightClickType.Value;
+
+	private static class StyledTextMarginRightClickType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextMarginRightClick, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_MODIFIED.</summary>
-	public static EventType<StyledTextEvent> StcModified => StcModifiedType.Value;
+	public static EventType<StyledTextEvent> StyledTextModified => StyledTextModifiedType.Value;
 
-	private static class StcModifiedType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcModified, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextModifiedType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextModified, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_NEEDSHOWN.</summary>
-	public static EventType<StyledTextEvent> StcNeedshown => StcNeedshownType.Value;
+	public static EventType<StyledTextEvent> StyledTextNeedShown => StyledTextNeedShownType.Value;
 
-	private static class StcNeedshownType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcNeedshown, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextNeedShownType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextNeedShown, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_PAINTED.</summary>
-	public static EventType<StyledTextEvent> StcPainted => StcPaintedType.Value;
+	public static EventType<StyledTextEvent> StyledTextPainted => StyledTextPaintedType.Value;
 
-	private static class StcPaintedType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcPainted, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextPaintedType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextPainted, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_ROMODIFYATTEMPT.</summary>
-	public static EventType<StyledTextEvent> StcRomodifyattempt => StcRomodifyattemptType.Value;
+	public static EventType<StyledTextEvent> StyledTextReadOnlyModifyAttempt => StyledTextReadOnlyModifyAttemptType.Value;
 
-	private static class StcRomodifyattemptType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcRomodifyattempt, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextReadOnlyModifyAttemptType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextReadOnlyModifyAttempt, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_SAVEPOINTLEFT.</summary>
-	public static EventType<StyledTextEvent> StcSavepointleft => StcSavepointleftType.Value;
+	public static EventType<StyledTextEvent> StyledTextSavePointLeft => StyledTextSavePointLeftType.Value;
 
-	private static class StcSavepointleftType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcSavepointleft, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextSavePointLeftType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextSavePointLeft, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_SAVEPOINTREACHED.</summary>
-	public static EventType<StyledTextEvent> StcSavepointreached => StcSavepointreachedType.Value;
+	public static EventType<StyledTextEvent> StyledTextSavePointReached => StyledTextSavePointReachedType.Value;
 
-	private static class StcSavepointreachedType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcSavepointreached, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextSavePointReachedType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextSavePointReached, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_START_DRAG.</summary>
-	public static EventType<StyledTextEvent> StcStartDrag => StcStartDragType.Value;
+	public static EventType<StyledTextEvent> StyledTextStartDrag => StyledTextStartDragType.Value;
 
-	private static class StcStartDragType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcStartDrag, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextStartDragType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextStartDrag, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_STYLENEEDED.</summary>
-	public static EventType<StyledTextEvent> StcStyleneeded => StcStyleneededType.Value;
+	public static EventType<StyledTextEvent> StyledTextStyleNeeded => StyledTextStyleNeededType.Value;
 
-	private static class StcStyleneededType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcStyleneeded, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextStyleNeededType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextStyleNeeded, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_UPDATEUI.</summary>
-	public static EventType<StyledTextEvent> StcUpdateui => StcUpdateuiType.Value;
+	public static EventType<StyledTextEvent> StyledTextUpdateUi => StyledTextUpdateUiType.Value;
 
-	private static class StcUpdateuiType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcUpdateui, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextUpdateUiType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextUpdateUi, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_USERLISTSELECTION.</summary>
-	public static EventType<StyledTextEvent> StcUserlistselection => StcUserlistselectionType.Value;
+	public static EventType<StyledTextEvent> StyledTextUserListSelection => StyledTextUserListSelectionType.Value;
 
-	private static class StcUserlistselectionType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcUserlistselection, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextUserListSelectionType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextUserListSelection, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_ZOOM.</summary>
-	public static EventType<StyledTextEvent> StcZoom => StcZoomType.Value;
+	public static EventType<StyledTextEvent> StyledTextZoom => StyledTextZoomType.Value;
 
-	private static class StcZoomType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStcZoom, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextZoomType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextZoom, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_SYS_COLOUR_CHANGED.</summary>
@@ -1518,59 +1518,59 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_TASKBAR_CLICK.</summary>
-	public static EventType<TaskBarIconEvent> TaskbarClick => TaskbarClickType.Value;
+	public static EventType<TaskBarIconEvent> TaskBarClick => TaskBarClickType.Value;
 
-	private static class TaskbarClickType {
-		public static readonly EventType<TaskBarIconEvent> Value = new(WxKitNative.EventTypeTaskbarClick, static native => new TaskBarIconEvent((WxkEvent*)native));
+	private static class TaskBarClickType {
+		public static readonly EventType<TaskBarIconEvent> Value = new(WxKitNative.EventTypeTaskBarClick, static native => new TaskBarIconEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_TASKBAR_LEFT_DCLICK.</summary>
-	public static EventType<TaskBarIconEvent> TaskbarLeftDclick => TaskbarLeftDclickType.Value;
+	public static EventType<TaskBarIconEvent> TaskBarLeftDoubleClick => TaskBarLeftDoubleClickType.Value;
 
-	private static class TaskbarLeftDclickType {
-		public static readonly EventType<TaskBarIconEvent> Value = new(WxKitNative.EventTypeTaskbarLeftDclick, static native => new TaskBarIconEvent((WxkEvent*)native));
+	private static class TaskBarLeftDoubleClickType {
+		public static readonly EventType<TaskBarIconEvent> Value = new(WxKitNative.EventTypeTaskBarLeftDoubleClick, static native => new TaskBarIconEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_TASKBAR_LEFT_DOWN.</summary>
-	public static EventType<TaskBarIconEvent> TaskbarLeftDown => TaskbarLeftDownType.Value;
+	public static EventType<TaskBarIconEvent> TaskBarLeftDown => TaskBarLeftDownType.Value;
 
-	private static class TaskbarLeftDownType {
-		public static readonly EventType<TaskBarIconEvent> Value = new(WxKitNative.EventTypeTaskbarLeftDown, static native => new TaskBarIconEvent((WxkEvent*)native));
+	private static class TaskBarLeftDownType {
+		public static readonly EventType<TaskBarIconEvent> Value = new(WxKitNative.EventTypeTaskBarLeftDown, static native => new TaskBarIconEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_TASKBAR_LEFT_UP.</summary>
-	public static EventType<TaskBarIconEvent> TaskbarLeftUp => TaskbarLeftUpType.Value;
+	public static EventType<TaskBarIconEvent> TaskBarLeftUp => TaskBarLeftUpType.Value;
 
-	private static class TaskbarLeftUpType {
-		public static readonly EventType<TaskBarIconEvent> Value = new(WxKitNative.EventTypeTaskbarLeftUp, static native => new TaskBarIconEvent((WxkEvent*)native));
+	private static class TaskBarLeftUpType {
+		public static readonly EventType<TaskBarIconEvent> Value = new(WxKitNative.EventTypeTaskBarLeftUp, static native => new TaskBarIconEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_TASKBAR_MOVE.</summary>
-	public static EventType<TaskBarIconEvent> TaskbarMove => TaskbarMoveType.Value;
+	public static EventType<TaskBarIconEvent> TaskBarMove => TaskBarMoveType.Value;
 
-	private static class TaskbarMoveType {
-		public static readonly EventType<TaskBarIconEvent> Value = new(WxKitNative.EventTypeTaskbarMove, static native => new TaskBarIconEvent((WxkEvent*)native));
+	private static class TaskBarMoveType {
+		public static readonly EventType<TaskBarIconEvent> Value = new(WxKitNative.EventTypeTaskBarMove, static native => new TaskBarIconEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_TASKBAR_RIGHT_DCLICK.</summary>
-	public static EventType<TaskBarIconEvent> TaskbarRightDclick => TaskbarRightDclickType.Value;
+	public static EventType<TaskBarIconEvent> TaskBarRightDoubleClick => TaskBarRightDoubleClickType.Value;
 
-	private static class TaskbarRightDclickType {
-		public static readonly EventType<TaskBarIconEvent> Value = new(WxKitNative.EventTypeTaskbarRightDclick, static native => new TaskBarIconEvent((WxkEvent*)native));
+	private static class TaskBarRightDoubleClickType {
+		public static readonly EventType<TaskBarIconEvent> Value = new(WxKitNative.EventTypeTaskBarRightDoubleClick, static native => new TaskBarIconEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_TASKBAR_RIGHT_DOWN.</summary>
-	public static EventType<TaskBarIconEvent> TaskbarRightDown => TaskbarRightDownType.Value;
+	public static EventType<TaskBarIconEvent> TaskBarRightDown => TaskBarRightDownType.Value;
 
-	private static class TaskbarRightDownType {
-		public static readonly EventType<TaskBarIconEvent> Value = new(WxKitNative.EventTypeTaskbarRightDown, static native => new TaskBarIconEvent((WxkEvent*)native));
+	private static class TaskBarRightDownType {
+		public static readonly EventType<TaskBarIconEvent> Value = new(WxKitNative.EventTypeTaskBarRightDown, static native => new TaskBarIconEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_TASKBAR_RIGHT_UP.</summary>
-	public static EventType<TaskBarIconEvent> TaskbarRightUp => TaskbarRightUpType.Value;
+	public static EventType<TaskBarIconEvent> TaskBarRightUp => TaskBarRightUpType.Value;
 
-	private static class TaskbarRightUpType {
-		public static readonly EventType<TaskBarIconEvent> Value = new(WxKitNative.EventTypeTaskbarRightUp, static native => new TaskBarIconEvent((WxkEvent*)native));
+	private static class TaskBarRightUpType {
+		public static readonly EventType<TaskBarIconEvent> Value = new(WxKitNative.EventTypeTaskBarRightUp, static native => new TaskBarIconEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_TEXT.</summary>
@@ -1602,10 +1602,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_TEXT_MAXLEN.</summary>
-	public static EventType<CommandEvent> TextMaxlen => TextMaxlenType.Value;
+	public static EventType<CommandEvent> TextMaxLength => TextMaxLengthType.Value;
 
-	private static class TextMaxlenType {
-		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeTextMaxlen, static native => new CommandEvent((WxkEvent*)native));
+	private static class TextMaxLengthType {
+		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeTextMaxLength, static native => new CommandEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_TEXT_PASTE.</summary>
@@ -1637,10 +1637,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_TOGGLEBUTTON.</summary>
-	public static EventType<CommandEvent> Togglebutton => TogglebuttonType.Value;
+	public static EventType<CommandEvent> ToggleButton => ToggleButtonType.Value;
 
-	private static class TogglebuttonType {
-		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeTogglebutton, static native => new CommandEvent((WxkEvent*)native));
+	private static class ToggleButtonType {
+		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeToggleButton, static native => new CommandEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_TOOL.</summary>
@@ -1651,10 +1651,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_TOOL_DROPDOWN.</summary>
-	public static EventType<CommandEvent> ToolDropdown => ToolDropdownType.Value;
+	public static EventType<CommandEvent> ToolDropDown => ToolDropDownType.Value;
 
-	private static class ToolDropdownType {
-		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeToolDropdown, static native => new CommandEvent((WxkEvent*)native));
+	private static class ToolDropDownType {
+		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeToolDropDown, static native => new CommandEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_TOOL_ENTER.</summary>
@@ -1665,10 +1665,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_TOOL_RCLICKED.</summary>
-	public static EventType<CommandEvent> ToolRclicked => ToolRclickedType.Value;
+	public static EventType<CommandEvent> ToolRightClicked => ToolRightClickedType.Value;
 
-	private static class ToolRclickedType {
-		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeToolRclicked, static native => new CommandEvent((WxkEvent*)native));
+	private static class ToolRightClickedType {
+		public static readonly EventType<CommandEvent> Value = new(WxKitNative.EventTypeToolRightClicked, static native => new CommandEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_TOOLBOOK_PAGE_CHANGED.</summary>
@@ -1700,10 +1700,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_TREE_BEGIN_RDRAG.</summary>
-	public static EventType<TreeEvent> TreeBeginRdrag => TreeBeginRdragType.Value;
+	public static EventType<TreeEvent> TreeBeginRightDrag => TreeBeginRightDragType.Value;
 
-	private static class TreeBeginRdragType {
-		public static readonly EventType<TreeEvent> Value = new(WxKitNative.EventTypeTreeBeginRdrag, static native => new TreeEvent((WxkEvent*)native));
+	private static class TreeBeginRightDragType {
+		public static readonly EventType<TreeEvent> Value = new(WxKitNative.EventTypeTreeBeginRightDrag, static native => new TreeEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_TREE_DELETE_ITEM.</summary>
@@ -1770,10 +1770,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_TREE_ITEM_GETTOOLTIP.</summary>
-	public static EventType<TreeEvent> TreeItemGettooltip => TreeItemGettooltipType.Value;
+	public static EventType<TreeEvent> TreeItemGetToolTip => TreeItemGetToolTipType.Value;
 
-	private static class TreeItemGettooltipType {
-		public static readonly EventType<TreeEvent> Value = new(WxKitNative.EventTypeTreeItemGettooltip, static native => new TreeEvent((WxkEvent*)native));
+	private static class TreeItemGetToolTipType {
+		public static readonly EventType<TreeEvent> Value = new(WxKitNative.EventTypeTreeItemGetToolTip, static native => new TreeEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_TREE_ITEM_MENU.</summary>
@@ -1917,101 +1917,101 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_WEBVIEW_BROWSING_DATA_CLEARED.</summary>
-	public static EventType<WebViewEvent> WebviewBrowsingDataCleared => WebviewBrowsingDataClearedType.Value;
+	public static EventType<WebViewEvent> WebViewBrowsingDataCleared => WebViewBrowsingDataClearedType.Value;
 
-	private static class WebviewBrowsingDataClearedType {
-		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewBrowsingDataCleared, static native => new WebViewEvent((WxkEvent*)native));
+	private static class WebViewBrowsingDataClearedType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebViewBrowsingDataCleared, static native => new WebViewEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_WEBVIEW_CREATED.</summary>
-	public static EventType<WebViewEvent> WebviewCreated => WebviewCreatedType.Value;
+	public static EventType<WebViewEvent> WebViewCreated => WebViewCreatedType.Value;
 
-	private static class WebviewCreatedType {
-		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewCreated, static native => new WebViewEvent((WxkEvent*)native));
+	private static class WebViewCreatedType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebViewCreated, static native => new WebViewEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_WEBVIEW_ERROR.</summary>
-	public static EventType<WebViewEvent> WebviewError => WebviewErrorType.Value;
+	public static EventType<WebViewEvent> WebViewError => WebViewErrorType.Value;
 
-	private static class WebviewErrorType {
-		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewError, static native => new WebViewEvent((WxkEvent*)native));
+	private static class WebViewErrorType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebViewError, static native => new WebViewEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_WEBVIEW_FULLSCREEN_CHANGED.</summary>
-	public static EventType<WebViewEvent> WebviewFullScreenChanged => WebviewFullScreenChangedType.Value;
+	public static EventType<WebViewEvent> WebViewFullScreenChanged => WebViewFullScreenChangedType.Value;
 
-	private static class WebviewFullScreenChangedType {
-		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewFullScreenChanged, static native => new WebViewEvent((WxkEvent*)native));
+	private static class WebViewFullScreenChangedType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebViewFullScreenChanged, static native => new WebViewEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_WEBVIEW_LOADED.</summary>
-	public static EventType<WebViewEvent> WebviewLoaded => WebviewLoadedType.Value;
+	public static EventType<WebViewEvent> WebViewLoaded => WebViewLoadedType.Value;
 
-	private static class WebviewLoadedType {
-		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewLoaded, static native => new WebViewEvent((WxkEvent*)native));
+	private static class WebViewLoadedType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebViewLoaded, static native => new WebViewEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_WEBVIEW_NAVIGATED.</summary>
-	public static EventType<WebViewEvent> WebviewNavigated => WebviewNavigatedType.Value;
+	public static EventType<WebViewEvent> WebViewNavigated => WebViewNavigatedType.Value;
 
-	private static class WebviewNavigatedType {
-		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewNavigated, static native => new WebViewEvent((WxkEvent*)native));
+	private static class WebViewNavigatedType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebViewNavigated, static native => new WebViewEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_WEBVIEW_NAVIGATING.</summary>
-	public static EventType<WebViewEvent> WebviewNavigating => WebviewNavigatingType.Value;
+	public static EventType<WebViewEvent> WebViewNavigating => WebViewNavigatingType.Value;
 
-	private static class WebviewNavigatingType {
-		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewNavigating, static native => new WebViewEvent((WxkEvent*)native));
+	private static class WebViewNavigatingType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebViewNavigating, static native => new WebViewEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_WEBVIEW_NEWWINDOW.</summary>
-	public static EventType<WebViewEvent> WebviewNewwindow => WebviewNewwindowType.Value;
+	public static EventType<WebViewEvent> WebViewNewWindow => WebViewNewWindowType.Value;
 
-	private static class WebviewNewwindowType {
-		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewNewwindow, static native => new WebViewEvent((WxkEvent*)native));
+	private static class WebViewNewWindowType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebViewNewWindow, static native => new WebViewEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_WEBVIEW_NEWWINDOW_FEATURES.</summary>
-	public static EventType<WebViewEvent> WebviewNewwindowFeatures => WebviewNewwindowFeaturesType.Value;
+	public static EventType<WebViewEvent> WebViewNewWindowFeatures => WebViewNewWindowFeaturesType.Value;
 
-	private static class WebviewNewwindowFeaturesType {
-		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewNewwindowFeatures, static native => new WebViewEvent((WxkEvent*)native));
+	private static class WebViewNewWindowFeaturesType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebViewNewWindowFeatures, static native => new WebViewEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_WEBVIEW_PDF_SAVED.</summary>
-	public static EventType<WebViewEvent> WebviewPdfSaved => WebviewPdfSavedType.Value;
+	public static EventType<WebViewEvent> WebViewPdfSaved => WebViewPdfSavedType.Value;
 
-	private static class WebviewPdfSavedType {
-		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewPdfSaved, static native => new WebViewEvent((WxkEvent*)native));
+	private static class WebViewPdfSavedType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebViewPdfSaved, static native => new WebViewEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_WEBVIEW_SCRIPT_MESSAGE_RECEIVED.</summary>
-	public static EventType<WebViewEvent> WebviewScriptMessageReceived => WebviewScriptMessageReceivedType.Value;
+	public static EventType<WebViewEvent> WebViewScriptMessageReceived => WebViewScriptMessageReceivedType.Value;
 
-	private static class WebviewScriptMessageReceivedType {
-		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewScriptMessageReceived, static native => new WebViewEvent((WxkEvent*)native));
+	private static class WebViewScriptMessageReceivedType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebViewScriptMessageReceived, static native => new WebViewEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_WEBVIEW_SCRIPT_RESULT.</summary>
-	public static EventType<WebViewEvent> WebviewScriptResult => WebviewScriptResultType.Value;
+	public static EventType<WebViewEvent> WebViewScriptResult => WebViewScriptResultType.Value;
 
-	private static class WebviewScriptResultType {
-		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewScriptResult, static native => new WebViewEvent((WxkEvent*)native));
+	private static class WebViewScriptResultType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebViewScriptResult, static native => new WebViewEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_WEBVIEW_TITLE_CHANGED.</summary>
-	public static EventType<WebViewEvent> WebviewTitleChanged => WebviewTitleChangedType.Value;
+	public static EventType<WebViewEvent> WebViewTitleChanged => WebViewTitleChangedType.Value;
 
-	private static class WebviewTitleChangedType {
-		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewTitleChanged, static native => new WebViewEvent((WxkEvent*)native));
+	private static class WebViewTitleChangedType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebViewTitleChanged, static native => new WebViewEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_WEBVIEW_WINDOW_CLOSE_REQUESTED.</summary>
-	public static EventType<WebViewEvent> WebviewWindowCloseRequested => WebviewWindowCloseRequestedType.Value;
+	public static EventType<WebViewEvent> WebViewWindowCloseRequested => WebViewWindowCloseRequestedType.Value;
 
-	private static class WebviewWindowCloseRequestedType {
-		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebviewWindowCloseRequested, static native => new WebViewEvent((WxkEvent*)native));
+	private static class WebViewWindowCloseRequestedType {
+		public static readonly EventType<WebViewEvent> Value = new(WxKitNative.EventTypeWebViewWindowCloseRequested, static native => new WebViewEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_WINDOW_MODAL_DIALOG_CLOSED.</summary>
