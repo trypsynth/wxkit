@@ -222,8 +222,9 @@ public abstract unsafe class DataViewTreeModel : DataViewModel {
 public abstract class DataViewTreeModel<T> : DataViewTreeModel where T : class {
 	private readonly Dictionary<T, nint> _ids = new(ReferenceEqualityComparer.Instance);
 	private readonly Dictionary<nint, T> _items = [];
-	// Each item's parent's id, 0 for the root, so deleting an item forgets the items under it too.
-	private readonly Dictionary<nint, nint> _parents = [];
+	// The ids of the items under each item, and under 0 for the root, so deleting an item forgets
+	// the items under it too, without looking through every item for them.
+	private readonly Dictionary<nint, HashSet<nint>> _children = [];
 	private nint _lastId;
 
 	/// <summary>The item for an object, or <see cref="DataViewItem.Root"/> for null.</summary>
@@ -245,7 +246,7 @@ public abstract class DataViewTreeModel<T> : DataViewTreeModel where T : class {
 		ArgumentNullException.ThrowIfNull(item);
 		DataViewItem parentItem = ItemOf(parent);
 		DataViewItem added = ItemOf(item);
-		_parents[added.Value] = parentItem.Value;
+		Under(parentItem.Value).Add(added.Value);
 		return ItemAdded(parentItem, added);
 	}
 
@@ -257,7 +258,10 @@ public abstract class DataViewTreeModel<T> : DataViewTreeModel where T : class {
 
 	public override bool ItemDeleted(DataViewItem parent, DataViewItem item) {
 		bool deleted = base.ItemDeleted(parent, item);
-		if (ObjectOf(item) is T) Forget(item.Value);
+		if (ObjectOf(item) is T) {
+			if (_children.TryGetValue(parent.Value, out HashSet<nint>? siblings)) siblings.Remove(item.Value);
+			Forget(item.Value);
+		}
 		return deleted;
 	}
 
@@ -271,7 +275,7 @@ public abstract class DataViewTreeModel<T> : DataViewTreeModel where T : class {
 	public override bool Cleared() {
 		_ids.Clear();
 		_items.Clear();
-		_parents.Clear();
+		_children.Clear();
 		return base.Cleared();
 	}
 
@@ -308,17 +312,24 @@ public abstract class DataViewTreeModel<T> : DataViewTreeModel where T : class {
 		T? parent = ObjectOf(item);
 		if (item.IsOk && parent is null) return [];
 		DataViewItem[] children = [.. GetChildren(parent).Select(ItemOf)];
-		foreach (DataViewItem child in children) _parents[child.Value] = item.Value;
+		HashSet<nint> under = Under(item.Value);
+		foreach (DataViewItem child in children) under.Add(child.Value);
 		return children;
+	}
+
+	private HashSet<nint> Under(nint parent) {
+		if (!_children.TryGetValue(parent, out HashSet<nint>? under)) _children[parent] = under = [];
+		return under;
 	}
 
 	// Forgets an item's id and those of the items under it, which the control no longer has either.
 	private void Forget(nint id) {
-		List<nint> gone = [id];
-		for (int index = 0; index < gone.Count; index++) gone.AddRange(_parents.Where(pair => pair.Value == gone[index]).Select(static pair => pair.Key));
-		foreach (nint each in gone) {
+		Stack<nint> gone = new([id]);
+		while (gone.TryPop(out nint each)) {
+			if (_children.Remove(each, out HashSet<nint>? under)) {
+				foreach (nint child in under) gone.Push(child);
+			}
 			if (_items.Remove(each, out T? item)) _ids.Remove(item);
-			_parents.Remove(each);
 		}
 	}
 
