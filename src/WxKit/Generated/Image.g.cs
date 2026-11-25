@@ -143,10 +143,10 @@ public unsafe partial class Image : NativeObject {
 	public Image? ConvertToDisabled(byte brightness = 255) => global::WxKit.Image.Take(WxKitNative.ImageConvertToDisabled(Native, brightness));
 
 	/// <summary>Returns a greyscale version of the image.</summary>
-	public Image? ConvertToGreyscale(double weightR, double weightG, double weightB) => global::WxKit.Image.Take(WxKitNative.ImageConvertToGreyscaleDoubleDoubleDouble(Native, weightR, weightG, weightB));
+	public Image? ConvertToGrayscale(double weightR, double weightG, double weightB) => global::WxKit.Image.Take(WxKitNative.ImageConvertToGreyscaleDoubleDoubleDouble(Native, weightR, weightG, weightB));
 
 	/// <summary>Returns a greyscale version of the image.</summary>
-	public Image? ConvertToGreyscale() => global::WxKit.Image.Take(WxKitNative.ImageConvertToGreyscaleDefault(Native));
+	public Image? ConvertToGrayscale() => global::WxKit.Image.Take(WxKitNative.ImageConvertToGreyscaleDefault(Native));
 
 	/// <summary>Returns monochromatic version of the image.</summary>
 	public Image? ConvertToMono(byte r, byte g, byte b) => global::WxKit.Image.Take(WxKitNative.ImageConvertToMono(Native, r, g, b));

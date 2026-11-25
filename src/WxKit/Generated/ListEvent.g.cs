@@ -40,7 +40,7 @@ public unsafe partial class ListEvent : NotifyEvent {
 	}
 
 	/// <summary>This method only makes sense for EVT_LIST_END_LABEL_EDIT message and returns true if it the label editing has been cancelled by the user (GetLabel() returns an empty string in this case but it doesn't allow the application to distinguish between really cancelling the edit and the admittedly rare case when the user wants to rename it to an empty string).</summary>
-	public bool IsEditCancelled => WxKitNative.ListEventIsEditCancelled(Handle) != 0;
+	public bool IsEditCanceled => WxKitNative.ListEventIsEditCancelled(Handle) != 0;
 
 	/// <summary>An item object, used by some events.</summary>
 	public ListItem? Item {

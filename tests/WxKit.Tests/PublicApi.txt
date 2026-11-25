@@ -785,7 +785,7 @@ class WxKit.ColorPickerCtrl : PickerBase
     ColorPickerCtrl(Window parent, Color? color = null, int id = -1, Point? position = null, Size? size = null, ColorPickerCtrlStyle style = ColorPickerCtrlStyle.None)
     event EventHandler<ColorPickerEvent>? ColorChanged
     event EventHandler<ColorPickerEvent>? CurrentColorChanged
-    event EventHandler<ColorPickerEvent>? DialogCancelled
+    event EventHandler<ColorPickerEvent>? DialogCanceled
     void SetColor(string colname)
 [Flags] enum WxKit.ColorPickerCtrlStyle : long
     Default = 0
@@ -1203,7 +1203,7 @@ class WxKit.DataViewEvent : NotifyEvent
     DragFlags DragFlags { get; set; }
     DragResult DropEffect { get; set; }
     Point Position { get; }
-    bool IsEditCancelled { get; }
+    bool IsEditCanceled { get; }
     int CacheFrom { get; }
     int CacheTo { get; }
     int Column { get; set; }
@@ -1567,7 +1567,7 @@ static class WxKit.EventType
     static EventType<ColorDialogEvent> ColorChanged { get; }
     static EventType<ColorPickerEvent> ColorPickerChanged { get; }
     static EventType<ColorPickerEvent> ColorPickerCurrentChanged { get; }
-    static EventType<ColorPickerEvent> ColorPickerDialogCancelled { get; }
+    static EventType<ColorPickerEvent> ColorPickerDialogCanceled { get; }
     static EventType<CommandEvent> Button { get; }
     static EventType<CommandEvent> CheckBox { get; }
     static EventType<CommandEvent> CheckListBox { get; }
@@ -1740,7 +1740,7 @@ static class WxKit.EventType
     static EventType<SplitterEvent> SplitterSashPositionChanging { get; }
     static EventType<SplitterEvent> SplitterSashPositionResize { get; }
     static EventType<SplitterEvent> SplitterUnsplit { get; }
-    static EventType<StyledTextEvent> StyledTextAutoCompCancelled { get; }
+    static EventType<StyledTextEvent> StyledTextAutoCompCanceled { get; }
     static EventType<StyledTextEvent> StyledTextAutoCompCharDeleted { get; }
     static EventType<StyledTextEvent> StyledTextAutoCompCompleted { get; }
     static EventType<StyledTextEvent> StyledTextAutoCompSelection { get; }
@@ -2398,8 +2398,8 @@ class WxKit.Image : NativeObject
     Image? BlurVertical(int blurRadius)
     Image? ChangeLightness(int alpha)
     Image? ConvertToDisabled(byte brightness = 255)
-    Image? ConvertToGreyscale()
-    Image? ConvertToGreyscale(double weightR, double weightG, double weightB)
+    Image? ConvertToGrayscale()
+    Image? ConvertToGrayscale(double weightR, double weightG, double weightB)
     Image? ConvertToMono(byte r, byte g, byte b)
     Image? Copy()
     Image? GetSubImage(Rect rect)
@@ -2930,7 +2930,7 @@ class WxKit.ListCtrl : Control
 class WxKit.ListEvent : NotifyEvent
     ListItem? Item { get; set; }
     Point Point { get; set; }
-    bool IsEditCancelled { get; }
+    bool IsEditCanceled { get; }
     int Column { get; set; }
     int Image { get; }
     int KeyCode { get; set; }
@@ -3590,7 +3590,7 @@ class WxKit.Printer : NativeObject
     static PrinterError LastError { get; }
     void ReportError(Window parent, Printout printout, string message)
 enum WxKit.PrinterError : int
-    Cancelled = 1
+    Canceled = 1
     Error = 2
     NoError = 0
 abstract class WxKit.Printout : NativeObject
@@ -4859,7 +4859,7 @@ static class WxKit.Stc
     const int CmdVchomerectextend = 2431
     const int CmdVchomewrap = 2453
     const int CmdVchomewrapextend = 2454
-    const int CmdVerticalcentrecaret = 2619
+    const int CmdVerticalCenterCaret = 2619
     const int CmdWordleft = 2308
     const int CmdWordleftend = 2439
     const int CmdWordleftendextend = 2440
@@ -5703,7 +5703,7 @@ static class WxKit.Stc
     const int IndicDots = 10
     const int IndicFullbox = 16
     const int IndicGradient = 20
-    const int IndicGradientcentre = 21
+    const int IndicGradientCenter = 21
     const int IndicHidden = 5
     const int IndicIme = 32
     const int IndicImeMax = 35
@@ -6529,11 +6529,11 @@ static class WxKit.Stc
     const int PowershellUser1 = 12
     const int PowershellVariable = 5
     const int PrintBlackonwhite = 2
-    const int PrintColouronwhite = 3
-    const int PrintColouronwhitedefaultbg = 4
+    const int PrintColorOnWhite = 3
+    const int PrintColorOnWhiteDefaultBackground = 4
     const int PrintInvertlight = 1
     const int PrintNormal = 0
-    const int PrintScreencolours = 5
+    const int PrintScreenColors = 5
     const int PropsAssignment = 3
     const int PropsComment = 1
     const int PropsDefault = 0
@@ -7291,7 +7291,7 @@ class WxKit.StyledTextCtrl : Control
     bool UseTabs { get; set; }
     bool UseVerticalScrollBar { get; set; }
     bool ViewEol { get; set; }
-    event EventHandler<StyledTextEvent>? AutoCompleteCancelled
+    event EventHandler<StyledTextEvent>? AutoCompleteCanceled
     event EventHandler<StyledTextEvent>? AutoCompleteCharDeleted
     event EventHandler<StyledTextEvent>? AutoCompleteCompleted
     event EventHandler<StyledTextEvent>? AutoCompleteSelected
@@ -7629,7 +7629,7 @@ class WxKit.StyledTextCtrl : Control
     void CmdKeyClear(int key, int modifiers)
     void CmdKeyClearAll()
     void CmdKeyExecute(int cmd)
-    void Colourise(int start, int end)
+    void Colorize(int start, int end)
     void ConvertEOLs(int eolMode)
     void Copy()
     void CopyAllowLine()
@@ -8469,7 +8469,7 @@ class WxKit.TreeEvent : NotifyEvent
     Point Point { get; }
     TreeItemId Item { get; }
     TreeItemId OldItem { get; }
-    bool IsEditCancelled { get; }
+    bool IsEditCanceled { get; }
     int KeyCode { get; }
     string Label { get; }
     void SetToolTip(string tooltip)
@@ -9087,7 +9087,7 @@ class WxKit.Wizard : Dialog
     bool HasPreviousPage(WizardPage page)
     bool RunWizard(WizardPage firstPage)
     event EventHandler<WizardEvent>? BeforePageChanged
-    event EventHandler<WizardEvent>? Cancelling
+    event EventHandler<WizardEvent>? Canceling
     event EventHandler<WizardEvent>? Finished
     event EventHandler<WizardEvent>? PageChanged
     event EventHandler<WizardEvent>? PageChanging

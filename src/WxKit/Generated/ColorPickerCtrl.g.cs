@@ -32,9 +32,9 @@ public unsafe partial class ColorPickerCtrl : PickerBase {
 	}
 
 	/// <summary>The user cancelled the colour dialog associated with the control, i.e. closed it without accepting the selection. This event is new since wxWidgets 3.1.3 and currently is only implemented in wxMSW.</summary>
-	public event EventHandler<ColorPickerEvent>? DialogCancelled {
-		add => AddHandler(EventType.ColorPickerDialogCancelled, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ColorPickerDialogCancelled, StandardId.Any, StandardId.Any, value);
+	public event EventHandler<ColorPickerEvent>? DialogCanceled {
+		add => AddHandler(EventType.ColorPickerDialogCanceled, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.ColorPickerDialogCanceled, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Sets the currently selected colour.</summary>

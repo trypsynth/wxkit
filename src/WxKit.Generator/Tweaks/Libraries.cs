@@ -11,7 +11,7 @@ internal static class Libraries {
 		tweaks.ConstantClassOf("Stc", "wxSTC_");
 		tweaks.Class("wxStyledTextCtrl", stc => stc
 			.MixinBase("wxTextEntry", "wxTextEntryBase")
-			.AddEvent("EVT_STC_AUTOCOMP_CANCELLED", "wxEVT_STC_AUTOCOMP_CANCELLED", "wxStyledTextEvent", "AutoCompleteCancelled")
+			.AddEvent("EVT_STC_AUTOCOMP_CANCELLED", "wxEVT_STC_AUTOCOMP_CANCELLED", "wxStyledTextEvent", "AutoCompleteCanceled")
 			.AddEvent("EVT_STC_AUTOCOMP_CHAR_DELETED", "wxEVT_STC_AUTOCOMP_CHAR_DELETED", "wxStyledTextEvent", "AutoCompleteCharDeleted")
 			.AddEvent("EVT_STC_AUTOCOMP_COMPLETED", "wxEVT_STC_AUTOCOMP_COMPLETED", "wxStyledTextEvent", "AutoCompleteCompleted")
 			.AddEvent("EVT_STC_AUTOCOMP_SELECTION", "wxEVT_STC_AUTOCOMP_SELECTION", "wxStyledTextEvent", "AutoCompleteSelected")

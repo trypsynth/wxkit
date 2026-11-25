@@ -855,9 +855,9 @@ public unsafe partial class StyledTextCtrl : Control {
 		set => WxKitNative.StyledTextCtrlSetZoom(Native, value);
 	}
 
-	public event EventHandler<StyledTextEvent>? AutoCompleteCancelled {
-		add => AddHandler(EventType.StyledTextAutoCompCancelled, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StyledTextAutoCompCancelled, StandardId.Any, StandardId.Any, value);
+	public event EventHandler<StyledTextEvent>? AutoCompleteCanceled {
+		add => AddHandler(EventType.StyledTextAutoCompCanceled, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextAutoCompCanceled, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? AutoCompleteCharDeleted {
@@ -1380,7 +1380,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void CmdKeyExecute(int cmd) => WxKitNative.StyledTextCtrlCmdKeyExecute(Native, cmd);
 
 	/// <summary>Colourise a segment of the document using the current lexing language.</summary>
-	public void Colourise(int start, int end) => WxKitNative.StyledTextCtrlColourise(Native, start, end);
+	public void Colorize(int start, int end) => WxKitNative.StyledTextCtrlColourise(Native, start, end);
 
 	/// <summary>Find the next line at or after lineStart that is a contracted fold header line.</summary>
 	public int ContractedFoldNext(int lineStart) => WxKitNative.StyledTextCtrlContractedFoldNext(Native, lineStart);

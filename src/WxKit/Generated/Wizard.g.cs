@@ -53,7 +53,7 @@ public unsafe partial class Wizard : Dialog {
 	}
 
 	/// <summary>The user attempted to cancel the wizard (this event may also be vetoed).</summary>
-	public event EventHandler<WizardEvent>? Cancelling {
+	public event EventHandler<WizardEvent>? Canceling {
 		add => AddHandler(EventType.WizardCancel, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.WizardCancel, StandardId.Any, StandardId.Any, value);
 	}

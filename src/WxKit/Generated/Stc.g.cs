@@ -915,7 +915,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_CMD_VCHOMEWRAPEXTEND.</summary>
 	public const int CmdVchomewrapextend = 2454;
 	/// <summary>Wraps wxSTC_CMD_VERTICALCENTRECARET.</summary>
-	public const int CmdVerticalcentrecaret = 2619;
+	public const int CmdVerticalCenterCaret = 2619;
 	/// <summary>Wraps wxSTC_CMD_WORDLEFT.</summary>
 	public const int CmdWordleft = 2308;
 	/// <summary>Wraps wxSTC_CMD_WORDLEFTEND.</summary>
@@ -2673,7 +2673,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_INDIC_GRADIENT.</summary>
 	public const int IndicGradient = 20;
 	/// <summary>Wraps wxSTC_INDIC_GRADIENTCENTRE.</summary>
-	public const int IndicGradientcentre = 21;
+	public const int IndicGradientCenter = 21;
 	/// <summary>Wraps wxSTC_INDIC_HIDDEN.</summary>
 	public const int IndicHidden = 5;
 	/// <summary>Wraps wxSTC_INDIC_IME.</summary>
@@ -4269,15 +4269,15 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_PRINT_BLACKONWHITE.</summary>
 	public const int PrintBlackonwhite = 2;
 	/// <summary>Wraps wxSTC_PRINT_COLOURONWHITE.</summary>
-	public const int PrintColouronwhite = 3;
+	public const int PrintColorOnWhite = 3;
 	/// <summary>Wraps wxSTC_PRINT_COLOURONWHITEDEFAULTBG.</summary>
-	public const int PrintColouronwhitedefaultbg = 4;
+	public const int PrintColorOnWhiteDefaultBackground = 4;
 	/// <summary>Wraps wxSTC_PRINT_INVERTLIGHT.</summary>
 	public const int PrintInvertlight = 1;
 	/// <summary>Wraps wxSTC_PRINT_NORMAL.</summary>
 	public const int PrintNormal = 0;
 	/// <summary>Wraps wxSTC_PRINT_SCREENCOLOURS.</summary>
-	public const int PrintScreencolours = 5;
+	public const int PrintScreenColors = 5;
 	/// <summary>Wraps wxSTC_PROPS_ASSIGNMENT.</summary>
 	public const int PropsAssignment = 3;
 	/// <summary>Wraps wxSTC_PROPS_COMMENT.</summary>

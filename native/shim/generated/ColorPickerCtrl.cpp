@@ -28,7 +28,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_ColorPickerCurrentChanged(void) noexcept {
 	return wxEVT_COLOURPICKER_CURRENT_CHANGED;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_ColorPickerDialogCancelled(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_ColorPickerDialogCanceled(void) noexcept {
 	return wxEVT_COLOURPICKER_DIALOG_CANCELLED;
 }
 

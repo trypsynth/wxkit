@@ -6,7 +6,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 
 ## The generator's naming
 
-- British spellings the respelling table misses: `Cancelled` and `Cancelling` become `Canceled` and `Canceling`, as `SearchCtrl.SearchCanceled` has it, `ConvertToGreyscale` becomes `ConvertToGrayscale`, and `Colourise` becomes `Colorize`.
 - One spelling for one word: `ScrollBar` rather than `Scrollbar`, as the class is spelled, `FileName` rather than `Filename`, as .NET spells it, `Ok` rather than `OK`, as `StandardId.Ok` is, and `AutoScroll` rather than `Autoscroll`.
 - Abbreviations .NET spells out: `GridSizer.Cols`, `HGap`, and `VGap`, `PrintData.NoCopies`, which becomes `Copies`, `Slider.TickFreq`, `DC.MapMode`, `DC.SizeMM`, `DataViewColumn.IsResizeable`, the `FromPhys` and `ToPhys` members, and the calendar's `Fg` and `Bg` colors.
 - Parameter names, which break only named arguments:

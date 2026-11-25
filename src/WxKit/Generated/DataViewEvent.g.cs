@@ -42,7 +42,7 @@ public unsafe partial class DataViewEvent : NotifyEvent {
 	}
 
 	/// <summary>Can be used to determine whether the new value is going to be accepted in wxEVT_DATAVIEW_ITEM_EDITING_DONE handler.</summary>
-	public bool IsEditCancelled => WxKitNative.DataViewEventIsEditCancelled(Handle) != 0;
+	public bool IsEditCanceled => WxKitNative.DataViewEventIsEditCancelled(Handle) != 0;
 
 	/// <summary>Returns the item affected by the event.</summary>
 	public DataViewItem Item => new global::WxKit.DataViewItem(WxKitNative.DataViewEventGetItem(Handle));

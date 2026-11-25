@@ -52,7 +52,7 @@ internal static class Controls {
 			.StylesPrefixed("CLRP")
 			.Event("EVT_COLOURPICKER_CHANGED", "ColorChanged")
 			.Event("EVT_COLOURPICKER_CURRENT_CHANGED", "CurrentColorChanged")
-			.Event("EVT_COLOURPICKER_DIALOG_CANCELLED", "DialogCancelled"));
+			.Event("EVT_COLOURPICKER_DIALOG_CANCELLED", "DialogCanceled"));
 		tweaks.Class("wxFilePickerCtrl", picker => picker
 			.Event("EVT_FILEPICKER_CHANGED", "PathChanged")
 			.ParameterName("SetInitialDirectory", "dir", "directory"));

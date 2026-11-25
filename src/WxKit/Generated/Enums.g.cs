@@ -1950,7 +1950,7 @@ public enum PrinterError {
 	/// <summary>Wraps wxPRINTER_NO_ERROR.</summary>
 	NoError = 0,
 	/// <summary>Wraps wxPRINTER_CANCELLED.</summary>
-	Cancelled = 1,
+	Canceled = 1,
 	/// <summary>Wraps wxPRINTER_ERROR.</summary>
 	Error = 2,
 }

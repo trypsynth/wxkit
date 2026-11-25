@@ -4253,7 +4253,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_CollapsiblePaneChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_ColorChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_ColorPickerChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_ColorPickerCurrentChanged(void) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_EventType_ColorPickerDialogCancelled(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_ColorPickerDialogCanceled(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_ComboBox(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_ComboBoxCloseUp(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_ComboBoxDropDown(void) WXK_NOEXCEPT;
@@ -4407,7 +4407,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_SplitterSashPositionChanged(void) WXK_NOEXCE
 WXK_FUNCTION(int32_t) wxk_EventType_SplitterSashPositionChanging(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_SplitterSashPositionResize(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_SplitterUnsplit(void) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_EventType_StyledTextAutoCompCancelled(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_StyledTextAutoCompCanceled(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_StyledTextAutoCompCharDeleted(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_StyledTextAutoCompCompleted(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_StyledTextAutoCompSelection(void) WXK_NOEXCEPT;

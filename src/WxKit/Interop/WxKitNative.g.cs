@@ -14650,9 +14650,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeColorPickerCurrentChanged();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_ColorPickerDialogCancelled")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_ColorPickerDialogCanceled")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeColorPickerDialogCancelled();
+	public static partial int EventTypeColorPickerDialogCanceled();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_ComboBox")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -15266,9 +15266,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeSplitterUnsplit();
 
-	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextAutoCompCancelled")]
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextAutoCompCanceled")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int EventTypeStyledTextAutoCompCancelled();
+	public static partial int EventTypeStyledTextAutoCompCanceled();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_StyledTextAutoCompCharDeleted")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

@@ -195,10 +195,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_COLOURPICKER_DIALOG_CANCELLED.</summary>
-	public static EventType<ColorPickerEvent> ColorPickerDialogCancelled => ColorPickerDialogCancelledType.Value;
+	public static EventType<ColorPickerEvent> ColorPickerDialogCanceled => ColorPickerDialogCanceledType.Value;
 
-	private static class ColorPickerDialogCancelledType {
-		public static readonly EventType<ColorPickerEvent> Value = new(WxKitNative.EventTypeColorPickerDialogCancelled, static native => new ColorPickerEvent((WxkEvent*)native));
+	private static class ColorPickerDialogCanceledType {
+		public static readonly EventType<ColorPickerEvent> Value = new(WxKitNative.EventTypeColorPickerDialogCanceled, static native => new ColorPickerEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_COMBOBOX.</summary>
@@ -1273,10 +1273,10 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_STC_AUTOCOMP_CANCELLED.</summary>
-	public static EventType<StyledTextEvent> StyledTextAutoCompCancelled => StyledTextAutoCompCancelledType.Value;
+	public static EventType<StyledTextEvent> StyledTextAutoCompCanceled => StyledTextAutoCompCanceledType.Value;
 
-	private static class StyledTextAutoCompCancelledType {
-		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextAutoCompCancelled, static native => new StyledTextEvent((WxkEvent*)native));
+	private static class StyledTextAutoCompCanceledType {
+		public static readonly EventType<StyledTextEvent> Value = new(WxKitNative.EventTypeStyledTextAutoCompCanceled, static native => new StyledTextEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_STC_AUTOCOMP_CHAR_DELETED.</summary>

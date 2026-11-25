@@ -10,7 +10,7 @@ public unsafe partial class TreeEvent : NotifyEvent {
 	}
 
 	/// <summary>Returns true if the label edit was cancelled.</summary>
-	public bool IsEditCancelled => WxKitNative.TreeEventIsEditCancelled(Handle) != 0;
+	public bool IsEditCanceled => WxKitNative.TreeEventIsEditCancelled(Handle) != 0;
 
 	/// <summary>Returns the item.</summary>
 	public TreeItemId Item => new global::WxKit.TreeItemId(WxKitNative.TreeEventGetItem(Handle));

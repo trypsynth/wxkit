@@ -3020,7 +3020,7 @@ WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_IsEmpty(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTextEntryBase*>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self)))->IsEmpty()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_StyledTextAutoCompCancelled(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_StyledTextAutoCompCanceled(void) noexcept {
 	return wxEVT_STC_AUTOCOMP_CANCELLED;
 }
 
