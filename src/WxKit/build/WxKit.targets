@@ -68,7 +68,8 @@
 			<_WxKitLanguage Include="@(_WxKitPoFile->'%(Filename)')" Condition="'@(WxKitLanguage)' == '' and '@(WxKitCatalog)' == ''" />
 			<_WxKitLanguage Include="@(WxKitCatalog->'%(Language)')" Condition="'@(WxKitLanguage)' == ''" />
 		</ItemGroup>
-		<WxKitStdCatalogs Directory="$(WxKitStdCatalogDirectory)" Languages="@(_WxKitLanguage)" All="$([System.String]::Equals('$(WxKitStdCatalogs)', 'all'))">
+		<!-- MSBuild compiles the task before it can run, which an application with no languages need not wait for. -->
+		<WxKitStdCatalogs Condition="'@(_WxKitLanguage)' != '' or '$(WxKitStdCatalogs)' == 'all'" Directory="$(WxKitStdCatalogDirectory)" Languages="@(_WxKitLanguage)" All="$([System.String]::Equals('$(WxKitStdCatalogs)', 'all'))">
 			<Output TaskParameter="Catalogs" ItemName="EmbeddedResource" />
 		</WxKitStdCatalogs>
 	</Target>
