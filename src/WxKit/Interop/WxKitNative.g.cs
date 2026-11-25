@@ -3782,10 +3782,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* FrameCreateToolBar(WxkWindow* self, long style, int id, char* name, nuint nameLength);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Frame_DoGiveHelp")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void FrameDoGiveHelp(WxkWindow* self, char* text, nuint textLength, byte show);
-
 	[LibraryImport(Library, EntryPoint = "wxk_Frame_SetWindowModality")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void FrameSetWindowModality(WxkWindow* self, int modality);
@@ -12106,14 +12102,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkToolBarTool* ToolBarInsertStretchableSpace(WxkWindow* self, nuint position);
 
-	[LibraryImport(Library, EntryPoint = "wxk_ToolBar_OnLeftClick")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ToolBarOnLeftClick(WxkWindow* self, int toolId, byte toggleDown);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ToolBar_OnMouseEnter")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ToolBarOnMouseEnter(WxkWindow* self, int toolId);
-
 	[LibraryImport(Library, EntryPoint = "wxk_ToolBar_Realize")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ToolBarRealize(WxkWindow* self);
@@ -13806,10 +13794,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte WindowInheritsForegroundColour(WxkWindow* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Window_ShouldInheritColours")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte WindowShouldInheritColours(WxkWindow* self);
-
 	[LibraryImport(Library, EntryPoint = "wxk_Window_SetTransparent")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte WindowSetTransparent(WxkWindow* self, byte alpha);
@@ -13981,10 +13965,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Window_GetBorder_Long")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int WindowGetBorderLong(WxkWindow* self, long flags);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_InheritAttributes")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void WindowInheritAttributes(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Window_InitDialog")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

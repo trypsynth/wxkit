@@ -1180,7 +1180,6 @@ WXK_FUNCTION(wxk_Window*) wxk_Frame_new(wxk_Window* parent, int32_t id, const ch
 WXK_FUNCTION(void) wxk_Frame_SetMenuBar(wxk_Window* self, wxk_Window* menuBar) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_Frame_CreateStatusBar(wxk_Window* self, int32_t number, int64_t style, int32_t id, const char16_t* name, size_t nameLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_Frame_CreateToolBar(wxk_Window* self, int64_t style, int32_t id, const char16_t* name, size_t nameLength) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Frame_DoGiveHelp(wxk_Window* self, const char16_t* text, size_t textLength, uint8_t show) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Frame_SetWindowModality(wxk_Window* self, int32_t modality) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Frame_ProcessCommand(wxk_Window* self, int32_t id) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Frame_SetStatusText(wxk_Window* self, const char16_t* text, size_t textLength, int32_t number) WXK_NOEXCEPT;
@@ -3549,8 +3548,6 @@ WXK_FUNCTION(uint8_t) wxk_ToolBar_GetToolState(wxk_Window* self, int32_t toolId)
 WXK_FUNCTION(wxk_ToolBarTool*) wxk_ToolBar_InsertControl(wxk_Window* self, size_t position, wxk_Window* control, const char16_t* label, size_t labelLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_ToolBarTool*) wxk_ToolBar_InsertSeparator(wxk_Window* self, size_t position) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_ToolBarTool*) wxk_ToolBar_InsertStretchableSpace(wxk_Window* self, size_t position) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_ToolBar_OnLeftClick(wxk_Window* self, int32_t toolId, uint8_t toggleDown) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_ToolBar_OnMouseEnter(wxk_Window* self, int32_t toolId) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ToolBar_Realize(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ToolBar_SetDropdownMenu(wxk_Window* self, int32_t id, wxk_Menu* menu) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ToolBar_SetToolDisabledBitmap(wxk_Window* self, int32_t id, const wxk_Object* bitmap) WXK_NOEXCEPT;
@@ -4016,7 +4013,6 @@ WXK_FUNCTION(void) wxk_Window_SetOwnFont(wxk_Window* self, const wxk_Object* fon
 WXK_FUNCTION(void) wxk_Window_SetOwnForegroundColour(wxk_Window* self, wxk_Colour color) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_UseForegroundColour(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_InheritsForegroundColour(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Window_ShouldInheritColours(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_SetTransparent(wxk_Window* self, uint8_t alpha) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_EvtHandler*) wxk_Window_PopEventHandler(wxk_Window* self, uint8_t deleteHandler) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_PushEventHandler(wxk_Window* self, wxk_EvtHandler* handler) WXK_NOEXCEPT;
@@ -4060,7 +4056,6 @@ WXK_FUNCTION(uint8_t) wxk_Window_EnableTouchEvents(wxk_Window* self, int32_t eve
 WXK_FUNCTION(int32_t) wxk_Window_HitTest_IntInt(wxk_Window* self, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Window_HitTest_Point(wxk_Window* self, wxk_Point point) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Window_GetBorder_Long(wxk_Window* self, int64_t flags) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Window_InheritAttributes(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_InitDialog(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_OnInternalIdle(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_RegisterHotKey(wxk_Window* self, int32_t hotkeyId, int32_t modifiers, int32_t virtualKeyCode) WXK_NOEXCEPT;

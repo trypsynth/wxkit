@@ -108,14 +108,6 @@ WXK_FUNCTION(wxk_ToolBarTool*) wxk_ToolBar_InsertStretchableSpace(wxk_Window* se
 	return wxk::Guard<wxk_ToolBarTool*>(nullptr, [&]() -> wxk_ToolBarTool* { return wxk::Wrap(static_cast<wxToolBarToolBase*>(static_cast<wxToolBar*>(wxk::Unwrap(self))->InsertStretchableSpace(position))); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ToolBar_OnLeftClick(wxk_Window* self, int32_t toolId, uint8_t toggleDown) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxToolBar*>(wxk::Unwrap(self))->OnLeftClick(static_cast<int>(toolId), toggleDown != 0)) ? 1 : 0; });
-}
-
-WXK_FUNCTION(void) wxk_ToolBar_OnMouseEnter(wxk_Window* self, int32_t toolId) noexcept {
-	wxk::Guard([&] { static_cast<wxToolBar*>(wxk::Unwrap(self))->OnMouseEnter(static_cast<int>(toolId)); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_ToolBar_Realize(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxToolBar*>(wxk::Unwrap(self))->Realize()) ? 1 : 0; });
 }

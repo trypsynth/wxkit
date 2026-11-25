@@ -203,12 +203,6 @@ public unsafe partial class ToolBar : Control {
 		}
 	}
 
-	/// <summary>Called when the user clicks on a tool with the left mouse button.</summary>
-	public bool OnLeftClick(int toolId, bool toggleDown) => WxKitNative.ToolBarOnLeftClick(Native, toolId, toggleDown ? (byte)1 : (byte)0) != 0;
-
-	/// <summary>This is called when the mouse cursor moves into a tool or out of the toolbar.</summary>
-	public void OnMouseEnter(int toolId) => WxKitNative.ToolBarOnMouseEnter(Native, toolId);
-
 	/// <summary>This function should be called after you have added tools.</summary>
 	public bool Realize() => WxKitNative.ToolBarRealize(Native) != 0;
 

@@ -9,6 +9,8 @@ internal static class Windows {
 		tweaks.Class("wxMenuItem").Handwritten().Internal("GetId");
 		tweaks.Class("wxWindow", window => window
 			.NoConstructors()
+			// wxWidgets calls these itself as it makes a window, and a class overrides the first.
+			.Ignore("ShouldInheritColours", "InheritAttributes")
 			// WxKit tracks the sizer a window owns, gives the native handle as NativeHandle, keeps
 			// the validator it was given, since the window holds a copy, and gives a window its
 			// accessible object through the hand-written Accessible. A name for screen readers, and a
@@ -74,6 +76,8 @@ internal static class Windows {
 		// CreateStatusBar and CreateToolBar call, for a derived frame to override, not to call.
 		// Null removes the status bar or the toolbar.
 		tweaks.Class("wxFrame", frame => frame
+			// The frame calls it itself to show a menu item's help in the status bar.
+			.Ignore("DoGiveHelp")
 			.NullableParameter("SetStatusBar", "statusBar")
 			.NullableParameter("SetToolBar", "toolBar")
 			.ParameterName("SetStatusWidths", "widths_field", "widths")

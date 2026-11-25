@@ -441,10 +441,6 @@ WXK_FUNCTION(uint8_t) wxk_Window_InheritsForegroundColour(wxk_Window* self) noex
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->InheritsForegroundColour()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_Window_ShouldInheritColours(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->ShouldInheritColours()) ? 1 : 0; });
-}
-
 WXK_FUNCTION(uint8_t) wxk_Window_SetTransparent(wxk_Window* self, uint8_t alpha) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->SetTransparent(static_cast<unsigned char>(alpha))) ? 1 : 0; });
 }
@@ -615,10 +611,6 @@ WXK_FUNCTION(int32_t) wxk_Window_HitTest_Point(wxk_Window* self, wxk_Point point
 
 WXK_FUNCTION(int32_t) wxk_Window_GetBorder_Long(wxk_Window* self, int64_t flags) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxWindow*>(wxk::Unwrap(self))->GetBorder(static_cast<long>(flags))); });
-}
-
-WXK_FUNCTION(void) wxk_Window_InheritAttributes(wxk_Window* self) noexcept {
-	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->InheritAttributes(); });
 }
 
 WXK_FUNCTION(void) wxk_Window_InitDialog(wxk_Window* self) noexcept {

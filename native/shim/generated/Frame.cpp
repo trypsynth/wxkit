@@ -20,10 +20,6 @@ WXK_FUNCTION(wxk_Window*) wxk_Frame_CreateToolBar(wxk_Window* self, int64_t styl
 	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(static_cast<wxFrame*>(wxk::Unwrap(self))->CreateToolBar(static_cast<long>(style), static_cast<int>(id), (name != nullptr ? wxk::FromUtf16(name, nameLength) : wxString(wxToolBarNameStr))))); });
 }
 
-WXK_FUNCTION(void) wxk_Frame_DoGiveHelp(wxk_Window* self, const char16_t* text, size_t textLength, uint8_t show) noexcept {
-	wxk::Guard([&] { static_cast<wxFrame*>(wxk::Unwrap(self))->DoGiveHelp(wxk::FromUtf16(text, textLength), show != 0); });
-}
-
 WXK_FUNCTION(void) wxk_Frame_SetWindowModality(wxk_Window* self, int32_t modality) noexcept {
 	wxk::Guard([&] { static_cast<wxFrame*>(wxk::Unwrap(self))->SetWindowModality(static_cast<wxWindowMode>(modality)); });
 }

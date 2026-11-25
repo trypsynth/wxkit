@@ -94,6 +94,8 @@ internal static class Controls {
 		// EVT_MENU is EVT_TOOL, which ToolClicked is, and a Menu event would hide the Menu class.
 		tweaks.Class("wxToolBar", toolBar => toolBar
 			.IgnoreEvent("EVT_MENU")
+			// The toolbar calls these itself when a tool is clicked or the mouse reaches one.
+			.Ignore("OnLeftClick", "OnMouseEnter")
 			.Internal("DeleteTool", "DeleteToolByPos", "ClearTools")
 			.Ignore("CreateTool", "CreateSeparator", "RemoveTool", "GetToolClientData", "SetToolClientData")
 			.Rename("GetToolByPos", "GetToolByPosition")

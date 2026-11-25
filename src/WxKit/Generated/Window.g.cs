@@ -774,9 +774,6 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>Compatibility function called by GetMinSizeFromKnownDirection().</summary>
 	public bool InformFirstDirection(int direction, int size, int availableOtherDir) => WxKitNative.WindowInformFirstDirection(Native, direction, size, availableOtherDir) != 0;
 
-	/// <summary>This function is (or should be, in case of custom controls) called during window creation to intelligently set up the window visual attributes, that is the font and the foreground and background colours.</summary>
-	public void InheritAttributes() => WxKitNative.WindowInheritAttributes(Native);
-
 	/// <summary>Return true if this window inherits the background colour from its parent.</summary>
 	public bool InheritsBackgroundColor() => WxKitNative.WindowInheritsBackgroundColour(Native) != 0;
 
@@ -1010,9 +1007,6 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>See SetWindowStyleFlag() for more info.</summary>
 	public void SetWindowStyle(long style) => WxKitNative.WindowSetWindowStyle(Native, style);
-
-	/// <summary>Return true from here to allow the colours of this window to be changed by InheritAttributes().</summary>
-	public bool ShouldInheritColors() => WxKitNative.WindowShouldInheritColours(Native) != 0;
 
 	/// <summary>Shows or hides the window.</summary>
 	public bool Show(bool show = true) => WxKitNative.WindowShow(Native, show ? (byte)1 : (byte)0) != 0;

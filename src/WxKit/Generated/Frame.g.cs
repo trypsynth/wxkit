@@ -69,14 +69,6 @@ public unsafe partial class Frame : TopLevelWindow {
 		}
 	}
 
-	/// <summary>Method used to show help string of the selected menu toolbar item.</summary>
-	public void DoGiveHelp(string text, bool show) {
-		ArgumentNullException.ThrowIfNull(text);
-		fixed (char* textText = text) {
-			WxKitNative.FrameDoGiveHelp(Native, textText, NativeString.Length(text), show ? (byte)1 : (byte)0);
-		}
-	}
-
 	public void PopStatusText(int number = 0) => WxKitNative.FramePopStatusText(Native, number);
 
 	/// <summary>Simulate a menu command.</summary>

@@ -2183,7 +2183,6 @@ class WxKit.Frame : TopLevelWindow
     event EventHandler<MenuEvent>? MenuHighlighted
     event EventHandler<MenuEvent>? MenuOpened
     int StatusBarPane { get; set; }
-    void DoGiveHelp(string text, bool show)
     void PopStatusText(int number = 0)
     void PushStatusText(string text, int number = 0)
     void SetStatusText(string text, int number = 0)
@@ -8226,7 +8225,6 @@ class WxKit.ToolBar : Control
     bool DeleteToolByPosition(int position)
     bool GetToolEnabled(int toolId)
     bool GetToolState(int toolId)
-    bool OnLeftClick(int toolId, bool toggleDown)
     bool Realize()
     bool SetDropdownMenu(int id, Menu menu)
     event EventHandler<CommandEvent>? ToolClicked
@@ -8243,7 +8241,6 @@ class WxKit.ToolBar : Control
     string GetToolShortHelp(int toolId)
     void ClearTools()
     void EnableTool(int toolId, bool enable)
-    void OnMouseEnter(int toolId)
     void SetMargins(int x, int y)
     void SetToolDisabledBitmap(int id, Bitmap bitmap)
     void SetToolLongHelp(int toolId, string helpString)
@@ -8878,7 +8875,6 @@ class WxKit.Window : EvtHandler
     bool ScrollPages(int pages)
     bool SetInitialSize(Size? size = null)
     bool SetTransparent(byte alpha)
-    bool ShouldInheritColors()
     bool Show(bool show = true)
     bool ShowWithEffect(ShowEffect effect, int timeout = 0)
     bool ThemeEnabled { get; set; }
@@ -8985,7 +8981,6 @@ class WxKit.Window : EvtHandler
     void Fit()
     void FitInside()
     void Freeze()
-    void InheritAttributes()
     void InitDialog()
     void InvalidateBestSize()
     void Lower()
