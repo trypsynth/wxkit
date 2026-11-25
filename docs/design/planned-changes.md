@@ -6,9 +6,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 
 ## The generator's naming
 
-- Words that run together, which the word tables don't split:
-  - Enum members, such as `ListCtrlStyle.Hrules` and `Autoarrange`, `ComboBoxStyle.TeProcessEnter`, `DatePickerCtrlStyle.Allownone`, `StockCursor.Sizenesw`, `SystemMetric.DclickMsec`, `FontWeight.Extrabold`, `FontEncoding.Macarabic`, and `ToolBarStyle.Nodivider`.
-  - Paper sizes whose leading number lost all but its first digit, such as `One0x11` for 10 by 11, and `PrintBin`'s `Onlyone` and `Largefmt`.
 - British spellings the respelling table misses: `Cancelled` and `Cancelling` become `Canceled` and `Canceling`, as `SearchCtrl.SearchCanceled` has it, `ConvertToGreyscale` becomes `ConvertToGrayscale`, and `Colourise` becomes `Colorize`.
 - One spelling for one word: `ScrollBar` rather than `Scrollbar`, as the class is spelled, `FileName` rather than `Filename`, as .NET spells it, `Ok` rather than `OK`, as `StandardId.Ok` is, and `AutoScroll` rather than `Autoscroll`.
 - Abbreviations .NET spells out: `GridSizer.Cols`, `HGap`, and `VGap`, `PrintData.NoCopies`, which becomes `Copies`, `Slider.TickFreq`, `DC.MapMode`, `DC.SizeMM`, `DataViewColumn.IsResizeable`, the `FromPhys` and `ToPhys` members, and the calendar's `Fg` and `Bg` colors.

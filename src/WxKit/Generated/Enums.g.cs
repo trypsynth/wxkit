@@ -430,9 +430,9 @@ public enum BitmapType {
 	/// <summary>Wraps wxBITMAP_TYPE_TGA.</summary>
 	Tga = 29,
 	/// <summary>Wraps wxBITMAP_TYPE_MACCURSOR.</summary>
-	Maccursor = 30,
+	MacCursor = 30,
 	/// <summary>Wraps wxBITMAP_TYPE_MACCURSOR_RESOURCE.</summary>
-	MaccursorResource = 31,
+	MacCursorResource = 31,
 	/// <summary>Wraps wxBITMAP_TYPE_WEBP.</summary>
 	Webp = 32,
 	/// <summary>Wraps wxBITMAP_TYPE_WEBP_RESOURCE.</summary>
@@ -478,11 +478,11 @@ public enum BrushStyle {
 	/// <summary>Uses a bitmap as a stipple. Wraps wxBRUSHSTYLE_STIPPLE.</summary>
 	Stipple = 110,
 	/// <summary>Backward diagonal hatch. Wraps wxBRUSHSTYLE_BDIAGONAL_HATCH.</summary>
-	BdiagonalHatch = 111,
+	BackwardDiagonalHatch = 111,
 	/// <summary>Cross-diagonal hatch. Wraps wxBRUSHSTYLE_CROSSDIAG_HATCH.</summary>
-	CrossdiagHatch = 112,
+	CrossDiagonalHatch = 112,
 	/// <summary>Forward diagonal hatch. Wraps wxBRUSHSTYLE_FDIAGONAL_HATCH.</summary>
-	FdiagonalHatch = 113,
+	ForwardDiagonalHatch = 113,
 	/// <summary>Cross hatch. Wraps wxBRUSHSTYLE_CROSS_HATCH.</summary>
 	CrossHatch = 114,
 	/// <summary>Horizontal hatch. Wraps wxBRUSHSTYLE_HORIZONTAL_HATCH.</summary>
@@ -504,9 +504,9 @@ public enum CalendarHitTestResult {
 	/// <summary>Hit on a day in the calendar. Wraps wxCAL_HITTEST_DAY.</summary>
 	Day = 2,
 	/// <summary>Hit on next month arrow (in alternate month selector mode). Wraps wxCAL_HITTEST_INCMONTH.</summary>
-	Incmonth = 3,
+	IncrementMonth = 3,
 	/// <summary>Hit on previous month arrow (in alternate month selector mode). Wraps wxCAL_HITTEST_DECMONTH.</summary>
-	Decmonth = 4,
+	DecrementMonth = 4,
 	/// <summary>Hit on surrounding week of previous/next month (if shown). Wraps wxCAL_HITTEST_SURROUNDING_WEEK.</summary>
 	SurroundingWeek = 5,
 	/// <summary>Hit on week of the year number (if shown). Wraps wxCAL_HITTEST_WEEK.</summary>
@@ -785,93 +785,93 @@ public enum FontEncoding {
 	/// <summary>UTF-32 Little Endian Unicode encoding. Wraps wxFONTENCODING_UTF32LE.</summary>
 	Utf32le = 48,
 	/// <summary>Roman; Western European (Mac). Wraps wxFONTENCODING_MACROMAN.</summary>
-	Macroman = 49,
+	MacRoman = 49,
 	/// <summary>Japanese (Mac). Wraps wxFONTENCODING_MACJAPANESE.</summary>
-	Macjapanese = 50,
+	MacJapanese = 50,
 	/// <summary>Traditional Chinese (Big5, Mac). Wraps wxFONTENCODING_MACCHINESETRAD.</summary>
-	Macchinesetrad = 51,
+	MacChineseTraditional = 51,
 	/// <summary>Korean (Mac). Wraps wxFONTENCODING_MACKOREAN.</summary>
-	Mackorean = 52,
+	MacKorean = 52,
 	/// <summary>Arabic (Mac). Wraps wxFONTENCODING_MACARABIC.</summary>
-	Macarabic = 53,
+	MacArabic = 53,
 	/// <summary>Hebrew (Mac). Wraps wxFONTENCODING_MACHEBREW.</summary>
-	Machebrew = 54,
+	MacHebrew = 54,
 	/// <summary>Greek (Mac). Wraps wxFONTENCODING_MACGREEK.</summary>
-	Macgreek = 55,
+	MacGreek = 55,
 	/// <summary>Cyrillic (Mac). Wraps wxFONTENCODING_MACCYRILLIC.</summary>
-	Maccyrillic = 56,
+	MacCyrillic = 56,
 	/// <summary>Devanagari (Mac). Wraps wxFONTENCODING_MACDEVANAGARI.</summary>
-	Macdevanagari = 57,
+	MacDevanagari = 57,
 	/// <summary>Gurmukhi (Mac). Wraps wxFONTENCODING_MACGURMUKHI.</summary>
-	Macgurmukhi = 58,
+	MacGurmukhi = 58,
 	/// <summary>Gujarati (Mac). Wraps wxFONTENCODING_MACGUJARATI.</summary>
-	Macgujarati = 59,
+	MacGujarati = 59,
 	/// <summary>Oriya (Mac). Wraps wxFONTENCODING_MACORIYA.</summary>
-	Macoriya = 60,
+	MacOriya = 60,
 	/// <summary>Bengali (Mac). Wraps wxFONTENCODING_MACBENGALI.</summary>
-	Macbengali = 61,
+	MacBengali = 61,
 	/// <summary>Tamil (Mac). Wraps wxFONTENCODING_MACTAMIL.</summary>
-	Mactamil = 62,
+	MacTamil = 62,
 	/// <summary>Telugu (Mac). Wraps wxFONTENCODING_MACTELUGU.</summary>
-	Mactelugu = 63,
+	MacTelugu = 63,
 	/// <summary>Kannada (Mac). Wraps wxFONTENCODING_MACKANNADA.</summary>
-	Mackannada = 64,
+	MacKannada = 64,
 	/// <summary>Malajalam (Mac). Wraps wxFONTENCODING_MACMALAJALAM.</summary>
-	Macmalajalam = 65,
+	MacMalayalam = 65,
 	/// <summary>Sinhalese (Mac). Wraps wxFONTENCODING_MACSINHALESE.</summary>
-	Macsinhalese = 66,
+	MacSinhalese = 66,
 	/// <summary>Burmese (Mac). Wraps wxFONTENCODING_MACBURMESE.</summary>
-	Macburmese = 67,
+	MacBurmese = 67,
 	/// <summary>Khmer (Mac). Wraps wxFONTENCODING_MACKHMER.</summary>
-	Mackhmer = 68,
+	MacKhmer = 68,
 	/// <summary>Thai (Mac). Wraps wxFONTENCODING_MACTHAI.</summary>
-	Macthai = 69,
+	MacThai = 69,
 	/// <summary>Laotian (Mac). Wraps wxFONTENCODING_MACLAOTIAN.</summary>
-	Maclaotian = 70,
+	MacLaotian = 70,
 	/// <summary>Georgian (Mac). Wraps wxFONTENCODING_MACGEORGIAN.</summary>
-	Macgeorgian = 71,
+	MacGeorgian = 71,
 	/// <summary>Armenian (Mac). Wraps wxFONTENCODING_MACARMENIAN.</summary>
-	Macarmenian = 72,
+	MacArmenian = 72,
 	/// <summary>Simplified Chinese (GB 2312, Mac). Wraps wxFONTENCODING_MACCHINESESIMP.</summary>
-	Macchinesesimp = 73,
+	MacChineseSimplified = 73,
 	/// <summary>Tibetan (Mac). Wraps wxFONTENCODING_MACTIBETAN.</summary>
-	Mactibetan = 74,
+	MacTibetan = 74,
 	/// <summary>Mongolian (Mac). Wraps wxFONTENCODING_MACMONGOLIAN.</summary>
-	Macmongolian = 75,
+	MacMongolian = 75,
 	/// <summary>Ethiopic (Mac). Wraps wxFONTENCODING_MACETHIOPIC.</summary>
-	Macethiopic = 76,
+	MacEthiopic = 76,
 	/// <summary>Latin 2; Central European (Mac). Wraps wxFONTENCODING_MACCENTRALEUR.</summary>
-	Maccentraleur = 77,
+	MacCentralEuropean = 77,
 	/// <summary>Vietnamese (Mac). Wraps wxFONTENCODING_MACVIETNAMESE.</summary>
-	Macvietnamese = 78,
+	MacVietnamese = 78,
 	/// <summary>Arabic (Mac). Wraps wxFONTENCODING_MACARABICEXT.</summary>
-	Macarabicext = 79,
+	MacArabicExt = 79,
 	/// <summary>Symbol (Mac). Wraps wxFONTENCODING_MACSYMBOL.</summary>
-	Macsymbol = 80,
+	MacSymbol = 80,
 	/// <summary>Dingbats (Mac). Wraps wxFONTENCODING_MACDINGBATS.</summary>
-	Macdingbats = 81,
+	MacDingbats = 81,
 	/// <summary>Turkish (Mac). Wraps wxFONTENCODING_MACTURKISH.</summary>
-	Macturkish = 82,
+	MacTurkish = 82,
 	/// <summary>Croatian (Mac). Wraps wxFONTENCODING_MACCROATIAN.</summary>
-	Maccroatian = 83,
+	MacCroatian = 83,
 	/// <summary>Icelandic (Mac). Wraps wxFONTENCODING_MACICELANDIC.</summary>
-	Macicelandic = 84,
+	MacIcelandic = 84,
 	/// <summary>Romanian (Mac). Wraps wxFONTENCODING_MACROMANIAN.</summary>
-	Macromanian = 85,
+	MacRomanian = 85,
 	/// <summary>Celtic (Mac). Wraps wxFONTENCODING_MACCELTIC.</summary>
-	Macceltic = 86,
+	MacCeltic = 86,
 	/// <summary>Gaelic (Mac). Wraps wxFONTENCODING_MACGAELIC.</summary>
-	Macgaelic = 87,
+	MacGaelic = 87,
 	/// <summary>Wraps wxFONTENCODING_MACKEYBOARD.</summary>
-	Mackeyboard = 88,
+	MacKeyboard = 88,
 	/// <summary>ISO-2022-JP JIS encoding. Wraps wxFONTENCODING_ISO2022_JP.</summary>
 	Iso2022Jp = 89,
 	/// <summary>Highest enumerated encoding value. Wraps wxFONTENCODING_MAX.</summary>
 	Max = 90,
 	/// <summary>Wraps wxFONTENCODING_MACMIN.</summary>
-	Macmin = 49,
+	MacMin = 49,
 	/// <summary>Wraps wxFONTENCODING_MACMAX.</summary>
-	Macmax = 88,
+	MacMax = 88,
 	/// <summary>Simplified Chinese. Wraps wxFONTENCODING_GB2312.</summary>
 	Gb2312 = 28,
 	/// <summary>Traditional Chinese. Wraps wxFONTENCODING_BIG5.</summary>
@@ -945,7 +945,7 @@ public enum FontWeight {
 	/// <summary>Thin font (weight = 100). Wraps wxFONTWEIGHT_THIN.</summary>
 	Thin = 100,
 	/// <summary>Extra Light (Ultra Light) font (weight = 200). Wraps wxFONTWEIGHT_EXTRALIGHT.</summary>
-	Extralight = 200,
+	ExtraLight = 200,
 	/// <summary>Light font (weight = 300). Wraps wxFONTWEIGHT_LIGHT.</summary>
 	Light = 300,
 	/// <summary>Normal font (weight = 400). Wraps wxFONTWEIGHT_NORMAL.</summary>
@@ -953,15 +953,15 @@ public enum FontWeight {
 	/// <summary>Medium font (weight = 500). Wraps wxFONTWEIGHT_MEDIUM.</summary>
 	Medium = 500,
 	/// <summary>Semi Bold (Demi Bold) font (weight = 600). Wraps wxFONTWEIGHT_SEMIBOLD.</summary>
-	Semibold = 600,
+	SemiBold = 600,
 	/// <summary>Bold font (weight = 700). Wraps wxFONTWEIGHT_BOLD.</summary>
 	Bold = 700,
 	/// <summary>Extra Bold (Ultra Bold) font (weight = 800). Wraps wxFONTWEIGHT_EXTRABOLD.</summary>
-	Extrabold = 800,
+	ExtraBold = 800,
 	/// <summary>Heavy (Black) font (weight = 900). Wraps wxFONTWEIGHT_HEAVY.</summary>
 	Heavy = 900,
 	/// <summary>Extra Heavy font (weight = 1000). Wraps wxFONTWEIGHT_EXTRAHEAVY.</summary>
-	Extraheavy = 1000,
+	ExtraHeavy = 1000,
 	/// <summary>Wraps wxFONTWEIGHT_MAX.</summary>
 	Max = 1000,
 }
@@ -1475,7 +1475,7 @@ public enum MappingMode {
 	/// <summary>Each logical unit is 1 millimeter. Wraps wxMM_METRIC.</summary>
 	Metric = 2,
 	/// <summary>Each logical unit is 1/10 of a millimeter. Wraps wxMM_LOMETRIC.</summary>
-	Lometric = 3,
+	LowMetric = 3,
 	/// <summary>Each logical unit is 1/20 of a "printer point", or 1/1440 of an inch (also known as "twip"). Wraps wxMM_TWIPS.</summary>
 	Twips = 4,
 	/// <summary>Each logical unit is a "printer point" i.e. 1/72 of an inch. Wraps wxMM_POINTS.</summary>
@@ -1570,17 +1570,17 @@ public enum Origin {
 /// <summary>Wraps wxPaperSize.</summary>
 public enum PaperKind {
 	/// <summary>10 x 11 in. Wraps wxPAPER_10X11.</summary>
-	One0x11 = 45,
+	Standard10x11 = 45,
 	/// <summary>10-by-14-inch sheet. Wraps wxPAPER_10X14.</summary>
-	One0x14 = 19,
+	Standard10x14 = 19,
 	/// <summary>11-by-17-inch sheet. Wraps wxPAPER_11X17.</summary>
-	One1x17 = 20,
+	Standard11x17 = 20,
 	/// <summary>12 x 11 in. Wraps wxPAPER_12X11.</summary>
-	One2x11 = 88,
+	Standard12x11 = 88,
 	/// <summary>15 x 11 in. Wraps wxPAPER_15X11.</summary>
-	One5x11 = 46,
+	Standard15x11 = 46,
 	/// <summary>9 x 11 in. Wraps wxPAPER_9X11.</summary>
-	NineX11 = 44,
+	Standard9x11 = 44,
 	/// <summary>A2 420 x 594 mm. Wraps wxPAPER_A2.</summary>
 	A2 = 64,
 	/// <summary>A3 sheet, 297 by 420 millimeters. Wraps wxPAPER_A3.</summary>
@@ -1596,7 +1596,7 @@ public enum PaperKind {
 	/// <summary>A4 Sheet, 210 by 297 millimeters. Wraps wxPAPER_A4.</summary>
 	A4 = 3,
 	/// <summary>A4 small sheet, 210 by 297 millimeters. Wraps wxPAPER_A4SMALL.</summary>
-	A4small = 13,
+	A4Small = 13,
 	/// <summary>A4 Extra 9.27 x 12.69 in. Wraps wxPAPER_A4_EXTRA.</summary>
 	A4Extra = 51,
 	/// <summary>A4 Plus 210 x 330 mm. Wraps wxPAPER_A4_PLUS.</summary>
@@ -1638,13 +1638,13 @@ public enum PaperKind {
 	/// <summary>SuperB/SuperB/A3 305 x 487 mm. Wraps wxPAPER_B_PLUS.</summary>
 	BPlus = 56,
 	/// <summary>C Sheet, 17 by 22 inches. Wraps wxPAPER_CSHEET.</summary>
-	Csheet = 4,
+	CSheet = 4,
 	/// <summary>Japanese Double Postcard 200 x 148 mm. Wraps wxPAPER_DBL_JAPANESE_POSTCARD.</summary>
 	DblJapanesePostcard = 67,
 	/// <summary>Double Japanese Postcard Rotated 148 x 200 mm. Wraps wxPAPER_DBL_JAPANESE_POSTCARD_ROTATED.</summary>
 	DblJapanesePostcardRotated = 80,
 	/// <summary>D Sheet, 22 by 34 inches. Wraps wxPAPER_DSHEET.</summary>
-	Dsheet = 5,
+	DSheet = 5,
 	/// <summary>#10 Envelope, 4 1/8 by 9 1/2 inches. Wraps wxPAPER_ENV_10.</summary>
 	Env10 = 23,
 	/// <summary>#11 Envelope, 4 1/2 by 10 3/8 inches. Wraps wxPAPER_ENV_11.</summary>
@@ -1682,7 +1682,7 @@ public enum PaperKind {
 	/// <summary>6 3/4 Envelope, 3 5/8 by 6 1/2 inches. Wraps wxPAPER_ENV_PERSONAL.</summary>
 	EnvPersonal = 38,
 	/// <summary>E Sheet, 34 by 44 inches. Wraps wxPAPER_ESHEET.</summary>
-	Esheet = 6,
+	ESheet = 6,
 	/// <summary>Executive, 7 1/4 by 10 1/2 inches. Wraps wxPAPER_EXECUTIVE.</summary>
 	Executive = 11,
 	/// <summary>German Legal Fanfold, 8 1/2 by 13 inches. Wraps wxPAPER_FANFOLD_LGL_GERMAN.</summary>
@@ -1728,7 +1728,7 @@ public enum PaperKind {
 	/// <summary>Letter, 8 1/2 by 11 inches. Wraps wxPAPER_LETTER.</summary>
 	Letter = 1,
 	/// <summary>Letter Small, 8 1/2 by 11 inches. Wraps wxPAPER_LETTERSMALL.</summary>
-	Lettersmall = 7,
+	LetterSmall = 7,
 	/// <summary>Letter Extra 9.5 x 12 in. Wraps wxPAPER_LETTER_EXTRA.</summary>
 	LetterExtra = 48,
 	/// <summary>Letter Extra Transverse 9.5 x 12 in. Wraps wxPAPER_LETTER_EXTRA_TRANSVERSE.</summary>
@@ -1750,9 +1750,9 @@ public enum PaperKind {
 	/// <summary>PRC 32K 97 x 151 mm. Wraps wxPAPER_P32K.</summary>
 	P32k = 92,
 	/// <summary>PRC 32K(Big) 97 x 151 mm. Wraps wxPAPER_P32KBIG.</summary>
-	P32kbig = 93,
+	P32kBig = 93,
 	/// <summary>PRC 32K(Big) Rotated. Wraps wxPAPER_P32KBIG_ROTATED.</summary>
-	P32kbigRotated = 106,
+	P32kBigRotated = 106,
 	/// <summary>PRC 32K Rotated. Wraps wxPAPER_P32K_ROTATED.</summary>
 	P32kRotated = 105,
 	/// <summary>PRC Envelope #1 102 x 165 mm. Wraps wxPAPER_PENV_1.</summary>
@@ -1860,11 +1860,11 @@ public enum PenStyle {
 	/// <summary>Use the stipple bitmap. Wraps wxPENSTYLE_STIPPLE.</summary>
 	Stipple = 110,
 	/// <summary>Backward diagonal hatch. Wraps wxPENSTYLE_BDIAGONAL_HATCH.</summary>
-	BdiagonalHatch = 111,
+	BackwardDiagonalHatch = 111,
 	/// <summary>Cross-diagonal hatch. Wraps wxPENSTYLE_CROSSDIAG_HATCH.</summary>
-	CrossdiagHatch = 112,
+	CrossDiagonalHatch = 112,
 	/// <summary>Forward diagonal hatch. Wraps wxPENSTYLE_FDIAGONAL_HATCH.</summary>
-	FdiagonalHatch = 113,
+	ForwardDiagonalHatch = 113,
 	/// <summary>Cross hatch. Wraps wxPENSTYLE_CROSS_HATCH.</summary>
 	CrossHatch = 114,
 	/// <summary>Horizontal hatch. Wraps wxPENSTYLE_HORIZONTAL_HATCH.</summary>
@@ -1882,7 +1882,7 @@ public enum PrintBin {
 	/// <summary>Wraps wxPRINTBIN_DEFAULT.</summary>
 	Default = 0,
 	/// <summary>Wraps wxPRINTBIN_ONLYONE.</summary>
-	Onlyone = 1,
+	OnlyOne = 1,
 	/// <summary>Wraps wxPRINTBIN_LOWER.</summary>
 	Lower = 2,
 	/// <summary>Wraps wxPRINTBIN_MIDDLE.</summary>
@@ -1892,21 +1892,21 @@ public enum PrintBin {
 	/// <summary>Wraps wxPRINTBIN_ENVELOPE.</summary>
 	Envelope = 5,
 	/// <summary>Wraps wxPRINTBIN_ENVMANUAL.</summary>
-	Envmanual = 6,
+	EnvelopeManual = 6,
 	/// <summary>Wraps wxPRINTBIN_AUTO.</summary>
 	Auto = 7,
 	/// <summary>Wraps wxPRINTBIN_TRACTOR.</summary>
 	Tractor = 8,
 	/// <summary>Wraps wxPRINTBIN_SMALLFMT.</summary>
-	Smallfmt = 9,
+	SmallFormat = 9,
 	/// <summary>Wraps wxPRINTBIN_LARGEFMT.</summary>
-	Largefmt = 10,
+	LargeFormat = 10,
 	/// <summary>Wraps wxPRINTBIN_LARGECAPACITY.</summary>
-	Largecapacity = 11,
+	LargeCapacity = 11,
 	/// <summary>Wraps wxPRINTBIN_CASSETTE.</summary>
 	Cassette = 12,
 	/// <summary>Wraps wxPRINTBIN_FORMSOURCE.</summary>
-	Formsource = 13,
+	FormSource = 13,
 	/// <summary>Wraps wxPRINTBIN_USER.</summary>
 	User = 14,
 }
@@ -1994,11 +1994,11 @@ public enum PropertySheetStyle {
 	/// <summary>Wraps wxPROPSHEET_LISTBOOK.</summary>
 	Listbook = 16,
 	/// <summary>Wraps wxPROPSHEET_BUTTONTOOLBOOK.</summary>
-	Buttontoolbook = 32,
+	ButtonToolbook = 32,
 	/// <summary>Wraps wxPROPSHEET_TREEBOOK.</summary>
 	Treebook = 64,
 	/// <summary>Wraps wxPROPSHEET_SHRINKTOFIT.</summary>
-	Shrinktofit = 256,
+	ShrinkToFit = 256,
 }
 
 /// <summary>Wraps wxRasterOperationMode.</summary>
@@ -2162,7 +2162,7 @@ public enum StockCursor {
 	/// <summary>A hand cursor. Wraps wxCURSOR_HAND.</summary>
 	Hand = 6,
 	/// <summary>An I-beam cursor (vertical line). Wraps wxCURSOR_IBEAM.</summary>
-	Ibeam = 7,
+	IBeam = 7,
 	/// <summary>Represents a mouse with the left button depressed. Wraps wxCURSOR_LEFT_BUTTON.</summary>
 	LeftButton = 8,
 	/// <summary>A magnifier icon. Wraps wxCURSOR_MAGNIFIER.</summary>
@@ -2184,17 +2184,17 @@ public enum StockCursor {
 	/// <summary>Represents a mouse with the right button depressed. Wraps wxCURSOR_RIGHT_BUTTON.</summary>
 	RightButton = 17,
 	/// <summary>A sizing cursor pointing NE-SW. Wraps wxCURSOR_SIZENESW.</summary>
-	Sizenesw = 18,
+	SizeNesw = 18,
 	/// <summary>A sizing cursor pointing N-S. Wraps wxCURSOR_SIZENS.</summary>
-	Sizens = 19,
+	SizeNS = 19,
 	/// <summary>A sizing cursor pointing NW-SE. Wraps wxCURSOR_SIZENWSE.</summary>
-	Sizenwse = 20,
+	SizeNwse = 20,
 	/// <summary>A sizing cursor pointing W-E. Wraps wxCURSOR_SIZEWE.</summary>
-	Sizewe = 21,
+	SizeWE = 21,
 	/// <summary>A general sizing cursor. Wraps wxCURSOR_SIZING.</summary>
 	Sizing = 22,
 	/// <summary>A spraycan cursor. Wraps wxCURSOR_SPRAYCAN.</summary>
-	Spraycan = 23,
+	SprayCan = 23,
 	/// <summary>A wait cursor. Wraps wxCURSOR_WAIT.</summary>
 	Wait = 24,
 	/// <summary>A watch cursor. Wraps wxCURSOR_WATCH.</summary>
@@ -2288,7 +2288,7 @@ public enum SystemColor {
 	/// <summary>Synonym for wxSYS_COLOUR_BTNHIGHLIGHT. Wraps wxSYS_COLOUR_3DHILIGHT.</summary>
 	ThreeDhilight = 20,
 	/// <summary>Synonym for wxSYS_COLOUR_BTNFACE. Wraps wxSYS_COLOUR_FRAMEBK.</summary>
-	Framebk = 15,
+	FrameBackground = 15,
 }
 
 /// <summary>Wraps wxSystemFeature.</summary>
@@ -2332,9 +2332,9 @@ public enum SystemMetric {
 	/// <summary>Width or height of cursor in logical pixels. Wraps wxSYS_CURSOR_SIZE.</summary>
 	CursorSize = 5,
 	/// <summary>Width in pixels of rectangle within which two successive mouse clicks must fall to generate a double-click. Wraps wxSYS_DCLICK_X.</summary>
-	DclickX = 6,
+	DoubleClickX = 6,
 	/// <summary>Height in pixels of rectangle within which two successive mouse clicks must fall to generate a double-click. Wraps wxSYS_DCLICK_Y.</summary>
-	DclickY = 7,
+	DoubleClickY = 7,
 	/// <summary>Width in pixels of a rectangle centered on a drag point to allow for limited movement of the mouse pointer before a drag operation begins. Wraps wxSYS_DRAG_X.</summary>
 	DragX = 8,
 	/// <summary>Height in pixels of a rectangle centered on a drag point to allow for limited movement of the mouse pointer before a drag operation begins. Wraps wxSYS_DRAG_Y.</summary>
@@ -2348,31 +2348,31 @@ public enum SystemMetric {
 	/// <summary>Height of arrow bitmap on horizontal scrollbar. Wraps wxSYS_HSCROLL_ARROW_Y.</summary>
 	HorizontalScrollBarArrowY = 13,
 	/// <summary>Width of horizontal scrollbar thumb. Wraps wxSYS_HTHUMB_X.</summary>
-	HthumbX = 14,
+	HorizontalThumbX = 14,
 	/// <summary>The default width of an icon. Wraps wxSYS_ICON_X.</summary>
 	IconX = 15,
 	/// <summary>The default height of an icon. Wraps wxSYS_ICON_Y.</summary>
 	IconY = 16,
 	/// <summary>Width of a grid cell for items in large icon view, in pixels. Each item fits into a rectangle of this size when arranged. Wraps wxSYS_ICONSPACING_X.</summary>
-	IconspacingX = 17,
+	IconSpacingX = 17,
 	/// <summary>Height of a grid cell for items in large icon view, in pixels. Each item fits into a rectangle of this size when arranged. Wraps wxSYS_ICONSPACING_Y.</summary>
-	IconspacingY = 18,
+	IconSpacingY = 18,
 	/// <summary>Minimum width of a window. Wraps wxSYS_WINDOWMIN_X.</summary>
-	WindowminX = 19,
+	WindowMinX = 19,
 	/// <summary>Minimum height of a window. Wraps wxSYS_WINDOWMIN_Y.</summary>
-	WindowminY = 20,
+	WindowMinY = 20,
 	/// <summary>Width of the screen in pixels. Wraps wxSYS_SCREEN_X.</summary>
 	ScreenX = 21,
 	/// <summary>Height of the screen in pixels. Wraps wxSYS_SCREEN_Y.</summary>
 	ScreenY = 22,
 	/// <summary>Width of the window frame for a window with wxRESIZE_BORDER. Wraps wxSYS_FRAMESIZE_X.</summary>
-	FramesizeX = 23,
+	FrameSizeX = 23,
 	/// <summary>Height of the window frame for a window with wxRESIZE_BORDER. Wraps wxSYS_FRAMESIZE_Y.</summary>
-	FramesizeY = 24,
+	FrameSizeY = 24,
 	/// <summary>Recommended width of a small icon (in window captions, and small icon view). Wraps wxSYS_SMALLICON_X.</summary>
-	SmalliconX = 25,
+	SmallIconX = 25,
 	/// <summary>Recommended height of a small icon (in window captions, and small icon view). Wraps wxSYS_SMALLICON_Y.</summary>
-	SmalliconY = 26,
+	SmallIconY = 26,
 	/// <summary>Height of horizontal scrollbar in pixels. Wraps wxSYS_HSCROLL_Y.</summary>
 	HorizontalScrollBarY = 27,
 	/// <summary>Width of vertical scrollbar in pixels. Wraps wxSYS_VSCROLL_X.</summary>
@@ -2382,7 +2382,7 @@ public enum SystemMetric {
 	/// <summary>Height of arrow bitmap on a vertical scrollbar. Wraps wxSYS_VSCROLL_ARROW_Y.</summary>
 	VerticalScrollBarArrowY = 30,
 	/// <summary>Height of vertical scrollbar thumb. Wraps wxSYS_VTHUMB_Y.</summary>
-	VthumbY = 31,
+	VerticalThumbY = 31,
 	/// <summary>Height of normal caption area. Wraps wxSYS_CAPTION_Y.</summary>
 	CaptionY = 32,
 	/// <summary>Height of single-line menu bar. Wraps wxSYS_MENU_Y.</summary>
@@ -2390,13 +2390,13 @@ public enum SystemMetric {
 	/// <summary>1 if there is a network present, 0 otherwise. Wraps wxSYS_NETWORK_PRESENT.</summary>
 	NetworkPresent = 34,
 	/// <summary>1 if PenWindows is installed, 0 otherwise. Wraps wxSYS_PENWINDOWS_PRESENT.</summary>
-	PenwindowsPresent = 35,
+	PenWindowsPresent = 35,
 	/// <summary>Wraps wxSYS_SHOW_SOUNDS.</summary>
 	ShowSounds = 36,
 	/// <summary>Non-zero if the meanings of the left and right mouse buttons are swapped; zero otherwise. Wraps wxSYS_SWAP_BUTTONS.</summary>
 	SwapButtons = 37,
 	/// <summary>Maximal time, in milliseconds, which may pass between subsequent clicks for a double click to be generated. Wraps wxSYS_DCLICK_MSEC.</summary>
-	DclickMsec = 38,
+	DoubleClickMsec = 38,
 	/// <summary>Time, in milliseconds, for how long a blinking caret should stay visible during a single blink cycle before it disappears. Wraps wxSYS_CARET_ON_MSEC.</summary>
 	CaretOnMsec = 39,
 	/// <summary>Time, in milliseconds, for how long a blinking caret should stay invisible during a single blink cycle before it reappears. Wraps wxSYS_CARET_OFF_MSEC.</summary>
@@ -2466,7 +2466,7 @@ public enum TextValidatorStyle {
 	/// <summary>Use an exclude char list. Wraps wxFILTER_EXCLUDE_CHAR_LIST.</summary>
 	ExcludeCharList = 512,
 	/// <summary>Non-hexadecimal characters are filtered out. Wraps wxFILTER_XDIGITS.</summary>
-	Xdigits = 1024,
+	HexDigits = 1024,
 	/// <summary>A convenience flag for use with the other flags. Wraps wxFILTER_SPACE.</summary>
 	Space = 2048,
 }

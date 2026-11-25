@@ -459,9 +459,9 @@ class WxKit.BitmapComboBox : ComboBox
     void SetItemBitmap(int index, Bitmap bitmap)
 [Flags] enum WxKit.BitmapComboBoxStyle : long
     None = 0
+    ProcessEnter = 1024
     ReadOnly = 16
     Sort = 8
-    TeProcessEnter = 1024
 class WxKit.BitmapToggleButton : ToggleButton
     BitmapToggleButton(Window parent, Bitmap label, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
     bool Value { get; set; }
@@ -482,8 +482,8 @@ enum WxKit.BitmapType : int
     Invalid = 0
     Jpeg = 17
     JpegResource = 18
-    Maccursor = 30
-    MaccursorResource = 31
+    MacCursor = 30
+    MacCursorResource = 31
     Pcx = 21
     PcxResource = 22
     Pict = 23
@@ -557,11 +557,11 @@ class WxKit.Brush : NativeObject
     void SetColor(byte red, byte green, byte blue)
     void SetStipple(Bitmap bitmap)
 enum WxKit.BrushStyle : int
-    BdiagonalHatch = 111
+    BackwardDiagonalHatch = 111
+    CrossDiagonalHatch = 112
     CrossHatch = 114
-    CrossdiagHatch = 112
-    FdiagonalHatch = 113
     FirstHatch = 111
+    ForwardDiagonalHatch = 113
     HorizontalHatch = 115
     Invalid = -1
     LastHatch = 116
@@ -627,9 +627,9 @@ class WxKit.CalendarEvent : DateEvent
     WeekDay WeekDay { get; }
 enum WxKit.CalendarHitTestResult : int
     Day = 2
-    Decmonth = 4
+    DecrementMonth = 4
     Header = 1
-    Incmonth = 3
+    IncrementMonth = 3
     Nowhere = 0
     SurroundingWeek = 5
     Week = 6
@@ -690,8 +690,8 @@ class WxKit.Choice : Control
     void SetClientObject(int index, object? data)
     void SetString(int index, string text)
 [Flags] enum WxKit.ChoiceStyle : long
-    CbSort = 8
     None = 0
+    Sort = 8
 class WxKit.Choicebook : BookCtrlBase
     Choice? ChoiceCtrl { get; }
     Choicebook(Window parent, int id = -1, Point? position = null, Size? size = null, ChoicebookStyle style = ChoicebookStyle.None)
@@ -867,12 +867,12 @@ class WxKit.ComboBox : Control
     void Undo()
     void WriteText(string text)
 [Flags] enum WxKit.ComboBoxStyle : long
-    Dropdown = 32
+    DropDown = 32
     None = 0
+    ProcessEnter = 1024
     ReadOnly = 16
     Simple = 4
     Sort = 8
-    TeProcessEnter = 1024
 class WxKit.CommandEvent : Event
     bool IsChecked { get; }
     bool IsSelection { get; }
@@ -1336,17 +1336,17 @@ abstract class WxKit.DataViewVirtualListModel : DataViewModel
 class WxKit.DateEvent : CommandEvent
     DateTime? Date { get; }
 class WxKit.DatePickerCtrl : Control
-    DatePickerCtrl(Window parent, DateTime? date = null, int id = -1, Point? position = null, Size? size = null, DatePickerCtrlStyle style = DatePickerCtrlStyle.Showcentury)
+    DatePickerCtrl(Window parent, DateTime? date = null, int id = -1, Point? position = null, Size? size = null, DatePickerCtrlStyle style = DatePickerCtrlStyle.ShowCentury)
     DateTime? Value { get; set; }
     event EventHandler<DateEvent>? DateChanged
     void SetNullText(string text)
     void SetRange(DateTime? earliest, DateTime? latest)
 [Flags] enum WxKit.DatePickerCtrlStyle : long
-    Allownone = 8
+    AllowNone = 8
     Default = 0
-    Dropdown = 2
+    DropDown = 2
     None = 0
-    Showcentury = 4
+    ShowCentury = 4
     Spin = 1
 static class WxKit.Desktop
     static bool Open(string path)
@@ -2067,48 +2067,48 @@ enum WxKit.FontEncoding : int
     Johab = 40
     Koi8 = 17
     Koi8U = 18
-    Macarabic = 53
-    Macarabicext = 79
-    Macarmenian = 72
-    Macbengali = 61
-    Macburmese = 67
-    Macceltic = 86
-    Maccentraleur = 77
-    Macchinesesimp = 73
-    Macchinesetrad = 51
-    Maccroatian = 83
-    Maccyrillic = 56
-    Macdevanagari = 57
-    Macdingbats = 81
-    Macethiopic = 76
-    Macgaelic = 87
-    Macgeorgian = 71
-    Macgreek = 55
-    Macgujarati = 59
-    Macgurmukhi = 58
-    Machebrew = 54
-    Macicelandic = 84
-    Macjapanese = 50
-    Mackannada = 64
-    Mackeyboard = 88
-    Mackhmer = 68
-    Mackorean = 52
-    Maclaotian = 70
-    Macmalajalam = 65
-    Macmax = 88
-    Macmin = 49
-    Macmongolian = 75
-    Macoriya = 60
-    Macroman = 49
-    Macromanian = 85
-    Macsinhalese = 66
-    Macsymbol = 80
-    Mactamil = 62
-    Mactelugu = 63
-    Macthai = 69
-    Mactibetan = 74
-    Macturkish = 82
-    Macvietnamese = 78
+    MacArabic = 53
+    MacArabicExt = 79
+    MacArmenian = 72
+    MacBengali = 61
+    MacBurmese = 67
+    MacCeltic = 86
+    MacCentralEuropean = 77
+    MacChineseSimplified = 73
+    MacChineseTraditional = 51
+    MacCroatian = 83
+    MacCyrillic = 56
+    MacDevanagari = 57
+    MacDingbats = 81
+    MacEthiopic = 76
+    MacGaelic = 87
+    MacGeorgian = 71
+    MacGreek = 55
+    MacGujarati = 59
+    MacGurmukhi = 58
+    MacHebrew = 54
+    MacIcelandic = 84
+    MacJapanese = 50
+    MacKannada = 64
+    MacKeyboard = 88
+    MacKhmer = 68
+    MacKorean = 52
+    MacLaotian = 70
+    MacMalayalam = 65
+    MacMax = 88
+    MacMin = 49
+    MacMongolian = 75
+    MacOriya = 60
+    MacRoman = 49
+    MacRomanian = 85
+    MacSinhalese = 66
+    MacSymbol = 80
+    MacTamil = 62
+    MacTelugu = 63
+    MacThai = 69
+    MacTibetan = 74
+    MacTurkish = 82
+    MacVietnamese = 78
     Max = 90
     ShiftJis = 27
     System = -1
@@ -2159,16 +2159,16 @@ enum WxKit.FontSymbolicSize : int
     XxSmall = -3
 enum WxKit.FontWeight : int
     Bold = 700
-    Extrabold = 800
-    Extraheavy = 1000
-    Extralight = 200
+    ExtraBold = 800
+    ExtraHeavy = 1000
+    ExtraLight = 200
     Heavy = 900
     Invalid = 0
     Light = 300
     Max = 1000
     Medium = 500
     Normal = 400
-    Semibold = 600
+    SemiBold = 600
     Thin = 100
 class WxKit.Frame : TopLevelWindow
     Frame(Window? parent, string title, int id = -1, Point? position = null, Size? size = null, FrameStyle style = FrameStyle.Default)
@@ -2355,7 +2355,7 @@ class WxKit.HyperlinkCtrl : Control
     AlignCenter = 8
     AlignLeft = 2
     AlignRight = 4
-    Contextmenu = 1
+    ContextMenu = 1
     Default = 2097161
     None = 0
 class WxKit.HyperlinkEvent : CommandEvent
@@ -2913,9 +2913,9 @@ class WxKit.ListCtrl : Control
 [Flags] enum WxKit.ListCtrlStyle : long
     AlignLeft = 128
     AlignTop = 64
-    Autoarrange = 256
+    AutoArrange = 256
     EditLabels = 1024
-    Hrules = 2
+    HorizontalRules = 2
     Icon = 4
     List = 16
     NoHeader = 2048
@@ -2925,8 +2925,8 @@ class WxKit.ListCtrl : Control
     SmallIcon = 8
     SortAscending = 16384
     SortDescending = 32768
+    VerticalRules = 1
     Virtual = 512
-    Vrules = 1
 class WxKit.ListEvent : NotifyEvent
     ListItem? Item { get; set; }
     Point Point { get; set; }
@@ -2985,7 +2985,7 @@ sealed class WxKit.LiveRegion : StaticText
     bool Announce(string message, AnnouncementPriority priority = AnnouncementPriority.High)
     bool Prepare()
 enum WxKit.MappingMode : int
-    Lometric = 3
+    LowMetric = 3
     Metric = 2
     Points = 5
     Text = 1
@@ -3230,11 +3230,11 @@ class WxKit.Notebook : BookCtrlBase
     void SetPadding(Size padding)
 [Flags] enum WxKit.NotebookStyle : long
     Bottom = 32
-    Fixedwidth = 256
+    FixedWidth = 256
     Left = 64
     MultiLine = 512
+    NoPageTheme = 1024
     None = 0
-    Nopagetheme = 1024
     Right = 128
     Top = 16
 sealed class WxKit.NotificationMessage : EvtHandler, IDisposable
@@ -3325,8 +3325,8 @@ enum WxKit.PaperKind : int
     A4Extra = 51
     A4Plus = 58
     A4Rotated = 75
+    A4Small = 13
     A4Transverse = 53
-    A4small = 13
     A5 = 14
     A5Extra = 62
     A5Rotated = 76
@@ -3343,10 +3343,11 @@ enum WxKit.PaperKind : int
     B6Jis = 86
     B6JisRotated = 87
     BPlus = 56
-    Csheet = 4
+    CSheet = 4
+    DSheet = 5
     DblJapanesePostcard = 67
     DblJapanesePostcardRotated = 80
-    Dsheet = 5
+    ESheet = 6
     Env10 = 23
     Env11 = 24
     Env12 = 25
@@ -3365,7 +3366,6 @@ enum WxKit.PaperKind : int
     EnvItaly = 36
     EnvMonarch = 37
     EnvPersonal = 38
-    Esheet = 6
     Executive = 11
     FanfoldLglGerman = 41
     FanfoldStdGerman = 40
@@ -3392,22 +3392,16 @@ enum WxKit.PaperKind : int
     LetterExtraTransverse = 54
     LetterPlus = 57
     LetterRotated = 73
+    LetterSmall = 7
     LetterTransverse = 52
-    Lettersmall = 7
-    NineX11 = 44
     None = 0
     Note = 21
-    One0x11 = 45
-    One0x14 = 19
-    One1x17 = 20
-    One2x11 = 88
-    One5x11 = 46
     P16k = 91
     P16kRotated = 104
     P32k = 92
+    P32kBig = 93
+    P32kBigRotated = 106
     P32kRotated = 105
-    P32kbig = 93
-    P32kbigRotated = 106
     Penv1 = 94
     Penv10 = 103
     Penv10Rotated = 116
@@ -3429,6 +3423,12 @@ enum WxKit.PaperKind : int
     Penv9 = 102
     Penv9Rotated = 115
     Quarto = 18
+    Standard10x11 = 45
+    Standard10x14 = 19
+    Standard11x17 = 20
+    Standard12x11 = 88
+    Standard15x11 = 46
+    Standard9x11 = 44
     Statement = 10
     Tabloid = 8
     TabloidExtra = 50
@@ -3464,13 +3464,13 @@ enum WxKit.PenQuality : int
     High = 2
     Low = 1
 enum WxKit.PenStyle : int
-    BdiagonalHatch = 111
+    BackwardDiagonalHatch = 111
+    CrossDiagonalHatch = 112
     CrossHatch = 114
-    CrossdiagHatch = 112
     Dot = 101
     DotDash = 104
-    FdiagonalHatch = 113
     FirstHatch = 111
+    ForwardDiagonalHatch = 113
     HorizontalHatch = 115
     Invalid = -1
     LastHatch = 116
@@ -3494,7 +3494,7 @@ class WxKit.PickerBase : Control
     void UpdateTextCtrlFromPicker()
 [Flags] enum WxKit.PickerBaseStyle : long
     None = 0
-    PbUseTextCtrl = 2
+    UseTextCtrl = 2
 readonly record struct WxKit.Point : IEquatable<Point>
     Point(int X, int Y)
     bool Equals(Point other)
@@ -3512,15 +3512,15 @@ enum WxKit.PrintBin : int
     Cassette = 12
     Default = 0
     Envelope = 5
-    Envmanual = 6
-    Formsource = 13
-    Largecapacity = 11
-    Largefmt = 10
+    EnvelopeManual = 6
+    FormSource = 13
+    LargeCapacity = 11
+    LargeFormat = 10
     Lower = 2
     Manual = 4
     Middle = 3
-    Onlyone = 1
-    Smallfmt = 9
+    OnlyOne = 1
+    SmallFormat = 9
     Tractor = 8
     User = 14
 class WxKit.PrintData : NativeObject
@@ -3651,13 +3651,13 @@ class WxKit.PropertySheetDialog : Dialog
     void CreateButtons(DialogButtons flags = DialogButtons.Ok | DialogButtons.Cancel)
     void LayoutDialog(Orientation centerFlags = Orientation.Both)
 [Flags] enum WxKit.PropertySheetStyle : int
-    Buttontoolbook = 32
+    ButtonToolbook = 32
     Choicebook = 8
     Default = 1
     Listbook = 16
     None = 0
     Notebook = 2
-    Shrinktofit = 256
+    ShrinkToFit = 256
     Toolbook = 4
     Treebook = 64
 class WxKit.RadioBox : Control
@@ -4057,7 +4057,7 @@ class WxKit.Slider : Control
     void SetSelection(int startPos, int endPos)
     void SetTick(int tickPos)
 [Flags] enum WxKit.SliderStyle : long
-    Autoticks = 16
+    AutoTicks = 16
     Both = 1024
     Bottom = 512
     Horizontal = 4
@@ -4067,7 +4067,7 @@ class WxKit.Slider : Control
     MinMaxLabels = 8192
     None = 0
     Right = 256
-    Selrange = 2048
+    SelectionRange = 2048
     Top = 128
     ValueLabel = 16384
     Vertical = 8
@@ -4116,7 +4116,7 @@ class WxKit.SpinCtrlDouble : Control
     AlignRight = 512
     ArrowKeys = 16384
     None = 0
-    TeProcessEnter = 1024
+    ProcessEnter = 1024
     Wrap = 32768
 [Flags] enum WxKit.SpinCtrlStyle : long
     AlignCenterHorizontal = 256
@@ -4124,7 +4124,7 @@ class WxKit.SpinCtrlDouble : Control
     AlignRight = 512
     ArrowKeys = 16384
     None = 0
-    TeProcessEnter = 1024
+    ProcessEnter = 1024
     Wrap = 32768
 class WxKit.SpinDoubleEvent : NotifyEvent
     double Value { get; set; }
@@ -4344,7 +4344,7 @@ class WxKit.StaticText : Control
     EllipsizeEnd = 16
     EllipsizeMiddle = 8
     EllipsizeStart = 4
-    NoAutoresize = 1
+    NoAutoResize = 1
     None = 0
     Wrap = 2
 class WxKit.StatusBar : Control
@@ -7113,7 +7113,7 @@ static class WxKit.Stc
     const int VsUseraccessible = 2
     const int WeightBold = 700
     const int WeightNormal = 400
-    const int WeightSemibold = 600
+    const int WeightSemiBold = 600
     const int WrapChar = 2
     const int WrapNone = 0
     const int WrapWhiteSpace = 3
@@ -7187,7 +7187,7 @@ enum WxKit.StockCursor : int
     Char = 4
     Cross = 5
     Hand = 6
-    Ibeam = 7
+    IBeam = 7
     LeftButton = 8
     Magnifier = 9
     MiddleButton = 10
@@ -7200,12 +7200,12 @@ enum WxKit.StockCursor : int
     QuestionArrow = 16
     RightArrow = 2
     RightButton = 17
-    Sizenesw = 18
-    Sizens = 19
-    Sizenwse = 20
-    Sizewe = 21
+    SizeNS = 19
+    SizeNesw = 18
+    SizeNwse = 20
+    SizeWE = 21
     Sizing = 22
-    Spraycan = 23
+    SprayCan = 23
     Wait = 24
     Watch = 25
 class WxKit.StyledTextCtrl : Control
@@ -7932,7 +7932,7 @@ enum WxKit.SystemColor : int
     ButtonText = 18
     CaptionText = 9
     Desktop = 1
-    Framebk = 15
+    FrameBackground = 15
     GradientActiveCaption = 27
     GradientInactiveCaption = 28
     GrayText = 17
@@ -7984,39 +7984,39 @@ enum WxKit.SystemMetric : int
     CursorSize = 5
     CursorX = 4
     CursorY = 5
-    DclickMsec = 38
-    DclickX = 6
-    DclickY = 7
+    DoubleClickMsec = 38
+    DoubleClickX = 6
+    DoubleClickY = 7
     DragX = 8
     DragY = 9
     EdgeX = 10
     EdgeY = 11
-    FramesizeX = 23
-    FramesizeY = 24
+    FrameSizeX = 23
+    FrameSizeY = 24
     HorizontalScrollBarArrowX = 12
     HorizontalScrollBarArrowY = 13
     HorizontalScrollBarY = 27
-    HthumbX = 14
+    HorizontalThumbX = 14
+    IconSpacingX = 17
+    IconSpacingY = 18
     IconX = 15
     IconY = 16
-    IconspacingX = 17
-    IconspacingY = 18
     MenuY = 33
     MouseButtons = 1
     NetworkPresent = 34
-    PenwindowsPresent = 35
+    PenWindowsPresent = 35
     ScreenX = 21
     ScreenY = 22
     ShowSounds = 36
-    SmalliconX = 25
-    SmalliconY = 26
+    SmallIconX = 25
+    SmallIconY = 26
     SwapButtons = 37
     VerticalScrollBarArrowX = 29
     VerticalScrollBarArrowY = 30
     VerticalScrollBarX = 28
-    VthumbY = 31
-    WindowminX = 19
-    WindowminY = 20
+    VerticalThumbY = 31
+    WindowMinX = 19
+    WindowMinY = 20
 enum WxKit.SystemScreenType : int
     Desktop = 4
     None = 0
@@ -8177,12 +8177,12 @@ enum WxKit.TextValidatorStyle : int
     Empty = 1
     ExcludeCharList = 512
     ExcludeList = 256
+    HexDigits = 1024
     IncludeCharList = 128
     IncludeList = 64
     None = 0
     Numeric = 32
     Space = 2048
-    Xdigits = 1024
 class WxKit.TimePickerCtrl : Control
     DateTime? Value { get; set; }
     TimePickerCtrl(Window parent, DateTime? time = null, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
@@ -8255,10 +8255,10 @@ class WxKit.ToolBar : Control
     Horizontal = 4
     HorzLayout = 2048
     HorzText = 2304
-    NoTooltips = 4096
-    Noalign = 1024
-    Nodivider = 512
-    Noicons = 128
+    NoAlign = 1024
+    NoDivider = 512
+    NoIcons = 128
+    NoToolTips = 4096
     None = 0
     Right = 16384
     Text = 256
@@ -8288,7 +8288,7 @@ class WxKit.Toolbook : BookCtrlBase
     event EventHandler<BookCtrlEvent>? PageChanged
     event EventHandler<BookCtrlEvent>? PageChanging
 [Flags] enum WxKit.ToolbookStyle : long
-    Buttonbar = 256
+    ButtonBar = 256
     HorzLayout = 32768
     None = 0
 class WxKit.TopLevelWindow : Window

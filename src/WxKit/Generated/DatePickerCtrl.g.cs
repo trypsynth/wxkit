@@ -7,7 +7,7 @@ namespace WxKit;
 /// <summary>This control allows the user to select a date. Wraps wxDatePickerCtrl.</summary>
 public unsafe partial class DatePickerCtrl : Control {
 	/// <summary>Initializes the object and calls Create() with all the parameters.</summary>
-	public DatePickerCtrl(Window parent, DateTime? date = null, int id = StandardId.Any, Point? position = null, Size? size = null, DatePickerCtrlStyle style = DatePickerCtrlStyle.Default | DatePickerCtrlStyle.Showcentury) : this(CreateNative(parent, date, id, position, size, style)) {
+	public DatePickerCtrl(Window parent, DateTime? date = null, int id = StandardId.Any, Point? position = null, Size? size = null, DatePickerCtrlStyle style = DatePickerCtrlStyle.Default | DatePickerCtrlStyle.ShowCentury) : this(CreateNative(parent, date, id, position, size, style)) {
 	}
 
 	internal DatePickerCtrl(WxkWindow* native) : base(native) {

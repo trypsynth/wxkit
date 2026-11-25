@@ -59,6 +59,9 @@ public class NamingTests {
 
 	[Theory]
 	[InlineData("CLOSE_WINDOW", "CloseWindow")]
+	[InlineData("HRULES", "HorizontalRules")]
+	[InlineData("MACCENTRALEUR", "MacCentralEuropean")]
+	[InlineData("10X11", "Standard10x11")]
 	[InlineData("Layout_RightToLeft", "LayoutRightToLeft")]
 	[InlineData("SHOW_EFFECT_NONE", "ShowEffectNone")]
 	public void JoinsWordsInPascalCase(string upper, string pascal) => Assert.Equal(pascal, Naming.Words(upper));

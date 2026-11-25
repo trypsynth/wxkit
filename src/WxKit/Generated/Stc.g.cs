@@ -5479,7 +5479,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_WEIGHT_NORMAL.</summary>
 	public const int WeightNormal = 400;
 	/// <summary>Wraps wxSTC_WEIGHT_SEMIBOLD.</summary>
-	public const int WeightSemibold = 600;
+	public const int WeightSemiBold = 600;
 	/// <summary>Wraps wxSTC_WRAPINDENT_DEEPINDENT.</summary>
 	public const int WrapindentDeepindent = 3;
 	/// <summary>Wraps wxSTC_WRAPINDENT_FIXED.</summary>

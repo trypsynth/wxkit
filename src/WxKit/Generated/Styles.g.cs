@@ -28,7 +28,7 @@ public enum BitmapComboBoxStyle : long {
 	/// <summary>Sorts the entries in the list alphabetically. Wraps wxCB_SORT.</summary>
 	Sort = 0x8,
 	/// <summary>The control will generate the event wxEVT_TEXT_ENTER (otherwise pressing Enter key is either processed internally by the control or used for navigation between dialog controls). Windows only. Wraps wxTE_PROCESS_ENTER.</summary>
-	TeProcessEnter = 0x400,
+	ProcessEnter = 0x400,
 }
 
 /// <summary>Styles for <see cref="Button"/>.</summary>
@@ -96,7 +96,7 @@ public enum ChoiceStyle : long {
 	/// <summary>No styles. Wraps 0.</summary>
 	None = 0x0,
 	/// <summary>Sorts the entries alphabetically. Wraps wxCB_SORT.</summary>
-	CbSort = 0x8,
+	Sort = 0x8,
 }
 
 /// <summary>Styles for <see cref="Choicebook"/>.</summary>
@@ -150,13 +150,13 @@ public enum ComboBoxStyle : long {
 	/// <summary>Creates a combobox with a permanently displayed list. Windows only. Wraps wxCB_SIMPLE.</summary>
 	Simple = 0x4,
 	/// <summary>Creates a combobox with a drop-down list. MSW only. Wraps wxCB_DROPDOWN.</summary>
-	Dropdown = 0x20,
+	DropDown = 0x20,
 	/// <summary>A combobox with this style behaves like a wxChoice (and may look in the same way as well, although this is platform-dependent), i.e. it allows the user to choose from the list of options but doesn't allow to enter a value not present in the list. Wraps wxCB_READONLY.</summary>
 	ReadOnly = 0x10,
 	/// <summary>Sorts the entries in the list alphabetically. Wraps wxCB_SORT.</summary>
 	Sort = 0x8,
 	/// <summary>The control will generate the event wxEVT_TEXT_ENTER that can be handled by the program. Otherwise, i.e. either if this style not specified at all, or it is used, but there is no event handler for this event or the event handler called wxEvent::Skip() to avoid overriding the default handling, pressing Enter key is either processed internally by the control or used to activate the default button of the dialog, if any. Wraps wxTE_PROCESS_ENTER.</summary>
-	TeProcessEnter = 0x400,
+	ProcessEnter = 0x400,
 }
 
 /// <summary>Styles for <see cref="DataViewCtrl"/>.</summary>
@@ -188,13 +188,13 @@ public enum DatePickerCtrlStyle : long {
 	/// <summary>Creates a control without a month calendar drop down but with spin-control-like arrows to change individual date components. This style is not supported by the generic version. Wraps wxDP_SPIN.</summary>
 	Spin = 0x1,
 	/// <summary>Creates a control with a month calendar drop-down part from which the user can select a date. In OSX/Cocoa native version this style is supported on macOS 10.15.4 and later. Wraps wxDP_DROPDOWN.</summary>
-	Dropdown = 0x2,
+	DropDown = 0x2,
 	/// <summary>Creates a control with the style that is best supported for the current platform (currently wxDP_SPIN under Windows and OSX/Cocoa and wxDP_DROPDOWN elsewhere). Wraps wxDP_DEFAULT.</summary>
 	Default = 0x0,
 	/// <summary>With this style, the control allows the user to not enter any valid date at all. Without it - the default - the control always has some valid date. This style is not supported in OSX/Cocoa native version. Wraps wxDP_ALLOWNONE.</summary>
-	Allownone = 0x8,
+	AllowNone = 0x8,
 	/// <summary>Forces display of the century in the default date format. Without this style the century could be displayed, or not, depending on the default date representation in the system. This style is not supported in OSX/Cocoa native version currently. Wraps wxDP_SHOWCENTURY.</summary>
-	Showcentury = 0x4,
+	ShowCentury = 0x4,
 }
 
 /// <summary>Styles for <see cref="Dialog"/>.</summary>
@@ -436,7 +436,7 @@ public enum HyperlinkCtrlStyle : long {
 	/// <summary>Center the text (horizontally). This style is not supported under Windows. Wraps wxHL_ALIGN_CENTRE.</summary>
 	AlignCenter = 0x8,
 	/// <summary>Pop up a context menu when the hyperlink is right-clicked. The context menu contains a "Copy URL" menu item which is automatically handled by the hyperlink and which just copies in the clipboard the URL (not the label) of the control. Wraps wxHL_CONTEXTMENU.</summary>
-	Contextmenu = 0x1,
+	ContextMenu = 0x1,
 	/// <summary>The default style for wxHyperlinkCtrl: wxBORDER_NONE|wxHL_CONTEXTMENU|wxHL_ALIGN_CENTRE. Wraps wxHL_DEFAULT_STYLE.</summary>
 	Default = 0x200009,
 }
@@ -484,7 +484,7 @@ public enum ListCtrlStyle : long {
 	/// <summary>Icons align to the left. Wraps wxLC_ALIGN_LEFT.</summary>
 	AlignLeft = 0x80,
 	/// <summary>Icons arrange themselves. Win32 only. Wraps wxLC_AUTOARRANGE.</summary>
-	Autoarrange = 0x100,
+	AutoArrange = 0x100,
 	/// <summary>Labels are editable: the application will be notified when editing starts. Wraps wxLC_EDIT_LABELS.</summary>
 	EditLabels = 0x400,
 	/// <summary>No header in report mode. Wraps wxLC_NO_HEADER.</summary>
@@ -496,9 +496,9 @@ public enum ListCtrlStyle : long {
 	/// <summary>Sort in descending order. (You must still supply a comparison callback in wxListCtrl::SortItems.). Wraps wxLC_SORT_DESCENDING.</summary>
 	SortDescending = 0x8000,
 	/// <summary>Draws light horizontal rules between rows in report mode. Wraps wxLC_HRULES.</summary>
-	Hrules = 0x2,
+	HorizontalRules = 0x2,
 	/// <summary>Draws light vertical rules between columns in report mode. Wraps wxLC_VRULES.</summary>
-	Vrules = 0x1,
+	VerticalRules = 0x1,
 }
 
 /// <summary>Styles for <see cref="Listbook"/>.</summary>
@@ -615,11 +615,11 @@ public enum NotebookStyle : long {
 	/// <summary>Place tabs under instead of above the notebook pages. Wraps wxNB_BOTTOM.</summary>
 	Bottom = 0x20,
 	/// <summary>(Windows only) All tabs will have same width. Wraps wxNB_FIXEDWIDTH.</summary>
-	Fixedwidth = 0x100,
+	FixedWidth = 0x100,
 	/// <summary>(Windows only) There can be several rows of tabs. Wraps wxNB_MULTILINE.</summary>
 	MultiLine = 0x200,
 	/// <summary>(Windows only) Display a solid colour on notebook pages, and not a gradient, which can reduce performance. Wraps wxNB_NOPAGETHEME.</summary>
-	Nopagetheme = 0x400,
+	NoPageTheme = 0x400,
 }
 
 /// <summary>Styles for <see cref="PickerBase"/>.</summary>
@@ -628,7 +628,7 @@ public enum PickerBaseStyle : long {
 	/// <summary>No styles. Wraps 0.</summary>
 	None = 0x0,
 	/// <summary>Creates a text control to the left of the picker which is completely managed by this wxPickerBase class. Wraps wxPB_USE_TEXTCTRL.</summary>
-	PbUseTextCtrl = 0x2,
+	UseTextCtrl = 0x2,
 }
 
 /// <summary>Styles for <see cref="RadioBox"/>.</summary>
@@ -717,7 +717,7 @@ public enum SliderStyle : long {
 	/// <summary>Displays the slider vertically. Wraps wxSL_VERTICAL.</summary>
 	Vertical = 0x8,
 	/// <summary>Displays tick marks (Windows, GTK+ 2.16 and later). Wraps wxSL_AUTOTICKS.</summary>
-	Autoticks = 0x10,
+	AutoTicks = 0x10,
 	/// <summary>Displays minimum, maximum labels (new since wxWidgets 2.9.1). Wraps wxSL_MIN_MAX_LABELS.</summary>
 	MinMaxLabels = 0x2000,
 	/// <summary>Displays value label (new since wxWidgets 2.9.1). Wraps wxSL_VALUE_LABEL.</summary>
@@ -735,7 +735,7 @@ public enum SliderStyle : long {
 	/// <summary>Displays ticks on both sides of the slider. Windows only. Wraps wxSL_BOTH.</summary>
 	Both = 0x400,
 	/// <summary>Displays a highlighted selection range. Windows only. Wraps wxSL_SELRANGE.</summary>
-	Selrange = 0x800,
+	SelectionRange = 0x800,
 	/// <summary>Inverses the minimum and maximum endpoints on the slider. Not compatible with wxSL_SELRANGE. Wraps wxSL_INVERSE.</summary>
 	Inverse = 0x1000,
 }
@@ -765,7 +765,7 @@ public enum SpinCtrlStyle : long {
 	/// <summary>The value wraps at the minimum and maximum. Wraps wxSP_WRAP.</summary>
 	Wrap = 0x8000,
 	/// <summary>Indicates that the control should generate wxEVT_TEXT_ENTER events. Using this style will prevent the user from using the Enter key for dialog navigation (e.g. activating the default button in the dialog) under MSW. Wraps wxTE_PROCESS_ENTER.</summary>
-	TeProcessEnter = 0x400,
+	ProcessEnter = 0x400,
 	/// <summary>Same as wxTE_LEFT for wxTextCtrl: the text is left aligned (this is the default). Wraps wxALIGN_LEFT.</summary>
 	AlignLeft = 0x0,
 	/// <summary>Same as wxTE_CENTRE for wxTextCtrl: the text is centered. Wraps wxALIGN_CENTRE_HORIZONTAL.</summary>
@@ -784,7 +784,7 @@ public enum SpinCtrlDoubleStyle : long {
 	/// <summary>The value wraps at the minimum and maximum. Wraps wxSP_WRAP.</summary>
 	Wrap = 0x8000,
 	/// <summary>Indicates that the control should generate wxEVT_TEXT_ENTER events. Using this style will prevent the user from using the Enter key for dialog navigation (e.g. activating the default button in the dialog) under MSW. Wraps wxTE_PROCESS_ENTER.</summary>
-	TeProcessEnter = 0x400,
+	ProcessEnter = 0x400,
 	/// <summary>Same as wxTE_LEFT for wxTextCtrl: the text is left aligned (this is the default). Wraps wxALIGN_LEFT.</summary>
 	AlignLeft = 0x0,
 	/// <summary>Same as wxTE_CENTRE for wxTextCtrl: the text is centered. Wraps wxALIGN_CENTRE_HORIZONTAL.</summary>
@@ -841,7 +841,7 @@ public enum StaticTextStyle : long {
 	/// <summary>Center the text (horizontally). Wraps wxALIGN_CENTRE_HORIZONTAL.</summary>
 	AlignCenterHorizontal = 0x100,
 	/// <summary>By default, the control will adjust its size to exactly fit to the size of the text when SetLabel() is called. If this style flag is given, the control will not change its size (this style is especially useful with controls which also have the wxALIGN_RIGHT or the wxALIGN_CENTRE_HORIZONTAL style because otherwise they won't make sense any longer after a call to SetLabel()). Wraps wxST_NO_AUTORESIZE.</summary>
-	NoAutoresize = 0x1,
+	NoAutoResize = 0x1,
 	/// <summary>If the labeltext width exceeds the control width, replace the beginning of the label with an ellipsis; uses wxControl::Ellipsize. Wraps wxST_ELLIPSIZE_START.</summary>
 	EllipsizeStart = 0x4,
 	/// <summary>If the label text width exceeds the control width, replace the middle of the label with an ellipsis; uses wxControl::Ellipsize. Wraps wxST_ELLIPSIZE_MIDDLE.</summary>
@@ -930,17 +930,17 @@ public enum ToolBarStyle : long {
 	/// <summary>Shows the text in the toolbar buttons; by default only icons are shown. Wraps wxTB_TEXT.</summary>
 	Text = 0x100,
 	/// <summary>Specifies no icons in the toolbar buttons; by default they are shown. Wraps wxTB_NOICONS.</summary>
-	Noicons = 0x80,
+	NoIcons = 0x80,
 	/// <summary>Specifies no divider (border) above the toolbar (Windows only). Wraps wxTB_NODIVIDER.</summary>
-	Nodivider = 0x200,
+	NoDivider = 0x200,
 	/// <summary>Specifies no alignment with the parent window (Windows only, not very useful). Wraps wxTB_NOALIGN.</summary>
-	Noalign = 0x400,
+	NoAlign = 0x400,
 	/// <summary>Shows the text and the icons alongside, not vertically stacked (Windows and GTK 2 only). This style must be used with wxTB_TEXT. Wraps wxTB_HORZ_LAYOUT.</summary>
 	HorzLayout = 0x800,
 	/// <summary>Combination of wxTB_HORZ_LAYOUT and wxTB_TEXT. Wraps wxTB_HORZ_TEXT.</summary>
 	HorzText = 0x900,
 	/// <summary>Don't show the short help tooltips for the tools when the mouse hovers over them. Wraps wxTB_NO_TOOLTIPS.</summary>
-	NoTooltips = 0x1000,
+	NoToolTips = 0x1000,
 	/// <summary>Align the toolbar at the bottom of parent window. Wraps wxTB_BOTTOM.</summary>
 	Bottom = 0x2000,
 	/// <summary>Align the toolbar at the right side of parent window. Wraps wxTB_RIGHT.</summary>
@@ -955,7 +955,7 @@ public enum ToolbookStyle : long {
 	/// <summary>No styles. Wraps 0.</summary>
 	None = 0x0,
 	/// <summary>Use wxButtonToolBar-based implementation under macOS (ignored under other platforms). Wraps wxTBK_BUTTONBAR.</summary>
-	Buttonbar = 0x100,
+	ButtonBar = 0x100,
 	/// <summary>Shows the text and the icons alongside, not vertically stacked (only implement under Windows and GTK 2 platforms as it relies on wxTB_HORZ_LAYOUT flag support). Wraps wxTBK_HORZ_LAYOUT.</summary>
 	HorzLayout = 0x8000,
 }
