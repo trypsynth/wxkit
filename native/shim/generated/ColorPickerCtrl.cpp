@@ -16,8 +16,8 @@ WXK_FUNCTION(wxk_Colour) wxk_ColorPickerCtrl_GetColour(wxk_Window* self) noexcep
 	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(static_cast<wxColourPickerCtrl*>(wxk::Unwrap(self))->GetColour()); });
 }
 
-WXK_FUNCTION(void) wxk_ColorPickerCtrl_SetColour_Color(wxk_Window* self, wxk_Colour column) noexcept {
-	wxk::Guard([&] { static_cast<wxColourPickerCtrl*>(wxk::Unwrap(self))->SetColour(wxk::FromColour(column)); });
+WXK_FUNCTION(void) wxk_ColorPickerCtrl_SetColour_Color(wxk_Window* self, wxk_Colour color) noexcept {
+	wxk::Guard([&] { static_cast<wxColourPickerCtrl*>(wxk::Unwrap(self))->SetColour(wxk::FromColour(color)); });
 }
 
 WXK_FUNCTION(int32_t) wxk_EventType_ColorPickerChanged(void) noexcept {

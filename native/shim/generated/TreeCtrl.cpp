@@ -180,8 +180,8 @@ WXK_FUNCTION(void) wxk_TreeCtrl_SelectItem(wxk_Window* self, void* item, uint8_t
 	wxk::Guard([&] { static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->SelectItem(wxTreeItemId(item), select != 0); });
 }
 
-WXK_FUNCTION(void) wxk_TreeCtrl_SetItemBackgroundColour(wxk_Window* self, void* item, wxk_Colour column) noexcept {
-	wxk::Guard([&] { static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->SetItemBackgroundColour(wxTreeItemId(item), wxk::FromColour(column)); });
+WXK_FUNCTION(void) wxk_TreeCtrl_SetItemBackgroundColour(wxk_Window* self, void* item, wxk_Colour color) noexcept {
+	wxk::Guard([&] { static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->SetItemBackgroundColour(wxTreeItemId(item), wxk::FromColour(color)); });
 }
 
 WXK_FUNCTION(void) wxk_TreeCtrl_SetItemBold(wxk_Window* self, void* item, uint8_t bold) noexcept {
@@ -212,8 +212,8 @@ WXK_FUNCTION(void) wxk_TreeCtrl_SetItemText(wxk_Window* self, void* item, const 
 	wxk::Guard([&] { static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->SetItemText(wxTreeItemId(item), wxk::FromUtf16(text, textLength)); });
 }
 
-WXK_FUNCTION(void) wxk_TreeCtrl_SetItemTextColour(wxk_Window* self, void* item, wxk_Colour column) noexcept {
-	wxk::Guard([&] { static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->SetItemTextColour(wxTreeItemId(item), wxk::FromColour(column)); });
+WXK_FUNCTION(void) wxk_TreeCtrl_SetItemTextColour(wxk_Window* self, void* item, wxk_Colour color) noexcept {
+	wxk::Guard([&] { static_cast<wxTreeCtrl*>(wxk::Unwrap(self))->SetItemTextColour(wxTreeItemId(item), wxk::FromColour(color)); });
 }
 
 WXK_FUNCTION(void) wxk_TreeCtrl_SetStateImages(wxk_Window* self, wxk_Object* const* images, size_t imagesCount) noexcept {

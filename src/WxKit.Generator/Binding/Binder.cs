@@ -355,7 +355,8 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 				managedDefault = "null";
 				nullable = true;
 			}
-			string managedName = owner.Tweak.ParameterNames.GetValueOrDefault((member.Name, parameter.Name)) ?? Naming.Parameter(parameter.Name);
+			// wxWidgets abbreviates both a column and a color as col, and only a number is a column.
+			string managedName = owner.Tweak.ParameterNames.GetValueOrDefault((member.Name, parameter.Name)) ?? (parameter.Name == "col" && parameter.Type.Contains("wxColour", StringComparison.Ordinal) ? "color" : Naming.Parameter(parameter.Name));
 			parameters.Add(new BoundParameter(parameter.Name, managedName, conversion, nullable, managedDefault));
 		}
 		// A function that fills one list, as GetSelections(wxArrayInt&) and GetPaths(wxArrayString&)

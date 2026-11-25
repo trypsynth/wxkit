@@ -725,7 +725,7 @@ public unsafe partial class Window : EvtHandler {
 	public int GetHelpIdAtPoint(Point point) => WxKitNative.WindowGetHelpIdAtPoint(Native, point);
 
 	/// <summary>Gets the help text to be used as context-sensitive help for this window.</summary>
-	public string GetHelpTextAtPoint(Point point, Origin origin) => NativeString.Take(WxKitNative.WindowGetHelpTextAtPoint(Native, point, (int)origin));
+	public string GetHelpTextAtPoint(Point point, HelpOrigin origin) => NativeString.Take(WxKitNative.WindowGetHelpTextAtPoint(Native, point, (int)origin));
 
 	/// <summary>May be overridden if the control minimal size depends on the layout direction.</summary>
 	public Size GetMinSizeFromKnownDirection(int direction, int size, int availableOtherDir) => WxKitNative.WindowGetMinSizeFromKnownDirection(Native, direction, size, availableOtherDir);

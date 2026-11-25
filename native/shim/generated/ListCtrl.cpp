@@ -267,8 +267,8 @@ WXK_FUNCTION(uint8_t) wxk_ListCtrl_ScrollList(wxk_Window* self, int32_t dx, int3
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->ScrollList(static_cast<int>(dx), static_cast<int>(dy))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetBackgroundColour(wxk_Window* self, wxk_Colour column) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetBackgroundColour(wxk::FromColour(column))) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetBackgroundColour(wxk_Window* self, wxk_Colour color) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetBackgroundColour(wxk::FromColour(color))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetColumn(wxk_Window* self, int32_t column, wxk_Object* item) noexcept {
@@ -299,8 +299,8 @@ WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItem_LongIntStringInt(wxk_Window* self, in
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItem(static_cast<long>(index), static_cast<int>(column), wxk::FromUtf16(label, labelLength), static_cast<int>(imageId))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_ListCtrl_SetItemBackgroundColour(wxk_Window* self, int64_t item, wxk_Colour column) noexcept {
-	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItemBackgroundColour(static_cast<long>(item), wxk::FromColour(column)); });
+WXK_FUNCTION(void) wxk_ListCtrl_SetItemBackgroundColour(wxk_Window* self, int64_t item, wxk_Colour color) noexcept {
+	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItemBackgroundColour(static_cast<long>(item), wxk::FromColour(color)); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItemColumnImage(wxk_Window* self, int64_t item, int64_t column, int32_t image) noexcept {
@@ -335,8 +335,8 @@ WXK_FUNCTION(void) wxk_ListCtrl_SetItemText(wxk_Window* self, int64_t item, cons
 	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItemText(static_cast<long>(item), wxk::FromUtf16(text, textLength)); });
 }
 
-WXK_FUNCTION(void) wxk_ListCtrl_SetItemTextColour(wxk_Window* self, int64_t item, wxk_Colour column) noexcept {
-	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItemTextColour(static_cast<long>(item), wxk::FromColour(column)); });
+WXK_FUNCTION(void) wxk_ListCtrl_SetItemTextColour(wxk_Window* self, int64_t item, wxk_Colour color) noexcept {
+	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItemTextColour(static_cast<long>(item), wxk::FromColour(color)); });
 }
 
 WXK_FUNCTION(void) wxk_ListCtrl_SetSingleStyle(wxk_Window* self, int64_t style, uint8_t add) noexcept {
@@ -411,8 +411,8 @@ WXK_FUNCTION(wxk_Colour) wxk_ListCtrl_GetTextColour(wxk_Window* self) noexcept {
 	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetTextColour()); });
 }
 
-WXK_FUNCTION(void) wxk_ListCtrl_SetTextColour(wxk_Window* self, wxk_Colour column) noexcept {
-	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetTextColour(wxk::FromColour(column)); });
+WXK_FUNCTION(void) wxk_ListCtrl_SetTextColour(wxk_Window* self, wxk_Colour color) noexcept {
+	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetTextColour(wxk::FromColour(color)); });
 }
 
 WXK_FUNCTION(int64_t) wxk_ListCtrl_GetTopItem(wxk_Window* self) noexcept {

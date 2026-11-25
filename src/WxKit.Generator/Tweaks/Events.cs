@@ -11,6 +11,9 @@ internal static class Events {
 		tweaks.Class("wxCloseEvent", e => e.Ignore("Veto").Rename("GetVeto", "IsVetoed"));
 		// The keys a key event names, which a letter's or digit's code is the character of, as 'A' is.
 		tweaks.Enum("wxKeyCode", "KeyCode");
+		// Enums an event class nests, whose names say nothing outside it.
+		tweaks.Enum("wxActivateEvent::Reason", "ActivationReason");
+		tweaks.Enum("wxHelpEvent::Origin", "HelpOrigin");
 		// Which way, and how, the focus moves, as Tab and Shift+Tab move it.
 		tweaks.Enum("wxNavigationKeyEvent::wxNavigationKeyEventFlags", "NavigationFlags", isFlags: true);
 		// Whether the focus moves forward, a bool, which a Direction property would read as the enum.

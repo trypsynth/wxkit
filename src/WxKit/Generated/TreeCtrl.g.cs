@@ -360,7 +360,7 @@ public unsafe partial class TreeCtrl : Control {
 	}
 
 	/// <summary>Sets the colour of the item's background.</summary>
-	public void SetItemBackgroundColor(TreeItemId item, Color? column) => WxKitNative.TreeCtrlSetItemBackgroundColour(Native, item.Value, global::WxKit.Color.ToNative(column));
+	public void SetItemBackgroundColor(TreeItemId item, Color? color) => WxKitNative.TreeCtrlSetItemBackgroundColour(Native, item.Value, global::WxKit.Color.ToNative(color));
 
 	/// <summary>Makes item appear in bold font if bold parameter is true or resets it to the normal state.</summary>
 	public void SetItemBold(TreeItemId item, bool bold = true) => WxKitNative.TreeCtrlSetItemBold(Native, item.Value, bold ? (byte)1 : (byte)0);
@@ -392,7 +392,7 @@ public unsafe partial class TreeCtrl : Control {
 	}
 
 	/// <summary>Sets the colour of the item's text.</summary>
-	public void SetItemTextColor(TreeItemId item, Color? column) => WxKitNative.TreeCtrlSetItemTextColour(Native, item.Value, global::WxKit.Color.ToNative(column));
+	public void SetItemTextColor(TreeItemId item, Color? color) => WxKitNative.TreeCtrlSetItemTextColour(Native, item.Value, global::WxKit.Color.ToNative(color));
 
 	/// <summary>Sets the images to use for the application-defined item states.</summary>
 	public void SetStateImages(IEnumerable<Bitmap> images) {

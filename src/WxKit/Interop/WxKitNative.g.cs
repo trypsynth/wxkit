@@ -1004,7 +1004,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_ColorPickerCtrl_SetColour_Color")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ColorPickerCtrlSetColourColor(WxkWindow* self, WxkColor column);
+	public static partial void ColorPickerCtrlSetColourColor(WxkWindow* self, WxkColor color);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ColorPickerEvent_GetColour")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -1696,7 +1696,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_DC_FloodFill_PointColorFloodFillStyle")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte DCFloodFillPointColorFloodFillStyle(WxkObject* self, Point point, WxkColor column, int style);
+	public static partial byte DCFloodFillPointColorFloodFillStyle(WxkObject* self, Point point, WxkColor color, int style);
 
 	[LibraryImport(Library, EntryPoint = "wxk_DC_CrossHair_IntInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -5056,7 +5056,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_SetBackgroundColour")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ListCtrlSetBackgroundColour(WxkWindow* self, WxkColor column);
+	public static partial byte ListCtrlSetBackgroundColour(WxkWindow* self, WxkColor color);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_SetColumn")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -5088,7 +5088,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_SetItemBackgroundColour")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ListCtrlSetItemBackgroundColour(WxkWindow* self, long item, WxkColor column);
+	public static partial void ListCtrlSetItemBackgroundColour(WxkWindow* self, long item, WxkColor color);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_SetItemColumnImage")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -5124,7 +5124,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_SetItemTextColour")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ListCtrlSetItemTextColour(WxkWindow* self, long item, WxkColor column);
+	public static partial void ListCtrlSetItemTextColour(WxkWindow* self, long item, WxkColor color);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_SetSingleStyle")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -5200,7 +5200,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_SetTextColour")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ListCtrlSetTextColour(WxkWindow* self, WxkColor column);
+	public static partial void ListCtrlSetTextColour(WxkWindow* self, WxkColor color);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_GetTopItem")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -12544,7 +12544,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_TreeCtrl_SetItemBackgroundColour")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void TreeCtrlSetItemBackgroundColour(WxkWindow* self, nint item, WxkColor column);
+	public static partial void TreeCtrlSetItemBackgroundColour(WxkWindow* self, nint item, WxkColor color);
 
 	[LibraryImport(Library, EntryPoint = "wxk_TreeCtrl_SetItemBold")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -12576,7 +12576,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_TreeCtrl_SetItemTextColour")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void TreeCtrlSetItemTextColour(WxkWindow* self, nint item, WxkColor column);
+	public static partial void TreeCtrlSetItemTextColour(WxkWindow* self, nint item, WxkColor color);
 
 	[LibraryImport(Library, EntryPoint = "wxk_TreeCtrl_SetStateImages")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

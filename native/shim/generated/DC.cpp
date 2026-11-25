@@ -149,8 +149,8 @@ WXK_FUNCTION(uint8_t) wxk_DC_FloodFill_IntIntColorFloodFillStyle(wxk_Object* sel
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDC*>(wxk::Unwrap(self))->FloodFill(static_cast<int>(x), static_cast<int>(y), wxk::FromColour(color), static_cast<wxFloodFillStyle>(style))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_DC_FloodFill_PointColorFloodFillStyle(wxk_Object* self, wxk_Point point, wxk_Colour column, int32_t style) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDC*>(wxk::Unwrap(self))->FloodFill(wxk::FromPoint(point), wxk::FromColour(column), static_cast<wxFloodFillStyle>(style))) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_DC_FloodFill_PointColorFloodFillStyle(wxk_Object* self, wxk_Point point, wxk_Colour color, int32_t style) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDC*>(wxk::Unwrap(self))->FloodFill(wxk::FromPoint(point), wxk::FromColour(color), static_cast<wxFloodFillStyle>(style))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(void) wxk_DC_CrossHair_IntInt(wxk_Object* self, int32_t x, int32_t y) noexcept {

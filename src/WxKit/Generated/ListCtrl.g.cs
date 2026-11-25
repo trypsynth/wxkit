@@ -379,7 +379,7 @@ public unsafe partial class ListCtrl : Control {
 	public bool ScrollList(int dx, int dy) => WxKitNative.ListCtrlScrollList(Native, dx, dy) != 0;
 
 	/// <summary>Sets the background colour.</summary>
-	public bool SetBackgroundColor(Color? column) => WxKitNative.ListCtrlSetBackgroundColour(Native, global::WxKit.Color.ToNative(column)) != 0;
+	public bool SetBackgroundColor(Color? color) => WxKitNative.ListCtrlSetBackgroundColour(Native, global::WxKit.Color.ToNative(color)) != 0;
 
 	/// <summary>Sets information about this column.</summary>
 	public bool SetColumn(int column, ListItem item) {
@@ -405,7 +405,7 @@ public unsafe partial class ListCtrl : Control {
 	}
 
 	/// <summary>Sets the background colour for this item.</summary>
-	public void SetItemBackgroundColor(long item, Color? column) => WxKitNative.ListCtrlSetItemBackgroundColour(Native, item, global::WxKit.Color.ToNative(column));
+	public void SetItemBackgroundColor(long item, Color? color) => WxKitNative.ListCtrlSetItemBackgroundColour(Native, item, global::WxKit.Color.ToNative(color));
 
 	/// <summary>Sets the image associated with the item.</summary>
 	public bool SetItemColumnImage(long item, long column, int image) => WxKitNative.ListCtrlSetItemColumnImage(Native, item, column, image) != 0;
@@ -440,7 +440,7 @@ public unsafe partial class ListCtrl : Control {
 	}
 
 	/// <summary>Sets the colour for this item.</summary>
-	public void SetItemTextColor(long item, Color? column) => WxKitNative.ListCtrlSetItemTextColour(Native, item, global::WxKit.Color.ToNative(column));
+	public void SetItemTextColor(long item, Color? color) => WxKitNative.ListCtrlSetItemTextColour(Native, item, global::WxKit.Color.ToNative(color));
 
 	/// <summary>Sets the images to use when showing large, normal icons in this control.</summary>
 	public void SetNormalImages(IEnumerable<Bitmap> images) {

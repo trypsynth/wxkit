@@ -10,8 +10,8 @@ public unsafe partial class HelpEvent : CommandEvent {
 	}
 
 	/// <summary>Returns the origin of the help event which is one of the wxHelpEvent::Origin values.</summary>
-	public Origin Origin {
-		get => (Origin)WxKitNative.HelpEventGetOrigin(Handle);
+	public HelpOrigin Origin {
+		get => (HelpOrigin)WxKitNative.HelpEventGetOrigin(Handle);
 		set => WxKitNative.HelpEventSetOrigin(Handle, (int)value);
 	}
 

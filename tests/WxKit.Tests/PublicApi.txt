@@ -239,8 +239,11 @@ sealed record WxKit.AccessibleRow : IEquatable<AccessibleRow>
     SelfVoicing = 16777216
     Unavailable = 33554432
 class WxKit.ActivateEvent : Event
-    Reason ActivationReason { get; }
+    ActivationReason ActivationReason { get; }
     bool Active { get; }
+enum WxKit.ActivationReason : int
+    Mouse = 0
+    Unknown = 1
 class WxKit.ActivityIndicator : Control
     ActivityIndicator(Window parent, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
     bool IsRunning { get; }
@@ -984,7 +987,7 @@ class WxKit.DC : NativeObject
     bool CanDrawBitmap { get; }
     bool CanGetTextExtent { get; }
     bool CanUseTransformMatrix { get; }
-    bool FloodFill(Point point, Color? column, FloodFillStyle style = FloodFillStyle.Surface)
+    bool FloodFill(Point point, Color? color, FloodFillStyle style = FloodFillStyle.Surface)
     bool FloodFill(int x, int y, Color? color, FloodFillStyle style = FloodFillStyle.Surface)
     bool IsOk { get; }
     bool StartDoc(string message)
@@ -2324,8 +2327,12 @@ readonly record struct WxKit.GridSpan : IEquatable<GridSpan>
     static bool op_Inequality(GridSpan left, GridSpan right)
     void Deconstruct(out int Rows, out int Columns)
 class WxKit.HelpEvent : CommandEvent
-    Origin Origin { get; set; }
+    HelpOrigin Origin { get; set; }
     Point Position { get; set; }
+enum WxKit.HelpOrigin : int
+    HelpButton = 2
+    Keyboard = 1
+    Unknown = 0
 enum WxKit.HitTestResult : int
     Max = 14
     Nowhere = 0
@@ -2830,7 +2837,7 @@ class WxKit.ListCtrl : Control
     bool IsVirtual { get; }
     bool IsVisible(long item)
     bool ScrollList(int dx, int dy)
-    bool SetBackgroundColor(Color? column)
+    bool SetBackgroundColor(Color? color)
     bool SetColumn(int column, ListItem item)
     bool SetColumnWidth(int column, int width)
     bool SetItem(ListItem info)
@@ -2900,11 +2907,11 @@ class WxKit.ListCtrl : Control
     void RefreshItem(long item)
     void RefreshItems(long itemFrom, long itemTo)
     void RemoveSortIndicator()
-    void SetItemBackgroundColor(long item, Color? column)
+    void SetItemBackgroundColor(long item, Color? color)
     void SetItemCount(long count)
     void SetItemFont(long item, Font font)
     void SetItemText(long item, string text)
-    void SetItemTextColor(long item, Color? column)
+    void SetItemTextColor(long item, Color? color)
     void SetNormalImages(IEnumerable<Bitmap> images)
     void SetSingleStyle(ListCtrlStyle style, bool add = true)
     void SetSmallImages(IEnumerable<Bitmap> images)
@@ -3267,10 +3274,6 @@ class WxKit.NumberEntryDialog : Dialog
     Both = 12
     Horizontal = 4
     Vertical = 8
-enum WxKit.Origin : int
-    HelpButton = 2
-    Keyboard = 1
-    Unknown = 0
 readonly record struct WxKit.PageRange : IEquatable<PageRange>
     PageRange(int MinPage, int MaxPage, int FromPage, int ToPage)
     bool Equals(PageRange other)
@@ -3731,9 +3734,6 @@ class WxKit.RearrangeList : CheckListBox
     bool MoveCurrentDown()
     bool MoveCurrentUp()
     int[] CurrentOrder { get; }
-enum WxKit.Reason : int
-    Mouse = 0
-    Unknown = 1
 readonly record struct WxKit.Rect : IEquatable<Rect>
     Point Position { get; }
     Rect(int X, int Y, int Width, int Height)
@@ -8434,7 +8434,7 @@ class WxKit.TreeCtrl : Control
     void SelectChildren(TreeItemId parent)
     void SelectItem(TreeItemId item, bool select = true)
     void SetImages(IEnumerable<Bitmap> images)
-    void SetItemBackgroundColor(TreeItemId item, Color? column)
+    void SetItemBackgroundColor(TreeItemId item, Color? color)
     void SetItemBold(TreeItemId item, bool bold = true)
     void SetItemData(TreeItemId item, object? data)
     void SetItemDropHighlight(TreeItemId item, bool highlight = true)
@@ -8443,7 +8443,7 @@ class WxKit.TreeCtrl : Control
     void SetItemImage(TreeItemId item, int image, TreeItemIcon which = TreeItemIcon.Normal)
     void SetItemState(TreeItemId item, int state)
     void SetItemText(TreeItemId item, string text)
-    void SetItemTextColor(TreeItemId item, Color? column)
+    void SetItemTextColor(TreeItemId item, Color? color)
     void SetStateImages(IEnumerable<Bitmap> images)
     void SortChildren(TreeItemId item)
     void Toggle(TreeItemId item)
@@ -8960,7 +8960,7 @@ class WxKit.Window : EvtHandler
     static int ToDip(int d, Window w)
     static int ToPhysical(int d, Window w)
     static void UnreserveControlId(int id, int count = 1)
-    string GetHelpTextAtPoint(Point point, Origin origin)
+    string GetHelpTextAtPoint(Point point, HelpOrigin origin)
     string HelpText { get; set; }
     string Label { get; set; }
     string Name { get; set; }

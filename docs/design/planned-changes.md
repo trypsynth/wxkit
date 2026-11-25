@@ -7,9 +7,7 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 ## The generator's naming
 
 - Parameter names, which break only named arguments:
-  - The rule that makes `col` a `column` makes six color parameters `column` too, such as `DC.FloodFill(Point, Color? column)`. It applies only to numbers now.
   - Hungarian and abbreviated names that are left, such as `nPage`, `colFg`, `ptStart`, `xdest`, `bCase`, `but`, `minW`, and `selImage`, and the same thing named differently across classes, as `FileDialog`'s `defaultDir` and `FileCtrl`'s `defaultDirectory` are.
-- Generic names of enums a class nested: `Reason` becomes `ActivationReason`, and `Origin` becomes `HelpOrigin`.
 - Booleans named as booleans, as `IsChecked` is: `ActivateEvent.Active`, `CloseEvent.LoggingOff`, `Font.Underlined`, `HyperlinkCtrl.Visited`, `Printer.Abort`, and `UpdateUIEvent.Shown` take `Is`, and `NavigationFlags.IsBackward` and `IsForward` lose it. `MenuItem.Checked` and `Enabled`, and `UpdateUIEvent.Checked` and `Enabled`, become `IsChecked` and `IsEnabled`.
 - Members that read as commands: `UpdateUIEvent.SetChecked`, `SetEnabled`, `SetShown`, and `SetText`, which say whether a handler set the state, become `IsCheckedSet` and so on. `FindReplaceDialog.Find`, `Replace`, and their siblings become `FindRequested` and so on, as `SearchRequested` is named, and `StyledTextCtrl.DoDrop` becomes `TextDropping`. `DataViewCtrl.ItemStartEditing` becomes `ItemEditingStarting`. `TextValidator.IsValid`, which returns an error message, becomes `GetError`.
 

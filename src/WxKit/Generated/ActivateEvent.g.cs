@@ -10,7 +10,7 @@ public unsafe partial class ActivateEvent : Event {
 	}
 
 	/// <summary>Allows checking if the window was activated by clicking it with the mouse or in some other way.</summary>
-	public Reason ActivationReason => (Reason)WxKitNative.ActivateEventGetActivationReason(Handle);
+	public ActivationReason ActivationReason => (ActivationReason)WxKitNative.ActivateEventGetActivationReason(Handle);
 
 	/// <summary>Returns true if the application or window is being activated, false otherwise.</summary>
 	public bool Active => WxKitNative.ActivateEventGetActive(Handle) != 0;

@@ -317,7 +317,7 @@ public unsafe partial class DC : NativeObject {
 	public bool FloodFill(int x, int y, Color? color, FloodFillStyle style = FloodFillStyle.Surface) => WxKitNative.DCFloodFillIntIntColorFloodFillStyle(Native, x, y, global::WxKit.Color.ToNative(color), (int)style) != 0;
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public bool FloodFill(Point point, Color? column, FloodFillStyle style = FloodFillStyle.Surface) => WxKitNative.DCFloodFillPointColorFloodFillStyle(Native, point, global::WxKit.Color.ToNative(column), (int)style) != 0;
+	public bool FloodFill(Point point, Color? color, FloodFillStyle style = FloodFillStyle.Surface) => WxKitNative.DCFloodFillPointColorFloodFillStyle(Native, point, global::WxKit.Color.ToNative(color), (int)style) != 0;
 
 	/// <summary>Convert DPI-independent pixel values to the value in pixels appropriate for the DC.</summary>
 	public Size FromDip(Size size) => WxKitNative.DCFromDIPSize(Native, size);
