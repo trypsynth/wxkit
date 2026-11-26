@@ -198,10 +198,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void BannerWindowSetGradient(WxkWindow* self, WxkColor start, WxkColor end);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_new_Default")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkObject* BitmapNewDefault();
-
 	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_new_IntIntInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* BitmapNewIntIntInt(int width, int height, int depth);
@@ -213,10 +209,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_new_IntIntDC")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* BitmapNewIntIntDC(int width, int height, WxkObject* dc);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_new_StringBitmapType")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkObject* BitmapNewStringBitmapType(char* name, nuint nameLength, int type, byte typeGiven);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_new_ImageInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -230,6 +222,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* BitmapNewCursor(WxkObject* cursor);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_new_Default")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* BitmapNewDefault();
+
+	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_new_StringBitmapType")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* BitmapNewStringBitmapType(char* name, nuint nameLength, int type, byte typeGiven);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_CreateWithDIPSize")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte BitmapCreateWithDIPSize(WxkObject* self, Size size, double scale, int depth);
@@ -237,6 +237,10 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_CreateWithLogicalSize")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte BitmapCreateWithLogicalSize(WxkObject* self, Size size, double scale, int depth);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_LoadFile")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte BitmapLoadFile(WxkObject* self, char* name, nuint nameLength, int type, byte typeGiven);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_ConvertToDisabled")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -253,10 +257,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_GetSubBitmap")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* BitmapGetSubBitmap(WxkObject* self, Rect rect);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_LoadFile")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte BitmapLoadFile(WxkObject* self, char* name, nuint nameLength, int type, byte typeGiven);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_ResetAlpha")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -3838,10 +3838,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void IdleEventSetMode(int mode);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Image_new_Default")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkObject* ImageNewDefault();
-
 	[LibraryImport(Library, EntryPoint = "wxk_Image_new_IntIntBool")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* ImageNewIntIntBool(int width, int height, byte clear);
@@ -3849,14 +3845,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Image_new_SizeBool")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* ImageNewSizeBool(Size size, byte clear);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_new_StringBitmapTypeInt")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkObject* ImageNewStringBitmapTypeInt(char* name, nuint nameLength, int type, int index);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_new_StringStringInt")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkObject* ImageNewStringStringInt(char* name, nuint nameLength, char* mimeType, nuint mimeTypeLength, int index);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Image_Paste")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -3918,6 +3906,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ImageIsTransparent(WxkObject* self, int x, int y);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Image_LoadFile_StringBitmapTypeInt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ImageLoadFileStringBitmapTypeInt(WxkObject* self, char* name, nuint nameLength, int type, int index);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_LoadFile_StringStringInt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ImageLoadFileStringStringInt(WxkObject* self, char* name, nuint nameLength, char* mimeType, nuint mimeTypeLength, int index);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Image_SetAlpha")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void ImageSetAlpha(WxkObject* self, int x, int y, byte alpha);
@@ -3941,6 +3937,18 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Image_SetRGB_RectByteByteByte")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void ImageSetRGBRectByteByteByte(WxkObject* self, Rect rect, byte red, byte green, byte blue);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_new_Default")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* ImageNewDefault();
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_new_StringBitmapTypeInt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* ImageNewStringBitmapTypeInt(char* name, nuint nameLength, int type, int index);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_new_StringStringInt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* ImageNewStringStringInt(char* name, nuint nameLength, char* mimeType, nuint mimeTypeLength, int index);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Image_Copy")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4045,14 +4053,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Image_HasOption")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ImageHasOption(WxkObject* self, char* name, nuint nameLength);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_LoadFile_StringBitmapTypeInt")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ImageLoadFileStringBitmapTypeInt(WxkObject* self, char* name, nuint nameLength, int type, int index);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_LoadFile_StringStringInt")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ImageLoadFileStringStringInt(WxkObject* self, char* name, nuint nameLength, char* mimeType, nuint mimeTypeLength, int index);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Image_SaveFile_StringBitmapType")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

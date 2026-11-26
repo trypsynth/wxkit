@@ -393,14 +393,12 @@ class WxKit.BannerWindow : Window
     void SetGradient(Color? start, Color? end)
     void SetText(string title, string message)
 class WxKit.Bitmap : NativeObject
-    Bitmap()
     Bitmap(Cursor cursor)
     Bitmap(Image image, DC dc)
     Bitmap(Image image, int depth = -1)
     Bitmap(Size size, int depth = -1)
     Bitmap(int width, int height, DC dc)
     Bitmap(int width, int height, int depth = -1)
-    Bitmap(string name, BitmapType? type = null)
     Bitmap? ConvertToDisabled(byte brightness = 255)
     Bitmap? GetSubBitmap(Rect rect)
     Image? ConvertToImage()
@@ -411,7 +409,6 @@ class WxKit.Bitmap : NativeObject
     bool CopyFromIcon(Icon icon)
     bool HasAlpha { get; }
     bool IsOk { get; }
-    bool LoadFile(string name, BitmapType? type = null)
     bool SaveFile(string name, BitmapType type)
     bool UseAlpha(bool use = true)
     double LogicalHeight { get; }
@@ -424,6 +421,7 @@ class WxKit.Bitmap : NativeObject
     int Width { get; }
     static Bitmap FromDipSize(Size size, double scale, int depth = -1)
     static Bitmap FromLogicalSize(Size size, double scale, int depth = -1)
+    static Bitmap? FromFile(string name, BitmapType? type = null)
     static bool RemoveHandler(string name)
     static void MakeDisabled(Bitmap bitmap)
     static void Rescale(Bitmap bitmap, Size sizeNeeded)
@@ -2631,11 +2629,8 @@ class WxKit.Image : NativeObject
     BitmapType Type { get; set; }
     Color GetRgb(Point pixel)
     Color? MaskColor { get; set; }
-    Image()
     Image(Size size, bool clear = true)
     Image(int width, int height, bool clear = true)
-    Image(string name, BitmapType type = BitmapType.Any, int index = -1)
-    Image(string name, string mimeType, int index = -1)
     Image? Blur(int blurRadius)
     Image? BlurHorizontal(int blurRadius)
     Image? BlurVertical(int blurRadius)
@@ -2661,9 +2656,6 @@ class WxKit.Image : NativeObject
     bool HasOption(string name)
     bool IsOk { get; }
     bool IsTransparent(Point pixel)
-    bool LoadFile(Stream stream, BitmapType type = BitmapType.Any, int index = -1)
-    bool LoadFile(string name, BitmapType type = BitmapType.Any, int index = -1)
-    bool LoadFile(string name, string mimeType, int index = -1)
     bool SaveFile(Stream stream, BitmapType type)
     bool SaveFile(string name)
     bool SaveFile(string name, BitmapType type)
@@ -2673,6 +2665,9 @@ class WxKit.Image : NativeObject
     int GetOptionInt(string name)
     int Height { get; }
     int Width { get; }
+    static Image? FromFile(string name, BitmapType type = BitmapType.Any, int index = -1)
+    static Image? FromFile(string name, string mimeType, int index = -1)
+    static Image? FromStream(Stream stream, BitmapType type = BitmapType.Any, int index = -1)
     static ImageLoadFlags DefaultLoadFlags { get; set; }
     static bool CanRead(string fileName)
     static bool RemoveHandler(string name)

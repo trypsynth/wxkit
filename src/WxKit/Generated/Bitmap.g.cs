@@ -6,10 +6,6 @@ namespace WxKit;
 
 /// <summary>This class encapsulates the concept of a platform-dependent bitmap, either monochrome or colour or colour with alpha channel support. Wraps wxBitmap.</summary>
 public unsafe partial class Bitmap : NativeObject {
-	/// <summary>Default constructor.</summary>
-	public Bitmap() : this(CreateNative()) {
-	}
-
 	/// <summary>Creates a new bitmap.</summary>
 	public Bitmap(int width, int height, int depth = -1) : this(CreateNative(width, height, depth)) {
 	}
@@ -20,10 +16,6 @@ public unsafe partial class Bitmap : NativeObject {
 
 	/// <summary>Create a bitmap compatible with the given DC, inheriting its magnification factor.</summary>
 	public Bitmap(int width, int height, DC dc) : this(CreateNative(width, height, dc)) {
-	}
-
-	/// <summary>Loads a bitmap from a file or resource.</summary>
-	public Bitmap(string name, BitmapType? type = null) : this(CreateNative(name, type)) {
 	}
 
 	/// <summary>Creates this bitmap object from the given image.</summary>
@@ -104,14 +96,6 @@ public unsafe partial class Bitmap : NativeObject {
 	/// <summary>Returns a sub bitmap of the current one as long as the rect belongs entirely to the bitmap.</summary>
 	public Bitmap? GetSubBitmap(Rect rect) => global::WxKit.Bitmap.Take(WxKitNative.BitmapGetSubBitmap(Native, rect));
 
-	/// <summary>Loads a bitmap from a file or resource.</summary>
-	public bool LoadFile(string name, BitmapType? type = null) {
-		ArgumentNullException.ThrowIfNull(name);
-		fixed (char* nameText = name) {
-			return WxKitNative.BitmapLoadFile(Native, nameText, NativeString.Length(name), (int)type.GetValueOrDefault(), type.HasValue ? (byte)1 : (byte)0) != 0;
-		}
-	}
-
 	/// <summary>Convert the given bitmap to a disabled ("greyed out") appearance in place.</summary>
 	public static void MakeDisabled(Bitmap bitmap) {
 		Application.VerifyAccess();
@@ -149,11 +133,6 @@ public unsafe partial class Bitmap : NativeObject {
 	/// <summary>Enable or disable use of alpha channel in this bitmap.</summary>
 	public bool UseAlpha(bool use = true) => WxKitNative.BitmapUseAlpha(Native, use ? (byte)1 : (byte)0) != 0;
 
-	private static WxkObject* CreateNative() {
-		Application.VerifyAccess();
-		return WxKitNative.BitmapNewDefault();
-	}
-
 	private static WxkObject* CreateNative(int width, int height, int depth) {
 		Application.VerifyAccess();
 		return WxKitNative.BitmapNewIntIntInt(width, height, depth);
@@ -168,14 +147,6 @@ public unsafe partial class Bitmap : NativeObject {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(dc);
 		return WxKitNative.BitmapNewIntIntDC(width, height, dc.Native);
-	}
-
-	private static WxkObject* CreateNative(string name, BitmapType? type) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(name);
-		fixed (char* nameText = name) {
-			return WxKitNative.BitmapNewStringBitmapType(nameText, NativeString.Length(name), (int)type.GetValueOrDefault(), type.HasValue ? (byte)1 : (byte)0);
-		}
 	}
 
 	private static WxkObject* CreateNative(Image image, int depth) {

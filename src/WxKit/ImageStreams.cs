@@ -2,20 +2,61 @@ using WxKit.Interop;
 
 namespace WxKit;
 
-// wxImage's LoadFile and SaveFile overloads that take a wxInputStream and a wxOutputStream, over
-// .NET's streams, through memory, such as for an image on the clipboard, in a resource, or from
-// another library.
+// wxImage's constructors from a file, and its LoadFile and SaveFile overloads that take a
+// wxInputStream and a wxOutputStream, over .NET's streams, through memory, such as for an image on
+// the clipboard, in a resource, or from another library. Loading gives null rather than an image
+// that is not usable.
 public unsafe partial class Image {
 	/// <summary>
-	/// Loads the image from a stream that holds a file in a format whose handler was added, such as
-	/// with <see cref="AddPngHandler"/>, and returns whether it could. Reads the stream to its end.
+	/// Loads an image from a file in a format whose handler was added, such as with
+	/// <see cref="AddPngHandler"/>, and returns null if it could not. BMP needs no handler.
+	/// </summary>
+	/// <param name="name">The file's path.</param>
+	/// <param name="type">The format, or <see cref="BitmapType.Any"/> to find it from the file.</param>
+	/// <param name="index">For a format with several images in a file, such as ICO, the one to load, or -1 for the default.</param>
+	public static Image? FromFile(string name, BitmapType type = BitmapType.Any, int index = -1) {
+		ArgumentNullException.ThrowIfNull(name);
+		Application.VerifyAccess();
+		fixed (char* characters = name) return Loaded(new Image(WxKitNative.ImageNewStringBitmapTypeInt(characters, (nuint)name.Length, (int)type, index)));
+	}
+
+	/// <summary>Loads an image from a file whose format is given as a MIME type, such as image/png, and returns null if it could not.</summary>
+	/// <param name="name">The file's path.</param>
+	/// <param name="mimeType">The format's MIME type.</param>
+	/// <param name="index">For a format with several images in a file, such as ICO, the one to load, or -1 for the default.</param>
+	public static Image? FromFile(string name, string mimeType, int index = -1) {
+		ArgumentNullException.ThrowIfNull(name);
+		ArgumentNullException.ThrowIfNull(mimeType);
+		Application.VerifyAccess();
+		fixed (char* characters = name, mime = mimeType) return Loaded(new Image(WxKitNative.ImageNewStringStringInt(characters, (nuint)name.Length, mime, (nuint)mimeType.Length, index)));
+	}
+
+	/// <summary>
+	/// Loads an image from a stream that holds a file in a format whose handler was added, such as
+	/// with <see cref="AddPngHandler"/>, and returns null if it could not. Reads the stream to its end.
 	/// </summary>
 	/// <param name="stream">The stream, such as a <see cref="MemoryStream"/> of a PNG file's bytes.</param>
 	/// <param name="type">The format, or <see cref="BitmapType.Any"/> to find it from the data.</param>
 	/// <param name="index">For a format with several images in a file, such as ICO, the one to load, or -1 for the default.</param>
-	public bool LoadFile(Stream stream, BitmapType type = BitmapType.Any, int index = -1) {
+	public static Image? FromStream(Stream stream, BitmapType type = BitmapType.Any, int index = -1) {
 		ArgumentNullException.ThrowIfNull(stream);
 		Application.VerifyAccess();
+		Image image = Empty();
+		if (image.Load(stream, type, index)) return image;
+		image.Dispose();
+		return null;
+	}
+
+	// An image with nothing in it, which is not usable until something is loaded into it.
+	internal static Image Empty() => new(WxKitNative.ImageNewDefault());
+
+	private static Image? Loaded(Image image) {
+		if (image.IsOk) return image;
+		image.Dispose();
+		return null;
+	}
+
+	private bool Load(Stream stream, BitmapType type, int index) {
 		byte[] data;
 		int length;
 		if (stream is MemoryStream memory && memory.TryGetBuffer(out ArraySegment<byte> buffer)) {

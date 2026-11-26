@@ -83,21 +83,21 @@ WXK_FUNCTION(void) wxk_BannerWindow_SetGradient(wxk_Window* self, wxk_Colour sta
 
 // wxBitmap
 
-WXK_FUNCTION(wxk_Object*) wxk_Bitmap_new_Default(void) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Bitmap_new_IntIntInt(int32_t width, int32_t height, int32_t depth) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Bitmap_new_SizeInt(wxk_Size size, int32_t depth) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Bitmap_new_IntIntDC(int32_t width, int32_t height, wxk_Object* dc) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Object*) wxk_Bitmap_new_StringBitmapType(const char16_t* name, size_t nameLength, int32_t type, uint8_t typeGiven) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Bitmap_new_ImageInt(const wxk_Object* image, int32_t depth) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Bitmap_new_ImageDC(const wxk_Object* image, wxk_Object* dc) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Bitmap_new_Cursor(const wxk_Object* cursor) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Object*) wxk_Bitmap_new_Default(void) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Object*) wxk_Bitmap_new_StringBitmapType(const char16_t* name, size_t nameLength, int32_t type, uint8_t typeGiven) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Bitmap_CreateWithDIPSize(wxk_Object* self, wxk_Size size, double scale, int32_t depth) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Bitmap_CreateWithLogicalSize(wxk_Object* self, wxk_Size size, double scale, int32_t depth) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Bitmap_LoadFile(wxk_Object* self, const char16_t* name, size_t nameLength, int32_t type, uint8_t typeGiven) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Bitmap_ConvertToDisabled(wxk_Object* self, uint8_t brightness) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Bitmap_ConvertToImage(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Bitmap_CopyFromIcon(wxk_Object* self, const wxk_Object* icon) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Bitmap_GetSubBitmap(wxk_Object* self, wxk_Rect rect) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Bitmap_LoadFile(wxk_Object* self, const char16_t* name, size_t nameLength, int32_t type, uint8_t typeGiven) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Bitmap_ResetAlpha(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Bitmap_SaveFile(wxk_Object* self, const char16_t* name, size_t nameLength, int32_t type) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Bitmap_UseAlpha(wxk_Object* self, uint8_t use) WXK_NOEXCEPT;
@@ -1230,11 +1230,8 @@ WXK_FUNCTION(void) wxk_IdleEvent_SetMode(int32_t mode) WXK_NOEXCEPT;
 
 // wxImage
 
-WXK_FUNCTION(wxk_Object*) wxk_Image_new_Default(void) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Image_new_IntIntBool(int32_t width, int32_t height, uint8_t clear) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Image_new_SizeBool(wxk_Size size, uint8_t clear) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Object*) wxk_Image_new_StringBitmapTypeInt(const char16_t* name, size_t nameLength, int32_t type, int32_t index) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Object*) wxk_Image_new_StringStringInt(const char16_t* name, size_t nameLength, const char16_t* mimeType, size_t mimeTypeLength, int32_t index) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_Paste(wxk_Object* self, const wxk_Object* image, int32_t x, int32_t y, int32_t alphaBlend) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_Replace(wxk_Object* self, uint8_t r1, uint8_t g1, uint8_t b1, uint8_t r2, uint8_t g2, uint8_t b2) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_Resize(wxk_Object* self, wxk_Size size, wxk_Point position, int32_t red, int32_t green, int32_t blue) WXK_NOEXCEPT;
@@ -1250,12 +1247,17 @@ WXK_FUNCTION(uint8_t) wxk_Image_GetMaskGreen(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Image_GetMaskBlue(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Image_HasMask(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Image_IsTransparent(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Image_LoadFile_StringBitmapTypeInt(wxk_Object* self, const char16_t* name, size_t nameLength, int32_t type, int32_t index) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Image_LoadFile_StringStringInt(wxk_Object* self, const char16_t* name, size_t nameLength, const char16_t* mimeType, size_t mimeTypeLength, int32_t index) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_SetAlpha(wxk_Object* self, int32_t x, int32_t y, uint8_t alpha) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_SetMask(wxk_Object* self, uint8_t hasMask) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_SetMaskColour(wxk_Object* self, uint8_t red, uint8_t green, uint8_t blue) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Image_SetMaskFromImage(wxk_Object* self, const wxk_Object* mask, uint8_t mr, uint8_t mg, uint8_t mb) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_SetRGB_IntIntByteByteByte(wxk_Object* self, int32_t x, int32_t y, uint8_t r, uint8_t g, uint8_t b) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_SetRGB_RectByteByteByte(wxk_Object* self, wxk_Rect rect, uint8_t red, uint8_t green, uint8_t blue) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Object*) wxk_Image_new_Default(void) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Object*) wxk_Image_new_StringBitmapTypeInt(const char16_t* name, size_t nameLength, int32_t type, int32_t index) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Object*) wxk_Image_new_StringStringInt(const char16_t* name, size_t nameLength, const char16_t* mimeType, size_t mimeTypeLength, int32_t index) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Image_Copy(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_Clear(wxk_Object* self, uint8_t value) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_Destroy(wxk_Object* self) WXK_NOEXCEPT;
@@ -1282,8 +1284,6 @@ WXK_FUNCTION(wxk_String*) wxk_Image_GetOption(wxk_Object* self, const char16_t* 
 WXK_FUNCTION(int32_t) wxk_Image_GetOptionInt(wxk_Object* self, const char16_t* name, size_t nameLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Image_GetSubImage(wxk_Object* self, wxk_Rect rect) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Image_HasOption(wxk_Object* self, const char16_t* name, size_t nameLength) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Image_LoadFile_StringBitmapTypeInt(wxk_Object* self, const char16_t* name, size_t nameLength, int32_t type, int32_t index) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Image_LoadFile_StringStringInt(wxk_Object* self, const char16_t* name, size_t nameLength, const char16_t* mimeType, size_t mimeTypeLength, int32_t index) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Image_SaveFile_StringBitmapType(wxk_Object* self, const char16_t* name, size_t nameLength, int32_t type) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Image_SaveFile_StringString(wxk_Object* self, const char16_t* name, size_t nameLength, const char16_t* mimeType, size_t mimeTypeLength) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Image_SaveFile_String(wxk_Object* self, const char16_t* name, size_t nameLength) WXK_NOEXCEPT;

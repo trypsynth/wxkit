@@ -12,8 +12,8 @@ public class ImageStreamTests {
 		Assert.True(original.SaveFile(saved, BitmapType.Png));
 		Assert.Equal(PngSignature, saved.ToArray()[..8]);
 		saved.Position = 0;
-		using Image loaded = new();
-		Assert.True(loaded.LoadFile(saved));
+		using Image? loaded = Image.FromStream(saved);
+		Assert.NotNull(loaded);
 		Assert.Equal(new Size(4, 3), loaded.Size);
 		Assert.Equal((byte)200, loaded.GetRgb(new Point(1, 2)).R);
 		Assert.Equal((byte)100, loaded.GetRgb(new Point(3, 0)).G);
@@ -28,8 +28,7 @@ public class ImageStreamTests {
 		using MemoryStream saved = new();
 		Assert.True(original.SaveFile(saved, BitmapType.Png));
 		saved.Position = saved.Length + 1000;
-		using Image loaded = new();
-		Assert.False(loaded.LoadFile(saved, BitmapType.Png));
+		Assert.Null(Image.FromStream(saved, BitmapType.Png));
 	});
 
 	[Fact]
@@ -39,18 +38,16 @@ public class ImageStreamTests {
 		Assert.True(original.SaveFile(saved, BitmapType.Bmp));
 		Assert.Equal("BM"u8.ToArray(), saved.ToArray()[..2]);
 		saved.Position = 0;
-		using Image loaded = new();
-		Assert.True(loaded.LoadFile(saved, BitmapType.Bmp));
+		using Image? loaded = Image.FromStream(saved, BitmapType.Bmp);
+		Assert.NotNull(loaded);
 		Assert.Equal((byte)200, loaded.GetRgb(new Point(1, 2)).R);
 	});
 
 	[Fact]
 	public Task SaysWhenDataIsNotAnImage() => Gui.Run(() => {
 		Image.AddPngHandler();
-		using Image image = new();
-		Assert.False(image.LoadFile(new MemoryStream("not an image"u8.ToArray())));
-		Assert.False(image.IsOk);
-		Assert.False(image.LoadFile(new MemoryStream()));
+		Assert.Null(Image.FromStream(new MemoryStream("not an image"u8.ToArray())));
+		Assert.Null(Image.FromStream(new MemoryStream()));
 	});
 
 	[Fact]
@@ -64,11 +61,11 @@ public class ImageStreamTests {
 		prefixed.Write("junk"u8);
 		png.WriteTo(prefixed);
 		prefixed.Position = 4;
-		using Image fromMemory = new();
-		Assert.True(fromMemory.LoadFile(prefixed, BitmapType.Png));
+		using Image? fromMemory = Image.FromStream(prefixed, BitmapType.Png);
+		Assert.NotNull(fromMemory);
 		using BufferedStream buffered = new(new MemoryStream(png.ToArray()));
-		using Image fromStream = new();
-		Assert.True(fromStream.LoadFile(buffered));
+		using Image? fromStream = Image.FromStream(buffered);
+		Assert.NotNull(fromStream);
 		Assert.Equal((byte)100, fromStream.GetRgb(new Point(3, 0)).G);
 	});
 

@@ -6,24 +6,12 @@ namespace WxKit;
 
 /// <summary>This class encapsulates a platform-independent image. Wraps wxImage.</summary>
 public unsafe partial class Image : NativeObject {
-	/// <summary>Creates an empty wxImage object without an alpha channel.</summary>
-	public Image() : this(CreateNative()) {
-	}
-
 	/// <summary>Creates an image with the given size and clears it if requested.</summary>
 	public Image(int width, int height, bool clear = true) : this(CreateNative(width, height, clear)) {
 	}
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public Image(Size size, bool clear = true) : this(CreateNative(size, clear)) {
-	}
-
-	/// <summary>Creates an image from a file.</summary>
-	public Image(string name, BitmapType type = BitmapType.Any, int index = -1) : this(CreateNative(name, type, index)) {
-	}
-
-	/// <summary>Creates an image from a file using MIME-types to specify the type.</summary>
-	public Image(string name, string mimeType, int index = -1) : this(CreateNative(name, mimeType, index)) {
 	}
 
 	internal Image(WxkObject* native) : base(native) {
@@ -172,24 +160,6 @@ public unsafe partial class Image : NativeObject {
 	/// <summary>Initializes the image alpha channel data.</summary>
 	public void InitAlpha() => WxKitNative.ImageInitAlpha(Native);
 
-	/// <summary>Loads an image from a file.</summary>
-	public bool LoadFile(string name, BitmapType type = BitmapType.Any, int index = -1) {
-		ArgumentNullException.ThrowIfNull(name);
-		fixed (char* nameText = name) {
-			return WxKitNative.ImageLoadFileStringBitmapTypeInt(Native, nameText, NativeString.Length(name), (int)type, index) != 0;
-		}
-	}
-
-	/// <summary>Loads an image from a file.</summary>
-	public bool LoadFile(string name, string mimeType, int index = -1) {
-		ArgumentNullException.ThrowIfNull(name);
-		ArgumentNullException.ThrowIfNull(mimeType);
-		fixed (char* nameText = name)
-		fixed (char* mimeTypeText = mimeType) {
-			return WxKitNative.ImageLoadFileStringStringInt(Native, nameText, NativeString.Length(name), mimeTypeText, NativeString.Length(mimeType), index) != 0;
-		}
-	}
-
 	/// <summary>Returns a mirrored copy of the image.</summary>
 	public Image? Mirror(bool horizontally = true) => global::WxKit.Image.Take(WxKitNative.ImageMirror(Native, horizontally ? (byte)1 : (byte)0));
 
@@ -264,11 +234,6 @@ public unsafe partial class Image : NativeObject {
 		}
 	}
 
-	private static WxkObject* CreateNative() {
-		Application.VerifyAccess();
-		return WxKitNative.ImageNewDefault();
-	}
-
 	private static WxkObject* CreateNative(int width, int height, bool clear) {
 		Application.VerifyAccess();
 		return WxKitNative.ImageNewIntIntBool(width, height, clear ? (byte)1 : (byte)0);
@@ -277,23 +242,5 @@ public unsafe partial class Image : NativeObject {
 	private static WxkObject* CreateNative(Size size, bool clear) {
 		Application.VerifyAccess();
 		return WxKitNative.ImageNewSizeBool(size, clear ? (byte)1 : (byte)0);
-	}
-
-	private static WxkObject* CreateNative(string name, BitmapType type, int index) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(name);
-		fixed (char* nameText = name) {
-			return WxKitNative.ImageNewStringBitmapTypeInt(nameText, NativeString.Length(name), (int)type, index);
-		}
-	}
-
-	private static WxkObject* CreateNative(string name, string mimeType, int index) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(name);
-		ArgumentNullException.ThrowIfNull(mimeType);
-		fixed (char* nameText = name)
-		fixed (char* mimeTypeText = mimeType) {
-			return WxKitNative.ImageNewStringStringInt(nameText, NativeString.Length(name), mimeTypeText, NativeString.Length(mimeType), index);
-		}
 	}
 }

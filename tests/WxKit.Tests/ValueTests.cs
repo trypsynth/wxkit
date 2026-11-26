@@ -56,8 +56,12 @@ public class ValueTests {
 			using Image image = new(4, 4);
 			image.SetRgb(new Point(1, 2), new Color(10, 20, 30));
 			Assert.True(image.SaveFile(path, BitmapType.Png));
-			using Image loaded = new();
-			Assert.True(loaded.LoadFile(path, BitmapType.Png));
+			using Image? loaded = Image.FromFile(path, BitmapType.Png);
+			Assert.NotNull(loaded);
+			using Bitmap? bitmap = Bitmap.FromFile(path, BitmapType.Png);
+			Assert.Equal(new Size(4, 4), bitmap?.Size);
+			using Image? byMime = Image.FromFile(path, "image/png");
+			Assert.Equal(new Size(4, 4), byMime?.Size);
 			Assert.Equal((byte)20, loaded.GetRgb(new Point(1, 2)).G);
 		} finally {
 			File.Delete(path);
@@ -66,7 +70,7 @@ public class ValueTests {
 
 	[Fact]
 	public Task GivesAnEmptyValueAsNull() => Gui.Run(() => {
-		using Image empty = new();
+		using Image empty = Image.Empty();
 		Assert.False(empty.IsOk);
 		// Copying an empty image out gives nothing, rather than an object that is not usable, and
 		// wxWidgets says it was a mistake.

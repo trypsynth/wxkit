@@ -12,7 +12,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 
 ## Members that go
 
-- `Bitmap()` and `Image()`, which make an empty one, if `LoadFile` should become a static factory too, such as `Bitmap.FromFile`.
 
 ## Members that have a better form now
 

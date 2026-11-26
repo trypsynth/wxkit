@@ -160,6 +160,10 @@ internal static class Internals {
 			// The rest have no such overload, so each is written by hand, in Points.cs, to take Points.
 			.Internal("Blit", "StretchBlit", "CalcBoundingBox", "DrawSpline");
 		tweaks.Class("wxImage").Internal("Paste");
+		// An empty bitmap or image was only good for LoadFile, and one made from a file that could
+		// not be read was an object that was not usable. FromFile and FromStream give null instead.
+		tweaks.Class("wxBitmap").InternalEmptyConstructor().InternalOverload("wxBitmap", "name", "const wxString &").Internal("LoadFile");
+		tweaks.Class("wxImage").InternalEmptyConstructor().InternalOverload("wxImage", "name", "const wxString &").Internal("LoadFile");
 		tweaks.Class("wxPrintout").Internal("SetLogicalOrigin", "OffsetLogicalOrigin");
 		tweaks.Class("wxStyledTextCtrl").Internal("CharPositionFromPoint", "CharPositionFromPointClose", "PositionFromPointClose");
 		tweaks.Class("wxToolBar").Internal("FindToolForPosition");

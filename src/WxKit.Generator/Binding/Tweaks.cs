@@ -245,6 +245,16 @@ internal sealed class ClassTweak(string name) {
 	/// <summary>Overloads whose import is kept for hand-written code, without a managed member, as <see cref="Internal"/> does for every overload.</summary>
 	public List<OverloadMatch> InternalOverloads { get; } = [];
 
+	/// <summary>Whether the constructor that takes nothing is internal, for a value whose empty form is of no use to an application.</summary>
+	public bool HidesEmptyConstructor { get; private set; }
+
+	public ClassTweak InternalEmptyConstructor() {
+		HidesEmptyConstructor = true;
+		return this;
+	}
+
+	public bool IsInternal(DoxygenMember member, string shortName) => InternalMembers.Contains(member.Name) || InternalOverloads.Any(overload => overload.Matches(member)) || (HidesEmptyConstructor && member.Name == shortName && member.Parameters.Count == 0);
+
 	public ClassTweak InternalOverload(string member, string parameter, string type) {
 		InternalOverloads.Add(new OverloadMatch(member, parameter, type));
 		return this;
