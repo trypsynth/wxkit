@@ -2380,6 +2380,7 @@ WXK_FUNCTION(uint8_t) wxk_StaticText_IsEllipsized(wxk_Window* self) WXK_NOEXCEPT
 // wxStatusBar
 
 WXK_FUNCTION(wxk_Window*) wxk_StatusBar_new(wxk_Window* parent, int32_t id, int64_t style) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_StatusBar_SetStatusStyles(wxk_Window* self, const int32_t* styles, size_t stylesCount) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_StatusBar_GetFieldRect(wxk_Window* self, int32_t i, wxk_Rect* rect) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_StatusBar_GetStatusText(wxk_Window* self, int32_t i) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StatusBar_GetStatusWidth(wxk_Window* self, int32_t index) WXK_NOEXCEPT;
@@ -2388,7 +2389,6 @@ WXK_FUNCTION(void) wxk_StatusBar_PopStatusText(wxk_Window* self, int32_t field) 
 WXK_FUNCTION(void) wxk_StatusBar_PushStatusText(wxk_Window* self, const char16_t* text, size_t textLength, int32_t field) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_StatusBar_AddFieldControl(wxk_Window* self, int32_t i, wxk_Window* window) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StatusBar_SetMinHeight(wxk_Window* self, int32_t height) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_StatusBar_SetStatusStyles(wxk_Window* self, const int32_t* styles, size_t stylesCount) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StatusBar_SetStatusText(wxk_Window* self, const char16_t* text, size_t textLength, int32_t i) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StatusBar_SetStatusWidths(wxk_Window* self, const int32_t* widths, size_t widthsCount) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StatusBar_GetFieldsCount(wxk_Window* self) WXK_NOEXCEPT;

@@ -7586,6 +7586,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* StatusBarNew(WxkWindow* parent, int id, long style);
 
+	[LibraryImport(Library, EntryPoint = "wxk_StatusBar_SetStatusStyles")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StatusBarSetStatusStyles(WxkWindow* self, int* styles, nuint stylesCount);
+
 	[LibraryImport(Library, EntryPoint = "wxk_StatusBar_GetFieldRect")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte StatusBarGetFieldRect(WxkWindow* self, int i, Rect* rect);
@@ -7617,10 +7621,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_StatusBar_SetMinHeight")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StatusBarSetMinHeight(WxkWindow* self, int height);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StatusBar_SetStatusStyles")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StatusBarSetStatusStyles(WxkWindow* self, int* styles, nuint stylesCount);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StatusBar_SetStatusText")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

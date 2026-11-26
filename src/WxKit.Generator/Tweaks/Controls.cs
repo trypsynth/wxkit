@@ -45,6 +45,8 @@ internal static class Controls {
 		tweaks.Class("wxStatusBar", bar => bar
 			.ParameterName("SetStatusWidths", "widths_field", "widths")
 			.ParameterEnum("GetStatusStyle", "return", "StatusBarFieldStyle")
+			// It takes a list of the styles, where an enum only goes on one number, so it's written by hand.
+			.Internal("SetStatusStyles")
 			.Rename("GetFieldRect", "TryGetFieldRect"));
 		// Pickers: a button, and optionally a text box, that choose a color, a file, a folder, or a
 		// font. Events are only received, so the events' values are only read.

@@ -4207,7 +4207,7 @@ class WxKit.StatusBar : Control
     void PopStatusText(int field = 0)
     void PushStatusText(string text, int field = 0)
     void SetMinHeight(int height)
-    void SetStatusStyles(IEnumerable<int> styles)
+    void SetStatusStyles(IEnumerable<StatusBarFieldStyle> styles)
     void SetStatusText(string text, int i = 0)
     void SetStatusWidths(IEnumerable<int> widths)
 enum WxKit.StatusBarFieldStyle : int

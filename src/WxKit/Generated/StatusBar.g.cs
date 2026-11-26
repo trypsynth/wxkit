@@ -51,15 +51,6 @@ public unsafe partial class StatusBar : Control {
 	/// <summary>Sets the minimal possible height for the status bar.</summary>
 	public void SetMinHeight(int height) => WxKitNative.StatusBarSetMinHeight(Native, height);
 
-	/// <summary>Sets the styles of the fields in the status line which can make fields appear flat or raised instead of the default appearance.</summary>
-	public void SetStatusStyles(IEnumerable<int> styles) {
-		ArgumentNullException.ThrowIfNull(styles);
-		int[] stylesValues = [.. styles];
-		fixed (int* stylesPointer = stylesValues) {
-			WxKitNative.StatusBarSetStatusStyles(Native, stylesPointer, (nuint)stylesValues.Length);
-		}
-	}
-
 	/// <summary>Sets the status text for the i-th field.</summary>
 	public void SetStatusText(string text, int i = 0) {
 		ArgumentNullException.ThrowIfNull(text);
