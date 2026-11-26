@@ -52,6 +52,8 @@ public class ListTests {
 		// Where there is no item, the tree gives null.
 		Assert.Null(tree.GetItemParent(root));
 		Assert.Null(tree.GetNextSibling(novel));
+		// The tree wxWidgets draws itself, on GTK and macOS, selects the root when it is added.
+		tree.Unselect();
 		Assert.Null(tree.Selection);
 	});
 
