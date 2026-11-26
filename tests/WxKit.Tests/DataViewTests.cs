@@ -114,7 +114,7 @@ public class DataViewTests {
 		Assert.Equal(1_000_000, model.Count);
 		DataViewItem item = model.GetItem(12345);
 		Assert.Equal(12345, model.GetRow(item));
-		model.RowValueChanged(12345, 1);
+		model.NotifyRowValueChanged(12345, 1);
 		model.Reset(10);
 		Assert.Equal(10, model.Count);
 	});
@@ -134,14 +134,14 @@ public class DataViewTests {
 		Assert.Contains(music, model.Opened);
 		Folder blues = new("Blues", []);
 		music.Children.Add(blues);
-		Assert.True(model.ItemAdded(music, blues));
-		Assert.True(model.ItemChanged(blues));
+		Assert.True(model.NotifyItemAdded(music, blues));
+		Assert.True(model.NotifyItemChanged(blues));
 		Assert.Same(music, model.ObjectOf(model.ItemOf(music)));
 		Assert.Equal(DataViewItem.Root, model.ItemOf(null));
 		// Deleting a folder forgets the items under it too.
 		DataViewItem bluesItem = model.ItemOf(blues);
 		top.Remove(music);
-		Assert.True(model.ItemDeleted(null, music));
+		Assert.True(model.NotifyItemDeleted(null, music));
 		Assert.Null(model.ObjectOf(musicItem));
 		Assert.Null(model.ObjectOf(bluesItem));
 	});

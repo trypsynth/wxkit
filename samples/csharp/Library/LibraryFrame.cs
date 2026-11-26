@@ -121,7 +121,7 @@ internal sealed class LibraryFrame : Frame {
 		Book book = _shown[row];
 		_books.RemoveAt(_books.FindIndex(found => ReferenceEquals(found, book)));
 		_shown.RemoveAt(row);
-		_model.RowDeleted(row);
+		_model.NotifyRowDeleted(row);
 		ShowCounts();
 	}
 
@@ -129,7 +129,7 @@ internal sealed class LibraryFrame : Frame {
 		int row = SelectedRow;
 		if (row < 0) return;
 		Replace(row, _shown[row] with { IsRead = !_shown[row].IsRead });
-		_model.RowChanged(row);
+		_model.NotifyRowChanged(row);
 	}
 
 	// For the smoke test: searches, selects the first book shown, marks it read, and removes it.

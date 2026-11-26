@@ -38,7 +38,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 
 - One lifetime model: everything the application owns is `IDisposable`, says whether it's gone with `IsDisposed`, rather than some with `IsDestroyed`, and is freed when it's disposed. `Menu` gets `Dispose`.
 - `MenuItem` wraps the native item, as `ToolBarTool` does, rather than a menu and an id.
-- A data view model's notifications, `ItemChanged`, `ItemAdded`, `Cleared`, and the rest, become `NotifyItemChanged` and so on, so they don't read as events, and stop being virtual.
 - `LiveRegion` derives from `Control` rather than `StaticText`, whose label it has no use for.
 - A window's accessible object and drop target are set the same way, as `window.DropTarget = new DropTarget(...)` would be, rather than as a side effect of their constructors.
 - A `PaintDC` is lent through the paint event, as a printout's DC is, so a handler can't forget to dispose it.
@@ -47,7 +46,7 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 
 Porting the samples to F# found these, which F# makes more of than C# does:
 
-- `DataViewTreeModel<T>` knows its items by reference, so an F# record, which changes by being copied, is a new item each time it changes. It could take an `IEqualityComparer<T>`, so an item is known by a key, such as an id, and `ItemChanged` with a changed copy keeps the copy.
+- `DataViewTreeModel<T>` knows its items by reference, so an F# record, which changes by being copied, is a new item each time it changes. It could take an `IEqualityComparer<T>`, so an item is known by a key, such as an id, and `NotifyItemChanged` with a changed copy keeps the copy.
 - A `row` or `column` inside another needs `section` before `fill` or `grow` can change it, as in `section (row { ... }) |> fill`. The item functions could take a sizer too, so it reads `row { ... } |> fill`.
 - `Dialog.CreateStdDialogButtonSizer`, which gives a dialog OK and Cancel, or the other standard buttons, in the platform's order, isn't bound, since it returns a sizer the caller owns until a sizer takes it, so each sample makes the buttons itself. It could give the sizer as a sizer the caller adds.
 

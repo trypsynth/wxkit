@@ -86,14 +86,14 @@ type LibraryFrame() as this =
             let old = shown[row]
             books <- books |> List.filter (fun book -> not (LanguagePrimitives.PhysicalEquality book old))
             shown <- shown |> Array.removeAt row
-            model.RowDeleted row
+            model.NotifyRowDeleted row
             showCounts ())
 
     let toggleSelected () =
         selectedRow ()
         |> Option.iter (fun row ->
             replace row { shown[row] with IsRead = not shown[row].IsRead }
-            model.RowChanged row)
+            model.NotifyRowChanged row)
 
     do
         list.Model <- model

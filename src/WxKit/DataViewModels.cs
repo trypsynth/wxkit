@@ -26,7 +26,7 @@ public readonly record struct DataViewItem(nint Value) {
 /// </para>
 /// <para>
 /// A control keeps the model it shows alive. The model tells its controls what changed through its
-/// notifying members, such as <see cref="ItemChanged"/>, and they ask for the new values.
+/// notifying members, such as <see cref="NotifyItemChanged"/>, and they ask for the new values.
 /// </para>
 /// <para>An exception in a member the control calls goes to <see cref="Application.UnhandledException"/>, and the control gets nothing.</para>
 /// </remarks>
@@ -61,13 +61,20 @@ public abstract unsafe class DataViewModel {
 	}
 
 	/// <summary>Tells the controls that an item's values changed.</summary>
-	public bool ItemChanged(DataViewItem item) => WxKitNative.DataViewModelItemChanged(Native, item.Value) != 0;
+	public bool NotifyItemChanged(DataViewItem item) => WxKitNative.DataViewModelItemChanged(Native, item.Value) != 0;
 
 	/// <summary>Tells the controls that one value of an item changed.</summary>
-	public bool ValueChanged(DataViewItem item, int column) => WxKitNative.DataViewModelValueChanged(Native, item.Value, checked((uint)column)) != 0;
+	public bool NotifyValueChanged(DataViewItem item, int column) => WxKitNative.DataViewModelValueChanged(Native, item.Value, checked((uint)column)) != 0;
 
 	/// <summary>Tells the controls that everything changed, so they ask for all the items again.</summary>
-	public virtual bool Cleared() => WxKitNative.DataViewModelCleared(Native) != 0;
+	public bool NotifyCleared() {
+		OnClearing();
+		return WxKitNative.DataViewModelCleared(Native) != 0;
+	}
+
+	// What a model that keeps its items does before the controls ask for them all again.
+	private protected virtual void OnClearing() {
+	}
 
 	/// <summary>Tells the controls to sort their items again.</summary>
 	public void Resort() => WxKitNative.DataViewModelResort(Native);
@@ -104,10 +111,18 @@ public abstract unsafe class DataViewTreeModel : DataViewModel {
 	}
 
 	/// <summary>Tells the controls that an item was added under a parent, or under <see cref="DataViewItem.Root"/>.</summary>
-	public bool ItemAdded(DataViewItem parent, DataViewItem item) => WxKitNative.DataViewModelItemAdded(Native, parent.Value, item.Value) != 0;
+	public bool NotifyItemAdded(DataViewItem parent, DataViewItem item) => WxKitNative.DataViewModelItemAdded(Native, parent.Value, item.Value) != 0;
 
 	/// <summary>Tells the controls that an item was deleted from under a parent.</summary>
-	public virtual bool ItemDeleted(DataViewItem parent, DataViewItem item) => WxKitNative.DataViewModelItemDeleted(Native, parent.Value, item.Value) != 0;
+	public bool NotifyItemDeleted(DataViewItem parent, DataViewItem item) {
+		bool deleted = WxKitNative.DataViewModelItemDeleted(Native, parent.Value, item.Value) != 0;
+		OnItemDeleted(parent, item);
+		return deleted;
+	}
+
+	// What a model that keeps its items does once the controls know one is gone.
+	private protected virtual void OnItemDeleted(DataViewItem parent, DataViewItem item) {
+	}
 
 	/// <summary>The item's value in a column.</summary>
 	protected abstract object? GetValue(DataViewItem item, int column);
@@ -215,8 +230,8 @@ public abstract unsafe class DataViewTreeModel : DataViewModel {
 
 /// <summary>
 /// A tree model whose items are the application's own objects. It gives each object an id the first
-/// time the control sees it, and keeps it until <see cref="ItemDeleted(T, T)"/> or
-/// <see cref="Cleared"/>. The root is null.
+/// time the control sees it, and keeps it until <see cref="NotifyItemDeleted(T, T)"/> or
+/// <see cref="DataViewModel.NotifyCleared"/>. The root is null.
 /// </summary>
 /// <typeparam name="T">The items' type, compared by reference.</typeparam>
 public abstract class DataViewTreeModel<T> : DataViewTreeModel where T : class {
@@ -242,41 +257,36 @@ public abstract class DataViewTreeModel<T> : DataViewTreeModel where T : class {
 	public T? ObjectOf(DataViewItem item) => item.IsOk && _items.TryGetValue(item.Value, out T? found) ? found : null;
 
 	/// <summary>Tells the controls that an object was added under a parent, or under the root for null.</summary>
-	public bool ItemAdded(T? parent, T item) {
+	public bool NotifyItemAdded(T? parent, T item) {
 		ArgumentNullException.ThrowIfNull(item);
 		DataViewItem parentItem = ItemOf(parent);
 		DataViewItem added = ItemOf(item);
 		Under(parentItem.Value).Add(added.Value);
-		return ItemAdded(parentItem, added);
+		return NotifyItemAdded(parentItem, added);
 	}
 
 	/// <summary>Tells the controls that an object was deleted from under a parent, and forgets its id.</summary>
-	public bool ItemDeleted(T? parent, T item) {
+	public bool NotifyItemDeleted(T? parent, T item) {
 		ArgumentNullException.ThrowIfNull(item);
-		return ItemDeleted(ItemOf(parent), ItemOf(item));
+		return NotifyItemDeleted(ItemOf(parent), ItemOf(item));
 	}
 
-	public override bool ItemDeleted(DataViewItem parent, DataViewItem item) {
-		bool deleted = base.ItemDeleted(parent, item);
-		if (ObjectOf(item) is T) {
-			if (_children.TryGetValue(parent.Value, out HashSet<nint>? siblings)) siblings.Remove(item.Value);
-			Forget(item.Value);
-		}
-		return deleted;
+	private protected override void OnItemDeleted(DataViewItem parent, DataViewItem item) {
+		if (ObjectOf(item) is not T) return;
+		if (_children.TryGetValue(parent.Value, out HashSet<nint>? siblings)) siblings.Remove(item.Value);
+		Forget(item.Value);
 	}
 
 	/// <summary>Tells the controls that an object's values changed.</summary>
-	public bool ItemChanged(T item) => ItemChanged(ItemOf(item));
+	public bool NotifyItemChanged(T item) => NotifyItemChanged(ItemOf(item));
 
 	/// <summary>Tells the controls that one value of an object changed.</summary>
-	public bool ValueChanged(T item, int column) => ValueChanged(ItemOf(item), column);
+	public bool NotifyValueChanged(T item, int column) => NotifyValueChanged(ItemOf(item), column);
 
-	/// <summary>Tells the controls that everything changed, and forgets every object's id.</summary>
-	public override bool Cleared() {
+	private protected override void OnClearing() {
 		_ids.Clear();
 		_items.Clear();
 		_children.Clear();
-		return base.Cleared();
 	}
 
 	/// <summary>The object's value in a column.</summary>
@@ -362,22 +372,22 @@ public abstract unsafe class DataViewVirtualListModel : DataViewModel {
 	public void Reset(int count) => WxKitNative.DataViewVirtualListModelReset(Native, checked((uint)count));
 
 	/// <summary>Tells the controls that a row was added at the end.</summary>
-	public void RowAppended() => WxKitNative.DataViewVirtualListModelRowAppended(Native);
+	public void NotifyRowAppended() => WxKitNative.DataViewVirtualListModelRowAppended(Native);
 
 	/// <summary>Tells the controls that a row was added at the start.</summary>
-	public void RowPrepended() => WxKitNative.DataViewVirtualListModelRowPrepended(Native);
+	public void NotifyRowPrepended() => WxKitNative.DataViewVirtualListModelRowPrepended(Native);
 
 	/// <summary>Tells the controls that a row was added before another.</summary>
-	public void RowInserted(int before) => WxKitNative.DataViewVirtualListModelRowInserted(Native, checked((uint)before));
+	public void NotifyRowInserted(int before) => WxKitNative.DataViewVirtualListModelRowInserted(Native, checked((uint)before));
 
 	/// <summary>Tells the controls that a row was deleted.</summary>
-	public void RowDeleted(int row) => WxKitNative.DataViewVirtualListModelRowDeleted(Native, checked((uint)row));
+	public void NotifyRowDeleted(int row) => WxKitNative.DataViewVirtualListModelRowDeleted(Native, checked((uint)row));
 
 	/// <summary>Tells the controls that a row's values changed.</summary>
-	public void RowChanged(int row) => WxKitNative.DataViewVirtualListModelRowChanged(Native, checked((uint)row));
+	public void NotifyRowChanged(int row) => WxKitNative.DataViewVirtualListModelRowChanged(Native, checked((uint)row));
 
 	/// <summary>Tells the controls that one value of a row changed.</summary>
-	public void RowValueChanged(int row, int column) => WxKitNative.DataViewVirtualListModelRowValueChanged(Native, checked((uint)row), checked((uint)column));
+	public void NotifyRowValueChanged(int row, int column) => WxKitNative.DataViewVirtualListModelRowValueChanged(Native, checked((uint)row), checked((uint)column));
 
 	/// <summary>The row's value in a column.</summary>
 	protected abstract object? GetValue(int row, int column);
