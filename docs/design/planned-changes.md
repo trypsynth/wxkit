@@ -35,7 +35,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 - A window's style is one property of the class's own style enum, rather than `WindowStyle`, `WindowStyleFlag`, `SetWindowStyle`, and `HasFlag` taking three types.
 - The item controls, `Choice`, `ComboBox`, `ListBox`, and `CheckListBox`, have one constructor each, with optional items and a style, and share an `IItemContainer` interface rather than repeating its members. Their item data has one name.
 - `ListCtrl.GetItem` and `GetColumn` return a `ListItem` rather than filling one the caller makes.
-- `GridSizer` and `FlexGridSizer` take a column count and a `Size` gap, so the first number doesn't mean columns or rows by how many follow.
 - `Image`'s colors given as three bytes, as `SetRgb`, `Replace`, and `ConvertToMono` take them, are `Color`s.
 - `Dialog.ShowWindowModal` becomes `ShowWindowModalAsync`, whose task gives the result.
 - `ListCtrl` items, `TreeItemId`, `TreeListItem`, and `DataViewItem` can't be made from a number outside WxKit, which could crash the control.

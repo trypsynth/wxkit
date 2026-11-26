@@ -61,7 +61,7 @@ public class ControlTests {
 	[Fact]
 	public Task LaysOutWithAFlexGridSizer() => Gui.WithFrame(frame => {
 		Panel panel = new(frame);
-		FlexGridSizer grid = new(2, 5, 5);
+		FlexGridSizer grid = new(2, new Size(5, 5));
 		grid.AddGrowableColumn(1, 1);
 		grid.Add(new StaticText(panel, "&Name:"));
 		grid.Add(new TextCtrl(panel), SizerFlags.Default.Expand());

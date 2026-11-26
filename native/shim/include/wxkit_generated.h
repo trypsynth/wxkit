@@ -1012,9 +1012,7 @@ WXK_FUNCTION(wxk_Window*) wxk_FindReplaceDialog_new(wxk_Window* parent, wxk_Obje
 
 // wxFlexGridSizer
 
-WXK_FUNCTION(wxk_Sizer*) wxk_FlexGridSizer_new_IntIntInt(int32_t columns, int32_t verticalGap, int32_t horizontalGap) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Sizer*) wxk_FlexGridSizer_new_Int(int32_t columns) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Sizer*) wxk_FlexGridSizer_new_IntIntIntInt(int32_t rows, int32_t columns, int32_t verticalGap, int32_t horizontalGap) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Sizer*) wxk_FlexGridSizer_new_IntIntSize(int32_t rows, int32_t columns, wxk_Size gap) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_FlexGridSizer_AddGrowableCol(wxk_Sizer* self, size_t index, int32_t proportion) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_FlexGridSizer_AddGrowableRow(wxk_Sizer* self, size_t index, int32_t proportion) WXK_NOEXCEPT;
@@ -1207,9 +1205,7 @@ WXK_FUNCTION(void) wxk_GridBagSizer_SetEmptyCellSize(wxk_Sizer* self, wxk_Size s
 
 // wxGridSizer
 
-WXK_FUNCTION(wxk_Sizer*) wxk_GridSizer_new_IntIntInt(int32_t columns, int32_t verticalGap, int32_t horizontalGap) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Sizer*) wxk_GridSizer_new_Int(int32_t columns) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Sizer*) wxk_GridSizer_new_IntIntIntInt(int32_t rows, int32_t columns, int32_t verticalGap, int32_t horizontalGap) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Sizer*) wxk_GridSizer_new_IntIntSize(int32_t rows, int32_t columns, wxk_Size gap) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_GridSizer_GetHGap(wxk_Sizer* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_GridSizer_SetHGap(wxk_Sizer* self, int32_t gap) WXK_NOEXCEPT;

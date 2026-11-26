@@ -6,22 +6,6 @@ namespace WxKit;
 
 /// <summary>A flex grid sizer is a sizer which lays out its children in a two-dimensional table with all table fields in one row having the same height and all fields in one column having the same width, but all rows or all columns are not necessarily the same height or width as in the wxGridSizer. Wraps wxFlexGridSizer.</summary>
 public unsafe partial class FlexGridSizer : GridSizer {
-	/// <summary>wxFlexGridSizer constructors.</summary>
-	public FlexGridSizer(int columns, int verticalGap, int horizontalGap) : this(CreateNative(columns, verticalGap, horizontalGap)) {
-	}
-
-	/// <summary>wxFlexGridSizer constructors.</summary>
-	public FlexGridSizer(int columns) : this(CreateNative(columns)) {
-	}
-
-	/// <summary>wxFlexGridSizer constructors.</summary>
-	public FlexGridSizer(int rows, int columns, int verticalGap, int horizontalGap) : this(CreateNative(rows, columns, verticalGap, horizontalGap)) {
-	}
-
-	/// <summary>wxFlexGridSizer constructors.</summary>
-	public FlexGridSizer(int rows, int columns, Size gap) : this(CreateNative(rows, columns, gap)) {
-	}
-
 	internal FlexGridSizer(WxkSizer* native) : base(native) {
 	}
 
@@ -60,24 +44,4 @@ public unsafe partial class FlexGridSizer : GridSizer {
 
 	/// <summary>Specifies that the idx row index is no longer growable.</summary>
 	public void RemoveGrowableRow(int index) => WxKitNative.FlexGridSizerRemoveGrowableRow(Native, checked((nuint)index));
-
-	private static WxkSizer* CreateNative(int columns, int verticalGap, int horizontalGap) {
-		Application.VerifyAccess();
-		return WxKitNative.FlexGridSizerNewIntIntInt(columns, verticalGap, horizontalGap);
-	}
-
-	private static WxkSizer* CreateNative(int columns) {
-		Application.VerifyAccess();
-		return WxKitNative.FlexGridSizerNewInt(columns);
-	}
-
-	private static WxkSizer* CreateNative(int rows, int columns, int verticalGap, int horizontalGap) {
-		Application.VerifyAccess();
-		return WxKitNative.FlexGridSizerNewIntIntIntInt(rows, columns, verticalGap, horizontalGap);
-	}
-
-	private static WxkSizer* CreateNative(int rows, int columns, Size gap) {
-		Application.VerifyAccess();
-		return WxKitNative.FlexGridSizerNewIntIntSize(rows, columns, gap);
-	}
 }

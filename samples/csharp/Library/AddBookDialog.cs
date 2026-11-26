@@ -11,7 +11,7 @@ internal sealed class AddBookDialog : Dialog {
 
 	public AddBookDialog(Window parent) : base(parent, "Add Book") {
 		// Each label is made just before its field, so a screen reader names the field after it.
-		FlexGridSizer form = new(2, 5, 10);
+		FlexGridSizer form = new(2, new Size(10, 5));
 		form.AddGrowableColumn(1);
 		form.Add(new StaticText(this, "&Title:"), SizerFlags.Default.CenterVertical());
 		_title = new TextCtrl(this, size: new Size(260, -1)) { Validator = new Required("a title") };

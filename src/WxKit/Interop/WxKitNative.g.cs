@@ -3194,17 +3194,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* FindReplaceDialogNew(WxkWindow* parent, WxkObject* data, char* title, nuint titleLength, int style);
 
-	[LibraryImport(Library, EntryPoint = "wxk_FlexGridSizer_new_IntIntInt")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkSizer* FlexGridSizerNewIntIntInt(int columns, int verticalGap, int horizontalGap);
-
 	[LibraryImport(Library, EntryPoint = "wxk_FlexGridSizer_new_Int")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkSizer* FlexGridSizerNewInt(int columns);
-
-	[LibraryImport(Library, EntryPoint = "wxk_FlexGridSizer_new_IntIntIntInt")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkSizer* FlexGridSizerNewIntIntIntInt(int rows, int columns, int verticalGap, int horizontalGap);
 
 	[LibraryImport(Library, EntryPoint = "wxk_FlexGridSizer_new_IntIntSize")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -3830,17 +3822,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void GridBagSizerSetEmptyCellSize(WxkSizer* self, Size size);
 
-	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_new_IntIntInt")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkSizer* GridSizerNewIntIntInt(int columns, int verticalGap, int horizontalGap);
-
 	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_new_Int")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkSizer* GridSizerNewInt(int columns);
-
-	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_new_IntIntIntInt")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkSizer* GridSizerNewIntIntIntInt(int rows, int columns, int verticalGap, int horizontalGap);
 
 	[LibraryImport(Library, EntryPoint = "wxk_GridSizer_new_IntIntSize")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

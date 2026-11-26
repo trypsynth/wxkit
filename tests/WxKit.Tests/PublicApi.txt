@@ -1894,10 +1894,7 @@ class WxKit.FindReplaceDialog : Dialog
     None = 0
     WholeWord = 2
 class WxKit.FlexGridSizer : GridSizer
-    FlexGridSizer(int columns)
-    FlexGridSizer(int columns, int verticalGap, int horizontalGap)
-    FlexGridSizer(int rows, int columns, Size gap)
-    FlexGridSizer(int rows, int columns, int verticalGap, int horizontalGap)
+    FlexGridSizer(int columns, Size gap = null)
     FlexSizerGrowMode NonFlexibleGrowMode { get; set; }
     IReadOnlyList<int> ColumnWidths { get; }
     IReadOnlyList<int> RowHeights { get; }
@@ -2242,10 +2239,7 @@ readonly record struct WxKit.GridPosition : IEquatable<GridPosition>
     static bool op_Inequality(GridPosition left, GridPosition right)
     void Deconstruct(out int Row, out int Column)
 class WxKit.GridSizer : Sizer
-    GridSizer(int columns)
-    GridSizer(int columns, int verticalGap, int horizontalGap)
-    GridSizer(int rows, int columns, Size gap)
-    GridSizer(int rows, int columns, int verticalGap, int horizontalGap)
+    GridSizer(int columns, Size gap = null)
     int Columns { get; set; }
     int EffectiveColumnsCount { get; }
     int EffectiveRowsCount { get; }
