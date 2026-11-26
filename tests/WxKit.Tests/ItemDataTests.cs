@@ -12,12 +12,14 @@ public class ItemDataTests {
 		Book novel = new("A novel");
 		Assert.Equal(0, list.Append("A novel", novel));
 		Assert.Equal(1, list.Append("Untitled", null));
-		Assert.True(list.HasClientObjectData);
-		Assert.Same(novel, list.GetClientObject(0));
-		Assert.Null(list.GetClientObject(1));
+		Assert.Same(novel, list.GetItemData(0));
+		// A list box, a choice, and a combo box are item containers alike.
+		IItemContainer[] containers = [list, new Choice(frame, ["One"]), new ComboBox(frame, choices: ["One", "Two"])];
+		Assert.Equal([2, 1, 2], containers.Select(static container => container.Count));
+		Assert.Null(list.GetItemData(1));
 		Book poems = new("Poems");
-		list.SetClientObject(1, poems);
-		Assert.Same(poems, list.GetClientObject(1));
+		list.SetItemData(1, poems);
+		Assert.Same(poems, list.GetItemData(1));
 	});
 
 	[Fact]
@@ -25,12 +27,12 @@ public class ItemDataTests {
 		ListBox list = new(frame);
 		WeakReference replaced = AppendBook(list);
 		WeakReference deleted = AppendBook(list);
-		list.SetClientObject(0, new Book("Another"));
+		list.SetItemData(0, new Book("Another"));
 		list.Delete(1);
 		Collect();
 		Assert.False(replaced.IsAlive);
 		Assert.False(deleted.IsAlive);
-		Assert.IsType<Book>(list.GetClientObject(0));
+		Assert.IsType<Book>(list.GetItemData(0));
 	});
 
 	[Fact]

@@ -23,7 +23,7 @@ public unsafe partial class DataViewTreeCtrl : DataViewCtrl {
 	public DataViewItem AppendContainer(DataViewItem parent, string text, int icon = -1, int expanded = -1, object? data = null) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return new global::WxKit.DataViewItem(WxKitNative.DataViewTreeCtrlAppendContainer(Native, parent.Value, textText, NativeString.Length(text), icon, expanded, ItemData.Alloc(data)));
+			return new global::WxKit.DataViewItem(WxKitNative.DataViewTreeCtrlAppendContainer(Native, parent.Value, textText, NativeString.Length(text), icon, expanded, global::WxKit.ItemData.Alloc(data)));
 		}
 	}
 
@@ -31,7 +31,7 @@ public unsafe partial class DataViewTreeCtrl : DataViewCtrl {
 	public DataViewItem AppendItem(DataViewItem parent, string text, int icon = -1, object? data = null) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return new global::WxKit.DataViewItem(WxKitNative.DataViewTreeCtrlAppendItem(Native, parent.Value, textText, NativeString.Length(text), icon, ItemData.Alloc(data)));
+			return new global::WxKit.DataViewItem(WxKitNative.DataViewTreeCtrlAppendItem(Native, parent.Value, textText, NativeString.Length(text), icon, global::WxKit.ItemData.Alloc(data)));
 		}
 	}
 
@@ -48,7 +48,7 @@ public unsafe partial class DataViewTreeCtrl : DataViewCtrl {
 	public int GetChildCount(DataViewItem parent) => WxKitNative.DataViewTreeCtrlGetChildCount(Native, parent.Value);
 
 	/// <summary>Calls the identical method from wxDataViewTreeStore.</summary>
-	public object? GetItemData(DataViewItem item) => ItemData.Get(WxKitNative.DataViewTreeCtrlGetItemData(Native, item.Value));
+	public object? GetItemData(DataViewItem item) => global::WxKit.ItemData.Get(WxKitNative.DataViewTreeCtrlGetItemData(Native, item.Value));
 
 	/// <summary>Calls the identical method from wxDataViewTreeStore.</summary>
 	public Icon? GetItemExpandedIcon(DataViewItem item) => global::WxKit.Icon.Take(WxKitNative.DataViewTreeCtrlGetItemExpandedIcon(Native, item.Value));
@@ -69,7 +69,7 @@ public unsafe partial class DataViewTreeCtrl : DataViewCtrl {
 	public DataViewItem InsertContainer(DataViewItem parent, DataViewItem previous, string text, int icon = -1, int expanded = -1, object? data = null) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return new global::WxKit.DataViewItem(WxKitNative.DataViewTreeCtrlInsertContainer(Native, parent.Value, previous.Value, textText, NativeString.Length(text), icon, expanded, ItemData.Alloc(data)));
+			return new global::WxKit.DataViewItem(WxKitNative.DataViewTreeCtrlInsertContainer(Native, parent.Value, previous.Value, textText, NativeString.Length(text), icon, expanded, global::WxKit.ItemData.Alloc(data)));
 		}
 	}
 
@@ -77,7 +77,7 @@ public unsafe partial class DataViewTreeCtrl : DataViewCtrl {
 	public DataViewItem InsertItem(DataViewItem parent, DataViewItem previous, string text, int icon = -1, object? data = null) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return new global::WxKit.DataViewItem(WxKitNative.DataViewTreeCtrlInsertItem(Native, parent.Value, previous.Value, textText, NativeString.Length(text), icon, ItemData.Alloc(data)));
+			return new global::WxKit.DataViewItem(WxKitNative.DataViewTreeCtrlInsertItem(Native, parent.Value, previous.Value, textText, NativeString.Length(text), icon, global::WxKit.ItemData.Alloc(data)));
 		}
 	}
 
@@ -88,7 +88,7 @@ public unsafe partial class DataViewTreeCtrl : DataViewCtrl {
 	public DataViewItem PrependContainer(DataViewItem parent, string text, int icon = -1, int expanded = -1, object? data = null) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return new global::WxKit.DataViewItem(WxKitNative.DataViewTreeCtrlPrependContainer(Native, parent.Value, textText, NativeString.Length(text), icon, expanded, ItemData.Alloc(data)));
+			return new global::WxKit.DataViewItem(WxKitNative.DataViewTreeCtrlPrependContainer(Native, parent.Value, textText, NativeString.Length(text), icon, expanded, global::WxKit.ItemData.Alloc(data)));
 		}
 	}
 
@@ -96,7 +96,7 @@ public unsafe partial class DataViewTreeCtrl : DataViewCtrl {
 	public DataViewItem PrependItem(DataViewItem parent, string text, int icon = -1, object? data = null) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return new global::WxKit.DataViewItem(WxKitNative.DataViewTreeCtrlPrependItem(Native, parent.Value, textText, NativeString.Length(text), icon, ItemData.Alloc(data)));
+			return new global::WxKit.DataViewItem(WxKitNative.DataViewTreeCtrlPrependItem(Native, parent.Value, textText, NativeString.Length(text), icon, global::WxKit.ItemData.Alloc(data)));
 		}
 	}
 
@@ -110,7 +110,7 @@ public unsafe partial class DataViewTreeCtrl : DataViewCtrl {
 	}
 
 	/// <summary>Calls the identical method from wxDataViewTreeStore.</summary>
-	public void SetItemData(DataViewItem item, object? data) => WxKitNative.DataViewTreeCtrlSetItemData(Native, item.Value, ItemData.Alloc(data));
+	public void SetItemData(DataViewItem item, object? data) => WxKitNative.DataViewTreeCtrlSetItemData(Native, item.Value, global::WxKit.ItemData.Alloc(data));
 
 	/// <summary>Calls the identical method from wxDataViewTreeStore.</summary>
 	public void SetItemExpandedIcon(DataViewItem item, Bitmap icon) {

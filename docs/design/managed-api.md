@@ -54,7 +54,7 @@ A tool's enabled and toggled state and its help change through the toolbar, by t
 
 ### Item data
 
-A list box, choice, combo box, tree, or data view tree can keep any object with an item, through `Append` and `Insert` with an object, `SetClientObject` and `GetClientObject`, or a tree's `SetItemData` and `GetItemData`. The event a list box, choice, or combo box sends when an item is chosen has it in `ClientObject`. The control holds the object through a GC handle until it deletes the item, replaces the object, or is destroyed. A list view's item data is a number, as in wxWidgets, which can key a dictionary.
+A list box, choice, combo box, tree, or data view tree can keep any object with an item, through `Append` and `Insert` with an object, and `SetItemData` and `GetItemData`. The event a list box, choice, or combo box sends when an item is chosen has it in `ItemData`. A list box, choice, and combo box share the `IItemContainer` interface, so code that fills or reads a list can take any of them. The control holds the object through a GC handle until it deletes the item, replaces the object, or is destroyed. A list view's item data is a number, as in wxWidgets, which can key a dictionary.
 
 ## Menus
 

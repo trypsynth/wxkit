@@ -40,8 +40,8 @@ WXK_FUNCTION(int32_t) wxk_ComboBox_Append_String(wxk_Window* self, const char16_
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxItemContainer*>(static_cast<wxComboBox*>(wxk::Unwrap(self)))->Append(wxk::FromUtf16(item, itemLength))); });
 }
 
-WXK_FUNCTION(int32_t) wxk_ComboBox_Append_StringData(wxk_Window* self, const char16_t* item, size_t itemLength, void* clientData) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxItemContainer*>(static_cast<wxComboBox*>(wxk::Unwrap(self)))->Append(wxk::FromUtf16(item, itemLength), wxk::ToClientData(clientData))); });
+WXK_FUNCTION(int32_t) wxk_ComboBox_Append_StringData(wxk_Window* self, const char16_t* item, size_t itemLength, void* data) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxItemContainer*>(static_cast<wxComboBox*>(wxk::Unwrap(self)))->Append(wxk::FromUtf16(item, itemLength), wxk::ToClientData(data))); });
 }
 
 WXK_FUNCTION(int32_t) wxk_ComboBox_Append_Strings(wxk_Window* self, const wxk_StringArray* items) noexcept {
@@ -60,8 +60,8 @@ WXK_FUNCTION(int32_t) wxk_ComboBox_Insert_StringUInt(wxk_Window* self, const cha
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxItemContainer*>(static_cast<wxComboBox*>(wxk::Unwrap(self)))->Insert(wxk::FromUtf16(item, itemLength), position)); });
 }
 
-WXK_FUNCTION(int32_t) wxk_ComboBox_Insert_StringUIntData(wxk_Window* self, const char16_t* item, size_t itemLength, uint32_t position, void* clientData) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxItemContainer*>(static_cast<wxComboBox*>(wxk::Unwrap(self)))->Insert(wxk::FromUtf16(item, itemLength), position, wxk::ToClientData(clientData))); });
+WXK_FUNCTION(int32_t) wxk_ComboBox_Insert_StringUIntData(wxk_Window* self, const char16_t* item, size_t itemLength, uint32_t position, void* data) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxItemContainer*>(static_cast<wxComboBox*>(wxk::Unwrap(self)))->Insert(wxk::FromUtf16(item, itemLength), position, wxk::ToClientData(data))); });
 }
 
 WXK_FUNCTION(int32_t) wxk_ComboBox_Insert_StringsUInt(wxk_Window* self, const wxk_StringArray* items, uint32_t position) noexcept {
@@ -206,18 +206,6 @@ WXK_FUNCTION(uint32_t) wxk_ComboBox_GetCount(wxk_Window* self) noexcept {
 
 WXK_FUNCTION(uint8_t) wxk_ComboBox_IsSorted(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxItemContainer*>(static_cast<wxComboBox*>(wxk::Unwrap(self)))->IsSorted()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_ComboBox_HasClientData(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxItemContainer*>(static_cast<wxComboBox*>(wxk::Unwrap(self)))->HasClientData()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_ComboBox_HasClientObjectData(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxItemContainer*>(static_cast<wxComboBox*>(wxk::Unwrap(self)))->HasClientObjectData()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_ComboBox_HasClientUntypedData(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxItemContainer*>(static_cast<wxComboBox*>(wxk::Unwrap(self)))->HasClientUntypedData()) ? 1 : 0; });
 }
 
 WXK_FUNCTION(wxk_StringArray*) wxk_ComboBox_GetStrings(wxk_Window* self) noexcept {

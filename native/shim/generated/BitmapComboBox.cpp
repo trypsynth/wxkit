@@ -19,8 +19,8 @@ WXK_FUNCTION(int32_t) wxk_BitmapComboBox_Append_StringBitmap(wxk_Window* self, c
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxBitmapComboBox*>(wxk::Unwrap(self))->Append(wxk::FromUtf16(item, itemLength), wxBitmapBundle(wxk::ValueOf<wxBitmap>(bitmap)))); });
 }
 
-WXK_FUNCTION(int32_t) wxk_BitmapComboBox_Append_StringBitmapData(wxk_Window* self, const char16_t* item, size_t itemLength, const wxk_Object* bitmap, void* clientData) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxBitmapComboBox*>(wxk::Unwrap(self))->Append(wxk::FromUtf16(item, itemLength), wxBitmapBundle(wxk::ValueOf<wxBitmap>(bitmap)), wxk::ToClientData(clientData))); });
+WXK_FUNCTION(int32_t) wxk_BitmapComboBox_Append_StringBitmapData(wxk_Window* self, const char16_t* item, size_t itemLength, const wxk_Object* bitmap, void* data) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxBitmapComboBox*>(wxk::Unwrap(self))->Append(wxk::FromUtf16(item, itemLength), wxBitmapBundle(wxk::ValueOf<wxBitmap>(bitmap)), wxk::ToClientData(data))); });
 }
 
 WXK_FUNCTION(wxk_Object*) wxk_BitmapComboBox_GetItemBitmap(wxk_Window* self, uint32_t index) noexcept {
@@ -31,8 +31,8 @@ WXK_FUNCTION(int32_t) wxk_BitmapComboBox_Insert_StringBitmapUInt(wxk_Window* sel
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxBitmapComboBox*>(wxk::Unwrap(self))->Insert(wxk::FromUtf16(item, itemLength), wxBitmapBundle(wxk::ValueOf<wxBitmap>(bitmap)), position)); });
 }
 
-WXK_FUNCTION(int32_t) wxk_BitmapComboBox_Insert_StringBitmapUIntData(wxk_Window* self, const char16_t* item, size_t itemLength, const wxk_Object* bitmap, uint32_t position, void* clientData) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxBitmapComboBox*>(wxk::Unwrap(self))->Insert(wxk::FromUtf16(item, itemLength), wxBitmapBundle(wxk::ValueOf<wxBitmap>(bitmap)), position, wxk::ToClientData(clientData))); });
+WXK_FUNCTION(int32_t) wxk_BitmapComboBox_Insert_StringBitmapUIntData(wxk_Window* self, const char16_t* item, size_t itemLength, const wxk_Object* bitmap, uint32_t position, void* data) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxBitmapComboBox*>(wxk::Unwrap(self))->Insert(wxk::FromUtf16(item, itemLength), wxBitmapBundle(wxk::ValueOf<wxBitmap>(bitmap)), position, wxk::ToClientData(data))); });
 }
 
 WXK_FUNCTION(void) wxk_BitmapComboBox_SetItemBitmap(wxk_Window* self, uint32_t index, const wxk_Object* bitmap) noexcept {

@@ -201,7 +201,7 @@ public unsafe partial class TreeCtrl : Control {
 	public TreeItemId AddRoot(string text, int image = -1, int selectedImage = -1, object? data = null) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return new global::WxKit.TreeItemId(WxKitNative.TreeCtrlAddRoot(Native, textText, NativeString.Length(text), image, selectedImage, ItemData.Alloc(data)));
+			return new global::WxKit.TreeItemId(WxKitNative.TreeCtrlAddRoot(Native, textText, NativeString.Length(text), image, selectedImage, global::WxKit.ItemData.Alloc(data)));
 		}
 	}
 
@@ -209,7 +209,7 @@ public unsafe partial class TreeCtrl : Control {
 	public TreeItemId AppendItem(TreeItemId parent, string text, int image = -1, int selectedImage = -1, object? data = null) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return new global::WxKit.TreeItemId(WxKitNative.TreeCtrlAppendItem(Native, parent.Value, textText, NativeString.Length(text), image, selectedImage, ItemData.Alloc(data)));
+			return new global::WxKit.TreeItemId(WxKitNative.TreeCtrlAppendItem(Native, parent.Value, textText, NativeString.Length(text), image, selectedImage, global::WxKit.ItemData.Alloc(data)));
 		}
 	}
 
@@ -265,7 +265,7 @@ public unsafe partial class TreeCtrl : Control {
 	public Color? GetItemBackgroundColor(TreeItemId item) => global::WxKit.Color.FromNative(WxKitNative.TreeCtrlGetItemBackgroundColour(Native, item.Value));
 
 	/// <summary>Returns the tree item data associated with the item.</summary>
-	public object? GetItemData(TreeItemId item) => ItemData.Get(WxKitNative.TreeCtrlGetItemData(Native, item.Value));
+	public object? GetItemData(TreeItemId item) => global::WxKit.ItemData.Get(WxKitNative.TreeCtrlGetItemData(Native, item.Value));
 
 	/// <summary>Returns the font of the item label.</summary>
 	public Font? GetItemFont(TreeItemId item) => global::WxKit.Font.Take(WxKitNative.TreeCtrlGetItemFont(Native, item.Value));
@@ -304,7 +304,7 @@ public unsafe partial class TreeCtrl : Control {
 	public TreeItemId InsertItem(TreeItemId parent, TreeItemId previous, string text, int image = -1, int selectedImage = -1, object? data = null) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return new global::WxKit.TreeItemId(WxKitNative.TreeCtrlInsertItemTreeItemIdTreeItemIdStringIntIntData(Native, parent.Value, previous.Value, textText, NativeString.Length(text), image, selectedImage, ItemData.Alloc(data)));
+			return new global::WxKit.TreeItemId(WxKitNative.TreeCtrlInsertItemTreeItemIdTreeItemIdStringIntIntData(Native, parent.Value, previous.Value, textText, NativeString.Length(text), image, selectedImage, global::WxKit.ItemData.Alloc(data)));
 		}
 	}
 
@@ -312,7 +312,7 @@ public unsafe partial class TreeCtrl : Control {
 	public TreeItemId InsertItem(TreeItemId parent, int position, string text, int image = -1, int selectedImage = -1, object? data = null) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return new global::WxKit.TreeItemId(WxKitNative.TreeCtrlInsertItemTreeItemIdSizeTStringIntIntData(Native, parent.Value, checked((nuint)position), textText, NativeString.Length(text), image, selectedImage, ItemData.Alloc(data)));
+			return new global::WxKit.TreeItemId(WxKitNative.TreeCtrlInsertItemTreeItemIdSizeTStringIntIntData(Native, parent.Value, checked((nuint)position), textText, NativeString.Length(text), image, selectedImage, global::WxKit.ItemData.Alloc(data)));
 		}
 	}
 
@@ -335,7 +335,7 @@ public unsafe partial class TreeCtrl : Control {
 	public TreeItemId PrependItem(TreeItemId parent, string text, int image = -1, int selectedImage = -1, object? data = null) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return new global::WxKit.TreeItemId(WxKitNative.TreeCtrlPrependItem(Native, parent.Value, textText, NativeString.Length(text), image, selectedImage, ItemData.Alloc(data)));
+			return new global::WxKit.TreeItemId(WxKitNative.TreeCtrlPrependItem(Native, parent.Value, textText, NativeString.Length(text), image, selectedImage, global::WxKit.ItemData.Alloc(data)));
 		}
 	}
 

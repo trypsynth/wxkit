@@ -364,7 +364,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_BitmapComboBox_Append_StringBitmapData")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int BitmapComboBoxAppendStringBitmapData(WxkWindow* self, char* item, nuint itemLength, WxkObject* bitmap, nint clientData);
+	public static partial int BitmapComboBoxAppendStringBitmapData(WxkWindow* self, char* item, nuint itemLength, WxkObject* bitmap, nint data);
 
 	[LibraryImport(Library, EntryPoint = "wxk_BitmapComboBox_GetItemBitmap")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -376,7 +376,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_BitmapComboBox_Insert_StringBitmapUIntData")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int BitmapComboBoxInsertStringBitmapUIntData(WxkWindow* self, char* item, nuint itemLength, WxkObject* bitmap, uint position, nint clientData);
+	public static partial int BitmapComboBoxInsertStringBitmapUIntData(WxkWindow* self, char* item, nuint itemLength, WxkObject* bitmap, uint position, nint data);
 
 	[LibraryImport(Library, EntryPoint = "wxk_BitmapComboBox_SetItemBitmap")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -712,7 +712,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_Choice_Append_StringData")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int ChoiceAppendStringData(WxkWindow* self, char* item, nuint itemLength, nint clientData);
+	public static partial int ChoiceAppendStringData(WxkWindow* self, char* item, nuint itemLength, nint data);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Choice_Append_Strings")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -732,7 +732,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_Choice_Insert_StringUIntData")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int ChoiceInsertStringUIntData(WxkWindow* self, char* item, nuint itemLength, uint position, nint clientData);
+	public static partial int ChoiceInsertStringUIntData(WxkWindow* self, char* item, nuint itemLength, uint position, nint data);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Choice_Insert_StringsUInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -781,18 +781,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Choice_SetSelection")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void ChoiceSetSelection(WxkWindow* self, int index);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Choice_HasClientData")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ChoiceHasClientData(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Choice_HasClientObjectData")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ChoiceHasClientObjectData(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Choice_HasClientUntypedData")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ChoiceHasClientUntypedData(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Choice_IsEmpty")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -968,7 +956,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_ComboBox_Append_StringData")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int ComboBoxAppendStringData(WxkWindow* self, char* item, nuint itemLength, nint clientData);
+	public static partial int ComboBoxAppendStringData(WxkWindow* self, char* item, nuint itemLength, nint data);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ComboBox_Append_Strings")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -988,7 +976,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_ComboBox_Insert_StringUIntData")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int ComboBoxInsertStringUIntData(WxkWindow* self, char* item, nuint itemLength, uint position, nint clientData);
+	public static partial int ComboBoxInsertStringUIntData(WxkWindow* self, char* item, nuint itemLength, uint position, nint data);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ComboBox_Insert_StringsUInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -1133,18 +1121,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_ComboBox_IsSorted")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ComboBoxIsSorted(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ComboBox_HasClientData")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ComboBoxHasClientData(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ComboBox_HasClientObjectData")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ComboBoxHasClientObjectData(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ComboBox_HasClientUntypedData")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ComboBoxHasClientUntypedData(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ComboBox_GetStrings")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -1304,7 +1280,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_ControlWithItems_Append_StringData")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int ControlWithItemsAppendStringData(WxkWindow* self, char* item, nuint itemLength, nint clientData);
+	public static partial int ControlWithItemsAppendStringData(WxkWindow* self, char* item, nuint itemLength, nint data);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ControlWithItems_Append_Strings")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -1324,7 +1300,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_ControlWithItems_Insert_StringUIntData")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int ControlWithItemsInsertStringUIntData(WxkWindow* self, char* item, nuint itemLength, uint position, nint clientData);
+	public static partial int ControlWithItemsInsertStringUIntData(WxkWindow* self, char* item, nuint itemLength, uint position, nint data);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ControlWithItems_Insert_StringsUInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -1361,18 +1337,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_ControlWithItems_IsSorted")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ControlWithItemsIsSorted(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ControlWithItems_HasClientData")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ControlWithItemsHasClientData(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ControlWithItems_HasClientObjectData")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ControlWithItemsHasClientObjectData(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ControlWithItems_HasClientUntypedData")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ControlWithItemsHasClientUntypedData(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ControlWithItems_GetCount")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4340,7 +4304,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListBox_Append_StringData")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int ListBoxAppendStringData(WxkWindow* self, char* item, nuint itemLength, nint clientData);
+	public static partial int ListBoxAppendStringData(WxkWindow* self, char* item, nuint itemLength, nint data);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListBox_Append_Strings")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4360,7 +4324,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListBox_Insert_StringUIntData")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int ListBoxInsertStringUIntData(WxkWindow* self, char* item, nuint itemLength, uint position, nint clientData);
+	public static partial int ListBoxInsertStringUIntData(WxkWindow* self, char* item, nuint itemLength, uint position, nint data);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListBox_Insert_StringsUInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4413,18 +4377,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_ListBox_GetCount")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial uint ListBoxGetCount(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ListBox_HasClientData")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ListBoxHasClientData(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ListBox_HasClientObjectData")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ListBoxHasClientObjectData(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ListBox_HasClientUntypedData")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ListBoxHasClientUntypedData(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListBox_IsEmpty")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

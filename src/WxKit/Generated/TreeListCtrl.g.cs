@@ -88,7 +88,7 @@ public unsafe partial class TreeListCtrl : Window {
 	public TreeListItem AppendItem(TreeListItem parent, string text, int imageClosed = -1, int imageOpened = -1, object? data = null) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return new global::WxKit.TreeListItem(WxKitNative.TreeListCtrlAppendItem(Native, parent.Value, textText, NativeString.Length(text), imageClosed, imageOpened, ItemData.Alloc(data)));
+			return new global::WxKit.TreeListItem(WxKitNative.TreeListCtrlAppendItem(Native, parent.Value, textText, NativeString.Length(text), imageClosed, imageOpened, global::WxKit.ItemData.Alloc(data)));
 		}
 	}
 
@@ -132,7 +132,7 @@ public unsafe partial class TreeListCtrl : Window {
 	public TreeListItem GetFirstChild(TreeListItem item) => new global::WxKit.TreeListItem(WxKitNative.TreeListCtrlGetFirstChild(Native, item.Value));
 
 	/// <summary>Get the data associated with the given item.</summary>
-	public object? GetItemData(TreeListItem item) => ItemData.Get(WxKitNative.TreeListCtrlGetItemData(Native, item.Value));
+	public object? GetItemData(TreeListItem item) => global::WxKit.ItemData.Get(WxKitNative.TreeListCtrlGetItemData(Native, item.Value));
 
 	/// <summary>Return the parent of the given item.</summary>
 	public TreeListItem GetItemParent(TreeListItem item) => new global::WxKit.TreeListItem(WxKitNative.TreeListCtrlGetItemParent(Native, item.Value));
@@ -150,7 +150,7 @@ public unsafe partial class TreeListCtrl : Window {
 	public TreeListItem InsertItem(TreeListItem parent, TreeListItem previous, string text, int imageClosed = -1, int imageOpened = -1, object? data = null) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return new global::WxKit.TreeListItem(WxKitNative.TreeListCtrlInsertItem(Native, parent.Value, previous.Value, textText, NativeString.Length(text), imageClosed, imageOpened, ItemData.Alloc(data)));
+			return new global::WxKit.TreeListItem(WxKitNative.TreeListCtrlInsertItem(Native, parent.Value, previous.Value, textText, NativeString.Length(text), imageClosed, imageOpened, global::WxKit.ItemData.Alloc(data)));
 		}
 	}
 
@@ -164,7 +164,7 @@ public unsafe partial class TreeListCtrl : Window {
 	public TreeListItem PrependItem(TreeListItem parent, string text, int imageClosed = -1, int imageOpened = -1, object? data = null) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return new global::WxKit.TreeListItem(WxKitNative.TreeListCtrlPrependItem(Native, parent.Value, textText, NativeString.Length(text), imageClosed, imageOpened, ItemData.Alloc(data)));
+			return new global::WxKit.TreeListItem(WxKitNative.TreeListCtrlPrependItem(Native, parent.Value, textText, NativeString.Length(text), imageClosed, imageOpened, global::WxKit.ItemData.Alloc(data)));
 		}
 	}
 
@@ -178,7 +178,7 @@ public unsafe partial class TreeListCtrl : Window {
 	public void SetColumnWidth(int column, int width) => WxKitNative.TreeListCtrlSetColumnWidth(Native, checked((uint)column), width);
 
 	/// <summary>Set the data associated with the given item.</summary>
-	public void SetItemData(TreeListItem item, object? data) => WxKitNative.TreeListCtrlSetItemData(Native, item.Value, ItemData.Alloc(data));
+	public void SetItemData(TreeListItem item, object? data) => WxKitNative.TreeListCtrlSetItemData(Native, item.Value, global::WxKit.ItemData.Alloc(data));
 
 	/// <summary>Set the images for the given item.</summary>
 	public void SetItemImage(TreeListItem item, int closed, int opened = -1) => WxKitNative.TreeListCtrlSetItemImage(Native, item.Value, closed, opened);

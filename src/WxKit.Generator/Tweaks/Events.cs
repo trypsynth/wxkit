@@ -6,7 +6,7 @@ internal static class Events {
 	public static void Apply(Binding.Tweaks tweaks) {
 		tweaks.Class("wxEvent", e => e.NoConstructors().Rename("GetSkipped", "IsSkipped"));
 		// An event does not delete the item data it is given, so only the item's data comes out.
-		tweaks.Class("wxCommandEvent").Ignore("SetClientObject");
+		tweaks.Class("wxCommandEvent").Ignore("SetClientObject").Property("ItemData", "GetClientObject");
 		// Veto is written by hand, since it refuses when the close cannot be vetoed.
 		tweaks.Class("wxCloseEvent", e => e.Ignore("Veto").Rename("GetVeto", "IsVetoed").Property("IsLoggingOff", "GetLoggingOff"));
 		// Booleans are named as IsChecked is, and whether a handler set a state as IsCheckedSet is,

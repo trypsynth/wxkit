@@ -29,11 +29,11 @@ public unsafe partial class BitmapComboBox : ComboBox {
 	}
 
 	/// <summary>Adds the item to the end of the combo box, associating the given typed client data pointer clientData with the item.</summary>
-	public int Append(string item, Bitmap bitmap, object? clientData) {
+	public int Append(string item, Bitmap bitmap, object? data) {
 		ArgumentNullException.ThrowIfNull(item);
 		ArgumentNullException.ThrowIfNull(bitmap);
 		fixed (char* itemText = item) {
-			return WxKitNative.BitmapComboBoxAppendStringBitmapData(Native, itemText, NativeString.Length(item), bitmap.Native, ItemData.Alloc(clientData));
+			return WxKitNative.BitmapComboBoxAppendStringBitmapData(Native, itemText, NativeString.Length(item), bitmap.Native, global::WxKit.ItemData.Alloc(data));
 		}
 	}
 
@@ -50,11 +50,11 @@ public unsafe partial class BitmapComboBox : ComboBox {
 	}
 
 	/// <summary>Inserts the item into the list before pos, associating the given typed client data pointer with the item.</summary>
-	public int Insert(string item, Bitmap bitmap, int position, object? clientData) {
+	public int Insert(string item, Bitmap bitmap, int position, object? data) {
 		ArgumentNullException.ThrowIfNull(item);
 		ArgumentNullException.ThrowIfNull(bitmap);
 		fixed (char* itemText = item) {
-			return WxKitNative.BitmapComboBoxInsertStringBitmapUIntData(Native, itemText, NativeString.Length(item), bitmap.Native, checked((uint)position), ItemData.Alloc(clientData));
+			return WxKitNative.BitmapComboBoxInsertStringBitmapUIntData(Native, itemText, NativeString.Length(item), bitmap.Native, checked((uint)position), global::WxKit.ItemData.Alloc(data));
 		}
 	}
 

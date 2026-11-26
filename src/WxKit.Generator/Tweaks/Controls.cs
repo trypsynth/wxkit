@@ -23,6 +23,17 @@ internal static class Controls {
 		// An item's data is an object, which the control deletes with the item. Detaching it would
 		// leave no one to free it.
 		foreach (string container in (string[])["wxControlWithItems", "wxChoice", "wxComboBox", "wxListBox"]) tweaks.Class(container).Ignore("DetachClientObject");
+		// The object kept with an item is its item data everywhere, as a tree's is, where wxWidgets
+		// calls it client data here and a client object there. Which kind a control keeps is its own affair.
+		foreach (string container in (string[])["wxControlWithItems", "wxChoice", "wxComboBox", "wxListBox"]) {
+			tweaks.Class(container)
+				.Rename("GetClientObject", "GetItemData")
+				.Rename("SetClientObject", "SetItemData")
+				.ParameterName("Append", "clientData", "data")
+				.ParameterName("Insert", "clientData", "data")
+				.Ignore("HasClientData", "HasClientObjectData", "HasClientUntypedData");
+		}
+		tweaks.Class("wxBitmapComboBox").ParameterName("Append", "clientData", "data").ParameterName("Insert", "clientData", "data");
 		// Each has one constructor, whose list of items can be left out, and filled later.
 		foreach (string items in (string[])["wxChoice", "wxComboBox", "wxListBox", "wxCheckListBox"]) tweaks.Class(items).OptionalItems();
 		// Null removes the search control's menu. Its documentation lists only its search events, but

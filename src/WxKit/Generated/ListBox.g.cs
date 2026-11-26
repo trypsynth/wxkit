@@ -19,15 +19,6 @@ public unsafe partial class ListBox : Control {
 	/// <summary>Return the number of items that can fit vertically in the visible area of the listbox.</summary>
 	public int CountPerPage => WxKitNative.ListBoxGetCountPerPage(Native);
 
-	/// <summary>Returns true, if either untyped data (void*) or object data (wxClientData*) is associated with the items of the control.</summary>
-	public bool HasClientData => WxKitNative.ListBoxHasClientData(Native) != 0;
-
-	/// <summary>Returns true, if object data is associated with the items of the control.</summary>
-	public bool HasClientObjectData => WxKitNative.ListBoxHasClientObjectData(Native) != 0;
-
-	/// <summary>Returns true, if untyped data (void*) is associated with the items of the control.</summary>
-	public bool HasClientUntypedData => WxKitNative.ListBoxHasClientUntypedData(Native) != 0;
-
 	/// <summary>return true if the listbox allows multiple selection</summary>
 	public bool HasMultipleSelection => WxKitNative.ListBoxHasMultipleSelection(Native) != 0;
 
@@ -84,10 +75,10 @@ public unsafe partial class ListBox : Control {
 	}
 
 	/// <summary>Appends item into the control.</summary>
-	public int Append(string item, object? clientData) {
+	public int Append(string item, object? data) {
 		ArgumentNullException.ThrowIfNull(item);
 		fixed (char* itemText = item) {
-			return WxKitNative.ListBoxAppendStringData(Native, itemText, NativeString.Length(item), ItemData.Alloc(clientData));
+			return WxKitNative.ListBoxAppendStringData(Native, itemText, NativeString.Length(item), global::WxKit.ItemData.Alloc(data));
 		}
 	}
 
@@ -119,7 +110,7 @@ public unsafe partial class ListBox : Control {
 	}
 
 	/// <summary>Returns a pointer to the client data associated with the given item (if any).</summary>
-	public object? GetClientObject(int index) => ItemData.Get(WxKitNative.ListBoxGetClientObject(Native, checked((uint)index)));
+	public object? GetItemData(int index) => global::WxKit.ItemData.Get(WxKitNative.ListBoxGetClientObject(Native, checked((uint)index)));
 
 	/// <summary>Returns the label of the item with the given index.</summary>
 	public string GetString(int index) => NativeString.Take(WxKitNative.ListBoxGetString(Native, checked((uint)index)));
@@ -133,10 +124,10 @@ public unsafe partial class ListBox : Control {
 	}
 
 	/// <summary>Inserts item into the control.</summary>
-	public int Insert(string item, int position, object? clientData) {
+	public int Insert(string item, int position, object? data) {
 		ArgumentNullException.ThrowIfNull(item);
 		fixed (char* itemText = item) {
-			return WxKitNative.ListBoxInsertStringUIntData(Native, itemText, NativeString.Length(item), checked((uint)position), ItemData.Alloc(clientData));
+			return WxKitNative.ListBoxInsertStringUIntData(Native, itemText, NativeString.Length(item), checked((uint)position), global::WxKit.ItemData.Alloc(data));
 		}
 	}
 
@@ -167,9 +158,6 @@ public unsafe partial class ListBox : Control {
 		WxKitNative.ListBoxSet(Native, itemsNative.Handle);
 	}
 
-	/// <summary>Associates the given typed client data pointer with the given item: the data object will be deleted when the item is deleted (either explicitly by using Delete() or implicitly when the control itself is destroyed).</summary>
-	public void SetClientObject(int index, object? data) => WxKitNative.ListBoxSetClientObject(Native, checked((uint)index), ItemData.Alloc(data));
-
 	/// <summary>Set the specified item to be the first visible item.</summary>
 	public void SetFirstItem(int index) => WxKitNative.ListBoxSetFirstItemInt(Native, index);
 
@@ -180,6 +168,9 @@ public unsafe partial class ListBox : Control {
 			WxKitNative.ListBoxSetFirstItemString(Native, textText, NativeString.Length(text));
 		}
 	}
+
+	/// <summary>Associates the given typed client data pointer with the given item: the data object will be deleted when the item is deleted (either explicitly by using Delete() or implicitly when the control itself is destroyed).</summary>
+	public void SetItemData(int index, object? data) => WxKitNative.ListBoxSetClientObject(Native, checked((uint)index), global::WxKit.ItemData.Alloc(data));
 
 	/// <summary>Sets the label for the given item.</summary>
 	public void SetString(int index, string text) {

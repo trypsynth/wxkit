@@ -163,7 +163,7 @@ Setting the panel's `Sizer` gives the sizer to the panel, which owns it from the
 
 Events are .NET events, whose handlers get the sender and an object with the event's details. The text box sends `TextEnter` when you press Enter in it because it has the `ProcessEnter` style. Without the style, Enter goes to the window, as in a dialog.
 
-A list box can also keep an object with each item, such as a record the item stands for, with `tasks.Append(title, item)` and `tasks.GetClientObject(index)`. `Selection` is -1 when nothing is selected.
+A list box can also keep an object with each item, such as a record the item stands for, with `tasks.Append(title, item)` and `tasks.GetItemData(index)`. `Selection` is -1 when nothing is selected.
 
 Handlers run on the thread that runs the event loop, and every member of a control has to be called there, or it throws `InvalidOperationException`. To change a control from another thread, pass the change to `Application.Post`. An `await` in a handler comes back to the event loop's thread, so the code after it can use the controls, as the Save handler does after it writes the file.
 

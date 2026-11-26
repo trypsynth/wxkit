@@ -25,15 +25,6 @@ public unsafe partial class Choice : Control {
 	/// <summary>Unlike wxControlWithItems::GetSelection() which only returns the accepted selection value (the selection in the control once the user closes the dropdown list), this function returns the current selection.</summary>
 	public int CurrentSelection => WxKitNative.ChoiceGetCurrentSelection(Native);
 
-	/// <summary>Returns true, if either untyped data (void*) or object data (wxClientData*) is associated with the items of the control.</summary>
-	public bool HasClientData => WxKitNative.ChoiceHasClientData(Native) != 0;
-
-	/// <summary>Returns true, if object data is associated with the items of the control.</summary>
-	public bool HasClientObjectData => WxKitNative.ChoiceHasClientObjectData(Native) != 0;
-
-	/// <summary>Returns true, if untyped data (void*) is associated with the items of the control.</summary>
-	public bool HasClientUntypedData => WxKitNative.ChoiceHasClientUntypedData(Native) != 0;
-
 	/// <summary>Returns true if the control is empty or false if it has some items.</summary>
 	public bool IsEmpty => WxKitNative.ChoiceIsEmpty(Native) != 0;
 
@@ -74,10 +65,10 @@ public unsafe partial class Choice : Control {
 	}
 
 	/// <summary>Appends item into the control.</summary>
-	public int Append(string item, object? clientData) {
+	public int Append(string item, object? data) {
 		ArgumentNullException.ThrowIfNull(item);
 		fixed (char* itemText = item) {
-			return WxKitNative.ChoiceAppendStringData(Native, itemText, NativeString.Length(item), ItemData.Alloc(clientData));
+			return WxKitNative.ChoiceAppendStringData(Native, itemText, NativeString.Length(item), global::WxKit.ItemData.Alloc(data));
 		}
 	}
 
@@ -103,7 +94,7 @@ public unsafe partial class Choice : Control {
 	}
 
 	/// <summary>Returns a pointer to the client data associated with the given item (if any).</summary>
-	public object? GetClientObject(int index) => ItemData.Get(WxKitNative.ChoiceGetClientObject(Native, checked((uint)index)));
+	public object? GetItemData(int index) => global::WxKit.ItemData.Get(WxKitNative.ChoiceGetClientObject(Native, checked((uint)index)));
 
 	/// <summary>Returns the label of the item with the given index.</summary>
 	public string GetString(int index) => NativeString.Take(WxKitNative.ChoiceGetString(Native, checked((uint)index)));
@@ -117,10 +108,10 @@ public unsafe partial class Choice : Control {
 	}
 
 	/// <summary>Inserts item into the control.</summary>
-	public int Insert(string item, int position, object? clientData) {
+	public int Insert(string item, int position, object? data) {
 		ArgumentNullException.ThrowIfNull(item);
 		fixed (char* itemText = item) {
-			return WxKitNative.ChoiceInsertStringUIntData(Native, itemText, NativeString.Length(item), checked((uint)position), ItemData.Alloc(clientData));
+			return WxKitNative.ChoiceInsertStringUIntData(Native, itemText, NativeString.Length(item), checked((uint)position), global::WxKit.ItemData.Alloc(data));
 		}
 	}
 
@@ -142,7 +133,7 @@ public unsafe partial class Choice : Control {
 	}
 
 	/// <summary>Associates the given typed client data pointer with the given item: the data object will be deleted when the item is deleted (either explicitly by using Delete() or implicitly when the control itself is destroyed).</summary>
-	public void SetClientObject(int index, object? data) => WxKitNative.ChoiceSetClientObject(Native, checked((uint)index), ItemData.Alloc(data));
+	public void SetItemData(int index, object? data) => WxKitNative.ChoiceSetClientObject(Native, checked((uint)index), global::WxKit.ItemData.Alloc(data));
 
 	/// <summary>Sets the label for the given item.</summary>
 	public void SetString(int index, string text) {

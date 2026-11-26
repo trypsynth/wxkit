@@ -1183,9 +1183,9 @@ internal sealed class ItemDataConversion(string helper) : Conversion {
 
 	public override string ManagedType(bool nullable) => "object?";
 
-	public override IEnumerable<string> InteropArguments(string name, bool nullable) => [$"ItemData.Alloc({name})"];
+	public override IEnumerable<string> InteropArguments(string name, bool nullable) => [$"global::WxKit.ItemData.Alloc({name})"];
 
-	public override string ManagedReturn(string expression) => $"ItemData.Get({expression})";
+	public override string ManagedReturn(string expression) => $"global::WxKit.ItemData.Get({expression})";
 
 	public override bool AcceptsNull => true;
 }

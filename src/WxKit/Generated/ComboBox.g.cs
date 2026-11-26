@@ -34,15 +34,6 @@ public unsafe partial class ComboBox : Control {
 	/// <summary>Returns the item being selected right now.</summary>
 	public int CurrentSelection => WxKitNative.ComboBoxGetCurrentSelection(Native);
 
-	/// <summary>Returns true, if either untyped data (void*) or object data (wxClientData*) is associated with the items of the control.</summary>
-	public bool HasClientData => WxKitNative.ComboBoxHasClientData(Native) != 0;
-
-	/// <summary>Returns true, if object data is associated with the items of the control.</summary>
-	public bool HasClientObjectData => WxKitNative.ComboBoxHasClientObjectData(Native) != 0;
-
-	/// <summary>Returns true, if untyped data (void*) is associated with the items of the control.</summary>
-	public bool HasClientUntypedData => WxKitNative.ComboBoxHasClientUntypedData(Native) != 0;
-
 	/// <summary>Returns the current hint string.</summary>
 	public string Hint {
 		get => NativeString.Take(WxKitNative.ComboBoxGetHint(Native));
@@ -154,10 +145,10 @@ public unsafe partial class ComboBox : Control {
 	}
 
 	/// <summary>Appends item into the control.</summary>
-	public int Append(string item, object? clientData) {
+	public int Append(string item, object? data) {
 		ArgumentNullException.ThrowIfNull(item);
 		fixed (char* itemText = item) {
-			return WxKitNative.ComboBoxAppendStringData(Native, itemText, NativeString.Length(item), ItemData.Alloc(clientData));
+			return WxKitNative.ComboBoxAppendStringData(Native, itemText, NativeString.Length(item), global::WxKit.ItemData.Alloc(data));
 		}
 	}
 
@@ -224,7 +215,7 @@ public unsafe partial class ComboBox : Control {
 	public void ForceUpper() => WxKitNative.ComboBoxForceUpper(Native);
 
 	/// <summary>Returns a pointer to the client data associated with the given item (if any).</summary>
-	public object? GetClientObject(int index) => ItemData.Get(WxKitNative.ComboBoxGetClientObject(Native, checked((uint)index)));
+	public object? GetItemData(int index) => global::WxKit.ItemData.Get(WxKitNative.ComboBoxGetClientObject(Native, checked((uint)index)));
 
 	/// <summary>Returns the string containing the text starting in the positions from and up to to in the control.</summary>
 	public string GetRange(int from, int to) => NativeString.Take(WxKitNative.ComboBoxGetRange(Native, from, to));
@@ -241,10 +232,10 @@ public unsafe partial class ComboBox : Control {
 	}
 
 	/// <summary>Inserts item into the control.</summary>
-	public int Insert(string item, int position, object? clientData) {
+	public int Insert(string item, int position, object? data) {
 		ArgumentNullException.ThrowIfNull(item);
 		fixed (char* itemText = item) {
-			return WxKitNative.ComboBoxInsertStringUIntData(Native, itemText, NativeString.Length(item), checked((uint)position), ItemData.Alloc(clientData));
+			return WxKitNative.ComboBoxInsertStringUIntData(Native, itemText, NativeString.Length(item), checked((uint)position), global::WxKit.ItemData.Alloc(data));
 		}
 	}
 
@@ -291,11 +282,11 @@ public unsafe partial class ComboBox : Control {
 		WxKitNative.ComboBoxSet(Native, itemsNative.Handle);
 	}
 
-	/// <summary>Associates the given typed client data pointer with the given item: the data object will be deleted when the item is deleted (either explicitly by using Delete() or implicitly when the control itself is destroyed).</summary>
-	public void SetClientObject(int index, object? data) => WxKitNative.ComboBoxSetClientObject(Native, checked((uint)index), ItemData.Alloc(data));
-
 	/// <summary>Sets the insertion point at the end of the text control.</summary>
 	public void SetInsertionPointEnd() => WxKitNative.ComboBoxSetInsertionPointEnd(Native);
+
+	/// <summary>Associates the given typed client data pointer with the given item: the data object will be deleted when the item is deleted (either explicitly by using Delete() or implicitly when the control itself is destroyed).</summary>
+	public void SetItemData(int index, object? data) => WxKitNative.ComboBoxSetClientObject(Native, checked((uint)index), global::WxKit.ItemData.Alloc(data));
 
 	/// <summary>Attempts to set the control margins.</summary>
 	public bool SetMargins(int left, int top = -1) => WxKitNative.ComboBoxSetMarginsIntInt(Native, left, top) != 0;

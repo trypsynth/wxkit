@@ -442,10 +442,10 @@ class WxKit.BitmapComboBox : ComboBox
     BitmapComboBox(Window parent, string value = "", int id = -1, Point? position = null, Size? size = null)
     BitmapComboBox(Window parent, string value, IEnumerable<string> choices, BitmapComboBoxStyle style, int id = -1, Point? position = null, Size? size = null)
     Size BitmapSize { get; }
-    int Append(string item, Bitmap bitmap, object? clientData)
+    int Append(string item, Bitmap bitmap, object? data)
     int Append(string item, Bitmap? bitmap = null)
     int Insert(string item, Bitmap bitmap, int position)
-    int Insert(string item, Bitmap bitmap, int position, object? clientData)
+    int Insert(string item, Bitmap bitmap, int position, object? data)
     void SetItemBitmap(int index, Bitmap bitmap)
 [Flags] enum WxKit.BitmapComboBoxStyle : long
     None = 0
@@ -634,34 +634,31 @@ class WxKit.CheckListBox : ListBox
     void Check(int item, bool check = true)
 class WxKit.ChildFocusEvent : CommandEvent
     Window? Window { get; }
-class WxKit.Choice : Control
+class WxKit.Choice : Control, IItemContainer
     Choice(Window parent, IEnumerable<string>? choices = null, int id = -1, Point? position = null, Size? size = null, ChoiceStyle style = ChoiceStyle.None)
     IReadOnlyList<string> Strings { get; }
-    bool HasClientData { get; }
-    bool HasClientObjectData { get; }
-    bool HasClientUntypedData { get; }
     bool IsEmpty { get; }
     bool IsSorted { get; }
     event EventHandler<CommandEvent>? SelectionChanged
     int Append(IEnumerable<string> items)
     int Append(string item)
-    int Append(string item, object? clientData)
+    int Append(string item, object? data)
     int Columns { get; set; }
     int Count { get; }
     int CurrentSelection { get; }
     int FindString(string text, bool caseSensitive = false)
     int Insert(IEnumerable<string> items, int position)
     int Insert(string item, int position)
-    int Insert(string item, int position, object? clientData)
+    int Insert(string item, int position, object? data)
     int Selection { get; set; }
-    object? GetClientObject(int index)
+    object? GetItemData(int index)
     string GetString(int index)
     string StringSelection { get; set; }
     void Clear()
     void Delete(int index)
     void Select(int index)
     void Set(IEnumerable<string> items)
-    void SetClientObject(int index, object? data)
+    void SetItemData(int index, object? data)
     void SetString(int index, string text)
 [Flags] enum WxKit.ChoiceStyle : long
     None = 0
@@ -764,7 +761,7 @@ class WxKit.ColorPickerCtrl : PickerBase
     UseTextCtrl = 2
 class WxKit.ColorPickerEvent : CommandEvent
     Color? Color { get; }
-class WxKit.ComboBox : Control
+class WxKit.ComboBox : Control, IItemContainer
     ComboBox(Window parent, string value = "", IEnumerable<string>? choices = null, int id = -1, Point? position = null, Size? size = null, ComboBoxStyle style = ComboBoxStyle.None)
     IReadOnlyList<string> Strings { get; }
     Point Margins { get; set; }
@@ -776,9 +773,6 @@ class WxKit.ComboBox : Control
     bool CanPaste { get; }
     bool CanRedo { get; }
     bool CanUndo { get; }
-    bool HasClientData { get; }
-    bool HasClientObjectData { get; }
-    bool HasClientUntypedData { get; }
     bool IsEditable { get; set; }
     bool IsListEmpty { get; }
     bool IsSorted { get; }
@@ -791,19 +785,19 @@ class WxKit.ComboBox : Control
     event EventHandler<CommandEvent>? TextEnter
     int Append(IEnumerable<string> items)
     int Append(string item)
-    int Append(string item, object? clientData)
+    int Append(string item, object? data)
     int Count { get; }
     int CurrentSelection { get; }
     int FindString(string text, bool caseSensitive = false)
     int Insert(IEnumerable<string> items, int position)
     int Insert(string item, int position)
-    int Insert(string item, int position, object? clientData)
+    int Insert(string item, int position, object? data)
     int InsertionPoint { get; set; }
     int LastPosition { get; }
     int Selection { get; set; }
     int SelectionLength { get; set; }
     int SelectionStart { get; set; }
-    object? GetClientObject(int index)
+    object? GetItemData(int index)
     string GetRange(int from, int to)
     string GetString(int index)
     string Hint { get; set; }
@@ -826,8 +820,8 @@ class WxKit.ComboBox : Control
     void SelectAll()
     void SelectNone()
     void Set(IEnumerable<string> items)
-    void SetClientObject(int index, object? data)
     void SetInsertionPointEnd()
+    void SetItemData(int index, object? data)
     void SetMaxLength(int length)
     void SetSelection(int from, int to)
     void SetString(int index, string text)
@@ -846,7 +840,7 @@ class WxKit.CommandEvent : Event
     int Int { get; }
     int Selection { get; }
     long ExtraLong { get; }
-    object? ClientObject { get; }
+    object? ItemData { get; }
     string String { get; }
 class WxKit.CommandLinkButton : Button
     CommandLinkButton(Window parent, string mainLabel = "", string note = "", int id = -1, Point? position = null, Size? size = null, ButtonStyle style = ButtonStyle.None)
@@ -870,30 +864,27 @@ class WxKit.Control : Window
     static string GetLabelText(string label)
     static string RemoveMnemonics(string text)
     string LabelText { get; set; }
-class WxKit.ControlWithItems : Control
+class WxKit.ControlWithItems : Control, IItemContainer
     IReadOnlyList<string> Strings { get; }
-    bool HasClientData { get; }
-    bool HasClientObjectData { get; }
-    bool HasClientUntypedData { get; }
     bool IsEmpty { get; }
     bool IsSorted { get; }
     int Append(IEnumerable<string> items)
     int Append(string item)
-    int Append(string item, object? clientData)
+    int Append(string item, object? data)
     int Count { get; }
     int FindString(string text, bool caseSensitive = false)
     int Insert(IEnumerable<string> items, int position)
     int Insert(string item, int position)
-    int Insert(string item, int position, object? clientData)
+    int Insert(string item, int position, object? data)
     int Selection { get; set; }
-    object? GetClientObject(int index)
+    object? GetItemData(int index)
     string GetString(int index)
     string StringSelection { get; set; }
     void Clear()
     void Delete(int index)
     void Select(int index)
     void Set(IEnumerable<string> items)
-    void SetClientObject(int index, object? data)
+    void SetItemData(int index, object? data)
     void SetString(int index, string text)
 class WxKit.CredentialEntryDialog : Dialog
     CredentialEntryDialog(Window? parent, string message, string title)
@@ -2259,6 +2250,25 @@ class WxKit.HyperlinkCtrl : Control
     None = 0
 class WxKit.HyperlinkEvent : CommandEvent
     string Url { get; }
+interface WxKit.IItemContainer
+    abstract IReadOnlyList<string> Strings { get; }
+    abstract int Append(IEnumerable<string> items)
+    abstract int Append(string item)
+    abstract int Append(string item, object? data)
+    abstract int Count { get; }
+    abstract int FindString(string text, bool caseSensitive = false)
+    abstract int Insert(IEnumerable<string> items, int position)
+    abstract int Insert(string item, int position)
+    abstract int Insert(string item, int position, object? data)
+    abstract int Selection { get; set; }
+    abstract object? GetItemData(int index)
+    abstract string GetString(int index)
+    abstract string StringSelection { get; set; }
+    abstract void Clear()
+    abstract void Delete(int index)
+    abstract void Set(IEnumerable<string> items)
+    abstract void SetItemData(int index, object? data)
+    abstract void SetString(int index, string text)
 class WxKit.Icon : NativeObject
     Icon()
     Icon(string name, BitmapType? type = null, int desiredWidth = -1, int desiredHeight = -1)
@@ -2638,13 +2648,10 @@ enum WxKit.ListArrangement : int
     Left = 1
     SnapToGrid = 3
     Top = 2
-class WxKit.ListBox : Control
+class WxKit.ListBox : Control, IItemContainer
     IReadOnlyList<int> Selections { get; }
     IReadOnlyList<string> Strings { get; }
     ListBox(Window parent, IEnumerable<string>? choices = null, int id = -1, Point? position = null, Size? size = null, ListBoxStyle style = ListBoxStyle.None)
-    bool HasClientData { get; }
-    bool HasClientObjectData { get; }
-    bool HasClientUntypedData { get; }
     bool HasMultipleSelection { get; }
     bool IsEmpty { get; }
     bool IsSelected(int index)
@@ -2654,16 +2661,16 @@ class WxKit.ListBox : Control
     event EventHandler<CommandEvent>? SelectionChanged
     int Append(IEnumerable<string> items)
     int Append(string item)
-    int Append(string item, object? clientData)
+    int Append(string item, object? data)
     int Count { get; }
     int CountPerPage { get; }
     int FindString(string text, bool caseSensitive = false)
     int Insert(IEnumerable<string> items, int position)
     int Insert(string item, int position)
-    int Insert(string item, int position, object? clientData)
+    int Insert(string item, int position, object? data)
     int Selection { get; set; }
     int TopItem { get; }
-    object? GetClientObject(int index)
+    object? GetItemData(int index)
     string GetString(int index)
     string StringSelection { get; set; }
     void Clear()
@@ -2673,9 +2680,9 @@ class WxKit.ListBox : Control
     void InsertItems(IEnumerable<string> items, int position)
     void Select(int index)
     void Set(IEnumerable<string> items)
-    void SetClientObject(int index, object? data)
     void SetFirstItem(int index)
     void SetFirstItem(string text)
+    void SetItemData(int index, object? data)
     void SetString(int index, string text)
 [Flags] enum WxKit.ListBoxStyle : long
     AlwaysSb = 512
