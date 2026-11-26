@@ -5,6 +5,14 @@ WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetModifiers(wxk_Event* self) noexcept
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextEvent*>(wxk::Unwrap(self))->GetModifiers()); });
 }
 
+WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetX(wxk_Event* self) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextEvent*>(wxk::Unwrap(self))->GetX()); });
+}
+
+WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetY(wxk_Event* self) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextEvent*>(wxk::Unwrap(self))->GetY()); });
+}
+
 WXK_FUNCTION(uint8_t) wxk_StyledTextEvent_GetAlt(wxk_Event* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxStyledTextEvent*>(wxk::Unwrap(self))->GetAlt()) ? 1 : 0; });
 }
@@ -65,16 +73,8 @@ WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetListType(wxk_Event* self) noexcept 
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextEvent*>(wxk::Unwrap(self))->GetListType()); });
 }
 
-WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetLParam(wxk_Event* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextEvent*>(wxk::Unwrap(self))->GetLParam()); });
-}
-
 WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetMargin(wxk_Event* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextEvent*>(wxk::Unwrap(self))->GetMargin()); });
-}
-
-WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetMessage(wxk_Event* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextEvent*>(wxk::Unwrap(self))->GetMessage()); });
 }
 
 WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetModificationType(wxk_Event* self) noexcept {
@@ -95,17 +95,5 @@ WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetToken(wxk_Event* self) noexcept {
 
 WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetUpdated(wxk_Event* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextEvent*>(wxk::Unwrap(self))->GetUpdated()); });
-}
-
-WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetWParam(wxk_Event* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextEvent*>(wxk::Unwrap(self))->GetWParam()); });
-}
-
-WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetX(wxk_Event* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextEvent*>(wxk::Unwrap(self))->GetX()); });
-}
-
-WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetY(wxk_Event* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextEvent*>(wxk::Unwrap(self))->GetY()); });
 }
 

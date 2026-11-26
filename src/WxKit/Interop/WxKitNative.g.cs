@@ -8234,14 +8234,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlMarginTextClearAll(WxkWindow* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarginSetStyleOffset")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlMarginSetStyleOffset(WxkWindow* self, int style);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarginGetStyleOffset")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlMarginGetStyleOffset(WxkWindow* self);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationSetText")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlAnnotationSetText(WxkWindow* self, int line, char* text, nuint textLength);
@@ -8274,22 +8266,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlAnnotationClearAll(WxkWindow* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationSetVisible")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlAnnotationSetVisible(WxkWindow* self, int visible);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationGetVisible")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlAnnotationGetVisible(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationSetStyleOffset")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlAnnotationSetStyleOffset(WxkWindow* self, int style);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationGetStyleOffset")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlAnnotationGetStyleOffset(WxkWindow* self);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarkerHandleFromLine")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextCtrlMarkerHandleFromLine(WxkWindow* self, int line, int which);
@@ -8301,10 +8277,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CountCodeUnits")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextCtrlCountCodeUnits(WxkWindow* self, int start, int end);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_FoldDisplayTextGetStyle")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlFoldDisplayTextGetStyle(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineReverse")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -8349,22 +8321,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EOLAnnotationClearAll")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlEOLAnnotationClearAll(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EOLAnnotationSetVisible")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlEOLAnnotationSetVisible(WxkWindow* self, int visible);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EOLAnnotationGetVisible")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlEOLAnnotationGetVisible(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EOLAnnotationSetStyleOffset")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlEOLAnnotationSetStyleOffset(WxkWindow* self, int style);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EOLAnnotationGetStyleOffset")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlEOLAnnotationGetStyleOffset(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_NameOfStyle")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -9074,10 +9030,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlToggleFoldShowText(WxkWindow* self, int line, char* text, nuint textLength);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_FoldDisplayTextSetStyle")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlFoldDisplayTextSetStyle(WxkWindow* self, int style);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_FoldLine")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlFoldLine(WxkWindow* self, int line, int action);
@@ -9354,6 +9306,70 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlSetInsertionPointEnd(WxkWindow* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationGetVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAnnotationGetVisible(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationSetVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAnnotationSetVisible(WxkWindow* self, int visible);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EOLAnnotationGetVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlEOLAnnotationGetVisible(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EOLAnnotationSetVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlEOLAnnotationSetVisible(WxkWindow* self, int visible);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_FoldDisplayTextGetStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlFoldDisplayTextGetStyle(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_FoldDisplayTextSetStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlFoldDisplayTextSetStyle(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationGetStyleOffset")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAnnotationGetStyleOffset(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AnnotationSetStyleOffset")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAnnotationSetStyleOffset(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EOLAnnotationGetStyleOffset")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlEOLAnnotationGetStyleOffset(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_EOLAnnotationSetStyleOffset")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlEOLAnnotationSetStyleOffset(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarginGetStyleOffset")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlMarginGetStyleOffset(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MarginSetStyleOffset")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlMarginSetStyleOffset(WxkWindow* self, int style);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelections")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlGetSelections(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelectionEmpty")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetSelectionEmpty(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetOvertype")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlGetOvertype(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetOvertype")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlSetOvertype(WxkWindow* self, byte overType);
+
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetStringSelection")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkString* StyledTextCtrlGetStringSelection(WxkWindow* self);
@@ -9514,14 +9530,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlSetSearchFlags(WxkWindow* self, int searchFlags);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetOvertype")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte StyledTextCtrlGetOvertype(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetOvertype")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlSetOvertype(WxkWindow* self, byte overType);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CanPaste")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte StyledTextCtrlCanPaste(WxkWindow* self);
@@ -9645,14 +9653,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetAdditionalCaretsVisible")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlSetAdditionalCaretsVisible(WxkWindow* self, byte additionalCaretsVisible);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelections")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlGetSelections(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelectionEmpty")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte StyledTextCtrlGetSelectionEmpty(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetMainSelection")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -10518,6 +10518,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetModifiers(WxkEvent* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetX")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetX(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetY")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetY(WxkEvent* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetAlt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte StyledTextEventGetAlt(WxkEvent* self);
@@ -10578,17 +10586,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetListType(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetLParam")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextEventGetLParam(WxkEvent* self);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetMargin")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetMargin(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetMessage")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextEventGetMessage(WxkEvent* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetModificationType")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -10609,18 +10609,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetUpdated")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetUpdated(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetWParam")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextEventGetWParam(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetX")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextEventGetX(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetY")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextEventGetY(WxkEvent* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_SystemSettings_GetColour")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

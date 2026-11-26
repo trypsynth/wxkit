@@ -81,7 +81,7 @@ internal sealed partial class Binder {
 				_skipped.Add($"enum {owner}: the value of {value.Name} is unknown or depends on the platform");
 				continue;
 			}
-			string name = tweaks.EnumMemberNames.TryGetValue(value.Name, out string? given) ? given : memberPrefix is not null && value.Name.StartsWith(memberPrefix, StringComparison.Ordinal) ? Naming.Words(value.Name[memberPrefix.Length..]) : MemberName(value.Name, shared);
+			string name = tweaks.EnumMemberNames.TryGetValue(value.Name, out string? given) || StyledTextWords.Commands.TryGetValue(value.Name, out given) ? given : memberPrefix is not null && value.Name.StartsWith(memberPrefix, StringComparison.Ordinal) ? Naming.Words(value.Name[memberPrefix.Length..]) : MemberName(value.Name, shared);
 			if (char.IsDigit(name[0])) name = "Value" + name;
 			if (members.All(existing => existing.Name != name)) members.Add(new BoundStyle(name, value.Name, number, value.Brief));
 		}
@@ -92,10 +92,19 @@ internal sealed partial class Binder {
 
 	// Constants wxWidgets defines one by one, such as wxACC_STATE_SYSTEM_FOCUSED, as one enum in
 	// the order of their values. Flags get None, for none of them.
+	// Constants a class of constants leaves out, since an enum has them.
+	private readonly HashSet<string> _groupedConstants = new(StringComparer.Ordinal);
+
 	private void BindConstantEnum(ConstantEnumTweak group) {
 		List<string> names = group.Constants is IReadOnlyList<string> named
 			? [.. named.Select(name => api.Constants.ContainsKey(name) ? name : throw new InvalidOperationException($"A tweak binds the constant {name}, which the interface headers do not have."))]
 			: [.. api.Constants.Keys.Where(name => name.StartsWith(group.Prefix, StringComparison.Ordinal) && !group.ExcludePrefixes.Any(excluded => name.StartsWith(excluded, StringComparison.Ordinal))).Order(StringComparer.Ordinal)];
+		// A group taken from a class of constants, as the styled text control's are, has only those
+		// the real headers define and don't mark deprecated, as the class does, which then leaves them out.
+		if (tweaks.PrefixConstantClasses.Keys.Any(prefix => group.Prefix.StartsWith(prefix, StringComparison.Ordinal) || names.Any(name => name.StartsWith(prefix, StringComparison.Ordinal)))) {
+			names.RemoveAll(name => !api.HeaderDefines.TryGetValue(name, out string? defined) || defined.Contains("DEPRECATED", StringComparison.Ordinal));
+			_groupedConstants.UnionWith(names);
+		}
 		if (names.Count == 0) throw new InvalidOperationException($"A tweak binds the constants named {group.Prefix}*, which the interface headers do not have.");
 		DoxygenEnum source = new($"{group.Prefix}*", [.. names.Select(static name => new DoxygenEnumValue(name, string.Empty))]);
 		List<BoundStyle> members = [.. EnumMembers(source.Name, source, memberPrefix: null).OrderBy(static member => member.Value)];

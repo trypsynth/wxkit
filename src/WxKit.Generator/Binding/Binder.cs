@@ -74,7 +74,7 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		foreach ((string prefix, string managedName) in tweaks.PrefixConstantClasses) {
 			// Only the ones the real headers define, which leaves out those they keep for compatibility,
 			// such as wxSTC_INDIC0_MASK, and those they mark deprecated.
-			List<string> names = [.. api.Constants.Keys.Where(name => name.StartsWith(prefix, StringComparison.Ordinal) && api.HeaderDefines.TryGetValue(name, out string? defined) && !defined.Contains("DEPRECATED", StringComparison.Ordinal)).Order(StringComparer.Ordinal)];
+			List<string> names = [.. api.Constants.Keys.Where(name => name.StartsWith(prefix, StringComparison.Ordinal) && !_groupedConstants.Contains(name) && api.HeaderDefines.TryGetValue(name, out string? defined) && !defined.Contains("DEPRECATED", StringComparison.Ordinal)).Order(StringComparer.Ordinal)];
 			if (names.Count == 0) throw new InvalidOperationException($"A tweak binds the constants named {prefix}*, which the headers do not define.");
 			DoxygenEnum source = new($"{prefix}*", [.. names.Select(static name => new DoxygenEnumValue(name, string.Empty))]);
 			_enums[$"{prefix}* constants"] = new BoundEnum(managedName, source.Name, EnumMembers(source.Name, source, memberPrefix: null, sentinels: true)) { IsConstantClass = true };

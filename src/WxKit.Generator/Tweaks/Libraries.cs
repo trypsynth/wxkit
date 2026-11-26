@@ -6,9 +6,10 @@ internal static class Libraries {
 	public static void Apply(Binding.Tweaks tweaks) {
 		// The styled text control, Scintilla, which is wxWidgets's stc library. The interface headers
 		// give it wxTextEntry's members, which it has through wxTextEntryBase, and document its events
-		// on wxStyledTextEvent. Its many constants, from lexers to markers, are Stc's ints, as
-		// Scintilla takes them. It keeps Scintilla's abbreviations, which its own documentation uses.
-		tweaks.ConstantClassOf("Stc", "wxSTC_");
+		// on wxStyledTextEvent. Its constants are enums, in StyledText.cs, but for each lexer's
+		// styles and a few numbers, which are StyledText's ints, as Scintilla takes them.
+		StyledText.Apply(tweaks);
+		tweaks.ConstantClassOf("StyledText", "wxSTC_");
 		tweaks.Class("wxStyledTextCtrl", stc => stc
 			.MixinBase("wxTextEntry", "wxTextEntryBase")
 			.AddEvent("EVT_STC_AUTOCOMP_CANCELLED", "wxEVT_STC_AUTOCOMP_CANCELLED", "wxStyledTextEvent", "AutoCompleteCanceled")

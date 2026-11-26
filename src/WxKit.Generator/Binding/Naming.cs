@@ -746,7 +746,7 @@ internal static class Naming {
 	public static string Words(string upper) {
 		StringBuilder result = new();
 		foreach (string word in upper.Split('_', StringSplitOptions.RemoveEmptyEntries)) {
-			if (CompoundWords.TryGetValue(word, out string? compound)) {
+			if (CompoundWords.TryGetValue(word, out string? compound) || StyledTextWords.Compounds.TryGetValue(word, out compound)) {
 				result.Append(compound);
 				continue;
 			}

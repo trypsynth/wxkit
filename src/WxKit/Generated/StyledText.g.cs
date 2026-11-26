@@ -3,7 +3,7 @@
 
 namespace WxKit;
 
-public static partial class Stc {
+public static partial class StyledText {
 	/// <summary>Wraps wxSTC_A68K_COMMENT.</summary>
 	public const int A68kComment = 1;
 	/// <summary>Wraps wxSTC_A68K_COMMENT_DOXYGEN.</summary>
@@ -13,13 +13,13 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_A68K_COMMENT_WORD.</summary>
 	public const int A68kCommentWord = 16;
 	/// <summary>Wraps wxSTC_A68K_CPUINSTRUCTION.</summary>
-	public const int A68kCpuinstruction = 7;
+	public const int A68kCpuInstruction = 7;
 	/// <summary>Wraps wxSTC_A68K_DEFAULT.</summary>
 	public const int A68kDefault = 0;
 	/// <summary>Wraps wxSTC_A68K_DIRECTIVE.</summary>
 	public const int A68kDirective = 10;
 	/// <summary>Wraps wxSTC_A68K_EXTINSTRUCTION.</summary>
-	public const int A68kExtinstruction = 8;
+	public const int A68kExtInstruction = 8;
 	/// <summary>Wraps wxSTC_A68K_IDENTIFIER.</summary>
 	public const int A68kIdentifier = 14;
 	/// <summary>Wraps wxSTC_A68K_LABEL.</summary>
@@ -49,7 +49,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_ABAQUS_COMMENT.</summary>
 	public const int AbaqusComment = 1;
 	/// <summary>Wraps wxSTC_ABAQUS_COMMENTBLOCK.</summary>
-	public const int AbaqusCommentblock = 2;
+	public const int AbaqusCommentBlock = 2;
 	/// <summary>Wraps wxSTC_ABAQUS_DEFAULT.</summary>
 	public const int AbaqusDefault = 0;
 	/// <summary>Wraps wxSTC_ABAQUS_FUNCTION.</summary>
@@ -61,9 +61,9 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_ABAQUS_PROCESSOR.</summary>
 	public const int AbaqusProcessor = 7;
 	/// <summary>Wraps wxSTC_ABAQUS_SLASHCOMMAND.</summary>
-	public const int AbaqusSlashcommand = 9;
+	public const int AbaqusSlashCommand = 9;
 	/// <summary>Wraps wxSTC_ABAQUS_STARCOMMAND.</summary>
-	public const int AbaqusStarcommand = 10;
+	public const int AbaqusStarCommand = 10;
 	/// <summary>Wraps wxSTC_ABAQUS_STRING.</summary>
 	public const int AbaqusString = 4;
 	/// <summary>Wraps wxSTC_ABAQUS_WORD.</summary>
@@ -83,7 +83,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_ABL_IDENTIFIER.</summary>
 	public const int AblIdentifier = 7;
 	/// <summary>Wraps wxSTC_ABL_LINECOMMENT.</summary>
-	public const int AblLinecomment = 12;
+	public const int AblLineComment = 12;
 	/// <summary>Wraps wxSTC_ABL_NUMBER.</summary>
 	public const int AblNumber = 1;
 	/// <summary>Wraps wxSTC_ABL_OPERATOR.</summary>
@@ -93,31 +93,17 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_ABL_STRING.</summary>
 	public const int AblString = 3;
 	/// <summary>Wraps wxSTC_ABL_TASKMARKER.</summary>
-	public const int AblTaskmarker = 11;
+	public const int AblTaskMarker = 11;
 	/// <summary>Wraps wxSTC_ABL_TYPEDANNOTATION.</summary>
-	public const int AblTypedannotation = 14;
+	public const int AblTypedAnnotation = 14;
 	/// <summary>Wraps wxSTC_ABL_WORD.</summary>
 	public const int AblWord = 2;
-	/// <summary>Wraps wxSTC_ACCESSIBILITY_DISABLED.</summary>
-	public const int AccessibilityDisabled = 0;
-	/// <summary>Wraps wxSTC_ACCESSIBILITY_ENABLED.</summary>
-	public const int AccessibilityEnabled = 1;
-	/// <summary>Wraps wxSTC_AC_COMMAND.</summary>
-	public const int AcCommand = 5;
-	/// <summary>Wraps wxSTC_AC_DOUBLECLICK.</summary>
-	public const int AcDoubleclick = 2;
-	/// <summary>Wraps wxSTC_AC_FILLUP.</summary>
-	public const int AcFillup = 1;
-	/// <summary>Wraps wxSTC_AC_NEWLINE.</summary>
-	public const int AcNewline = 4;
-	/// <summary>Wraps wxSTC_AC_TAB.</summary>
-	public const int AcTab = 3;
 	/// <summary>Wraps wxSTC_ADA_CHARACTER.</summary>
 	public const int AdaCharacter = 5;
 	/// <summary>Wraps wxSTC_ADA_CHARACTEREOL.</summary>
-	public const int AdaCharactereol = 6;
+	public const int AdaCharacterEol = 6;
 	/// <summary>Wraps wxSTC_ADA_COMMENTLINE.</summary>
-	public const int AdaCommentline = 10;
+	public const int AdaCommentLine = 10;
 	/// <summary>Wraps wxSTC_ADA_DEFAULT.</summary>
 	public const int AdaDefault = 0;
 	/// <summary>Wraps wxSTC_ADA_DELIMITER.</summary>
@@ -133,23 +119,15 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_ADA_STRING.</summary>
 	public const int AdaString = 7;
 	/// <summary>Wraps wxSTC_ADA_STRINGEOL.</summary>
-	public const int AdaStringeol = 8;
+	public const int AdaStringEol = 8;
 	/// <summary>Wraps wxSTC_ADA_WORD.</summary>
 	public const int AdaWord = 1;
 	/// <summary>Wraps wxSTC_ALPHA_NOALPHA.</summary>
-	public const int AlphaNoalpha = 256;
+	public const int AlphaNoAlpha = 256;
 	/// <summary>Wraps wxSTC_ALPHA_OPAQUE.</summary>
 	public const int AlphaOpaque = 255;
 	/// <summary>Wraps wxSTC_ALPHA_TRANSPARENT.</summary>
 	public const int AlphaTransparent = 0;
-	/// <summary>Wraps wxSTC_ANNOTATION_BOXED.</summary>
-	public const int AnnotationBoxed = 2;
-	/// <summary>Wraps wxSTC_ANNOTATION_HIDDEN.</summary>
-	public const int AnnotationHidden = 0;
-	/// <summary>Wraps wxSTC_ANNOTATION_INDENTED.</summary>
-	public const int AnnotationIndented = 3;
-	/// <summary>Wraps wxSTC_ANNOTATION_STANDARD.</summary>
-	public const int AnnotationStandard = 1;
 	/// <summary>Wraps wxSTC_APDL_ARGUMENT.</summary>
 	public const int ApdlArgument = 11;
 	/// <summary>Wraps wxSTC_APDL_COMMAND.</summary>
@@ -157,7 +135,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_APDL_COMMENT.</summary>
 	public const int ApdlComment = 1;
 	/// <summary>Wraps wxSTC_APDL_COMMENTBLOCK.</summary>
-	public const int ApdlCommentblock = 2;
+	public const int ApdlCommentBlock = 2;
 	/// <summary>Wraps wxSTC_APDL_DEFAULT.</summary>
 	public const int ApdlDefault = 0;
 	/// <summary>Wraps wxSTC_APDL_FUNCTION.</summary>
@@ -169,83 +147,83 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_APDL_PROCESSOR.</summary>
 	public const int ApdlProcessor = 7;
 	/// <summary>Wraps wxSTC_APDL_SLASHCOMMAND.</summary>
-	public const int ApdlSlashcommand = 9;
+	public const int ApdlSlashCommand = 9;
 	/// <summary>Wraps wxSTC_APDL_STARCOMMAND.</summary>
-	public const int ApdlStarcommand = 10;
+	public const int ApdlStarCommand = 10;
 	/// <summary>Wraps wxSTC_APDL_STRING.</summary>
 	public const int ApdlString = 4;
 	/// <summary>Wraps wxSTC_APDL_WORD.</summary>
 	public const int ApdlWord = 6;
 	/// <summary>Wraps wxSTC_ASCIIDOC_ATTRIB.</summary>
-	public const int AsciidocAttrib = 21;
+	public const int AsciiDocAttrib = 21;
 	/// <summary>Wraps wxSTC_ASCIIDOC_ATTRIBVAL.</summary>
-	public const int AsciidocAttribval = 22;
+	public const int AsciiDocAttribVal = 22;
 	/// <summary>Wraps wxSTC_ASCIIDOC_BLOCKQUOTE.</summary>
-	public const int AsciidocBlockquote = 13;
+	public const int AsciiDocBlockQuote = 13;
 	/// <summary>Wraps wxSTC_ASCIIDOC_CODEBK.</summary>
-	public const int AsciidocCodebk = 15;
+	public const int AsciiDocCodeBk = 15;
 	/// <summary>Wraps wxSTC_ASCIIDOC_COMMENT.</summary>
-	public const int AsciidocComment = 17;
+	public const int AsciiDocComment = 17;
 	/// <summary>Wraps wxSTC_ASCIIDOC_COMMENTBK.</summary>
-	public const int AsciidocCommentbk = 18;
+	public const int AsciiDocCommentBk = 18;
 	/// <summary>Wraps wxSTC_ASCIIDOC_DEFAULT.</summary>
-	public const int AsciidocDefault = 0;
+	public const int AsciiDocDefault = 0;
 	/// <summary>Wraps wxSTC_ASCIIDOC_EM1.</summary>
-	public const int AsciidocEm1 = 3;
+	public const int AsciiDocEm1 = 3;
 	/// <summary>Wraps wxSTC_ASCIIDOC_EM2.</summary>
-	public const int AsciidocEm2 = 4;
+	public const int AsciiDocEm2 = 4;
 	/// <summary>Wraps wxSTC_ASCIIDOC_HEADER1.</summary>
-	public const int AsciidocHeader1 = 5;
+	public const int AsciiDocHeader1 = 5;
 	/// <summary>Wraps wxSTC_ASCIIDOC_HEADER2.</summary>
-	public const int AsciidocHeader2 = 6;
+	public const int AsciiDocHeader2 = 6;
 	/// <summary>Wraps wxSTC_ASCIIDOC_HEADER3.</summary>
-	public const int AsciidocHeader3 = 7;
+	public const int AsciiDocHeader3 = 7;
 	/// <summary>Wraps wxSTC_ASCIIDOC_HEADER4.</summary>
-	public const int AsciidocHeader4 = 8;
+	public const int AsciiDocHeader4 = 8;
 	/// <summary>Wraps wxSTC_ASCIIDOC_HEADER5.</summary>
-	public const int AsciidocHeader5 = 9;
+	public const int AsciiDocHeader5 = 9;
 	/// <summary>Wraps wxSTC_ASCIIDOC_HEADER6.</summary>
-	public const int AsciidocHeader6 = 10;
+	public const int AsciiDocHeader6 = 10;
 	/// <summary>Wraps wxSTC_ASCIIDOC_LINK.</summary>
-	public const int AsciidocLink = 14;
+	public const int AsciiDocLink = 14;
 	/// <summary>Wraps wxSTC_ASCIIDOC_LITERAL.</summary>
-	public const int AsciidocLiteral = 19;
+	public const int AsciiDocLiteral = 19;
 	/// <summary>Wraps wxSTC_ASCIIDOC_LITERALBK.</summary>
-	public const int AsciidocLiteralbk = 20;
+	public const int AsciiDocLiteralBk = 20;
 	/// <summary>Wraps wxSTC_ASCIIDOC_MACRO.</summary>
-	public const int AsciidocMacro = 23;
+	public const int AsciiDocMacro = 23;
 	/// <summary>Wraps wxSTC_ASCIIDOC_OLIST_ITEM.</summary>
-	public const int AsciidocOlistItem = 12;
+	public const int AsciiDocOlistItem = 12;
 	/// <summary>Wraps wxSTC_ASCIIDOC_PASSBK.</summary>
-	public const int AsciidocPassbk = 16;
+	public const int AsciiDocPassBk = 16;
 	/// <summary>Wraps wxSTC_ASCIIDOC_STRONG1.</summary>
-	public const int AsciidocStrong1 = 1;
+	public const int AsciiDocStrong1 = 1;
 	/// <summary>Wraps wxSTC_ASCIIDOC_STRONG2.</summary>
-	public const int AsciidocStrong2 = 2;
+	public const int AsciiDocStrong2 = 2;
 	/// <summary>Wraps wxSTC_ASCIIDOC_ULIST_ITEM.</summary>
-	public const int AsciidocUlistItem = 11;
+	public const int AsciiDocUlistItem = 11;
 	/// <summary>Wraps wxSTC_ASM_CHARACTER.</summary>
 	public const int AsmCharacter = 12;
 	/// <summary>Wraps wxSTC_ASM_COMMENT.</summary>
 	public const int AsmComment = 1;
 	/// <summary>Wraps wxSTC_ASM_COMMENTBLOCK.</summary>
-	public const int AsmCommentblock = 11;
+	public const int AsmCommentBlock = 11;
 	/// <summary>Wraps wxSTC_ASM_COMMENTDIRECTIVE.</summary>
-	public const int AsmCommentdirective = 15;
+	public const int AsmCommentDirective = 15;
 	/// <summary>Wraps wxSTC_ASM_CPUINSTRUCTION.</summary>
-	public const int AsmCpuinstruction = 6;
+	public const int AsmCpuInstruction = 6;
 	/// <summary>Wraps wxSTC_ASM_DEFAULT.</summary>
 	public const int AsmDefault = 0;
 	/// <summary>Wraps wxSTC_ASM_DIRECTIVE.</summary>
 	public const int AsmDirective = 9;
 	/// <summary>Wraps wxSTC_ASM_DIRECTIVEOPERAND.</summary>
-	public const int AsmDirectiveoperand = 10;
+	public const int AsmDirectiveOperand = 10;
 	/// <summary>Wraps wxSTC_ASM_EXTINSTRUCTION.</summary>
-	public const int AsmExtinstruction = 14;
+	public const int AsmExtInstruction = 14;
 	/// <summary>Wraps wxSTC_ASM_IDENTIFIER.</summary>
 	public const int AsmIdentifier = 5;
 	/// <summary>Wraps wxSTC_ASM_MATHINSTRUCTION.</summary>
-	public const int AsmMathinstruction = 7;
+	public const int AsmMathInstruction = 7;
 	/// <summary>Wraps wxSTC_ASM_NUMBER.</summary>
 	public const int AsmNumber = 2;
 	/// <summary>Wraps wxSTC_ASM_OPERATOR.</summary>
@@ -255,9 +233,9 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_ASM_STRING.</summary>
 	public const int AsmString = 3;
 	/// <summary>Wraps wxSTC_ASM_STRINGBACKQUOTE.</summary>
-	public const int AsmStringbackquote = 16;
+	public const int AsmStringBackQuote = 16;
 	/// <summary>Wraps wxSTC_ASM_STRINGEOL.</summary>
-	public const int AsmStringeol = 13;
+	public const int AsmStringEol = 13;
 	/// <summary>Wraps wxSTC_ASN1_ATTRIBUTE.</summary>
 	public const int Asn1Attribute = 7;
 	/// <summary>Wraps wxSTC_ASN1_COMMENT.</summary>
@@ -285,9 +263,9 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_ASY_COMMENT.</summary>
 	public const int AsyComment = 1;
 	/// <summary>Wraps wxSTC_ASY_COMMENTLINE.</summary>
-	public const int AsyCommentline = 2;
+	public const int AsyCommentLine = 2;
 	/// <summary>Wraps wxSTC_ASY_COMMENTLINEDOC.</summary>
-	public const int AsyCommentlinedoc = 10;
+	public const int AsyCommentLineDoc = 10;
 	/// <summary>Wraps wxSTC_ASY_DEFAULT.</summary>
 	public const int AsyDefault = 0;
 	/// <summary>Wraps wxSTC_ASY_IDENTIFIER.</summary>
@@ -299,7 +277,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_ASY_STRING.</summary>
 	public const int AsyString = 5;
 	/// <summary>Wraps wxSTC_ASY_STRINGEOL.</summary>
-	public const int AsyStringeol = 9;
+	public const int AsyStringEol = 9;
 	/// <summary>Wraps wxSTC_ASY_WORD.</summary>
 	public const int AsyWord = 4;
 	/// <summary>Wraps wxSTC_ASY_WORD2.</summary>
@@ -307,9 +285,9 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_AU3_COMMENT.</summary>
 	public const int Au3Comment = 1;
 	/// <summary>Wraps wxSTC_AU3_COMMENTBLOCK.</summary>
-	public const int Au3Commentblock = 2;
+	public const int Au3CommentBlock = 2;
 	/// <summary>Wraps wxSTC_AU3_COMOBJ.</summary>
-	public const int Au3Comobj = 14;
+	public const int Au3ComObj = 14;
 	/// <summary>Wraps wxSTC_AU3_DEFAULT.</summary>
 	public const int Au3Default = 0;
 	/// <summary>Wraps wxSTC_AU3_EXPAND.</summary>
@@ -336,12 +314,6 @@ public static partial class Stc {
 	public const int Au3Udf = 15;
 	/// <summary>Wraps wxSTC_AU3_VARIABLE.</summary>
 	public const int Au3Variable = 9;
-	/// <summary>Wraps wxSTC_AUTOMATICFOLD_CHANGE.</summary>
-	public const int AutomaticfoldChange = 4;
-	/// <summary>Wraps wxSTC_AUTOMATICFOLD_CLICK.</summary>
-	public const int AutomaticfoldClick = 2;
-	/// <summary>Wraps wxSTC_AUTOMATICFOLD_SHOW.</summary>
-	public const int AutomaticfoldShow = 1;
 	/// <summary>Wraps wxSTC_AVE_COMMENT.</summary>
 	public const int AveComment = 1;
 	/// <summary>Wraps wxSTC_AVE_DEFAULT.</summary>
@@ -357,7 +329,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_AVE_STRING.</summary>
 	public const int AveString = 6;
 	/// <summary>Wraps wxSTC_AVE_STRINGEOL.</summary>
-	public const int AveStringeol = 8;
+	public const int AveStringEol = 8;
 	/// <summary>Wraps wxSTC_AVE_WORD.</summary>
 	public const int AveWord = 3;
 	/// <summary>Wraps wxSTC_AVE_WORD1.</summary>
@@ -373,13 +345,13 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_AVE_WORD6.</summary>
 	public const int AveWord6 = 16;
 	/// <summary>Wraps wxSTC_AVS_CLIPPROP.</summary>
-	public const int AvsClipprop = 13;
+	public const int AvsClipProp = 13;
 	/// <summary>Wraps wxSTC_AVS_COMMENTBLOCK.</summary>
-	public const int AvsCommentblock = 1;
+	public const int AvsCommentBlock = 1;
 	/// <summary>Wraps wxSTC_AVS_COMMENTBLOCKN.</summary>
-	public const int AvsCommentblockn = 2;
+	public const int AvsCommentBlockN = 2;
 	/// <summary>Wraps wxSTC_AVS_COMMENTLINE.</summary>
-	public const int AvsCommentline = 3;
+	public const int AvsCommentLine = 3;
 	/// <summary>Wraps wxSTC_AVS_DEFAULT.</summary>
 	public const int AvsDefault = 0;
 	/// <summary>Wraps wxSTC_AVS_FILTER.</summary>
@@ -399,13 +371,13 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_AVS_STRING.</summary>
 	public const int AvsString = 7;
 	/// <summary>Wraps wxSTC_AVS_TRIPLESTRING.</summary>
-	public const int AvsTriplestring = 8;
+	public const int AvsTripleString = 8;
 	/// <summary>Wraps wxSTC_AVS_USERDFN.</summary>
-	public const int AvsUserdfn = 14;
+	public const int AvsUserDfn = 14;
 	/// <summary>Wraps wxSTC_BAAN_COMMENT.</summary>
 	public const int BaanComment = 1;
 	/// <summary>Wraps wxSTC_BAAN_COMMENTDOC.</summary>
-	public const int BaanCommentdoc = 2;
+	public const int BaanCommentDoc = 2;
 	/// <summary>Wraps wxSTC_BAAN_DEFAULT.</summary>
 	public const int BaanDefault = 0;
 	/// <summary>Wraps wxSTC_BAAN_DEFINEDEF.</summary>
@@ -413,7 +385,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_BAAN_DOMDEF.</summary>
 	public const int BaanDomdef = 21;
 	/// <summary>Wraps wxSTC_BAAN_FUNCDEF.</summary>
-	public const int BaanFuncdef = 22;
+	public const int BaanFuncDef = 22;
 	/// <summary>Wraps wxSTC_BAAN_FUNCTION.</summary>
 	public const int BaanFunction = 20;
 	/// <summary>Wraps wxSTC_BAAN_IDENTIFIER.</summary>
@@ -421,7 +393,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_BAAN_NUMBER.</summary>
 	public const int BaanNumber = 3;
 	/// <summary>Wraps wxSTC_BAAN_OBJECTDEF.</summary>
-	public const int BaanObjectdef = 23;
+	public const int BaanObjectDef = 23;
 	/// <summary>Wraps wxSTC_BAAN_OPERATOR.</summary>
 	public const int BaanOperator = 7;
 	/// <summary>Wraps wxSTC_BAAN_PREPROCESSOR.</summary>
@@ -429,11 +401,11 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_BAAN_STRING.</summary>
 	public const int BaanString = 5;
 	/// <summary>Wraps wxSTC_BAAN_STRINGEOL.</summary>
-	public const int BaanStringeol = 9;
+	public const int BaanStringEol = 9;
 	/// <summary>Wraps wxSTC_BAAN_TABLEDEF.</summary>
-	public const int BaanTabledef = 18;
+	public const int BaanTableDef = 18;
 	/// <summary>Wraps wxSTC_BAAN_TABLESQL.</summary>
-	public const int BaanTablesql = 19;
+	public const int BaanTableSql = 19;
 	/// <summary>Wraps wxSTC_BAAN_WORD.</summary>
 	public const int BaanWord = 4;
 	/// <summary>Wraps wxSTC_BAAN_WORD2.</summary>
@@ -471,27 +443,27 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_BAT_WORD.</summary>
 	public const int BatWord = 2;
 	/// <summary>Wraps wxSTC_BIBTEX_COMMENT.</summary>
-	public const int BibtexComment = 6;
+	public const int BibTexComment = 6;
 	/// <summary>Wraps wxSTC_BIBTEX_DEFAULT.</summary>
-	public const int BibtexDefault = 0;
+	public const int BibTexDefault = 0;
 	/// <summary>Wraps wxSTC_BIBTEX_ENTRY.</summary>
-	public const int BibtexEntry = 1;
+	public const int BibTexEntry = 1;
 	/// <summary>Wraps wxSTC_BIBTEX_KEY.</summary>
-	public const int BibtexKey = 3;
+	public const int BibTexKey = 3;
 	/// <summary>Wraps wxSTC_BIBTEX_PARAMETER.</summary>
-	public const int BibtexParameter = 4;
+	public const int BibTexParameter = 4;
 	/// <summary>Wraps wxSTC_BIBTEX_UNKNOWN_ENTRY.</summary>
-	public const int BibtexUnknownEntry = 2;
+	public const int BibTexUnknownEntry = 2;
 	/// <summary>Wraps wxSTC_BIBTEX_VALUE.</summary>
-	public const int BibtexValue = 5;
+	public const int BibTexValue = 5;
 	/// <summary>Wraps wxSTC_B_ASM.</summary>
 	public const int BAsm = 14;
 	/// <summary>Wraps wxSTC_B_BINNUMBER.</summary>
-	public const int BBinnumber = 18;
+	public const int BBinNumber = 18;
 	/// <summary>Wraps wxSTC_B_COMMENT.</summary>
 	public const int BComment = 1;
 	/// <summary>Wraps wxSTC_B_COMMENTBLOCK.</summary>
-	public const int BCommentblock = 19;
+	public const int BCommentBlock = 19;
 	/// <summary>Wraps wxSTC_B_CONSTANT.</summary>
 	public const int BConstant = 13;
 	/// <summary>Wraps wxSTC_B_DATE.</summary>
@@ -499,15 +471,15 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_B_DEFAULT.</summary>
 	public const int BDefault = 0;
 	/// <summary>Wraps wxSTC_B_DOCBLOCK.</summary>
-	public const int BDocblock = 21;
+	public const int BDocBlock = 21;
 	/// <summary>Wraps wxSTC_B_DOCKEYWORD.</summary>
-	public const int BDockeyword = 22;
+	public const int BDocKeyword = 22;
 	/// <summary>Wraps wxSTC_B_DOCLINE.</summary>
-	public const int BDocline = 20;
+	public const int BDocLine = 20;
 	/// <summary>Wraps wxSTC_B_ERROR.</summary>
 	public const int BError = 16;
 	/// <summary>Wraps wxSTC_B_HEXNUMBER.</summary>
-	public const int BHexnumber = 17;
+	public const int BHexNumber = 17;
 	/// <summary>Wraps wxSTC_B_IDENTIFIER.</summary>
 	public const int BIdentifier = 7;
 	/// <summary>Wraps wxSTC_B_KEYWORD.</summary>
@@ -529,15 +501,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_B_STRING.</summary>
 	public const int BString = 4;
 	/// <summary>Wraps wxSTC_B_STRINGEOL.</summary>
-	public const int BStringeol = 9;
-	/// <summary>Wraps wxSTC_CACHE_CARET.</summary>
-	public const int CacheCaret = 1;
-	/// <summary>Wraps wxSTC_CACHE_DOCUMENT.</summary>
-	public const int CacheDocument = 3;
-	/// <summary>Wraps wxSTC_CACHE_NONE.</summary>
-	public const int CacheNone = 0;
-	/// <summary>Wraps wxSTC_CACHE_PAGE.</summary>
-	public const int CachePage = 2;
+	public const int BStringEol = 9;
 	/// <summary>Wraps wxSTC_CAML_CHAR.</summary>
 	public const int CamlChar = 9;
 	/// <summary>Wraps wxSTC_CAML_COMMENT.</summary>
@@ -559,7 +523,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_CAML_KEYWORD3.</summary>
 	public const int CamlKeyword3 = 5;
 	/// <summary>Wraps wxSTC_CAML_LINENUM.</summary>
-	public const int CamlLinenum = 6;
+	public const int CamlLineNum = 6;
 	/// <summary>Wraps wxSTC_CAML_NUMBER.</summary>
 	public const int CamlNumber = 8;
 	/// <summary>Wraps wxSTC_CAML_OPERATOR.</summary>
@@ -567,103 +531,13 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_CAML_STRING.</summary>
 	public const int CamlString = 11;
 	/// <summary>Wraps wxSTC_CAML_TAGNAME.</summary>
-	public const int CamlTagname = 2;
+	public const int CamlTagName = 2;
 	/// <summary>Wraps wxSTC_CAML_WHITE.</summary>
 	public const int CamlWhite = 10;
-	/// <summary>Wraps wxSTC_CARETSTICKY_OFF.</summary>
-	public const int CaretstickyOff = 0;
-	/// <summary>Wraps wxSTC_CARETSTICKY_ON.</summary>
-	public const int CaretstickyOn = 1;
-	/// <summary>Wraps wxSTC_CARETSTICKY_WHITESPACE.</summary>
-	public const int CaretstickyWhiteSpace = 2;
-	/// <summary>Wraps wxSTC_CARETSTYLE_BLOCK.</summary>
-	public const int CaretstyleBlock = 2;
-	/// <summary>Wraps wxSTC_CARETSTYLE_BLOCK_AFTER.</summary>
-	public const int CaretstyleBlockAfter = 256;
-	/// <summary>Wraps wxSTC_CARETSTYLE_INS_MASK.</summary>
-	public const int CaretstyleInsMask = 15;
-	/// <summary>Wraps wxSTC_CARETSTYLE_INVISIBLE.</summary>
-	public const int CaretstyleInvisible = 0;
-	/// <summary>Wraps wxSTC_CARETSTYLE_LINE.</summary>
-	public const int CaretstyleLine = 1;
-	/// <summary>Wraps wxSTC_CARETSTYLE_OVERSTRIKE_BAR.</summary>
-	public const int CaretstyleOverstrikeBar = 0;
-	/// <summary>Wraps wxSTC_CARETSTYLE_OVERSTRIKE_BLOCK.</summary>
-	public const int CaretstyleOverstrikeBlock = 16;
-	/// <summary>Wraps wxSTC_CARET_EVEN.</summary>
-	public const int CaretEven = 8;
-	/// <summary>Wraps wxSTC_CARET_JUMPS.</summary>
-	public const int CaretJumps = 16;
-	/// <summary>Wraps wxSTC_CARET_SLOP.</summary>
-	public const int CaretSlop = 1;
-	/// <summary>Wraps wxSTC_CARET_STRICT.</summary>
-	public const int CaretStrict = 4;
-	/// <summary>Wraps wxSTC_CASEINSENSITIVEBEHAVIOUR_IGNORECASE.</summary>
-	public const int CaseinsensitivebehaviourIgnorecase = 1;
-	/// <summary>Wraps wxSTC_CASEINSENSITIVEBEHAVIOUR_RESPECTCASE.</summary>
-	public const int CaseinsensitivebehaviourRespectcase = 0;
-	/// <summary>Wraps wxSTC_CASE_CAMEL.</summary>
-	public const int CaseCamel = 3;
-	/// <summary>Wraps wxSTC_CASE_LOWER.</summary>
-	public const int CaseLower = 2;
-	/// <summary>Wraps wxSTC_CASE_MIXED.</summary>
-	public const int CaseMixed = 0;
-	/// <summary>Wraps wxSTC_CASE_UPPER.</summary>
-	public const int CaseUpper = 1;
-	/// <summary>Wraps wxSTC_CHARACTERSOURCE_DIRECT_INPUT.</summary>
-	public const int CharactersourceDirectInput = 0;
-	/// <summary>Wraps wxSTC_CHARACTERSOURCE_IME_RESULT.</summary>
-	public const int CharactersourceImeResult = 2;
-	/// <summary>Wraps wxSTC_CHARACTERSOURCE_TENTATIVE_INPUT.</summary>
-	public const int CharactersourceTentativeInput = 1;
-	/// <summary>Wraps wxSTC_CHARSET_8859_15.</summary>
-	public const int Charset8859_15 = 1000;
-	/// <summary>Wraps wxSTC_CHARSET_ANSI.</summary>
-	public const int CharsetAnsi = 0;
-	/// <summary>Wraps wxSTC_CHARSET_ARABIC.</summary>
-	public const int CharsetArabic = 178;
-	/// <summary>Wraps wxSTC_CHARSET_BALTIC.</summary>
-	public const int CharsetBaltic = 186;
-	/// <summary>Wraps wxSTC_CHARSET_CHINESEBIG5.</summary>
-	public const int CharsetChinesebig5 = 136;
-	/// <summary>Wraps wxSTC_CHARSET_CYRILLIC.</summary>
-	public const int CharsetCyrillic = 1251;
-	/// <summary>Wraps wxSTC_CHARSET_DEFAULT.</summary>
-	public const int CharsetDefault = 1;
-	/// <summary>Wraps wxSTC_CHARSET_EASTEUROPE.</summary>
-	public const int CharsetEasteurope = 238;
-	/// <summary>Wraps wxSTC_CHARSET_GB2312.</summary>
-	public const int CharsetGb2312 = 134;
-	/// <summary>Wraps wxSTC_CHARSET_GREEK.</summary>
-	public const int CharsetGreek = 161;
-	/// <summary>Wraps wxSTC_CHARSET_HANGUL.</summary>
-	public const int CharsetHangul = 129;
-	/// <summary>Wraps wxSTC_CHARSET_HEBREW.</summary>
-	public const int CharsetHebrew = 177;
-	/// <summary>Wraps wxSTC_CHARSET_JOHAB.</summary>
-	public const int CharsetJohab = 130;
-	/// <summary>Wraps wxSTC_CHARSET_MAC.</summary>
-	public const int CharsetMac = 77;
-	/// <summary>Wraps wxSTC_CHARSET_OEM.</summary>
-	public const int CharsetOem = 255;
-	/// <summary>Wraps wxSTC_CHARSET_OEM866.</summary>
-	public const int CharsetOem866 = 866;
-	/// <summary>Wraps wxSTC_CHARSET_RUSSIAN.</summary>
-	public const int CharsetRussian = 204;
-	/// <summary>Wraps wxSTC_CHARSET_SHIFTJIS.</summary>
-	public const int CharsetShiftjis = 128;
-	/// <summary>Wraps wxSTC_CHARSET_SYMBOL.</summary>
-	public const int CharsetSymbol = 2;
-	/// <summary>Wraps wxSTC_CHARSET_THAI.</summary>
-	public const int CharsetThai = 222;
-	/// <summary>Wraps wxSTC_CHARSET_TURKISH.</summary>
-	public const int CharsetTurkish = 162;
-	/// <summary>Wraps wxSTC_CHARSET_VIETNAMESE.</summary>
-	public const int CharsetVietnamese = 163;
 	/// <summary>Wraps wxSTC_CIL_COMMENT.</summary>
 	public const int CilComment = 1;
 	/// <summary>Wraps wxSTC_CIL_COMMENTLINE.</summary>
-	public const int CilCommentline = 2;
+	public const int CilCommentLine = 2;
 	/// <summary>Wraps wxSTC_CIL_DEFAULT.</summary>
 	public const int CilDefault = 0;
 	/// <summary>Wraps wxSTC_CIL_IDENTIFIER.</summary>
@@ -675,7 +549,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_CIL_STRING.</summary>
 	public const int CilString = 6;
 	/// <summary>Wraps wxSTC_CIL_STRINGEOL.</summary>
-	public const int CilStringeol = 10;
+	public const int CilStringEol = 10;
 	/// <summary>Wraps wxSTC_CIL_WORD.</summary>
 	public const int CilWord = 3;
 	/// <summary>Wraps wxSTC_CIL_WORD2.</summary>
@@ -717,241 +591,43 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_CLW_USER_IDENTIFIER.</summary>
 	public const int ClwUserIdentifier = 4;
 	/// <summary>Wraps wxSTC_CMAKE_COMMANDS.</summary>
-	public const int CmakeCommands = 5;
+	public const int CMakeCommands = 5;
 	/// <summary>Wraps wxSTC_CMAKE_COMMENT.</summary>
-	public const int CmakeComment = 1;
+	public const int CMakeComment = 1;
 	/// <summary>Wraps wxSTC_CMAKE_DEFAULT.</summary>
-	public const int CmakeDefault = 0;
+	public const int CMakeDefault = 0;
 	/// <summary>Wraps wxSTC_CMAKE_FOREACHDEF.</summary>
-	public const int CmakeForeachdef = 10;
+	public const int CMakeForEachDef = 10;
 	/// <summary>Wraps wxSTC_CMAKE_IFDEFINEDEF.</summary>
-	public const int CmakeIfdefinedef = 11;
+	public const int CMakeIfDefineDef = 11;
 	/// <summary>Wraps wxSTC_CMAKE_MACRODEF.</summary>
-	public const int CmakeMacrodef = 12;
+	public const int CMakeMacroDef = 12;
 	/// <summary>Wraps wxSTC_CMAKE_NUMBER.</summary>
-	public const int CmakeNumber = 14;
+	public const int CMakeNumber = 14;
 	/// <summary>Wraps wxSTC_CMAKE_PARAMETERS.</summary>
-	public const int CmakeParameters = 6;
+	public const int CMakeParameters = 6;
 	/// <summary>Wraps wxSTC_CMAKE_STRINGDQ.</summary>
-	public const int CmakeStringdq = 2;
+	public const int CMakeStringDq = 2;
 	/// <summary>Wraps wxSTC_CMAKE_STRINGLQ.</summary>
-	public const int CmakeStringlq = 3;
+	public const int CMakeStringLq = 3;
 	/// <summary>Wraps wxSTC_CMAKE_STRINGRQ.</summary>
-	public const int CmakeStringrq = 4;
+	public const int CMakeStringRq = 4;
 	/// <summary>Wraps wxSTC_CMAKE_STRINGVAR.</summary>
-	public const int CmakeStringvar = 13;
+	public const int CMakeStringVar = 13;
 	/// <summary>Wraps wxSTC_CMAKE_USERDEFINED.</summary>
-	public const int CmakeUserdefined = 8;
+	public const int CMakeUserDefined = 8;
 	/// <summary>Wraps wxSTC_CMAKE_VARIABLE.</summary>
-	public const int CmakeVariable = 7;
+	public const int CMakeVariable = 7;
 	/// <summary>Wraps wxSTC_CMAKE_WHILEDEF.</summary>
-	public const int CmakeWhiledef = 9;
-	/// <summary>Wraps wxSTC_CMD_BACKTAB.</summary>
-	public const int CmdBacktab = 2328;
-	/// <summary>Wraps wxSTC_CMD_CANCEL.</summary>
-	public const int CmdCancel = 2325;
-	/// <summary>Wraps wxSTC_CMD_CHARLEFT.</summary>
-	public const int CmdCharleft = 2304;
-	/// <summary>Wraps wxSTC_CMD_CHARLEFTEXTEND.</summary>
-	public const int CmdCharleftextend = 2305;
-	/// <summary>Wraps wxSTC_CMD_CHARLEFTRECTEXTEND.</summary>
-	public const int CmdCharleftrectextend = 2428;
-	/// <summary>Wraps wxSTC_CMD_CHARRIGHT.</summary>
-	public const int CmdCharright = 2306;
-	/// <summary>Wraps wxSTC_CMD_CHARRIGHTEXTEND.</summary>
-	public const int CmdCharrightextend = 2307;
-	/// <summary>Wraps wxSTC_CMD_CHARRIGHTRECTEXTEND.</summary>
-	public const int CmdCharrightrectextend = 2429;
-	/// <summary>Wraps wxSTC_CMD_CLEAR.</summary>
-	public const int CmdClear = 2180;
-	/// <summary>Wraps wxSTC_CMD_COPY.</summary>
-	public const int CmdCopy = 2178;
-	/// <summary>Wraps wxSTC_CMD_CUT.</summary>
-	public const int CmdCut = 2177;
-	/// <summary>Wraps wxSTC_CMD_DELETEBACK.</summary>
-	public const int CmdDeleteback = 2326;
-	/// <summary>Wraps wxSTC_CMD_DELETEBACKNOTLINE.</summary>
-	public const int CmdDeletebacknotline = 2344;
-	/// <summary>Wraps wxSTC_CMD_DELLINELEFT.</summary>
-	public const int CmdDellineleft = 2395;
-	/// <summary>Wraps wxSTC_CMD_DELLINERIGHT.</summary>
-	public const int CmdDellineright = 2396;
-	/// <summary>Wraps wxSTC_CMD_DELWORDLEFT.</summary>
-	public const int CmdDelwordleft = 2335;
-	/// <summary>Wraps wxSTC_CMD_DELWORDRIGHT.</summary>
-	public const int CmdDelwordright = 2336;
-	/// <summary>Wraps wxSTC_CMD_DELWORDRIGHTEND.</summary>
-	public const int CmdDelwordrightend = 2518;
-	/// <summary>Wraps wxSTC_CMD_DOCUMENTEND.</summary>
-	public const int CmdDocumentend = 2318;
-	/// <summary>Wraps wxSTC_CMD_DOCUMENTENDEXTEND.</summary>
-	public const int CmdDocumentendextend = 2319;
-	/// <summary>Wraps wxSTC_CMD_DOCUMENTSTART.</summary>
-	public const int CmdDocumentstart = 2316;
-	/// <summary>Wraps wxSTC_CMD_DOCUMENTSTARTEXTEND.</summary>
-	public const int CmdDocumentstartextend = 2317;
-	/// <summary>Wraps wxSTC_CMD_EDITTOGGLEOVERTYPE.</summary>
-	public const int CmdEdittoggleovertype = 2324;
-	/// <summary>Wraps wxSTC_CMD_FORMFEED.</summary>
-	public const int CmdFormfeed = 2330;
-	/// <summary>Wraps wxSTC_CMD_HOME.</summary>
-	public const int CmdHome = 2312;
-	/// <summary>Wraps wxSTC_CMD_HOMEDISPLAY.</summary>
-	public const int CmdHomedisplay = 2345;
-	/// <summary>Wraps wxSTC_CMD_HOMEDISPLAYEXTEND.</summary>
-	public const int CmdHomedisplayextend = 2346;
-	/// <summary>Wraps wxSTC_CMD_HOMEEXTEND.</summary>
-	public const int CmdHomeextend = 2313;
-	/// <summary>Wraps wxSTC_CMD_HOMERECTEXTEND.</summary>
-	public const int CmdHomerectextend = 2430;
-	/// <summary>Wraps wxSTC_CMD_HOMEWRAP.</summary>
-	public const int CmdHomewrap = 2349;
-	/// <summary>Wraps wxSTC_CMD_HOMEWRAPEXTEND.</summary>
-	public const int CmdHomewrapextend = 2450;
-	/// <summary>Wraps wxSTC_CMD_LINECOPY.</summary>
-	public const int CmdLinecopy = 2455;
-	/// <summary>Wraps wxSTC_CMD_LINECUT.</summary>
-	public const int CmdLinecut = 2337;
-	/// <summary>Wraps wxSTC_CMD_LINEDELETE.</summary>
-	public const int CmdLinedelete = 2338;
-	/// <summary>Wraps wxSTC_CMD_LINEDOWN.</summary>
-	public const int CmdLineDown = 2300;
-	/// <summary>Wraps wxSTC_CMD_LINEDOWNEXTEND.</summary>
-	public const int CmdLinedownextend = 2301;
-	/// <summary>Wraps wxSTC_CMD_LINEDOWNRECTEXTEND.</summary>
-	public const int CmdLinedownrectextend = 2426;
-	/// <summary>Wraps wxSTC_CMD_LINEDUPLICATE.</summary>
-	public const int CmdLineduplicate = 2404;
-	/// <summary>Wraps wxSTC_CMD_LINEEND.</summary>
-	public const int CmdLineend = 2314;
-	/// <summary>Wraps wxSTC_CMD_LINEENDDISPLAY.</summary>
-	public const int CmdLineenddisplay = 2347;
-	/// <summary>Wraps wxSTC_CMD_LINEENDDISPLAYEXTEND.</summary>
-	public const int CmdLineenddisplayextend = 2348;
-	/// <summary>Wraps wxSTC_CMD_LINEENDEXTEND.</summary>
-	public const int CmdLineendextend = 2315;
-	/// <summary>Wraps wxSTC_CMD_LINEENDRECTEXTEND.</summary>
-	public const int CmdLineendrectextend = 2432;
-	/// <summary>Wraps wxSTC_CMD_LINEENDWRAP.</summary>
-	public const int CmdLineendwrap = 2451;
-	/// <summary>Wraps wxSTC_CMD_LINEENDWRAPEXTEND.</summary>
-	public const int CmdLineendwrapextend = 2452;
-	/// <summary>Wraps wxSTC_CMD_LINESCROLLDOWN.</summary>
-	public const int CmdLinescrolldown = 2342;
-	/// <summary>Wraps wxSTC_CMD_LINESCROLLUP.</summary>
-	public const int CmdLinescrollup = 2343;
-	/// <summary>Wraps wxSTC_CMD_LINETRANSPOSE.</summary>
-	public const int CmdLinetranspose = 2339;
-	/// <summary>Wraps wxSTC_CMD_LINEUP.</summary>
-	public const int CmdLineUp = 2302;
-	/// <summary>Wraps wxSTC_CMD_LINEUPEXTEND.</summary>
-	public const int CmdLineupextend = 2303;
-	/// <summary>Wraps wxSTC_CMD_LINEUPRECTEXTEND.</summary>
-	public const int CmdLineuprectextend = 2427;
-	/// <summary>Wraps wxSTC_CMD_LOWERCASE.</summary>
-	public const int CmdLowercase = 2340;
-	/// <summary>Wraps wxSTC_CMD_MOVESELECTEDLINESDOWN.</summary>
-	public const int CmdMoveselectedlinesdown = 2621;
-	/// <summary>Wraps wxSTC_CMD_MOVESELECTEDLINESUP.</summary>
-	public const int CmdMoveselectedlinesup = 2620;
-	/// <summary>Wraps wxSTC_CMD_NEWLINE.</summary>
-	public const int CmdNewline = 2329;
-	/// <summary>Wraps wxSTC_CMD_PAGEDOWN.</summary>
-	public const int CmdPageDown = 2322;
-	/// <summary>Wraps wxSTC_CMD_PAGEDOWNEXTEND.</summary>
-	public const int CmdPagedownextend = 2323;
-	/// <summary>Wraps wxSTC_CMD_PAGEDOWNRECTEXTEND.</summary>
-	public const int CmdPagedownrectextend = 2434;
-	/// <summary>Wraps wxSTC_CMD_PAGEUP.</summary>
-	public const int CmdPageUp = 2320;
-	/// <summary>Wraps wxSTC_CMD_PAGEUPEXTEND.</summary>
-	public const int CmdPageupextend = 2321;
-	/// <summary>Wraps wxSTC_CMD_PAGEUPRECTEXTEND.</summary>
-	public const int CmdPageuprectextend = 2433;
-	/// <summary>Wraps wxSTC_CMD_PARADOWN.</summary>
-	public const int CmdParadown = 2413;
-	/// <summary>Wraps wxSTC_CMD_PARADOWNEXTEND.</summary>
-	public const int CmdParadownextend = 2414;
-	/// <summary>Wraps wxSTC_CMD_PARAUP.</summary>
-	public const int CmdParaup = 2415;
-	/// <summary>Wraps wxSTC_CMD_PARAUPEXTEND.</summary>
-	public const int CmdParaupextend = 2416;
-	/// <summary>Wraps wxSTC_CMD_PASTE.</summary>
-	public const int CmdPaste = 2179;
-	/// <summary>Wraps wxSTC_CMD_REDO.</summary>
-	public const int CmdRedo = 2011;
-	/// <summary>Wraps wxSTC_CMD_SCROLLTOEND.</summary>
-	public const int CmdScrolltoend = 2629;
-	/// <summary>Wraps wxSTC_CMD_SCROLLTOSTART.</summary>
-	public const int CmdScrolltostart = 2628;
-	/// <summary>Wraps wxSTC_CMD_SELECTALL.</summary>
-	public const int CmdSelectAll = 2013;
-	/// <summary>Wraps wxSTC_CMD_STUTTEREDPAGEDOWN.</summary>
-	public const int CmdStutteredpagedown = 2437;
-	/// <summary>Wraps wxSTC_CMD_STUTTEREDPAGEDOWNEXTEND.</summary>
-	public const int CmdStutteredpagedownextend = 2438;
-	/// <summary>Wraps wxSTC_CMD_STUTTEREDPAGEUP.</summary>
-	public const int CmdStutteredpageup = 2435;
-	/// <summary>Wraps wxSTC_CMD_STUTTEREDPAGEUPEXTEND.</summary>
-	public const int CmdStutteredpageupextend = 2436;
-	/// <summary>Wraps wxSTC_CMD_TAB.</summary>
-	public const int CmdTab = 2327;
-	/// <summary>Wraps wxSTC_CMD_UNDO.</summary>
-	public const int CmdUndo = 2176;
-	/// <summary>Wraps wxSTC_CMD_UPPERCASE.</summary>
-	public const int CmdUppercase = 2341;
-	/// <summary>Wraps wxSTC_CMD_VCHOME.</summary>
-	public const int CmdVchome = 2331;
-	/// <summary>Wraps wxSTC_CMD_VCHOMEDISPLAY.</summary>
-	public const int CmdVchomedisplay = 2652;
-	/// <summary>Wraps wxSTC_CMD_VCHOMEDISPLAYEXTEND.</summary>
-	public const int CmdVchomedisplayextend = 2653;
-	/// <summary>Wraps wxSTC_CMD_VCHOMEEXTEND.</summary>
-	public const int CmdVchomeextend = 2332;
-	/// <summary>Wraps wxSTC_CMD_VCHOMERECTEXTEND.</summary>
-	public const int CmdVchomerectextend = 2431;
-	/// <summary>Wraps wxSTC_CMD_VCHOMEWRAP.</summary>
-	public const int CmdVchomewrap = 2453;
-	/// <summary>Wraps wxSTC_CMD_VCHOMEWRAPEXTEND.</summary>
-	public const int CmdVchomewrapextend = 2454;
-	/// <summary>Wraps wxSTC_CMD_VERTICALCENTRECARET.</summary>
-	public const int CmdVerticalCenterCaret = 2619;
-	/// <summary>Wraps wxSTC_CMD_WORDLEFT.</summary>
-	public const int CmdWordleft = 2308;
-	/// <summary>Wraps wxSTC_CMD_WORDLEFTEND.</summary>
-	public const int CmdWordleftend = 2439;
-	/// <summary>Wraps wxSTC_CMD_WORDLEFTENDEXTEND.</summary>
-	public const int CmdWordleftendextend = 2440;
-	/// <summary>Wraps wxSTC_CMD_WORDLEFTEXTEND.</summary>
-	public const int CmdWordleftextend = 2309;
-	/// <summary>Wraps wxSTC_CMD_WORDPARTLEFT.</summary>
-	public const int CmdWordpartleft = 2390;
-	/// <summary>Wraps wxSTC_CMD_WORDPARTLEFTEXTEND.</summary>
-	public const int CmdWordpartleftextend = 2391;
-	/// <summary>Wraps wxSTC_CMD_WORDPARTRIGHT.</summary>
-	public const int CmdWordpartright = 2392;
-	/// <summary>Wraps wxSTC_CMD_WORDPARTRIGHTEXTEND.</summary>
-	public const int CmdWordpartrightextend = 2393;
-	/// <summary>Wraps wxSTC_CMD_WORDRIGHT.</summary>
-	public const int CmdWordright = 2310;
-	/// <summary>Wraps wxSTC_CMD_WORDRIGHTEND.</summary>
-	public const int CmdWordrightend = 2441;
-	/// <summary>Wraps wxSTC_CMD_WORDRIGHTENDEXTEND.</summary>
-	public const int CmdWordrightendextend = 2442;
-	/// <summary>Wraps wxSTC_CMD_WORDRIGHTEXTEND.</summary>
-	public const int CmdWordrightextend = 2311;
-	/// <summary>Wraps wxSTC_CMD_ZOOMIN.</summary>
-	public const int CmdZoomin = 2333;
-	/// <summary>Wraps wxSTC_CMD_ZOOMOUT.</summary>
-	public const int CmdZoomout = 2334;
+	public const int CMakeWhileDef = 9;
 	/// <summary>Wraps wxSTC_COBOL_CHARACTER.</summary>
 	public const int CobolCharacter = 7;
 	/// <summary>Wraps wxSTC_COBOL_COMMENT.</summary>
 	public const int CobolComment = 1;
 	/// <summary>Wraps wxSTC_COBOL_COMMENTDOC.</summary>
-	public const int CobolCommentdoc = 3;
+	public const int CobolCommentDoc = 3;
 	/// <summary>Wraps wxSTC_COBOL_COMMENTLINE.</summary>
-	public const int CobolCommentline = 2;
+	public const int CobolCommentLine = 2;
 	/// <summary>Wraps wxSTC_COBOL_DEFAULT.</summary>
 	public const int CobolDefault = 0;
 	/// <summary>Wraps wxSTC_COBOL_IDENTIFIER.</summary>
@@ -971,57 +647,57 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_COBOL_WORD3.</summary>
 	public const int CobolWord3 = 8;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_CHARACTER.</summary>
-	public const int CoffeescriptCharacter = 7;
+	public const int CoffeeScriptCharacter = 7;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_COMMENT.</summary>
-	public const int CoffeescriptComment = 1;
+	public const int CoffeeScriptComment = 1;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_COMMENTBLOCK.</summary>
-	public const int CoffeescriptCommentblock = 22;
+	public const int CoffeeScriptCommentBlock = 22;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_COMMENTDOC.</summary>
-	public const int CoffeescriptCommentdoc = 3;
+	public const int CoffeeScriptCommentDoc = 3;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_COMMENTDOCKEYWORD.</summary>
-	public const int CoffeescriptCommentdockeyword = 17;
+	public const int CoffeeScriptCommentDocKeyword = 17;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_COMMENTDOCKEYWORDERROR.</summary>
-	public const int CoffeescriptCommentdockeyworderror = 18;
+	public const int CoffeeScriptCommentDocKeywordError = 18;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_COMMENTLINE.</summary>
-	public const int CoffeescriptCommentline = 2;
+	public const int CoffeeScriptCommentLine = 2;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_COMMENTLINEDOC.</summary>
-	public const int CoffeescriptCommentlinedoc = 15;
+	public const int CoffeeScriptCommentLineDoc = 15;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_DEFAULT.</summary>
-	public const int CoffeescriptDefault = 0;
+	public const int CoffeeScriptDefault = 0;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_GLOBALCLASS.</summary>
-	public const int CoffeescriptGlobalclass = 19;
+	public const int CoffeeScriptGlobalClass = 19;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_IDENTIFIER.</summary>
-	public const int CoffeescriptIdentifier = 11;
+	public const int CoffeeScriptIdentifier = 11;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_INSTANCEPROPERTY.</summary>
-	public const int CoffeescriptInstanceproperty = 25;
+	public const int CoffeeScriptInstanceProperty = 25;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_NUMBER.</summary>
-	public const int CoffeescriptNumber = 4;
+	public const int CoffeeScriptNumber = 4;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_OPERATOR.</summary>
-	public const int CoffeescriptOperator = 10;
+	public const int CoffeeScriptOperator = 10;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_PREPROCESSOR.</summary>
-	public const int CoffeescriptPreprocessor = 9;
+	public const int CoffeeScriptPreprocessor = 9;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_REGEX.</summary>
-	public const int CoffeescriptRegex = 14;
+	public const int CoffeeScriptRegex = 14;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_STRING.</summary>
-	public const int CoffeescriptString = 6;
+	public const int CoffeeScriptString = 6;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_STRINGEOL.</summary>
-	public const int CoffeescriptStringeol = 12;
+	public const int CoffeeScriptStringEol = 12;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_STRINGRAW.</summary>
-	public const int CoffeescriptStringraw = 20;
+	public const int CoffeeScriptStringRaw = 20;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_TRIPLEVERBATIM.</summary>
-	public const int CoffeescriptTripleverbatim = 21;
+	public const int CoffeeScriptTripleVerbatim = 21;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_UUID.</summary>
-	public const int CoffeescriptUuid = 8;
+	public const int CoffeeScriptUuid = 8;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_VERBATIM.</summary>
-	public const int CoffeescriptVerbatim = 13;
+	public const int CoffeeScriptVerbatim = 13;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_VERBOSE_REGEX.</summary>
-	public const int CoffeescriptVerboseRegex = 23;
+	public const int CoffeeScriptVerboseRegex = 23;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_VERBOSE_REGEX_COMMENT.</summary>
-	public const int CoffeescriptVerboseRegexComment = 24;
+	public const int CoffeeScriptVerboseRegexComment = 24;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_WORD.</summary>
-	public const int CoffeescriptWord = 5;
+	public const int CoffeeScriptWord = 5;
 	/// <summary>Wraps wxSTC_COFFEESCRIPT_WORD2.</summary>
-	public const int CoffeescriptWord2 = 16;
+	public const int CoffeeScriptWord2 = 16;
 	/// <summary>Wraps wxSTC_CONF_COMMENT.</summary>
 	public const int ConfComment = 1;
 	/// <summary>Wraps wxSTC_CONF_DEFAULT.</summary>
@@ -1049,13 +725,13 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_CSOUND_COMMENT.</summary>
 	public const int CsoundComment = 1;
 	/// <summary>Wraps wxSTC_CSOUND_COMMENTBLOCK.</summary>
-	public const int CsoundCommentblock = 9;
+	public const int CsoundCommentBlock = 9;
 	/// <summary>Wraps wxSTC_CSOUND_DEFAULT.</summary>
 	public const int CsoundDefault = 0;
 	/// <summary>Wraps wxSTC_CSOUND_GLOBAL_VAR.</summary>
 	public const int CsoundGlobalVariable = 14;
 	/// <summary>Wraps wxSTC_CSOUND_HEADERSTMT.</summary>
-	public const int CsoundHeaderstmt = 7;
+	public const int CsoundHeaderStmt = 7;
 	/// <summary>Wraps wxSTC_CSOUND_IDENTIFIER.</summary>
 	public const int CsoundIdentifier = 5;
 	/// <summary>Wraps wxSTC_CSOUND_INSTR.</summary>
@@ -1073,9 +749,9 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_CSOUND_PARAM.</summary>
 	public const int CsoundParam = 10;
 	/// <summary>Wraps wxSTC_CSOUND_STRINGEOL.</summary>
-	public const int CsoundStringeol = 15;
+	public const int CsoundStringEol = 15;
 	/// <summary>Wraps wxSTC_CSOUND_USERKEYWORD.</summary>
-	public const int CsoundUserkeyword = 8;
+	public const int CsoundUserKeyword = 8;
 	/// <summary>Wraps wxSTC_CSS_ATTRIBUTE.</summary>
 	public const int CssAttribute = 16;
 	/// <summary>Wraps wxSTC_CSS_CLASS.</summary>
@@ -1087,13 +763,13 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_CSS_DIRECTIVE.</summary>
 	public const int CssDirective = 12;
 	/// <summary>Wraps wxSTC_CSS_DOUBLESTRING.</summary>
-	public const int CssDoublestring = 13;
+	public const int CssDoubleString = 13;
 	/// <summary>Wraps wxSTC_CSS_EXTENDED_IDENTIFIER.</summary>
 	public const int CssExtendedIdentifier = 19;
 	/// <summary>Wraps wxSTC_CSS_EXTENDED_PSEUDOCLASS.</summary>
-	public const int CssExtendedPseudoclass = 20;
+	public const int CssExtendedPseudoClass = 20;
 	/// <summary>Wraps wxSTC_CSS_EXTENDED_PSEUDOELEMENT.</summary>
-	public const int CssExtendedPseudoelement = 21;
+	public const int CssExtendedPseudoElement = 21;
 	/// <summary>Wraps wxSTC_CSS_GROUP_RULE.</summary>
 	public const int CssGroupRule = 22;
 	/// <summary>Wraps wxSTC_CSS_ID.</summary>
@@ -1109,51 +785,43 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_CSS_OPERATOR.</summary>
 	public const int CssOperator = 5;
 	/// <summary>Wraps wxSTC_CSS_PSEUDOCLASS.</summary>
-	public const int CssPseudoclass = 3;
+	public const int CssPseudoClass = 3;
 	/// <summary>Wraps wxSTC_CSS_PSEUDOELEMENT.</summary>
-	public const int CssPseudoelement = 18;
+	public const int CssPseudoElement = 18;
 	/// <summary>Wraps wxSTC_CSS_SINGLESTRING.</summary>
-	public const int CssSinglestring = 14;
+	public const int CssSingleString = 14;
 	/// <summary>Wraps wxSTC_CSS_TAG.</summary>
 	public const int CssTag = 1;
 	/// <summary>Wraps wxSTC_CSS_UNKNOWN_IDENTIFIER.</summary>
 	public const int CssUnknownIdentifier = 7;
 	/// <summary>Wraps wxSTC_CSS_UNKNOWN_PSEUDOCLASS.</summary>
-	public const int CssUnknownPseudoclass = 4;
+	public const int CssUnknownPseudoClass = 4;
 	/// <summary>Wraps wxSTC_CSS_VALUE.</summary>
 	public const int CssValue = 8;
 	/// <summary>Wraps wxSTC_CSS_VARIABLE.</summary>
 	public const int CssVariable = 23;
-	/// <summary>Wraps wxSTC_CURSORARROW.</summary>
-	public const int Cursorarrow = 2;
-	/// <summary>Wraps wxSTC_CURSORNORMAL.</summary>
-	public const int Cursornormal = -1;
-	/// <summary>Wraps wxSTC_CURSORREVERSEARROW.</summary>
-	public const int Cursorreversearrow = 7;
-	/// <summary>Wraps wxSTC_CURSORWAIT.</summary>
-	public const int Cursorwait = 4;
 	/// <summary>Wraps wxSTC_C_CHARACTER.</summary>
 	public const int CCharacter = 7;
 	/// <summary>Wraps wxSTC_C_COMMENT.</summary>
 	public const int CComment = 1;
 	/// <summary>Wraps wxSTC_C_COMMENTDOC.</summary>
-	public const int CCommentdoc = 3;
+	public const int CCommentDoc = 3;
 	/// <summary>Wraps wxSTC_C_COMMENTDOCKEYWORD.</summary>
-	public const int CCommentdockeyword = 17;
+	public const int CCommentDocKeyword = 17;
 	/// <summary>Wraps wxSTC_C_COMMENTDOCKEYWORDERROR.</summary>
-	public const int CCommentdockeyworderror = 18;
+	public const int CCommentDocKeywordError = 18;
 	/// <summary>Wraps wxSTC_C_COMMENTLINE.</summary>
-	public const int CCommentline = 2;
+	public const int CCommentLine = 2;
 	/// <summary>Wraps wxSTC_C_COMMENTLINEDOC.</summary>
-	public const int CCommentlinedoc = 15;
+	public const int CCommentLineDoc = 15;
 	/// <summary>Wraps wxSTC_C_DEFAULT.</summary>
 	public const int CDefault = 0;
 	/// <summary>Wraps wxSTC_C_ESCAPESEQUENCE.</summary>
-	public const int CEscapesequence = 27;
+	public const int CEscapeSequence = 27;
 	/// <summary>Wraps wxSTC_C_GLOBALCLASS.</summary>
-	public const int CGlobalclass = 19;
+	public const int CGlobalClass = 19;
 	/// <summary>Wraps wxSTC_C_HASHQUOTEDSTRING.</summary>
-	public const int CHashquotedstring = 22;
+	public const int CHashQuotedString = 22;
 	/// <summary>Wraps wxSTC_C_IDENTIFIER.</summary>
 	public const int CIdentifier = 11;
 	/// <summary>Wraps wxSTC_C_NUMBER.</summary>
@@ -1163,23 +831,23 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_C_PREPROCESSOR.</summary>
 	public const int CPreprocessor = 9;
 	/// <summary>Wraps wxSTC_C_PREPROCESSORCOMMENT.</summary>
-	public const int CPreprocessorcomment = 23;
+	public const int CPreprocessorComment = 23;
 	/// <summary>Wraps wxSTC_C_PREPROCESSORCOMMENTDOC.</summary>
-	public const int CPreprocessorcommentdoc = 24;
+	public const int CPreprocessorCommentDoc = 24;
 	/// <summary>Wraps wxSTC_C_REGEX.</summary>
 	public const int CRegex = 14;
 	/// <summary>Wraps wxSTC_C_STRING.</summary>
 	public const int CString = 6;
 	/// <summary>Wraps wxSTC_C_STRINGEOL.</summary>
-	public const int CStringeol = 12;
+	public const int CStringEol = 12;
 	/// <summary>Wraps wxSTC_C_STRINGRAW.</summary>
-	public const int CStringraw = 20;
+	public const int CStringRaw = 20;
 	/// <summary>Wraps wxSTC_C_TASKMARKER.</summary>
-	public const int CTaskmarker = 26;
+	public const int CTaskMarker = 26;
 	/// <summary>Wraps wxSTC_C_TRIPLEVERBATIM.</summary>
-	public const int CTripleverbatim = 21;
+	public const int CTripleVerbatim = 21;
 	/// <summary>Wraps wxSTC_C_USERLITERAL.</summary>
-	public const int CUserliteral = 25;
+	public const int CUserLiteral = 25;
 	/// <summary>Wraps wxSTC_C_UUID.</summary>
 	public const int CUuid = 8;
 	/// <summary>Wraps wxSTC_C_VERBATIM.</summary>
@@ -1189,17 +857,17 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_C_WORD2.</summary>
 	public const int CWord2 = 16;
 	/// <summary>Wraps wxSTC_DART_COMMENTBLOCK.</summary>
-	public const int DartCommentblock = 3;
+	public const int DartCommentBlock = 3;
 	/// <summary>Wraps wxSTC_DART_COMMENTBLOCKDOC.</summary>
-	public const int DartCommentblockdoc = 4;
+	public const int DartCommentBlockDoc = 4;
 	/// <summary>Wraps wxSTC_DART_COMMENTLINE.</summary>
-	public const int DartCommentline = 1;
+	public const int DartCommentLine = 1;
 	/// <summary>Wraps wxSTC_DART_COMMENTLINEDOC.</summary>
-	public const int DartCommentlinedoc = 2;
+	public const int DartCommentLineDoc = 2;
 	/// <summary>Wraps wxSTC_DART_DEFAULT.</summary>
 	public const int DartDefault = 0;
 	/// <summary>Wraps wxSTC_DART_ESCAPECHAR.</summary>
-	public const int DartEscapechar = 13;
+	public const int DartEscapeChar = 13;
 	/// <summary>Wraps wxSTC_DART_IDENTIFIER.</summary>
 	public const int DartIdentifier = 14;
 	/// <summary>Wraps wxSTC_DART_IDENTIFIER_STRING.</summary>
@@ -1223,11 +891,11 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_DART_OPERATOR_STRING.</summary>
 	public const int DartOperatorString = 17;
 	/// <summary>Wraps wxSTC_DART_RAWSTRING_DQ.</summary>
-	public const int DartRawstringDq = 10;
+	public const int DartRawStringDq = 10;
 	/// <summary>Wraps wxSTC_DART_RAWSTRING_SQ.</summary>
-	public const int DartRawstringSq = 9;
+	public const int DartRawStringSq = 9;
 	/// <summary>Wraps wxSTC_DART_STRINGEOL.</summary>
-	public const int DartStringeol = 27;
+	public const int DartStringEol = 27;
 	/// <summary>Wraps wxSTC_DART_STRING_DQ.</summary>
 	public const int DartStringDq = 6;
 	/// <summary>Wraps wxSTC_DART_STRING_SQ.</summary>
@@ -1237,19 +905,19 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_DART_SYMBOL_OPERATOR.</summary>
 	public const int DartSymbolOperator = 19;
 	/// <summary>Wraps wxSTC_DART_TRIPLE_RAWSTRING_DQ.</summary>
-	public const int DartTripleRawstringDq = 12;
+	public const int DartTripleRawStringDq = 12;
 	/// <summary>Wraps wxSTC_DART_TRIPLE_RAWSTRING_SQ.</summary>
-	public const int DartTripleRawstringSq = 11;
+	public const int DartTripleRawStringSq = 11;
 	/// <summary>Wraps wxSTC_DART_TRIPLE_STRING_DQ.</summary>
 	public const int DartTripleStringDq = 8;
 	/// <summary>Wraps wxSTC_DART_TRIPLE_STRING_SQ.</summary>
 	public const int DartTripleStringSq = 7;
 	/// <summary>Wraps wxSTC_DF_COMMENTLINE.</summary>
-	public const int DfCommentline = 4;
+	public const int DfCommentLine = 4;
 	/// <summary>Wraps wxSTC_DF_DEFAULT.</summary>
 	public const int DfDefault = 0;
 	/// <summary>Wraps wxSTC_DF_HEXNUMBER.</summary>
-	public const int DfHexnumber = 8;
+	public const int DfHexNumber = 8;
 	/// <summary>Wraps wxSTC_DF_ICODE.</summary>
 	public const int DfIcode = 14;
 	/// <summary>Wraps wxSTC_DF_IDENTIFIER.</summary>
@@ -1257,7 +925,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_DF_IMAGE.</summary>
 	public const int DfImage = 3;
 	/// <summary>Wraps wxSTC_DF_METATAG.</summary>
-	public const int DfMetatag = 2;
+	public const int DfMetaTag = 2;
 	/// <summary>Wraps wxSTC_DF_NUMBER.</summary>
 	public const int DfNumber = 7;
 	/// <summary>Wraps wxSTC_DF_OPERATOR.</summary>
@@ -1267,11 +935,11 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_DF_PREPROCESSOR2.</summary>
 	public const int DfPreprocessor2 = 6;
 	/// <summary>Wraps wxSTC_DF_SCOPEWORD.</summary>
-	public const int DfScopeword = 12;
+	public const int DfScopeWord = 12;
 	/// <summary>Wraps wxSTC_DF_STRING.</summary>
 	public const int DfString = 10;
 	/// <summary>Wraps wxSTC_DF_STRINGEOL.</summary>
-	public const int DfStringeol = 11;
+	public const int DfStringEol = 11;
 	/// <summary>Wraps wxSTC_DF_WORD.</summary>
 	public const int DfWord = 9;
 	/// <summary>Wraps wxSTC_DIFF_ADDED.</summary>
@@ -1313,7 +981,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_DMAP_STRING2.</summary>
 	public const int DmapString2 = 4;
 	/// <summary>Wraps wxSTC_DMAP_STRINGEOL.</summary>
-	public const int DmapStringeol = 5;
+	public const int DmapStringEol = 5;
 	/// <summary>Wraps wxSTC_DMAP_WORD.</summary>
 	public const int DmapWord = 8;
 	/// <summary>Wraps wxSTC_DMAP_WORD2.</summary>
@@ -1329,9 +997,9 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_DMIS_LABEL.</summary>
 	public const int DmisLabel = 9;
 	/// <summary>Wraps wxSTC_DMIS_MAJORWORD.</summary>
-	public const int DmisMajorword = 5;
+	public const int DmisMajorWord = 5;
 	/// <summary>Wraps wxSTC_DMIS_MINORWORD.</summary>
-	public const int DmisMinorword = 6;
+	public const int DmisMinorWord = 6;
 	/// <summary>Wraps wxSTC_DMIS_NUMBER.</summary>
 	public const int DmisNumber = 3;
 	/// <summary>Wraps wxSTC_DMIS_STRING.</summary>
@@ -1340,28 +1008,22 @@ public static partial class Stc {
 	public const int DmisUnsupportedMajor = 7;
 	/// <summary>Wraps wxSTC_DMIS_UNSUPPORTED_MINOR.</summary>
 	public const int DmisUnsupportedMinor = 8;
-	/// <summary>Wraps wxSTC_DOCUMENTOPTION_DEFAULT.</summary>
-	public const int DocumentoptionDefault = 0;
-	/// <summary>Wraps wxSTC_DOCUMENTOPTION_STYLES_NONE.</summary>
-	public const int DocumentoptionStylesNone = 1;
-	/// <summary>Wraps wxSTC_DOCUMENTOPTION_TEXT_LARGE.</summary>
-	public const int DocumentoptionTextLarge = 256;
 	/// <summary>Wraps wxSTC_D_CHARACTER.</summary>
 	public const int DCharacter = 12;
 	/// <summary>Wraps wxSTC_D_COMMENT.</summary>
 	public const int DComment = 1;
 	/// <summary>Wraps wxSTC_D_COMMENTDOC.</summary>
-	public const int DCommentdoc = 3;
+	public const int DCommentDoc = 3;
 	/// <summary>Wraps wxSTC_D_COMMENTDOCKEYWORD.</summary>
-	public const int DCommentdockeyword = 16;
+	public const int DCommentDocKeyword = 16;
 	/// <summary>Wraps wxSTC_D_COMMENTDOCKEYWORDERROR.</summary>
-	public const int DCommentdockeyworderror = 17;
+	public const int DCommentDocKeywordError = 17;
 	/// <summary>Wraps wxSTC_D_COMMENTLINE.</summary>
-	public const int DCommentline = 2;
+	public const int DCommentLine = 2;
 	/// <summary>Wraps wxSTC_D_COMMENTLINEDOC.</summary>
-	public const int DCommentlinedoc = 15;
+	public const int DCommentLineDoc = 15;
 	/// <summary>Wraps wxSTC_D_COMMENTNESTED.</summary>
-	public const int DCommentnested = 4;
+	public const int DCommentNested = 4;
 	/// <summary>Wraps wxSTC_D_DEFAULT.</summary>
 	public const int DDefault = 0;
 	/// <summary>Wraps wxSTC_D_IDENTIFIER.</summary>
@@ -1373,13 +1035,13 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_D_STRING.</summary>
 	public const int DString = 10;
 	/// <summary>Wraps wxSTC_D_STRINGB.</summary>
-	public const int DStringb = 18;
+	public const int DStringB = 18;
 	/// <summary>Wraps wxSTC_D_STRINGEOL.</summary>
-	public const int DStringeol = 11;
+	public const int DStringEol = 11;
 	/// <summary>Wraps wxSTC_D_STRINGR.</summary>
-	public const int DStringr = 19;
+	public const int DStringR = 19;
 	/// <summary>Wraps wxSTC_D_TYPEDEF.</summary>
-	public const int DTypedef = 9;
+	public const int DTypeDef = 9;
 	/// <summary>Wraps wxSTC_D_WORD.</summary>
 	public const int DWord = 6;
 	/// <summary>Wraps wxSTC_D_WORD2.</summary>
@@ -1401,15 +1063,15 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_ECL_COMMENT.</summary>
 	public const int EclComment = 1;
 	/// <summary>Wraps wxSTC_ECL_COMMENTDOC.</summary>
-	public const int EclCommentdoc = 23;
+	public const int EclCommentDoc = 23;
 	/// <summary>Wraps wxSTC_ECL_COMMENTDOCKEYWORD.</summary>
-	public const int EclCommentdockeyword = 17;
+	public const int EclCommentDocKeyword = 17;
 	/// <summary>Wraps wxSTC_ECL_COMMENTDOCKEYWORDERROR.</summary>
-	public const int EclCommentdockeyworderror = 18;
+	public const int EclCommentDocKeywordError = 18;
 	/// <summary>Wraps wxSTC_ECL_COMMENTLINE.</summary>
-	public const int EclCommentline = 2;
+	public const int EclCommentLine = 2;
 	/// <summary>Wraps wxSTC_ECL_COMMENTLINEDOC.</summary>
-	public const int EclCommentlinedoc = 15;
+	public const int EclCommentLineDoc = 15;
 	/// <summary>Wraps wxSTC_ECL_DEFAULT.</summary>
 	public const int EclDefault = 0;
 	/// <summary>Wraps wxSTC_ECL_DELETED.</summary>
@@ -1429,7 +1091,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_ECL_STRING.</summary>
 	public const int EclString = 4;
 	/// <summary>Wraps wxSTC_ECL_STRINGEOL.</summary>
-	public const int EclStringeol = 12;
+	public const int EclStringEol = 12;
 	/// <summary>Wraps wxSTC_ECL_UNKNOWN.</summary>
 	public const int EclUnknown = 10;
 	/// <summary>Wraps wxSTC_ECL_UUID.</summary>
@@ -1448,22 +1110,14 @@ public static partial class Stc {
 	public const int EclWord4 = 21;
 	/// <summary>Wraps wxSTC_ECL_WORD5.</summary>
 	public const int EclWord5 = 22;
-	/// <summary>Wraps wxSTC_EDGE_BACKGROUND.</summary>
-	public const int EdgeBackground = 2;
-	/// <summary>Wraps wxSTC_EDGE_LINE.</summary>
-	public const int EdgeLine = 1;
-	/// <summary>Wraps wxSTC_EDGE_MULTILINE.</summary>
-	public const int EdgeMultiLine = 3;
-	/// <summary>Wraps wxSTC_EDGE_NONE.</summary>
-	public const int EdgeNone = 0;
 	/// <summary>Wraps wxSTC_EDI_BADSEGMENT.</summary>
-	public const int EdiBadsegment = 8;
+	public const int EdiBadSegment = 8;
 	/// <summary>Wraps wxSTC_EDI_DEFAULT.</summary>
 	public const int EdiDefault = 0;
 	/// <summary>Wraps wxSTC_EDI_SEGMENTEND.</summary>
-	public const int EdiSegmentend = 2;
+	public const int EdiSegmentEnd = 2;
 	/// <summary>Wraps wxSTC_EDI_SEGMENTSTART.</summary>
-	public const int EdiSegmentstart = 1;
+	public const int EdiSegmentStart = 1;
 	/// <summary>Wraps wxSTC_EDI_SEP_COMPOSITE.</summary>
 	public const int EdiSepComposite = 4;
 	/// <summary>Wraps wxSTC_EDI_SEP_ELEMENT.</summary>
@@ -1474,20 +1128,12 @@ public static partial class Stc {
 	public const int EdiUna = 6;
 	/// <summary>Wraps wxSTC_EDI_UNH.</summary>
 	public const int EdiUnh = 7;
-	/// <summary>Wraps wxSTC_EFF_QUALITY_ANTIALIASED.</summary>
-	public const int EffQualityAntialiased = 2;
-	/// <summary>Wraps wxSTC_EFF_QUALITY_DEFAULT.</summary>
-	public const int EffQualityDefault = 0;
-	/// <summary>Wraps wxSTC_EFF_QUALITY_LCD_OPTIMIZED.</summary>
-	public const int EffQualityLcdOptimized = 3;
 	/// <summary>Wraps wxSTC_EFF_QUALITY_MASK.</summary>
 	public const int EffQualityMask = 15;
-	/// <summary>Wraps wxSTC_EFF_QUALITY_NON_ANTIALIASED.</summary>
-	public const int EffQualityNonAntialiased = 1;
 	/// <summary>Wraps wxSTC_EIFFEL_CHARACTER.</summary>
 	public const int EiffelCharacter = 5;
 	/// <summary>Wraps wxSTC_EIFFEL_COMMENTLINE.</summary>
-	public const int EiffelCommentline = 1;
+	public const int EiffelCommentLine = 1;
 	/// <summary>Wraps wxSTC_EIFFEL_DEFAULT.</summary>
 	public const int EiffelDefault = 0;
 	/// <summary>Wraps wxSTC_EIFFEL_IDENTIFIER.</summary>
@@ -1499,21 +1145,9 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_EIFFEL_STRING.</summary>
 	public const int EiffelString = 4;
 	/// <summary>Wraps wxSTC_EIFFEL_STRINGEOL.</summary>
-	public const int EiffelStringeol = 8;
+	public const int EiffelStringEol = 8;
 	/// <summary>Wraps wxSTC_EIFFEL_WORD.</summary>
 	public const int EiffelWord = 3;
-	/// <summary>Wraps wxSTC_EOLANNOTATION_BOXED.</summary>
-	public const int EolannotationBoxed = 2;
-	/// <summary>Wraps wxSTC_EOLANNOTATION_HIDDEN.</summary>
-	public const int EolannotationHidden = 0;
-	/// <summary>Wraps wxSTC_EOLANNOTATION_STANDARD.</summary>
-	public const int EolannotationStandard = 1;
-	/// <summary>Wraps wxSTC_EOL_CR.</summary>
-	public const int EolCr = 1;
-	/// <summary>Wraps wxSTC_EOL_CRLF.</summary>
-	public const int EolCrlf = 0;
-	/// <summary>Wraps wxSTC_EOL_LF.</summary>
-	public const int EolLf = 2;
 	/// <summary>Wraps wxSTC_ERLANG_ATOM.</summary>
 	public const int ErlangAtom = 7;
 	/// <summary>Wraps wxSTC_ERLANG_ATOM_QUOTED.</summary>
@@ -1589,9 +1223,9 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_ERR_ELF.</summary>
 	public const int ErrElf = 15;
 	/// <summary>Wraps wxSTC_ERR_ESCSEQ.</summary>
-	public const int ErrEscseq = 23;
+	public const int ErrEscapeSequence = 23;
 	/// <summary>Wraps wxSTC_ERR_ESCSEQ_UNKNOWN.</summary>
-	public const int ErrEscseqUnknown = 24;
+	public const int ErrEscapeSequenceUnknown = 24;
 	/// <summary>Wraps wxSTC_ERR_ES_BLACK.</summary>
 	public const int ErrEsBlack = 40;
 	/// <summary>Wraps wxSTC_ERR_ES_BLUE.</summary>
@@ -1657,9 +1291,9 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_ESCRIPT_COMMENT.</summary>
 	public const int EscriptComment = 1;
 	/// <summary>Wraps wxSTC_ESCRIPT_COMMENTDOC.</summary>
-	public const int EscriptCommentdoc = 3;
+	public const int EscriptCommentDoc = 3;
 	/// <summary>Wraps wxSTC_ESCRIPT_COMMENTLINE.</summary>
-	public const int EscriptCommentline = 2;
+	public const int EscriptCommentLine = 2;
 	/// <summary>Wraps wxSTC_ESCRIPT_DEFAULT.</summary>
 	public const int EscriptDefault = 0;
 	/// <summary>Wraps wxSTC_ESCRIPT_IDENTIFIER.</summary>
@@ -1677,377 +1311,341 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_ESCRIPT_WORD3.</summary>
 	public const int EscriptWord3 = 11;
 	/// <summary>Wraps wxSTC_ESCSEQ_BLACK_BLACK.</summary>
-	public const int EscseqBlackBlack = 10;
+	public const int EscapeSequenceBlackBlack = 10;
 	/// <summary>Wraps wxSTC_ESCSEQ_BLACK_BLUE.</summary>
-	public const int EscseqBlackBlue = 55;
+	public const int EscapeSequenceBlackBlue = 55;
 	/// <summary>Wraps wxSTC_ESCSEQ_BLACK_CYAN.</summary>
-	public const int EscseqBlackCyan = 73;
+	public const int EscapeSequenceBlackCyan = 73;
 	/// <summary>Wraps wxSTC_ESCSEQ_BLACK_DEFAULT.</summary>
-	public const int EscseqBlackDefault = 1;
+	public const int EscapeSequenceBlackDefault = 1;
 	/// <summary>Wraps wxSTC_ESCSEQ_BLACK_GREEN.</summary>
-	public const int EscseqBlackGreen = 28;
+	public const int EscapeSequenceBlackGreen = 28;
 	/// <summary>Wraps wxSTC_ESCSEQ_BLACK_MAGENTA.</summary>
-	public const int EscseqBlackMagenta = 64;
+	public const int EscapeSequenceBlackMagenta = 64;
 	/// <summary>Wraps wxSTC_ESCSEQ_BLACK_RED.</summary>
-	public const int EscseqBlackRed = 19;
+	public const int EscapeSequenceBlackRed = 19;
 	/// <summary>Wraps wxSTC_ESCSEQ_BLACK_WHITE.</summary>
-	public const int EscseqBlackWhite = 82;
+	public const int EscapeSequenceBlackWhite = 82;
 	/// <summary>Wraps wxSTC_ESCSEQ_BLACK_YELLOW.</summary>
-	public const int EscseqBlackYellow = 46;
+	public const int EscapeSequenceBlackYellow = 46;
 	/// <summary>Wraps wxSTC_ESCSEQ_BLUE_BLACK.</summary>
-	public const int EscseqBlueBlack = 14;
+	public const int EscapeSequenceBlueBlack = 14;
 	/// <summary>Wraps wxSTC_ESCSEQ_BLUE_BLUE.</summary>
-	public const int EscseqBlueBlue = 59;
+	public const int EscapeSequenceBlueBlue = 59;
 	/// <summary>Wraps wxSTC_ESCSEQ_BLUE_CYAN.</summary>
-	public const int EscseqBlueCyan = 77;
+	public const int EscapeSequenceBlueCyan = 77;
 	/// <summary>Wraps wxSTC_ESCSEQ_BLUE_DEFAULT.</summary>
-	public const int EscseqBlueDefault = 5;
+	public const int EscapeSequenceBlueDefault = 5;
 	/// <summary>Wraps wxSTC_ESCSEQ_BLUE_GREEN.</summary>
-	public const int EscseqBlueGreen = 41;
+	public const int EscapeSequenceBlueGreen = 41;
 	/// <summary>Wraps wxSTC_ESCSEQ_BLUE_MAGENTA.</summary>
-	public const int EscseqBlueMagenta = 68;
+	public const int EscapeSequenceBlueMagenta = 68;
 	/// <summary>Wraps wxSTC_ESCSEQ_BLUE_RED.</summary>
-	public const int EscseqBlueRed = 23;
+	public const int EscapeSequenceBlueRed = 23;
 	/// <summary>Wraps wxSTC_ESCSEQ_BLUE_WHITE.</summary>
-	public const int EscseqBlueWhite = 86;
+	public const int EscapeSequenceBlueWhite = 86;
 	/// <summary>Wraps wxSTC_ESCSEQ_BLUE_YELLOW.</summary>
-	public const int EscseqBlueYellow = 50;
+	public const int EscapeSequenceBlueYellow = 50;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_BLACK_BLACK.</summary>
-	public const int EscseqBoldBlackBlack = 100;
+	public const int EscapeSequenceBoldBlackBlack = 100;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_BLACK_BLUE.</summary>
-	public const int EscseqBoldBlackBlue = 136;
+	public const int EscapeSequenceBoldBlackBlue = 136;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_BLACK_CYAN.</summary>
-	public const int EscseqBoldBlackCyan = 154;
+	public const int EscapeSequenceBoldBlackCyan = 154;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_BLACK_DEFAULT.</summary>
-	public const int EscseqBoldBlackDefault = 91;
+	public const int EscapeSequenceBoldBlackDefault = 91;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_BLACK_GREEN.</summary>
-	public const int EscseqBoldBlackGreen = 118;
+	public const int EscapeSequenceBoldBlackGreen = 118;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_BLACK_MAGENTA.</summary>
-	public const int EscseqBoldBlackMagenta = 145;
+	public const int EscapeSequenceBoldBlackMagenta = 145;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_BLACK_RED.</summary>
-	public const int EscseqBoldBlackRed = 109;
+	public const int EscapeSequenceBoldBlackRed = 109;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_BLACK_WHITE.</summary>
-	public const int EscseqBoldBlackWhite = 163;
+	public const int EscapeSequenceBoldBlackWhite = 163;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_BLACK_YELLOW.</summary>
-	public const int EscseqBoldBlackYellow = 127;
+	public const int EscapeSequenceBoldBlackYellow = 127;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_BLUE_BLACK.</summary>
-	public const int EscseqBoldBlueBlack = 104;
+	public const int EscapeSequenceBoldBlueBlack = 104;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_BLUE_BLUE.</summary>
-	public const int EscseqBoldBlueBlue = 140;
+	public const int EscapeSequenceBoldBlueBlue = 140;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_BLUE_CYAN.</summary>
-	public const int EscseqBoldBlueCyan = 158;
+	public const int EscapeSequenceBoldBlueCyan = 158;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_BLUE_DEFAULT.</summary>
-	public const int EscseqBoldBlueDefault = 95;
+	public const int EscapeSequenceBoldBlueDefault = 95;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_BLUE_GREEN.</summary>
-	public const int EscseqBoldBlueGreen = 122;
+	public const int EscapeSequenceBoldBlueGreen = 122;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_BLUE_MAGENTA.</summary>
-	public const int EscseqBoldBlueMagenta = 149;
+	public const int EscapeSequenceBoldBlueMagenta = 149;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_BLUE_RED.</summary>
-	public const int EscseqBoldBlueRed = 113;
+	public const int EscapeSequenceBoldBlueRed = 113;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_BLUE_WHITE.</summary>
-	public const int EscseqBoldBlueWhite = 167;
+	public const int EscapeSequenceBoldBlueWhite = 167;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_BLUE_YELLOW.</summary>
-	public const int EscseqBoldBlueYellow = 131;
+	public const int EscapeSequenceBoldBlueYellow = 131;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_CYAN_BLACK.</summary>
-	public const int EscseqBoldCyanBlack = 106;
+	public const int EscapeSequenceBoldCyanBlack = 106;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_CYAN_BLUE.</summary>
-	public const int EscseqBoldCyanBlue = 142;
+	public const int EscapeSequenceBoldCyanBlue = 142;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_CYAN_CYAN.</summary>
-	public const int EscseqBoldCyanCyan = 160;
+	public const int EscapeSequenceBoldCyanCyan = 160;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_CYAN_DEFAULT.</summary>
-	public const int EscseqBoldCyanDefault = 97;
+	public const int EscapeSequenceBoldCyanDefault = 97;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_CYAN_GREEN.</summary>
-	public const int EscseqBoldCyanGreen = 124;
+	public const int EscapeSequenceBoldCyanGreen = 124;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_CYAN_MAGENTA.</summary>
-	public const int EscseqBoldCyanMagenta = 151;
+	public const int EscapeSequenceBoldCyanMagenta = 151;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_CYAN_RED.</summary>
-	public const int EscseqBoldCyanRed = 115;
+	public const int EscapeSequenceBoldCyanRed = 115;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_CYAN_WHITE.</summary>
-	public const int EscseqBoldCyanWhite = 169;
+	public const int EscapeSequenceBoldCyanWhite = 169;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_CYAN_YELLOW.</summary>
-	public const int EscseqBoldCyanYellow = 133;
+	public const int EscapeSequenceBoldCyanYellow = 133;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_DEFAULT.</summary>
-	public const int EscseqBoldDefault = 90;
+	public const int EscapeSequenceBoldDefault = 90;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_DEFAULT_BLACK.</summary>
-	public const int EscseqBoldDefaultBlack = 99;
+	public const int EscapeSequenceBoldDefaultBlack = 99;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_DEFAULT_BLUE.</summary>
-	public const int EscseqBoldDefaultBlue = 135;
+	public const int EscapeSequenceBoldDefaultBlue = 135;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_DEFAULT_CYAN.</summary>
-	public const int EscseqBoldDefaultCyan = 153;
+	public const int EscapeSequenceBoldDefaultCyan = 153;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_DEFAULT_GREEN.</summary>
-	public const int EscseqBoldDefaultGreen = 117;
+	public const int EscapeSequenceBoldDefaultGreen = 117;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_DEFAULT_MAGENTA.</summary>
-	public const int EscseqBoldDefaultMagenta = 144;
+	public const int EscapeSequenceBoldDefaultMagenta = 144;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_DEFAULT_RED.</summary>
-	public const int EscseqBoldDefaultRed = 108;
+	public const int EscapeSequenceBoldDefaultRed = 108;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_DEFAULT_WHITE.</summary>
-	public const int EscseqBoldDefaultWhite = 162;
+	public const int EscapeSequenceBoldDefaultWhite = 162;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_DEFAULT_YELLOW.</summary>
-	public const int EscseqBoldDefaultYellow = 126;
+	public const int EscapeSequenceBoldDefaultYellow = 126;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_GREEN_BLACK.</summary>
-	public const int EscseqBoldGreenBlack = 102;
+	public const int EscapeSequenceBoldGreenBlack = 102;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_GREEN_BLUE.</summary>
-	public const int EscseqBoldGreenBlue = 138;
+	public const int EscapeSequenceBoldGreenBlue = 138;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_GREEN_CYAN.</summary>
-	public const int EscseqBoldGreenCyan = 156;
+	public const int EscapeSequenceBoldGreenCyan = 156;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_GREEN_DEFAULT.</summary>
-	public const int EscseqBoldGreenDefault = 93;
+	public const int EscapeSequenceBoldGreenDefault = 93;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_GREEN_GREEN.</summary>
-	public const int EscseqBoldGreenGreen = 120;
+	public const int EscapeSequenceBoldGreenGreen = 120;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_GREEN_MAGENTA.</summary>
-	public const int EscseqBoldGreenMagenta = 147;
+	public const int EscapeSequenceBoldGreenMagenta = 147;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_GREEN_RED.</summary>
-	public const int EscseqBoldGreenRed = 111;
+	public const int EscapeSequenceBoldGreenRed = 111;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_GREEN_WHITE.</summary>
-	public const int EscseqBoldGreenWhite = 165;
+	public const int EscapeSequenceBoldGreenWhite = 165;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_GREEN_YELLOW.</summary>
-	public const int EscseqBoldGreenYellow = 129;
+	public const int EscapeSequenceBoldGreenYellow = 129;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_MAGENTA_BLACK.</summary>
-	public const int EscseqBoldMagentaBlack = 105;
+	public const int EscapeSequenceBoldMagentaBlack = 105;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_MAGENTA_BLUE.</summary>
-	public const int EscseqBoldMagentaBlue = 141;
+	public const int EscapeSequenceBoldMagentaBlue = 141;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_MAGENTA_CYAN.</summary>
-	public const int EscseqBoldMagentaCyan = 159;
+	public const int EscapeSequenceBoldMagentaCyan = 159;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_MAGENTA_DEFAULT.</summary>
-	public const int EscseqBoldMagentaDefault = 96;
+	public const int EscapeSequenceBoldMagentaDefault = 96;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_MAGENTA_GREEN.</summary>
-	public const int EscseqBoldMagentaGreen = 123;
+	public const int EscapeSequenceBoldMagentaGreen = 123;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_MAGENTA_MAGENTA.</summary>
-	public const int EscseqBoldMagentaMagenta = 150;
+	public const int EscapeSequenceBoldMagentaMagenta = 150;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_MAGENTA_RED.</summary>
-	public const int EscseqBoldMagentaRed = 114;
+	public const int EscapeSequenceBoldMagentaRed = 114;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_MAGENTA_WHITE.</summary>
-	public const int EscseqBoldMagentaWhite = 168;
+	public const int EscapeSequenceBoldMagentaWhite = 168;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_MAGENTA_YELLOW.</summary>
-	public const int EscseqBoldMagentaYellow = 132;
+	public const int EscapeSequenceBoldMagentaYellow = 132;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_RED_BLACK.</summary>
-	public const int EscseqBoldRedBlack = 101;
+	public const int EscapeSequenceBoldRedBlack = 101;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_RED_BLUE.</summary>
-	public const int EscseqBoldRedBlue = 137;
+	public const int EscapeSequenceBoldRedBlue = 137;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_RED_CYAN.</summary>
-	public const int EscseqBoldRedCyan = 155;
+	public const int EscapeSequenceBoldRedCyan = 155;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_RED_DEFAULT.</summary>
-	public const int EscseqBoldRedDefault = 92;
+	public const int EscapeSequenceBoldRedDefault = 92;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_RED_GREEN.</summary>
-	public const int EscseqBoldRedGreen = 119;
+	public const int EscapeSequenceBoldRedGreen = 119;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_RED_MAGENTA.</summary>
-	public const int EscseqBoldRedMagenta = 146;
+	public const int EscapeSequenceBoldRedMagenta = 146;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_RED_RED.</summary>
-	public const int EscseqBoldRedRed = 110;
+	public const int EscapeSequenceBoldRedRed = 110;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_RED_WHITE.</summary>
-	public const int EscseqBoldRedWhite = 164;
+	public const int EscapeSequenceBoldRedWhite = 164;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_RED_YELLOW.</summary>
-	public const int EscseqBoldRedYellow = 128;
+	public const int EscapeSequenceBoldRedYellow = 128;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_WHITE_BLACK.</summary>
-	public const int EscseqBoldWhiteBlack = 107;
+	public const int EscapeSequenceBoldWhiteBlack = 107;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_WHITE_BLUE.</summary>
-	public const int EscseqBoldWhiteBlue = 143;
+	public const int EscapeSequenceBoldWhiteBlue = 143;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_WHITE_CYAN.</summary>
-	public const int EscseqBoldWhiteCyan = 161;
+	public const int EscapeSequenceBoldWhiteCyan = 161;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_WHITE_DEFAULT.</summary>
-	public const int EscseqBoldWhiteDefault = 98;
+	public const int EscapeSequenceBoldWhiteDefault = 98;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_WHITE_GREEN.</summary>
-	public const int EscseqBoldWhiteGreen = 125;
+	public const int EscapeSequenceBoldWhiteGreen = 125;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_WHITE_MAGENTA.</summary>
-	public const int EscseqBoldWhiteMagenta = 152;
+	public const int EscapeSequenceBoldWhiteMagenta = 152;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_WHITE_RED.</summary>
-	public const int EscseqBoldWhiteRed = 116;
+	public const int EscapeSequenceBoldWhiteRed = 116;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_WHITE_WHITE.</summary>
-	public const int EscseqBoldWhiteWhite = 170;
+	public const int EscapeSequenceBoldWhiteWhite = 170;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_WHITE_YELLOW.</summary>
-	public const int EscseqBoldWhiteYellow = 134;
+	public const int EscapeSequenceBoldWhiteYellow = 134;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_YELLOW_BLACK.</summary>
-	public const int EscseqBoldYellowBlack = 103;
+	public const int EscapeSequenceBoldYellowBlack = 103;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_YELLOW_BLUE.</summary>
-	public const int EscseqBoldYellowBlue = 139;
+	public const int EscapeSequenceBoldYellowBlue = 139;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_YELLOW_CYAN.</summary>
-	public const int EscseqBoldYellowCyan = 157;
+	public const int EscapeSequenceBoldYellowCyan = 157;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_YELLOW_DEFAULT.</summary>
-	public const int EscseqBoldYellowDefault = 94;
+	public const int EscapeSequenceBoldYellowDefault = 94;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_YELLOW_GREEN.</summary>
-	public const int EscseqBoldYellowGreen = 121;
+	public const int EscapeSequenceBoldYellowGreen = 121;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_YELLOW_MAGENTA.</summary>
-	public const int EscseqBoldYellowMagenta = 148;
+	public const int EscapeSequenceBoldYellowMagenta = 148;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_YELLOW_RED.</summary>
-	public const int EscseqBoldYellowRed = 112;
+	public const int EscapeSequenceBoldYellowRed = 112;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_YELLOW_WHITE.</summary>
-	public const int EscseqBoldYellowWhite = 166;
+	public const int EscapeSequenceBoldYellowWhite = 166;
 	/// <summary>Wraps wxSTC_ESCSEQ_BOLD_YELLOW_YELLOW.</summary>
-	public const int EscseqBoldYellowYellow = 130;
+	public const int EscapeSequenceBoldYellowYellow = 130;
 	/// <summary>Wraps wxSTC_ESCSEQ_CYAN_BLACK.</summary>
-	public const int EscseqCyanBlack = 16;
+	public const int EscapeSequenceCyanBlack = 16;
 	/// <summary>Wraps wxSTC_ESCSEQ_CYAN_BLUE.</summary>
-	public const int EscseqCyanBlue = 61;
+	public const int EscapeSequenceCyanBlue = 61;
 	/// <summary>Wraps wxSTC_ESCSEQ_CYAN_CYAN.</summary>
-	public const int EscseqCyanCyan = 79;
+	public const int EscapeSequenceCyanCyan = 79;
 	/// <summary>Wraps wxSTC_ESCSEQ_CYAN_DEFAULT.</summary>
-	public const int EscseqCyanDefault = 7;
+	public const int EscapeSequenceCyanDefault = 7;
 	/// <summary>Wraps wxSTC_ESCSEQ_CYAN_GREEN.</summary>
-	public const int EscseqCyanGreen = 43;
+	public const int EscapeSequenceCyanGreen = 43;
 	/// <summary>Wraps wxSTC_ESCSEQ_CYAN_MAGENTA.</summary>
-	public const int EscseqCyanMagenta = 70;
+	public const int EscapeSequenceCyanMagenta = 70;
 	/// <summary>Wraps wxSTC_ESCSEQ_CYAN_RED.</summary>
-	public const int EscseqCyanRed = 25;
+	public const int EscapeSequenceCyanRed = 25;
 	/// <summary>Wraps wxSTC_ESCSEQ_CYAN_WHITE.</summary>
-	public const int EscseqCyanWhite = 88;
+	public const int EscapeSequenceCyanWhite = 88;
 	/// <summary>Wraps wxSTC_ESCSEQ_CYAN_YELLOW.</summary>
-	public const int EscseqCyanYellow = 52;
+	public const int EscapeSequenceCyanYellow = 52;
 	/// <summary>Wraps wxSTC_ESCSEQ_DEFAULT.</summary>
-	public const int EscseqDefault = 0;
+	public const int EscapeSequenceDefault = 0;
 	/// <summary>Wraps wxSTC_ESCSEQ_DEFAULT_BLACK.</summary>
-	public const int EscseqDefaultBlack = 9;
+	public const int EscapeSequenceDefaultBlack = 9;
 	/// <summary>Wraps wxSTC_ESCSEQ_DEFAULT_BLUE.</summary>
-	public const int EscseqDefaultBlue = 54;
+	public const int EscapeSequenceDefaultBlue = 54;
 	/// <summary>Wraps wxSTC_ESCSEQ_DEFAULT_CYAN.</summary>
-	public const int EscseqDefaultCyan = 72;
+	public const int EscapeSequenceDefaultCyan = 72;
 	/// <summary>Wraps wxSTC_ESCSEQ_DEFAULT_GREEN.</summary>
-	public const int EscseqDefaultGreen = 27;
+	public const int EscapeSequenceDefaultGreen = 27;
 	/// <summary>Wraps wxSTC_ESCSEQ_DEFAULT_MAGENTA.</summary>
-	public const int EscseqDefaultMagenta = 63;
+	public const int EscapeSequenceDefaultMagenta = 63;
 	/// <summary>Wraps wxSTC_ESCSEQ_DEFAULT_RED.</summary>
-	public const int EscseqDefaultRed = 18;
+	public const int EscapeSequenceDefaultRed = 18;
 	/// <summary>Wraps wxSTC_ESCSEQ_DEFAULT_WHITE.</summary>
-	public const int EscseqDefaultWhite = 81;
+	public const int EscapeSequenceDefaultWhite = 81;
 	/// <summary>Wraps wxSTC_ESCSEQ_DEFAULT_YELLOW.</summary>
-	public const int EscseqDefaultYellow = 45;
+	public const int EscapeSequenceDefaultYellow = 45;
 	/// <summary>Wraps wxSTC_ESCSEQ_GREEN_BLACK.</summary>
-	public const int EscseqGreenBlack = 12;
+	public const int EscapeSequenceGreenBlack = 12;
 	/// <summary>Wraps wxSTC_ESCSEQ_GREEN_BLUE.</summary>
-	public const int EscseqGreenBlue = 57;
+	public const int EscapeSequenceGreenBlue = 57;
 	/// <summary>Wraps wxSTC_ESCSEQ_GREEN_CYAN.</summary>
-	public const int EscseqGreenCyan = 75;
+	public const int EscapeSequenceGreenCyan = 75;
 	/// <summary>Wraps wxSTC_ESCSEQ_GREEN_DEFAULT.</summary>
-	public const int EscseqGreenDefault = 3;
+	public const int EscapeSequenceGreenDefault = 3;
 	/// <summary>Wraps wxSTC_ESCSEQ_GREEN_GREEN.</summary>
-	public const int EscseqGreenGreen = 30;
+	public const int EscapeSequenceGreenGreen = 30;
 	/// <summary>Wraps wxSTC_ESCSEQ_GREEN_MAGENTA.</summary>
-	public const int EscseqGreenMagenta = 66;
+	public const int EscapeSequenceGreenMagenta = 66;
 	/// <summary>Wraps wxSTC_ESCSEQ_GREEN_RED.</summary>
-	public const int EscseqGreenRed = 21;
+	public const int EscapeSequenceGreenRed = 21;
 	/// <summary>Wraps wxSTC_ESCSEQ_GREEN_WHITE.</summary>
-	public const int EscseqGreenWhite = 84;
+	public const int EscapeSequenceGreenWhite = 84;
 	/// <summary>Wraps wxSTC_ESCSEQ_GREEN_YELLOW.</summary>
-	public const int EscseqGreenYellow = 48;
+	public const int EscapeSequenceGreenYellow = 48;
 	/// <summary>Wraps wxSTC_ESCSEQ_IDENTIFIER.</summary>
-	public const int EscseqIdentifier = 171;
+	public const int EscapeSequenceIdentifier = 171;
 	/// <summary>Wraps wxSTC_ESCSEQ_MAGENTA_BLACK.</summary>
-	public const int EscseqMagentaBlack = 15;
+	public const int EscapeSequenceMagentaBlack = 15;
 	/// <summary>Wraps wxSTC_ESCSEQ_MAGENTA_BLUE.</summary>
-	public const int EscseqMagentaBlue = 60;
+	public const int EscapeSequenceMagentaBlue = 60;
 	/// <summary>Wraps wxSTC_ESCSEQ_MAGENTA_CYAN.</summary>
-	public const int EscseqMagentaCyan = 78;
+	public const int EscapeSequenceMagentaCyan = 78;
 	/// <summary>Wraps wxSTC_ESCSEQ_MAGENTA_DEFAULT.</summary>
-	public const int EscseqMagentaDefault = 6;
+	public const int EscapeSequenceMagentaDefault = 6;
 	/// <summary>Wraps wxSTC_ESCSEQ_MAGENTA_GREEN.</summary>
-	public const int EscseqMagentaGreen = 42;
+	public const int EscapeSequenceMagentaGreen = 42;
 	/// <summary>Wraps wxSTC_ESCSEQ_MAGENTA_MAGENTA.</summary>
-	public const int EscseqMagentaMagenta = 69;
+	public const int EscapeSequenceMagentaMagenta = 69;
 	/// <summary>Wraps wxSTC_ESCSEQ_MAGENTA_RED.</summary>
-	public const int EscseqMagentaRed = 24;
+	public const int EscapeSequenceMagentaRed = 24;
 	/// <summary>Wraps wxSTC_ESCSEQ_MAGENTA_WHITE.</summary>
-	public const int EscseqMagentaWhite = 87;
+	public const int EscapeSequenceMagentaWhite = 87;
 	/// <summary>Wraps wxSTC_ESCSEQ_MAGENTA_YELLOW.</summary>
-	public const int EscseqMagentaYellow = 51;
+	public const int EscapeSequenceMagentaYellow = 51;
 	/// <summary>Wraps wxSTC_ESCSEQ_RED_BLACK.</summary>
-	public const int EscseqRedBlack = 11;
+	public const int EscapeSequenceRedBlack = 11;
 	/// <summary>Wraps wxSTC_ESCSEQ_RED_BLUE.</summary>
-	public const int EscseqRedBlue = 56;
+	public const int EscapeSequenceRedBlue = 56;
 	/// <summary>Wraps wxSTC_ESCSEQ_RED_CYAN.</summary>
-	public const int EscseqRedCyan = 74;
+	public const int EscapeSequenceRedCyan = 74;
 	/// <summary>Wraps wxSTC_ESCSEQ_RED_DEFAULT.</summary>
-	public const int EscseqRedDefault = 2;
+	public const int EscapeSequenceRedDefault = 2;
 	/// <summary>Wraps wxSTC_ESCSEQ_RED_GREEN.</summary>
-	public const int EscseqRedGreen = 29;
+	public const int EscapeSequenceRedGreen = 29;
 	/// <summary>Wraps wxSTC_ESCSEQ_RED_MAGENTA.</summary>
-	public const int EscseqRedMagenta = 65;
+	public const int EscapeSequenceRedMagenta = 65;
 	/// <summary>Wraps wxSTC_ESCSEQ_RED_RED.</summary>
-	public const int EscseqRedRed = 20;
+	public const int EscapeSequenceRedRed = 20;
 	/// <summary>Wraps wxSTC_ESCSEQ_RED_WHITE.</summary>
-	public const int EscseqRedWhite = 83;
+	public const int EscapeSequenceRedWhite = 83;
 	/// <summary>Wraps wxSTC_ESCSEQ_RED_YELLOW.</summary>
-	public const int EscseqRedYellow = 47;
+	public const int EscapeSequenceRedYellow = 47;
 	/// <summary>Wraps wxSTC_ESCSEQ_UNKNOWN.</summary>
-	public const int EscseqUnknown = 172;
+	public const int EscapeSequenceUnknown = 172;
 	/// <summary>Wraps wxSTC_ESCSEQ_WHITE_BLACK.</summary>
-	public const int EscseqWhiteBlack = 17;
+	public const int EscapeSequenceWhiteBlack = 17;
 	/// <summary>Wraps wxSTC_ESCSEQ_WHITE_BLUE.</summary>
-	public const int EscseqWhiteBlue = 62;
+	public const int EscapeSequenceWhiteBlue = 62;
 	/// <summary>Wraps wxSTC_ESCSEQ_WHITE_CYAN.</summary>
-	public const int EscseqWhiteCyan = 80;
+	public const int EscapeSequenceWhiteCyan = 80;
 	/// <summary>Wraps wxSTC_ESCSEQ_WHITE_DEFAULT.</summary>
-	public const int EscseqWhiteDefault = 8;
+	public const int EscapeSequenceWhiteDefault = 8;
 	/// <summary>Wraps wxSTC_ESCSEQ_WHITE_GREEN.</summary>
-	public const int EscseqWhiteGreen = 44;
+	public const int EscapeSequenceWhiteGreen = 44;
 	/// <summary>Wraps wxSTC_ESCSEQ_WHITE_MAGENTA.</summary>
-	public const int EscseqWhiteMagenta = 71;
+	public const int EscapeSequenceWhiteMagenta = 71;
 	/// <summary>Wraps wxSTC_ESCSEQ_WHITE_RED.</summary>
-	public const int EscseqWhiteRed = 26;
+	public const int EscapeSequenceWhiteRed = 26;
 	/// <summary>Wraps wxSTC_ESCSEQ_WHITE_WHITE.</summary>
-	public const int EscseqWhiteWhite = 89;
+	public const int EscapeSequenceWhiteWhite = 89;
 	/// <summary>Wraps wxSTC_ESCSEQ_WHITE_YELLOW.</summary>
-	public const int EscseqWhiteYellow = 53;
+	public const int EscapeSequenceWhiteYellow = 53;
 	/// <summary>Wraps wxSTC_ESCSEQ_YELLOW_BLACK.</summary>
-	public const int EscseqYellowBlack = 13;
+	public const int EscapeSequenceYellowBlack = 13;
 	/// <summary>Wraps wxSTC_ESCSEQ_YELLOW_BLUE.</summary>
-	public const int EscseqYellowBlue = 58;
+	public const int EscapeSequenceYellowBlue = 58;
 	/// <summary>Wraps wxSTC_ESCSEQ_YELLOW_CYAN.</summary>
-	public const int EscseqYellowCyan = 76;
+	public const int EscapeSequenceYellowCyan = 76;
 	/// <summary>Wraps wxSTC_ESCSEQ_YELLOW_DEFAULT.</summary>
-	public const int EscseqYellowDefault = 4;
+	public const int EscapeSequenceYellowDefault = 4;
 	/// <summary>Wraps wxSTC_ESCSEQ_YELLOW_GREEN.</summary>
-	public const int EscseqYellowGreen = 40;
+	public const int EscapeSequenceYellowGreen = 40;
 	/// <summary>Wraps wxSTC_ESCSEQ_YELLOW_MAGENTA.</summary>
-	public const int EscseqYellowMagenta = 67;
+	public const int EscapeSequenceYellowMagenta = 67;
 	/// <summary>Wraps wxSTC_ESCSEQ_YELLOW_RED.</summary>
-	public const int EscseqYellowRed = 22;
+	public const int EscapeSequenceYellowRed = 22;
 	/// <summary>Wraps wxSTC_ESCSEQ_YELLOW_WHITE.</summary>
-	public const int EscseqYellowWhite = 85;
+	public const int EscapeSequenceYellowWhite = 85;
 	/// <summary>Wraps wxSTC_ESCSEQ_YELLOW_YELLOW.</summary>
-	public const int EscseqYellowYellow = 49;
-	/// <summary>Wraps wxSTC_FIND_MATCHCASE.</summary>
-	public const int FindMatchCase = 4;
-	/// <summary>Wraps wxSTC_FIND_NONE.</summary>
-	public const int FindNone = 0;
-	/// <summary>Wraps wxSTC_FIND_POSIX.</summary>
-	public const int FindPosix = 4194304;
-	/// <summary>Wraps wxSTC_FIND_REGEXP.</summary>
-	public const int FindRegexp = 2097152;
-	/// <summary>Wraps wxSTC_FIND_WHOLEWORD.</summary>
-	public const int FindWholeWord = 2;
-	/// <summary>Wraps wxSTC_FIND_WORDSTART.</summary>
-	public const int FindWordstart = 1048576;
-	/// <summary>Wraps wxSTC_FOLDACTION_CONTRACT.</summary>
-	public const int FoldactionContract = 0;
-	/// <summary>Wraps wxSTC_FOLDACTION_EXPAND.</summary>
-	public const int FoldactionExpand = 1;
-	/// <summary>Wraps wxSTC_FOLDACTION_TOGGLE.</summary>
-	public const int FoldactionToggle = 2;
-	/// <summary>Wraps wxSTC_FOLDDISPLAYTEXT_BOXED.</summary>
-	public const int FolddisplaytextBoxed = 2;
-	/// <summary>Wraps wxSTC_FOLDDISPLAYTEXT_HIDDEN.</summary>
-	public const int FolddisplaytextHidden = 0;
-	/// <summary>Wraps wxSTC_FOLDDISPLAYTEXT_STANDARD.</summary>
-	public const int FolddisplaytextStandard = 1;
-	/// <summary>Wraps wxSTC_FOLDFLAG_LEVELNUMBERS.</summary>
-	public const int FoldflagLevelnumbers = 64;
-	/// <summary>Wraps wxSTC_FOLDFLAG_LINEAFTER_CONTRACTED.</summary>
-	public const int FoldflagLineafterContracted = 16;
-	/// <summary>Wraps wxSTC_FOLDFLAG_LINEAFTER_EXPANDED.</summary>
-	public const int FoldflagLineafterExpanded = 8;
-	/// <summary>Wraps wxSTC_FOLDFLAG_LINEBEFORE_CONTRACTED.</summary>
-	public const int FoldflagLinebeforeContracted = 4;
-	/// <summary>Wraps wxSTC_FOLDFLAG_LINEBEFORE_EXPANDED.</summary>
-	public const int FoldflagLinebeforeExpanded = 2;
-	/// <summary>Wraps wxSTC_FOLDFLAG_LINESTATE.</summary>
-	public const int FoldflagLinestate = 128;
+	public const int EscapeSequenceYellowYellow = 49;
 	/// <summary>Wraps wxSTC_FOLDLEVELBASE.</summary>
-	public const int Foldlevelbase = 1024;
+	public const int FoldLevelBase = 1024;
 	/// <summary>Wraps wxSTC_FOLDLEVELHEADERFLAG.</summary>
-	public const int Foldlevelheaderflag = 8192;
+	public const int FoldLevelHeaderFlag = 8192;
 	/// <summary>Wraps wxSTC_FOLDLEVELNUMBERMASK.</summary>
-	public const int Foldlevelnumbermask = 4095;
+	public const int FoldLevelNumberMask = 4095;
 	/// <summary>Wraps wxSTC_FOLDLEVELWHITEFLAG.</summary>
-	public const int Foldlevelwhiteflag = 4096;
+	public const int FoldLevelWhiteFlag = 4096;
 	/// <summary>Wraps wxSTC_FONT_SIZE_MULTIPLIER.</summary>
 	public const int FontSizeMultiplier = 100;
 	/// <summary>Wraps wxSTC_FORTH_COMMENT.</summary>
@@ -2059,7 +1657,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_FORTH_DEFAULT.</summary>
 	public const int ForthDefault = 0;
 	/// <summary>Wraps wxSTC_FORTH_DEFWORD.</summary>
-	public const int ForthDefword = 6;
+	public const int ForthDefWord = 6;
 	/// <summary>Wraps wxSTC_FORTH_IDENTIFIER.</summary>
 	public const int ForthIdentifier = 3;
 	/// <summary>Wraps wxSTC_FORTH_KEYWORD.</summary>
@@ -2069,67 +1667,67 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_FORTH_NUMBER.</summary>
 	public const int ForthNumber = 9;
 	/// <summary>Wraps wxSTC_FORTH_PREWORD1.</summary>
-	public const int ForthPreword1 = 7;
+	public const int ForthPreWord1 = 7;
 	/// <summary>Wraps wxSTC_FORTH_PREWORD2.</summary>
-	public const int ForthPreword2 = 8;
+	public const int ForthPreWord2 = 8;
 	/// <summary>Wraps wxSTC_FORTH_STRING.</summary>
 	public const int ForthString = 10;
 	/// <summary>Wraps wxSTC_FSHARP_ATTRIBUTE.</summary>
-	public const int FsharpAttribute = 18;
+	public const int FSharpAttribute = 18;
 	/// <summary>Wraps wxSTC_FSHARP_CHARACTER.</summary>
-	public const int FsharpCharacter = 14;
+	public const int FSharpCharacter = 14;
 	/// <summary>Wraps wxSTC_FSHARP_COMMENT.</summary>
-	public const int FsharpComment = 8;
+	public const int FSharpComment = 8;
 	/// <summary>Wraps wxSTC_FSHARP_COMMENTLINE.</summary>
-	public const int FsharpCommentline = 9;
+	public const int FSharpCommentLine = 9;
 	/// <summary>Wraps wxSTC_FSHARP_DEFAULT.</summary>
-	public const int FsharpDefault = 0;
+	public const int FSharpDefault = 0;
 	/// <summary>Wraps wxSTC_FSHARP_FORMAT_SPEC.</summary>
-	public const int FsharpFormatSpec = 19;
+	public const int FSharpFormatSpec = 19;
 	/// <summary>Wraps wxSTC_FSHARP_IDENTIFIER.</summary>
-	public const int FsharpIdentifier = 6;
+	public const int FSharpIdentifier = 6;
 	/// <summary>Wraps wxSTC_FSHARP_KEYWORD.</summary>
-	public const int FsharpKeyword = 1;
+	public const int FSharpKeyword = 1;
 	/// <summary>Wraps wxSTC_FSHARP_KEYWORD2.</summary>
-	public const int FsharpKeyword2 = 2;
+	public const int FSharpKeyword2 = 2;
 	/// <summary>Wraps wxSTC_FSHARP_KEYWORD3.</summary>
-	public const int FsharpKeyword3 = 3;
+	public const int FSharpKeyword3 = 3;
 	/// <summary>Wraps wxSTC_FSHARP_KEYWORD4.</summary>
-	public const int FsharpKeyword4 = 4;
+	public const int FSharpKeyword4 = 4;
 	/// <summary>Wraps wxSTC_FSHARP_KEYWORD5.</summary>
-	public const int FsharpKeyword5 = 5;
+	public const int FSharpKeyword5 = 5;
 	/// <summary>Wraps wxSTC_FSHARP_LINENUM.</summary>
-	public const int FsharpLinenum = 11;
+	public const int FSharpLineNum = 11;
 	/// <summary>Wraps wxSTC_FSHARP_NUMBER.</summary>
-	public const int FsharpNumber = 13;
+	public const int FSharpNumber = 13;
 	/// <summary>Wraps wxSTC_FSHARP_OPERATOR.</summary>
-	public const int FsharpOperator = 12;
+	public const int FSharpOperator = 12;
 	/// <summary>Wraps wxSTC_FSHARP_PREPROCESSOR.</summary>
-	public const int FsharpPreprocessor = 10;
+	public const int FSharpPreprocessor = 10;
 	/// <summary>Wraps wxSTC_FSHARP_QUOTATION.</summary>
-	public const int FsharpQuotation = 17;
+	public const int FSharpQuotation = 17;
 	/// <summary>Wraps wxSTC_FSHARP_QUOT_IDENTIFIER.</summary>
-	public const int FsharpQuotIdentifier = 7;
+	public const int FSharpQuotIdentifier = 7;
 	/// <summary>Wraps wxSTC_FSHARP_STRING.</summary>
-	public const int FsharpString = 15;
+	public const int FSharpString = 15;
 	/// <summary>Wraps wxSTC_FSHARP_VERBATIM.</summary>
-	public const int FsharpVerbatim = 16;
+	public const int FSharpVerbatim = 16;
 	/// <summary>Wraps wxSTC_FS_COMMENT.</summary>
 	public const int FsComment = 1;
 	/// <summary>Wraps wxSTC_FS_COMMENTDOC.</summary>
-	public const int FsCommentdoc = 3;
+	public const int FsCommentDoc = 3;
 	/// <summary>Wraps wxSTC_FS_COMMENTDOCKEYWORD.</summary>
-	public const int FsCommentdockeyword = 5;
+	public const int FsCommentDocKeyword = 5;
 	/// <summary>Wraps wxSTC_FS_COMMENTDOCKEYWORDERROR.</summary>
-	public const int FsCommentdockeyworderror = 6;
+	public const int FsCommentDocKeywordError = 6;
 	/// <summary>Wraps wxSTC_FS_COMMENTDOC_C.</summary>
-	public const int FsCommentdocC = 22;
+	public const int FsCommentDocC = 22;
 	/// <summary>Wraps wxSTC_FS_COMMENTLINE.</summary>
-	public const int FsCommentline = 2;
+	public const int FsCommentLine = 2;
 	/// <summary>Wraps wxSTC_FS_COMMENTLINEDOC.</summary>
-	public const int FsCommentlinedoc = 4;
+	public const int FsCommentLineDoc = 4;
 	/// <summary>Wraps wxSTC_FS_COMMENTLINEDOC_C.</summary>
-	public const int FsCommentlinedocC = 23;
+	public const int FsCommentLineDocC = 23;
 	/// <summary>Wraps wxSTC_FS_CONSTANT.</summary>
 	public const int FsConstant = 18;
 	/// <summary>Wraps wxSTC_FS_DATE.</summary>
@@ -2139,7 +1737,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_FS_DEFAULT_C.</summary>
 	public const int FsDefaultC = 21;
 	/// <summary>Wraps wxSTC_FS_DISABLEDCODE.</summary>
-	public const int FsDisabledcode = 20;
+	public const int FsDisabledCode = 20;
 	/// <summary>Wraps wxSTC_FS_IDENTIFIER.</summary>
 	public const int FsIdentifier = 15;
 	/// <summary>Wraps wxSTC_FS_IDENTIFIER_C.</summary>
@@ -2171,13 +1769,13 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_FS_STRING.</summary>
 	public const int FsString = 12;
 	/// <summary>Wraps wxSTC_FS_STRINGEOL.</summary>
-	public const int FsStringeol = 17;
+	public const int FsStringEol = 17;
 	/// <summary>Wraps wxSTC_FS_STRINGEOL_C.</summary>
-	public const int FsStringeolC = 31;
+	public const int FsStringEolC = 31;
 	/// <summary>Wraps wxSTC_FS_STRING_C.</summary>
 	public const int FsStringC = 27;
 	/// <summary>Wraps wxSTC_FS_WORDOPERATOR.</summary>
-	public const int FsWordoperator = 19;
+	public const int FsWordOperator = 19;
 	/// <summary>Wraps wxSTC_F_COMMENT.</summary>
 	public const int FComment = 1;
 	/// <summary>Wraps wxSTC_F_CONTINUATION.</summary>
@@ -2201,7 +1799,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_F_STRING2.</summary>
 	public const int FString2 = 4;
 	/// <summary>Wraps wxSTC_F_STRINGEOL.</summary>
-	public const int FStringeol = 5;
+	public const int FStringEol = 5;
 	/// <summary>Wraps wxSTC_F_WORD.</summary>
 	public const int FWord = 8;
 	/// <summary>Wraps wxSTC_F_WORD2.</summary>
@@ -2231,15 +1829,15 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_GAP_STRING.</summary>
 	public const int GapString = 6;
 	/// <summary>Wraps wxSTC_GAP_STRINGEOL.</summary>
-	public const int GapStringeol = 11;
+	public const int GapStringEol = 11;
 	/// <summary>Wraps wxSTC_GC_ATTRIBUTE.</summary>
 	public const int GcAttribute = 5;
 	/// <summary>Wraps wxSTC_GC_COMMAND.</summary>
 	public const int GcCommand = 7;
 	/// <summary>Wraps wxSTC_GC_COMMENTBLOCK.</summary>
-	public const int GcCommentblock = 2;
+	public const int GcCommentBlock = 2;
 	/// <summary>Wraps wxSTC_GC_COMMENTLINE.</summary>
-	public const int GcCommentline = 1;
+	public const int GcCommentLine = 1;
 	/// <summary>Wraps wxSTC_GC_CONTROL.</summary>
 	public const int GcControl = 6;
 	/// <summary>Wraps wxSTC_GC_DEFAULT.</summary>
@@ -2257,19 +1855,19 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_GD_CHARACTER.</summary>
 	public const int GdCharacter = 4;
 	/// <summary>Wraps wxSTC_GD_CLASSNAME.</summary>
-	public const int GdClassname = 8;
+	public const int GdClassName = 8;
 	/// <summary>Wraps wxSTC_GD_COMMENTBLOCK.</summary>
-	public const int GdCommentblock = 12;
+	public const int GdCommentBlock = 12;
 	/// <summary>Wraps wxSTC_GD_COMMENTLINE.</summary>
-	public const int GdCommentline = 1;
+	public const int GdCommentLine = 1;
 	/// <summary>Wraps wxSTC_GD_DEFAULT.</summary>
 	public const int GdDefault = 0;
 	/// <summary>Wraps wxSTC_GD_FUNCNAME.</summary>
-	public const int GdFuncname = 9;
+	public const int GdFuncName = 9;
 	/// <summary>Wraps wxSTC_GD_IDENTIFIER.</summary>
 	public const int GdIdentifier = 11;
 	/// <summary>Wraps wxSTC_GD_NODEPATH.</summary>
-	public const int GdNodepath = 16;
+	public const int GdNodePath = 16;
 	/// <summary>Wraps wxSTC_GD_NUMBER.</summary>
 	public const int GdNumber = 2;
 	/// <summary>Wraps wxSTC_GD_OPERATOR.</summary>
@@ -2277,11 +1875,11 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_GD_STRING.</summary>
 	public const int GdString = 3;
 	/// <summary>Wraps wxSTC_GD_STRINGEOL.</summary>
-	public const int GdStringeol = 13;
+	public const int GdStringEol = 13;
 	/// <summary>Wraps wxSTC_GD_TRIPLE.</summary>
 	public const int GdTriple = 6;
 	/// <summary>Wraps wxSTC_GD_TRIPLEDOUBLE.</summary>
-	public const int GdTripledouble = 7;
+	public const int GdTripleDouble = 7;
 	/// <summary>Wraps wxSTC_GD_WORD.</summary>
 	public const int GdWord = 5;
 	/// <summary>Wraps wxSTC_GD_WORD2.</summary>
@@ -2293,13 +1891,13 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_HA_CLASS.</summary>
 	public const int HaClass = 6;
 	/// <summary>Wraps wxSTC_HA_COMMENTBLOCK.</summary>
-	public const int HaCommentblock = 14;
+	public const int HaCommentBlock = 14;
 	/// <summary>Wraps wxSTC_HA_COMMENTBLOCK2.</summary>
-	public const int HaCommentblock2 = 15;
+	public const int HaCommentBlock2 = 15;
 	/// <summary>Wraps wxSTC_HA_COMMENTBLOCK3.</summary>
-	public const int HaCommentblock3 = 16;
+	public const int HaCommentBlock3 = 16;
 	/// <summary>Wraps wxSTC_HA_COMMENTLINE.</summary>
-	public const int HaCommentline = 13;
+	public const int HaCommentLine = 13;
 	/// <summary>Wraps wxSTC_HA_DATA.</summary>
 	public const int HaData = 9;
 	/// <summary>Wraps wxSTC_HA_DEFAULT.</summary>
@@ -2313,7 +1911,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_HA_KEYWORD.</summary>
 	public const int HaKeyword = 2;
 	/// <summary>Wraps wxSTC_HA_LITERATE_CODEDELIM.</summary>
-	public const int HaLiterateCodedelim = 22;
+	public const int HaLiterateCodeDelim = 22;
 	/// <summary>Wraps wxSTC_HA_LITERATE_COMMENT.</summary>
 	public const int HaLiterateComment = 21;
 	/// <summary>Wraps wxSTC_HA_MODULE.</summary>
@@ -2331,9 +1929,9 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_HA_STRING.</summary>
 	public const int HaString = 4;
 	/// <summary>Wraps wxSTC_HA_STRINGEOL.</summary>
-	public const int HaStringeol = 19;
+	public const int HaStringEol = 19;
 	/// <summary>Wraps wxSTC_HBA_COMMENTLINE.</summary>
-	public const int HbaCommentline = 82;
+	public const int HbaCommentLine = 82;
 	/// <summary>Wraps wxSTC_HBA_DEFAULT.</summary>
 	public const int HbaDefault = 81;
 	/// <summary>Wraps wxSTC_HBA_IDENTIFIER.</summary>
@@ -2345,11 +1943,11 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_HBA_STRING.</summary>
 	public const int HbaString = 85;
 	/// <summary>Wraps wxSTC_HBA_STRINGEOL.</summary>
-	public const int HbaStringeol = 87;
+	public const int HbaStringEol = 87;
 	/// <summary>Wraps wxSTC_HBA_WORD.</summary>
 	public const int HbaWord = 84;
 	/// <summary>Wraps wxSTC_HB_COMMENTLINE.</summary>
-	public const int HbCommentline = 72;
+	public const int HbCommentLine = 72;
 	/// <summary>Wraps wxSTC_HB_DEFAULT.</summary>
 	public const int HbDefault = 71;
 	/// <summary>Wraps wxSTC_HB_IDENTIFIER.</summary>
@@ -2361,21 +1959,21 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_HB_STRING.</summary>
 	public const int HbString = 75;
 	/// <summary>Wraps wxSTC_HB_STRINGEOL.</summary>
-	public const int HbStringeol = 77;
+	public const int HbStringEol = 77;
 	/// <summary>Wraps wxSTC_HB_WORD.</summary>
 	public const int HbWord = 74;
 	/// <summary>Wraps wxSTC_HEX_ADDRESSFIELD_UNKNOWN.</summary>
-	public const int HexAddressfieldUnknown = 10;
+	public const int HexAddressFieldUnknown = 10;
 	/// <summary>Wraps wxSTC_HEX_BYTECOUNT.</summary>
-	public const int HexBytecount = 4;
+	public const int HexByteCount = 4;
 	/// <summary>Wraps wxSTC_HEX_BYTECOUNT_WRONG.</summary>
-	public const int HexBytecountWrong = 5;
+	public const int HexByteCountWrong = 5;
 	/// <summary>Wraps wxSTC_HEX_CHECKSUM.</summary>
 	public const int HexChecksum = 16;
 	/// <summary>Wraps wxSTC_HEX_CHECKSUM_WRONG.</summary>
 	public const int HexChecksumWrong = 17;
 	/// <summary>Wraps wxSTC_HEX_DATAADDRESS.</summary>
-	public const int HexDataaddress = 7;
+	public const int HexDataAddress = 7;
 	/// <summary>Wraps wxSTC_HEX_DATA_EMPTY.</summary>
 	public const int HexDataEmpty = 15;
 	/// <summary>Wraps wxSTC_HEX_DATA_EVEN.</summary>
@@ -2387,31 +1985,31 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_HEX_DEFAULT.</summary>
 	public const int HexDefault = 0;
 	/// <summary>Wraps wxSTC_HEX_EXTENDEDADDRESS.</summary>
-	public const int HexExtendedaddress = 11;
+	public const int HexExtendedAddress = 11;
 	/// <summary>Wraps wxSTC_HEX_GARBAGE.</summary>
 	public const int HexGarbage = 18;
 	/// <summary>Wraps wxSTC_HEX_NOADDRESS.</summary>
-	public const int HexNoaddress = 6;
+	public const int HexNoAddress = 6;
 	/// <summary>Wraps wxSTC_HEX_RECCOUNT.</summary>
-	public const int HexReccount = 8;
+	public const int HexRecCount = 8;
 	/// <summary>Wraps wxSTC_HEX_RECSTART.</summary>
-	public const int HexRecstart = 1;
+	public const int HexRecStart = 1;
 	/// <summary>Wraps wxSTC_HEX_RECTYPE.</summary>
-	public const int HexRectype = 2;
+	public const int HexRecType = 2;
 	/// <summary>Wraps wxSTC_HEX_RECTYPE_UNKNOWN.</summary>
-	public const int HexRectypeUnknown = 3;
+	public const int HexRecTypeUnknown = 3;
 	/// <summary>Wraps wxSTC_HEX_STARTADDRESS.</summary>
-	public const int HexStartaddress = 9;
+	public const int HexStartAddress = 9;
 	/// <summary>Wraps wxSTC_HJA_COMMENT.</summary>
 	public const int HjaComment = 57;
 	/// <summary>Wraps wxSTC_HJA_COMMENTDOC.</summary>
-	public const int HjaCommentdoc = 59;
+	public const int HjaCommentDoc = 59;
 	/// <summary>Wraps wxSTC_HJA_COMMENTLINE.</summary>
-	public const int HjaCommentline = 58;
+	public const int HjaCommentLine = 58;
 	/// <summary>Wraps wxSTC_HJA_DEFAULT.</summary>
 	public const int HjaDefault = 56;
 	/// <summary>Wraps wxSTC_HJA_DOUBLESTRING.</summary>
-	public const int HjaDoublestring = 63;
+	public const int HjaDoubleString = 63;
 	/// <summary>Wraps wxSTC_HJA_KEYWORD.</summary>
 	public const int HjaKeyword = 62;
 	/// <summary>Wraps wxSTC_HJA_NUMBER.</summary>
@@ -2419,27 +2017,27 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_HJA_REGEX.</summary>
 	public const int HjaRegex = 67;
 	/// <summary>Wraps wxSTC_HJA_SINGLESTRING.</summary>
-	public const int HjaSinglestring = 64;
+	public const int HjaSingleString = 64;
 	/// <summary>Wraps wxSTC_HJA_START.</summary>
 	public const int HjaStart = 55;
 	/// <summary>Wraps wxSTC_HJA_STRINGEOL.</summary>
-	public const int HjaStringeol = 66;
+	public const int HjaStringEol = 66;
 	/// <summary>Wraps wxSTC_HJA_SYMBOLS.</summary>
 	public const int HjaSymbols = 65;
 	/// <summary>Wraps wxSTC_HJA_TEMPLATELITERAL.</summary>
-	public const int HjaTemplateliteral = 68;
+	public const int HjaTemplateLiteral = 68;
 	/// <summary>Wraps wxSTC_HJA_WORD.</summary>
 	public const int HjaWord = 61;
 	/// <summary>Wraps wxSTC_HJ_COMMENT.</summary>
 	public const int HjComment = 42;
 	/// <summary>Wraps wxSTC_HJ_COMMENTDOC.</summary>
-	public const int HjCommentdoc = 44;
+	public const int HjCommentDoc = 44;
 	/// <summary>Wraps wxSTC_HJ_COMMENTLINE.</summary>
-	public const int HjCommentline = 43;
+	public const int HjCommentLine = 43;
 	/// <summary>Wraps wxSTC_HJ_DEFAULT.</summary>
 	public const int HjDefault = 41;
 	/// <summary>Wraps wxSTC_HJ_DOUBLESTRING.</summary>
-	public const int HjDoublestring = 48;
+	public const int HjDoubleString = 48;
 	/// <summary>Wraps wxSTC_HJ_KEYWORD.</summary>
 	public const int HjKeyword = 47;
 	/// <summary>Wraps wxSTC_HJ_NUMBER.</summary>
@@ -2447,27 +2045,27 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_HJ_REGEX.</summary>
 	public const int HjRegex = 52;
 	/// <summary>Wraps wxSTC_HJ_SINGLESTRING.</summary>
-	public const int HjSinglestring = 49;
+	public const int HjSingleString = 49;
 	/// <summary>Wraps wxSTC_HJ_START.</summary>
 	public const int HjStart = 40;
 	/// <summary>Wraps wxSTC_HJ_STRINGEOL.</summary>
-	public const int HjStringeol = 51;
+	public const int HjStringEol = 51;
 	/// <summary>Wraps wxSTC_HJ_SYMBOLS.</summary>
 	public const int HjSymbols = 50;
 	/// <summary>Wraps wxSTC_HJ_TEMPLATELITERAL.</summary>
-	public const int HjTemplateliteral = 53;
+	public const int HjTemplateLiteral = 53;
 	/// <summary>Wraps wxSTC_HJ_WORD.</summary>
 	public const int HjWord = 46;
 	/// <summary>Wraps wxSTC_HOLLYWOOD_COMMENT.</summary>
 	public const int HollywoodComment = 1;
 	/// <summary>Wraps wxSTC_HOLLYWOOD_COMMENTBLOCK.</summary>
-	public const int HollywoodCommentblock = 2;
+	public const int HollywoodCommentBlock = 2;
 	/// <summary>Wraps wxSTC_HOLLYWOOD_CONSTANT.</summary>
 	public const int HollywoodConstant = 13;
 	/// <summary>Wraps wxSTC_HOLLYWOOD_DEFAULT.</summary>
 	public const int HollywoodDefault = 0;
 	/// <summary>Wraps wxSTC_HOLLYWOOD_HEXNUMBER.</summary>
-	public const int HollywoodHexnumber = 14;
+	public const int HollywoodHexNumber = 14;
 	/// <summary>Wraps wxSTC_HOLLYWOOD_IDENTIFIER.</summary>
 	public const int HollywoodIdentifier = 12;
 	/// <summary>Wraps wxSTC_HOLLYWOOD_KEYWORD.</summary>
@@ -2477,27 +2075,27 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_HOLLYWOOD_OPERATOR.</summary>
 	public const int HollywoodOperator = 11;
 	/// <summary>Wraps wxSTC_HOLLYWOOD_PLUGINAPI.</summary>
-	public const int HollywoodPluginapi = 6;
+	public const int HollywoodPluginApi = 6;
 	/// <summary>Wraps wxSTC_HOLLYWOOD_PLUGINMETHOD.</summary>
-	public const int HollywoodPluginmethod = 7;
+	public const int HollywoodPluginMethod = 7;
 	/// <summary>Wraps wxSTC_HOLLYWOOD_PREPROCESSOR.</summary>
 	public const int HollywoodPreprocessor = 10;
 	/// <summary>Wraps wxSTC_HOLLYWOOD_STDAPI.</summary>
-	public const int HollywoodStdapi = 5;
+	public const int HollywoodStdApi = 5;
 	/// <summary>Wraps wxSTC_HOLLYWOOD_STRING.</summary>
 	public const int HollywoodString = 8;
 	/// <summary>Wraps wxSTC_HOLLYWOOD_STRINGBLOCK.</summary>
-	public const int HollywoodStringblock = 9;
+	public const int HollywoodStringBlock = 9;
 	/// <summary>Wraps wxSTC_HPA_CHARACTER.</summary>
 	public const int HpaCharacter = 110;
 	/// <summary>Wraps wxSTC_HPA_CLASSNAME.</summary>
-	public const int HpaClassname = 114;
+	public const int HpaClassName = 114;
 	/// <summary>Wraps wxSTC_HPA_COMMENTLINE.</summary>
-	public const int HpaCommentline = 107;
+	public const int HpaCommentLine = 107;
 	/// <summary>Wraps wxSTC_HPA_DEFAULT.</summary>
 	public const int HpaDefault = 106;
 	/// <summary>Wraps wxSTC_HPA_DEFNAME.</summary>
-	public const int HpaDefname = 115;
+	public const int HpaDefName = 115;
 	/// <summary>Wraps wxSTC_HPA_IDENTIFIER.</summary>
 	public const int HpaIdentifier = 117;
 	/// <summary>Wraps wxSTC_HPA_NUMBER.</summary>
@@ -2511,27 +2109,27 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_HPA_TRIPLE.</summary>
 	public const int HpaTriple = 112;
 	/// <summary>Wraps wxSTC_HPA_TRIPLEDOUBLE.</summary>
-	public const int HpaTripledouble = 113;
+	public const int HpaTripleDouble = 113;
 	/// <summary>Wraps wxSTC_HPA_WORD.</summary>
 	public const int HpaWord = 111;
 	/// <summary>Wraps wxSTC_HPHP_COMMENT.</summary>
 	public const int HphpComment = 124;
 	/// <summary>Wraps wxSTC_HPHP_COMMENTLINE.</summary>
-	public const int HphpCommentline = 125;
+	public const int HphpCommentLine = 125;
 	/// <summary>Wraps wxSTC_HPHP_COMPLEX_VARIABLE.</summary>
 	public const int HphpComplexVariable = 104;
 	/// <summary>Wraps wxSTC_HPHP_DEFAULT.</summary>
 	public const int HphpDefault = 118;
 	/// <summary>Wraps wxSTC_HPHP_HSTRING.</summary>
-	public const int HphpHstring = 119;
+	public const int HphpHString = 119;
 	/// <summary>Wraps wxSTC_HPHP_HSTRING_VARIABLE.</summary>
-	public const int HphpHstringVariable = 126;
+	public const int HphpHStringVariable = 126;
 	/// <summary>Wraps wxSTC_HPHP_NUMBER.</summary>
 	public const int HphpNumber = 122;
 	/// <summary>Wraps wxSTC_HPHP_OPERATOR.</summary>
 	public const int HphpOperator = 127;
 	/// <summary>Wraps wxSTC_HPHP_SIMPLESTRING.</summary>
-	public const int HphpSimplestring = 120;
+	public const int HphpSimpleString = 120;
 	/// <summary>Wraps wxSTC_HPHP_VARIABLE.</summary>
 	public const int HphpVariable = 123;
 	/// <summary>Wraps wxSTC_HPHP_WORD.</summary>
@@ -2539,13 +2137,13 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_HP_CHARACTER.</summary>
 	public const int HpCharacter = 95;
 	/// <summary>Wraps wxSTC_HP_CLASSNAME.</summary>
-	public const int HpClassname = 99;
+	public const int HpClassName = 99;
 	/// <summary>Wraps wxSTC_HP_COMMENTLINE.</summary>
-	public const int HpCommentline = 92;
+	public const int HpCommentLine = 92;
 	/// <summary>Wraps wxSTC_HP_DEFAULT.</summary>
 	public const int HpDefault = 91;
 	/// <summary>Wraps wxSTC_HP_DEFNAME.</summary>
-	public const int HpDefname = 100;
+	public const int HpDefName = 100;
 	/// <summary>Wraps wxSTC_HP_IDENTIFIER.</summary>
 	public const int HpIdentifier = 102;
 	/// <summary>Wraps wxSTC_HP_NUMBER.</summary>
@@ -2559,7 +2157,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_HP_TRIPLE.</summary>
 	public const int HpTriple = 97;
 	/// <summary>Wraps wxSTC_HP_TRIPLEDOUBLE.</summary>
-	public const int HpTripledouble = 98;
+	public const int HpTripleDouble = 98;
 	/// <summary>Wraps wxSTC_HP_WORD.</summary>
 	public const int HpWord = 96;
 	/// <summary>Wraps wxSTC_H_ASP.</summary>
@@ -2569,7 +2167,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_H_ATTRIBUTE.</summary>
 	public const int HAttribute = 3;
 	/// <summary>Wraps wxSTC_H_ATTRIBUTEUNKNOWN.</summary>
-	public const int HAttributeunknown = 4;
+	public const int HAttributeUnknown = 4;
 	/// <summary>Wraps wxSTC_H_CDATA.</summary>
 	public const int HCdata = 17;
 	/// <summary>Wraps wxSTC_H_COMMENT.</summary>
@@ -2577,7 +2175,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_H_DEFAULT.</summary>
 	public const int HDefault = 0;
 	/// <summary>Wraps wxSTC_H_DOUBLESTRING.</summary>
-	public const int HDoublestring = 6;
+	public const int HDoubleString = 6;
 	/// <summary>Wraps wxSTC_H_ENTITY.</summary>
 	public const int HEntity = 10;
 	/// <summary>Wraps wxSTC_H_NUMBER.</summary>
@@ -2601,43 +2199,31 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_H_SGML_DEFAULT.</summary>
 	public const int HSgmlDefault = 21;
 	/// <summary>Wraps wxSTC_H_SGML_DOUBLESTRING.</summary>
-	public const int HSgmlDoublestring = 24;
+	public const int HSgmlDoubleString = 24;
 	/// <summary>Wraps wxSTC_H_SGML_ENTITY.</summary>
 	public const int HSgmlEntity = 28;
 	/// <summary>Wraps wxSTC_H_SGML_ERROR.</summary>
 	public const int HSgmlError = 26;
 	/// <summary>Wraps wxSTC_H_SGML_SIMPLESTRING.</summary>
-	public const int HSgmlSimplestring = 25;
+	public const int HSgmlSimpleString = 25;
 	/// <summary>Wraps wxSTC_H_SGML_SPECIAL.</summary>
 	public const int HSgmlSpecial = 27;
 	/// <summary>Wraps wxSTC_H_SINGLESTRING.</summary>
-	public const int HSinglestring = 7;
+	public const int HSingleString = 7;
 	/// <summary>Wraps wxSTC_H_TAG.</summary>
 	public const int HTag = 1;
 	/// <summary>Wraps wxSTC_H_TAGEND.</summary>
-	public const int HTagend = 11;
+	public const int HTagEnd = 11;
 	/// <summary>Wraps wxSTC_H_TAGUNKNOWN.</summary>
-	public const int HTagunknown = 2;
+	public const int HTagUnknown = 2;
 	/// <summary>Wraps wxSTC_H_VALUE.</summary>
 	public const int HValue = 19;
 	/// <summary>Wraps wxSTC_H_XCCOMMENT.</summary>
 	public const int HXccomment = 20;
 	/// <summary>Wraps wxSTC_H_XMLEND.</summary>
-	public const int HXmlend = 13;
+	public const int HXmlEnd = 13;
 	/// <summary>Wraps wxSTC_H_XMLSTART.</summary>
-	public const int HXmlstart = 12;
-	/// <summary>Wraps wxSTC_IDLESTYLING_AFTERVISIBLE.</summary>
-	public const int IdlestylingAftervisible = 2;
-	/// <summary>Wraps wxSTC_IDLESTYLING_ALL.</summary>
-	public const int IdlestylingAll = 3;
-	/// <summary>Wraps wxSTC_IDLESTYLING_NONE.</summary>
-	public const int IdlestylingNone = 0;
-	/// <summary>Wraps wxSTC_IDLESTYLING_TOVISIBLE.</summary>
-	public const int IdlestylingTovisible = 1;
-	/// <summary>Wraps wxSTC_IME_INLINE.</summary>
-	public const int ImeInline = 1;
-	/// <summary>Wraps wxSTC_IME_WINDOWED.</summary>
-	public const int ImeWindowed = 0;
+	public const int HXmlStart = 12;
 	/// <summary>Wraps wxSTC_INDICATOR_CONTAINER.</summary>
 	public const int IndicatorContainer = 8;
 	/// <summary>Wraps wxSTC_INDICATOR_IME.</summary>
@@ -2646,64 +2232,10 @@ public static partial class Stc {
 	public const int IndicatorImeMax = 35;
 	/// <summary>Wraps wxSTC_INDICATOR_MAX.</summary>
 	public const int IndicatorMax = 35;
-	/// <summary>Wraps wxSTC_INDICFLAG_VALUEFORE.</summary>
-	public const int IndicflagValuefore = 1;
 	/// <summary>Wraps wxSTC_INDICVALUEBIT.</summary>
-	public const int Indicvaluebit = 16777216;
+	public const int IndicatorValueBit = 16777216;
 	/// <summary>Wraps wxSTC_INDICVALUEMASK.</summary>
-	public const int Indicvaluemask = 16777215;
-	/// <summary>Wraps wxSTC_INDIC_BOX.</summary>
-	public const int IndicBox = 6;
-	/// <summary>Wraps wxSTC_INDIC_COMPOSITIONTHICK.</summary>
-	public const int IndicCompositionthick = 14;
-	/// <summary>Wraps wxSTC_INDIC_COMPOSITIONTHIN.</summary>
-	public const int IndicCompositionthin = 15;
-	/// <summary>Wraps wxSTC_INDIC_CONTAINER.</summary>
-	public const int IndicContainer = 8;
-	/// <summary>Wraps wxSTC_INDIC_DASH.</summary>
-	public const int IndicDash = 9;
-	/// <summary>Wraps wxSTC_INDIC_DIAGONAL.</summary>
-	public const int IndicDiagonal = 3;
-	/// <summary>Wraps wxSTC_INDIC_DOTBOX.</summary>
-	public const int IndicDotbox = 12;
-	/// <summary>Wraps wxSTC_INDIC_DOTS.</summary>
-	public const int IndicDots = 10;
-	/// <summary>Wraps wxSTC_INDIC_FULLBOX.</summary>
-	public const int IndicFullbox = 16;
-	/// <summary>Wraps wxSTC_INDIC_GRADIENT.</summary>
-	public const int IndicGradient = 20;
-	/// <summary>Wraps wxSTC_INDIC_GRADIENTCENTRE.</summary>
-	public const int IndicGradientCenter = 21;
-	/// <summary>Wraps wxSTC_INDIC_HIDDEN.</summary>
-	public const int IndicHidden = 5;
-	/// <summary>Wraps wxSTC_INDIC_IME.</summary>
-	public const int IndicIme = 32;
-	/// <summary>Wraps wxSTC_INDIC_IME_MAX.</summary>
-	public const int IndicImeMax = 35;
-	/// <summary>Wraps wxSTC_INDIC_MAX.</summary>
-	public const int IndicMax = 35;
-	/// <summary>Wraps wxSTC_INDIC_PLAIN.</summary>
-	public const int IndicPlain = 0;
-	/// <summary>Wraps wxSTC_INDIC_POINT.</summary>
-	public const int IndicPoint = 18;
-	/// <summary>Wraps wxSTC_INDIC_POINTCHARACTER.</summary>
-	public const int IndicPointcharacter = 19;
-	/// <summary>Wraps wxSTC_INDIC_ROUNDBOX.</summary>
-	public const int IndicRoundbox = 7;
-	/// <summary>Wraps wxSTC_INDIC_SQUIGGLE.</summary>
-	public const int IndicSquiggle = 1;
-	/// <summary>Wraps wxSTC_INDIC_SQUIGGLELOW.</summary>
-	public const int IndicSquigglelow = 11;
-	/// <summary>Wraps wxSTC_INDIC_SQUIGGLEPIXMAP.</summary>
-	public const int IndicSquigglepixmap = 13;
-	/// <summary>Wraps wxSTC_INDIC_STRAIGHTBOX.</summary>
-	public const int IndicStraightbox = 8;
-	/// <summary>Wraps wxSTC_INDIC_STRIKE.</summary>
-	public const int IndicStrike = 4;
-	/// <summary>Wraps wxSTC_INDIC_TEXTFORE.</summary>
-	public const int IndicTextfore = 17;
-	/// <summary>Wraps wxSTC_INDIC_TT.</summary>
-	public const int IndicTt = 2;
+	public const int IndicatorValueMask = 16777215;
 	/// <summary>Wraps wxSTC_INNO_COMMENT.</summary>
 	public const int InnoComment = 1;
 	/// <summary>Wraps wxSTC_INNO_COMMENT_PASCAL.</summary>
@@ -2732,40 +2264,32 @@ public static partial class Stc {
 	public const int InnoStringSingle = 11;
 	/// <summary>Wraps wxSTC_INVALID_POSITION.</summary>
 	public const int InvalidPosition = -1;
-	/// <summary>Wraps wxSTC_IV_LOOKBOTH.</summary>
-	public const int IvLookboth = 3;
-	/// <summary>Wraps wxSTC_IV_LOOKFORWARD.</summary>
-	public const int IvLookforward = 2;
-	/// <summary>Wraps wxSTC_IV_NONE.</summary>
-	public const int IvNone = 0;
-	/// <summary>Wraps wxSTC_IV_REAL.</summary>
-	public const int IvReal = 1;
 	/// <summary>Wraps wxSTC_JSON_BLOCKCOMMENT.</summary>
-	public const int JsonBlockcomment = 7;
+	public const int JsonBlockComment = 7;
 	/// <summary>Wraps wxSTC_JSON_COMPACTIRI.</summary>
-	public const int JsonCompactiri = 10;
+	public const int JsonCompactIri = 10;
 	/// <summary>Wraps wxSTC_JSON_DEFAULT.</summary>
 	public const int JsonDefault = 0;
 	/// <summary>Wraps wxSTC_JSON_ERROR.</summary>
 	public const int JsonError = 13;
 	/// <summary>Wraps wxSTC_JSON_ESCAPESEQUENCE.</summary>
-	public const int JsonEscapesequence = 5;
+	public const int JsonEscapeSequence = 5;
 	/// <summary>Wraps wxSTC_JSON_KEYWORD.</summary>
 	public const int JsonKeyword = 11;
 	/// <summary>Wraps wxSTC_JSON_LDKEYWORD.</summary>
-	public const int JsonLdkeyword = 12;
+	public const int JsonLdKeyword = 12;
 	/// <summary>Wraps wxSTC_JSON_LINECOMMENT.</summary>
-	public const int JsonLinecomment = 6;
+	public const int JsonLineComment = 6;
 	/// <summary>Wraps wxSTC_JSON_NUMBER.</summary>
 	public const int JsonNumber = 1;
 	/// <summary>Wraps wxSTC_JSON_OPERATOR.</summary>
 	public const int JsonOperator = 8;
 	/// <summary>Wraps wxSTC_JSON_PROPERTYNAME.</summary>
-	public const int JsonPropertyname = 4;
+	public const int JsonPropertyName = 4;
 	/// <summary>Wraps wxSTC_JSON_STRING.</summary>
 	public const int JsonString = 2;
 	/// <summary>Wraps wxSTC_JSON_STRINGEOL.</summary>
-	public const int JsonStringeol = 3;
+	public const int JsonStringEol = 3;
 	/// <summary>Wraps wxSTC_JSON_URI.</summary>
 	public const int JsonUri = 9;
 	/// <summary>Wraps wxSTC_JULIA_BRACKET.</summary>
@@ -2775,13 +2299,13 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_JULIA_COMMAND.</summary>
 	public const int JuliaCommand = 16;
 	/// <summary>Wraps wxSTC_JULIA_COMMANDLITERAL.</summary>
-	public const int JuliaCommandliteral = 17;
+	public const int JuliaCommandLiteral = 17;
 	/// <summary>Wraps wxSTC_JULIA_COMMENT.</summary>
 	public const int JuliaComment = 1;
 	/// <summary>Wraps wxSTC_JULIA_DEFAULT.</summary>
 	public const int JuliaDefault = 0;
 	/// <summary>Wraps wxSTC_JULIA_DOCSTRING.</summary>
-	public const int JuliaDocstring = 14;
+	public const int JuliaDocString = 14;
 	/// <summary>Wraps wxSTC_JULIA_IDENTIFIER.</summary>
 	public const int JuliaIdentifier = 9;
 	/// <summary>Wraps wxSTC_JULIA_KEYWORD1.</summary>
@@ -2793,7 +2317,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_JULIA_KEYWORD4.</summary>
 	public const int JuliaKeyword4 = 20;
 	/// <summary>Wraps wxSTC_JULIA_LEXERROR.</summary>
-	public const int JuliaLexerror = 19;
+	public const int JuliaLexError = 19;
 	/// <summary>Wraps wxSTC_JULIA_MACRO.</summary>
 	public const int JuliaMacro = 12;
 	/// <summary>Wraps wxSTC_JULIA_NUMBER.</summary>
@@ -2803,29 +2327,17 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_JULIA_STRING.</summary>
 	public const int JuliaString = 10;
 	/// <summary>Wraps wxSTC_JULIA_STRINGINTERP.</summary>
-	public const int JuliaStringinterp = 13;
+	public const int JuliaStringInterp = 13;
 	/// <summary>Wraps wxSTC_JULIA_STRINGLITERAL.</summary>
-	public const int JuliaStringliteral = 15;
+	public const int JuliaStringLiteral = 15;
 	/// <summary>Wraps wxSTC_JULIA_SYMBOL.</summary>
 	public const int JuliaSymbol = 11;
 	/// <summary>Wraps wxSTC_JULIA_TYPEANNOT.</summary>
-	public const int JuliaTypeannot = 18;
+	public const int JuliaTypeAnnot = 18;
 	/// <summary>Wraps wxSTC_JULIA_TYPEOPERATOR.</summary>
-	public const int JuliaTypeoperator = 21;
-	/// <summary>Wraps wxSTC_KEYMOD_ALT.</summary>
-	public const int KeymodAlt = 4;
-	/// <summary>Wraps wxSTC_KEYMOD_CTRL.</summary>
-	public const int KeymodCtrl = 2;
-	/// <summary>Wraps wxSTC_KEYMOD_META.</summary>
-	public const int KeymodMeta = 16;
-	/// <summary>Wraps wxSTC_KEYMOD_NORM.</summary>
-	public const int KeymodNorm = 0;
-	/// <summary>Wraps wxSTC_KEYMOD_SHIFT.</summary>
-	public const int KeymodShift = 1;
-	/// <summary>Wraps wxSTC_KEYMOD_SUPER.</summary>
-	public const int KeymodSuper = 8;
+	public const int JuliaTypeOperator = 21;
 	/// <summary>Wraps wxSTC_KEYWORDSET_MAX.</summary>
-	public const int KeywordsetMax = 8;
+	public const int KeywordSetMax = 8;
 	/// <summary>Wraps wxSTC_KEY_ADD.</summary>
 	public const int KeyAdd = 310;
 	/// <summary>Wraps wxSTC_KEY_BACK.</summary>
@@ -2857,7 +2369,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_KEY_RIGHT.</summary>
 	public const int KeyRight = 303;
 	/// <summary>Wraps wxSTC_KEY_RWIN.</summary>
-	public const int KeyRwin = 314;
+	public const int KeyRightWin = 314;
 	/// <summary>Wraps wxSTC_KEY_SUBTRACT.</summary>
 	public const int KeySubtract = 311;
 	/// <summary>Wraps wxSTC_KEY_TAB.</summary>
@@ -2869,7 +2381,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_KIX_COMMENT.</summary>
 	public const int KixComment = 1;
 	/// <summary>Wraps wxSTC_KIX_COMMENTSTREAM.</summary>
-	public const int KixCommentstream = 10;
+	public const int KixCommentStream = 10;
 	/// <summary>Wraps wxSTC_KIX_DEFAULT.</summary>
 	public const int KixDefault = 0;
 	/// <summary>Wraps wxSTC_KIX_FUNCTIONS.</summary>
@@ -2893,7 +2405,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_KVIRC_COMMENT.</summary>
 	public const int KvircComment = 1;
 	/// <summary>Wraps wxSTC_KVIRC_COMMENTBLOCK.</summary>
-	public const int KvircCommentblock = 2;
+	public const int KvircCommentBlock = 2;
 	/// <summary>Wraps wxSTC_KVIRC_DEFAULT.</summary>
 	public const int KvircDefault = 0;
 	/// <summary>Wraps wxSTC_KVIRC_FUNCTION.</summary>
@@ -2916,298 +2428,8 @@ public static partial class Stc {
 	public const int KvircVariable = 8;
 	/// <summary>Wraps wxSTC_KVIRC_WORD.</summary>
 	public const int KvircWord = 4;
-	/// <summary>Wraps wxSTC_LASTSTEPINUNDOREDO.</summary>
-	public const int Laststepinundoredo = 256;
 	/// <summary>Wraps wxSTC_LEXER_START.</summary>
 	public const int LexerStart = 4000;
-	/// <summary>Wraps wxSTC_LEX_A68K.</summary>
-	public const int LexA68k = 100;
-	/// <summary>Wraps wxSTC_LEX_ABAQUS.</summary>
-	public const int LexAbaqus = 84;
-	/// <summary>Wraps wxSTC_LEX_ADA.</summary>
-	public const int LexAda = 20;
-	/// <summary>Wraps wxSTC_LEX_APDL.</summary>
-	public const int LexApdl = 61;
-	/// <summary>Wraps wxSTC_LEX_AS.</summary>
-	public const int LexAs = 113;
-	/// <summary>Wraps wxSTC_LEX_ASCIIDOC.</summary>
-	public const int LexAsciidoc = 134;
-	/// <summary>Wraps wxSTC_LEX_ASM.</summary>
-	public const int LexAsm = 34;
-	/// <summary>Wraps wxSTC_LEX_ASN1.</summary>
-	public const int LexAsn1 = 63;
-	/// <summary>Wraps wxSTC_LEX_ASYMPTOTE.</summary>
-	public const int LexAsymptote = 85;
-	/// <summary>Wraps wxSTC_LEX_AU3.</summary>
-	public const int LexAu3 = 60;
-	/// <summary>Wraps wxSTC_LEX_AUTOMATIC.</summary>
-	public const int LexAutomatic = 1000;
-	/// <summary>Wraps wxSTC_LEX_AVE.</summary>
-	public const int LexAve = 19;
-	/// <summary>Wraps wxSTC_LEX_AVS.</summary>
-	public const int LexAvs = 104;
-	/// <summary>Wraps wxSTC_LEX_BAAN.</summary>
-	public const int LexBaan = 31;
-	/// <summary>Wraps wxSTC_LEX_BASH.</summary>
-	public const int LexBash = 62;
-	/// <summary>Wraps wxSTC_LEX_BATCH.</summary>
-	public const int LexBatch = 12;
-	/// <summary>Wraps wxSTC_LEX_BIBTEX.</summary>
-	public const int LexBibtex = 116;
-	/// <summary>Wraps wxSTC_LEX_BLITZBASIC.</summary>
-	public const int LexBlitzbasic = 66;
-	/// <summary>Wraps wxSTC_LEX_BULLANT.</summary>
-	public const int LexBullant = 27;
-	/// <summary>Wraps wxSTC_LEX_CAML.</summary>
-	public const int LexCaml = 65;
-	/// <summary>Wraps wxSTC_LEX_CIL.</summary>
-	public const int LexCil = 127;
-	/// <summary>Wraps wxSTC_LEX_CLW.</summary>
-	public const int LexClw = 45;
-	/// <summary>Wraps wxSTC_LEX_CLWNOCASE.</summary>
-	public const int LexClwnocase = 46;
-	/// <summary>Wraps wxSTC_LEX_CMAKE.</summary>
-	public const int LexCmake = 80;
-	/// <summary>Wraps wxSTC_LEX_COBOL.</summary>
-	public const int LexCobol = 92;
-	/// <summary>Wraps wxSTC_LEX_COFFEESCRIPT.</summary>
-	public const int LexCoffeescript = 102;
-	/// <summary>Wraps wxSTC_LEX_CONF.</summary>
-	public const int LexConf = 17;
-	/// <summary>Wraps wxSTC_LEX_CONTAINER.</summary>
-	public const int LexContainer = 0;
-	/// <summary>Wraps wxSTC_LEX_CPP.</summary>
-	public const int LexCpp = 3;
-	/// <summary>Wraps wxSTC_LEX_CPPNOCASE.</summary>
-	public const int LexCppnocase = 35;
-	/// <summary>Wraps wxSTC_LEX_CSOUND.</summary>
-	public const int LexCsound = 74;
-	/// <summary>Wraps wxSTC_LEX_CSS.</summary>
-	public const int LexCss = 38;
-	/// <summary>Wraps wxSTC_LEX_D.</summary>
-	public const int LexD = 79;
-	/// <summary>Wraps wxSTC_LEX_DART.</summary>
-	public const int LexDart = 138;
-	/// <summary>Wraps wxSTC_LEX_DATAFLEX.</summary>
-	public const int LexDataflex = 129;
-	/// <summary>Wraps wxSTC_LEX_DIFF.</summary>
-	public const int LexDiff = 16;
-	/// <summary>Wraps wxSTC_LEX_DMAP.</summary>
-	public const int LexDmap = 112;
-	/// <summary>Wraps wxSTC_LEX_DMIS.</summary>
-	public const int LexDmis = 114;
-	/// <summary>Wraps wxSTC_LEX_ECL.</summary>
-	public const int LexEcl = 105;
-	/// <summary>Wraps wxSTC_LEX_EDIFACT.</summary>
-	public const int LexEdifact = 121;
-	/// <summary>Wraps wxSTC_LEX_EIFFEL.</summary>
-	public const int LexEiffel = 23;
-	/// <summary>Wraps wxSTC_LEX_EIFFELKW.</summary>
-	public const int LexEiffelkw = 24;
-	/// <summary>Wraps wxSTC_LEX_ERLANG.</summary>
-	public const int LexErlang = 53;
-	/// <summary>Wraps wxSTC_LEX_ERRORLIST.</summary>
-	public const int LexErrorlist = 10;
-	/// <summary>Wraps wxSTC_LEX_ESCRIPT.</summary>
-	public const int LexEscript = 41;
-	/// <summary>Wraps wxSTC_LEX_ESCSEQ.</summary>
-	public const int LexEscseq = 142;
-	/// <summary>Wraps wxSTC_LEX_F77.</summary>
-	public const int LexF77 = 37;
-	/// <summary>Wraps wxSTC_LEX_FLAGSHIP.</summary>
-	public const int LexFlagship = 73;
-	/// <summary>Wraps wxSTC_LEX_FORTH.</summary>
-	public const int LexForth = 52;
-	/// <summary>Wraps wxSTC_LEX_FORTRAN.</summary>
-	public const int LexFortran = 36;
-	/// <summary>Wraps wxSTC_LEX_FREEBASIC.</summary>
-	public const int LexFreebasic = 75;
-	/// <summary>Wraps wxSTC_LEX_FSHARP.</summary>
-	public const int LexFsharp = 132;
-	/// <summary>Wraps wxSTC_LEX_GAP.</summary>
-	public const int LexGap = 81;
-	/// <summary>Wraps wxSTC_LEX_GDSCRIPT.</summary>
-	public const int LexGdscript = 135;
-	/// <summary>Wraps wxSTC_LEX_GUI4CLI.</summary>
-	public const int LexGui4cli = 58;
-	/// <summary>Wraps wxSTC_LEX_HASKELL.</summary>
-	public const int LexHaskell = 68;
-	/// <summary>Wraps wxSTC_LEX_HOLLYWOOD.</summary>
-	public const int LexHollywood = 130;
-	/// <summary>Wraps wxSTC_LEX_HTML.</summary>
-	public const int LexHtml = 4;
-	/// <summary>Wraps wxSTC_LEX_IHEX.</summary>
-	public const int LexIhex = 118;
-	/// <summary>Wraps wxSTC_LEX_INDENT.</summary>
-	public const int LexIndent = 122;
-	/// <summary>Wraps wxSTC_LEX_INNOSETUP.</summary>
-	public const int LexInnosetup = 76;
-	/// <summary>Wraps wxSTC_LEX_JSON.</summary>
-	public const int LexJson = 120;
-	/// <summary>Wraps wxSTC_LEX_JULIA.</summary>
-	public const int LexJulia = 133;
-	/// <summary>Wraps wxSTC_LEX_KIX.</summary>
-	public const int LexKix = 57;
-	/// <summary>Wraps wxSTC_LEX_KVIRC.</summary>
-	public const int LexKvirc = 110;
-	/// <summary>Wraps wxSTC_LEX_LATEX.</summary>
-	public const int LexLatex = 14;
-	/// <summary>Wraps wxSTC_LEX_LISP.</summary>
-	public const int LexLisp = 21;
-	/// <summary>Wraps wxSTC_LEX_LITERATEHASKELL.</summary>
-	public const int LexLiteratehaskell = 108;
-	/// <summary>Wraps wxSTC_LEX_LOT.</summary>
-	public const int LexLot = 47;
-	/// <summary>Wraps wxSTC_LEX_LOUT.</summary>
-	public const int LexLout = 40;
-	/// <summary>Wraps wxSTC_LEX_LUA.</summary>
-	public const int LexLua = 15;
-	/// <summary>Wraps wxSTC_LEX_MAGIK.</summary>
-	public const int LexMagik = 87;
-	/// <summary>Wraps wxSTC_LEX_MAKEFILE.</summary>
-	public const int LexMakefile = 11;
-	/// <summary>Wraps wxSTC_LEX_MARKDOWN.</summary>
-	public const int LexMarkdown = 98;
-	/// <summary>Wraps wxSTC_LEX_MATLAB.</summary>
-	public const int LexMatlab = 32;
-	/// <summary>Wraps wxSTC_LEX_MAXIMA.</summary>
-	public const int LexMaxima = 123;
-	/// <summary>Wraps wxSTC_LEX_METAPOST.</summary>
-	public const int LexMetapost = 50;
-	/// <summary>Wraps wxSTC_LEX_MMIXAL.</summary>
-	public const int LexMmixal = 44;
-	/// <summary>Wraps wxSTC_LEX_MODULA.</summary>
-	public const int LexModula = 101;
-	/// <summary>Wraps wxSTC_LEX_MSSQL.</summary>
-	public const int LexMssql = 55;
-	/// <summary>Wraps wxSTC_LEX_MYSQL.</summary>
-	public const int LexMysql = 89;
-	/// <summary>Wraps wxSTC_LEX_NIM.</summary>
-	public const int LexNim = 126;
-	/// <summary>Wraps wxSTC_LEX_NIMROD.</summary>
-	public const int LexNimrod = 96;
-	/// <summary>Wraps wxSTC_LEX_NIX.</summary>
-	public const int LexNix = 140;
-	/// <summary>Wraps wxSTC_LEX_NNCRONTAB.</summary>
-	public const int LexNncrontab = 26;
-	/// <summary>Wraps wxSTC_LEX_NSIS.</summary>
-	public const int LexNsis = 43;
-	/// <summary>Wraps wxSTC_LEX_NULL.</summary>
-	public const int LexNull = 1;
-	/// <summary>Wraps wxSTC_LEX_OCTAVE.</summary>
-	public const int LexOctave = 54;
-	/// <summary>Wraps wxSTC_LEX_OPAL.</summary>
-	public const int LexOpal = 77;
-	/// <summary>Wraps wxSTC_LEX_OSCRIPT.</summary>
-	public const int LexOscript = 106;
-	/// <summary>Wraps wxSTC_LEX_PASCAL.</summary>
-	public const int LexPascal = 18;
-	/// <summary>Wraps wxSTC_LEX_PERL.</summary>
-	public const int LexPerl = 6;
-	/// <summary>Wraps wxSTC_LEX_PHPSCRIPT.</summary>
-	public const int LexPhpscript = 69;
-	/// <summary>Wraps wxSTC_LEX_PLM.</summary>
-	public const int LexPlm = 82;
-	/// <summary>Wraps wxSTC_LEX_PO.</summary>
-	public const int LexPo = 90;
-	/// <summary>Wraps wxSTC_LEX_POV.</summary>
-	public const int LexPov = 39;
-	/// <summary>Wraps wxSTC_LEX_POWERBASIC.</summary>
-	public const int LexPowerbasic = 51;
-	/// <summary>Wraps wxSTC_LEX_POWERPRO.</summary>
-	public const int LexPowerpro = 95;
-	/// <summary>Wraps wxSTC_LEX_POWERSHELL.</summary>
-	public const int LexPowershell = 88;
-	/// <summary>Wraps wxSTC_LEX_PROGRESS.</summary>
-	public const int LexProgress = 83;
-	/// <summary>Wraps wxSTC_LEX_PROPERTIES.</summary>
-	public const int LexProperties = 9;
-	/// <summary>Wraps wxSTC_LEX_PS.</summary>
-	public const int LexPs = 42;
-	/// <summary>Wraps wxSTC_LEX_PUREBASIC.</summary>
-	public const int LexPurebasic = 67;
-	/// <summary>Wraps wxSTC_LEX_PYTHON.</summary>
-	public const int LexPython = 2;
-	/// <summary>Wraps wxSTC_LEX_R.</summary>
-	public const int LexR = 86;
-	/// <summary>Wraps wxSTC_LEX_RAKU.</summary>
-	public const int LexRaku = 131;
-	/// <summary>Wraps wxSTC_LEX_REBOL.</summary>
-	public const int LexRebol = 71;
-	/// <summary>Wraps wxSTC_LEX_REGISTRY.</summary>
-	public const int LexRegistry = 115;
-	/// <summary>Wraps wxSTC_LEX_RUBY.</summary>
-	public const int LexRuby = 22;
-	/// <summary>Wraps wxSTC_LEX_RUST.</summary>
-	public const int LexRust = 111;
-	/// <summary>Wraps wxSTC_LEX_SAS.</summary>
-	public const int LexSas = 125;
-	/// <summary>Wraps wxSTC_LEX_SCRIPTOL.</summary>
-	public const int LexScriptol = 33;
-	/// <summary>Wraps wxSTC_LEX_SINEX.</summary>
-	public const int LexSinex = 141;
-	/// <summary>Wraps wxSTC_LEX_SMALLTALK.</summary>
-	public const int LexSmalltalk = 72;
-	/// <summary>Wraps wxSTC_LEX_SML.</summary>
-	public const int LexSml = 97;
-	/// <summary>Wraps wxSTC_LEX_SORCUS.</summary>
-	public const int LexSorcus = 94;
-	/// <summary>Wraps wxSTC_LEX_SPECMAN.</summary>
-	public const int LexSpecman = 59;
-	/// <summary>Wraps wxSTC_LEX_SPICE.</summary>
-	public const int LexSpice = 78;
-	/// <summary>Wraps wxSTC_LEX_SQL.</summary>
-	public const int LexSql = 7;
-	/// <summary>Wraps wxSTC_LEX_SREC.</summary>
-	public const int LexSrec = 117;
-	/// <summary>Wraps wxSTC_LEX_STATA.</summary>
-	public const int LexStata = 124;
-	/// <summary>Wraps wxSTC_LEX_STTXT.</summary>
-	public const int LexSttxt = 109;
-	/// <summary>Wraps wxSTC_LEX_TACL.</summary>
-	public const int LexTacl = 93;
-	/// <summary>Wraps wxSTC_LEX_TADS3.</summary>
-	public const int LexTads3 = 70;
-	/// <summary>Wraps wxSTC_LEX_TAL.</summary>
-	public const int LexTal = 91;
-	/// <summary>Wraps wxSTC_LEX_TCL.</summary>
-	public const int LexTcl = 25;
-	/// <summary>Wraps wxSTC_LEX_TCMD.</summary>
-	public const int LexTcmd = 103;
-	/// <summary>Wraps wxSTC_LEX_TEHEX.</summary>
-	public const int LexTehex = 119;
-	/// <summary>Wraps wxSTC_LEX_TEX.</summary>
-	public const int LexTex = 49;
-	/// <summary>Wraps wxSTC_LEX_TOML.</summary>
-	public const int LexToml = 136;
-	/// <summary>Wraps wxSTC_LEX_TROFF.</summary>
-	public const int LexTroff = 137;
-	/// <summary>Wraps wxSTC_LEX_TXT2TAGS.</summary>
-	public const int LexTxt2tags = 99;
-	/// <summary>Wraps wxSTC_LEX_VB.</summary>
-	public const int LexVb = 8;
-	/// <summary>Wraps wxSTC_LEX_VBSCRIPT.</summary>
-	public const int LexVbscript = 28;
-	/// <summary>Wraps wxSTC_LEX_VERILOG.</summary>
-	public const int LexVerilog = 56;
-	/// <summary>Wraps wxSTC_LEX_VHDL.</summary>
-	public const int LexVhdl = 64;
-	/// <summary>Wraps wxSTC_LEX_VISUALPROLOG.</summary>
-	public const int LexVisualprolog = 107;
-	/// <summary>Wraps wxSTC_LEX_X12.</summary>
-	public const int LexX12 = 128;
-	/// <summary>Wraps wxSTC_LEX_XCODE.</summary>
-	public const int LexXcode = 13;
-	/// <summary>Wraps wxSTC_LEX_XML.</summary>
-	public const int LexXml = 5;
-	/// <summary>Wraps wxSTC_LEX_YAML.</summary>
-	public const int LexYaml = 48;
-	/// <summary>Wraps wxSTC_LEX_ZIG.</summary>
-	public const int LexZig = 139;
-	/// <summary>Wraps wxSTC_LINE_END_TYPE_DEFAULT.</summary>
-	public const int LineEndTypeDefault = 0;
-	/// <summary>Wraps wxSTC_LINE_END_TYPE_UNICODE.</summary>
-	public const int LineEndTypeUnicode = 1;
 	/// <summary>Wraps wxSTC_LISP_COMMENT.</summary>
 	public const int LispComment = 1;
 	/// <summary>Wraps wxSTC_LISP_DEFAULT.</summary>
@@ -3229,7 +2451,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_LISP_STRING.</summary>
 	public const int LispString = 6;
 	/// <summary>Wraps wxSTC_LISP_STRINGEOL.</summary>
-	public const int LispStringeol = 8;
+	public const int LispStringEol = 8;
 	/// <summary>Wraps wxSTC_LISP_SYMBOL.</summary>
 	public const int LispSymbol = 5;
 	/// <summary>Wraps wxSTC_LOT_ABORT.</summary>
@@ -3259,7 +2481,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_LOUT_STRING.</summary>
 	public const int LoutString = 7;
 	/// <summary>Wraps wxSTC_LOUT_STRINGEOL.</summary>
-	public const int LoutStringeol = 10;
+	public const int LoutStringEol = 10;
 	/// <summary>Wraps wxSTC_LOUT_WORD.</summary>
 	public const int LoutWord = 3;
 	/// <summary>Wraps wxSTC_LOUT_WORD2.</summary>
@@ -3273,9 +2495,9 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_LUA_COMMENT.</summary>
 	public const int LuaComment = 1;
 	/// <summary>Wraps wxSTC_LUA_COMMENTDOC.</summary>
-	public const int LuaCommentdoc = 3;
+	public const int LuaCommentDoc = 3;
 	/// <summary>Wraps wxSTC_LUA_COMMENTLINE.</summary>
-	public const int LuaCommentline = 2;
+	public const int LuaCommentLine = 2;
 	/// <summary>Wraps wxSTC_LUA_DEFAULT.</summary>
 	public const int LuaDefault = 0;
 	/// <summary>Wraps wxSTC_LUA_IDENTIFIER.</summary>
@@ -3283,7 +2505,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_LUA_LABEL.</summary>
 	public const int LuaLabel = 20;
 	/// <summary>Wraps wxSTC_LUA_LITERALSTRING.</summary>
-	public const int LuaLiteralstring = 8;
+	public const int LuaLiteralString = 8;
 	/// <summary>Wraps wxSTC_LUA_NUMBER.</summary>
 	public const int LuaNumber = 4;
 	/// <summary>Wraps wxSTC_LUA_OPERATOR.</summary>
@@ -3293,7 +2515,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_LUA_STRING.</summary>
 	public const int LuaString = 6;
 	/// <summary>Wraps wxSTC_LUA_STRINGEOL.</summary>
-	public const int LuaStringeol = 12;
+	public const int LuaStringEol = 12;
 	/// <summary>Wraps wxSTC_LUA_WORD.</summary>
 	public const int LuaWord = 5;
 	/// <summary>Wraps wxSTC_LUA_WORD2.</summary>
@@ -3311,7 +2533,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_LUA_WORD8.</summary>
 	public const int LuaWord8 = 19;
 	/// <summary>Wraps wxSTC_L_CMDOPT.</summary>
-	public const int LCmdopt = 11;
+	public const int LCmdOpt = 11;
 	/// <summary>Wraps wxSTC_L_COMMAND.</summary>
 	public const int LCommand = 1;
 	/// <summary>Wraps wxSTC_L_COMMENT.</summary>
@@ -3327,7 +2549,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_L_MATH2.</summary>
 	public const int LMath2 = 6;
 	/// <summary>Wraps wxSTC_L_SHORTCMD.</summary>
-	public const int LShortcmd = 9;
+	public const int LShortCmd = 9;
 	/// <summary>Wraps wxSTC_L_SPECIAL.</summary>
 	public const int LSpecial = 10;
 	/// <summary>Wraps wxSTC_L_TAG.</summary>
@@ -3363,7 +2585,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_MAGIK_PRAGMA.</summary>
 	public const int MagikPragma = 14;
 	/// <summary>Wraps wxSTC_MAGIK_SQBRACKET_BLOCK.</summary>
-	public const int MagikSqbracketBlock = 11;
+	public const int MagikSqBracketBlock = 11;
 	/// <summary>Wraps wxSTC_MAGIK_STRING.</summary>
 	public const int MagikString = 2;
 	/// <summary>Wraps wxSTC_MAGIK_SYMBOL.</summary>
@@ -3377,39 +2599,21 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_MAKE_IDENTIFIER.</summary>
 	public const int MakeIdentifier = 3;
 	/// <summary>Wraps wxSTC_MAKE_IDEOL.</summary>
-	public const int MakeIdeol = 9;
+	public const int MakeIdEol = 9;
 	/// <summary>Wraps wxSTC_MAKE_OPERATOR.</summary>
 	public const int MakeOperator = 4;
 	/// <summary>Wraps wxSTC_MAKE_PREPROCESSOR.</summary>
 	public const int MakePreprocessor = 2;
 	/// <summary>Wraps wxSTC_MAKE_TARGET.</summary>
 	public const int MakeTarget = 5;
-	/// <summary>Wraps wxSTC_MARGINOPTION_NONE.</summary>
-	public const int MarginoptionNone = 0;
-	/// <summary>Wraps wxSTC_MARGINOPTION_SUBLINESELECT.</summary>
-	public const int MarginoptionSublineselect = 1;
-	/// <summary>Wraps wxSTC_MARGIN_BACK.</summary>
-	public const int MarginBack = 2;
-	/// <summary>Wraps wxSTC_MARGIN_COLOUR.</summary>
-	public const int MarginColor = 6;
-	/// <summary>Wraps wxSTC_MARGIN_FORE.</summary>
-	public const int MarginFore = 3;
-	/// <summary>Wraps wxSTC_MARGIN_NUMBER.</summary>
-	public const int MarginNumber = 1;
-	/// <summary>Wraps wxSTC_MARGIN_RTEXT.</summary>
-	public const int MarginRtext = 5;
-	/// <summary>Wraps wxSTC_MARGIN_SYMBOL.</summary>
-	public const int MarginSymbol = 0;
-	/// <summary>Wraps wxSTC_MARGIN_TEXT.</summary>
-	public const int MarginText = 4;
 	/// <summary>Wraps wxSTC_MARKDOWN_BLOCKQUOTE.</summary>
-	public const int MarkdownBlockquote = 15;
+	public const int MarkdownBlockQuote = 15;
 	/// <summary>Wraps wxSTC_MARKDOWN_CODE.</summary>
 	public const int MarkdownCode = 19;
 	/// <summary>Wraps wxSTC_MARKDOWN_CODE2.</summary>
 	public const int MarkdownCode2 = 20;
 	/// <summary>Wraps wxSTC_MARKDOWN_CODEBK.</summary>
-	public const int MarkdownCodebk = 21;
+	public const int MarkdownCodeBk = 21;
 	/// <summary>Wraps wxSTC_MARKDOWN_DEFAULT.</summary>
 	public const int MarkdownDefault = 0;
 	/// <summary>Wraps wxSTC_MARKDOWN_EM1.</summary>
@@ -3437,7 +2641,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_MARKDOWN_OLIST_ITEM.</summary>
 	public const int MarkdownOlistItem = 14;
 	/// <summary>Wraps wxSTC_MARKDOWN_PRECHAR.</summary>
-	public const int MarkdownPrechar = 12;
+	public const int MarkdownPreChar = 12;
 	/// <summary>Wraps wxSTC_MARKDOWN_STRIKEOUT.</summary>
 	public const int MarkdownStrikeout = 16;
 	/// <summary>Wraps wxSTC_MARKDOWN_STRONG1.</summary>
@@ -3449,87 +2653,19 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_MARKER_MAX.</summary>
 	public const int MarkerMax = 31;
 	/// <summary>Wraps wxSTC_MARKNUM_FOLDER.</summary>
-	public const int MarknumFolder = 30;
+	public const int MarkerNumberFolder = 30;
 	/// <summary>Wraps wxSTC_MARKNUM_FOLDEREND.</summary>
-	public const int MarknumFolderend = 25;
+	public const int MarkerNumberFolderEnd = 25;
 	/// <summary>Wraps wxSTC_MARKNUM_FOLDERMIDTAIL.</summary>
-	public const int MarknumFoldermidtail = 27;
+	public const int MarkerNumberFolderMidTail = 27;
 	/// <summary>Wraps wxSTC_MARKNUM_FOLDEROPEN.</summary>
-	public const int MarknumFolderopen = 31;
+	public const int MarkerNumberFolderOpen = 31;
 	/// <summary>Wraps wxSTC_MARKNUM_FOLDEROPENMID.</summary>
-	public const int MarknumFolderopenmid = 26;
+	public const int MarkerNumberFolderOpenMid = 26;
 	/// <summary>Wraps wxSTC_MARKNUM_FOLDERSUB.</summary>
-	public const int MarknumFoldersub = 29;
+	public const int MarkerNumberFolderSub = 29;
 	/// <summary>Wraps wxSTC_MARKNUM_FOLDERTAIL.</summary>
-	public const int MarknumFoldertail = 28;
-	/// <summary>Wraps wxSTC_MARK_ARROW.</summary>
-	public const int MarkArrow = 2;
-	/// <summary>Wraps wxSTC_MARK_ARROWDOWN.</summary>
-	public const int MarkArrowdown = 6;
-	/// <summary>Wraps wxSTC_MARK_ARROWS.</summary>
-	public const int MarkArrows = 24;
-	/// <summary>Wraps wxSTC_MARK_AVAILABLE.</summary>
-	public const int MarkAvailable = 28;
-	/// <summary>Wraps wxSTC_MARK_BACKGROUND.</summary>
-	public const int MarkBackground = 22;
-	/// <summary>Wraps wxSTC_MARK_BOOKMARK.</summary>
-	public const int MarkBookmark = 31;
-	/// <summary>Wraps wxSTC_MARK_BOXMINUS.</summary>
-	public const int MarkBoxminus = 14;
-	/// <summary>Wraps wxSTC_MARK_BOXMINUSCONNECTED.</summary>
-	public const int MarkBoxminusconnected = 15;
-	/// <summary>Wraps wxSTC_MARK_BOXPLUS.</summary>
-	public const int MarkBoxplus = 12;
-	/// <summary>Wraps wxSTC_MARK_BOXPLUSCONNECTED.</summary>
-	public const int MarkBoxplusconnected = 13;
-	/// <summary>Wraps wxSTC_MARK_CHARACTER.</summary>
-	public const int MarkCharacter = 10000;
-	/// <summary>Wraps wxSTC_MARK_CIRCLE.</summary>
-	public const int MarkCircle = 0;
-	/// <summary>Wraps wxSTC_MARK_CIRCLEMINUS.</summary>
-	public const int MarkCircleminus = 20;
-	/// <summary>Wraps wxSTC_MARK_CIRCLEMINUSCONNECTED.</summary>
-	public const int MarkCircleminusconnected = 21;
-	/// <summary>Wraps wxSTC_MARK_CIRCLEPLUS.</summary>
-	public const int MarkCircleplus = 18;
-	/// <summary>Wraps wxSTC_MARK_CIRCLEPLUSCONNECTED.</summary>
-	public const int MarkCircleplusconnected = 19;
-	/// <summary>Wraps wxSTC_MARK_DOTDOTDOT.</summary>
-	public const int MarkDotdotdot = 23;
-	/// <summary>Wraps wxSTC_MARK_EMPTY.</summary>
-	public const int MarkEmpty = 5;
-	/// <summary>Wraps wxSTC_MARK_FULLRECT.</summary>
-	public const int MarkFullrect = 26;
-	/// <summary>Wraps wxSTC_MARK_LCORNER.</summary>
-	public const int MarkLcorner = 10;
-	/// <summary>Wraps wxSTC_MARK_LCORNERCURVE.</summary>
-	public const int MarkLcornercurve = 16;
-	/// <summary>Wraps wxSTC_MARK_LEFTRECT.</summary>
-	public const int MarkLeftrect = 27;
-	/// <summary>Wraps wxSTC_MARK_MINUS.</summary>
-	public const int MarkMinus = 7;
-	/// <summary>Wraps wxSTC_MARK_PIXMAP.</summary>
-	public const int MarkPixmap = 25;
-	/// <summary>Wraps wxSTC_MARK_PLUS.</summary>
-	public const int MarkPlus = 8;
-	/// <summary>Wraps wxSTC_MARK_RGBAIMAGE.</summary>
-	public const int MarkRgbaimage = 30;
-	/// <summary>Wraps wxSTC_MARK_ROUNDRECT.</summary>
-	public const int MarkRoundrect = 1;
-	/// <summary>Wraps wxSTC_MARK_SHORTARROW.</summary>
-	public const int MarkShortarrow = 4;
-	/// <summary>Wraps wxSTC_MARK_SMALLRECT.</summary>
-	public const int MarkSmallrect = 3;
-	/// <summary>Wraps wxSTC_MARK_TCORNER.</summary>
-	public const int MarkTcorner = 11;
-	/// <summary>Wraps wxSTC_MARK_TCORNERCURVE.</summary>
-	public const int MarkTcornercurve = 17;
-	/// <summary>Wraps wxSTC_MARK_UNDERLINE.</summary>
-	public const int MarkUnderline = 29;
-	/// <summary>Wraps wxSTC_MARK_VERTICALBOOKMARK.</summary>
-	public const int MarkVerticalbookmark = 32;
-	/// <summary>Wraps wxSTC_MARK_VLINE.</summary>
-	public const int MarkVline = 9;
+	public const int MarkerNumberFolderTail = 28;
 	/// <summary>Wraps wxSTC_MASK_FOLDERS.</summary>
 	public const int MaskFolders = unchecked((int)4261412864L);
 	/// <summary>Wraps wxSTC_MATLAB_COMMAND.</summary>
@@ -3539,7 +2675,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_MATLAB_DEFAULT.</summary>
 	public const int MatlabDefault = 0;
 	/// <summary>Wraps wxSTC_MATLAB_DOUBLEQUOTESTRING.</summary>
-	public const int MatlabDoublequotestring = 8;
+	public const int MatlabDoubleQuoteString = 8;
 	/// <summary>Wraps wxSTC_MATLAB_IDENTIFIER.</summary>
 	public const int MatlabIdentifier = 7;
 	/// <summary>Wraps wxSTC_MATLAB_KEYWORD.</summary>
@@ -3553,7 +2689,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_MAXIMA_COMMAND.</summary>
 	public const int MaximaCommand = 5;
 	/// <summary>Wraps wxSTC_MAXIMA_COMMANDENDING.</summary>
-	public const int MaximaCommandending = 1;
+	public const int MaximaCommandEnding = 1;
 	/// <summary>Wraps wxSTC_MAXIMA_COMMENT.</summary>
 	public const int MaximaComment = 2;
 	/// <summary>Wraps wxSTC_MAXIMA_NUMBER.</summary>
@@ -3569,19 +2705,19 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_MAX_MARGIN.</summary>
 	public const int MaxMargin = 4;
 	/// <summary>Wraps wxSTC_METAPOST_COMMAND.</summary>
-	public const int MetapostCommand = 4;
+	public const int MetaPostCommand = 4;
 	/// <summary>Wraps wxSTC_METAPOST_DEFAULT.</summary>
-	public const int MetapostDefault = 0;
+	public const int MetaPostDefault = 0;
 	/// <summary>Wraps wxSTC_METAPOST_EXTRA.</summary>
-	public const int MetapostExtra = 6;
+	public const int MetaPostExtra = 6;
 	/// <summary>Wraps wxSTC_METAPOST_GROUP.</summary>
-	public const int MetapostGroup = 2;
+	public const int MetaPostGroup = 2;
 	/// <summary>Wraps wxSTC_METAPOST_SPECIAL.</summary>
-	public const int MetapostSpecial = 1;
+	public const int MetaPostSpecial = 1;
 	/// <summary>Wraps wxSTC_METAPOST_SYMBOL.</summary>
-	public const int MetapostSymbol = 3;
+	public const int MetaPostSymbol = 3;
 	/// <summary>Wraps wxSTC_METAPOST_TEXT.</summary>
-	public const int MetapostText = 5;
+	public const int MetaPostText = 5;
 	/// <summary>Wraps wxSTC_MMIXAL_CHAR.</summary>
 	public const int MmixalChar = 11;
 	/// <summary>Wraps wxSTC_MMIXAL_COMMENT.</summary>
@@ -3593,7 +2729,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_MMIXAL_LABEL.</summary>
 	public const int MmixalLabel = 2;
 	/// <summary>Wraps wxSTC_MMIXAL_LEADWS.</summary>
-	public const int MmixalLeadws = 0;
+	public const int MmixalLeadWs = 0;
 	/// <summary>Wraps wxSTC_MMIXAL_NUMBER.</summary>
 	public const int MmixalNumber = 9;
 	/// <summary>Wraps wxSTC_MMIXAL_OPCODE.</summary>
@@ -3618,24 +2754,22 @@ public static partial class Stc {
 	public const int MmixalString = 12;
 	/// <summary>Wraps wxSTC_MMIXAL_SYMBOL.</summary>
 	public const int MmixalSymbol = 16;
-	/// <summary>Wraps wxSTC_MODEVENTMASKALL.</summary>
-	public const int Modeventmaskall = 8388607;
 	/// <summary>Wraps wxSTC_MODULA_BADSTR.</summary>
-	public const int ModulaBadstr = 17;
+	public const int ModulaBadStr = 17;
 	/// <summary>Wraps wxSTC_MODULA_BASENUM.</summary>
-	public const int ModulaBasenum = 7;
+	public const int ModulaBaseNum = 7;
 	/// <summary>Wraps wxSTC_MODULA_CHAR.</summary>
 	public const int ModulaChar = 11;
 	/// <summary>Wraps wxSTC_MODULA_CHARSPEC.</summary>
-	public const int ModulaCharspec = 12;
+	public const int ModulaCharSpec = 12;
 	/// <summary>Wraps wxSTC_MODULA_COMMENT.</summary>
 	public const int ModulaComment = 1;
 	/// <summary>Wraps wxSTC_MODULA_DEFAULT.</summary>
 	public const int ModulaDefault = 0;
 	/// <summary>Wraps wxSTC_MODULA_DOXYCOMM.</summary>
-	public const int ModulaDoxycomm = 2;
+	public const int ModulaDoxyComm = 2;
 	/// <summary>Wraps wxSTC_MODULA_DOXYKEY.</summary>
-	public const int ModulaDoxykey = 3;
+	public const int ModulaDoxyKey = 3;
 	/// <summary>Wraps wxSTC_MODULA_FLOAT.</summary>
 	public const int ModulaFloat = 8;
 	/// <summary>Wraps wxSTC_MODULA_KEYWORD.</summary>
@@ -3647,7 +2781,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_MODULA_PRAGMA.</summary>
 	public const int ModulaPragma = 14;
 	/// <summary>Wraps wxSTC_MODULA_PRGKEY.</summary>
-	public const int ModulaPrgkey = 15;
+	public const int ModulaPrgKey = 15;
 	/// <summary>Wraps wxSTC_MODULA_PROC.</summary>
 	public const int ModulaProc = 13;
 	/// <summary>Wraps wxSTC_MODULA_RESERVED.</summary>
@@ -3655,133 +2789,87 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_MODULA_STRING.</summary>
 	public const int ModulaString = 9;
 	/// <summary>Wraps wxSTC_MODULA_STRSPEC.</summary>
-	public const int ModulaStrspec = 10;
-	/// <summary>Wraps wxSTC_MOD_BEFOREDELETE.</summary>
-	public const int ModBeforedelete = 2048;
-	/// <summary>Wraps wxSTC_MOD_BEFOREINSERT.</summary>
-	public const int ModBeforeinsert = 1024;
-	/// <summary>Wraps wxSTC_MOD_CHANGEANNOTATION.</summary>
-	public const int ModChangeannotation = 131072;
-	/// <summary>Wraps wxSTC_MOD_CHANGEEOLANNOTATION.</summary>
-	public const int ModChangeeolannotation = 4194304;
-	/// <summary>Wraps wxSTC_MOD_CHANGEFOLD.</summary>
-	public const int ModChangefold = 8;
-	/// <summary>Wraps wxSTC_MOD_CHANGEINDICATOR.</summary>
-	public const int ModChangeindicator = 16384;
-	/// <summary>Wraps wxSTC_MOD_CHANGELINESTATE.</summary>
-	public const int ModChangelinestate = 32768;
-	/// <summary>Wraps wxSTC_MOD_CHANGEMARGIN.</summary>
-	public const int ModChangemargin = 65536;
-	/// <summary>Wraps wxSTC_MOD_CHANGEMARKER.</summary>
-	public const int ModChangemarker = 512;
-	/// <summary>Wraps wxSTC_MOD_CHANGESTYLE.</summary>
-	public const int ModChangestyle = 4;
-	/// <summary>Wraps wxSTC_MOD_CHANGETABSTOPS.</summary>
-	public const int ModChangetabstops = 2097152;
-	/// <summary>Wraps wxSTC_MOD_CONTAINER.</summary>
-	public const int ModContainer = 262144;
-	/// <summary>Wraps wxSTC_MOD_DELETETEXT.</summary>
-	public const int ModDeletetext = 2;
-	/// <summary>Wraps wxSTC_MOD_INSERTCHECK.</summary>
-	public const int ModInsertcheck = 1048576;
-	/// <summary>Wraps wxSTC_MOD_INSERTTEXT.</summary>
-	public const int ModInserttext = 1;
-	/// <summary>Wraps wxSTC_MOD_LEXERSTATE.</summary>
-	public const int ModLexerstate = 524288;
-	/// <summary>Wraps wxSTC_MOD_NONE.</summary>
-	public const int ModNone = 0;
+	public const int ModulaStrSpec = 10;
 	/// <summary>Wraps wxSTC_MSSQL_COLUMN_NAME.</summary>
-	public const int MssqlColumnName = 8;
+	public const int MsSqlColumnName = 8;
 	/// <summary>Wraps wxSTC_MSSQL_COLUMN_NAME_2.</summary>
-	public const int MssqlColumnName2 = 16;
+	public const int MsSqlColumnName2 = 16;
 	/// <summary>Wraps wxSTC_MSSQL_COMMENT.</summary>
-	public const int MssqlComment = 1;
+	public const int MsSqlComment = 1;
 	/// <summary>Wraps wxSTC_MSSQL_DATATYPE.</summary>
-	public const int MssqlDatatype = 10;
+	public const int MsSqlDataType = 10;
 	/// <summary>Wraps wxSTC_MSSQL_DEFAULT.</summary>
-	public const int MssqlDefault = 0;
+	public const int MsSqlDefault = 0;
 	/// <summary>Wraps wxSTC_MSSQL_DEFAULT_PREF_DATATYPE.</summary>
-	public const int MssqlDefaultPrefDatatype = 15;
+	public const int MsSqlDefaultPrefDataType = 15;
 	/// <summary>Wraps wxSTC_MSSQL_FUNCTION.</summary>
-	public const int MssqlFunction = 13;
+	public const int MsSqlFunction = 13;
 	/// <summary>Wraps wxSTC_MSSQL_GLOBAL_VARIABLE.</summary>
-	public const int MssqlGlobalVariable = 12;
+	public const int MsSqlGlobalVariable = 12;
 	/// <summary>Wraps wxSTC_MSSQL_IDENTIFIER.</summary>
-	public const int MssqlIdentifier = 6;
+	public const int MsSqlIdentifier = 6;
 	/// <summary>Wraps wxSTC_MSSQL_LINE_COMMENT.</summary>
-	public const int MssqlLineComment = 2;
+	public const int MsSqlLineComment = 2;
 	/// <summary>Wraps wxSTC_MSSQL_NUMBER.</summary>
-	public const int MssqlNumber = 3;
+	public const int MsSqlNumber = 3;
 	/// <summary>Wraps wxSTC_MSSQL_OPERATOR.</summary>
-	public const int MssqlOperator = 5;
+	public const int MsSqlOperator = 5;
 	/// <summary>Wraps wxSTC_MSSQL_STATEMENT.</summary>
-	public const int MssqlStatement = 9;
+	public const int MsSqlStatement = 9;
 	/// <summary>Wraps wxSTC_MSSQL_STORED_PROCEDURE.</summary>
-	public const int MssqlStoredProcedure = 14;
+	public const int MsSqlStoredProcedure = 14;
 	/// <summary>Wraps wxSTC_MSSQL_STRING.</summary>
-	public const int MssqlString = 4;
+	public const int MsSqlString = 4;
 	/// <summary>Wraps wxSTC_MSSQL_SYSTABLE.</summary>
-	public const int MssqlSystable = 11;
+	public const int MsSqlSysTable = 11;
 	/// <summary>Wraps wxSTC_MSSQL_VARIABLE.</summary>
-	public const int MssqlVariable = 7;
-	/// <summary>Wraps wxSTC_MULTIAUTOC_EACH.</summary>
-	public const int MultiautocEach = 1;
-	/// <summary>Wraps wxSTC_MULTIAUTOC_ONCE.</summary>
-	public const int MultiautocOnce = 0;
-	/// <summary>Wraps wxSTC_MULTILINEUNDOREDO.</summary>
-	public const int Multilineundoredo = 4096;
-	/// <summary>Wraps wxSTC_MULTIPASTE_EACH.</summary>
-	public const int MultipasteEach = 1;
-	/// <summary>Wraps wxSTC_MULTIPASTE_ONCE.</summary>
-	public const int MultipasteOnce = 0;
-	/// <summary>Wraps wxSTC_MULTISTEPUNDOREDO.</summary>
-	public const int Multistepundoredo = 128;
+	public const int MsSqlVariable = 7;
 	/// <summary>Wraps wxSTC_MYSQL_COMMENT.</summary>
-	public const int MysqlComment = 1;
+	public const int MySqlComment = 1;
 	/// <summary>Wraps wxSTC_MYSQL_COMMENTLINE.</summary>
-	public const int MysqlCommentline = 2;
+	public const int MySqlCommentLine = 2;
 	/// <summary>Wraps wxSTC_MYSQL_DATABASEOBJECT.</summary>
-	public const int MysqlDatabaseobject = 9;
+	public const int MySqlDatabaseObject = 9;
 	/// <summary>Wraps wxSTC_MYSQL_DEFAULT.</summary>
-	public const int MysqlDefault = 0;
+	public const int MySqlDefault = 0;
 	/// <summary>Wraps wxSTC_MYSQL_DQSTRING.</summary>
-	public const int MysqlDqstring = 13;
+	public const int MySqlDqString = 13;
 	/// <summary>Wraps wxSTC_MYSQL_FUNCTION.</summary>
-	public const int MysqlFunction = 15;
+	public const int MySqlFunction = 15;
 	/// <summary>Wraps wxSTC_MYSQL_HIDDENCOMMAND.</summary>
-	public const int MysqlHiddencommand = 21;
+	public const int MySqlHiddenCommand = 21;
 	/// <summary>Wraps wxSTC_MYSQL_IDENTIFIER.</summary>
-	public const int MysqlIdentifier = 16;
+	public const int MySqlIdentifier = 16;
 	/// <summary>Wraps wxSTC_MYSQL_KEYWORD.</summary>
-	public const int MysqlKeyword = 8;
+	public const int MySqlKeyword = 8;
 	/// <summary>Wraps wxSTC_MYSQL_KNOWNSYSTEMVARIABLE.</summary>
-	public const int MysqlKnownsystemvariable = 5;
+	public const int MySqlKnownSystemVariable = 5;
 	/// <summary>Wraps wxSTC_MYSQL_MAJORKEYWORD.</summary>
-	public const int MysqlMajorkeyword = 7;
+	public const int MySqlMajorKeyword = 7;
 	/// <summary>Wraps wxSTC_MYSQL_NUMBER.</summary>
-	public const int MysqlNumber = 6;
+	public const int MySqlNumber = 6;
 	/// <summary>Wraps wxSTC_MYSQL_OPERATOR.</summary>
-	public const int MysqlOperator = 14;
+	public const int MySqlOperator = 14;
 	/// <summary>Wraps wxSTC_MYSQL_PLACEHOLDER.</summary>
-	public const int MysqlPlaceholder = 22;
+	public const int MySqlPlaceholder = 22;
 	/// <summary>Wraps wxSTC_MYSQL_PROCEDUREKEYWORD.</summary>
-	public const int MysqlProcedurekeyword = 10;
+	public const int MySqlProcedureKeyword = 10;
 	/// <summary>Wraps wxSTC_MYSQL_QUOTEDIDENTIFIER.</summary>
-	public const int MysqlQuotedidentifier = 17;
+	public const int MySqlQuotedIdentifier = 17;
 	/// <summary>Wraps wxSTC_MYSQL_SQSTRING.</summary>
-	public const int MysqlSqstring = 12;
+	public const int MySqlSqString = 12;
 	/// <summary>Wraps wxSTC_MYSQL_STRING.</summary>
-	public const int MysqlString = 11;
+	public const int MySqlString = 11;
 	/// <summary>Wraps wxSTC_MYSQL_SYSTEMVARIABLE.</summary>
-	public const int MysqlSystemvariable = 4;
+	public const int MySqlSystemVariable = 4;
 	/// <summary>Wraps wxSTC_MYSQL_USER1.</summary>
-	public const int MysqlUser1 = 18;
+	public const int MySqlUser1 = 18;
 	/// <summary>Wraps wxSTC_MYSQL_USER2.</summary>
-	public const int MysqlUser2 = 19;
+	public const int MySqlUser2 = 19;
 	/// <summary>Wraps wxSTC_MYSQL_USER3.</summary>
-	public const int MysqlUser3 = 20;
+	public const int MySqlUser3 = 20;
 	/// <summary>Wraps wxSTC_MYSQL_VARIABLE.</summary>
-	public const int MysqlVariable = 3;
+	public const int MySqlVariable = 3;
 	/// <summary>Wraps wxSTC_NIM_BACKTICKS.</summary>
 	public const int NimBackticks = 11;
 	/// <summary>Wraps wxSTC_NIM_CHARACTER.</summary>
@@ -3789,15 +2877,15 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_NIM_COMMENT.</summary>
 	public const int NimComment = 1;
 	/// <summary>Wraps wxSTC_NIM_COMMENTDOC.</summary>
-	public const int NimCommentdoc = 2;
+	public const int NimCommentDoc = 2;
 	/// <summary>Wraps wxSTC_NIM_COMMENTLINE.</summary>
-	public const int NimCommentline = 3;
+	public const int NimCommentLine = 3;
 	/// <summary>Wraps wxSTC_NIM_COMMENTLINEDOC.</summary>
-	public const int NimCommentlinedoc = 4;
+	public const int NimCommentLineDoc = 4;
 	/// <summary>Wraps wxSTC_NIM_DEFAULT.</summary>
 	public const int NimDefault = 0;
 	/// <summary>Wraps wxSTC_NIM_FUNCNAME.</summary>
-	public const int NimFuncname = 12;
+	public const int NimFuncName = 12;
 	/// <summary>Wraps wxSTC_NIM_IDENTIFIER.</summary>
 	public const int NimIdentifier = 16;
 	/// <summary>Wraps wxSTC_NIM_NUMBER.</summary>
@@ -3809,21 +2897,21 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_NIM_STRING.</summary>
 	public const int NimString = 6;
 	/// <summary>Wraps wxSTC_NIM_STRINGEOL.</summary>
-	public const int NimStringeol = 13;
+	public const int NimStringEol = 13;
 	/// <summary>Wraps wxSTC_NIM_TRIPLE.</summary>
 	public const int NimTriple = 9;
 	/// <summary>Wraps wxSTC_NIM_TRIPLEDOUBLE.</summary>
-	public const int NimTripledouble = 10;
+	public const int NimTripleDouble = 10;
 	/// <summary>Wraps wxSTC_NIM_WORD.</summary>
 	public const int NimWord = 8;
 	/// <summary>Wraps wxSTC_NIX_COMMENTBLOCK.</summary>
-	public const int NixCommentblock = 2;
+	public const int NixCommentBlock = 2;
 	/// <summary>Wraps wxSTC_NIX_COMMENTLINE.</summary>
-	public const int NixCommentline = 1;
+	public const int NixCommentLine = 1;
 	/// <summary>Wraps wxSTC_NIX_DEFAULT.</summary>
 	public const int NixDefault = 0;
 	/// <summary>Wraps wxSTC_NIX_ESCAPECHAR.</summary>
-	public const int NixEscapechar = 5;
+	public const int NixEscapeChar = 5;
 	/// <summary>Wraps wxSTC_NIX_IDENTIFIER.</summary>
 	public const int NixIdentifier = 6;
 	/// <summary>Wraps wxSTC_NIX_KEY.</summary>
@@ -3847,67 +2935,67 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_NIX_STRING.</summary>
 	public const int NixString = 3;
 	/// <summary>Wraps wxSTC_NIX_STRINGEOL.</summary>
-	public const int NixStringeol = 16;
+	public const int NixStringEol = 16;
 	/// <summary>Wraps wxSTC_NIX_STRING_MULTILINE.</summary>
 	public const int NixStringMultiLine = 4;
 	/// <summary>Wraps wxSTC_NNCRONTAB_ASTERISK.</summary>
-	public const int NncrontabAsterisk = 6;
+	public const int NnCrontabAsterisk = 6;
 	/// <summary>Wraps wxSTC_NNCRONTAB_COMMENT.</summary>
-	public const int NncrontabComment = 1;
+	public const int NnCrontabComment = 1;
 	/// <summary>Wraps wxSTC_NNCRONTAB_DEFAULT.</summary>
-	public const int NncrontabDefault = 0;
+	public const int NnCrontabDefault = 0;
 	/// <summary>Wraps wxSTC_NNCRONTAB_ENVIRONMENT.</summary>
-	public const int NncrontabEnvironment = 9;
+	public const int NnCrontabEnvironment = 9;
 	/// <summary>Wraps wxSTC_NNCRONTAB_IDENTIFIER.</summary>
-	public const int NncrontabIdentifier = 10;
+	public const int NnCrontabIdentifier = 10;
 	/// <summary>Wraps wxSTC_NNCRONTAB_KEYWORD.</summary>
-	public const int NncrontabKeyword = 4;
+	public const int NnCrontabKeyword = 4;
 	/// <summary>Wraps wxSTC_NNCRONTAB_MODIFIER.</summary>
-	public const int NncrontabModifier = 5;
+	public const int NnCrontabModifier = 5;
 	/// <summary>Wraps wxSTC_NNCRONTAB_NUMBER.</summary>
-	public const int NncrontabNumber = 7;
+	public const int NnCrontabNumber = 7;
 	/// <summary>Wraps wxSTC_NNCRONTAB_SECTION.</summary>
-	public const int NncrontabSection = 3;
+	public const int NnCrontabSection = 3;
 	/// <summary>Wraps wxSTC_NNCRONTAB_STRING.</summary>
-	public const int NncrontabString = 8;
+	public const int NnCrontabString = 8;
 	/// <summary>Wraps wxSTC_NNCRONTAB_TASK.</summary>
-	public const int NncrontabTask = 2;
+	public const int NnCrontabTask = 2;
 	/// <summary>Wraps wxSTC_NSIS_COMMENT.</summary>
 	public const int NsisComment = 1;
 	/// <summary>Wraps wxSTC_NSIS_COMMENTBOX.</summary>
-	public const int NsisCommentbox = 18;
+	public const int NsisCommentBox = 18;
 	/// <summary>Wraps wxSTC_NSIS_DEFAULT.</summary>
 	public const int NsisDefault = 0;
 	/// <summary>Wraps wxSTC_NSIS_FUNCTION.</summary>
 	public const int NsisFunction = 5;
 	/// <summary>Wraps wxSTC_NSIS_FUNCTIONDEF.</summary>
-	public const int NsisFunctiondef = 17;
+	public const int NsisFunctionDef = 17;
 	/// <summary>Wraps wxSTC_NSIS_IFDEFINEDEF.</summary>
-	public const int NsisIfdefinedef = 11;
+	public const int NsisIfDefineDef = 11;
 	/// <summary>Wraps wxSTC_NSIS_LABEL.</summary>
 	public const int NsisLabel = 7;
 	/// <summary>Wraps wxSTC_NSIS_MACRODEF.</summary>
-	public const int NsisMacrodef = 12;
+	public const int NsisMacroDef = 12;
 	/// <summary>Wraps wxSTC_NSIS_NUMBER.</summary>
 	public const int NsisNumber = 14;
 	/// <summary>Wraps wxSTC_NSIS_PAGEEX.</summary>
-	public const int NsisPageex = 16;
+	public const int NsisPageEx = 16;
 	/// <summary>Wraps wxSTC_NSIS_SECTIONDEF.</summary>
-	public const int NsisSectiondef = 9;
+	public const int NsisSectionDef = 9;
 	/// <summary>Wraps wxSTC_NSIS_SECTIONGROUP.</summary>
-	public const int NsisSectiongroup = 15;
+	public const int NsisSectionGroup = 15;
 	/// <summary>Wraps wxSTC_NSIS_STRINGDQ.</summary>
-	public const int NsisStringdq = 2;
+	public const int NsisStringDq = 2;
 	/// <summary>Wraps wxSTC_NSIS_STRINGLQ.</summary>
-	public const int NsisStringlq = 3;
+	public const int NsisStringLq = 3;
 	/// <summary>Wraps wxSTC_NSIS_STRINGRQ.</summary>
-	public const int NsisStringrq = 4;
+	public const int NsisStringRq = 4;
 	/// <summary>Wraps wxSTC_NSIS_STRINGVAR.</summary>
-	public const int NsisStringvar = 13;
+	public const int NsisStringVar = 13;
 	/// <summary>Wraps wxSTC_NSIS_SUBSECTIONDEF.</summary>
-	public const int NsisSubsectiondef = 10;
+	public const int NsisSubSectionDef = 10;
 	/// <summary>Wraps wxSTC_NSIS_USERDEFINED.</summary>
-	public const int NsisUserdefined = 8;
+	public const int NsisUserDefined = 8;
 	/// <summary>Wraps wxSTC_NSIS_VARIABLE.</summary>
 	public const int NsisVariable = 6;
 	/// <summary>Wraps wxSTC_OPAL_BOOL_CONST.</summary>
@@ -3932,12 +3020,6 @@ public static partial class Stc {
 	public const int OpalString = 6;
 	/// <summary>Wraps wxSTC_OPTIONAL_START.</summary>
 	public const int OptionalStart = 3000;
-	/// <summary>Wraps wxSTC_ORDER_CUSTOM.</summary>
-	public const int OrderCustom = 2;
-	/// <summary>Wraps wxSTC_ORDER_PERFORMSORT.</summary>
-	public const int OrderPerformsort = 1;
-	/// <summary>Wraps wxSTC_ORDER_PRESORTED.</summary>
-	public const int OrderPresorted = 0;
 	/// <summary>Wraps wxSTC_OSCRIPT_BLOCK_COMMENT.</summary>
 	public const int OscriptBlockComment = 2;
 	/// <summary>Wraps wxSTC_OSCRIPT_CONSTANT.</summary>
@@ -3947,7 +3029,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_OSCRIPT_DOC_COMMENT.</summary>
 	public const int OscriptDocComment = 3;
 	/// <summary>Wraps wxSTC_OSCRIPT_DOUBLEQUOTE_STRING.</summary>
-	public const int OscriptDoublequoteString = 7;
+	public const int OscriptDoubleQuoteString = 7;
 	/// <summary>Wraps wxSTC_OSCRIPT_FUNCTION.</summary>
 	public const int OscriptFunction = 15;
 	/// <summary>Wraps wxSTC_OSCRIPT_GLOBAL.</summary>
@@ -3973,7 +3055,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_OSCRIPT_PROPERTY.</summary>
 	public const int OscriptProperty = 17;
 	/// <summary>Wraps wxSTC_OSCRIPT_SINGLEQUOTE_STRING.</summary>
-	public const int OscriptSinglequoteString = 6;
+	public const int OscriptSingleQuoteString = 6;
 	/// <summary>Wraps wxSTC_OSCRIPT_TYPE.</summary>
 	public const int OscriptType = 14;
 	/// <summary>Wraps wxSTC_PAS_ASM.</summary>
@@ -3985,15 +3067,15 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_PAS_COMMENT2.</summary>
 	public const int PasComment2 = 3;
 	/// <summary>Wraps wxSTC_PAS_COMMENTLINE.</summary>
-	public const int PasCommentline = 4;
+	public const int PasCommentLine = 4;
 	/// <summary>Wraps wxSTC_PAS_DEFAULT.</summary>
 	public const int PasDefault = 0;
 	/// <summary>Wraps wxSTC_PAS_HEXNUMBER.</summary>
-	public const int PasHexnumber = 8;
+	public const int PasHexNumber = 8;
 	/// <summary>Wraps wxSTC_PAS_IDENTIFIER.</summary>
 	public const int PasIdentifier = 1;
 	/// <summary>Wraps wxSTC_PAS_MULTILINESTRING.</summary>
-	public const int PasMultilinestring = 15;
+	public const int PasMultiLineString = 15;
 	/// <summary>Wraps wxSTC_PAS_NUMBER.</summary>
 	public const int PasNumber = 7;
 	/// <summary>Wraps wxSTC_PAS_OPERATOR.</summary>
@@ -4005,21 +3087,9 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_PAS_STRING.</summary>
 	public const int PasString = 10;
 	/// <summary>Wraps wxSTC_PAS_STRINGEOL.</summary>
-	public const int PasStringeol = 11;
+	public const int PasStringEol = 11;
 	/// <summary>Wraps wxSTC_PAS_WORD.</summary>
 	public const int PasWord = 9;
-	/// <summary>Wraps wxSTC_PERFORMED_REDO.</summary>
-	public const int PerformedRedo = 64;
-	/// <summary>Wraps wxSTC_PERFORMED_UNDO.</summary>
-	public const int PerformedUndo = 32;
-	/// <summary>Wraps wxSTC_PERFORMED_USER.</summary>
-	public const int PerformedUser = 16;
-	/// <summary>Wraps wxSTC_PHASES_MULTIPLE.</summary>
-	public const int PhasesMultiple = 2;
-	/// <summary>Wraps wxSTC_PHASES_ONE.</summary>
-	public const int PhasesOne = 0;
-	/// <summary>Wraps wxSTC_PHASES_TWO.</summary>
-	public const int PhasesTwo = 1;
 	/// <summary>Wraps wxSTC_PLM_COMMENT.</summary>
 	public const int PlmComment = 1;
 	/// <summary>Wraps wxSTC_PLM_CONTROL.</summary>
@@ -4045,9 +3115,9 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_PL_CHARACTER.</summary>
 	public const int PlCharacter = 7;
 	/// <summary>Wraps wxSTC_PL_COMMENTLINE.</summary>
-	public const int PlCommentline = 2;
+	public const int PlCommentLine = 2;
 	/// <summary>Wraps wxSTC_PL_DATASECTION.</summary>
-	public const int PlDatasection = 21;
+	public const int PlDataSection = 21;
 	/// <summary>Wraps wxSTC_PL_DEFAULT.</summary>
 	public const int PlDefault = 0;
 	/// <summary>Wraps wxSTC_PL_ERROR.</summary>
@@ -4073,7 +3143,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_PL_IDENTIFIER.</summary>
 	public const int PlIdentifier = 11;
 	/// <summary>Wraps wxSTC_PL_LONGQUOTE.</summary>
-	public const int PlLongquote = 19;
+	public const int PlLongQuote = 19;
 	/// <summary>Wraps wxSTC_PL_NUMBER.</summary>
 	public const int PlNumber = 4;
 	/// <summary>Wraps wxSTC_PL_OPERATOR.</summary>
@@ -4091,9 +3161,9 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_PL_REGEX_VAR.</summary>
 	public const int PlRegexVariable = 54;
 	/// <summary>Wraps wxSTC_PL_REGSUBST.</summary>
-	public const int PlRegsubst = 18;
+	public const int PlRegSubst = 18;
 	/// <summary>Wraps wxSTC_PL_REGSUBST_VAR.</summary>
-	public const int PlRegsubstVariable = 55;
+	public const int PlRegSubstVariable = 55;
 	/// <summary>Wraps wxSTC_PL_SCALAR.</summary>
 	public const int PlScalar = 12;
 	/// <summary>Wraps wxSTC_PL_STRING.</summary>
@@ -4119,25 +3189,19 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_PL_SUB_PROTOTYPE.</summary>
 	public const int PlSubPrototype = 40;
 	/// <summary>Wraps wxSTC_PL_SYMBOLTABLE.</summary>
-	public const int PlSymboltable = 15;
+	public const int PlSymbolTable = 15;
 	/// <summary>Wraps wxSTC_PL_VARIABLE_INDEXER.</summary>
 	public const int PlVariableIndexer = 16;
 	/// <summary>Wraps wxSTC_PL_WORD.</summary>
 	public const int PlWord = 5;
 	/// <summary>Wraps wxSTC_PL_XLAT.</summary>
 	public const int PlXlat = 44;
-	/// <summary>Wraps wxSTC_POPUP_ALL.</summary>
-	public const int PopupAll = 1;
-	/// <summary>Wraps wxSTC_POPUP_NEVER.</summary>
-	public const int PopupNever = 0;
-	/// <summary>Wraps wxSTC_POPUP_TEXT.</summary>
-	public const int PopupText = 2;
 	/// <summary>Wraps wxSTC_POV_BADDIRECTIVE.</summary>
-	public const int PovBaddirective = 9;
+	public const int PovBadDirective = 9;
 	/// <summary>Wraps wxSTC_POV_COMMENT.</summary>
 	public const int PovComment = 1;
 	/// <summary>Wraps wxSTC_POV_COMMENTLINE.</summary>
-	public const int PovCommentline = 2;
+	public const int PovCommentLine = 2;
 	/// <summary>Wraps wxSTC_POV_DEFAULT.</summary>
 	public const int PovDefault = 0;
 	/// <summary>Wraps wxSTC_POV_DIRECTIVE.</summary>
@@ -4151,7 +3215,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_POV_STRING.</summary>
 	public const int PovString = 6;
 	/// <summary>Wraps wxSTC_POV_STRINGEOL.</summary>
-	public const int PovStringeol = 7;
+	public const int PovStringEol = 7;
 	/// <summary>Wraps wxSTC_POV_WORD2.</summary>
 	public const int PovWord2 = 10;
 	/// <summary>Wraps wxSTC_POV_WORD3.</summary>
@@ -4167,73 +3231,73 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_POV_WORD8.</summary>
 	public const int PovWord8 = 16;
 	/// <summary>Wraps wxSTC_POWERPRO_ALTQUOTE.</summary>
-	public const int PowerproAltquote = 15;
+	public const int PowerProAltQuote = 15;
 	/// <summary>Wraps wxSTC_POWERPRO_COMMENTBLOCK.</summary>
-	public const int PowerproCommentblock = 1;
+	public const int PowerProCommentBlock = 1;
 	/// <summary>Wraps wxSTC_POWERPRO_COMMENTLINE.</summary>
-	public const int PowerproCommentline = 2;
+	public const int PowerProCommentLine = 2;
 	/// <summary>Wraps wxSTC_POWERPRO_DEFAULT.</summary>
-	public const int PowerproDefault = 0;
+	public const int PowerProDefault = 0;
 	/// <summary>Wraps wxSTC_POWERPRO_DOUBLEQUOTEDSTRING.</summary>
-	public const int PowerproDoublequotedstring = 8;
+	public const int PowerProDoubleQuotedString = 8;
 	/// <summary>Wraps wxSTC_POWERPRO_FUNCTION.</summary>
-	public const int PowerproFunction = 16;
+	public const int PowerProFunction = 16;
 	/// <summary>Wraps wxSTC_POWERPRO_IDENTIFIER.</summary>
-	public const int PowerproIdentifier = 12;
+	public const int PowerProIdentifier = 12;
 	/// <summary>Wraps wxSTC_POWERPRO_LINECONTINUE.</summary>
-	public const int PowerproLinecontinue = 10;
+	public const int PowerProLineContinue = 10;
 	/// <summary>Wraps wxSTC_POWERPRO_NUMBER.</summary>
-	public const int PowerproNumber = 3;
+	public const int PowerProNumber = 3;
 	/// <summary>Wraps wxSTC_POWERPRO_OPERATOR.</summary>
-	public const int PowerproOperator = 11;
+	public const int PowerProOperator = 11;
 	/// <summary>Wraps wxSTC_POWERPRO_SINGLEQUOTEDSTRING.</summary>
-	public const int PowerproSinglequotedstring = 9;
+	public const int PowerProSingleQuotedString = 9;
 	/// <summary>Wraps wxSTC_POWERPRO_STRINGEOL.</summary>
-	public const int PowerproStringeol = 13;
+	public const int PowerProStringEol = 13;
 	/// <summary>Wraps wxSTC_POWERPRO_VERBATIM.</summary>
-	public const int PowerproVerbatim = 14;
+	public const int PowerProVerbatim = 14;
 	/// <summary>Wraps wxSTC_POWERPRO_WORD.</summary>
-	public const int PowerproWord = 4;
+	public const int PowerProWord = 4;
 	/// <summary>Wraps wxSTC_POWERPRO_WORD2.</summary>
-	public const int PowerproWord2 = 5;
+	public const int PowerProWord2 = 5;
 	/// <summary>Wraps wxSTC_POWERPRO_WORD3.</summary>
-	public const int PowerproWord3 = 6;
+	public const int PowerProWord3 = 6;
 	/// <summary>Wraps wxSTC_POWERPRO_WORD4.</summary>
-	public const int PowerproWord4 = 7;
+	public const int PowerProWord4 = 7;
 	/// <summary>Wraps wxSTC_POWERSHELL_ALIAS.</summary>
-	public const int PowershellAlias = 10;
+	public const int PowerShellAlias = 10;
 	/// <summary>Wraps wxSTC_POWERSHELL_CHARACTER.</summary>
-	public const int PowershellCharacter = 3;
+	public const int PowerShellCharacter = 3;
 	/// <summary>Wraps wxSTC_POWERSHELL_CMDLET.</summary>
-	public const int PowershellCmdlet = 9;
+	public const int PowerShellCmdlet = 9;
 	/// <summary>Wraps wxSTC_POWERSHELL_COMMENT.</summary>
-	public const int PowershellComment = 1;
+	public const int PowerShellComment = 1;
 	/// <summary>Wraps wxSTC_POWERSHELL_COMMENTDOCKEYWORD.</summary>
-	public const int PowershellCommentdockeyword = 16;
+	public const int PowerShellCommentDocKeyword = 16;
 	/// <summary>Wraps wxSTC_POWERSHELL_COMMENTSTREAM.</summary>
-	public const int PowershellCommentstream = 13;
+	public const int PowerShellCommentStream = 13;
 	/// <summary>Wraps wxSTC_POWERSHELL_DEFAULT.</summary>
-	public const int PowershellDefault = 0;
+	public const int PowerShellDefault = 0;
 	/// <summary>Wraps wxSTC_POWERSHELL_FUNCTION.</summary>
-	public const int PowershellFunction = 11;
+	public const int PowerShellFunction = 11;
 	/// <summary>Wraps wxSTC_POWERSHELL_HERE_CHARACTER.</summary>
-	public const int PowershellHereCharacter = 15;
+	public const int PowerShellHereCharacter = 15;
 	/// <summary>Wraps wxSTC_POWERSHELL_HERE_STRING.</summary>
-	public const int PowershellHereString = 14;
+	public const int PowerShellHereString = 14;
 	/// <summary>Wraps wxSTC_POWERSHELL_IDENTIFIER.</summary>
-	public const int PowershellIdentifier = 7;
+	public const int PowerShellIdentifier = 7;
 	/// <summary>Wraps wxSTC_POWERSHELL_KEYWORD.</summary>
-	public const int PowershellKeyword = 8;
+	public const int PowerShellKeyword = 8;
 	/// <summary>Wraps wxSTC_POWERSHELL_NUMBER.</summary>
-	public const int PowershellNumber = 4;
+	public const int PowerShellNumber = 4;
 	/// <summary>Wraps wxSTC_POWERSHELL_OPERATOR.</summary>
-	public const int PowershellOperator = 6;
+	public const int PowerShellOperator = 6;
 	/// <summary>Wraps wxSTC_POWERSHELL_STRING.</summary>
-	public const int PowershellString = 2;
+	public const int PowerShellString = 2;
 	/// <summary>Wraps wxSTC_POWERSHELL_USER1.</summary>
-	public const int PowershellUser1 = 12;
+	public const int PowerShellUser1 = 12;
 	/// <summary>Wraps wxSTC_POWERSHELL_VARIABLE.</summary>
-	public const int PowershellVariable = 5;
+	public const int PowerShellVariable = 5;
 	/// <summary>Wraps wxSTC_PO_COMMENT.</summary>
 	public const int PoComment = 1;
 	/// <summary>Wraps wxSTC_PO_DEFAULT.</summary>
@@ -4266,18 +3330,6 @@ public static partial class Stc {
 	public const int PoProgrammerComment = 9;
 	/// <summary>Wraps wxSTC_PO_REFERENCE.</summary>
 	public const int PoReference = 10;
-	/// <summary>Wraps wxSTC_PRINT_BLACKONWHITE.</summary>
-	public const int PrintBlackonwhite = 2;
-	/// <summary>Wraps wxSTC_PRINT_COLOURONWHITE.</summary>
-	public const int PrintColorOnWhite = 3;
-	/// <summary>Wraps wxSTC_PRINT_COLOURONWHITEDEFAULTBG.</summary>
-	public const int PrintColorOnWhiteDefaultBackground = 4;
-	/// <summary>Wraps wxSTC_PRINT_INVERTLIGHT.</summary>
-	public const int PrintInvertlight = 1;
-	/// <summary>Wraps wxSTC_PRINT_NORMAL.</summary>
-	public const int PrintNormal = 0;
-	/// <summary>Wraps wxSTC_PRINT_SCREENCOLOURS.</summary>
-	public const int PrintScreenColors = 5;
 	/// <summary>Wraps wxSTC_PROPS_ASSIGNMENT.</summary>
 	public const int PropsAssignment = 3;
 	/// <summary>Wraps wxSTC_PROPS_COMMENT.</summary>
@@ -4285,15 +3337,15 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_PROPS_DEFAULT.</summary>
 	public const int PropsDefault = 0;
 	/// <summary>Wraps wxSTC_PROPS_DEFVAL.</summary>
-	public const int PropsDefval = 4;
+	public const int PropsDefVal = 4;
 	/// <summary>Wraps wxSTC_PROPS_KEY.</summary>
 	public const int PropsKey = 5;
 	/// <summary>Wraps wxSTC_PROPS_SECTION.</summary>
 	public const int PropsSection = 2;
 	/// <summary>Wraps wxSTC_PS_BADSTRINGCHAR.</summary>
-	public const int PsBadstringchar = 15;
+	public const int PsBadStringChar = 15;
 	/// <summary>Wraps wxSTC_PS_BASE85STRING.</summary>
-	public const int PsBase85string = 14;
+	public const int PsBase85String = 14;
 	/// <summary>Wraps wxSTC_PS_COMMENT.</summary>
 	public const int PsComment = 1;
 	/// <summary>Wraps wxSTC_PS_DEFAULT.</summary>
@@ -4303,9 +3355,9 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_PS_DSC_VALUE.</summary>
 	public const int PsDscValue = 3;
 	/// <summary>Wraps wxSTC_PS_HEXSTRING.</summary>
-	public const int PsHexstring = 13;
+	public const int PsHexString = 13;
 	/// <summary>Wraps wxSTC_PS_IMMEVAL.</summary>
-	public const int PsImmeval = 8;
+	public const int PsImmEval = 8;
 	/// <summary>Wraps wxSTC_PS_KEYWORD.</summary>
 	public const int PsKeyword = 6;
 	/// <summary>Wraps wxSTC_PS_LITERAL.</summary>
@@ -4327,25 +3379,25 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_P_CHARACTER.</summary>
 	public const int PCharacter = 4;
 	/// <summary>Wraps wxSTC_P_CLASSNAME.</summary>
-	public const int PClassname = 8;
+	public const int PClassName = 8;
 	/// <summary>Wraps wxSTC_P_COMMENTBLOCK.</summary>
-	public const int PCommentblock = 12;
+	public const int PCommentBlock = 12;
 	/// <summary>Wraps wxSTC_P_COMMENTLINE.</summary>
-	public const int PCommentline = 1;
+	public const int PCommentLine = 1;
 	/// <summary>Wraps wxSTC_P_DECORATOR.</summary>
 	public const int PDecorator = 15;
 	/// <summary>Wraps wxSTC_P_DEFAULT.</summary>
 	public const int PDefault = 0;
 	/// <summary>Wraps wxSTC_P_DEFNAME.</summary>
-	public const int PDefname = 9;
+	public const int PDefName = 9;
 	/// <summary>Wraps wxSTC_P_FCHARACTER.</summary>
-	public const int PFcharacter = 17;
+	public const int PFCharacter = 17;
 	/// <summary>Wraps wxSTC_P_FSTRING.</summary>
-	public const int PFstring = 16;
+	public const int PFString = 16;
 	/// <summary>Wraps wxSTC_P_FTRIPLE.</summary>
-	public const int PFtriple = 18;
+	public const int PFTriple = 18;
 	/// <summary>Wraps wxSTC_P_FTRIPLEDOUBLE.</summary>
-	public const int PFtripledouble = 19;
+	public const int PFTripleDouble = 19;
 	/// <summary>Wraps wxSTC_P_IDENTIFIER.</summary>
 	public const int PIdentifier = 11;
 	/// <summary>Wraps wxSTC_P_NUMBER.</summary>
@@ -4355,11 +3407,11 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_P_STRING.</summary>
 	public const int PString = 3;
 	/// <summary>Wraps wxSTC_P_STRINGEOL.</summary>
-	public const int PStringeol = 13;
+	public const int PStringEol = 13;
 	/// <summary>Wraps wxSTC_P_TRIPLE.</summary>
 	public const int PTriple = 6;
 	/// <summary>Wraps wxSTC_P_TRIPLEDOUBLE.</summary>
-	public const int PTripledouble = 7;
+	public const int PTripleDouble = 7;
 	/// <summary>Wraps wxSTC_P_WORD.</summary>
 	public const int PWord = 5;
 	/// <summary>Wraps wxSTC_P_WORD2.</summary>
@@ -4375,9 +3427,9 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_RAKU_CLASS.</summary>
 	public const int RakuClass = 28;
 	/// <summary>Wraps wxSTC_RAKU_COMMENTEMBED.</summary>
-	public const int RakuCommentembed = 3;
+	public const int RakuCommentEmbed = 3;
 	/// <summary>Wraps wxSTC_RAKU_COMMENTLINE.</summary>
-	public const int RakuCommentline = 2;
+	public const int RakuCommentLine = 2;
 	/// <summary>Wraps wxSTC_RAKU_DEFAULT.</summary>
 	public const int RakuDefault = 0;
 	/// <summary>Wraps wxSTC_RAKU_ERROR.</summary>
@@ -4419,7 +3471,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_RAKU_STRING_VAR.</summary>
 	public const int RakuStringVariable = 12;
 	/// <summary>Wraps wxSTC_RAKU_TYPEDEF.</summary>
-	public const int RakuTypedef = 22;
+	public const int RakuTypeDef = 22;
 	/// <summary>Wraps wxSTC_RAKU_WORD.</summary>
 	public const int RakuWord = 19;
 	/// <summary>Wraps wxSTC_RB_BACKTICKS.</summary>
@@ -4427,17 +3479,17 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_RB_CHARACTER.</summary>
 	public const int RbCharacter = 7;
 	/// <summary>Wraps wxSTC_RB_CLASSNAME.</summary>
-	public const int RbClassname = 8;
+	public const int RbClassName = 8;
 	/// <summary>Wraps wxSTC_RB_CLASS_VAR.</summary>
 	public const int RbClassVariable = 17;
 	/// <summary>Wraps wxSTC_RB_COMMENTLINE.</summary>
-	public const int RbCommentline = 2;
+	public const int RbCommentLine = 2;
 	/// <summary>Wraps wxSTC_RB_DATASECTION.</summary>
-	public const int RbDatasection = 19;
+	public const int RbDataSection = 19;
 	/// <summary>Wraps wxSTC_RB_DEFAULT.</summary>
 	public const int RbDefault = 0;
 	/// <summary>Wraps wxSTC_RB_DEFNAME.</summary>
-	public const int RbDefname = 9;
+	public const int RbDefName = 9;
 	/// <summary>Wraps wxSTC_RB_ERROR.</summary>
 	public const int RbError = 1;
 	/// <summary>Wraps wxSTC_RB_GLOBAL.</summary>
@@ -4501,13 +3553,13 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_REBOL_BINARY.</summary>
 	public const int RebolBinary = 11;
 	/// <summary>Wraps wxSTC_REBOL_BRACEDSTRING.</summary>
-	public const int RebolBracedstring = 7;
+	public const int RebolBracedString = 7;
 	/// <summary>Wraps wxSTC_REBOL_CHARACTER.</summary>
 	public const int RebolCharacter = 5;
 	/// <summary>Wraps wxSTC_REBOL_COMMENTBLOCK.</summary>
-	public const int RebolCommentblock = 2;
+	public const int RebolCommentBlock = 2;
 	/// <summary>Wraps wxSTC_REBOL_COMMENTLINE.</summary>
-	public const int RebolCommentline = 1;
+	public const int RebolCommentLine = 1;
 	/// <summary>Wraps wxSTC_REBOL_DATE.</summary>
 	public const int RebolDate = 18;
 	/// <summary>Wraps wxSTC_REBOL_DEFAULT.</summary>
@@ -4531,7 +3583,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_REBOL_PREFACE.</summary>
 	public const int RebolPreface = 3;
 	/// <summary>Wraps wxSTC_REBOL_QUOTEDSTRING.</summary>
-	public const int RebolQuotedstring = 6;
+	public const int RebolQuotedString = 6;
 	/// <summary>Wraps wxSTC_REBOL_TAG.</summary>
 	public const int RebolTag = 14;
 	/// <summary>Wraps wxSTC_REBOL_TIME.</summary>
@@ -4557,19 +3609,19 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_REBOL_WORD8.</summary>
 	public const int RebolWord8 = 28;
 	/// <summary>Wraps wxSTC_REG_ADDEDKEY.</summary>
-	public const int RegAddedkey = 6;
+	public const int RegAddedKey = 6;
 	/// <summary>Wraps wxSTC_REG_COMMENT.</summary>
 	public const int RegComment = 1;
 	/// <summary>Wraps wxSTC_REG_DEFAULT.</summary>
 	public const int RegDefault = 0;
 	/// <summary>Wraps wxSTC_REG_DELETEDKEY.</summary>
-	public const int RegDeletedkey = 7;
+	public const int RegDeletedKey = 7;
 	/// <summary>Wraps wxSTC_REG_ESCAPED.</summary>
 	public const int RegEscaped = 8;
 	/// <summary>Wraps wxSTC_REG_HEXDIGIT.</summary>
-	public const int RegHexdigit = 4;
+	public const int RegHexDigit = 4;
 	/// <summary>Wraps wxSTC_REG_KEYPATH_GUID.</summary>
-	public const int RegKeypathGuid = 9;
+	public const int RegKeyPathGuid = 9;
 	/// <summary>Wraps wxSTC_REG_OPERATOR.</summary>
 	public const int RegOperator = 12;
 	/// <summary>Wraps wxSTC_REG_PARAMETER.</summary>
@@ -4579,35 +3631,35 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_REG_STRING_GUID.</summary>
 	public const int RegStringGuid = 10;
 	/// <summary>Wraps wxSTC_REG_VALUENAME.</summary>
-	public const int RegValuename = 2;
+	public const int RegValueName = 2;
 	/// <summary>Wraps wxSTC_REG_VALUETYPE.</summary>
-	public const int RegValuetype = 5;
+	public const int RegValueType = 5;
 	/// <summary>Wraps wxSTC_RUST_BYTECHARACTER.</summary>
-	public const int RustBytecharacter = 23;
+	public const int RustByteCharacter = 23;
 	/// <summary>Wraps wxSTC_RUST_BYTESTRING.</summary>
-	public const int RustBytestring = 21;
+	public const int RustByteString = 21;
 	/// <summary>Wraps wxSTC_RUST_BYTESTRINGR.</summary>
-	public const int RustBytestringr = 22;
+	public const int RustByteStringR = 22;
 	/// <summary>Wraps wxSTC_RUST_CHARACTER.</summary>
 	public const int RustCharacter = 15;
 	/// <summary>Wraps wxSTC_RUST_COMMENTBLOCK.</summary>
-	public const int RustCommentblock = 1;
+	public const int RustCommentBlock = 1;
 	/// <summary>Wraps wxSTC_RUST_COMMENTBLOCKDOC.</summary>
-	public const int RustCommentblockdoc = 3;
+	public const int RustCommentBlockDoc = 3;
 	/// <summary>Wraps wxSTC_RUST_COMMENTLINE.</summary>
-	public const int RustCommentline = 2;
+	public const int RustCommentLine = 2;
 	/// <summary>Wraps wxSTC_RUST_COMMENTLINEDOC.</summary>
-	public const int RustCommentlinedoc = 4;
+	public const int RustCommentLineDoc = 4;
 	/// <summary>Wraps wxSTC_RUST_CSTRING.</summary>
-	public const int RustCstring = 24;
+	public const int RustCString = 24;
 	/// <summary>Wraps wxSTC_RUST_CSTRINGR.</summary>
-	public const int RustCstringr = 25;
+	public const int RustCStringR = 25;
 	/// <summary>Wraps wxSTC_RUST_DEFAULT.</summary>
 	public const int RustDefault = 0;
 	/// <summary>Wraps wxSTC_RUST_IDENTIFIER.</summary>
 	public const int RustIdentifier = 17;
 	/// <summary>Wraps wxSTC_RUST_LEXERROR.</summary>
-	public const int RustLexerror = 20;
+	public const int RustLexError = 20;
 	/// <summary>Wraps wxSTC_RUST_LIFETIME.</summary>
 	public const int RustLifetime = 18;
 	/// <summary>Wraps wxSTC_RUST_MACRO.</summary>
@@ -4619,7 +3671,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_RUST_STRING.</summary>
 	public const int RustString = 13;
 	/// <summary>Wraps wxSTC_RUST_STRINGR.</summary>
-	public const int RustStringr = 14;
+	public const int RustStringR = 14;
 	/// <summary>Wraps wxSTC_RUST_WORD.</summary>
 	public const int RustWord = 6;
 	/// <summary>Wraps wxSTC_RUST_WORD2.</summary>
@@ -4637,19 +3689,19 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_R_BACKTICKS.</summary>
 	public const int RBackticks = 12;
 	/// <summary>Wraps wxSTC_R_BASEKWORD.</summary>
-	public const int RBasekword = 3;
+	public const int RBaseKword = 3;
 	/// <summary>Wraps wxSTC_R_COMMENT.</summary>
 	public const int RComment = 1;
 	/// <summary>Wraps wxSTC_R_DEFAULT.</summary>
 	public const int RDefault = 0;
 	/// <summary>Wraps wxSTC_R_ESCAPESEQUENCE.</summary>
-	public const int REscapesequence = 15;
+	public const int REscapeSequence = 15;
 	/// <summary>Wraps wxSTC_R_IDENTIFIER.</summary>
 	public const int RIdentifier = 9;
 	/// <summary>Wraps wxSTC_R_INFIX.</summary>
 	public const int RInfix = 10;
 	/// <summary>Wraps wxSTC_R_INFIXEOL.</summary>
-	public const int RInfixeol = 11;
+	public const int RInfixEol = 11;
 	/// <summary>Wraps wxSTC_R_KWORD.</summary>
 	public const int RKword = 2;
 	/// <summary>Wraps wxSTC_R_NUMBER.</summary>
@@ -4657,11 +3709,11 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_R_OPERATOR.</summary>
 	public const int ROperator = 8;
 	/// <summary>Wraps wxSTC_R_OTHERKWORD.</summary>
-	public const int ROtherkword = 4;
+	public const int ROtherKword = 4;
 	/// <summary>Wraps wxSTC_R_RAWSTRING.</summary>
-	public const int RRawstring = 13;
+	public const int RRawString = 13;
 	/// <summary>Wraps wxSTC_R_RAWSTRING2.</summary>
-	public const int RRawstring2 = 14;
+	public const int RRawString2 = 14;
 	/// <summary>Wraps wxSTC_R_STRING.</summary>
 	public const int RString = 6;
 	/// <summary>Wraps wxSTC_R_STRING2.</summary>
@@ -4671,9 +3723,9 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_SAS_COMMENT.</summary>
 	public const int SasComment = 1;
 	/// <summary>Wraps wxSTC_SAS_COMMENTBLOCK.</summary>
-	public const int SasCommentblock = 3;
+	public const int SasCommentBlock = 3;
 	/// <summary>Wraps wxSTC_SAS_COMMENTLINE.</summary>
-	public const int SasCommentline = 2;
+	public const int SasCommentLine = 2;
 	/// <summary>Wraps wxSTC_SAS_DEFAULT.</summary>
 	public const int SasDefault = 0;
 	/// <summary>Wraps wxSTC_SAS_GLOBAL_MACRO.</summary>
@@ -4701,11 +3753,11 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_SCRIPTOL_CHARACTER.</summary>
 	public const int ScriptolCharacter = 8;
 	/// <summary>Wraps wxSTC_SCRIPTOL_CLASSNAME.</summary>
-	public const int ScriptolClassname = 14;
+	public const int ScriptolClassName = 14;
 	/// <summary>Wraps wxSTC_SCRIPTOL_COMMENTBLOCK.</summary>
-	public const int ScriptolCommentblock = 5;
+	public const int ScriptolCommentBlock = 5;
 	/// <summary>Wraps wxSTC_SCRIPTOL_COMMENTLINE.</summary>
-	public const int ScriptolCommentline = 2;
+	public const int ScriptolCommentLine = 2;
 	/// <summary>Wraps wxSTC_SCRIPTOL_CSTYLE.</summary>
 	public const int ScriptolCstyle = 4;
 	/// <summary>Wraps wxSTC_SCRIPTOL_DEFAULT.</summary>
@@ -4725,25 +3777,17 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_SCRIPTOL_STRING.</summary>
 	public const int ScriptolString = 7;
 	/// <summary>Wraps wxSTC_SCRIPTOL_STRINGEOL.</summary>
-	public const int ScriptolStringeol = 9;
+	public const int ScriptolStringEol = 9;
 	/// <summary>Wraps wxSTC_SCRIPTOL_TRIPLE.</summary>
 	public const int ScriptolTriple = 13;
 	/// <summary>Wraps wxSTC_SCRIPTOL_WHITE.</summary>
 	public const int ScriptolWhite = 1;
-	/// <summary>Wraps wxSTC_SEL_LINES.</summary>
-	public const int SelectionLines = 2;
-	/// <summary>Wraps wxSTC_SEL_RECTANGLE.</summary>
-	public const int SelectionRectangle = 1;
-	/// <summary>Wraps wxSTC_SEL_STREAM.</summary>
-	public const int SelectionStream = 0;
-	/// <summary>Wraps wxSTC_SEL_THIN.</summary>
-	public const int SelectionThin = 3;
 	/// <summary>Wraps wxSTC_SH_BACKTICKS.</summary>
 	public const int ShBackticks = 11;
 	/// <summary>Wraps wxSTC_SH_CHARACTER.</summary>
 	public const int ShCharacter = 6;
 	/// <summary>Wraps wxSTC_SH_COMMENTLINE.</summary>
-	public const int ShCommentline = 2;
+	public const int ShCommentLine = 2;
 	/// <summary>Wraps wxSTC_SH_DEFAULT.</summary>
 	public const int ShDefault = 0;
 	/// <summary>Wraps wxSTC_SH_ERROR.</summary>
@@ -4771,7 +3815,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_SINEX_BLOCK_START.</summary>
 	public const int SinexBlockStart = 2;
 	/// <summary>Wraps wxSTC_SINEX_COMMENTLINE.</summary>
-	public const int SinexCommentline = 1;
+	public const int SinexCommentLine = 1;
 	/// <summary>Wraps wxSTC_SINEX_DATE.</summary>
 	public const int SinexDate = 4;
 	/// <summary>Wraps wxSTC_SINEX_DEFAULT.</summary>
@@ -4799,7 +3843,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_SML_KEYWORD3.</summary>
 	public const int SmlKeyword3 = 5;
 	/// <summary>Wraps wxSTC_SML_LINENUM.</summary>
-	public const int SmlLinenum = 6;
+	public const int SmlLineNum = 6;
 	/// <summary>Wraps wxSTC_SML_NUMBER.</summary>
 	public const int SmlNumber = 8;
 	/// <summary>Wraps wxSTC_SML_OPERATOR.</summary>
@@ -4807,13 +3851,13 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_SML_STRING.</summary>
 	public const int SmlString = 11;
 	/// <summary>Wraps wxSTC_SML_TAGNAME.</summary>
-	public const int SmlTagname = 2;
+	public const int SmlTagName = 2;
 	/// <summary>Wraps wxSTC_SN_CODE.</summary>
 	public const int SnCode = 1;
 	/// <summary>Wraps wxSTC_SN_COMMENTLINE.</summary>
-	public const int SnCommentline = 2;
+	public const int SnCommentLine = 2;
 	/// <summary>Wraps wxSTC_SN_COMMENTLINEBANG.</summary>
-	public const int SnCommentlinebang = 3;
+	public const int SnCommentLineBang = 3;
 	/// <summary>Wraps wxSTC_SN_DEFAULT.</summary>
 	public const int SnDefault = 0;
 	/// <summary>Wraps wxSTC_SN_IDENTIFIER.</summary>
@@ -4825,13 +3869,13 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_SN_PREPROCESSOR.</summary>
 	public const int SnPreprocessor = 9;
 	/// <summary>Wraps wxSTC_SN_REGEXTAG.</summary>
-	public const int SnRegextag = 13;
+	public const int SnRegexTag = 13;
 	/// <summary>Wraps wxSTC_SN_SIGNAL.</summary>
 	public const int SnSignal = 14;
 	/// <summary>Wraps wxSTC_SN_STRING.</summary>
 	public const int SnString = 6;
 	/// <summary>Wraps wxSTC_SN_STRINGEOL.</summary>
-	public const int SnStringeol = 12;
+	public const int SnStringEol = 12;
 	/// <summary>Wraps wxSTC_SN_USER.</summary>
 	public const int SnUser = 19;
 	/// <summary>Wraps wxSTC_SN_WORD.</summary>
@@ -4843,7 +3887,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_SORCUS_COMMAND.</summary>
 	public const int SorcusCommand = 1;
 	/// <summary>Wraps wxSTC_SORCUS_COMMENTLINE.</summary>
-	public const int SorcusCommentline = 3;
+	public const int SorcusCommentLine = 3;
 	/// <summary>Wraps wxSTC_SORCUS_CONSTANT.</summary>
 	public const int SorcusConstant = 9;
 	/// <summary>Wraps wxSTC_SORCUS_DEFAULT.</summary>
@@ -4859,9 +3903,9 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_SORCUS_STRING.</summary>
 	public const int SorcusString = 4;
 	/// <summary>Wraps wxSTC_SORCUS_STRINGEOL.</summary>
-	public const int SorcusStringeol = 5;
+	public const int SorcusStringEol = 5;
 	/// <summary>Wraps wxSTC_SPICE_COMMENTLINE.</summary>
-	public const int SpiceCommentline = 8;
+	public const int SpiceCommentLine = 8;
 	/// <summary>Wraps wxSTC_SPICE_DEFAULT.</summary>
 	public const int SpiceDefault = 0;
 	/// <summary>Wraps wxSTC_SPICE_DELIMITER.</summary>
@@ -4883,15 +3927,15 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_SQL_COMMENT.</summary>
 	public const int SqlComment = 1;
 	/// <summary>Wraps wxSTC_SQL_COMMENTDOC.</summary>
-	public const int SqlCommentdoc = 3;
+	public const int SqlCommentDoc = 3;
 	/// <summary>Wraps wxSTC_SQL_COMMENTDOCKEYWORD.</summary>
-	public const int SqlCommentdockeyword = 17;
+	public const int SqlCommentDocKeyword = 17;
 	/// <summary>Wraps wxSTC_SQL_COMMENTDOCKEYWORDERROR.</summary>
-	public const int SqlCommentdockeyworderror = 18;
+	public const int SqlCommentDocKeywordError = 18;
 	/// <summary>Wraps wxSTC_SQL_COMMENTLINE.</summary>
-	public const int SqlCommentline = 2;
+	public const int SqlCommentLine = 2;
 	/// <summary>Wraps wxSTC_SQL_COMMENTLINEDOC.</summary>
-	public const int SqlCommentlinedoc = 15;
+	public const int SqlCommentLineDoc = 15;
 	/// <summary>Wraps wxSTC_SQL_DEFAULT.</summary>
 	public const int SqlDefault = 0;
 	/// <summary>Wraps wxSTC_SQL_IDENTIFIER.</summary>
@@ -4903,13 +3947,13 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_SQL_QOPERATOR.</summary>
 	public const int SqlQoperator = 24;
 	/// <summary>Wraps wxSTC_SQL_QUOTEDIDENTIFIER.</summary>
-	public const int SqlQuotedidentifier = 23;
+	public const int SqlQuotedIdentifier = 23;
 	/// <summary>Wraps wxSTC_SQL_SQLPLUS.</summary>
-	public const int SqlSqlplus = 8;
+	public const int SqlSqlPlus = 8;
 	/// <summary>Wraps wxSTC_SQL_SQLPLUS_COMMENT.</summary>
-	public const int SqlSqlplusComment = 13;
+	public const int SqlSqlPlusComment = 13;
 	/// <summary>Wraps wxSTC_SQL_SQLPLUS_PROMPT.</summary>
-	public const int SqlSqlplusPrompt = 9;
+	public const int SqlSqlPlusPrompt = 9;
 	/// <summary>Wraps wxSTC_SQL_STRING.</summary>
 	public const int SqlString = 6;
 	/// <summary>Wraps wxSTC_SQL_USER1.</summary>
@@ -4926,14 +3970,12 @@ public static partial class Stc {
 	public const int SqlWord2 = 16;
 	/// <summary>Wraps wxSTC_START.</summary>
 	public const int Start = 2000;
-	/// <summary>Wraps wxSTC_STARTACTION.</summary>
-	public const int Startaction = 8192;
 	/// <summary>Wraps wxSTC_STATA_COMMENT.</summary>
 	public const int StataComment = 1;
 	/// <summary>Wraps wxSTC_STATA_COMMENTBLOCK.</summary>
-	public const int StataCommentblock = 3;
+	public const int StataCommentBlock = 3;
 	/// <summary>Wraps wxSTC_STATA_COMMENTLINE.</summary>
-	public const int StataCommentline = 2;
+	public const int StataCommentLine = 2;
 	/// <summary>Wraps wxSTC_STATA_DEFAULT.</summary>
 	public const int StataDefault = 0;
 	/// <summary>Wraps wxSTC_STATA_GLOBAL_MACRO.</summary>
@@ -4952,24 +3994,14 @@ public static partial class Stc {
 	public const int StataType = 8;
 	/// <summary>Wraps wxSTC_STATA_WORD.</summary>
 	public const int StataWord = 9;
-	/// <summary>Wraps wxSTC_STATUS_BADALLOC.</summary>
-	public const int StatusBadalloc = 2;
-	/// <summary>Wraps wxSTC_STATUS_FAILURE.</summary>
-	public const int StatusFailure = 1;
-	/// <summary>Wraps wxSTC_STATUS_OK.</summary>
-	public const int StatusOk = 0;
-	/// <summary>Wraps wxSTC_STATUS_WARN_REGEX.</summary>
-	public const int StatusWarnRegex = 1001;
-	/// <summary>Wraps wxSTC_STATUS_WARN_START.</summary>
-	public const int StatusWarnStart = 1000;
 	/// <summary>Wraps wxSTC_STTXT_CHARACTER.</summary>
 	public const int SttxtCharacter = 11;
 	/// <summary>Wraps wxSTC_STTXT_COMMENT.</summary>
 	public const int SttxtComment = 1;
 	/// <summary>Wraps wxSTC_STTXT_COMMENTLINE.</summary>
-	public const int SttxtCommentline = 2;
+	public const int SttxtCommentLine = 2;
 	/// <summary>Wraps wxSTC_STTXT_DATETIME.</summary>
-	public const int SttxtDatetime = 16;
+	public const int SttxtDateTime = 16;
 	/// <summary>Wraps wxSTC_STTXT_DEFAULT.</summary>
 	public const int SttxtDefault = 0;
 	/// <summary>Wraps wxSTC_STTXT_FB.</summary>
@@ -4977,7 +4009,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_STTXT_FUNCTION.</summary>
 	public const int SttxtFunction = 5;
 	/// <summary>Wraps wxSTC_STTXT_HEXNUMBER.</summary>
-	public const int SttxtHexnumber = 8;
+	public const int SttxtHexNumber = 8;
 	/// <summary>Wraps wxSTC_STTXT_IDENTIFIER.</summary>
 	public const int SttxtIdentifier = 15;
 	/// <summary>Wraps wxSTC_STTXT_KEYWORD.</summary>
@@ -4995,29 +4027,29 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_STTXT_STRING2.</summary>
 	public const int SttxtString2 = 13;
 	/// <summary>Wraps wxSTC_STTXT_STRINGEOL.</summary>
-	public const int SttxtStringeol = 14;
+	public const int SttxtStringEol = 14;
 	/// <summary>Wraps wxSTC_STTXT_TYPE.</summary>
 	public const int SttxtType = 4;
 	/// <summary>Wraps wxSTC_STTXT_VARS.</summary>
 	public const int SttxtVars = 17;
 	/// <summary>Wraps wxSTC_STYLE_BRACEBAD.</summary>
-	public const int StyleBracebad = 35;
+	public const int StyleBraceBad = 35;
 	/// <summary>Wraps wxSTC_STYLE_BRACELIGHT.</summary>
-	public const int StyleBracelight = 34;
+	public const int StyleBraceLight = 34;
 	/// <summary>Wraps wxSTC_STYLE_CALLTIP.</summary>
-	public const int StyleCalltip = 38;
+	public const int StyleCallTip = 38;
 	/// <summary>Wraps wxSTC_STYLE_CONTROLCHAR.</summary>
-	public const int StyleControlchar = 36;
+	public const int StyleControlChar = 36;
 	/// <summary>Wraps wxSTC_STYLE_DEFAULT.</summary>
 	public const int StyleDefault = 32;
 	/// <summary>Wraps wxSTC_STYLE_FOLDDISPLAYTEXT.</summary>
-	public const int StyleFolddisplaytext = 39;
+	public const int StyleFoldDisplayText = 39;
 	/// <summary>Wraps wxSTC_STYLE_INDENTGUIDE.</summary>
-	public const int StyleIndentguide = 37;
+	public const int StyleIndentGuide = 37;
 	/// <summary>Wraps wxSTC_STYLE_LASTPREDEFINED.</summary>
-	public const int StyleLastpredefined = 39;
+	public const int StyleLastPredefined = 39;
 	/// <summary>Wraps wxSTC_STYLE_LINENUMBER.</summary>
-	public const int StyleLinenumber = 33;
+	public const int StyleLineNumber = 33;
 	/// <summary>Wraps wxSTC_STYLE_MAX.</summary>
 	public const int StyleMax = 255;
 	/// <summary>Wraps wxSTC_ST_ASSIGN.</summary>
@@ -5035,7 +4067,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_ST_GLOBAL.</summary>
 	public const int StGlobal = 10;
 	/// <summary>Wraps wxSTC_ST_KWSEND.</summary>
-	public const int StKwsend = 13;
+	public const int StKwsEnd = 13;
 	/// <summary>Wraps wxSTC_ST_NIL.</summary>
 	public const int StNil = 9;
 	/// <summary>Wraps wxSTC_ST_NUMBER.</summary>
@@ -5101,7 +4133,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_TCL_COMMENT.</summary>
 	public const int TclComment = 1;
 	/// <summary>Wraps wxSTC_TCL_COMMENTLINE.</summary>
-	public const int TclCommentline = 2;
+	public const int TclCommentLine = 2;
 	/// <summary>Wraps wxSTC_TCL_COMMENT_BOX.</summary>
 	public const int TclCommentBox = 20;
 	/// <summary>Wraps wxSTC_TCL_DEFAULT.</summary>
@@ -5162,14 +4194,6 @@ public static partial class Stc {
 	public const int TcmdOperator = 7;
 	/// <summary>Wraps wxSTC_TCMD_WORD.</summary>
 	public const int TcmdWord = 2;
-	/// <summary>Wraps wxSTC_TD_LONGARROW.</summary>
-	public const int TdLongarrow = 0;
-	/// <summary>Wraps wxSTC_TD_STRIKEOUT.</summary>
-	public const int TdStrikeout = 1;
-	/// <summary>Wraps wxSTC_TECHNOLOGY_DEFAULT.</summary>
-	public const int TechnologyDefault = 0;
-	/// <summary>Wraps wxSTC_TECHNOLOGY_DIRECTWRITE.</summary>
-	public const int TechnologyDirectwrite = 1;
 	/// <summary>Wraps wxSTC_TEX_COMMAND.</summary>
 	public const int TexCommand = 4;
 	/// <summary>Wraps wxSTC_TEX_DEFAULT.</summary>
@@ -5187,13 +4211,13 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_TOML_COMMENT.</summary>
 	public const int TomlComment = 1;
 	/// <summary>Wraps wxSTC_TOML_DATETIME.</summary>
-	public const int TomlDatetime = 14;
+	public const int TomlDateTime = 14;
 	/// <summary>Wraps wxSTC_TOML_DEFAULT.</summary>
 	public const int TomlDefault = 0;
 	/// <summary>Wraps wxSTC_TOML_ERROR.</summary>
 	public const int TomlError = 7;
 	/// <summary>Wraps wxSTC_TOML_ESCAPECHAR.</summary>
-	public const int TomlEscapechar = 13;
+	public const int TomlEscapeChar = 13;
 	/// <summary>Wraps wxSTC_TOML_IDENTIFIER.</summary>
 	public const int TomlIdentifier = 2;
 	/// <summary>Wraps wxSTC_TOML_KEY.</summary>
@@ -5205,7 +4229,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_TOML_OPERATOR.</summary>
 	public const int TomlOperator = 8;
 	/// <summary>Wraps wxSTC_TOML_STRINGEOL.</summary>
-	public const int TomlStringeol = 15;
+	public const int TomlStringEol = 15;
 	/// <summary>Wraps wxSTC_TOML_STRING_DQ.</summary>
 	public const int TomlStringDq = 10;
 	/// <summary>Wraps wxSTC_TOML_STRING_SQ.</summary>
@@ -5237,13 +4261,13 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_TROFF_ESCAPE_HEIGHT.</summary>
 	public const int TroffEscapeHeight = 21;
 	/// <summary>Wraps wxSTC_TROFF_ESCAPE_ISVALID.</summary>
-	public const int TroffEscapeIsvalid = 18;
+	public const int TroffEscapeIsValid = 18;
 	/// <summary>Wraps wxSTC_TROFF_ESCAPE_MACRO.</summary>
 	public const int TroffEscapeMacro = 9;
 	/// <summary>Wraps wxSTC_TROFF_ESCAPE_MOVE.</summary>
 	public const int TroffEscapeMove = 20;
 	/// <summary>Wraps wxSTC_TROFF_ESCAPE_NOMOVE.</summary>
-	public const int TroffEscapeNomove = 27;
+	public const int TroffEscapeNoMove = 27;
 	/// <summary>Wraps wxSTC_TROFF_ESCAPE_NUMBER.</summary>
 	public const int TroffEscapeNumber = 11;
 	/// <summary>Wraps wxSTC_TROFF_ESCAPE_OVERSTRIKE.</summary>
@@ -5273,75 +4297,57 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_TROFF_STRING.</summary>
 	public const int TroffString = 5;
 	/// <summary>Wraps wxSTC_TXT2TAGS_BLOCKQUOTE.</summary>
-	public const int Txt2tagsBlockquote = 15;
+	public const int Txt2TagsBlockQuote = 15;
 	/// <summary>Wraps wxSTC_TXT2TAGS_CODE.</summary>
-	public const int Txt2tagsCode = 19;
+	public const int Txt2TagsCode = 19;
 	/// <summary>Wraps wxSTC_TXT2TAGS_CODE2.</summary>
-	public const int Txt2tagsCode2 = 20;
+	public const int Txt2TagsCode2 = 20;
 	/// <summary>Wraps wxSTC_TXT2TAGS_CODEBK.</summary>
-	public const int Txt2tagsCodebk = 21;
+	public const int Txt2TagsCodeBk = 21;
 	/// <summary>Wraps wxSTC_TXT2TAGS_COMMENT.</summary>
-	public const int Txt2tagsComment = 22;
+	public const int Txt2TagsComment = 22;
 	/// <summary>Wraps wxSTC_TXT2TAGS_DEFAULT.</summary>
-	public const int Txt2tagsDefault = 0;
+	public const int Txt2TagsDefault = 0;
 	/// <summary>Wraps wxSTC_TXT2TAGS_EM1.</summary>
-	public const int Txt2tagsEm1 = 4;
+	public const int Txt2TagsEm1 = 4;
 	/// <summary>Wraps wxSTC_TXT2TAGS_EM2.</summary>
-	public const int Txt2tagsEm2 = 5;
+	public const int Txt2TagsEm2 = 5;
 	/// <summary>Wraps wxSTC_TXT2TAGS_HEADER1.</summary>
-	public const int Txt2tagsHeader1 = 6;
+	public const int Txt2TagsHeader1 = 6;
 	/// <summary>Wraps wxSTC_TXT2TAGS_HEADER2.</summary>
-	public const int Txt2tagsHeader2 = 7;
+	public const int Txt2TagsHeader2 = 7;
 	/// <summary>Wraps wxSTC_TXT2TAGS_HEADER3.</summary>
-	public const int Txt2tagsHeader3 = 8;
+	public const int Txt2TagsHeader3 = 8;
 	/// <summary>Wraps wxSTC_TXT2TAGS_HEADER4.</summary>
-	public const int Txt2tagsHeader4 = 9;
+	public const int Txt2TagsHeader4 = 9;
 	/// <summary>Wraps wxSTC_TXT2TAGS_HEADER5.</summary>
-	public const int Txt2tagsHeader5 = 10;
+	public const int Txt2TagsHeader5 = 10;
 	/// <summary>Wraps wxSTC_TXT2TAGS_HEADER6.</summary>
-	public const int Txt2tagsHeader6 = 11;
+	public const int Txt2TagsHeader6 = 11;
 	/// <summary>Wraps wxSTC_TXT2TAGS_HRULE.</summary>
-	public const int Txt2tagsHrule = 17;
+	public const int Txt2TagsHrule = 17;
 	/// <summary>Wraps wxSTC_TXT2TAGS_LINE_BEGIN.</summary>
-	public const int Txt2tagsLineBegin = 1;
+	public const int Txt2TagsLineBegin = 1;
 	/// <summary>Wraps wxSTC_TXT2TAGS_LINK.</summary>
-	public const int Txt2tagsLink = 18;
+	public const int Txt2TagsLink = 18;
 	/// <summary>Wraps wxSTC_TXT2TAGS_OLIST_ITEM.</summary>
-	public const int Txt2tagsOlistItem = 14;
+	public const int Txt2TagsOlistItem = 14;
 	/// <summary>Wraps wxSTC_TXT2TAGS_OPTION.</summary>
-	public const int Txt2tagsOption = 23;
+	public const int Txt2TagsOption = 23;
 	/// <summary>Wraps wxSTC_TXT2TAGS_POSTPROC.</summary>
-	public const int Txt2tagsPostproc = 25;
+	public const int Txt2TagsPostProc = 25;
 	/// <summary>Wraps wxSTC_TXT2TAGS_PRECHAR.</summary>
-	public const int Txt2tagsPrechar = 12;
+	public const int Txt2TagsPreChar = 12;
 	/// <summary>Wraps wxSTC_TXT2TAGS_PREPROC.</summary>
-	public const int Txt2tagsPreproc = 24;
+	public const int Txt2TagsPreproc = 24;
 	/// <summary>Wraps wxSTC_TXT2TAGS_STRIKEOUT.</summary>
-	public const int Txt2tagsStrikeout = 16;
+	public const int Txt2TagsStrikeout = 16;
 	/// <summary>Wraps wxSTC_TXT2TAGS_STRONG1.</summary>
-	public const int Txt2tagsStrong1 = 2;
+	public const int Txt2TagsStrong1 = 2;
 	/// <summary>Wraps wxSTC_TXT2TAGS_STRONG2.</summary>
-	public const int Txt2tagsStrong2 = 3;
+	public const int Txt2TagsStrong2 = 3;
 	/// <summary>Wraps wxSTC_TXT2TAGS_ULIST_ITEM.</summary>
-	public const int Txt2tagsUlistItem = 13;
-	/// <summary>Wraps wxSTC_TYPE_BOOLEAN.</summary>
-	public const int TypeBoolean = 0;
-	/// <summary>Wraps wxSTC_TYPE_INTEGER.</summary>
-	public const int TypeInteger = 1;
-	/// <summary>Wraps wxSTC_TYPE_STRING.</summary>
-	public const int TypeString = 2;
-	/// <summary>Wraps wxSTC_UNDO_MAY_COALESCE.</summary>
-	public const int UndoMayCoalesce = 1;
-	/// <summary>Wraps wxSTC_UNDO_NONE.</summary>
-	public const int UndoNone = 0;
-	/// <summary>Wraps wxSTC_UPDATE_CONTENT.</summary>
-	public const int UpdateContent = 1;
-	/// <summary>Wraps wxSTC_UPDATE_H_SCROLL.</summary>
-	public const int UpdateHScroll = 8;
-	/// <summary>Wraps wxSTC_UPDATE_SELECTION.</summary>
-	public const int UpdateSelection = 2;
-	/// <summary>Wraps wxSTC_UPDATE_V_SCROLL.</summary>
-	public const int UpdateVScroll = 4;
+	public const int Txt2TagsUlistItem = 13;
 	/// <summary>Wraps wxSTC_VHDL_ATTRIBUTE.</summary>
 	public const int VhdlAttribute = 10;
 	/// <summary>Wraps wxSTC_VHDL_BLOCK_COMMENT.</summary>
@@ -5349,7 +4355,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_VHDL_COMMENT.</summary>
 	public const int VhdlComment = 1;
 	/// <summary>Wraps wxSTC_VHDL_COMMENTLINEBANG.</summary>
-	public const int VhdlCommentlinebang = 2;
+	public const int VhdlCommentLineBang = 2;
 	/// <summary>Wraps wxSTC_VHDL_DEFAULT.</summary>
 	public const int VhdlDefault = 0;
 	/// <summary>Wraps wxSTC_VHDL_IDENTIFIER.</summary>
@@ -5361,87 +4367,75 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_VHDL_OPERATOR.</summary>
 	public const int VhdlOperator = 5;
 	/// <summary>Wraps wxSTC_VHDL_STDFUNCTION.</summary>
-	public const int VhdlStdfunction = 11;
+	public const int VhdlStdFunction = 11;
 	/// <summary>Wraps wxSTC_VHDL_STDOPERATOR.</summary>
-	public const int VhdlStdoperator = 9;
+	public const int VhdlStdOperator = 9;
 	/// <summary>Wraps wxSTC_VHDL_STDPACKAGE.</summary>
-	public const int VhdlStdpackage = 12;
+	public const int VhdlStdPackage = 12;
 	/// <summary>Wraps wxSTC_VHDL_STDTYPE.</summary>
-	public const int VhdlStdtype = 13;
+	public const int VhdlStdType = 13;
 	/// <summary>Wraps wxSTC_VHDL_STRING.</summary>
 	public const int VhdlString = 4;
 	/// <summary>Wraps wxSTC_VHDL_STRINGEOL.</summary>
-	public const int VhdlStringeol = 7;
+	public const int VhdlStringEol = 7;
 	/// <summary>Wraps wxSTC_VHDL_USERWORD.</summary>
-	public const int VhdlUserword = 14;
-	/// <summary>Wraps wxSTC_VISIBLE_SLOP.</summary>
-	public const int VisibleSlop = 1;
-	/// <summary>Wraps wxSTC_VISIBLE_STRICT.</summary>
-	public const int VisibleStrict = 4;
+	public const int VhdlUserWord = 14;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_ANONYMOUS.</summary>
-	public const int VisualprologAnonymous = 10;
+	public const int VisualPrologAnonymous = 10;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_COMMENT_BLOCK.</summary>
-	public const int VisualprologCommentBlock = 4;
+	public const int VisualPrologCommentBlock = 4;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_COMMENT_KEY.</summary>
-	public const int VisualprologCommentKey = 6;
+	public const int VisualPrologCommentKey = 6;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_COMMENT_KEY_ERROR.</summary>
-	public const int VisualprologCommentKeyError = 7;
+	public const int VisualPrologCommentKeyError = 7;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_COMMENT_LINE.</summary>
-	public const int VisualprologCommentLine = 5;
+	public const int VisualPrologCommentLine = 5;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_DEFAULT.</summary>
-	public const int VisualprologDefault = 0;
+	public const int VisualPrologDefault = 0;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_EMBEDDED.</summary>
-	public const int VisualprologEmbedded = 23;
+	public const int VisualPrologEmbedded = 23;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_IDENTIFIER.</summary>
-	public const int VisualprologIdentifier = 8;
+	public const int VisualPrologIdentifier = 8;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_KEY_DIRECTIVE.</summary>
-	public const int VisualprologKeyDirective = 3;
+	public const int VisualPrologKeyDirective = 3;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_KEY_MAJOR.</summary>
-	public const int VisualprologKeyMajor = 1;
+	public const int VisualPrologKeyMajor = 1;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_KEY_MINOR.</summary>
-	public const int VisualprologKeyMinor = 2;
+	public const int VisualPrologKeyMinor = 2;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_NUMBER.</summary>
-	public const int VisualprologNumber = 11;
+	public const int VisualPrologNumber = 11;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_OPERATOR.</summary>
-	public const int VisualprologOperator = 12;
+	public const int VisualPrologOperator = 12;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_PLACEHOLDER.</summary>
-	public const int VisualprologPlaceholder = 24;
+	public const int VisualPrologPlaceholder = 24;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_STRING.</summary>
-	public const int VisualprologString = 20;
+	public const int VisualPrologString = 20;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_STRING_EOL.</summary>
-	public const int VisualprologStringEol = 22;
+	public const int VisualPrologStringEol = 22;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_STRING_ESCAPE.</summary>
-	public const int VisualprologStringEscape = 17;
+	public const int VisualPrologStringEscape = 17;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_STRING_ESCAPE_ERROR.</summary>
-	public const int VisualprologStringEscapeError = 18;
+	public const int VisualPrologStringEscapeError = 18;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_STRING_QUOTE.</summary>
-	public const int VisualprologStringQuote = 16;
+	public const int VisualPrologStringQuote = 16;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_UNUSED1.</summary>
-	public const int VisualprologUnused1 = 13;
+	public const int VisualPrologUnused1 = 13;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_UNUSED2.</summary>
-	public const int VisualprologUnused2 = 14;
+	public const int VisualPrologUnused2 = 14;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_UNUSED3.</summary>
-	public const int VisualprologUnused3 = 15;
+	public const int VisualPrologUnused3 = 15;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_UNUSED4.</summary>
-	public const int VisualprologUnused4 = 19;
+	public const int VisualPrologUnused4 = 19;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_UNUSED5.</summary>
-	public const int VisualprologUnused5 = 21;
+	public const int VisualPrologUnused5 = 21;
 	/// <summary>Wraps wxSTC_VISUALPROLOG_VARIABLE.</summary>
-	public const int VisualprologVariable = 9;
-	/// <summary>Wraps wxSTC_VS_NONE.</summary>
-	public const int VsNone = 0;
-	/// <summary>Wraps wxSTC_VS_NOWRAPLINESTART.</summary>
-	public const int VsNowraplinestart = 4;
-	/// <summary>Wraps wxSTC_VS_RECTANGULARSELECTION.</summary>
-	public const int VsRectangularselection = 1;
-	/// <summary>Wraps wxSTC_VS_USERACCESSIBLE.</summary>
-	public const int VsUseraccessible = 2;
+	public const int VisualPrologVariable = 9;
 	/// <summary>Wraps wxSTC_V_COMMENT.</summary>
 	public const int VComment = 1;
 	/// <summary>Wraps wxSTC_V_COMMENTLINE.</summary>
-	public const int VCommentline = 2;
+	public const int VCommentLine = 2;
 	/// <summary>Wraps wxSTC_V_COMMENTLINEBANG.</summary>
-	public const int VCommentlinebang = 3;
+	public const int VCommentLineBang = 3;
 	/// <summary>Wraps wxSTC_V_COMMENT_WORD.</summary>
 	public const int VCommentWord = 20;
 	/// <summary>Wraps wxSTC_V_DEFAULT.</summary>
@@ -5449,7 +4443,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_V_IDENTIFIER.</summary>
 	public const int VIdentifier = 11;
 	/// <summary>Wraps wxSTC_V_INOUT.</summary>
-	public const int VInout = 23;
+	public const int VInOut = 23;
 	/// <summary>Wraps wxSTC_V_INPUT.</summary>
 	public const int VInput = 21;
 	/// <summary>Wraps wxSTC_V_NUMBER.</summary>
@@ -5465,7 +4459,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_V_STRING.</summary>
 	public const int VString = 6;
 	/// <summary>Wraps wxSTC_V_STRINGEOL.</summary>
-	public const int VStringeol = 12;
+	public const int VStringEol = 12;
 	/// <summary>Wraps wxSTC_V_USER.</summary>
 	public const int VUser = 19;
 	/// <summary>Wraps wxSTC_V_WORD.</summary>
@@ -5480,44 +4474,6 @@ public static partial class Stc {
 	public const int WeightNormal = 400;
 	/// <summary>Wraps wxSTC_WEIGHT_SEMIBOLD.</summary>
 	public const int WeightSemiBold = 600;
-	/// <summary>Wraps wxSTC_WRAPINDENT_DEEPINDENT.</summary>
-	public const int WrapindentDeepindent = 3;
-	/// <summary>Wraps wxSTC_WRAPINDENT_FIXED.</summary>
-	public const int WrapindentFixed = 0;
-	/// <summary>Wraps wxSTC_WRAPINDENT_INDENT.</summary>
-	public const int WrapindentIndent = 2;
-	/// <summary>Wraps wxSTC_WRAPINDENT_SAME.</summary>
-	public const int WrapindentSame = 1;
-	/// <summary>Wraps wxSTC_WRAPVISUALFLAGLOC_DEFAULT.</summary>
-	public const int WrapvisualflaglocDefault = 0;
-	/// <summary>Wraps wxSTC_WRAPVISUALFLAGLOC_END_BY_TEXT.</summary>
-	public const int WrapvisualflaglocEndByText = 1;
-	/// <summary>Wraps wxSTC_WRAPVISUALFLAGLOC_START_BY_TEXT.</summary>
-	public const int WrapvisualflaglocStartByText = 2;
-	/// <summary>Wraps wxSTC_WRAPVISUALFLAG_END.</summary>
-	public const int WrapvisualflagEnd = 1;
-	/// <summary>Wraps wxSTC_WRAPVISUALFLAG_MARGIN.</summary>
-	public const int WrapvisualflagMargin = 4;
-	/// <summary>Wraps wxSTC_WRAPVISUALFLAG_NONE.</summary>
-	public const int WrapvisualflagNone = 0;
-	/// <summary>Wraps wxSTC_WRAPVISUALFLAG_START.</summary>
-	public const int WrapvisualflagStart = 2;
-	/// <summary>Wraps wxSTC_WRAP_CHAR.</summary>
-	public const int WrapChar = 2;
-	/// <summary>Wraps wxSTC_WRAP_NONE.</summary>
-	public const int WrapNone = 0;
-	/// <summary>Wraps wxSTC_WRAP_WHITESPACE.</summary>
-	public const int WrapWhiteSpace = 3;
-	/// <summary>Wraps wxSTC_WRAP_WORD.</summary>
-	public const int WrapWord = 1;
-	/// <summary>Wraps wxSTC_WS_INVISIBLE.</summary>
-	public const int WsInvisible = 0;
-	/// <summary>Wraps wxSTC_WS_VISIBLEAFTERINDENT.</summary>
-	public const int WsVisibleafterindent = 2;
-	/// <summary>Wraps wxSTC_WS_VISIBLEALWAYS.</summary>
-	public const int WsVisiblealways = 1;
-	/// <summary>Wraps wxSTC_WS_VISIBLEONLYININDENT.</summary>
-	public const int WsVisibleonlyinindent = 3;
 	/// <summary>Wraps wxSTC_X12_BAD.</summary>
 	public const int X12Bad = 1;
 	/// <summary>Wraps wxSTC_X12_DEFAULT.</summary>
@@ -5525,17 +4481,17 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_X12_ENVELOPE.</summary>
 	public const int X12Envelope = 2;
 	/// <summary>Wraps wxSTC_X12_FUNCTIONGROUP.</summary>
-	public const int X12Functiongroup = 3;
+	public const int X12FunctionGroup = 3;
 	/// <summary>Wraps wxSTC_X12_SEGMENTEND.</summary>
-	public const int X12Segmentend = 6;
+	public const int X12SegmentEnd = 6;
 	/// <summary>Wraps wxSTC_X12_SEGMENTHEADER.</summary>
-	public const int X12Segmentheader = 5;
+	public const int X12SegmentHeader = 5;
 	/// <summary>Wraps wxSTC_X12_SEP_ELEMENT.</summary>
 	public const int X12SepElement = 7;
 	/// <summary>Wraps wxSTC_X12_SEP_SUBELEMENT.</summary>
 	public const int X12SepSubelement = 8;
 	/// <summary>Wraps wxSTC_X12_TRANSACTIONSET.</summary>
-	public const int X12Transactionset = 4;
+	public const int X12TransactionSet = 4;
 	/// <summary>Wraps wxSTC_YAML_COMMENT.</summary>
 	public const int YamlComment = 1;
 	/// <summary>Wraps wxSTC_YAML_DEFAULT.</summary>
@@ -5561,15 +4517,15 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_ZIG_CHARACTER.</summary>
 	public const int ZigCharacter = 6;
 	/// <summary>Wraps wxSTC_ZIG_COMMENTLINE.</summary>
-	public const int ZigCommentline = 1;
+	public const int ZigCommentLine = 1;
 	/// <summary>Wraps wxSTC_ZIG_COMMENTLINEDOC.</summary>
-	public const int ZigCommentlinedoc = 2;
+	public const int ZigCommentLineDoc = 2;
 	/// <summary>Wraps wxSTC_ZIG_COMMENTLINETOP.</summary>
-	public const int ZigCommentlinetop = 3;
+	public const int ZigCommentLineTop = 3;
 	/// <summary>Wraps wxSTC_ZIG_DEFAULT.</summary>
 	public const int ZigDefault = 0;
 	/// <summary>Wraps wxSTC_ZIG_ESCAPECHAR.</summary>
-	public const int ZigEscapechar = 9;
+	public const int ZigEscapeChar = 9;
 	/// <summary>Wraps wxSTC_ZIG_FUNCTION.</summary>
 	public const int ZigFunction = 11;
 	/// <summary>Wraps wxSTC_ZIG_IDENTIFIER.</summary>
@@ -5585,7 +4541,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_ZIG_KW_TYPE.</summary>
 	public const int ZigKwType = 16;
 	/// <summary>Wraps wxSTC_ZIG_MULTISTRING.</summary>
-	public const int ZigMultistring = 8;
+	public const int ZigMultiString = 8;
 	/// <summary>Wraps wxSTC_ZIG_NUMBER.</summary>
 	public const int ZigNumber = 4;
 	/// <summary>Wraps wxSTC_ZIG_OPERATOR.</summary>
@@ -5593,5 +4549,5 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_ZIG_STRING.</summary>
 	public const int ZigString = 7;
 	/// <summary>Wraps wxSTC_ZIG_STRINGEOL.</summary>
-	public const int ZigStringeol = 18;
+	public const int ZigStringEol = 18;
 }

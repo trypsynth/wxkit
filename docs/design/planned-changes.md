@@ -8,12 +8,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 
 A second review of the whole API on 2026-11-26, before the first preview, found these. The earlier review's changes are made, and listed in [the first preview's notes](../releases/0.2.0-preview.1.md).
 
-### The styled text control
-
-- `Stc` has about 2,900 constants as `int`s, with the words run together that the enums split, such as `CmdCharleftextend`, and a British `Behaviour`. The control takes them as `int`s, as in `Lexer`, `EolMode`, `WrapMode`, and `CmdKeyAssign`. The groups that aren't a lexer's styles could be enums, and the class named `StyledText`, as `EventType` says.
-- `Stc.KeymodShift` is 1 and `KeymodAlt` 4, which aren't `KeyModifiers`' values, though the event's `Modifiers` is a `KeyModifiers` now.
-- Pairs such as `AnnotationGetVisible` and `AnnotationSetVisible` aren't properties, `Selections` is a count, `SelectionEmpty` and `Overtype` lack `Is`, and `StyledTextEvent` has `LParam`, `WParam`, and `Message`, `X` and `Y`, and `Key` as an `int`.
-
 ### F#
 
 - `LayoutSource` is public only for the inline functions, and shows in completion.

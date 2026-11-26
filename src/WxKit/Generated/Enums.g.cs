@@ -2242,6 +2242,1291 @@ public enum StockCursor {
 	Blank = 26,
 }
 
+/// <summary>Wraps wxSTC_ACCESSIBILITY_*.</summary>
+public enum StyledTextAccessibility {
+	/// <summary>Wraps wxSTC_ACCESSIBILITY_DISABLED.</summary>
+	Disabled = 0,
+	/// <summary>Wraps wxSTC_ACCESSIBILITY_ENABLED.</summary>
+	Enabled = 1,
+}
+
+/// <summary>Wraps wxSTC_ANNOTATION_*.</summary>
+public enum StyledTextAnnotationVisible {
+	/// <summary>Wraps wxSTC_ANNOTATION_HIDDEN.</summary>
+	Hidden = 0,
+	/// <summary>Wraps wxSTC_ANNOTATION_STANDARD.</summary>
+	Standard = 1,
+	/// <summary>Wraps wxSTC_ANNOTATION_BOXED.</summary>
+	Boxed = 2,
+	/// <summary>Wraps wxSTC_ANNOTATION_INDENTED.</summary>
+	Indented = 3,
+}
+
+/// <summary>Wraps wxSTC_ORDER_*.</summary>
+public enum StyledTextAutoCompleteOrder {
+	/// <summary>Wraps wxSTC_ORDER_PRESORTED.</summary>
+	Presorted = 0,
+	/// <summary>Wraps wxSTC_ORDER_PERFORMSORT.</summary>
+	PerformSort = 1,
+	/// <summary>Wraps wxSTC_ORDER_CUSTOM.</summary>
+	Custom = 2,
+}
+
+/// <summary>Wraps wxSTC_AUTOMATICFOLD_*.</summary>
+[Flags]
+public enum StyledTextAutomaticFold {
+	/// <summary>None of the flags. Wraps 0.</summary>
+	None = 0,
+	/// <summary>Wraps wxSTC_AUTOMATICFOLD_SHOW.</summary>
+	Show = 1,
+	/// <summary>Wraps wxSTC_AUTOMATICFOLD_CLICK.</summary>
+	Click = 2,
+	/// <summary>Wraps wxSTC_AUTOMATICFOLD_CHANGE.</summary>
+	Change = 4,
+}
+
+/// <summary>Wraps wxSTC_CARET_*.</summary>
+[Flags]
+public enum StyledTextCaretPolicy {
+	/// <summary>None of the flags. Wraps 0.</summary>
+	None = 0,
+	/// <summary>Wraps wxSTC_CARET_SLOP.</summary>
+	Slop = 1,
+	/// <summary>Wraps wxSTC_CARET_STRICT.</summary>
+	Strict = 4,
+	/// <summary>Wraps wxSTC_CARET_EVEN.</summary>
+	Even = 8,
+	/// <summary>Wraps wxSTC_CARET_JUMPS.</summary>
+	Jumps = 16,
+}
+
+/// <summary>Wraps wxSTC_CARETSTICKY_*.</summary>
+public enum StyledTextCaretSticky {
+	/// <summary>Wraps wxSTC_CARETSTICKY_OFF.</summary>
+	Off = 0,
+	/// <summary>Wraps wxSTC_CARETSTICKY_ON.</summary>
+	On = 1,
+	/// <summary>Wraps wxSTC_CARETSTICKY_WHITESPACE.</summary>
+	WhiteSpace = 2,
+}
+
+/// <summary>Wraps wxSTC_CARETSTYLE_*.</summary>
+[Flags]
+public enum StyledTextCaretStyle {
+	/// <summary>Wraps wxSTC_CARETSTYLE_INVISIBLE.</summary>
+	Invisible = 0,
+	/// <summary>Wraps wxSTC_CARETSTYLE_OVERSTRIKE_BAR.</summary>
+	OverstrikeBar = 0,
+	/// <summary>Wraps wxSTC_CARETSTYLE_LINE.</summary>
+	Line = 1,
+	/// <summary>Wraps wxSTC_CARETSTYLE_BLOCK.</summary>
+	Block = 2,
+	/// <summary>Wraps wxSTC_CARETSTYLE_INS_MASK.</summary>
+	InsertMask = 15,
+	/// <summary>Wraps wxSTC_CARETSTYLE_OVERSTRIKE_BLOCK.</summary>
+	OverstrikeBlock = 16,
+	/// <summary>Wraps wxSTC_CARETSTYLE_BLOCK_AFTER.</summary>
+	BlockAfter = 256,
+}
+
+/// <summary>Wraps wxSTC_CASE_*.</summary>
+public enum StyledTextCase {
+	/// <summary>Wraps wxSTC_CASE_MIXED.</summary>
+	Mixed = 0,
+	/// <summary>Wraps wxSTC_CASE_UPPER.</summary>
+	Upper = 1,
+	/// <summary>Wraps wxSTC_CASE_LOWER.</summary>
+	Lower = 2,
+	/// <summary>Wraps wxSTC_CASE_CAMEL.</summary>
+	Camel = 3,
+}
+
+/// <summary>Wraps wxSTC_CASEINSENSITIVEBEHAVIOUR_*.</summary>
+public enum StyledTextCaseInsensitiveBehavior {
+	/// <summary>Wraps wxSTC_CASEINSENSITIVEBEHAVIOUR_RESPECTCASE.</summary>
+	RespectCase = 0,
+	/// <summary>Wraps wxSTC_CASEINSENSITIVEBEHAVIOUR_IGNORECASE.</summary>
+	IgnoreCase = 1,
+}
+
+/// <summary>Wraps wxSTC_CHARSET_*.</summary>
+public enum StyledTextCharacterSet {
+	/// <summary>Wraps wxSTC_CHARSET_ANSI.</summary>
+	Ansi = 0,
+	/// <summary>Wraps wxSTC_CHARSET_DEFAULT.</summary>
+	Default = 1,
+	/// <summary>Wraps wxSTC_CHARSET_SYMBOL.</summary>
+	Symbol = 2,
+	/// <summary>Wraps wxSTC_CHARSET_MAC.</summary>
+	Mac = 77,
+	/// <summary>Wraps wxSTC_CHARSET_SHIFTJIS.</summary>
+	ShiftJis = 128,
+	/// <summary>Wraps wxSTC_CHARSET_HANGUL.</summary>
+	Hangul = 129,
+	/// <summary>Wraps wxSTC_CHARSET_JOHAB.</summary>
+	Johab = 130,
+	/// <summary>Wraps wxSTC_CHARSET_GB2312.</summary>
+	Gb2312 = 134,
+	/// <summary>Wraps wxSTC_CHARSET_CHINESEBIG5.</summary>
+	ChineseBig5 = 136,
+	/// <summary>Wraps wxSTC_CHARSET_GREEK.</summary>
+	Greek = 161,
+	/// <summary>Wraps wxSTC_CHARSET_TURKISH.</summary>
+	Turkish = 162,
+	/// <summary>Wraps wxSTC_CHARSET_VIETNAMESE.</summary>
+	Vietnamese = 163,
+	/// <summary>Wraps wxSTC_CHARSET_HEBREW.</summary>
+	Hebrew = 177,
+	/// <summary>Wraps wxSTC_CHARSET_ARABIC.</summary>
+	Arabic = 178,
+	/// <summary>Wraps wxSTC_CHARSET_BALTIC.</summary>
+	Baltic = 186,
+	/// <summary>Wraps wxSTC_CHARSET_RUSSIAN.</summary>
+	Russian = 204,
+	/// <summary>Wraps wxSTC_CHARSET_THAI.</summary>
+	Thai = 222,
+	/// <summary>Wraps wxSTC_CHARSET_EASTEUROPE.</summary>
+	EastEurope = 238,
+	/// <summary>Wraps wxSTC_CHARSET_OEM.</summary>
+	Oem = 255,
+	/// <summary>Wraps wxSTC_CHARSET_OEM866.</summary>
+	Oem866 = 866,
+	/// <summary>Wraps wxSTC_CHARSET_8859_15.</summary>
+	Iso885915 = 1000,
+	/// <summary>Wraps wxSTC_CHARSET_CYRILLIC.</summary>
+	Cyrillic = 1251,
+}
+
+/// <summary>Wraps wxSTC_CHARACTERSOURCE_*.</summary>
+public enum StyledTextCharacterSource {
+	/// <summary>Wraps wxSTC_CHARACTERSOURCE_DIRECT_INPUT.</summary>
+	DirectInput = 0,
+	/// <summary>Wraps wxSTC_CHARACTERSOURCE_TENTATIVE_INPUT.</summary>
+	TentativeInput = 1,
+	/// <summary>Wraps wxSTC_CHARACTERSOURCE_IME_RESULT.</summary>
+	ImeResult = 2,
+}
+
+/// <summary>Wraps wxSTC_CMD_*.</summary>
+public enum StyledTextCommand {
+	/// <summary>Wraps wxSTC_CMD_REDO.</summary>
+	Redo = 2011,
+	/// <summary>Wraps wxSTC_CMD_SELECTALL.</summary>
+	SelectAll = 2013,
+	/// <summary>Wraps wxSTC_CMD_UNDO.</summary>
+	Undo = 2176,
+	/// <summary>Wraps wxSTC_CMD_CUT.</summary>
+	Cut = 2177,
+	/// <summary>Wraps wxSTC_CMD_COPY.</summary>
+	Copy = 2178,
+	/// <summary>Wraps wxSTC_CMD_PASTE.</summary>
+	Paste = 2179,
+	/// <summary>Wraps wxSTC_CMD_CLEAR.</summary>
+	DeleteSelection = 2180,
+	/// <summary>Wraps wxSTC_CMD_LINEDOWN.</summary>
+	LineDown = 2300,
+	/// <summary>Wraps wxSTC_CMD_LINEDOWNEXTEND.</summary>
+	LineDownExtend = 2301,
+	/// <summary>Wraps wxSTC_CMD_LINEUP.</summary>
+	LineUp = 2302,
+	/// <summary>Wraps wxSTC_CMD_LINEUPEXTEND.</summary>
+	LineUpExtend = 2303,
+	/// <summary>Wraps wxSTC_CMD_CHARLEFT.</summary>
+	CharLeft = 2304,
+	/// <summary>Wraps wxSTC_CMD_CHARLEFTEXTEND.</summary>
+	CharLeftExtend = 2305,
+	/// <summary>Wraps wxSTC_CMD_CHARRIGHT.</summary>
+	CharRight = 2306,
+	/// <summary>Wraps wxSTC_CMD_CHARRIGHTEXTEND.</summary>
+	CharRightExtend = 2307,
+	/// <summary>Wraps wxSTC_CMD_WORDLEFT.</summary>
+	WordLeft = 2308,
+	/// <summary>Wraps wxSTC_CMD_WORDLEFTEXTEND.</summary>
+	WordLeftExtend = 2309,
+	/// <summary>Wraps wxSTC_CMD_WORDRIGHT.</summary>
+	WordRight = 2310,
+	/// <summary>Wraps wxSTC_CMD_WORDRIGHTEXTEND.</summary>
+	WordRightExtend = 2311,
+	/// <summary>Wraps wxSTC_CMD_HOME.</summary>
+	Home = 2312,
+	/// <summary>Wraps wxSTC_CMD_HOMEEXTEND.</summary>
+	HomeExtend = 2313,
+	/// <summary>Wraps wxSTC_CMD_LINEEND.</summary>
+	LineEnd = 2314,
+	/// <summary>Wraps wxSTC_CMD_LINEENDEXTEND.</summary>
+	LineEndExtend = 2315,
+	/// <summary>Wraps wxSTC_CMD_DOCUMENTSTART.</summary>
+	DocumentStart = 2316,
+	/// <summary>Wraps wxSTC_CMD_DOCUMENTSTARTEXTEND.</summary>
+	DocumentStartExtend = 2317,
+	/// <summary>Wraps wxSTC_CMD_DOCUMENTEND.</summary>
+	DocumentEnd = 2318,
+	/// <summary>Wraps wxSTC_CMD_DOCUMENTENDEXTEND.</summary>
+	DocumentEndExtend = 2319,
+	/// <summary>Wraps wxSTC_CMD_PAGEUP.</summary>
+	PageUp = 2320,
+	/// <summary>Wraps wxSTC_CMD_PAGEUPEXTEND.</summary>
+	PageUpExtend = 2321,
+	/// <summary>Wraps wxSTC_CMD_PAGEDOWN.</summary>
+	PageDown = 2322,
+	/// <summary>Wraps wxSTC_CMD_PAGEDOWNEXTEND.</summary>
+	PageDownExtend = 2323,
+	/// <summary>Wraps wxSTC_CMD_EDITTOGGLEOVERTYPE.</summary>
+	EditToggleOvertype = 2324,
+	/// <summary>Wraps wxSTC_CMD_CANCEL.</summary>
+	Cancel = 2325,
+	/// <summary>Wraps wxSTC_CMD_DELETEBACK.</summary>
+	DeleteBack = 2326,
+	/// <summary>Wraps wxSTC_CMD_TAB.</summary>
+	Tab = 2327,
+	/// <summary>Wraps wxSTC_CMD_BACKTAB.</summary>
+	BackTab = 2328,
+	/// <summary>Wraps wxSTC_CMD_NEWLINE.</summary>
+	NewLine = 2329,
+	/// <summary>Wraps wxSTC_CMD_FORMFEED.</summary>
+	FormFeed = 2330,
+	/// <summary>Wraps wxSTC_CMD_VCHOME.</summary>
+	VCHome = 2331,
+	/// <summary>Wraps wxSTC_CMD_VCHOMEEXTEND.</summary>
+	VCHomeExtend = 2332,
+	/// <summary>Wraps wxSTC_CMD_ZOOMIN.</summary>
+	ZoomIn = 2333,
+	/// <summary>Wraps wxSTC_CMD_ZOOMOUT.</summary>
+	ZoomOut = 2334,
+	/// <summary>Wraps wxSTC_CMD_DELWORDLEFT.</summary>
+	DelWordLeft = 2335,
+	/// <summary>Wraps wxSTC_CMD_DELWORDRIGHT.</summary>
+	DelWordRight = 2336,
+	/// <summary>Wraps wxSTC_CMD_LINECUT.</summary>
+	LineCut = 2337,
+	/// <summary>Wraps wxSTC_CMD_LINEDELETE.</summary>
+	LineDelete = 2338,
+	/// <summary>Wraps wxSTC_CMD_LINETRANSPOSE.</summary>
+	LineTranspose = 2339,
+	/// <summary>Wraps wxSTC_CMD_LOWERCASE.</summary>
+	LowerCase = 2340,
+	/// <summary>Wraps wxSTC_CMD_UPPERCASE.</summary>
+	UpperCase = 2341,
+	/// <summary>Wraps wxSTC_CMD_LINESCROLLDOWN.</summary>
+	LineScrollDown = 2342,
+	/// <summary>Wraps wxSTC_CMD_LINESCROLLUP.</summary>
+	LineScrollUp = 2343,
+	/// <summary>Wraps wxSTC_CMD_DELETEBACKNOTLINE.</summary>
+	DeleteBackNotLine = 2344,
+	/// <summary>Wraps wxSTC_CMD_HOMEDISPLAY.</summary>
+	HomeDisplay = 2345,
+	/// <summary>Wraps wxSTC_CMD_HOMEDISPLAYEXTEND.</summary>
+	HomeDisplayExtend = 2346,
+	/// <summary>Wraps wxSTC_CMD_LINEENDDISPLAY.</summary>
+	LineEndDisplay = 2347,
+	/// <summary>Wraps wxSTC_CMD_LINEENDDISPLAYEXTEND.</summary>
+	LineEndDisplayExtend = 2348,
+	/// <summary>Wraps wxSTC_CMD_HOMEWRAP.</summary>
+	HomeWrap = 2349,
+	/// <summary>Wraps wxSTC_CMD_WORDPARTLEFT.</summary>
+	WordPartLeft = 2390,
+	/// <summary>Wraps wxSTC_CMD_WORDPARTLEFTEXTEND.</summary>
+	WordPartLeftExtend = 2391,
+	/// <summary>Wraps wxSTC_CMD_WORDPARTRIGHT.</summary>
+	WordPartRight = 2392,
+	/// <summary>Wraps wxSTC_CMD_WORDPARTRIGHTEXTEND.</summary>
+	WordPartRightExtend = 2393,
+	/// <summary>Wraps wxSTC_CMD_DELLINELEFT.</summary>
+	DelLineLeft = 2395,
+	/// <summary>Wraps wxSTC_CMD_DELLINERIGHT.</summary>
+	DelLineRight = 2396,
+	/// <summary>Wraps wxSTC_CMD_LINEDUPLICATE.</summary>
+	LineDuplicate = 2404,
+	/// <summary>Wraps wxSTC_CMD_PARADOWN.</summary>
+	ParaDown = 2413,
+	/// <summary>Wraps wxSTC_CMD_PARADOWNEXTEND.</summary>
+	ParaDownExtend = 2414,
+	/// <summary>Wraps wxSTC_CMD_PARAUP.</summary>
+	ParaUp = 2415,
+	/// <summary>Wraps wxSTC_CMD_PARAUPEXTEND.</summary>
+	ParaUpExtend = 2416,
+	/// <summary>Wraps wxSTC_CMD_LINEDOWNRECTEXTEND.</summary>
+	LineDownRectExtend = 2426,
+	/// <summary>Wraps wxSTC_CMD_LINEUPRECTEXTEND.</summary>
+	LineUpRectExtend = 2427,
+	/// <summary>Wraps wxSTC_CMD_CHARLEFTRECTEXTEND.</summary>
+	CharLeftRectExtend = 2428,
+	/// <summary>Wraps wxSTC_CMD_CHARRIGHTRECTEXTEND.</summary>
+	CharRightRectExtend = 2429,
+	/// <summary>Wraps wxSTC_CMD_HOMERECTEXTEND.</summary>
+	HomeRectExtend = 2430,
+	/// <summary>Wraps wxSTC_CMD_VCHOMERECTEXTEND.</summary>
+	VCHomeRectExtend = 2431,
+	/// <summary>Wraps wxSTC_CMD_LINEENDRECTEXTEND.</summary>
+	LineEndRectExtend = 2432,
+	/// <summary>Wraps wxSTC_CMD_PAGEUPRECTEXTEND.</summary>
+	PageUpRectExtend = 2433,
+	/// <summary>Wraps wxSTC_CMD_PAGEDOWNRECTEXTEND.</summary>
+	PageDownRectExtend = 2434,
+	/// <summary>Wraps wxSTC_CMD_STUTTEREDPAGEUP.</summary>
+	StutteredPageUp = 2435,
+	/// <summary>Wraps wxSTC_CMD_STUTTEREDPAGEUPEXTEND.</summary>
+	StutteredPageUpExtend = 2436,
+	/// <summary>Wraps wxSTC_CMD_STUTTEREDPAGEDOWN.</summary>
+	StutteredPageDown = 2437,
+	/// <summary>Wraps wxSTC_CMD_STUTTEREDPAGEDOWNEXTEND.</summary>
+	StutteredPageDownExtend = 2438,
+	/// <summary>Wraps wxSTC_CMD_WORDLEFTEND.</summary>
+	WordLeftEnd = 2439,
+	/// <summary>Wraps wxSTC_CMD_WORDLEFTENDEXTEND.</summary>
+	WordLeftEndExtend = 2440,
+	/// <summary>Wraps wxSTC_CMD_WORDRIGHTEND.</summary>
+	WordRightEnd = 2441,
+	/// <summary>Wraps wxSTC_CMD_WORDRIGHTENDEXTEND.</summary>
+	WordRightEndExtend = 2442,
+	/// <summary>Wraps wxSTC_CMD_HOMEWRAPEXTEND.</summary>
+	HomeWrapExtend = 2450,
+	/// <summary>Wraps wxSTC_CMD_LINEENDWRAP.</summary>
+	LineEndWrap = 2451,
+	/// <summary>Wraps wxSTC_CMD_LINEENDWRAPEXTEND.</summary>
+	LineEndWrapExtend = 2452,
+	/// <summary>Wraps wxSTC_CMD_VCHOMEWRAP.</summary>
+	VCHomeWrap = 2453,
+	/// <summary>Wraps wxSTC_CMD_VCHOMEWRAPEXTEND.</summary>
+	VCHomeWrapExtend = 2454,
+	/// <summary>Wraps wxSTC_CMD_LINECOPY.</summary>
+	LineCopy = 2455,
+	/// <summary>Wraps wxSTC_CMD_DELWORDRIGHTEND.</summary>
+	DelWordRightEnd = 2518,
+	/// <summary>Wraps wxSTC_CMD_VERTICALCENTRECARET.</summary>
+	VerticalCenterCaret = 2619,
+	/// <summary>Wraps wxSTC_CMD_MOVESELECTEDLINESUP.</summary>
+	MoveSelectedLinesUp = 2620,
+	/// <summary>Wraps wxSTC_CMD_MOVESELECTEDLINESDOWN.</summary>
+	MoveSelectedLinesDown = 2621,
+	/// <summary>Wraps wxSTC_CMD_SCROLLTOSTART.</summary>
+	ScrollToStart = 2628,
+	/// <summary>Wraps wxSTC_CMD_SCROLLTOEND.</summary>
+	ScrollToEnd = 2629,
+	/// <summary>Wraps wxSTC_CMD_VCHOMEDISPLAY.</summary>
+	VCHomeDisplay = 2652,
+	/// <summary>Wraps wxSTC_CMD_VCHOMEDISPLAYEXTEND.</summary>
+	VCHomeDisplayExtend = 2653,
+}
+
+/// <summary>Wraps wxSTC_AC_*.</summary>
+public enum StyledTextCompletionMethod {
+	/// <summary>Wraps wxSTC_AC_FILLUP.</summary>
+	FillUp = 1,
+	/// <summary>Wraps wxSTC_AC_DOUBLECLICK.</summary>
+	DoubleClick = 2,
+	/// <summary>Wraps wxSTC_AC_TAB.</summary>
+	Tab = 3,
+	/// <summary>Wraps wxSTC_AC_NEWLINE.</summary>
+	NewLine = 4,
+	/// <summary>Wraps wxSTC_AC_COMMAND.</summary>
+	Command = 5,
+}
+
+/// <summary>Wraps *.</summary>
+public enum StyledTextCursor {
+	/// <summary>Wraps wxSTC_CURSORNORMAL.</summary>
+	Normal = -1,
+	/// <summary>Wraps wxSTC_CURSORARROW.</summary>
+	Arrow = 2,
+	/// <summary>Wraps wxSTC_CURSORWAIT.</summary>
+	Wait = 4,
+	/// <summary>Wraps wxSTC_CURSORREVERSEARROW.</summary>
+	ReverseArrow = 7,
+}
+
+/// <summary>Wraps wxSTC_DOCUMENTOPTION_*.</summary>
+[Flags]
+public enum StyledTextDocumentOptions {
+	/// <summary>Wraps wxSTC_DOCUMENTOPTION_DEFAULT.</summary>
+	Default = 0,
+	/// <summary>Wraps wxSTC_DOCUMENTOPTION_STYLES_NONE.</summary>
+	StylesNone = 1,
+	/// <summary>Wraps wxSTC_DOCUMENTOPTION_TEXT_LARGE.</summary>
+	TextLarge = 256,
+}
+
+/// <summary>Wraps wxSTC_EDGE_*.</summary>
+public enum StyledTextEdgeMode {
+	/// <summary>Wraps wxSTC_EDGE_NONE.</summary>
+	None = 0,
+	/// <summary>Wraps wxSTC_EDGE_LINE.</summary>
+	Line = 1,
+	/// <summary>Wraps wxSTC_EDGE_BACKGROUND.</summary>
+	Background = 2,
+	/// <summary>Wraps wxSTC_EDGE_MULTILINE.</summary>
+	MultiLine = 3,
+}
+
+/// <summary>Wraps wxSTC_EOLANNOTATION_*.</summary>
+public enum StyledTextEolAnnotationVisible {
+	/// <summary>Wraps wxSTC_EOLANNOTATION_HIDDEN.</summary>
+	Hidden = 0,
+	/// <summary>Wraps wxSTC_EOLANNOTATION_STANDARD.</summary>
+	Standard = 1,
+	/// <summary>Wraps wxSTC_EOLANNOTATION_BOXED.</summary>
+	Boxed = 2,
+}
+
+/// <summary>Wraps wxSTC_EOL_*.</summary>
+public enum StyledTextEolMode {
+	/// <summary>Wraps wxSTC_EOL_CRLF.</summary>
+	CrLf = 0,
+	/// <summary>Wraps wxSTC_EOL_CR.</summary>
+	Cr = 1,
+	/// <summary>Wraps wxSTC_EOL_LF.</summary>
+	Lf = 2,
+}
+
+/// <summary>Wraps wxSTC_FIND_*.</summary>
+[Flags]
+public enum StyledTextFindFlags {
+	/// <summary>Wraps wxSTC_FIND_NONE.</summary>
+	None = 0,
+	/// <summary>Wraps wxSTC_FIND_WHOLEWORD.</summary>
+	WholeWord = 2,
+	/// <summary>Wraps wxSTC_FIND_MATCHCASE.</summary>
+	MatchCase = 4,
+	/// <summary>Wraps wxSTC_FIND_WORDSTART.</summary>
+	WordStart = 1048576,
+	/// <summary>Wraps wxSTC_FIND_REGEXP.</summary>
+	Regex = 2097152,
+	/// <summary>Wraps wxSTC_FIND_POSIX.</summary>
+	Posix = 4194304,
+}
+
+/// <summary>Wraps wxSTC_FOLDACTION_*.</summary>
+public enum StyledTextFoldAction {
+	/// <summary>Wraps wxSTC_FOLDACTION_CONTRACT.</summary>
+	Contract = 0,
+	/// <summary>Wraps wxSTC_FOLDACTION_EXPAND.</summary>
+	Expand = 1,
+	/// <summary>Wraps wxSTC_FOLDACTION_TOGGLE.</summary>
+	Toggle = 2,
+}
+
+/// <summary>Wraps wxSTC_FOLDDISPLAYTEXT_*.</summary>
+public enum StyledTextFoldDisplayText {
+	/// <summary>Wraps wxSTC_FOLDDISPLAYTEXT_HIDDEN.</summary>
+	Hidden = 0,
+	/// <summary>Wraps wxSTC_FOLDDISPLAYTEXT_STANDARD.</summary>
+	Standard = 1,
+	/// <summary>Wraps wxSTC_FOLDDISPLAYTEXT_BOXED.</summary>
+	Boxed = 2,
+}
+
+/// <summary>Wraps wxSTC_FOLDFLAG_*.</summary>
+[Flags]
+public enum StyledTextFoldFlags {
+	/// <summary>None of the flags. Wraps 0.</summary>
+	None = 0,
+	/// <summary>Wraps wxSTC_FOLDFLAG_LINEBEFORE_EXPANDED.</summary>
+	LineBeforeExpanded = 2,
+	/// <summary>Wraps wxSTC_FOLDFLAG_LINEBEFORE_CONTRACTED.</summary>
+	LineBeforeContracted = 4,
+	/// <summary>Wraps wxSTC_FOLDFLAG_LINEAFTER_EXPANDED.</summary>
+	LineAfterExpanded = 8,
+	/// <summary>Wraps wxSTC_FOLDFLAG_LINEAFTER_CONTRACTED.</summary>
+	LineAfterContracted = 16,
+	/// <summary>Wraps wxSTC_FOLDFLAG_LEVELNUMBERS.</summary>
+	LevelNumbers = 64,
+	/// <summary>Wraps wxSTC_FOLDFLAG_LINESTATE.</summary>
+	LineState = 128,
+}
+
+/// <summary>Wraps wxSTC_EFF_QUALITY_*.</summary>
+public enum StyledTextFontQuality {
+	/// <summary>Wraps wxSTC_EFF_QUALITY_DEFAULT.</summary>
+	Default = 0,
+	/// <summary>Wraps wxSTC_EFF_QUALITY_NON_ANTIALIASED.</summary>
+	NonAntiAliased = 1,
+	/// <summary>Wraps wxSTC_EFF_QUALITY_ANTIALIASED.</summary>
+	AntiAliased = 2,
+	/// <summary>Wraps wxSTC_EFF_QUALITY_LCD_OPTIMIZED.</summary>
+	LcdOptimized = 3,
+}
+
+/// <summary>Wraps wxSTC_IDLESTYLING_*.</summary>
+public enum StyledTextIdleStyling {
+	/// <summary>Wraps wxSTC_IDLESTYLING_NONE.</summary>
+	None = 0,
+	/// <summary>Wraps wxSTC_IDLESTYLING_TOVISIBLE.</summary>
+	ToVisible = 1,
+	/// <summary>Wraps wxSTC_IDLESTYLING_AFTERVISIBLE.</summary>
+	AfterVisible = 2,
+	/// <summary>Wraps wxSTC_IDLESTYLING_ALL.</summary>
+	All = 3,
+}
+
+/// <summary>Wraps wxSTC_IME_*.</summary>
+public enum StyledTextImeInteraction {
+	/// <summary>Wraps wxSTC_IME_WINDOWED.</summary>
+	Windowed = 0,
+	/// <summary>Wraps wxSTC_IME_INLINE.</summary>
+	Inline = 1,
+}
+
+/// <summary>Wraps wxSTC_IV_*.</summary>
+public enum StyledTextIndentGuides {
+	/// <summary>Wraps wxSTC_IV_NONE.</summary>
+	None = 0,
+	/// <summary>Wraps wxSTC_IV_REAL.</summary>
+	Real = 1,
+	/// <summary>Wraps wxSTC_IV_LOOKFORWARD.</summary>
+	LookForward = 2,
+	/// <summary>Wraps wxSTC_IV_LOOKBOTH.</summary>
+	LookBoth = 3,
+}
+
+/// <summary>Wraps wxSTC_INDICFLAG_*.</summary>
+[Flags]
+public enum StyledTextIndicatorFlags {
+	/// <summary>None of the flags. Wraps 0.</summary>
+	None = 0,
+	/// <summary>Wraps wxSTC_INDICFLAG_VALUEFORE.</summary>
+	ValueFore = 1,
+}
+
+/// <summary>Wraps wxSTC_INDIC_*.</summary>
+public enum StyledTextIndicatorStyle {
+	/// <summary>Wraps wxSTC_INDIC_PLAIN.</summary>
+	Plain = 0,
+	/// <summary>Wraps wxSTC_INDIC_SQUIGGLE.</summary>
+	Squiggle = 1,
+	/// <summary>Wraps wxSTC_INDIC_TT.</summary>
+	Tt = 2,
+	/// <summary>Wraps wxSTC_INDIC_DIAGONAL.</summary>
+	Diagonal = 3,
+	/// <summary>Wraps wxSTC_INDIC_STRIKE.</summary>
+	Strike = 4,
+	/// <summary>Wraps wxSTC_INDIC_HIDDEN.</summary>
+	Hidden = 5,
+	/// <summary>Wraps wxSTC_INDIC_BOX.</summary>
+	Box = 6,
+	/// <summary>Wraps wxSTC_INDIC_ROUNDBOX.</summary>
+	RoundBox = 7,
+	/// <summary>Wraps wxSTC_INDIC_STRAIGHTBOX.</summary>
+	StraightBox = 8,
+	/// <summary>Wraps wxSTC_INDIC_DASH.</summary>
+	Dash = 9,
+	/// <summary>Wraps wxSTC_INDIC_DOTS.</summary>
+	Dots = 10,
+	/// <summary>Wraps wxSTC_INDIC_SQUIGGLELOW.</summary>
+	SquiggleLow = 11,
+	/// <summary>Wraps wxSTC_INDIC_DOTBOX.</summary>
+	DotBox = 12,
+	/// <summary>Wraps wxSTC_INDIC_SQUIGGLEPIXMAP.</summary>
+	SquigglePixmap = 13,
+	/// <summary>Wraps wxSTC_INDIC_COMPOSITIONTHICK.</summary>
+	CompositionThick = 14,
+	/// <summary>Wraps wxSTC_INDIC_COMPOSITIONTHIN.</summary>
+	CompositionThin = 15,
+	/// <summary>Wraps wxSTC_INDIC_FULLBOX.</summary>
+	FullBox = 16,
+	/// <summary>Wraps wxSTC_INDIC_TEXTFORE.</summary>
+	TextFore = 17,
+	/// <summary>Wraps wxSTC_INDIC_POINT.</summary>
+	Point = 18,
+	/// <summary>Wraps wxSTC_INDIC_POINTCHARACTER.</summary>
+	PointCharacter = 19,
+	/// <summary>Wraps wxSTC_INDIC_GRADIENT.</summary>
+	Gradient = 20,
+	/// <summary>Wraps wxSTC_INDIC_GRADIENTCENTRE.</summary>
+	GradientCenter = 21,
+}
+
+/// <summary>Wraps wxSTC_KEYMOD_*.</summary>
+[Flags]
+public enum StyledTextKeyModifiers {
+	/// <summary>Wraps wxSTC_KEYMOD_NORM.</summary>
+	None = 0,
+	/// <summary>Wraps wxSTC_KEYMOD_SHIFT.</summary>
+	Shift = 1,
+	/// <summary>Wraps wxSTC_KEYMOD_CTRL.</summary>
+	Control = 2,
+	/// <summary>Wraps wxSTC_KEYMOD_ALT.</summary>
+	Alt = 4,
+	/// <summary>Wraps wxSTC_KEYMOD_SUPER.</summary>
+	Super = 8,
+	/// <summary>Wraps wxSTC_KEYMOD_META.</summary>
+	Meta = 16,
+}
+
+/// <summary>Wraps wxSTC_CACHE_*.</summary>
+public enum StyledTextLayoutCache {
+	/// <summary>Wraps wxSTC_CACHE_NONE.</summary>
+	None = 0,
+	/// <summary>Wraps wxSTC_CACHE_CARET.</summary>
+	Caret = 1,
+	/// <summary>Wraps wxSTC_CACHE_PAGE.</summary>
+	Page = 2,
+	/// <summary>Wraps wxSTC_CACHE_DOCUMENT.</summary>
+	Document = 3,
+}
+
+/// <summary>Wraps wxSTC_LEX_*.</summary>
+public enum StyledTextLexer {
+	/// <summary>Wraps wxSTC_LEX_CONTAINER.</summary>
+	Container = 0,
+	/// <summary>Wraps wxSTC_LEX_NULL.</summary>
+	Null = 1,
+	/// <summary>Wraps wxSTC_LEX_PYTHON.</summary>
+	Python = 2,
+	/// <summary>Wraps wxSTC_LEX_CPP.</summary>
+	Cpp = 3,
+	/// <summary>Wraps wxSTC_LEX_HTML.</summary>
+	Html = 4,
+	/// <summary>Wraps wxSTC_LEX_XML.</summary>
+	Xml = 5,
+	/// <summary>Wraps wxSTC_LEX_PERL.</summary>
+	Perl = 6,
+	/// <summary>Wraps wxSTC_LEX_SQL.</summary>
+	Sql = 7,
+	/// <summary>Wraps wxSTC_LEX_VB.</summary>
+	Vb = 8,
+	/// <summary>Wraps wxSTC_LEX_PROPERTIES.</summary>
+	Properties = 9,
+	/// <summary>Wraps wxSTC_LEX_ERRORLIST.</summary>
+	ErrorList = 10,
+	/// <summary>Wraps wxSTC_LEX_MAKEFILE.</summary>
+	Makefile = 11,
+	/// <summary>Wraps wxSTC_LEX_BATCH.</summary>
+	Batch = 12,
+	/// <summary>Wraps wxSTC_LEX_XCODE.</summary>
+	Xcode = 13,
+	/// <summary>Wraps wxSTC_LEX_LATEX.</summary>
+	Latex = 14,
+	/// <summary>Wraps wxSTC_LEX_LUA.</summary>
+	Lua = 15,
+	/// <summary>Wraps wxSTC_LEX_DIFF.</summary>
+	Diff = 16,
+	/// <summary>Wraps wxSTC_LEX_CONF.</summary>
+	Conf = 17,
+	/// <summary>Wraps wxSTC_LEX_PASCAL.</summary>
+	Pascal = 18,
+	/// <summary>Wraps wxSTC_LEX_AVE.</summary>
+	Ave = 19,
+	/// <summary>Wraps wxSTC_LEX_ADA.</summary>
+	Ada = 20,
+	/// <summary>Wraps wxSTC_LEX_LISP.</summary>
+	Lisp = 21,
+	/// <summary>Wraps wxSTC_LEX_RUBY.</summary>
+	Ruby = 22,
+	/// <summary>Wraps wxSTC_LEX_EIFFEL.</summary>
+	Eiffel = 23,
+	/// <summary>Wraps wxSTC_LEX_EIFFELKW.</summary>
+	EiffelKw = 24,
+	/// <summary>Wraps wxSTC_LEX_TCL.</summary>
+	Tcl = 25,
+	/// <summary>Wraps wxSTC_LEX_NNCRONTAB.</summary>
+	NnCrontab = 26,
+	/// <summary>Wraps wxSTC_LEX_BULLANT.</summary>
+	Bullant = 27,
+	/// <summary>Wraps wxSTC_LEX_VBSCRIPT.</summary>
+	VBScript = 28,
+	/// <summary>Wraps wxSTC_LEX_BAAN.</summary>
+	Baan = 31,
+	/// <summary>Wraps wxSTC_LEX_MATLAB.</summary>
+	Matlab = 32,
+	/// <summary>Wraps wxSTC_LEX_SCRIPTOL.</summary>
+	Scriptol = 33,
+	/// <summary>Wraps wxSTC_LEX_ASM.</summary>
+	Asm = 34,
+	/// <summary>Wraps wxSTC_LEX_CPPNOCASE.</summary>
+	CppNoCase = 35,
+	/// <summary>Wraps wxSTC_LEX_FORTRAN.</summary>
+	Fortran = 36,
+	/// <summary>Wraps wxSTC_LEX_F77.</summary>
+	F77 = 37,
+	/// <summary>Wraps wxSTC_LEX_CSS.</summary>
+	Css = 38,
+	/// <summary>Wraps wxSTC_LEX_POV.</summary>
+	Pov = 39,
+	/// <summary>Wraps wxSTC_LEX_LOUT.</summary>
+	Lout = 40,
+	/// <summary>Wraps wxSTC_LEX_ESCRIPT.</summary>
+	Escript = 41,
+	/// <summary>Wraps wxSTC_LEX_PS.</summary>
+	Ps = 42,
+	/// <summary>Wraps wxSTC_LEX_NSIS.</summary>
+	Nsis = 43,
+	/// <summary>Wraps wxSTC_LEX_MMIXAL.</summary>
+	Mmixal = 44,
+	/// <summary>Wraps wxSTC_LEX_CLW.</summary>
+	Clw = 45,
+	/// <summary>Wraps wxSTC_LEX_CLWNOCASE.</summary>
+	ClwNoCase = 46,
+	/// <summary>Wraps wxSTC_LEX_LOT.</summary>
+	Lot = 47,
+	/// <summary>Wraps wxSTC_LEX_YAML.</summary>
+	Yaml = 48,
+	/// <summary>Wraps wxSTC_LEX_TEX.</summary>
+	Tex = 49,
+	/// <summary>Wraps wxSTC_LEX_METAPOST.</summary>
+	MetaPost = 50,
+	/// <summary>Wraps wxSTC_LEX_POWERBASIC.</summary>
+	PowerBasic = 51,
+	/// <summary>Wraps wxSTC_LEX_FORTH.</summary>
+	Forth = 52,
+	/// <summary>Wraps wxSTC_LEX_ERLANG.</summary>
+	Erlang = 53,
+	/// <summary>Wraps wxSTC_LEX_OCTAVE.</summary>
+	Octave = 54,
+	/// <summary>Wraps wxSTC_LEX_MSSQL.</summary>
+	MsSql = 55,
+	/// <summary>Wraps wxSTC_LEX_VERILOG.</summary>
+	Verilog = 56,
+	/// <summary>Wraps wxSTC_LEX_KIX.</summary>
+	Kix = 57,
+	/// <summary>Wraps wxSTC_LEX_GUI4CLI.</summary>
+	Gui4cli = 58,
+	/// <summary>Wraps wxSTC_LEX_SPECMAN.</summary>
+	Specman = 59,
+	/// <summary>Wraps wxSTC_LEX_AU3.</summary>
+	Au3 = 60,
+	/// <summary>Wraps wxSTC_LEX_APDL.</summary>
+	Apdl = 61,
+	/// <summary>Wraps wxSTC_LEX_BASH.</summary>
+	Bash = 62,
+	/// <summary>Wraps wxSTC_LEX_ASN1.</summary>
+	Asn1 = 63,
+	/// <summary>Wraps wxSTC_LEX_VHDL.</summary>
+	Vhdl = 64,
+	/// <summary>Wraps wxSTC_LEX_CAML.</summary>
+	Caml = 65,
+	/// <summary>Wraps wxSTC_LEX_BLITZBASIC.</summary>
+	BlitzBasic = 66,
+	/// <summary>Wraps wxSTC_LEX_PUREBASIC.</summary>
+	PureBasic = 67,
+	/// <summary>Wraps wxSTC_LEX_HASKELL.</summary>
+	Haskell = 68,
+	/// <summary>Wraps wxSTC_LEX_PHPSCRIPT.</summary>
+	PhpScript = 69,
+	/// <summary>Wraps wxSTC_LEX_TADS3.</summary>
+	Tads3 = 70,
+	/// <summary>Wraps wxSTC_LEX_REBOL.</summary>
+	Rebol = 71,
+	/// <summary>Wraps wxSTC_LEX_SMALLTALK.</summary>
+	Smalltalk = 72,
+	/// <summary>Wraps wxSTC_LEX_FLAGSHIP.</summary>
+	Flagship = 73,
+	/// <summary>Wraps wxSTC_LEX_CSOUND.</summary>
+	Csound = 74,
+	/// <summary>Wraps wxSTC_LEX_FREEBASIC.</summary>
+	FreeBasic = 75,
+	/// <summary>Wraps wxSTC_LEX_INNOSETUP.</summary>
+	InnoSetup = 76,
+	/// <summary>Wraps wxSTC_LEX_OPAL.</summary>
+	Opal = 77,
+	/// <summary>Wraps wxSTC_LEX_SPICE.</summary>
+	Spice = 78,
+	/// <summary>Wraps wxSTC_LEX_D.</summary>
+	D = 79,
+	/// <summary>Wraps wxSTC_LEX_CMAKE.</summary>
+	CMake = 80,
+	/// <summary>Wraps wxSTC_LEX_GAP.</summary>
+	Gap = 81,
+	/// <summary>Wraps wxSTC_LEX_PLM.</summary>
+	Plm = 82,
+	/// <summary>Wraps wxSTC_LEX_PROGRESS.</summary>
+	Progress = 83,
+	/// <summary>Wraps wxSTC_LEX_ABAQUS.</summary>
+	Abaqus = 84,
+	/// <summary>Wraps wxSTC_LEX_ASYMPTOTE.</summary>
+	Asymptote = 85,
+	/// <summary>Wraps wxSTC_LEX_R.</summary>
+	R = 86,
+	/// <summary>Wraps wxSTC_LEX_MAGIK.</summary>
+	Magik = 87,
+	/// <summary>Wraps wxSTC_LEX_POWERSHELL.</summary>
+	PowerShell = 88,
+	/// <summary>Wraps wxSTC_LEX_MYSQL.</summary>
+	MySql = 89,
+	/// <summary>Wraps wxSTC_LEX_PO.</summary>
+	Po = 90,
+	/// <summary>Wraps wxSTC_LEX_TAL.</summary>
+	Tal = 91,
+	/// <summary>Wraps wxSTC_LEX_COBOL.</summary>
+	Cobol = 92,
+	/// <summary>Wraps wxSTC_LEX_TACL.</summary>
+	Tacl = 93,
+	/// <summary>Wraps wxSTC_LEX_SORCUS.</summary>
+	Sorcus = 94,
+	/// <summary>Wraps wxSTC_LEX_POWERPRO.</summary>
+	PowerPro = 95,
+	/// <summary>Wraps wxSTC_LEX_NIMROD.</summary>
+	Nimrod = 96,
+	/// <summary>Wraps wxSTC_LEX_SML.</summary>
+	Sml = 97,
+	/// <summary>Wraps wxSTC_LEX_MARKDOWN.</summary>
+	Markdown = 98,
+	/// <summary>Wraps wxSTC_LEX_TXT2TAGS.</summary>
+	Txt2Tags = 99,
+	/// <summary>Wraps wxSTC_LEX_A68K.</summary>
+	A68k = 100,
+	/// <summary>Wraps wxSTC_LEX_MODULA.</summary>
+	Modula = 101,
+	/// <summary>Wraps wxSTC_LEX_COFFEESCRIPT.</summary>
+	CoffeeScript = 102,
+	/// <summary>Wraps wxSTC_LEX_TCMD.</summary>
+	Tcmd = 103,
+	/// <summary>Wraps wxSTC_LEX_AVS.</summary>
+	Avs = 104,
+	/// <summary>Wraps wxSTC_LEX_ECL.</summary>
+	Ecl = 105,
+	/// <summary>Wraps wxSTC_LEX_OSCRIPT.</summary>
+	Oscript = 106,
+	/// <summary>Wraps wxSTC_LEX_VISUALPROLOG.</summary>
+	VisualProlog = 107,
+	/// <summary>Wraps wxSTC_LEX_LITERATEHASKELL.</summary>
+	LiterateHaskell = 108,
+	/// <summary>Wraps wxSTC_LEX_STTXT.</summary>
+	Sttxt = 109,
+	/// <summary>Wraps wxSTC_LEX_KVIRC.</summary>
+	Kvirc = 110,
+	/// <summary>Wraps wxSTC_LEX_RUST.</summary>
+	Rust = 111,
+	/// <summary>Wraps wxSTC_LEX_DMAP.</summary>
+	Dmap = 112,
+	/// <summary>Wraps wxSTC_LEX_AS.</summary>
+	As = 113,
+	/// <summary>Wraps wxSTC_LEX_DMIS.</summary>
+	Dmis = 114,
+	/// <summary>Wraps wxSTC_LEX_REGISTRY.</summary>
+	Registry = 115,
+	/// <summary>Wraps wxSTC_LEX_BIBTEX.</summary>
+	BibTex = 116,
+	/// <summary>Wraps wxSTC_LEX_SREC.</summary>
+	Srec = 117,
+	/// <summary>Wraps wxSTC_LEX_IHEX.</summary>
+	Ihex = 118,
+	/// <summary>Wraps wxSTC_LEX_TEHEX.</summary>
+	TeHex = 119,
+	/// <summary>Wraps wxSTC_LEX_JSON.</summary>
+	Json = 120,
+	/// <summary>Wraps wxSTC_LEX_EDIFACT.</summary>
+	Edifact = 121,
+	/// <summary>Wraps wxSTC_LEX_INDENT.</summary>
+	Indent = 122,
+	/// <summary>Wraps wxSTC_LEX_MAXIMA.</summary>
+	Maxima = 123,
+	/// <summary>Wraps wxSTC_LEX_STATA.</summary>
+	Stata = 124,
+	/// <summary>Wraps wxSTC_LEX_SAS.</summary>
+	Sas = 125,
+	/// <summary>Wraps wxSTC_LEX_NIM.</summary>
+	Nim = 126,
+	/// <summary>Wraps wxSTC_LEX_CIL.</summary>
+	Cil = 127,
+	/// <summary>Wraps wxSTC_LEX_X12.</summary>
+	X12 = 128,
+	/// <summary>Wraps wxSTC_LEX_DATAFLEX.</summary>
+	DataFlex = 129,
+	/// <summary>Wraps wxSTC_LEX_HOLLYWOOD.</summary>
+	Hollywood = 130,
+	/// <summary>Wraps wxSTC_LEX_RAKU.</summary>
+	Raku = 131,
+	/// <summary>Wraps wxSTC_LEX_FSHARP.</summary>
+	FSharp = 132,
+	/// <summary>Wraps wxSTC_LEX_JULIA.</summary>
+	Julia = 133,
+	/// <summary>Wraps wxSTC_LEX_ASCIIDOC.</summary>
+	AsciiDoc = 134,
+	/// <summary>Wraps wxSTC_LEX_GDSCRIPT.</summary>
+	GDScript = 135,
+	/// <summary>Wraps wxSTC_LEX_TOML.</summary>
+	Toml = 136,
+	/// <summary>Wraps wxSTC_LEX_TROFF.</summary>
+	Troff = 137,
+	/// <summary>Wraps wxSTC_LEX_DART.</summary>
+	Dart = 138,
+	/// <summary>Wraps wxSTC_LEX_ZIG.</summary>
+	Zig = 139,
+	/// <summary>Wraps wxSTC_LEX_NIX.</summary>
+	Nix = 140,
+	/// <summary>Wraps wxSTC_LEX_SINEX.</summary>
+	Sinex = 141,
+	/// <summary>Wraps wxSTC_LEX_ESCSEQ.</summary>
+	EscapeSequence = 142,
+	/// <summary>Wraps wxSTC_LEX_AUTOMATIC.</summary>
+	Automatic = 1000,
+}
+
+/// <summary>Wraps wxSTC_LINE_END_TYPE_*.</summary>
+[Flags]
+public enum StyledTextLineEndTypes {
+	/// <summary>Wraps wxSTC_LINE_END_TYPE_DEFAULT.</summary>
+	Default = 0,
+	/// <summary>Wraps wxSTC_LINE_END_TYPE_UNICODE.</summary>
+	Unicode = 1,
+}
+
+/// <summary>Wraps wxSTC_MARGINOPTION_*.</summary>
+[Flags]
+public enum StyledTextMarginOptions {
+	/// <summary>Wraps wxSTC_MARGINOPTION_NONE.</summary>
+	None = 0,
+	/// <summary>Wraps wxSTC_MARGINOPTION_SUBLINESELECT.</summary>
+	SublineSelect = 1,
+}
+
+/// <summary>Wraps wxSTC_MARGIN_*.</summary>
+public enum StyledTextMarginType {
+	/// <summary>Wraps wxSTC_MARGIN_SYMBOL.</summary>
+	Symbol = 0,
+	/// <summary>Wraps wxSTC_MARGIN_NUMBER.</summary>
+	Number = 1,
+	/// <summary>Wraps wxSTC_MARGIN_BACK.</summary>
+	Back = 2,
+	/// <summary>Wraps wxSTC_MARGIN_FORE.</summary>
+	Fore = 3,
+	/// <summary>Wraps wxSTC_MARGIN_TEXT.</summary>
+	Text = 4,
+	/// <summary>Wraps wxSTC_MARGIN_RTEXT.</summary>
+	RightText = 5,
+	/// <summary>Wraps wxSTC_MARGIN_COLOUR.</summary>
+	Color = 6,
+}
+
+/// <summary>Wraps wxSTC_MARK_*.</summary>
+public enum StyledTextMarkerSymbol {
+	/// <summary>Wraps wxSTC_MARK_CIRCLE.</summary>
+	Circle = 0,
+	/// <summary>Wraps wxSTC_MARK_ROUNDRECT.</summary>
+	RoundRect = 1,
+	/// <summary>Wraps wxSTC_MARK_ARROW.</summary>
+	Arrow = 2,
+	/// <summary>Wraps wxSTC_MARK_SMALLRECT.</summary>
+	SmallRect = 3,
+	/// <summary>Wraps wxSTC_MARK_SHORTARROW.</summary>
+	ShortArrow = 4,
+	/// <summary>Wraps wxSTC_MARK_EMPTY.</summary>
+	Empty = 5,
+	/// <summary>Wraps wxSTC_MARK_ARROWDOWN.</summary>
+	ArrowDown = 6,
+	/// <summary>Wraps wxSTC_MARK_MINUS.</summary>
+	Minus = 7,
+	/// <summary>Wraps wxSTC_MARK_PLUS.</summary>
+	Plus = 8,
+	/// <summary>Wraps wxSTC_MARK_VLINE.</summary>
+	VLine = 9,
+	/// <summary>Wraps wxSTC_MARK_LCORNER.</summary>
+	LCorner = 10,
+	/// <summary>Wraps wxSTC_MARK_TCORNER.</summary>
+	TCorner = 11,
+	/// <summary>Wraps wxSTC_MARK_BOXPLUS.</summary>
+	BoxPlus = 12,
+	/// <summary>Wraps wxSTC_MARK_BOXPLUSCONNECTED.</summary>
+	BoxPlusConnected = 13,
+	/// <summary>Wraps wxSTC_MARK_BOXMINUS.</summary>
+	BoxMinus = 14,
+	/// <summary>Wraps wxSTC_MARK_BOXMINUSCONNECTED.</summary>
+	BoxMinusConnected = 15,
+	/// <summary>Wraps wxSTC_MARK_LCORNERCURVE.</summary>
+	LCornerCurve = 16,
+	/// <summary>Wraps wxSTC_MARK_TCORNERCURVE.</summary>
+	TCornerCurve = 17,
+	/// <summary>Wraps wxSTC_MARK_CIRCLEPLUS.</summary>
+	CirclePlus = 18,
+	/// <summary>Wraps wxSTC_MARK_CIRCLEPLUSCONNECTED.</summary>
+	CirclePlusConnected = 19,
+	/// <summary>Wraps wxSTC_MARK_CIRCLEMINUS.</summary>
+	CircleMinus = 20,
+	/// <summary>Wraps wxSTC_MARK_CIRCLEMINUSCONNECTED.</summary>
+	CircleMinusConnected = 21,
+	/// <summary>Wraps wxSTC_MARK_BACKGROUND.</summary>
+	Background = 22,
+	/// <summary>Wraps wxSTC_MARK_DOTDOTDOT.</summary>
+	DotDotDot = 23,
+	/// <summary>Wraps wxSTC_MARK_ARROWS.</summary>
+	Arrows = 24,
+	/// <summary>Wraps wxSTC_MARK_PIXMAP.</summary>
+	Pixmap = 25,
+	/// <summary>Wraps wxSTC_MARK_FULLRECT.</summary>
+	FullRect = 26,
+	/// <summary>Wraps wxSTC_MARK_LEFTRECT.</summary>
+	LeftRect = 27,
+	/// <summary>Wraps wxSTC_MARK_AVAILABLE.</summary>
+	Available = 28,
+	/// <summary>Wraps wxSTC_MARK_UNDERLINE.</summary>
+	Underline = 29,
+	/// <summary>Wraps wxSTC_MARK_RGBAIMAGE.</summary>
+	RgbaImage = 30,
+	/// <summary>Wraps wxSTC_MARK_BOOKMARK.</summary>
+	Bookmark = 31,
+	/// <summary>Wraps wxSTC_MARK_VERTICALBOOKMARK.</summary>
+	VerticalBookmark = 32,
+	/// <summary>Wraps wxSTC_MARK_CHARACTER.</summary>
+	Character = 10000,
+}
+
+/// <summary>Wraps *.</summary>
+[Flags]
+public enum StyledTextModificationFlags {
+	/// <summary>Wraps wxSTC_MOD_NONE.</summary>
+	None = 0,
+	/// <summary>Wraps wxSTC_MOD_INSERTTEXT.</summary>
+	InsertText = 1,
+	/// <summary>Wraps wxSTC_MOD_DELETETEXT.</summary>
+	DeleteText = 2,
+	/// <summary>Wraps wxSTC_MOD_CHANGESTYLE.</summary>
+	ChangeStyle = 4,
+	/// <summary>Wraps wxSTC_MOD_CHANGEFOLD.</summary>
+	ChangeFold = 8,
+	/// <summary>Wraps wxSTC_PERFORMED_USER.</summary>
+	User = 16,
+	/// <summary>Wraps wxSTC_PERFORMED_UNDO.</summary>
+	Undo = 32,
+	/// <summary>Wraps wxSTC_PERFORMED_REDO.</summary>
+	Redo = 64,
+	/// <summary>Wraps wxSTC_MULTISTEPUNDOREDO.</summary>
+	MultiStepUndoRedo = 128,
+	/// <summary>Wraps wxSTC_LASTSTEPINUNDOREDO.</summary>
+	LastStepInUndoRedo = 256,
+	/// <summary>Wraps wxSTC_MOD_CHANGEMARKER.</summary>
+	ChangeMarker = 512,
+	/// <summary>Wraps wxSTC_MOD_BEFOREINSERT.</summary>
+	BeforeInsert = 1024,
+	/// <summary>Wraps wxSTC_MOD_BEFOREDELETE.</summary>
+	BeforeDelete = 2048,
+	/// <summary>Wraps wxSTC_MULTILINEUNDOREDO.</summary>
+	MultiLineUndoRedo = 4096,
+	/// <summary>Wraps wxSTC_STARTACTION.</summary>
+	StartAction = 8192,
+	/// <summary>Wraps wxSTC_MOD_CHANGEINDICATOR.</summary>
+	ChangeIndicator = 16384,
+	/// <summary>Wraps wxSTC_MOD_CHANGELINESTATE.</summary>
+	ChangeLineState = 32768,
+	/// <summary>Wraps wxSTC_MOD_CHANGEMARGIN.</summary>
+	ChangeMargin = 65536,
+	/// <summary>Wraps wxSTC_MOD_CHANGEANNOTATION.</summary>
+	ChangeAnnotation = 131072,
+	/// <summary>Wraps wxSTC_MOD_CONTAINER.</summary>
+	Container = 262144,
+	/// <summary>Wraps wxSTC_MOD_LEXERSTATE.</summary>
+	LexerState = 524288,
+	/// <summary>Wraps wxSTC_MOD_INSERTCHECK.</summary>
+	InsertCheck = 1048576,
+	/// <summary>Wraps wxSTC_MOD_CHANGETABSTOPS.</summary>
+	ChangeTabStops = 2097152,
+	/// <summary>Wraps wxSTC_MOD_CHANGEEOLANNOTATION.</summary>
+	ChangeEolAnnotation = 4194304,
+	/// <summary>Wraps wxSTC_MODEVENTMASKALL.</summary>
+	All = 8388607,
+}
+
+/// <summary>Wraps wxSTC_MULTIAUTOC_*.</summary>
+public enum StyledTextMultiAutoComplete {
+	/// <summary>Wraps wxSTC_MULTIAUTOC_ONCE.</summary>
+	Once = 0,
+	/// <summary>Wraps wxSTC_MULTIAUTOC_EACH.</summary>
+	Each = 1,
+}
+
+/// <summary>Wraps wxSTC_MULTIPASTE_*.</summary>
+public enum StyledTextMultiPaste {
+	/// <summary>Wraps wxSTC_MULTIPASTE_ONCE.</summary>
+	Once = 0,
+	/// <summary>Wraps wxSTC_MULTIPASTE_EACH.</summary>
+	Each = 1,
+}
+
+/// <summary>Wraps wxSTC_PHASES_*.</summary>
+public enum StyledTextPhasesDraw {
+	/// <summary>Wraps wxSTC_PHASES_ONE.</summary>
+	One = 0,
+	/// <summary>Wraps wxSTC_PHASES_TWO.</summary>
+	Two = 1,
+	/// <summary>Wraps wxSTC_PHASES_MULTIPLE.</summary>
+	Multiple = 2,
+}
+
+/// <summary>Wraps wxSTC_POPUP_*.</summary>
+public enum StyledTextPopUpMode {
+	/// <summary>Wraps wxSTC_POPUP_NEVER.</summary>
+	Never = 0,
+	/// <summary>Wraps wxSTC_POPUP_ALL.</summary>
+	All = 1,
+	/// <summary>Wraps wxSTC_POPUP_TEXT.</summary>
+	Text = 2,
+}
+
+/// <summary>Wraps wxSTC_PRINT_*.</summary>
+public enum StyledTextPrintColorMode {
+	/// <summary>Wraps wxSTC_PRINT_NORMAL.</summary>
+	Normal = 0,
+	/// <summary>Wraps wxSTC_PRINT_INVERTLIGHT.</summary>
+	InvertLight = 1,
+	/// <summary>Wraps wxSTC_PRINT_BLACKONWHITE.</summary>
+	BlackOnWhite = 2,
+	/// <summary>Wraps wxSTC_PRINT_COLOURONWHITE.</summary>
+	ColorOnWhite = 3,
+	/// <summary>Wraps wxSTC_PRINT_COLOURONWHITEDEFAULTBG.</summary>
+	ColorOnWhiteDefaultBackground = 4,
+	/// <summary>Wraps wxSTC_PRINT_SCREENCOLOURS.</summary>
+	ScreenColors = 5,
+}
+
+/// <summary>Wraps wxSTC_TYPE_*.</summary>
+public enum StyledTextPropertyType {
+	/// <summary>Wraps wxSTC_TYPE_BOOLEAN.</summary>
+	Boolean = 0,
+	/// <summary>Wraps wxSTC_TYPE_INTEGER.</summary>
+	Integer = 1,
+	/// <summary>Wraps wxSTC_TYPE_STRING.</summary>
+	String = 2,
+}
+
+/// <summary>Wraps wxSTC_SEL_*.</summary>
+public enum StyledTextSelectionMode {
+	/// <summary>Wraps wxSTC_SEL_STREAM.</summary>
+	Stream = 0,
+	/// <summary>Wraps wxSTC_SEL_RECTANGLE.</summary>
+	Rectangle = 1,
+	/// <summary>Wraps wxSTC_SEL_LINES.</summary>
+	Lines = 2,
+	/// <summary>Wraps wxSTC_SEL_THIN.</summary>
+	Thin = 3,
+}
+
+/// <summary>Wraps wxSTC_STATUS_*.</summary>
+public enum StyledTextStatus {
+	/// <summary>Wraps wxSTC_STATUS_OK.</summary>
+	Ok = 0,
+	/// <summary>Wraps wxSTC_STATUS_FAILURE.</summary>
+	Failure = 1,
+	/// <summary>Wraps wxSTC_STATUS_BADALLOC.</summary>
+	BadAlloc = 2,
+	/// <summary>Wraps wxSTC_STATUS_WARN_START.</summary>
+	WarnStart = 1000,
+	/// <summary>Wraps wxSTC_STATUS_WARN_REGEX.</summary>
+	WarnRegex = 1001,
+}
+
+/// <summary>Wraps wxSTC_TD_*.</summary>
+public enum StyledTextTabDrawMode {
+	/// <summary>Wraps wxSTC_TD_LONGARROW.</summary>
+	LongArrow = 0,
+	/// <summary>Wraps wxSTC_TD_STRIKEOUT.</summary>
+	Strikeout = 1,
+}
+
+/// <summary>Wraps wxSTC_TECHNOLOGY_*.</summary>
+public enum StyledTextTechnology {
+	/// <summary>Wraps wxSTC_TECHNOLOGY_DEFAULT.</summary>
+	Default = 0,
+	/// <summary>Wraps wxSTC_TECHNOLOGY_DIRECTWRITE.</summary>
+	DirectWrite = 1,
+}
+
+/// <summary>Wraps wxSTC_UNDO_*.</summary>
+[Flags]
+public enum StyledTextUndoFlags {
+	/// <summary>Wraps wxSTC_UNDO_NONE.</summary>
+	None = 0,
+	/// <summary>Wraps wxSTC_UNDO_MAY_COALESCE.</summary>
+	MayCoalesce = 1,
+}
+
+/// <summary>Wraps wxSTC_UPDATE_*.</summary>
+[Flags]
+public enum StyledTextUpdateFlags {
+	/// <summary>None of the flags. Wraps 0.</summary>
+	None = 0,
+	/// <summary>Wraps wxSTC_UPDATE_CONTENT.</summary>
+	Content = 1,
+	/// <summary>Wraps wxSTC_UPDATE_SELECTION.</summary>
+	Selection = 2,
+	/// <summary>Wraps wxSTC_UPDATE_V_SCROLL.</summary>
+	VScroll = 4,
+	/// <summary>Wraps wxSTC_UPDATE_H_SCROLL.</summary>
+	HScroll = 8,
+}
+
+/// <summary>Wraps wxSTC_VS_*.</summary>
+[Flags]
+public enum StyledTextVirtualSpace {
+	/// <summary>Wraps wxSTC_VS_NONE.</summary>
+	None = 0,
+	/// <summary>Wraps wxSTC_VS_RECTANGULARSELECTION.</summary>
+	RectangularSelection = 1,
+	/// <summary>Wraps wxSTC_VS_USERACCESSIBLE.</summary>
+	UserAccessible = 2,
+	/// <summary>Wraps wxSTC_VS_NOWRAPLINESTART.</summary>
+	NoWrapLineStart = 4,
+}
+
+/// <summary>Wraps wxSTC_VISIBLE_*.</summary>
+[Flags]
+public enum StyledTextVisiblePolicy {
+	/// <summary>None of the flags. Wraps 0.</summary>
+	None = 0,
+	/// <summary>Wraps wxSTC_VISIBLE_SLOP.</summary>
+	Slop = 1,
+	/// <summary>Wraps wxSTC_VISIBLE_STRICT.</summary>
+	Strict = 4,
+}
+
+/// <summary>Wraps wxSTC_WS_*.</summary>
+public enum StyledTextWhiteSpace {
+	/// <summary>Wraps wxSTC_WS_INVISIBLE.</summary>
+	Invisible = 0,
+	/// <summary>Wraps wxSTC_WS_VISIBLEALWAYS.</summary>
+	VisibleAlways = 1,
+	/// <summary>Wraps wxSTC_WS_VISIBLEAFTERINDENT.</summary>
+	VisibleAfterIndent = 2,
+	/// <summary>Wraps wxSTC_WS_VISIBLEONLYININDENT.</summary>
+	VisibleOnlyInIndent = 3,
+}
+
+/// <summary>Wraps wxSTC_WRAPINDENT_*.</summary>
+public enum StyledTextWrapIndentMode {
+	/// <summary>Wraps wxSTC_WRAPINDENT_FIXED.</summary>
+	Fixed = 0,
+	/// <summary>Wraps wxSTC_WRAPINDENT_SAME.</summary>
+	Same = 1,
+	/// <summary>Wraps wxSTC_WRAPINDENT_INDENT.</summary>
+	Indent = 2,
+	/// <summary>Wraps wxSTC_WRAPINDENT_DEEPINDENT.</summary>
+	DeepIndent = 3,
+}
+
+/// <summary>Wraps wxSTC_WRAP_*.</summary>
+public enum StyledTextWrapMode {
+	/// <summary>Wraps wxSTC_WRAP_NONE.</summary>
+	None = 0,
+	/// <summary>Wraps wxSTC_WRAP_WORD.</summary>
+	Word = 1,
+	/// <summary>Wraps wxSTC_WRAP_CHAR.</summary>
+	Char = 2,
+	/// <summary>Wraps wxSTC_WRAP_WHITESPACE.</summary>
+	WhiteSpace = 3,
+}
+
+/// <summary>Wraps wxSTC_WRAPVISUALFLAG_*.</summary>
+[Flags]
+public enum StyledTextWrapVisualFlags {
+	/// <summary>Wraps wxSTC_WRAPVISUALFLAG_NONE.</summary>
+	None = 0,
+	/// <summary>Wraps wxSTC_WRAPVISUALFLAG_END.</summary>
+	End = 1,
+	/// <summary>Wraps wxSTC_WRAPVISUALFLAG_START.</summary>
+	Start = 2,
+	/// <summary>Wraps wxSTC_WRAPVISUALFLAG_MARGIN.</summary>
+	Margin = 4,
+}
+
+/// <summary>Wraps wxSTC_WRAPVISUALFLAGLOC_*.</summary>
+[Flags]
+public enum StyledTextWrapVisualLocation {
+	/// <summary>Wraps wxSTC_WRAPVISUALFLAGLOC_DEFAULT.</summary>
+	Default = 0,
+	/// <summary>Wraps wxSTC_WRAPVISUALFLAGLOC_END_BY_TEXT.</summary>
+	EndByText = 1,
+	/// <summary>Wraps wxSTC_WRAPVISUALFLAGLOC_START_BY_TEXT.</summary>
+	StartByText = 2,
+}
+
 /// <summary>Wraps wxSystemColour.</summary>
 public enum SystemColor {
 	/// <summary>The scrollbar grey area. Wraps wxSYS_COLOUR_SCROLLBAR.</summary>

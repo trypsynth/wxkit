@@ -4817,15 +4817,52 @@ enum WxKit.StatusBarFieldStyle : int
     TabTraversal = 524288
     VerticalScrollBar = -2147483648
     WantsChars = 262144
-static class WxKit.Stc
+class WxKit.StdDialogButtonSizer : BoxSizer
+    Button? AffirmativeButton { get; set; }
+    Button? ApplyButton { get; }
+    Button? CancelButton { get; set; }
+    Button? HelpButton { get; }
+    Button? NegativeButton { get; set; }
+    StdDialogButtonSizer()
+    void AddButton(Button button)
+    void Realize()
+enum WxKit.StockCursor : int
+    Arrow = 1
+    Blank = 26
+    Bullseye = 3
+    Char = 4
+    Cross = 5
+    Hand = 6
+    IBeam = 7
+    LeftButton = 8
+    Magnifier = 9
+    MiddleButton = 10
+    NoEntry = 11
+    None = 0
+    PaintBrush = 12
+    Pencil = 13
+    PointLeft = 14
+    PointRight = 15
+    QuestionArrow = 16
+    RightArrow = 2
+    RightButton = 17
+    SizeNS = 19
+    SizeNesw = 18
+    SizeNwse = 20
+    SizeWE = 21
+    Sizing = 22
+    SprayCan = 23
+    Wait = 24
+    Watch = 25
+static class WxKit.StyledText
     const int A68kComment = 1
     const int A68kCommentDoxygen = 18
     const int A68kCommentSpecial = 17
     const int A68kCommentWord = 16
-    const int A68kCpuinstruction = 7
+    const int A68kCpuInstruction = 7
     const int A68kDefault = 0
     const int A68kDirective = 10
-    const int A68kExtinstruction = 8
+    const int A68kExtInstruction = 8
     const int A68kIdentifier = 14
     const int A68kLabel = 12
     const int A68kMacroArg = 11
@@ -4840,14 +4877,14 @@ static class WxKit.Stc
     const int AbaqusArgument = 11
     const int AbaqusCommand = 8
     const int AbaqusComment = 1
-    const int AbaqusCommentblock = 2
+    const int AbaqusCommentBlock = 2
     const int AbaqusDefault = 0
     const int AbaqusFunction = 12
     const int AbaqusNumber = 3
     const int AbaqusOperator = 5
     const int AbaqusProcessor = 7
-    const int AbaqusSlashcommand = 9
-    const int AbaqusStarcommand = 10
+    const int AbaqusSlashCommand = 9
+    const int AbaqusStarCommand = 10
     const int AbaqusString = 4
     const int AbaqusWord = 6
     const int AblAnnotation = 13
@@ -4857,24 +4894,17 @@ static class WxKit.Stc
     const int AblDefault = 0
     const int AblEnd = 9
     const int AblIdentifier = 7
-    const int AblLinecomment = 12
+    const int AblLineComment = 12
     const int AblNumber = 1
     const int AblOperator = 6
     const int AblPreprocessor = 5
     const int AblString = 3
-    const int AblTaskmarker = 11
-    const int AblTypedannotation = 14
+    const int AblTaskMarker = 11
+    const int AblTypedAnnotation = 14
     const int AblWord = 2
-    const int AcCommand = 5
-    const int AcDoubleclick = 2
-    const int AcFillup = 1
-    const int AcNewline = 4
-    const int AcTab = 3
-    const int AccessibilityDisabled = 0
-    const int AccessibilityEnabled = 1
     const int AdaCharacter = 5
-    const int AdaCharactereol = 6
-    const int AdaCommentline = 10
+    const int AdaCharacterEol = 6
+    const int AdaCommentLine = 10
     const int AdaDefault = 0
     const int AdaDelimiter = 4
     const int AdaIdentifier = 2
@@ -4882,69 +4912,65 @@ static class WxKit.Stc
     const int AdaLabel = 9
     const int AdaNumber = 3
     const int AdaString = 7
-    const int AdaStringeol = 8
+    const int AdaStringEol = 8
     const int AdaWord = 1
-    const int AlphaNoalpha = 256
+    const int AlphaNoAlpha = 256
     const int AlphaOpaque = 255
     const int AlphaTransparent = 0
-    const int AnnotationBoxed = 2
-    const int AnnotationHidden = 0
-    const int AnnotationIndented = 3
-    const int AnnotationStandard = 1
     const int ApdlArgument = 11
     const int ApdlCommand = 8
     const int ApdlComment = 1
-    const int ApdlCommentblock = 2
+    const int ApdlCommentBlock = 2
     const int ApdlDefault = 0
     const int ApdlFunction = 12
     const int ApdlNumber = 3
     const int ApdlOperator = 5
     const int ApdlProcessor = 7
-    const int ApdlSlashcommand = 9
-    const int ApdlStarcommand = 10
+    const int ApdlSlashCommand = 9
+    const int ApdlStarCommand = 10
     const int ApdlString = 4
     const int ApdlWord = 6
-    const int AsciidocAttrib = 21
-    const int AsciidocAttribval = 22
-    const int AsciidocBlockquote = 13
-    const int AsciidocCodebk = 15
-    const int AsciidocComment = 17
-    const int AsciidocCommentbk = 18
-    const int AsciidocDefault = 0
-    const int AsciidocEm1 = 3
-    const int AsciidocEm2 = 4
-    const int AsciidocHeader1 = 5
-    const int AsciidocHeader2 = 6
-    const int AsciidocHeader3 = 7
-    const int AsciidocHeader4 = 8
-    const int AsciidocHeader5 = 9
-    const int AsciidocHeader6 = 10
-    const int AsciidocLink = 14
-    const int AsciidocLiteral = 19
-    const int AsciidocLiteralbk = 20
-    const int AsciidocMacro = 23
-    const int AsciidocOlistItem = 12
-    const int AsciidocPassbk = 16
-    const int AsciidocStrong1 = 1
-    const int AsciidocStrong2 = 2
-    const int AsciidocUlistItem = 11
+    const int AsciiDocAttrib = 21
+    const int AsciiDocAttribVal = 22
+    const int AsciiDocBlockQuote = 13
+    const int AsciiDocCodeBk = 15
+    const int AsciiDocComment = 17
+    const int AsciiDocCommentBk = 18
+    const int AsciiDocDefault = 0
+    const int AsciiDocEm1 = 3
+    const int AsciiDocEm2 = 4
+    const int AsciiDocHeader1 = 5
+    const int AsciiDocHeader2 = 6
+    const int AsciiDocHeader3 = 7
+    const int AsciiDocHeader4 = 8
+    const int AsciiDocHeader5 = 9
+    const int AsciiDocHeader6 = 10
+    const int AsciiDocLink = 14
+    const int AsciiDocLiteral = 19
+    const int AsciiDocLiteralBk = 20
+    const int AsciiDocMacro = 23
+    const int AsciiDocOlistItem = 12
+    const int AsciiDocPassBk = 16
+    const int AsciiDocStrong1 = 1
+    const int AsciiDocStrong2 = 2
+    const int AsciiDocUlistItem = 11
     const int AsmCharacter = 12
     const int AsmComment = 1
-    const int AsmCommentblock = 11
-    const int AsmCommentdirective = 15
-    const int AsmCpuinstruction = 6
+    const int AsmCommentBlock = 11
+    const int AsmCommentDirective = 15
+    const int AsmCpuInstruction = 6
     const int AsmDefault = 0
     const int AsmDirective = 9
-    const int AsmDirectiveoperand = 10
-    const int AsmExtinstruction = 14
+    const int AsmDirectiveOperand = 10
+    const int AsmExtInstruction = 14
     const int AsmIdentifier = 5
-    const int AsmMathinstruction = 7
+    const int AsmMathInstruction = 7
     const int AsmNumber = 2
     const int AsmOperator = 4
     const int AsmRegister = 8
     const int AsmString = 3
-    const int AsmStringbackquote = 16
-    const int AsmStringeol = 13
+    const int AsmStringBackQuote = 16
+    const int AsmStringEol = 13
     const int Asn1Attribute = 7
     const int Asn1Comment = 1
     const int Asn1Default = 0
@@ -4958,19 +4984,19 @@ static class WxKit.Stc
     const int Asn1Type = 9
     const int AsyCharacter = 6
     const int AsyComment = 1
-    const int AsyCommentline = 2
-    const int AsyCommentlinedoc = 10
+    const int AsyCommentLine = 2
+    const int AsyCommentLineDoc = 10
     const int AsyDefault = 0
     const int AsyIdentifier = 8
     const int AsyNumber = 3
     const int AsyOperator = 7
     const int AsyString = 5
-    const int AsyStringeol = 9
+    const int AsyStringEol = 9
     const int AsyWord = 4
     const int AsyWord2 = 11
+    const int Au3ComObj = 14
     const int Au3Comment = 1
-    const int Au3Commentblock = 2
-    const int Au3Comobj = 14
+    const int Au3CommentBlock = 2
     const int Au3Default = 0
     const int Au3Expand = 13
     const int Au3Function = 4
@@ -4984,9 +5010,6 @@ static class WxKit.Stc
     const int Au3String = 7
     const int Au3Udf = 15
     const int Au3Variable = 9
-    const int AutomaticfoldChange = 4
-    const int AutomaticfoldClick = 2
-    const int AutomaticfoldShow = 1
     const int AveComment = 1
     const int AveDefault = 0
     const int AveEnum = 7
@@ -4994,7 +5017,7 @@ static class WxKit.Stc
     const int AveNumber = 2
     const int AveOperator = 10
     const int AveString = 6
-    const int AveStringeol = 8
+    const int AveStringEol = 8
     const int AveWord = 3
     const int AveWord1 = 11
     const int AveWord2 = 12
@@ -5002,10 +5025,10 @@ static class WxKit.Stc
     const int AveWord4 = 14
     const int AveWord5 = 15
     const int AveWord6 = 16
-    const int AvsClipprop = 13
-    const int AvsCommentblock = 1
-    const int AvsCommentblockn = 2
-    const int AvsCommentline = 3
+    const int AvsClipProp = 13
+    const int AvsCommentBlock = 1
+    const int AvsCommentBlockN = 2
+    const int AvsCommentLine = 3
     const int AvsDefault = 0
     const int AvsFilter = 10
     const int AvsFunction = 12
@@ -5015,20 +5038,20 @@ static class WxKit.Stc
     const int AvsOperator = 5
     const int AvsPlugin = 11
     const int AvsString = 7
-    const int AvsTriplestring = 8
-    const int AvsUserdfn = 14
+    const int AvsTripleString = 8
+    const int AvsUserDfn = 14
     const int BAsm = 14
-    const int BBinnumber = 18
+    const int BBinNumber = 18
     const int BComment = 1
-    const int BCommentblock = 19
+    const int BCommentBlock = 19
     const int BConstant = 13
     const int BDate = 8
     const int BDefault = 0
-    const int BDocblock = 21
-    const int BDockeyword = 22
-    const int BDocline = 20
+    const int BDocBlock = 21
+    const int BDocKeyword = 22
+    const int BDocLine = 20
     const int BError = 16
-    const int BHexnumber = 17
+    const int BHexNumber = 17
     const int BIdentifier = 7
     const int BKeyword = 3
     const int BKeyword2 = 10
@@ -5039,23 +5062,23 @@ static class WxKit.Stc
     const int BOperator = 6
     const int BPreprocessor = 5
     const int BString = 4
-    const int BStringeol = 9
+    const int BStringEol = 9
     const int BaanComment = 1
-    const int BaanCommentdoc = 2
+    const int BaanCommentDoc = 2
     const int BaanDefault = 0
     const int BaanDefinedef = 24
     const int BaanDomdef = 21
-    const int BaanFuncdef = 22
+    const int BaanFuncDef = 22
     const int BaanFunction = 20
     const int BaanIdentifier = 8
     const int BaanNumber = 3
-    const int BaanObjectdef = 23
+    const int BaanObjectDef = 23
     const int BaanOperator = 7
     const int BaanPreprocessor = 6
     const int BaanString = 5
-    const int BaanStringeol = 9
-    const int BaanTabledef = 18
-    const int BaanTablesql = 19
+    const int BaanStringEol = 9
+    const int BaanTableDef = 18
+    const int BaanTableSql = 19
     const int BaanWord = 4
     const int BaanWord2 = 10
     const int BaanWord3 = 11
@@ -5074,45 +5097,56 @@ static class WxKit.Stc
     const int BatLabel = 3
     const int BatOperator = 7
     const int BatWord = 2
-    const int BibtexComment = 6
-    const int BibtexDefault = 0
-    const int BibtexEntry = 1
-    const int BibtexKey = 3
-    const int BibtexParameter = 4
-    const int BibtexUnknownEntry = 2
-    const int BibtexValue = 5
+    const int BibTexComment = 6
+    const int BibTexDefault = 0
+    const int BibTexEntry = 1
+    const int BibTexKey = 3
+    const int BibTexParameter = 4
+    const int BibTexUnknownEntry = 2
+    const int BibTexValue = 5
     const int CCharacter = 7
     const int CComment = 1
-    const int CCommentdoc = 3
-    const int CCommentdockeyword = 17
-    const int CCommentdockeyworderror = 18
-    const int CCommentline = 2
-    const int CCommentlinedoc = 15
+    const int CCommentDoc = 3
+    const int CCommentDocKeyword = 17
+    const int CCommentDocKeywordError = 18
+    const int CCommentLine = 2
+    const int CCommentLineDoc = 15
     const int CDefault = 0
-    const int CEscapesequence = 27
-    const int CGlobalclass = 19
-    const int CHashquotedstring = 22
+    const int CEscapeSequence = 27
+    const int CGlobalClass = 19
+    const int CHashQuotedString = 22
     const int CIdentifier = 11
+    const int CMakeCommands = 5
+    const int CMakeComment = 1
+    const int CMakeDefault = 0
+    const int CMakeForEachDef = 10
+    const int CMakeIfDefineDef = 11
+    const int CMakeMacroDef = 12
+    const int CMakeNumber = 14
+    const int CMakeParameters = 6
+    const int CMakeStringDq = 2
+    const int CMakeStringLq = 3
+    const int CMakeStringRq = 4
+    const int CMakeStringVar = 13
+    const int CMakeUserDefined = 8
+    const int CMakeVariable = 7
+    const int CMakeWhileDef = 9
     const int CNumber = 4
     const int COperator = 10
     const int CPreprocessor = 9
-    const int CPreprocessorcomment = 23
-    const int CPreprocessorcommentdoc = 24
+    const int CPreprocessorComment = 23
+    const int CPreprocessorCommentDoc = 24
     const int CRegex = 14
     const int CString = 6
-    const int CStringeol = 12
-    const int CStringraw = 20
-    const int CTaskmarker = 26
-    const int CTripleverbatim = 21
-    const int CUserliteral = 25
+    const int CStringEol = 12
+    const int CStringRaw = 20
+    const int CTaskMarker = 26
+    const int CTripleVerbatim = 21
+    const int CUserLiteral = 25
     const int CUuid = 8
     const int CVerbatim = 13
     const int CWord = 5
     const int CWord2 = 16
-    const int CacheCaret = 1
-    const int CacheDocument = 3
-    const int CacheNone = 0
-    const int CachePage = 2
     const int CamlChar = 9
     const int CamlComment = 12
     const int CamlComment1 = 13
@@ -5123,65 +5157,20 @@ static class WxKit.Stc
     const int CamlKeyword = 3
     const int CamlKeyword2 = 4
     const int CamlKeyword3 = 5
-    const int CamlLinenum = 6
+    const int CamlLineNum = 6
     const int CamlNumber = 8
     const int CamlOperator = 7
     const int CamlString = 11
-    const int CamlTagname = 2
+    const int CamlTagName = 2
     const int CamlWhite = 10
-    const int CaretEven = 8
-    const int CaretJumps = 16
-    const int CaretSlop = 1
-    const int CaretStrict = 4
-    const int CaretstickyOff = 0
-    const int CaretstickyOn = 1
-    const int CaretstickyWhiteSpace = 2
-    const int CaretstyleBlock = 2
-    const int CaretstyleBlockAfter = 256
-    const int CaretstyleInsMask = 15
-    const int CaretstyleInvisible = 0
-    const int CaretstyleLine = 1
-    const int CaretstyleOverstrikeBar = 0
-    const int CaretstyleOverstrikeBlock = 16
-    const int CaseCamel = 3
-    const int CaseLower = 2
-    const int CaseMixed = 0
-    const int CaseUpper = 1
-    const int CaseinsensitivebehaviourIgnorecase = 1
-    const int CaseinsensitivebehaviourRespectcase = 0
-    const int CharactersourceDirectInput = 0
-    const int CharactersourceImeResult = 2
-    const int CharactersourceTentativeInput = 1
-    const int Charset8859_15 = 1000
-    const int CharsetAnsi = 0
-    const int CharsetArabic = 178
-    const int CharsetBaltic = 186
-    const int CharsetChinesebig5 = 136
-    const int CharsetCyrillic = 1251
-    const int CharsetDefault = 1
-    const int CharsetEasteurope = 238
-    const int CharsetGb2312 = 134
-    const int CharsetGreek = 161
-    const int CharsetHangul = 129
-    const int CharsetHebrew = 177
-    const int CharsetJohab = 130
-    const int CharsetMac = 77
-    const int CharsetOem = 255
-    const int CharsetOem866 = 866
-    const int CharsetRussian = 204
-    const int CharsetShiftjis = 128
-    const int CharsetSymbol = 2
-    const int CharsetThai = 222
-    const int CharsetTurkish = 162
-    const int CharsetVietnamese = 163
     const int CilComment = 1
-    const int CilCommentline = 2
+    const int CilCommentLine = 2
     const int CilDefault = 0
     const int CilIdentifier = 9
     const int CilLabel = 7
     const int CilOperator = 8
     const int CilString = 6
-    const int CilStringeol = 10
+    const int CilStringEol = 10
     const int CilWord = 3
     const int CilWord2 = 4
     const int CilWord3 = 5
@@ -5202,124 +5191,10 @@ static class WxKit.Stc
     const int ClwString = 3
     const int ClwStructureDataType = 12
     const int ClwUserIdentifier = 4
-    const int CmakeCommands = 5
-    const int CmakeComment = 1
-    const int CmakeDefault = 0
-    const int CmakeForeachdef = 10
-    const int CmakeIfdefinedef = 11
-    const int CmakeMacrodef = 12
-    const int CmakeNumber = 14
-    const int CmakeParameters = 6
-    const int CmakeStringdq = 2
-    const int CmakeStringlq = 3
-    const int CmakeStringrq = 4
-    const int CmakeStringvar = 13
-    const int CmakeUserdefined = 8
-    const int CmakeVariable = 7
-    const int CmakeWhiledef = 9
-    const int CmdBacktab = 2328
-    const int CmdCancel = 2325
-    const int CmdCharleft = 2304
-    const int CmdCharleftextend = 2305
-    const int CmdCharleftrectextend = 2428
-    const int CmdCharright = 2306
-    const int CmdCharrightextend = 2307
-    const int CmdCharrightrectextend = 2429
-    const int CmdClear = 2180
-    const int CmdCopy = 2178
-    const int CmdCut = 2177
-    const int CmdDeleteback = 2326
-    const int CmdDeletebacknotline = 2344
-    const int CmdDellineleft = 2395
-    const int CmdDellineright = 2396
-    const int CmdDelwordleft = 2335
-    const int CmdDelwordright = 2336
-    const int CmdDelwordrightend = 2518
-    const int CmdDocumentend = 2318
-    const int CmdDocumentendextend = 2319
-    const int CmdDocumentstart = 2316
-    const int CmdDocumentstartextend = 2317
-    const int CmdEdittoggleovertype = 2324
-    const int CmdFormfeed = 2330
-    const int CmdHome = 2312
-    const int CmdHomedisplay = 2345
-    const int CmdHomedisplayextend = 2346
-    const int CmdHomeextend = 2313
-    const int CmdHomerectextend = 2430
-    const int CmdHomewrap = 2349
-    const int CmdHomewrapextend = 2450
-    const int CmdLineDown = 2300
-    const int CmdLineUp = 2302
-    const int CmdLinecopy = 2455
-    const int CmdLinecut = 2337
-    const int CmdLinedelete = 2338
-    const int CmdLinedownextend = 2301
-    const int CmdLinedownrectextend = 2426
-    const int CmdLineduplicate = 2404
-    const int CmdLineend = 2314
-    const int CmdLineenddisplay = 2347
-    const int CmdLineenddisplayextend = 2348
-    const int CmdLineendextend = 2315
-    const int CmdLineendrectextend = 2432
-    const int CmdLineendwrap = 2451
-    const int CmdLineendwrapextend = 2452
-    const int CmdLinescrolldown = 2342
-    const int CmdLinescrollup = 2343
-    const int CmdLinetranspose = 2339
-    const int CmdLineupextend = 2303
-    const int CmdLineuprectextend = 2427
-    const int CmdLowercase = 2340
-    const int CmdMoveselectedlinesdown = 2621
-    const int CmdMoveselectedlinesup = 2620
-    const int CmdNewline = 2329
-    const int CmdPageDown = 2322
-    const int CmdPageUp = 2320
-    const int CmdPagedownextend = 2323
-    const int CmdPagedownrectextend = 2434
-    const int CmdPageupextend = 2321
-    const int CmdPageuprectextend = 2433
-    const int CmdParadown = 2413
-    const int CmdParadownextend = 2414
-    const int CmdParaup = 2415
-    const int CmdParaupextend = 2416
-    const int CmdPaste = 2179
-    const int CmdRedo = 2011
-    const int CmdScrolltoend = 2629
-    const int CmdScrolltostart = 2628
-    const int CmdSelectAll = 2013
-    const int CmdStutteredpagedown = 2437
-    const int CmdStutteredpagedownextend = 2438
-    const int CmdStutteredpageup = 2435
-    const int CmdStutteredpageupextend = 2436
-    const int CmdTab = 2327
-    const int CmdUndo = 2176
-    const int CmdUppercase = 2341
-    const int CmdVchome = 2331
-    const int CmdVchomedisplay = 2652
-    const int CmdVchomedisplayextend = 2653
-    const int CmdVchomeextend = 2332
-    const int CmdVchomerectextend = 2431
-    const int CmdVchomewrap = 2453
-    const int CmdVchomewrapextend = 2454
-    const int CmdVerticalCenterCaret = 2619
-    const int CmdWordleft = 2308
-    const int CmdWordleftend = 2439
-    const int CmdWordleftendextend = 2440
-    const int CmdWordleftextend = 2309
-    const int CmdWordpartleft = 2390
-    const int CmdWordpartleftextend = 2391
-    const int CmdWordpartright = 2392
-    const int CmdWordpartrightextend = 2393
-    const int CmdWordright = 2310
-    const int CmdWordrightend = 2441
-    const int CmdWordrightendextend = 2442
-    const int CmdWordrightextend = 2311
-    const int CmdZoomin = 2333
-    const int CmdZoomout = 2334
     const int CobolCharacter = 7
     const int CobolComment = 1
-    const int CobolCommentdoc = 3
-    const int CobolCommentline = 2
+    const int CobolCommentDoc = 3
+    const int CobolCommentLine = 2
     const int CobolDefault = 0
     const int CobolIdentifier = 11
     const int CobolNumber = 4
@@ -5329,32 +5204,32 @@ static class WxKit.Stc
     const int CobolWord = 5
     const int CobolWord2 = 16
     const int CobolWord3 = 8
-    const int CoffeescriptCharacter = 7
-    const int CoffeescriptComment = 1
-    const int CoffeescriptCommentblock = 22
-    const int CoffeescriptCommentdoc = 3
-    const int CoffeescriptCommentdockeyword = 17
-    const int CoffeescriptCommentdockeyworderror = 18
-    const int CoffeescriptCommentline = 2
-    const int CoffeescriptCommentlinedoc = 15
-    const int CoffeescriptDefault = 0
-    const int CoffeescriptGlobalclass = 19
-    const int CoffeescriptIdentifier = 11
-    const int CoffeescriptInstanceproperty = 25
-    const int CoffeescriptNumber = 4
-    const int CoffeescriptOperator = 10
-    const int CoffeescriptPreprocessor = 9
-    const int CoffeescriptRegex = 14
-    const int CoffeescriptString = 6
-    const int CoffeescriptStringeol = 12
-    const int CoffeescriptStringraw = 20
-    const int CoffeescriptTripleverbatim = 21
-    const int CoffeescriptUuid = 8
-    const int CoffeescriptVerbatim = 13
-    const int CoffeescriptVerboseRegex = 23
-    const int CoffeescriptVerboseRegexComment = 24
-    const int CoffeescriptWord = 5
-    const int CoffeescriptWord2 = 16
+    const int CoffeeScriptCharacter = 7
+    const int CoffeeScriptComment = 1
+    const int CoffeeScriptCommentBlock = 22
+    const int CoffeeScriptCommentDoc = 3
+    const int CoffeeScriptCommentDocKeyword = 17
+    const int CoffeeScriptCommentDocKeywordError = 18
+    const int CoffeeScriptCommentLine = 2
+    const int CoffeeScriptCommentLineDoc = 15
+    const int CoffeeScriptDefault = 0
+    const int CoffeeScriptGlobalClass = 19
+    const int CoffeeScriptIdentifier = 11
+    const int CoffeeScriptInstanceProperty = 25
+    const int CoffeeScriptNumber = 4
+    const int CoffeeScriptOperator = 10
+    const int CoffeeScriptPreprocessor = 9
+    const int CoffeeScriptRegex = 14
+    const int CoffeeScriptString = 6
+    const int CoffeeScriptStringEol = 12
+    const int CoffeeScriptStringRaw = 20
+    const int CoffeeScriptTripleVerbatim = 21
+    const int CoffeeScriptUuid = 8
+    const int CoffeeScriptVerbatim = 13
+    const int CoffeeScriptVerboseRegex = 23
+    const int CoffeeScriptVerboseRegexComment = 24
+    const int CoffeeScriptWord = 5
+    const int CoffeeScriptWord2 = 16
     const int ConfComment = 1
     const int ConfDefault = 0
     const int ConfDirective = 9
@@ -5368,10 +5243,10 @@ static class WxKit.Stc
     const int CpUtf8 = 65001
     const int CsoundArateVariable = 11
     const int CsoundComment = 1
-    const int CsoundCommentblock = 9
+    const int CsoundCommentBlock = 9
     const int CsoundDefault = 0
     const int CsoundGlobalVariable = 14
-    const int CsoundHeaderstmt = 7
+    const int CsoundHeaderStmt = 7
     const int CsoundIdentifier = 5
     const int CsoundInstr = 4
     const int CsoundIrateVariable = 13
@@ -5380,17 +5255,17 @@ static class WxKit.Stc
     const int CsoundOpcode = 6
     const int CsoundOperator = 3
     const int CsoundParam = 10
-    const int CsoundStringeol = 15
-    const int CsoundUserkeyword = 8
+    const int CsoundStringEol = 15
+    const int CsoundUserKeyword = 8
     const int CssAttribute = 16
     const int CssClass = 2
     const int CssComment = 9
     const int CssDefault = 0
     const int CssDirective = 12
-    const int CssDoublestring = 13
+    const int CssDoubleString = 13
     const int CssExtendedIdentifier = 19
-    const int CssExtendedPseudoclass = 20
-    const int CssExtendedPseudoelement = 21
+    const int CssExtendedPseudoClass = 20
+    const int CssExtendedPseudoElement = 21
     const int CssGroupRule = 22
     const int CssId = 10
     const int CssIdentifier = 6
@@ -5398,47 +5273,43 @@ static class WxKit.Stc
     const int CssIdentifier3 = 17
     const int CssImportant = 11
     const int CssOperator = 5
-    const int CssPseudoclass = 3
-    const int CssPseudoelement = 18
-    const int CssSinglestring = 14
+    const int CssPseudoClass = 3
+    const int CssPseudoElement = 18
+    const int CssSingleString = 14
     const int CssTag = 1
     const int CssUnknownIdentifier = 7
-    const int CssUnknownPseudoclass = 4
+    const int CssUnknownPseudoClass = 4
     const int CssValue = 8
     const int CssVariable = 23
-    const int Cursorarrow = 2
-    const int Cursornormal = -1
-    const int Cursorreversearrow = 7
-    const int Cursorwait = 4
     const int DCharacter = 12
     const int DComment = 1
-    const int DCommentdoc = 3
-    const int DCommentdockeyword = 16
-    const int DCommentdockeyworderror = 17
-    const int DCommentline = 2
-    const int DCommentlinedoc = 15
-    const int DCommentnested = 4
+    const int DCommentDoc = 3
+    const int DCommentDocKeyword = 16
+    const int DCommentDocKeywordError = 17
+    const int DCommentLine = 2
+    const int DCommentLineDoc = 15
+    const int DCommentNested = 4
     const int DDefault = 0
     const int DIdentifier = 14
     const int DNumber = 5
     const int DOperator = 13
     const int DString = 10
-    const int DStringb = 18
-    const int DStringeol = 11
-    const int DStringr = 19
-    const int DTypedef = 9
+    const int DStringB = 18
+    const int DStringEol = 11
+    const int DStringR = 19
+    const int DTypeDef = 9
     const int DWord = 6
     const int DWord2 = 7
     const int DWord3 = 8
     const int DWord5 = 20
     const int DWord6 = 21
     const int DWord7 = 22
-    const int DartCommentblock = 3
-    const int DartCommentblockdoc = 4
-    const int DartCommentline = 1
-    const int DartCommentlinedoc = 2
+    const int DartCommentBlock = 3
+    const int DartCommentBlockDoc = 4
+    const int DartCommentLine = 1
+    const int DartCommentLineDoc = 2
     const int DartDefault = 0
-    const int DartEscapechar = 13
+    const int DartEscapeChar = 13
     const int DartIdentifier = 14
     const int DartIdentifierString = 15
     const int DartKey = 21
@@ -5450,31 +5321,31 @@ static class WxKit.Stc
     const int DartNumber = 20
     const int DartOperator = 16
     const int DartOperatorString = 17
-    const int DartRawstringDq = 10
-    const int DartRawstringSq = 9
+    const int DartRawStringDq = 10
+    const int DartRawStringSq = 9
     const int DartStringDq = 6
+    const int DartStringEol = 27
     const int DartStringSq = 5
-    const int DartStringeol = 27
     const int DartSymbolIdentifier = 18
     const int DartSymbolOperator = 19
-    const int DartTripleRawstringDq = 12
-    const int DartTripleRawstringSq = 11
+    const int DartTripleRawStringDq = 12
+    const int DartTripleRawStringSq = 11
     const int DartTripleStringDq = 8
     const int DartTripleStringSq = 7
-    const int DfCommentline = 4
+    const int DfCommentLine = 4
     const int DfDefault = 0
-    const int DfHexnumber = 8
+    const int DfHexNumber = 8
     const int DfIcode = 14
     const int DfIdentifier = 1
     const int DfImage = 3
-    const int DfMetatag = 2
+    const int DfMetaTag = 2
     const int DfNumber = 7
     const int DfOperator = 13
     const int DfPreprocessor = 5
     const int DfPreprocessor2 = 6
-    const int DfScopeword = 12
+    const int DfScopeWord = 12
     const int DfString = 10
-    const int DfStringeol = 11
+    const int DfStringEol = 11
     const int DfWord = 9
     const int DiffAdded = 6
     const int DiffChanged = 7
@@ -5495,7 +5366,7 @@ static class WxKit.Stc
     const int DmapOperator = 6
     const int DmapString1 = 3
     const int DmapString2 = 4
-    const int DmapStringeol = 5
+    const int DmapStringEol = 5
     const int DmapWord = 8
     const int DmapWord2 = 9
     const int DmapWord3 = 10
@@ -5503,24 +5374,21 @@ static class WxKit.Stc
     const int DmisDefault = 0
     const int DmisKeyword = 4
     const int DmisLabel = 9
-    const int DmisMajorword = 5
-    const int DmisMinorword = 6
+    const int DmisMajorWord = 5
+    const int DmisMinorWord = 6
     const int DmisNumber = 3
     const int DmisString = 2
     const int DmisUnsupportedMajor = 7
     const int DmisUnsupportedMinor = 8
-    const int DocumentoptionDefault = 0
-    const int DocumentoptionStylesNone = 1
-    const int DocumentoptionTextLarge = 256
     const int EclAdded = 24
     const int EclChanged = 26
     const int EclCharacter = 7
     const int EclComment = 1
-    const int EclCommentdoc = 23
-    const int EclCommentdockeyword = 17
-    const int EclCommentdockeyworderror = 18
-    const int EclCommentline = 2
-    const int EclCommentlinedoc = 15
+    const int EclCommentDoc = 23
+    const int EclCommentDocKeyword = 17
+    const int EclCommentDocKeywordError = 18
+    const int EclCommentLine = 2
+    const int EclCommentLineDoc = 15
     const int EclDefault = 0
     const int EclDeleted = 25
     const int EclIdentifier = 11
@@ -5530,7 +5398,7 @@ static class WxKit.Stc
     const int EclPreprocessor = 9
     const int EclRegex = 14
     const int EclString = 4
-    const int EclStringeol = 12
+    const int EclStringEol = 12
     const int EclUnknown = 10
     const int EclUuid = 8
     const int EclVerbatim = 13
@@ -5540,39 +5408,25 @@ static class WxKit.Stc
     const int EclWord3 = 20
     const int EclWord4 = 21
     const int EclWord5 = 22
-    const int EdgeBackground = 2
-    const int EdgeLine = 1
-    const int EdgeMultiLine = 3
-    const int EdgeNone = 0
-    const int EdiBadsegment = 8
+    const int EdiBadSegment = 8
     const int EdiDefault = 0
-    const int EdiSegmentend = 2
-    const int EdiSegmentstart = 1
+    const int EdiSegmentEnd = 2
+    const int EdiSegmentStart = 1
     const int EdiSepComposite = 4
     const int EdiSepElement = 3
     const int EdiSepRelease = 5
     const int EdiUna = 6
     const int EdiUnh = 7
-    const int EffQualityAntialiased = 2
-    const int EffQualityDefault = 0
-    const int EffQualityLcdOptimized = 3
     const int EffQualityMask = 15
-    const int EffQualityNonAntialiased = 1
     const int EiffelCharacter = 5
-    const int EiffelCommentline = 1
+    const int EiffelCommentLine = 1
     const int EiffelDefault = 0
     const int EiffelIdentifier = 7
     const int EiffelNumber = 2
     const int EiffelOperator = 6
     const int EiffelString = 4
-    const int EiffelStringeol = 8
+    const int EiffelStringEol = 8
     const int EiffelWord = 3
-    const int EolCr = 1
-    const int EolCrlf = 0
-    const int EolLf = 2
-    const int EolannotationBoxed = 2
-    const int EolannotationHidden = 0
-    const int EolannotationStandard = 1
     const int ErlangAtom = 7
     const int ErlangAtomQuoted = 18
     const int ErlangBifs = 22
@@ -5626,8 +5480,8 @@ static class WxKit.Stc
     const int ErrEsRed = 41
     const int ErrEsWhite = 55
     const int ErrEsYellow = 51
-    const int ErrEscseq = 23
-    const int ErrEscseqUnknown = 24
+    const int ErrEscapeSequence = 23
+    const int ErrEscapeSequenceUnknown = 24
     const int ErrGcc = 2
     const int ErrGccExcerpt = 25
     const int ErrGccIncludedFrom = 22
@@ -5642,10 +5496,174 @@ static class WxKit.Stc
     const int ErrPython = 1
     const int ErrTidy = 19
     const int ErrValue = 21
+    const int EscapeSequenceBlackBlack = 10
+    const int EscapeSequenceBlackBlue = 55
+    const int EscapeSequenceBlackCyan = 73
+    const int EscapeSequenceBlackDefault = 1
+    const int EscapeSequenceBlackGreen = 28
+    const int EscapeSequenceBlackMagenta = 64
+    const int EscapeSequenceBlackRed = 19
+    const int EscapeSequenceBlackWhite = 82
+    const int EscapeSequenceBlackYellow = 46
+    const int EscapeSequenceBlueBlack = 14
+    const int EscapeSequenceBlueBlue = 59
+    const int EscapeSequenceBlueCyan = 77
+    const int EscapeSequenceBlueDefault = 5
+    const int EscapeSequenceBlueGreen = 41
+    const int EscapeSequenceBlueMagenta = 68
+    const int EscapeSequenceBlueRed = 23
+    const int EscapeSequenceBlueWhite = 86
+    const int EscapeSequenceBlueYellow = 50
+    const int EscapeSequenceBoldBlackBlack = 100
+    const int EscapeSequenceBoldBlackBlue = 136
+    const int EscapeSequenceBoldBlackCyan = 154
+    const int EscapeSequenceBoldBlackDefault = 91
+    const int EscapeSequenceBoldBlackGreen = 118
+    const int EscapeSequenceBoldBlackMagenta = 145
+    const int EscapeSequenceBoldBlackRed = 109
+    const int EscapeSequenceBoldBlackWhite = 163
+    const int EscapeSequenceBoldBlackYellow = 127
+    const int EscapeSequenceBoldBlueBlack = 104
+    const int EscapeSequenceBoldBlueBlue = 140
+    const int EscapeSequenceBoldBlueCyan = 158
+    const int EscapeSequenceBoldBlueDefault = 95
+    const int EscapeSequenceBoldBlueGreen = 122
+    const int EscapeSequenceBoldBlueMagenta = 149
+    const int EscapeSequenceBoldBlueRed = 113
+    const int EscapeSequenceBoldBlueWhite = 167
+    const int EscapeSequenceBoldBlueYellow = 131
+    const int EscapeSequenceBoldCyanBlack = 106
+    const int EscapeSequenceBoldCyanBlue = 142
+    const int EscapeSequenceBoldCyanCyan = 160
+    const int EscapeSequenceBoldCyanDefault = 97
+    const int EscapeSequenceBoldCyanGreen = 124
+    const int EscapeSequenceBoldCyanMagenta = 151
+    const int EscapeSequenceBoldCyanRed = 115
+    const int EscapeSequenceBoldCyanWhite = 169
+    const int EscapeSequenceBoldCyanYellow = 133
+    const int EscapeSequenceBoldDefault = 90
+    const int EscapeSequenceBoldDefaultBlack = 99
+    const int EscapeSequenceBoldDefaultBlue = 135
+    const int EscapeSequenceBoldDefaultCyan = 153
+    const int EscapeSequenceBoldDefaultGreen = 117
+    const int EscapeSequenceBoldDefaultMagenta = 144
+    const int EscapeSequenceBoldDefaultRed = 108
+    const int EscapeSequenceBoldDefaultWhite = 162
+    const int EscapeSequenceBoldDefaultYellow = 126
+    const int EscapeSequenceBoldGreenBlack = 102
+    const int EscapeSequenceBoldGreenBlue = 138
+    const int EscapeSequenceBoldGreenCyan = 156
+    const int EscapeSequenceBoldGreenDefault = 93
+    const int EscapeSequenceBoldGreenGreen = 120
+    const int EscapeSequenceBoldGreenMagenta = 147
+    const int EscapeSequenceBoldGreenRed = 111
+    const int EscapeSequenceBoldGreenWhite = 165
+    const int EscapeSequenceBoldGreenYellow = 129
+    const int EscapeSequenceBoldMagentaBlack = 105
+    const int EscapeSequenceBoldMagentaBlue = 141
+    const int EscapeSequenceBoldMagentaCyan = 159
+    const int EscapeSequenceBoldMagentaDefault = 96
+    const int EscapeSequenceBoldMagentaGreen = 123
+    const int EscapeSequenceBoldMagentaMagenta = 150
+    const int EscapeSequenceBoldMagentaRed = 114
+    const int EscapeSequenceBoldMagentaWhite = 168
+    const int EscapeSequenceBoldMagentaYellow = 132
+    const int EscapeSequenceBoldRedBlack = 101
+    const int EscapeSequenceBoldRedBlue = 137
+    const int EscapeSequenceBoldRedCyan = 155
+    const int EscapeSequenceBoldRedDefault = 92
+    const int EscapeSequenceBoldRedGreen = 119
+    const int EscapeSequenceBoldRedMagenta = 146
+    const int EscapeSequenceBoldRedRed = 110
+    const int EscapeSequenceBoldRedWhite = 164
+    const int EscapeSequenceBoldRedYellow = 128
+    const int EscapeSequenceBoldWhiteBlack = 107
+    const int EscapeSequenceBoldWhiteBlue = 143
+    const int EscapeSequenceBoldWhiteCyan = 161
+    const int EscapeSequenceBoldWhiteDefault = 98
+    const int EscapeSequenceBoldWhiteGreen = 125
+    const int EscapeSequenceBoldWhiteMagenta = 152
+    const int EscapeSequenceBoldWhiteRed = 116
+    const int EscapeSequenceBoldWhiteWhite = 170
+    const int EscapeSequenceBoldWhiteYellow = 134
+    const int EscapeSequenceBoldYellowBlack = 103
+    const int EscapeSequenceBoldYellowBlue = 139
+    const int EscapeSequenceBoldYellowCyan = 157
+    const int EscapeSequenceBoldYellowDefault = 94
+    const int EscapeSequenceBoldYellowGreen = 121
+    const int EscapeSequenceBoldYellowMagenta = 148
+    const int EscapeSequenceBoldYellowRed = 112
+    const int EscapeSequenceBoldYellowWhite = 166
+    const int EscapeSequenceBoldYellowYellow = 130
+    const int EscapeSequenceCyanBlack = 16
+    const int EscapeSequenceCyanBlue = 61
+    const int EscapeSequenceCyanCyan = 79
+    const int EscapeSequenceCyanDefault = 7
+    const int EscapeSequenceCyanGreen = 43
+    const int EscapeSequenceCyanMagenta = 70
+    const int EscapeSequenceCyanRed = 25
+    const int EscapeSequenceCyanWhite = 88
+    const int EscapeSequenceCyanYellow = 52
+    const int EscapeSequenceDefault = 0
+    const int EscapeSequenceDefaultBlack = 9
+    const int EscapeSequenceDefaultBlue = 54
+    const int EscapeSequenceDefaultCyan = 72
+    const int EscapeSequenceDefaultGreen = 27
+    const int EscapeSequenceDefaultMagenta = 63
+    const int EscapeSequenceDefaultRed = 18
+    const int EscapeSequenceDefaultWhite = 81
+    const int EscapeSequenceDefaultYellow = 45
+    const int EscapeSequenceGreenBlack = 12
+    const int EscapeSequenceGreenBlue = 57
+    const int EscapeSequenceGreenCyan = 75
+    const int EscapeSequenceGreenDefault = 3
+    const int EscapeSequenceGreenGreen = 30
+    const int EscapeSequenceGreenMagenta = 66
+    const int EscapeSequenceGreenRed = 21
+    const int EscapeSequenceGreenWhite = 84
+    const int EscapeSequenceGreenYellow = 48
+    const int EscapeSequenceIdentifier = 171
+    const int EscapeSequenceMagentaBlack = 15
+    const int EscapeSequenceMagentaBlue = 60
+    const int EscapeSequenceMagentaCyan = 78
+    const int EscapeSequenceMagentaDefault = 6
+    const int EscapeSequenceMagentaGreen = 42
+    const int EscapeSequenceMagentaMagenta = 69
+    const int EscapeSequenceMagentaRed = 24
+    const int EscapeSequenceMagentaWhite = 87
+    const int EscapeSequenceMagentaYellow = 51
+    const int EscapeSequenceRedBlack = 11
+    const int EscapeSequenceRedBlue = 56
+    const int EscapeSequenceRedCyan = 74
+    const int EscapeSequenceRedDefault = 2
+    const int EscapeSequenceRedGreen = 29
+    const int EscapeSequenceRedMagenta = 65
+    const int EscapeSequenceRedRed = 20
+    const int EscapeSequenceRedWhite = 83
+    const int EscapeSequenceRedYellow = 47
+    const int EscapeSequenceUnknown = 172
+    const int EscapeSequenceWhiteBlack = 17
+    const int EscapeSequenceWhiteBlue = 62
+    const int EscapeSequenceWhiteCyan = 80
+    const int EscapeSequenceWhiteDefault = 8
+    const int EscapeSequenceWhiteGreen = 44
+    const int EscapeSequenceWhiteMagenta = 71
+    const int EscapeSequenceWhiteRed = 26
+    const int EscapeSequenceWhiteWhite = 89
+    const int EscapeSequenceWhiteYellow = 53
+    const int EscapeSequenceYellowBlack = 13
+    const int EscapeSequenceYellowBlue = 58
+    const int EscapeSequenceYellowCyan = 76
+    const int EscapeSequenceYellowDefault = 4
+    const int EscapeSequenceYellowGreen = 40
+    const int EscapeSequenceYellowMagenta = 67
+    const int EscapeSequenceYellowRed = 22
+    const int EscapeSequenceYellowWhite = 85
+    const int EscapeSequenceYellowYellow = 49
     const int EscriptBrace = 9
     const int EscriptComment = 1
-    const int EscriptCommentdoc = 3
-    const int EscriptCommentline = 2
+    const int EscriptCommentDoc = 3
+    const int EscriptCommentLine = 2
     const int EscriptDefault = 0
     const int EscriptIdentifier = 8
     const int EscriptNumber = 4
@@ -5654,170 +5672,6 @@ static class WxKit.Stc
     const int EscriptWord = 5
     const int EscriptWord2 = 10
     const int EscriptWord3 = 11
-    const int EscseqBlackBlack = 10
-    const int EscseqBlackBlue = 55
-    const int EscseqBlackCyan = 73
-    const int EscseqBlackDefault = 1
-    const int EscseqBlackGreen = 28
-    const int EscseqBlackMagenta = 64
-    const int EscseqBlackRed = 19
-    const int EscseqBlackWhite = 82
-    const int EscseqBlackYellow = 46
-    const int EscseqBlueBlack = 14
-    const int EscseqBlueBlue = 59
-    const int EscseqBlueCyan = 77
-    const int EscseqBlueDefault = 5
-    const int EscseqBlueGreen = 41
-    const int EscseqBlueMagenta = 68
-    const int EscseqBlueRed = 23
-    const int EscseqBlueWhite = 86
-    const int EscseqBlueYellow = 50
-    const int EscseqBoldBlackBlack = 100
-    const int EscseqBoldBlackBlue = 136
-    const int EscseqBoldBlackCyan = 154
-    const int EscseqBoldBlackDefault = 91
-    const int EscseqBoldBlackGreen = 118
-    const int EscseqBoldBlackMagenta = 145
-    const int EscseqBoldBlackRed = 109
-    const int EscseqBoldBlackWhite = 163
-    const int EscseqBoldBlackYellow = 127
-    const int EscseqBoldBlueBlack = 104
-    const int EscseqBoldBlueBlue = 140
-    const int EscseqBoldBlueCyan = 158
-    const int EscseqBoldBlueDefault = 95
-    const int EscseqBoldBlueGreen = 122
-    const int EscseqBoldBlueMagenta = 149
-    const int EscseqBoldBlueRed = 113
-    const int EscseqBoldBlueWhite = 167
-    const int EscseqBoldBlueYellow = 131
-    const int EscseqBoldCyanBlack = 106
-    const int EscseqBoldCyanBlue = 142
-    const int EscseqBoldCyanCyan = 160
-    const int EscseqBoldCyanDefault = 97
-    const int EscseqBoldCyanGreen = 124
-    const int EscseqBoldCyanMagenta = 151
-    const int EscseqBoldCyanRed = 115
-    const int EscseqBoldCyanWhite = 169
-    const int EscseqBoldCyanYellow = 133
-    const int EscseqBoldDefault = 90
-    const int EscseqBoldDefaultBlack = 99
-    const int EscseqBoldDefaultBlue = 135
-    const int EscseqBoldDefaultCyan = 153
-    const int EscseqBoldDefaultGreen = 117
-    const int EscseqBoldDefaultMagenta = 144
-    const int EscseqBoldDefaultRed = 108
-    const int EscseqBoldDefaultWhite = 162
-    const int EscseqBoldDefaultYellow = 126
-    const int EscseqBoldGreenBlack = 102
-    const int EscseqBoldGreenBlue = 138
-    const int EscseqBoldGreenCyan = 156
-    const int EscseqBoldGreenDefault = 93
-    const int EscseqBoldGreenGreen = 120
-    const int EscseqBoldGreenMagenta = 147
-    const int EscseqBoldGreenRed = 111
-    const int EscseqBoldGreenWhite = 165
-    const int EscseqBoldGreenYellow = 129
-    const int EscseqBoldMagentaBlack = 105
-    const int EscseqBoldMagentaBlue = 141
-    const int EscseqBoldMagentaCyan = 159
-    const int EscseqBoldMagentaDefault = 96
-    const int EscseqBoldMagentaGreen = 123
-    const int EscseqBoldMagentaMagenta = 150
-    const int EscseqBoldMagentaRed = 114
-    const int EscseqBoldMagentaWhite = 168
-    const int EscseqBoldMagentaYellow = 132
-    const int EscseqBoldRedBlack = 101
-    const int EscseqBoldRedBlue = 137
-    const int EscseqBoldRedCyan = 155
-    const int EscseqBoldRedDefault = 92
-    const int EscseqBoldRedGreen = 119
-    const int EscseqBoldRedMagenta = 146
-    const int EscseqBoldRedRed = 110
-    const int EscseqBoldRedWhite = 164
-    const int EscseqBoldRedYellow = 128
-    const int EscseqBoldWhiteBlack = 107
-    const int EscseqBoldWhiteBlue = 143
-    const int EscseqBoldWhiteCyan = 161
-    const int EscseqBoldWhiteDefault = 98
-    const int EscseqBoldWhiteGreen = 125
-    const int EscseqBoldWhiteMagenta = 152
-    const int EscseqBoldWhiteRed = 116
-    const int EscseqBoldWhiteWhite = 170
-    const int EscseqBoldWhiteYellow = 134
-    const int EscseqBoldYellowBlack = 103
-    const int EscseqBoldYellowBlue = 139
-    const int EscseqBoldYellowCyan = 157
-    const int EscseqBoldYellowDefault = 94
-    const int EscseqBoldYellowGreen = 121
-    const int EscseqBoldYellowMagenta = 148
-    const int EscseqBoldYellowRed = 112
-    const int EscseqBoldYellowWhite = 166
-    const int EscseqBoldYellowYellow = 130
-    const int EscseqCyanBlack = 16
-    const int EscseqCyanBlue = 61
-    const int EscseqCyanCyan = 79
-    const int EscseqCyanDefault = 7
-    const int EscseqCyanGreen = 43
-    const int EscseqCyanMagenta = 70
-    const int EscseqCyanRed = 25
-    const int EscseqCyanWhite = 88
-    const int EscseqCyanYellow = 52
-    const int EscseqDefault = 0
-    const int EscseqDefaultBlack = 9
-    const int EscseqDefaultBlue = 54
-    const int EscseqDefaultCyan = 72
-    const int EscseqDefaultGreen = 27
-    const int EscseqDefaultMagenta = 63
-    const int EscseqDefaultRed = 18
-    const int EscseqDefaultWhite = 81
-    const int EscseqDefaultYellow = 45
-    const int EscseqGreenBlack = 12
-    const int EscseqGreenBlue = 57
-    const int EscseqGreenCyan = 75
-    const int EscseqGreenDefault = 3
-    const int EscseqGreenGreen = 30
-    const int EscseqGreenMagenta = 66
-    const int EscseqGreenRed = 21
-    const int EscseqGreenWhite = 84
-    const int EscseqGreenYellow = 48
-    const int EscseqIdentifier = 171
-    const int EscseqMagentaBlack = 15
-    const int EscseqMagentaBlue = 60
-    const int EscseqMagentaCyan = 78
-    const int EscseqMagentaDefault = 6
-    const int EscseqMagentaGreen = 42
-    const int EscseqMagentaMagenta = 69
-    const int EscseqMagentaRed = 24
-    const int EscseqMagentaWhite = 87
-    const int EscseqMagentaYellow = 51
-    const int EscseqRedBlack = 11
-    const int EscseqRedBlue = 56
-    const int EscseqRedCyan = 74
-    const int EscseqRedDefault = 2
-    const int EscseqRedGreen = 29
-    const int EscseqRedMagenta = 65
-    const int EscseqRedRed = 20
-    const int EscseqRedWhite = 83
-    const int EscseqRedYellow = 47
-    const int EscseqUnknown = 172
-    const int EscseqWhiteBlack = 17
-    const int EscseqWhiteBlue = 62
-    const int EscseqWhiteCyan = 80
-    const int EscseqWhiteDefault = 8
-    const int EscseqWhiteGreen = 44
-    const int EscseqWhiteMagenta = 71
-    const int EscseqWhiteRed = 26
-    const int EscseqWhiteWhite = 89
-    const int EscseqWhiteYellow = 53
-    const int EscseqYellowBlack = 13
-    const int EscseqYellowBlue = 58
-    const int EscseqYellowCyan = 76
-    const int EscseqYellowDefault = 4
-    const int EscseqYellowGreen = 40
-    const int EscseqYellowMagenta = 67
-    const int EscseqYellowRed = 22
-    const int EscseqYellowWhite = 85
-    const int EscseqYellowYellow = 49
     const int FComment = 1
     const int FContinuation = 14
     const int FDefault = 0
@@ -5827,60 +5681,62 @@ static class WxKit.Stc
     const int FOperator = 6
     const int FOperator2 = 12
     const int FPreprocessor = 11
+    const int FSharpAttribute = 18
+    const int FSharpCharacter = 14
+    const int FSharpComment = 8
+    const int FSharpCommentLine = 9
+    const int FSharpDefault = 0
+    const int FSharpFormatSpec = 19
+    const int FSharpIdentifier = 6
+    const int FSharpKeyword = 1
+    const int FSharpKeyword2 = 2
+    const int FSharpKeyword3 = 3
+    const int FSharpKeyword4 = 4
+    const int FSharpKeyword5 = 5
+    const int FSharpLineNum = 11
+    const int FSharpNumber = 13
+    const int FSharpOperator = 12
+    const int FSharpPreprocessor = 10
+    const int FSharpQuotIdentifier = 7
+    const int FSharpQuotation = 17
+    const int FSharpString = 15
+    const int FSharpVerbatim = 16
     const int FString1 = 3
     const int FString2 = 4
-    const int FStringeol = 5
+    const int FStringEol = 5
     const int FWord = 8
     const int FWord2 = 9
     const int FWord3 = 10
-    const int FindMatchCase = 4
-    const int FindNone = 0
-    const int FindPosix = 4194304
-    const int FindRegexp = 2097152
-    const int FindWholeWord = 2
-    const int FindWordstart = 1048576
-    const int FoldactionContract = 0
-    const int FoldactionExpand = 1
-    const int FoldactionToggle = 2
-    const int FolddisplaytextBoxed = 2
-    const int FolddisplaytextHidden = 0
-    const int FolddisplaytextStandard = 1
-    const int FoldflagLevelnumbers = 64
-    const int FoldflagLineafterContracted = 16
-    const int FoldflagLineafterExpanded = 8
-    const int FoldflagLinebeforeContracted = 4
-    const int FoldflagLinebeforeExpanded = 2
-    const int FoldflagLinestate = 128
-    const int Foldlevelbase = 1024
-    const int Foldlevelheaderflag = 8192
-    const int Foldlevelnumbermask = 4095
-    const int Foldlevelwhiteflag = 4096
+    const int FoldLevelBase = 1024
+    const int FoldLevelHeaderFlag = 8192
+    const int FoldLevelNumberMask = 4095
+    const int FoldLevelWhiteFlag = 4096
     const int FontSizeMultiplier = 100
     const int ForthComment = 1
     const int ForthCommentMl = 2
     const int ForthControl = 4
+    const int ForthDefWord = 6
     const int ForthDefault = 0
-    const int ForthDefword = 6
     const int ForthIdentifier = 3
     const int ForthKeyword = 5
     const int ForthLocale = 11
     const int ForthNumber = 9
-    const int ForthPreword1 = 7
-    const int ForthPreword2 = 8
+    const int ForthPreWord1 = 7
+    const int ForthPreWord2 = 8
     const int ForthString = 10
     const int FsComment = 1
-    const int FsCommentdoc = 3
-    const int FsCommentdocC = 22
-    const int FsCommentdockeyword = 5
-    const int FsCommentdockeyworderror = 6
-    const int FsCommentline = 2
-    const int FsCommentlinedoc = 4
-    const int FsCommentlinedocC = 23
+    const int FsCommentDoc = 3
+    const int FsCommentDocC = 22
+    const int FsCommentDocKeyword = 5
+    const int FsCommentDocKeywordError = 6
+    const int FsCommentLine = 2
+    const int FsCommentLineDoc = 4
+    const int FsCommentLineDocC = 23
     const int FsConstant = 18
     const int FsDate = 16
     const int FsDefault = 0
     const int FsDefaultC = 21
-    const int FsDisabledcode = 20
+    const int FsDisabledCode = 20
     const int FsIdentifier = 15
     const int FsIdentifierC = 30
     const int FsKeyword = 7
@@ -5897,29 +5753,9 @@ static class WxKit.Stc
     const int FsPreprocessorC = 28
     const int FsString = 12
     const int FsStringC = 27
-    const int FsStringeol = 17
-    const int FsStringeolC = 31
-    const int FsWordoperator = 19
-    const int FsharpAttribute = 18
-    const int FsharpCharacter = 14
-    const int FsharpComment = 8
-    const int FsharpCommentline = 9
-    const int FsharpDefault = 0
-    const int FsharpFormatSpec = 19
-    const int FsharpIdentifier = 6
-    const int FsharpKeyword = 1
-    const int FsharpKeyword2 = 2
-    const int FsharpKeyword3 = 3
-    const int FsharpKeyword4 = 4
-    const int FsharpKeyword5 = 5
-    const int FsharpLinenum = 11
-    const int FsharpNumber = 13
-    const int FsharpOperator = 12
-    const int FsharpPreprocessor = 10
-    const int FsharpQuotIdentifier = 7
-    const int FsharpQuotation = 17
-    const int FsharpString = 15
-    const int FsharpVerbatim = 16
+    const int FsStringEol = 17
+    const int FsStringEolC = 31
+    const int FsWordOperator = 19
     const int GapChar = 7
     const int GapComment = 9
     const int GapDefault = 0
@@ -5931,11 +5767,11 @@ static class WxKit.Stc
     const int GapNumber = 10
     const int GapOperator = 8
     const int GapString = 6
-    const int GapStringeol = 11
+    const int GapStringEol = 11
     const int GcAttribute = 5
     const int GcCommand = 7
-    const int GcCommentblock = 2
-    const int GcCommentline = 1
+    const int GcCommentBlock = 2
+    const int GcCommentLine = 1
     const int GcControl = 6
     const int GcDefault = 0
     const int GcEvent = 4
@@ -5944,29 +5780,29 @@ static class WxKit.Stc
     const int GcString = 8
     const int GdAnnotation = 15
     const int GdCharacter = 4
-    const int GdClassname = 8
-    const int GdCommentblock = 12
-    const int GdCommentline = 1
+    const int GdClassName = 8
+    const int GdCommentBlock = 12
+    const int GdCommentLine = 1
     const int GdDefault = 0
-    const int GdFuncname = 9
+    const int GdFuncName = 9
     const int GdIdentifier = 11
-    const int GdNodepath = 16
+    const int GdNodePath = 16
     const int GdNumber = 2
     const int GdOperator = 10
     const int GdString = 3
-    const int GdStringeol = 13
+    const int GdStringEol = 13
     const int GdTriple = 6
-    const int GdTripledouble = 7
+    const int GdTripleDouble = 7
     const int GdWord = 5
     const int GdWord2 = 14
     const int HAsp = 15
     const int HAspat = 16
     const int HAttribute = 3
-    const int HAttributeunknown = 4
+    const int HAttributeUnknown = 4
     const int HCdata = 17
     const int HComment = 9
     const int HDefault = 0
-    const int HDoublestring = 6
+    const int HDoubleString = 6
     const int HEntity = 10
     const int HNumber = 5
     const int HOther = 8
@@ -5978,33 +5814,33 @@ static class WxKit.Stc
     const int HSgmlCommand = 22
     const int HSgmlComment = 29
     const int HSgmlDefault = 21
-    const int HSgmlDoublestring = 24
+    const int HSgmlDoubleString = 24
     const int HSgmlEntity = 28
     const int HSgmlError = 26
-    const int HSgmlSimplestring = 25
+    const int HSgmlSimpleString = 25
     const int HSgmlSpecial = 27
-    const int HSinglestring = 7
+    const int HSingleString = 7
     const int HTag = 1
-    const int HTagend = 11
-    const int HTagunknown = 2
+    const int HTagEnd = 11
+    const int HTagUnknown = 2
     const int HValue = 19
     const int HXccomment = 20
-    const int HXmlend = 13
-    const int HXmlstart = 12
+    const int HXmlEnd = 13
+    const int HXmlStart = 12
     const int HaCapital = 8
     const int HaCharacter = 5
     const int HaClass = 6
-    const int HaCommentblock = 14
-    const int HaCommentblock2 = 15
-    const int HaCommentblock3 = 16
-    const int HaCommentline = 13
+    const int HaCommentBlock = 14
+    const int HaCommentBlock2 = 15
+    const int HaCommentBlock3 = 16
+    const int HaCommentLine = 13
     const int HaData = 9
     const int HaDefault = 0
     const int HaIdentifier = 1
     const int HaImport = 10
     const int HaInstance = 12
     const int HaKeyword = 2
-    const int HaLiterateCodedelim = 22
+    const int HaLiterateCodeDelim = 22
     const int HaLiterateComment = 21
     const int HaModule = 7
     const int HaNumber = 3
@@ -6013,161 +5849,128 @@ static class WxKit.Stc
     const int HaPreprocessor = 18
     const int HaReservedOperator = 20
     const int HaString = 4
-    const int HaStringeol = 19
-    const int HbCommentline = 72
+    const int HaStringEol = 19
+    const int HbCommentLine = 72
     const int HbDefault = 71
     const int HbIdentifier = 76
     const int HbNumber = 73
     const int HbStart = 70
     const int HbString = 75
-    const int HbStringeol = 77
+    const int HbStringEol = 77
     const int HbWord = 74
-    const int HbaCommentline = 82
+    const int HbaCommentLine = 82
     const int HbaDefault = 81
     const int HbaIdentifier = 86
     const int HbaNumber = 83
     const int HbaStart = 80
     const int HbaString = 85
-    const int HbaStringeol = 87
+    const int HbaStringEol = 87
     const int HbaWord = 84
-    const int HexAddressfieldUnknown = 10
-    const int HexBytecount = 4
-    const int HexBytecountWrong = 5
+    const int HexAddressFieldUnknown = 10
+    const int HexByteCount = 4
+    const int HexByteCountWrong = 5
     const int HexChecksum = 16
     const int HexChecksumWrong = 17
+    const int HexDataAddress = 7
     const int HexDataEmpty = 15
     const int HexDataEven = 13
     const int HexDataOdd = 12
     const int HexDataUnknown = 14
-    const int HexDataaddress = 7
     const int HexDefault = 0
-    const int HexExtendedaddress = 11
+    const int HexExtendedAddress = 11
     const int HexGarbage = 18
-    const int HexNoaddress = 6
-    const int HexReccount = 8
-    const int HexRecstart = 1
-    const int HexRectype = 2
-    const int HexRectypeUnknown = 3
-    const int HexStartaddress = 9
+    const int HexNoAddress = 6
+    const int HexRecCount = 8
+    const int HexRecStart = 1
+    const int HexRecType = 2
+    const int HexRecTypeUnknown = 3
+    const int HexStartAddress = 9
     const int HjComment = 42
-    const int HjCommentdoc = 44
-    const int HjCommentline = 43
+    const int HjCommentDoc = 44
+    const int HjCommentLine = 43
     const int HjDefault = 41
-    const int HjDoublestring = 48
+    const int HjDoubleString = 48
     const int HjKeyword = 47
     const int HjNumber = 45
     const int HjRegex = 52
-    const int HjSinglestring = 49
+    const int HjSingleString = 49
     const int HjStart = 40
-    const int HjStringeol = 51
+    const int HjStringEol = 51
     const int HjSymbols = 50
-    const int HjTemplateliteral = 53
+    const int HjTemplateLiteral = 53
     const int HjWord = 46
     const int HjaComment = 57
-    const int HjaCommentdoc = 59
-    const int HjaCommentline = 58
+    const int HjaCommentDoc = 59
+    const int HjaCommentLine = 58
     const int HjaDefault = 56
-    const int HjaDoublestring = 63
+    const int HjaDoubleString = 63
     const int HjaKeyword = 62
     const int HjaNumber = 60
     const int HjaRegex = 67
-    const int HjaSinglestring = 64
+    const int HjaSingleString = 64
     const int HjaStart = 55
-    const int HjaStringeol = 66
+    const int HjaStringEol = 66
     const int HjaSymbols = 65
-    const int HjaTemplateliteral = 68
+    const int HjaTemplateLiteral = 68
     const int HjaWord = 61
     const int HollywoodComment = 1
-    const int HollywoodCommentblock = 2
+    const int HollywoodCommentBlock = 2
     const int HollywoodConstant = 13
     const int HollywoodDefault = 0
-    const int HollywoodHexnumber = 14
+    const int HollywoodHexNumber = 14
     const int HollywoodIdentifier = 12
     const int HollywoodKeyword = 4
     const int HollywoodNumber = 3
     const int HollywoodOperator = 11
-    const int HollywoodPluginapi = 6
-    const int HollywoodPluginmethod = 7
+    const int HollywoodPluginApi = 6
+    const int HollywoodPluginMethod = 7
     const int HollywoodPreprocessor = 10
-    const int HollywoodStdapi = 5
+    const int HollywoodStdApi = 5
     const int HollywoodString = 8
-    const int HollywoodStringblock = 9
+    const int HollywoodStringBlock = 9
     const int HpCharacter = 95
-    const int HpClassname = 99
-    const int HpCommentline = 92
+    const int HpClassName = 99
+    const int HpCommentLine = 92
+    const int HpDefName = 100
     const int HpDefault = 91
-    const int HpDefname = 100
     const int HpIdentifier = 102
     const int HpNumber = 93
     const int HpOperator = 101
     const int HpStart = 90
     const int HpString = 94
     const int HpTriple = 97
-    const int HpTripledouble = 98
+    const int HpTripleDouble = 98
     const int HpWord = 96
     const int HpaCharacter = 110
-    const int HpaClassname = 114
-    const int HpaCommentline = 107
+    const int HpaClassName = 114
+    const int HpaCommentLine = 107
+    const int HpaDefName = 115
     const int HpaDefault = 106
-    const int HpaDefname = 115
     const int HpaIdentifier = 117
     const int HpaNumber = 108
     const int HpaOperator = 116
     const int HpaStart = 105
     const int HpaString = 109
     const int HpaTriple = 112
-    const int HpaTripledouble = 113
+    const int HpaTripleDouble = 113
     const int HpaWord = 111
     const int HphpComment = 124
-    const int HphpCommentline = 125
+    const int HphpCommentLine = 125
     const int HphpComplexVariable = 104
     const int HphpDefault = 118
-    const int HphpHstring = 119
-    const int HphpHstringVariable = 126
+    const int HphpHString = 119
+    const int HphpHStringVariable = 126
     const int HphpNumber = 122
     const int HphpOperator = 127
-    const int HphpSimplestring = 120
+    const int HphpSimpleString = 120
     const int HphpVariable = 123
     const int HphpWord = 121
-    const int IdlestylingAftervisible = 2
-    const int IdlestylingAll = 3
-    const int IdlestylingNone = 0
-    const int IdlestylingTovisible = 1
-    const int ImeInline = 1
-    const int ImeWindowed = 0
-    const int IndicBox = 6
-    const int IndicCompositionthick = 14
-    const int IndicCompositionthin = 15
-    const int IndicContainer = 8
-    const int IndicDash = 9
-    const int IndicDiagonal = 3
-    const int IndicDotbox = 12
-    const int IndicDots = 10
-    const int IndicFullbox = 16
-    const int IndicGradient = 20
-    const int IndicGradientCenter = 21
-    const int IndicHidden = 5
-    const int IndicIme = 32
-    const int IndicImeMax = 35
-    const int IndicMax = 35
-    const int IndicPlain = 0
-    const int IndicPoint = 18
-    const int IndicPointcharacter = 19
-    const int IndicRoundbox = 7
-    const int IndicSquiggle = 1
-    const int IndicSquigglelow = 11
-    const int IndicSquigglepixmap = 13
-    const int IndicStraightbox = 8
-    const int IndicStrike = 4
-    const int IndicTextfore = 17
-    const int IndicTt = 2
     const int IndicatorContainer = 8
     const int IndicatorIme = 32
     const int IndicatorImeMax = 35
     const int IndicatorMax = 35
-    const int IndicflagValuefore = 1
-    const int Indicvaluebit = 16777216
-    const int Indicvaluemask = 16777215
+    const int IndicatorValueBit = 16777216
+    const int IndicatorValueMask = 16777215
     const int InnoComment = 1
     const int InnoCommentPascal = 7
     const int InnoDefault = 0
@@ -6182,46 +5985,42 @@ static class WxKit.Stc
     const int InnoStringDouble = 10
     const int InnoStringSingle = 11
     const int InvalidPosition = -1
-    const int IvLookboth = 3
-    const int IvLookforward = 2
-    const int IvNone = 0
-    const int IvReal = 1
-    const int JsonBlockcomment = 7
-    const int JsonCompactiri = 10
+    const int JsonBlockComment = 7
+    const int JsonCompactIri = 10
     const int JsonDefault = 0
     const int JsonError = 13
-    const int JsonEscapesequence = 5
+    const int JsonEscapeSequence = 5
     const int JsonKeyword = 11
-    const int JsonLdkeyword = 12
-    const int JsonLinecomment = 6
+    const int JsonLdKeyword = 12
+    const int JsonLineComment = 6
     const int JsonNumber = 1
     const int JsonOperator = 8
-    const int JsonPropertyname = 4
+    const int JsonPropertyName = 4
     const int JsonString = 2
-    const int JsonStringeol = 3
+    const int JsonStringEol = 3
     const int JsonUri = 9
     const int JuliaBracket = 8
     const int JuliaChar = 6
     const int JuliaCommand = 16
-    const int JuliaCommandliteral = 17
+    const int JuliaCommandLiteral = 17
     const int JuliaComment = 1
     const int JuliaDefault = 0
-    const int JuliaDocstring = 14
+    const int JuliaDocString = 14
     const int JuliaIdentifier = 9
     const int JuliaKeyword1 = 3
     const int JuliaKeyword2 = 4
     const int JuliaKeyword3 = 5
     const int JuliaKeyword4 = 20
-    const int JuliaLexerror = 19
+    const int JuliaLexError = 19
     const int JuliaMacro = 12
     const int JuliaNumber = 2
     const int JuliaOperator = 7
     const int JuliaString = 10
-    const int JuliaStringinterp = 13
-    const int JuliaStringliteral = 15
+    const int JuliaStringInterp = 13
+    const int JuliaStringLiteral = 15
     const int JuliaSymbol = 11
-    const int JuliaTypeannot = 18
-    const int JuliaTypeoperator = 21
+    const int JuliaTypeAnnot = 18
+    const int JuliaTypeOperator = 21
     const int KeyAdd = 310
     const int KeyBack = 8
     const int KeyDelete = 308
@@ -6237,20 +6036,14 @@ static class WxKit.Stc
     const int KeyPrior = 306
     const int KeyReturn = 13
     const int KeyRight = 303
-    const int KeyRwin = 314
+    const int KeyRightWin = 314
     const int KeySubtract = 311
     const int KeyTab = 9
     const int KeyUp = 301
     const int KeyWin = 313
-    const int KeymodAlt = 4
-    const int KeymodCtrl = 2
-    const int KeymodMeta = 16
-    const int KeymodNorm = 0
-    const int KeymodShift = 1
-    const int KeymodSuper = 8
-    const int KeywordsetMax = 8
+    const int KeywordSetMax = 8
     const int KixComment = 1
-    const int KixCommentstream = 10
+    const int KixCommentStream = 10
     const int KixDefault = 0
     const int KixFunctions = 8
     const int KixIdentifier = 31
@@ -6262,7 +6055,7 @@ static class WxKit.Stc
     const int KixString2 = 3
     const int KixVariable = 5
     const int KvircComment = 1
-    const int KvircCommentblock = 2
+    const int KvircCommentBlock = 2
     const int KvircDefault = 0
     const int KvircFunction = 7
     const int KvircFunctionKeyword = 6
@@ -6274,7 +6067,7 @@ static class WxKit.Stc
     const int KvircStringVariable = 12
     const int KvircVariable = 8
     const int KvircWord = 4
-    const int LCmdopt = 11
+    const int LCmdOpt = 11
     const int LCommand = 1
     const int LComment = 4
     const int LComment2 = 7
@@ -6282,157 +6075,12 @@ static class WxKit.Stc
     const int LError = 12
     const int LMath = 3
     const int LMath2 = 6
-    const int LShortcmd = 9
+    const int LShortCmd = 9
     const int LSpecial = 10
     const int LTag = 2
     const int LTag2 = 5
     const int LVerbatim = 8
-    const int Laststepinundoredo = 256
-    const int LexA68k = 100
-    const int LexAbaqus = 84
-    const int LexAda = 20
-    const int LexApdl = 61
-    const int LexAs = 113
-    const int LexAsciidoc = 134
-    const int LexAsm = 34
-    const int LexAsn1 = 63
-    const int LexAsymptote = 85
-    const int LexAu3 = 60
-    const int LexAutomatic = 1000
-    const int LexAve = 19
-    const int LexAvs = 104
-    const int LexBaan = 31
-    const int LexBash = 62
-    const int LexBatch = 12
-    const int LexBibtex = 116
-    const int LexBlitzbasic = 66
-    const int LexBullant = 27
-    const int LexCaml = 65
-    const int LexCil = 127
-    const int LexClw = 45
-    const int LexClwnocase = 46
-    const int LexCmake = 80
-    const int LexCobol = 92
-    const int LexCoffeescript = 102
-    const int LexConf = 17
-    const int LexContainer = 0
-    const int LexCpp = 3
-    const int LexCppnocase = 35
-    const int LexCsound = 74
-    const int LexCss = 38
-    const int LexD = 79
-    const int LexDart = 138
-    const int LexDataflex = 129
-    const int LexDiff = 16
-    const int LexDmap = 112
-    const int LexDmis = 114
-    const int LexEcl = 105
-    const int LexEdifact = 121
-    const int LexEiffel = 23
-    const int LexEiffelkw = 24
-    const int LexErlang = 53
-    const int LexErrorlist = 10
-    const int LexEscript = 41
-    const int LexEscseq = 142
-    const int LexF77 = 37
-    const int LexFlagship = 73
-    const int LexForth = 52
-    const int LexFortran = 36
-    const int LexFreebasic = 75
-    const int LexFsharp = 132
-    const int LexGap = 81
-    const int LexGdscript = 135
-    const int LexGui4cli = 58
-    const int LexHaskell = 68
-    const int LexHollywood = 130
-    const int LexHtml = 4
-    const int LexIhex = 118
-    const int LexIndent = 122
-    const int LexInnosetup = 76
-    const int LexJson = 120
-    const int LexJulia = 133
-    const int LexKix = 57
-    const int LexKvirc = 110
-    const int LexLatex = 14
-    const int LexLisp = 21
-    const int LexLiteratehaskell = 108
-    const int LexLot = 47
-    const int LexLout = 40
-    const int LexLua = 15
-    const int LexMagik = 87
-    const int LexMakefile = 11
-    const int LexMarkdown = 98
-    const int LexMatlab = 32
-    const int LexMaxima = 123
-    const int LexMetapost = 50
-    const int LexMmixal = 44
-    const int LexModula = 101
-    const int LexMssql = 55
-    const int LexMysql = 89
-    const int LexNim = 126
-    const int LexNimrod = 96
-    const int LexNix = 140
-    const int LexNncrontab = 26
-    const int LexNsis = 43
-    const int LexNull = 1
-    const int LexOctave = 54
-    const int LexOpal = 77
-    const int LexOscript = 106
-    const int LexPascal = 18
-    const int LexPerl = 6
-    const int LexPhpscript = 69
-    const int LexPlm = 82
-    const int LexPo = 90
-    const int LexPov = 39
-    const int LexPowerbasic = 51
-    const int LexPowerpro = 95
-    const int LexPowershell = 88
-    const int LexProgress = 83
-    const int LexProperties = 9
-    const int LexPs = 42
-    const int LexPurebasic = 67
-    const int LexPython = 2
-    const int LexR = 86
-    const int LexRaku = 131
-    const int LexRebol = 71
-    const int LexRegistry = 115
-    const int LexRuby = 22
-    const int LexRust = 111
-    const int LexSas = 125
-    const int LexScriptol = 33
-    const int LexSinex = 141
-    const int LexSmalltalk = 72
-    const int LexSml = 97
-    const int LexSorcus = 94
-    const int LexSpecman = 59
-    const int LexSpice = 78
-    const int LexSql = 7
-    const int LexSrec = 117
-    const int LexStata = 124
-    const int LexSttxt = 109
-    const int LexTacl = 93
-    const int LexTads3 = 70
-    const int LexTal = 91
-    const int LexTcl = 25
-    const int LexTcmd = 103
-    const int LexTehex = 119
-    const int LexTex = 49
-    const int LexToml = 136
-    const int LexTroff = 137
-    const int LexTxt2tags = 99
-    const int LexVb = 8
-    const int LexVbscript = 28
-    const int LexVerilog = 56
-    const int LexVhdl = 64
-    const int LexVisualprolog = 107
-    const int LexX12 = 128
-    const int LexXcode = 13
-    const int LexXml = 5
-    const int LexYaml = 48
-    const int LexZig = 139
     const int LexerStart = 4000
-    const int LineEndTypeDefault = 0
-    const int LineEndTypeUnicode = 1
     const int LispComment = 1
     const int LispDefault = 0
     const int LispIdentifier = 9
@@ -6443,7 +6091,7 @@ static class WxKit.Stc
     const int LispOperator = 10
     const int LispSpecial = 11
     const int LispString = 6
-    const int LispStringeol = 8
+    const int LispStringEol = 8
     const int LispSymbol = 5
     const int LotAbort = 6
     const int LotBreak = 2
@@ -6458,24 +6106,24 @@ static class WxKit.Stc
     const int LoutNumber = 2
     const int LoutOperator = 8
     const int LoutString = 7
-    const int LoutStringeol = 10
+    const int LoutStringEol = 10
     const int LoutWord = 3
     const int LoutWord2 = 4
     const int LoutWord3 = 5
     const int LoutWord4 = 6
     const int LuaCharacter = 7
     const int LuaComment = 1
-    const int LuaCommentdoc = 3
-    const int LuaCommentline = 2
+    const int LuaCommentDoc = 3
+    const int LuaCommentLine = 2
     const int LuaDefault = 0
     const int LuaIdentifier = 11
     const int LuaLabel = 20
-    const int LuaLiteralstring = 8
+    const int LuaLiteralString = 8
     const int LuaNumber = 4
     const int LuaOperator = 10
     const int LuaPreprocessor = 9
     const int LuaString = 6
-    const int LuaStringeol = 12
+    const int LuaStringEol = 12
     const int LuaWord = 5
     const int LuaWord2 = 13
     const int LuaWord3 = 14
@@ -6497,64 +6145,21 @@ static class WxKit.Stc
     const int MagikNumber = 4
     const int MagikOperator = 6
     const int MagikPragma = 14
-    const int MagikSqbracketBlock = 11
+    const int MagikSqBracketBlock = 11
     const int MagikString = 2
     const int MagikSymbol = 15
     const int MagikUnknownKeyword = 12
     const int MakeComment = 1
     const int MakeDefault = 0
+    const int MakeIdEol = 9
     const int MakeIdentifier = 3
-    const int MakeIdeol = 9
     const int MakeOperator = 4
     const int MakePreprocessor = 2
     const int MakeTarget = 5
-    const int MarginBack = 2
-    const int MarginColor = 6
-    const int MarginFore = 3
-    const int MarginNumber = 1
-    const int MarginRtext = 5
-    const int MarginSymbol = 0
-    const int MarginText = 4
-    const int MarginoptionNone = 0
-    const int MarginoptionSublineselect = 1
-    const int MarkArrow = 2
-    const int MarkArrowdown = 6
-    const int MarkArrows = 24
-    const int MarkAvailable = 28
-    const int MarkBackground = 22
-    const int MarkBookmark = 31
-    const int MarkBoxminus = 14
-    const int MarkBoxminusconnected = 15
-    const int MarkBoxplus = 12
-    const int MarkBoxplusconnected = 13
-    const int MarkCharacter = 10000
-    const int MarkCircle = 0
-    const int MarkCircleminus = 20
-    const int MarkCircleminusconnected = 21
-    const int MarkCircleplus = 18
-    const int MarkCircleplusconnected = 19
-    const int MarkDotdotdot = 23
-    const int MarkEmpty = 5
-    const int MarkFullrect = 26
-    const int MarkLcorner = 10
-    const int MarkLcornercurve = 16
-    const int MarkLeftrect = 27
-    const int MarkMinus = 7
-    const int MarkPixmap = 25
-    const int MarkPlus = 8
-    const int MarkRgbaimage = 30
-    const int MarkRoundrect = 1
-    const int MarkShortarrow = 4
-    const int MarkSmallrect = 3
-    const int MarkTcorner = 11
-    const int MarkTcornercurve = 17
-    const int MarkUnderline = 29
-    const int MarkVerticalbookmark = 32
-    const int MarkVline = 9
-    const int MarkdownBlockquote = 15
+    const int MarkdownBlockQuote = 15
     const int MarkdownCode = 19
     const int MarkdownCode2 = 20
-    const int MarkdownCodebk = 21
+    const int MarkdownCodeBk = 21
     const int MarkdownDefault = 0
     const int MarkdownEm1 = 4
     const int MarkdownEm2 = 5
@@ -6568,24 +6173,24 @@ static class WxKit.Stc
     const int MarkdownLineBegin = 1
     const int MarkdownLink = 18
     const int MarkdownOlistItem = 14
-    const int MarkdownPrechar = 12
+    const int MarkdownPreChar = 12
     const int MarkdownStrikeout = 16
     const int MarkdownStrong1 = 2
     const int MarkdownStrong2 = 3
     const int MarkdownUlistItem = 13
     const int MarkerMax = 31
-    const int MarknumFolder = 30
-    const int MarknumFolderend = 25
-    const int MarknumFoldermidtail = 27
-    const int MarknumFolderopen = 31
-    const int MarknumFolderopenmid = 26
-    const int MarknumFoldersub = 29
-    const int MarknumFoldertail = 28
+    const int MarkerNumberFolder = 30
+    const int MarkerNumberFolderEnd = 25
+    const int MarkerNumberFolderMidTail = 27
+    const int MarkerNumberFolderOpen = 31
+    const int MarkerNumberFolderOpenMid = 26
+    const int MarkerNumberFolderSub = 29
+    const int MarkerNumberFolderTail = 28
     const int MaskFolders = -33554432
     const int MatlabCommand = 2
     const int MatlabComment = 1
     const int MatlabDefault = 0
-    const int MatlabDoublequotestring = 8
+    const int MatlabDoubleQuoteString = 8
     const int MatlabIdentifier = 7
     const int MatlabKeyword = 4
     const int MatlabNumber = 3
@@ -6593,26 +6198,26 @@ static class WxKit.Stc
     const int MatlabString = 5
     const int MaxMargin = 4
     const int MaximaCommand = 5
-    const int MaximaCommandending = 1
+    const int MaximaCommandEnding = 1
     const int MaximaComment = 2
     const int MaximaNumber = 3
     const int MaximaOperator = 0
     const int MaximaString = 4
     const int MaximaUnknown = 7
     const int MaximaVariable = 6
-    const int MetapostCommand = 4
-    const int MetapostDefault = 0
-    const int MetapostExtra = 6
-    const int MetapostGroup = 2
-    const int MetapostSpecial = 1
-    const int MetapostSymbol = 3
-    const int MetapostText = 5
+    const int MetaPostCommand = 4
+    const int MetaPostDefault = 0
+    const int MetaPostExtra = 6
+    const int MetaPostGroup = 2
+    const int MetaPostSpecial = 1
+    const int MetaPostSymbol = 3
+    const int MetaPostText = 5
     const int MmixalChar = 11
     const int MmixalComment = 1
     const int MmixalHex = 14
     const int MmixalInclude = 17
     const int MmixalLabel = 2
-    const int MmixalLeadws = 0
+    const int MmixalLeadWs = 0
     const int MmixalNumber = 9
     const int MmixalOpcode = 3
     const int MmixalOpcodePost = 7
@@ -6625,109 +6230,85 @@ static class WxKit.Stc
     const int MmixalRegister = 13
     const int MmixalString = 12
     const int MmixalSymbol = 16
-    const int ModBeforedelete = 2048
-    const int ModBeforeinsert = 1024
-    const int ModChangeannotation = 131072
-    const int ModChangeeolannotation = 4194304
-    const int ModChangefold = 8
-    const int ModChangeindicator = 16384
-    const int ModChangelinestate = 32768
-    const int ModChangemargin = 65536
-    const int ModChangemarker = 512
-    const int ModChangestyle = 4
-    const int ModChangetabstops = 2097152
-    const int ModContainer = 262144
-    const int ModDeletetext = 2
-    const int ModInsertcheck = 1048576
-    const int ModInserttext = 1
-    const int ModLexerstate = 524288
-    const int ModNone = 0
-    const int Modeventmaskall = 8388607
-    const int ModulaBadstr = 17
-    const int ModulaBasenum = 7
+    const int ModulaBadStr = 17
+    const int ModulaBaseNum = 7
     const int ModulaChar = 11
-    const int ModulaCharspec = 12
+    const int ModulaCharSpec = 12
     const int ModulaComment = 1
     const int ModulaDefault = 0
-    const int ModulaDoxycomm = 2
-    const int ModulaDoxykey = 3
+    const int ModulaDoxyComm = 2
+    const int ModulaDoxyKey = 3
     const int ModulaFloat = 8
     const int ModulaKeyword = 4
     const int ModulaNumber = 6
     const int ModulaOperator = 16
     const int ModulaPragma = 14
-    const int ModulaPrgkey = 15
+    const int ModulaPrgKey = 15
     const int ModulaProc = 13
     const int ModulaReserved = 5
+    const int ModulaStrSpec = 10
     const int ModulaString = 9
-    const int ModulaStrspec = 10
-    const int MssqlColumnName = 8
-    const int MssqlColumnName2 = 16
-    const int MssqlComment = 1
-    const int MssqlDatatype = 10
-    const int MssqlDefault = 0
-    const int MssqlDefaultPrefDatatype = 15
-    const int MssqlFunction = 13
-    const int MssqlGlobalVariable = 12
-    const int MssqlIdentifier = 6
-    const int MssqlLineComment = 2
-    const int MssqlNumber = 3
-    const int MssqlOperator = 5
-    const int MssqlStatement = 9
-    const int MssqlStoredProcedure = 14
-    const int MssqlString = 4
-    const int MssqlSystable = 11
-    const int MssqlVariable = 7
-    const int MultiautocEach = 1
-    const int MultiautocOnce = 0
-    const int Multilineundoredo = 4096
-    const int MultipasteEach = 1
-    const int MultipasteOnce = 0
-    const int Multistepundoredo = 128
-    const int MysqlComment = 1
-    const int MysqlCommentline = 2
-    const int MysqlDatabaseobject = 9
-    const int MysqlDefault = 0
-    const int MysqlDqstring = 13
-    const int MysqlFunction = 15
-    const int MysqlHiddencommand = 21
-    const int MysqlIdentifier = 16
-    const int MysqlKeyword = 8
-    const int MysqlKnownsystemvariable = 5
-    const int MysqlMajorkeyword = 7
-    const int MysqlNumber = 6
-    const int MysqlOperator = 14
-    const int MysqlPlaceholder = 22
-    const int MysqlProcedurekeyword = 10
-    const int MysqlQuotedidentifier = 17
-    const int MysqlSqstring = 12
-    const int MysqlString = 11
-    const int MysqlSystemvariable = 4
-    const int MysqlUser1 = 18
-    const int MysqlUser2 = 19
-    const int MysqlUser3 = 20
-    const int MysqlVariable = 3
+    const int MsSqlColumnName = 8
+    const int MsSqlColumnName2 = 16
+    const int MsSqlComment = 1
+    const int MsSqlDataType = 10
+    const int MsSqlDefault = 0
+    const int MsSqlDefaultPrefDataType = 15
+    const int MsSqlFunction = 13
+    const int MsSqlGlobalVariable = 12
+    const int MsSqlIdentifier = 6
+    const int MsSqlLineComment = 2
+    const int MsSqlNumber = 3
+    const int MsSqlOperator = 5
+    const int MsSqlStatement = 9
+    const int MsSqlStoredProcedure = 14
+    const int MsSqlString = 4
+    const int MsSqlSysTable = 11
+    const int MsSqlVariable = 7
+    const int MySqlComment = 1
+    const int MySqlCommentLine = 2
+    const int MySqlDatabaseObject = 9
+    const int MySqlDefault = 0
+    const int MySqlDqString = 13
+    const int MySqlFunction = 15
+    const int MySqlHiddenCommand = 21
+    const int MySqlIdentifier = 16
+    const int MySqlKeyword = 8
+    const int MySqlKnownSystemVariable = 5
+    const int MySqlMajorKeyword = 7
+    const int MySqlNumber = 6
+    const int MySqlOperator = 14
+    const int MySqlPlaceholder = 22
+    const int MySqlProcedureKeyword = 10
+    const int MySqlQuotedIdentifier = 17
+    const int MySqlSqString = 12
+    const int MySqlString = 11
+    const int MySqlSystemVariable = 4
+    const int MySqlUser1 = 18
+    const int MySqlUser2 = 19
+    const int MySqlUser3 = 20
+    const int MySqlVariable = 3
     const int NimBackticks = 11
     const int NimCharacter = 7
     const int NimComment = 1
-    const int NimCommentdoc = 2
-    const int NimCommentline = 3
-    const int NimCommentlinedoc = 4
+    const int NimCommentDoc = 2
+    const int NimCommentLine = 3
+    const int NimCommentLineDoc = 4
     const int NimDefault = 0
-    const int NimFuncname = 12
+    const int NimFuncName = 12
     const int NimIdentifier = 16
     const int NimNumber = 5
     const int NimNumerror = 14
     const int NimOperator = 15
     const int NimString = 6
-    const int NimStringeol = 13
+    const int NimStringEol = 13
     const int NimTriple = 9
-    const int NimTripledouble = 10
+    const int NimTripleDouble = 10
     const int NimWord = 8
-    const int NixCommentblock = 2
-    const int NixCommentline = 1
+    const int NixCommentBlock = 2
+    const int NixCommentLine = 1
     const int NixDefault = 0
-    const int NixEscapechar = 5
+    const int NixEscapeChar = 5
     const int NixIdentifier = 6
     const int NixKey = 10
     const int NixKeyword1 = 12
@@ -6739,37 +6320,37 @@ static class WxKit.Stc
     const int NixOperatorString = 8
     const int NixPath = 11
     const int NixString = 3
+    const int NixStringEol = 16
     const int NixStringMultiLine = 4
-    const int NixStringeol = 16
-    const int NncrontabAsterisk = 6
-    const int NncrontabComment = 1
-    const int NncrontabDefault = 0
-    const int NncrontabEnvironment = 9
-    const int NncrontabIdentifier = 10
-    const int NncrontabKeyword = 4
-    const int NncrontabModifier = 5
-    const int NncrontabNumber = 7
-    const int NncrontabSection = 3
-    const int NncrontabString = 8
-    const int NncrontabTask = 2
+    const int NnCrontabAsterisk = 6
+    const int NnCrontabComment = 1
+    const int NnCrontabDefault = 0
+    const int NnCrontabEnvironment = 9
+    const int NnCrontabIdentifier = 10
+    const int NnCrontabKeyword = 4
+    const int NnCrontabModifier = 5
+    const int NnCrontabNumber = 7
+    const int NnCrontabSection = 3
+    const int NnCrontabString = 8
+    const int NnCrontabTask = 2
     const int NsisComment = 1
-    const int NsisCommentbox = 18
+    const int NsisCommentBox = 18
     const int NsisDefault = 0
     const int NsisFunction = 5
-    const int NsisFunctiondef = 17
-    const int NsisIfdefinedef = 11
+    const int NsisFunctionDef = 17
+    const int NsisIfDefineDef = 11
     const int NsisLabel = 7
-    const int NsisMacrodef = 12
+    const int NsisMacroDef = 12
     const int NsisNumber = 14
-    const int NsisPageex = 16
-    const int NsisSectiondef = 9
-    const int NsisSectiongroup = 15
-    const int NsisStringdq = 2
-    const int NsisStringlq = 3
-    const int NsisStringrq = 4
-    const int NsisStringvar = 13
-    const int NsisSubsectiondef = 10
-    const int NsisUserdefined = 8
+    const int NsisPageEx = 16
+    const int NsisSectionDef = 9
+    const int NsisSectionGroup = 15
+    const int NsisStringDq = 2
+    const int NsisStringLq = 3
+    const int NsisStringRq = 4
+    const int NsisStringVar = 13
+    const int NsisSubSectionDef = 10
+    const int NsisUserDefined = 8
     const int NsisVariable = 6
     const int OpalBoolConst = 8
     const int OpalCommentBlock = 1
@@ -6782,14 +6363,11 @@ static class WxKit.Stc
     const int OpalSpace = 0
     const int OpalString = 6
     const int OptionalStart = 3000
-    const int OrderCustom = 2
-    const int OrderPerformsort = 1
-    const int OrderPresorted = 0
     const int OscriptBlockComment = 2
     const int OscriptConstant = 8
     const int OscriptDefault = 0
     const int OscriptDocComment = 3
-    const int OscriptDoublequoteString = 7
+    const int OscriptDoubleQuoteString = 7
     const int OscriptFunction = 15
     const int OscriptGlobal = 10
     const int OscriptIdentifier = 9
@@ -6802,57 +6380,51 @@ static class WxKit.Stc
     const int OscriptOperator = 12
     const int OscriptPreprocessor = 4
     const int OscriptProperty = 17
-    const int OscriptSinglequoteString = 6
+    const int OscriptSingleQuoteString = 6
     const int OscriptType = 14
     const int PAttribute = 20
     const int PCharacter = 4
-    const int PClassname = 8
-    const int PCommentblock = 12
-    const int PCommentline = 1
+    const int PClassName = 8
+    const int PCommentBlock = 12
+    const int PCommentLine = 1
     const int PDecorator = 15
+    const int PDefName = 9
     const int PDefault = 0
-    const int PDefname = 9
-    const int PFcharacter = 17
-    const int PFstring = 16
-    const int PFtriple = 18
-    const int PFtripledouble = 19
+    const int PFCharacter = 17
+    const int PFString = 16
+    const int PFTriple = 18
+    const int PFTripleDouble = 19
     const int PIdentifier = 11
     const int PNumber = 2
     const int POperator = 10
     const int PString = 3
-    const int PStringeol = 13
+    const int PStringEol = 13
     const int PTriple = 6
-    const int PTripledouble = 7
+    const int PTripleDouble = 7
     const int PWord = 5
     const int PWord2 = 14
     const int PasAsm = 14
     const int PasCharacter = 12
     const int PasComment = 2
     const int PasComment2 = 3
-    const int PasCommentline = 4
+    const int PasCommentLine = 4
     const int PasDefault = 0
-    const int PasHexnumber = 8
+    const int PasHexNumber = 8
     const int PasIdentifier = 1
-    const int PasMultilinestring = 15
+    const int PasMultiLineString = 15
     const int PasNumber = 7
     const int PasOperator = 13
     const int PasPreprocessor = 5
     const int PasPreprocessor2 = 6
     const int PasString = 10
-    const int PasStringeol = 11
+    const int PasStringEol = 11
     const int PasWord = 9
-    const int PerformedRedo = 64
-    const int PerformedUndo = 32
-    const int PerformedUser = 16
-    const int PhasesMultiple = 2
-    const int PhasesOne = 0
-    const int PhasesTwo = 1
     const int PlArray = 13
     const int PlBackticks = 20
     const int PlBackticksVariable = 57
     const int PlCharacter = 7
-    const int PlCommentline = 2
-    const int PlDatasection = 21
+    const int PlCommentLine = 2
+    const int PlDataSection = 21
     const int PlDefault = 0
     const int PlError = 1
     const int PlFormat = 42
@@ -6865,17 +6437,17 @@ static class WxKit.Stc
     const int PlHereQx = 25
     const int PlHereQxVariable = 62
     const int PlIdentifier = 11
-    const int PlLongquote = 19
+    const int PlLongQuote = 19
     const int PlNumber = 4
     const int PlOperator = 10
     const int PlPod = 3
     const int PlPodVerb = 31
     const int PlPreprocessor = 9
     const int PlPunctuation = 8
+    const int PlRegSubst = 18
+    const int PlRegSubstVariable = 55
     const int PlRegex = 17
     const int PlRegexVariable = 54
-    const int PlRegsubst = 18
-    const int PlRegsubstVariable = 55
     const int PlScalar = 12
     const int PlString = 6
     const int PlStringQ = 26
@@ -6888,7 +6460,7 @@ static class WxKit.Stc
     const int PlStringQxVariable = 65
     const int PlStringVariable = 43
     const int PlSubPrototype = 40
-    const int PlSymboltable = 15
+    const int PlSymbolTable = 15
     const int PlVariableIndexer = 16
     const int PlWord = 5
     const int PlXlat = 44
@@ -6916,19 +6488,16 @@ static class WxKit.Stc
     const int PoMsgstrTextEol = 13
     const int PoProgrammerComment = 9
     const int PoReference = 10
-    const int PopupAll = 1
-    const int PopupNever = 0
-    const int PopupText = 2
-    const int PovBaddirective = 9
+    const int PovBadDirective = 9
     const int PovComment = 1
-    const int PovCommentline = 2
+    const int PovCommentLine = 2
     const int PovDefault = 0
     const int PovDirective = 8
     const int PovIdentifier = 5
     const int PovNumber = 3
     const int PovOperator = 4
     const int PovString = 6
-    const int PovStringeol = 7
+    const int PovStringEol = 7
     const int PovWord2 = 10
     const int PovWord3 = 11
     const int PovWord4 = 12
@@ -6936,60 +6505,54 @@ static class WxKit.Stc
     const int PovWord6 = 14
     const int PovWord7 = 15
     const int PovWord8 = 16
-    const int PowerproAltquote = 15
-    const int PowerproCommentblock = 1
-    const int PowerproCommentline = 2
-    const int PowerproDefault = 0
-    const int PowerproDoublequotedstring = 8
-    const int PowerproFunction = 16
-    const int PowerproIdentifier = 12
-    const int PowerproLinecontinue = 10
-    const int PowerproNumber = 3
-    const int PowerproOperator = 11
-    const int PowerproSinglequotedstring = 9
-    const int PowerproStringeol = 13
-    const int PowerproVerbatim = 14
-    const int PowerproWord = 4
-    const int PowerproWord2 = 5
-    const int PowerproWord3 = 6
-    const int PowerproWord4 = 7
-    const int PowershellAlias = 10
-    const int PowershellCharacter = 3
-    const int PowershellCmdlet = 9
-    const int PowershellComment = 1
-    const int PowershellCommentdockeyword = 16
-    const int PowershellCommentstream = 13
-    const int PowershellDefault = 0
-    const int PowershellFunction = 11
-    const int PowershellHereCharacter = 15
-    const int PowershellHereString = 14
-    const int PowershellIdentifier = 7
-    const int PowershellKeyword = 8
-    const int PowershellNumber = 4
-    const int PowershellOperator = 6
-    const int PowershellString = 2
-    const int PowershellUser1 = 12
-    const int PowershellVariable = 5
-    const int PrintBlackonwhite = 2
-    const int PrintColorOnWhite = 3
-    const int PrintColorOnWhiteDefaultBackground = 4
-    const int PrintInvertlight = 1
-    const int PrintNormal = 0
-    const int PrintScreenColors = 5
+    const int PowerProAltQuote = 15
+    const int PowerProCommentBlock = 1
+    const int PowerProCommentLine = 2
+    const int PowerProDefault = 0
+    const int PowerProDoubleQuotedString = 8
+    const int PowerProFunction = 16
+    const int PowerProIdentifier = 12
+    const int PowerProLineContinue = 10
+    const int PowerProNumber = 3
+    const int PowerProOperator = 11
+    const int PowerProSingleQuotedString = 9
+    const int PowerProStringEol = 13
+    const int PowerProVerbatim = 14
+    const int PowerProWord = 4
+    const int PowerProWord2 = 5
+    const int PowerProWord3 = 6
+    const int PowerProWord4 = 7
+    const int PowerShellAlias = 10
+    const int PowerShellCharacter = 3
+    const int PowerShellCmdlet = 9
+    const int PowerShellComment = 1
+    const int PowerShellCommentDocKeyword = 16
+    const int PowerShellCommentStream = 13
+    const int PowerShellDefault = 0
+    const int PowerShellFunction = 11
+    const int PowerShellHereCharacter = 15
+    const int PowerShellHereString = 14
+    const int PowerShellIdentifier = 7
+    const int PowerShellKeyword = 8
+    const int PowerShellNumber = 4
+    const int PowerShellOperator = 6
+    const int PowerShellString = 2
+    const int PowerShellUser1 = 12
+    const int PowerShellVariable = 5
     const int PropsAssignment = 3
     const int PropsComment = 1
+    const int PropsDefVal = 4
     const int PropsDefault = 0
-    const int PropsDefval = 4
     const int PropsKey = 5
     const int PropsSection = 2
-    const int PsBadstringchar = 15
-    const int PsBase85string = 14
+    const int PsBadStringChar = 15
+    const int PsBase85String = 14
     const int PsComment = 1
     const int PsDefault = 0
     const int PsDscComment = 2
     const int PsDscValue = 3
-    const int PsHexstring = 13
-    const int PsImmeval = 8
+    const int PsHexString = 13
+    const int PsImmEval = 8
     const int PsKeyword = 6
     const int PsLiteral = 7
     const int PsName = 5
@@ -6999,19 +6562,19 @@ static class WxKit.Stc
     const int PsParenProc = 11
     const int PsText = 12
     const int RBackticks = 12
-    const int RBasekword = 3
+    const int RBaseKword = 3
     const int RComment = 1
     const int RDefault = 0
-    const int REscapesequence = 15
+    const int REscapeSequence = 15
     const int RIdentifier = 9
     const int RInfix = 10
-    const int RInfixeol = 11
+    const int RInfixEol = 11
     const int RKword = 2
     const int RNumber = 5
     const int ROperator = 8
-    const int ROtherkword = 4
-    const int RRawstring = 13
-    const int RRawstring2 = 14
+    const int ROtherKword = 4
+    const int RRawString = 13
+    const int RRawString2 = 14
     const int RString = 6
     const int RString2 = 7
     const int RakuAdverb = 15
@@ -7019,8 +6582,8 @@ static class WxKit.Stc
     const int RakuCallable = 26
     const int RakuCharacter = 5
     const int RakuClass = 28
-    const int RakuCommentembed = 3
-    const int RakuCommentline = 2
+    const int RakuCommentEmbed = 3
+    const int RakuCommentLine = 2
     const int RakuDefault = 0
     const int RakuError = 1
     const int RakuFunction = 20
@@ -7041,16 +6604,16 @@ static class WxKit.Stc
     const int RakuStringQLang = 11
     const int RakuStringQq = 10
     const int RakuStringVariable = 12
-    const int RakuTypedef = 22
+    const int RakuTypeDef = 22
     const int RakuWord = 19
     const int RbBackticks = 18
     const int RbCharacter = 7
+    const int RbClassName = 8
     const int RbClassVariable = 17
-    const int RbClassname = 8
-    const int RbCommentline = 2
-    const int RbDatasection = 19
+    const int RbCommentLine = 2
+    const int RbDataSection = 19
+    const int RbDefName = 9
     const int RbDefault = 0
-    const int RbDefname = 9
     const int RbError = 1
     const int RbGlobal = 13
     const int RbHereDelim = 20
@@ -7082,10 +6645,10 @@ static class WxKit.Stc
     const int RbWord = 5
     const int RbWordDemoted = 29
     const int RebolBinary = 11
-    const int RebolBracedstring = 7
+    const int RebolBracedString = 7
     const int RebolCharacter = 5
-    const int RebolCommentblock = 2
-    const int RebolCommentline = 1
+    const int RebolCommentBlock = 2
+    const int RebolCommentLine = 1
     const int RebolDate = 18
     const int RebolDefault = 0
     const int RebolEmail = 16
@@ -7097,7 +6660,7 @@ static class WxKit.Stc
     const int RebolOperator = 4
     const int RebolPair = 9
     const int RebolPreface = 3
-    const int RebolQuotedstring = 6
+    const int RebolQuotedString = 6
     const int RebolTag = 14
     const int RebolTime = 19
     const int RebolTuple = 10
@@ -7110,38 +6673,38 @@ static class WxKit.Stc
     const int RebolWord6 = 26
     const int RebolWord7 = 27
     const int RebolWord8 = 28
-    const int RegAddedkey = 6
+    const int RegAddedKey = 6
     const int RegComment = 1
     const int RegDefault = 0
-    const int RegDeletedkey = 7
+    const int RegDeletedKey = 7
     const int RegEscaped = 8
-    const int RegHexdigit = 4
-    const int RegKeypathGuid = 9
+    const int RegHexDigit = 4
+    const int RegKeyPathGuid = 9
     const int RegOperator = 12
     const int RegParameter = 11
     const int RegString = 3
     const int RegStringGuid = 10
-    const int RegValuename = 2
-    const int RegValuetype = 5
-    const int RustBytecharacter = 23
-    const int RustBytestring = 21
-    const int RustBytestringr = 22
+    const int RegValueName = 2
+    const int RegValueType = 5
+    const int RustByteCharacter = 23
+    const int RustByteString = 21
+    const int RustByteStringR = 22
+    const int RustCString = 24
+    const int RustCStringR = 25
     const int RustCharacter = 15
-    const int RustCommentblock = 1
-    const int RustCommentblockdoc = 3
-    const int RustCommentline = 2
-    const int RustCommentlinedoc = 4
-    const int RustCstring = 24
-    const int RustCstringr = 25
+    const int RustCommentBlock = 1
+    const int RustCommentBlockDoc = 3
+    const int RustCommentLine = 2
+    const int RustCommentLineDoc = 4
     const int RustDefault = 0
     const int RustIdentifier = 17
-    const int RustLexerror = 20
+    const int RustLexError = 20
     const int RustLifetime = 18
     const int RustMacro = 19
     const int RustNumber = 5
     const int RustOperator = 16
     const int RustString = 13
-    const int RustStringr = 14
+    const int RustStringR = 14
     const int RustWord = 6
     const int RustWord2 = 7
     const int RustWord3 = 8
@@ -7151,8 +6714,8 @@ static class WxKit.Stc
     const int RustWord7 = 12
     const int SasBlockKeyword = 13
     const int SasComment = 1
-    const int SasCommentblock = 3
-    const int SasCommentline = 2
+    const int SasCommentBlock = 3
+    const int SasCommentLine = 2
     const int SasDefault = 0
     const int SasGlobalMacro = 10
     const int SasIdentifier = 6
@@ -7166,9 +6729,9 @@ static class WxKit.Stc
     const int SasType = 8
     const int SasWord = 9
     const int ScriptolCharacter = 8
-    const int ScriptolClassname = 14
-    const int ScriptolCommentblock = 5
-    const int ScriptolCommentline = 2
+    const int ScriptolClassName = 14
+    const int ScriptolCommentBlock = 5
+    const int ScriptolCommentLine = 2
     const int ScriptolCstyle = 4
     const int ScriptolDefault = 0
     const int ScriptolIdentifier = 12
@@ -7178,16 +6741,12 @@ static class WxKit.Stc
     const int ScriptolPersistent = 3
     const int ScriptolPreprocessor = 15
     const int ScriptolString = 7
-    const int ScriptolStringeol = 9
+    const int ScriptolStringEol = 9
     const int ScriptolTriple = 13
     const int ScriptolWhite = 1
-    const int SelectionLines = 2
-    const int SelectionRectangle = 1
-    const int SelectionStream = 0
-    const int SelectionThin = 3
     const int ShBackticks = 11
     const int ShCharacter = 6
-    const int ShCommentline = 2
+    const int ShCommentLine = 2
     const int ShDefault = 0
     const int ShError = 1
     const int ShHereDelim = 12
@@ -7201,7 +6760,7 @@ static class WxKit.Stc
     const int ShWord = 4
     const int SinexBlockEnd = 3
     const int SinexBlockStart = 2
-    const int SinexCommentline = 1
+    const int SinexCommentLine = 1
     const int SinexDate = 4
     const int SinexDefault = 0
     const int SinexNumber = 5
@@ -7215,29 +6774,29 @@ static class WxKit.Stc
     const int SmlKeyword = 3
     const int SmlKeyword2 = 4
     const int SmlKeyword3 = 5
-    const int SmlLinenum = 6
+    const int SmlLineNum = 6
     const int SmlNumber = 8
     const int SmlOperator = 7
     const int SmlString = 11
-    const int SmlTagname = 2
+    const int SmlTagName = 2
     const int SnCode = 1
-    const int SnCommentline = 2
-    const int SnCommentlinebang = 3
+    const int SnCommentLine = 2
+    const int SnCommentLineBang = 3
     const int SnDefault = 0
     const int SnIdentifier = 11
     const int SnNumber = 4
     const int SnOperator = 10
     const int SnPreprocessor = 9
-    const int SnRegextag = 13
+    const int SnRegexTag = 13
     const int SnSignal = 14
     const int SnString = 6
-    const int SnStringeol = 12
+    const int SnStringEol = 12
     const int SnUser = 19
     const int SnWord = 5
     const int SnWord2 = 7
     const int SnWord3 = 8
     const int SorcusCommand = 1
-    const int SorcusCommentline = 3
+    const int SorcusCommentLine = 3
     const int SorcusConstant = 9
     const int SorcusDefault = 0
     const int SorcusIdentifier = 6
@@ -7245,8 +6804,8 @@ static class WxKit.Stc
     const int SorcusOperator = 7
     const int SorcusParameter = 2
     const int SorcusString = 4
-    const int SorcusStringeol = 5
-    const int SpiceCommentline = 8
+    const int SorcusStringEol = 5
+    const int SpiceCommentLine = 8
     const int SpiceDefault = 0
     const int SpiceDelimiter = 6
     const int SpiceIdentifier = 1
@@ -7257,20 +6816,20 @@ static class WxKit.Stc
     const int SpiceValue = 7
     const int SqlCharacter = 7
     const int SqlComment = 1
-    const int SqlCommentdoc = 3
-    const int SqlCommentdockeyword = 17
-    const int SqlCommentdockeyworderror = 18
-    const int SqlCommentline = 2
-    const int SqlCommentlinedoc = 15
+    const int SqlCommentDoc = 3
+    const int SqlCommentDocKeyword = 17
+    const int SqlCommentDocKeywordError = 18
+    const int SqlCommentLine = 2
+    const int SqlCommentLineDoc = 15
     const int SqlDefault = 0
     const int SqlIdentifier = 11
     const int SqlNumber = 4
     const int SqlOperator = 10
     const int SqlQoperator = 24
-    const int SqlQuotedidentifier = 23
-    const int SqlSqlplus = 8
-    const int SqlSqlplusComment = 13
-    const int SqlSqlplusPrompt = 9
+    const int SqlQuotedIdentifier = 23
+    const int SqlSqlPlus = 8
+    const int SqlSqlPlusComment = 13
+    const int SqlSqlPlusPrompt = 9
     const int SqlString = 6
     const int SqlUser1 = 19
     const int SqlUser2 = 20
@@ -7285,7 +6844,7 @@ static class WxKit.Stc
     const int StComment = 3
     const int StDefault = 0
     const int StGlobal = 10
-    const int StKwsend = 13
+    const int StKwsEnd = 13
     const int StNil = 9
     const int StNumber = 2
     const int StReturn = 11
@@ -7296,10 +6855,9 @@ static class WxKit.Stc
     const int StSuper = 8
     const int StSymbol = 4
     const int Start = 2000
-    const int Startaction = 8192
     const int StataComment = 1
-    const int StataCommentblock = 3
-    const int StataCommentline = 2
+    const int StataCommentBlock = 3
+    const int StataCommentLine = 2
     const int StataDefault = 0
     const int StataGlobalMacro = 10
     const int StataIdentifier = 6
@@ -7309,19 +6867,14 @@ static class WxKit.Stc
     const int StataString = 7
     const int StataType = 8
     const int StataWord = 9
-    const int StatusBadalloc = 2
-    const int StatusFailure = 1
-    const int StatusOk = 0
-    const int StatusWarnRegex = 1001
-    const int StatusWarnStart = 1000
     const int SttxtCharacter = 11
     const int SttxtComment = 1
-    const int SttxtCommentline = 2
-    const int SttxtDatetime = 16
+    const int SttxtCommentLine = 2
+    const int SttxtDateTime = 16
     const int SttxtDefault = 0
     const int SttxtFb = 6
     const int SttxtFunction = 5
-    const int SttxtHexnumber = 8
+    const int SttxtHexNumber = 8
     const int SttxtIdentifier = 15
     const int SttxtKeyword = 3
     const int SttxtNumber = 7
@@ -7330,18 +6883,18 @@ static class WxKit.Stc
     const int SttxtPragmas = 18
     const int SttxtString1 = 12
     const int SttxtString2 = 13
-    const int SttxtStringeol = 14
+    const int SttxtStringEol = 14
     const int SttxtType = 4
     const int SttxtVars = 17
-    const int StyleBracebad = 35
-    const int StyleBracelight = 34
-    const int StyleCalltip = 38
-    const int StyleControlchar = 36
+    const int StyleBraceBad = 35
+    const int StyleBraceLight = 34
+    const int StyleCallTip = 38
+    const int StyleControlChar = 36
     const int StyleDefault = 32
-    const int StyleFolddisplaytext = 39
-    const int StyleIndentguide = 37
-    const int StyleLastpredefined = 39
-    const int StyleLinenumber = 33
+    const int StyleFoldDisplayText = 39
+    const int StyleIndentGuide = 37
+    const int StyleLastPredefined = 39
+    const int StyleLineNumber = 33
     const int StyleMax = 255
     const int T3BlockComment = 3
     const int T3Brace = 20
@@ -7367,7 +6920,7 @@ static class WxKit.Stc
     const int TclBlockComment = 21
     const int TclComment = 1
     const int TclCommentBox = 20
-    const int TclCommentline = 2
+    const int TclCommentLine = 2
     const int TclDefault = 0
     const int TclExpand = 11
     const int TclIdentifier = 7
@@ -7397,10 +6950,6 @@ static class WxKit.Stc
     const int TcmdLabel = 3
     const int TcmdOperator = 7
     const int TcmdWord = 2
-    const int TdLongarrow = 0
-    const int TdStrikeout = 1
-    const int TechnologyDefault = 0
-    const int TechnologyDirectwrite = 1
     const int TexCommand = 4
     const int TexDefault = 0
     const int TexGroup = 2
@@ -7409,18 +6958,18 @@ static class WxKit.Stc
     const int TexText = 5
     const int TimeForever = 10000000
     const int TomlComment = 1
-    const int TomlDatetime = 14
+    const int TomlDateTime = 14
     const int TomlDefault = 0
     const int TomlError = 7
-    const int TomlEscapechar = 13
+    const int TomlEscapeChar = 13
     const int TomlIdentifier = 2
     const int TomlKey = 6
     const int TomlKeyword = 3
     const int TomlNumber = 4
     const int TomlOperator = 8
     const int TomlStringDq = 10
+    const int TomlStringEol = 15
     const int TomlStringSq = 9
-    const int TomlStringeol = 15
     const int TomlTable = 5
     const int TomlTripleStringDq = 12
     const int TomlTripleStringSq = 11
@@ -7434,10 +6983,10 @@ static class WxKit.Stc
     const int TroffEscapeFont = 10
     const int TroffEscapeGlyph = 13
     const int TroffEscapeHeight = 21
-    const int TroffEscapeIsvalid = 18
+    const int TroffEscapeIsValid = 18
     const int TroffEscapeMacro = 9
     const int TroffEscapeMove = 20
-    const int TroffEscapeNomove = 27
+    const int TroffEscapeNoMove = 27
     const int TroffEscapeNumber = 11
     const int TroffEscapeOverstrike = 22
     const int TroffEscapeSize = 16
@@ -7452,48 +7001,39 @@ static class WxKit.Stc
     const int TroffOperator = 4
     const int TroffRequest = 1
     const int TroffString = 5
-    const int Txt2tagsBlockquote = 15
-    const int Txt2tagsCode = 19
-    const int Txt2tagsCode2 = 20
-    const int Txt2tagsCodebk = 21
-    const int Txt2tagsComment = 22
-    const int Txt2tagsDefault = 0
-    const int Txt2tagsEm1 = 4
-    const int Txt2tagsEm2 = 5
-    const int Txt2tagsHeader1 = 6
-    const int Txt2tagsHeader2 = 7
-    const int Txt2tagsHeader3 = 8
-    const int Txt2tagsHeader4 = 9
-    const int Txt2tagsHeader5 = 10
-    const int Txt2tagsHeader6 = 11
-    const int Txt2tagsHrule = 17
-    const int Txt2tagsLineBegin = 1
-    const int Txt2tagsLink = 18
-    const int Txt2tagsOlistItem = 14
-    const int Txt2tagsOption = 23
-    const int Txt2tagsPostproc = 25
-    const int Txt2tagsPrechar = 12
-    const int Txt2tagsPreproc = 24
-    const int Txt2tagsStrikeout = 16
-    const int Txt2tagsStrong1 = 2
-    const int Txt2tagsStrong2 = 3
-    const int Txt2tagsUlistItem = 13
-    const int TypeBoolean = 0
-    const int TypeInteger = 1
-    const int TypeString = 2
-    const int UndoMayCoalesce = 1
-    const int UndoNone = 0
-    const int UpdateContent = 1
-    const int UpdateHScroll = 8
-    const int UpdateSelection = 2
-    const int UpdateVScroll = 4
+    const int Txt2TagsBlockQuote = 15
+    const int Txt2TagsCode = 19
+    const int Txt2TagsCode2 = 20
+    const int Txt2TagsCodeBk = 21
+    const int Txt2TagsComment = 22
+    const int Txt2TagsDefault = 0
+    const int Txt2TagsEm1 = 4
+    const int Txt2TagsEm2 = 5
+    const int Txt2TagsHeader1 = 6
+    const int Txt2TagsHeader2 = 7
+    const int Txt2TagsHeader3 = 8
+    const int Txt2TagsHeader4 = 9
+    const int Txt2TagsHeader5 = 10
+    const int Txt2TagsHeader6 = 11
+    const int Txt2TagsHrule = 17
+    const int Txt2TagsLineBegin = 1
+    const int Txt2TagsLink = 18
+    const int Txt2TagsOlistItem = 14
+    const int Txt2TagsOption = 23
+    const int Txt2TagsPostProc = 25
+    const int Txt2TagsPreChar = 12
+    const int Txt2TagsPreproc = 24
+    const int Txt2TagsStrikeout = 16
+    const int Txt2TagsStrong1 = 2
+    const int Txt2TagsStrong2 = 3
+    const int Txt2TagsUlistItem = 13
     const int VComment = 1
+    const int VCommentLine = 2
+    const int VCommentLineBang = 3
     const int VCommentWord = 20
-    const int VCommentline = 2
-    const int VCommentlinebang = 3
     const int VDefault = 0
     const int VIdentifier = 11
-    const int VInout = 23
+    const int VInOut = 23
     const int VInput = 21
     const int VNumber = 4
     const int VOperator = 10
@@ -7501,7 +7041,7 @@ static class WxKit.Stc
     const int VPortConnect = 24
     const int VPreprocessor = 9
     const int VString = 6
-    const int VStringeol = 12
+    const int VStringEol = 12
     const int VUser = 19
     const int VWord = 5
     const int VWord2 = 7
@@ -7509,81 +7049,56 @@ static class WxKit.Stc
     const int VhdlAttribute = 10
     const int VhdlBlockComment = 15
     const int VhdlComment = 1
-    const int VhdlCommentlinebang = 2
+    const int VhdlCommentLineBang = 2
     const int VhdlDefault = 0
     const int VhdlIdentifier = 6
     const int VhdlKeyword = 8
     const int VhdlNumber = 3
     const int VhdlOperator = 5
-    const int VhdlStdfunction = 11
-    const int VhdlStdoperator = 9
-    const int VhdlStdpackage = 12
-    const int VhdlStdtype = 13
+    const int VhdlStdFunction = 11
+    const int VhdlStdOperator = 9
+    const int VhdlStdPackage = 12
+    const int VhdlStdType = 13
     const int VhdlString = 4
-    const int VhdlStringeol = 7
-    const int VhdlUserword = 14
-    const int VisibleSlop = 1
-    const int VisibleStrict = 4
-    const int VisualprologAnonymous = 10
-    const int VisualprologCommentBlock = 4
-    const int VisualprologCommentKey = 6
-    const int VisualprologCommentKeyError = 7
-    const int VisualprologCommentLine = 5
-    const int VisualprologDefault = 0
-    const int VisualprologEmbedded = 23
-    const int VisualprologIdentifier = 8
-    const int VisualprologKeyDirective = 3
-    const int VisualprologKeyMajor = 1
-    const int VisualprologKeyMinor = 2
-    const int VisualprologNumber = 11
-    const int VisualprologOperator = 12
-    const int VisualprologPlaceholder = 24
-    const int VisualprologString = 20
-    const int VisualprologStringEol = 22
-    const int VisualprologStringEscape = 17
-    const int VisualprologStringEscapeError = 18
-    const int VisualprologStringQuote = 16
-    const int VisualprologUnused1 = 13
-    const int VisualprologUnused2 = 14
-    const int VisualprologUnused3 = 15
-    const int VisualprologUnused4 = 19
-    const int VisualprologUnused5 = 21
-    const int VisualprologVariable = 9
-    const int VsNone = 0
-    const int VsNowraplinestart = 4
-    const int VsRectangularselection = 1
-    const int VsUseraccessible = 2
+    const int VhdlStringEol = 7
+    const int VhdlUserWord = 14
+    const int VisualPrologAnonymous = 10
+    const int VisualPrologCommentBlock = 4
+    const int VisualPrologCommentKey = 6
+    const int VisualPrologCommentKeyError = 7
+    const int VisualPrologCommentLine = 5
+    const int VisualPrologDefault = 0
+    const int VisualPrologEmbedded = 23
+    const int VisualPrologIdentifier = 8
+    const int VisualPrologKeyDirective = 3
+    const int VisualPrologKeyMajor = 1
+    const int VisualPrologKeyMinor = 2
+    const int VisualPrologNumber = 11
+    const int VisualPrologOperator = 12
+    const int VisualPrologPlaceholder = 24
+    const int VisualPrologString = 20
+    const int VisualPrologStringEol = 22
+    const int VisualPrologStringEscape = 17
+    const int VisualPrologStringEscapeError = 18
+    const int VisualPrologStringQuote = 16
+    const int VisualPrologUnused1 = 13
+    const int VisualPrologUnused2 = 14
+    const int VisualPrologUnused3 = 15
+    const int VisualPrologUnused4 = 19
+    const int VisualPrologUnused5 = 21
+    const int VisualPrologVariable = 9
     const int WeightBold = 700
     const int WeightNormal = 400
     const int WeightSemiBold = 600
-    const int WrapChar = 2
-    const int WrapNone = 0
-    const int WrapWhiteSpace = 3
-    const int WrapWord = 1
-    const int WrapindentDeepindent = 3
-    const int WrapindentFixed = 0
-    const int WrapindentIndent = 2
-    const int WrapindentSame = 1
-    const int WrapvisualflagEnd = 1
-    const int WrapvisualflagMargin = 4
-    const int WrapvisualflagNone = 0
-    const int WrapvisualflagStart = 2
-    const int WrapvisualflaglocDefault = 0
-    const int WrapvisualflaglocEndByText = 1
-    const int WrapvisualflaglocStartByText = 2
-    const int WsInvisible = 0
-    const int WsVisibleafterindent = 2
-    const int WsVisiblealways = 1
-    const int WsVisibleonlyinindent = 3
     const int X12Bad = 1
     const int X12Default = 0
     const int X12Envelope = 2
-    const int X12Functiongroup = 3
-    const int X12Segmentend = 6
-    const int X12Segmentheader = 5
+    const int X12FunctionGroup = 3
+    const int X12SegmentEnd = 6
+    const int X12SegmentHeader = 5
     const int X12SepElement = 7
     const int X12SepSubelement = 8
-    const int X12Transactionset = 4
+    const int X12TransactionSet = 4
     const int YamlComment = 1
     const int YamlDefault = 0
     const int YamlDocument = 6
@@ -7596,11 +7111,11 @@ static class WxKit.Stc
     const int YamlText = 7
     const int ZigBuiltinFunction = 12
     const int ZigCharacter = 6
-    const int ZigCommentline = 1
-    const int ZigCommentlinedoc = 2
-    const int ZigCommentlinetop = 3
+    const int ZigCommentLine = 1
+    const int ZigCommentLineDoc = 2
+    const int ZigCommentLineTop = 3
     const int ZigDefault = 0
-    const int ZigEscapechar = 9
+    const int ZigEscapeChar = 9
     const int ZigFunction = 11
     const int ZigIdentifier = 10
     const int ZigIdentifierString = 17
@@ -7608,48 +7123,187 @@ static class WxKit.Stc
     const int ZigKwSecondary = 14
     const int ZigKwTertiary = 15
     const int ZigKwType = 16
-    const int ZigMultistring = 8
+    const int ZigMultiString = 8
     const int ZigNumber = 4
     const int ZigOperator = 5
     const int ZigString = 7
-    const int ZigStringeol = 18
-class WxKit.StdDialogButtonSizer : BoxSizer
-    Button? AffirmativeButton { get; set; }
-    Button? ApplyButton { get; }
-    Button? CancelButton { get; set; }
-    Button? HelpButton { get; }
-    Button? NegativeButton { get; set; }
-    StdDialogButtonSizer()
-    void AddButton(Button button)
-    void Realize()
-enum WxKit.StockCursor : int
-    Arrow = 1
-    Blank = 26
-    Bullseye = 3
-    Char = 4
-    Cross = 5
-    Hand = 6
-    IBeam = 7
-    LeftButton = 8
-    Magnifier = 9
-    MiddleButton = 10
-    NoEntry = 11
+    const int ZigStringEol = 18
+enum WxKit.StyledTextAccessibility : int
+    Disabled = 0
+    Enabled = 1
+enum WxKit.StyledTextAnnotationVisible : int
+    Boxed = 2
+    Hidden = 0
+    Indented = 3
+    Standard = 1
+enum WxKit.StyledTextAutoCompleteOrder : int
+    Custom = 2
+    PerformSort = 1
+    Presorted = 0
+[Flags] enum WxKit.StyledTextAutomaticFold : int
+    Change = 4
+    Click = 2
     None = 0
-    PaintBrush = 12
-    Pencil = 13
-    PointLeft = 14
-    PointRight = 15
-    QuestionArrow = 16
-    RightArrow = 2
-    RightButton = 17
-    SizeNS = 19
-    SizeNesw = 18
-    SizeNwse = 20
-    SizeWE = 21
-    Sizing = 22
-    SprayCan = 23
-    Wait = 24
-    Watch = 25
+    Show = 1
+[Flags] enum WxKit.StyledTextCaretPolicy : int
+    Even = 8
+    Jumps = 16
+    None = 0
+    Slop = 1
+    Strict = 4
+enum WxKit.StyledTextCaretSticky : int
+    Off = 0
+    On = 1
+    WhiteSpace = 2
+[Flags] enum WxKit.StyledTextCaretStyle : int
+    Block = 2
+    BlockAfter = 256
+    InsertMask = 15
+    Invisible = 0
+    Line = 1
+    OverstrikeBar = 0
+    OverstrikeBlock = 16
+enum WxKit.StyledTextCase : int
+    Camel = 3
+    Lower = 2
+    Mixed = 0
+    Upper = 1
+enum WxKit.StyledTextCaseInsensitiveBehavior : int
+    IgnoreCase = 1
+    RespectCase = 0
+enum WxKit.StyledTextCharacterSet : int
+    Ansi = 0
+    Arabic = 178
+    Baltic = 186
+    ChineseBig5 = 136
+    Cyrillic = 1251
+    Default = 1
+    EastEurope = 238
+    Gb2312 = 134
+    Greek = 161
+    Hangul = 129
+    Hebrew = 177
+    Iso885915 = 1000
+    Johab = 130
+    Mac = 77
+    Oem = 255
+    Oem866 = 866
+    Russian = 204
+    ShiftJis = 128
+    Symbol = 2
+    Thai = 222
+    Turkish = 162
+    Vietnamese = 163
+enum WxKit.StyledTextCharacterSource : int
+    DirectInput = 0
+    ImeResult = 2
+    TentativeInput = 1
+enum WxKit.StyledTextCommand : int
+    BackTab = 2328
+    Cancel = 2325
+    CharLeft = 2304
+    CharLeftExtend = 2305
+    CharLeftRectExtend = 2428
+    CharRight = 2306
+    CharRightExtend = 2307
+    CharRightRectExtend = 2429
+    Copy = 2178
+    Cut = 2177
+    DelLineLeft = 2395
+    DelLineRight = 2396
+    DelWordLeft = 2335
+    DelWordRight = 2336
+    DelWordRightEnd = 2518
+    DeleteBack = 2326
+    DeleteBackNotLine = 2344
+    DeleteSelection = 2180
+    DocumentEnd = 2318
+    DocumentEndExtend = 2319
+    DocumentStart = 2316
+    DocumentStartExtend = 2317
+    EditToggleOvertype = 2324
+    FormFeed = 2330
+    Home = 2312
+    HomeDisplay = 2345
+    HomeDisplayExtend = 2346
+    HomeExtend = 2313
+    HomeRectExtend = 2430
+    HomeWrap = 2349
+    HomeWrapExtend = 2450
+    LineCopy = 2455
+    LineCut = 2337
+    LineDelete = 2338
+    LineDown = 2300
+    LineDownExtend = 2301
+    LineDownRectExtend = 2426
+    LineDuplicate = 2404
+    LineEnd = 2314
+    LineEndDisplay = 2347
+    LineEndDisplayExtend = 2348
+    LineEndExtend = 2315
+    LineEndRectExtend = 2432
+    LineEndWrap = 2451
+    LineEndWrapExtend = 2452
+    LineScrollDown = 2342
+    LineScrollUp = 2343
+    LineTranspose = 2339
+    LineUp = 2302
+    LineUpExtend = 2303
+    LineUpRectExtend = 2427
+    LowerCase = 2340
+    MoveSelectedLinesDown = 2621
+    MoveSelectedLinesUp = 2620
+    NewLine = 2329
+    PageDown = 2322
+    PageDownExtend = 2323
+    PageDownRectExtend = 2434
+    PageUp = 2320
+    PageUpExtend = 2321
+    PageUpRectExtend = 2433
+    ParaDown = 2413
+    ParaDownExtend = 2414
+    ParaUp = 2415
+    ParaUpExtend = 2416
+    Paste = 2179
+    Redo = 2011
+    ScrollToEnd = 2629
+    ScrollToStart = 2628
+    SelectAll = 2013
+    StutteredPageDown = 2437
+    StutteredPageDownExtend = 2438
+    StutteredPageUp = 2435
+    StutteredPageUpExtend = 2436
+    Tab = 2327
+    Undo = 2176
+    UpperCase = 2341
+    VCHome = 2331
+    VCHomeDisplay = 2652
+    VCHomeDisplayExtend = 2653
+    VCHomeExtend = 2332
+    VCHomeRectExtend = 2431
+    VCHomeWrap = 2453
+    VCHomeWrapExtend = 2454
+    VerticalCenterCaret = 2619
+    WordLeft = 2308
+    WordLeftEnd = 2439
+    WordLeftEndExtend = 2440
+    WordLeftExtend = 2309
+    WordPartLeft = 2390
+    WordPartLeftExtend = 2391
+    WordPartRight = 2392
+    WordPartRightExtend = 2393
+    WordRight = 2310
+    WordRightEnd = 2441
+    WordRightEndExtend = 2442
+    WordRightExtend = 2311
+    ZoomIn = 2333
+    ZoomOut = 2334
+enum WxKit.StyledTextCompletionMethod : int
+    Command = 5
+    DoubleClick = 2
+    FillUp = 1
+    NewLine = 4
+    Tab = 3
 class WxKit.StyledTextCtrl : Control
     Color? AdditionalCaretForeground { get; set; }
     Color? CaretForeground { get; set; }
@@ -7664,7 +7318,55 @@ class WxKit.StyledTextCtrl : Control
     Color? StyleGetForeground(int style)
     Font? StyleGetFont(int style)
     Point PointFromPosition(int position)
+    StyledTextAccessibility Accessibility { get; set; }
+    StyledTextAnnotationVisible AnnotationVisible { get; set; }
+    StyledTextAutoCompleteOrder AutoCompOrder { get; set; }
+    StyledTextAutomaticFold AutomaticFold { get; set; }
+    StyledTextCaretSticky CaretSticky { get; set; }
+    StyledTextCaretStyle CaretStyle { get; set; }
+    StyledTextCase StyleGetCase(int style)
+    StyledTextCaseInsensitiveBehavior AutoCompCaseInsensitiveBehavior { get; set; }
+    StyledTextCharacterSet StyleGetCharacterSet(int style)
     StyledTextCtrl(Window parent, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
+    StyledTextCursor StcCursor { get; set; }
+    StyledTextDocumentOptions DocumentOptions { get; }
+    StyledTextEdgeMode EdgeMode { get; set; }
+    StyledTextEolAnnotationVisible EolAnnotationVisible { get; set; }
+    StyledTextEolMode EolMode { get; set; }
+    StyledTextFindFlags SearchFlags { get; set; }
+    StyledTextFoldDisplayText FoldDisplayTextStyle { get; set; }
+    StyledTextFontQuality FontQuality { get; set; }
+    StyledTextIdleStyling IdleStyling { get; set; }
+    StyledTextImeInteraction ImeInteraction { get; set; }
+    StyledTextIndentGuides IndentationGuides { get; set; }
+    StyledTextIndicatorFlags IndicatorGetFlags(int indicator)
+    StyledTextIndicatorStyle IndicatorGetHoverStyle(int indicator)
+    StyledTextIndicatorStyle IndicatorGetStyle(int indicator)
+    StyledTextKeyModifiers RectangularSelectionModifier { get; set; }
+    StyledTextLayoutCache LayoutCache { get; set; }
+    StyledTextLexer Lexer { get; set; }
+    StyledTextLineEndTypes LineEndTypesActive { get; }
+    StyledTextLineEndTypes LineEndTypesAllowed { get; set; }
+    StyledTextLineEndTypes LineEndTypesSupported { get; }
+    StyledTextMarginOptions MarginOptions { get; set; }
+    StyledTextMarginType GetMarginType(int margin)
+    StyledTextMarkerSymbol GetMarkerSymbolDefined(int markerNumber)
+    StyledTextModificationFlags ModEventMask { get; set; }
+    StyledTextMultiAutoComplete AutoCompMulti { get; set; }
+    StyledTextMultiPaste MultiPaste { get; set; }
+    StyledTextPhasesDraw PhasesDraw { get; set; }
+    StyledTextPrintColorMode PrintColorMode { get; set; }
+    StyledTextPropertyType PropertyType(string name)
+    StyledTextSelectionMode SelectionMode { get; set; }
+    StyledTextStatus Status { get; set; }
+    StyledTextTabDrawMode TabDrawMode { get; set; }
+    StyledTextTechnology Technology { get; set; }
+    StyledTextVirtualSpace VirtualSpaceOptions { get; set; }
+    StyledTextWhiteSpace ViewWhiteSpace { get; set; }
+    StyledTextWrapIndentMode WrapIndentMode { get; set; }
+    StyledTextWrapMode WrapMode { get; set; }
+    StyledTextWrapVisualFlags WrapVisualFlags { get; set; }
+    StyledTextWrapVisualLocation WrapVisualFlagsLocation { get; set; }
     TextCtrlHitTestResult HitTest(Point point, out int position)
     bool AdditionalCaretsBlink { get; set; }
     bool AdditionalCaretsVisible { get; set; }
@@ -7697,7 +7399,9 @@ class WxKit.StyledTextCtrl : Control
     bool IsEditable { get; set; }
     bool IsEmpty { get; }
     bool IsModified { get; }
+    bool IsOvertype { get; set; }
     bool IsRangeWord(int start, int end)
+    bool IsSelectionEmpty { get; }
     bool IsSelectionRectangle { get; }
     bool LastKeydownProcessed { get; set; }
     bool LoadFile(string fileName)
@@ -7706,12 +7410,10 @@ class WxKit.StyledTextCtrl : Control
     bool MouseWheelCaptures { get; set; }
     bool MoveExtendsSelection { get; }
     bool MultipleSelection { get; set; }
-    bool Overtype { get; set; }
     bool PasteConvertEndings { get; set; }
     bool SaveFile(string fileName)
     bool ScrollWidthTracking { get; set; }
     bool SelEolFilled { get; set; }
-    bool SelectionEmpty { get; }
     bool StcFocus { get; set; }
     bool StyleGetBold(int style)
     bool StyleGetChangeable(int style)
@@ -7762,33 +7464,25 @@ class WxKit.StyledTextCtrl : Control
     event EventHandler<StyledTextEvent>? UIUpdated
     event EventHandler<StyledTextEvent>? UserListSelected
     event EventHandler<StyledTextEvent>? Zoomed
-    int Accessibility { get; set; }
     int AdditionalSelAlpha { get; set; }
     int AllocateExtendedStyles(int numberStyles)
     int AllocateSubStyles(int styleBase, int numberStyles)
     int Anchor { get; set; }
     int AnnotationGetLines(int line)
     int AnnotationGetStyle(int line)
-    int AnnotationGetStyleOffset()
-    int AnnotationGetVisible()
-    int AutoCompCaseInsensitiveBehavior { get; set; }
+    int AnnotationStyleOffset { get; set; }
     int AutoCompCurrent { get; }
     int AutoCompMaxHeight { get; set; }
     int AutoCompMaxWidth { get; set; }
-    int AutoCompMulti { get; set; }
-    int AutoCompOrder { get; set; }
     int AutoCompPosStart()
     int AutoCompSeparator { get; set; }
     int AutoCompTypeSeparator { get; set; }
-    int AutomaticFold { get; set; }
     int BraceMatch(int position, int maxReStyle = 0)
     int BraceMatchNext(int position, int startPosition)
     int CallTipPosAtStart { get; set; }
     int CaretLineBackAlpha { get; set; }
     int CaretLineFrame { get; set; }
     int CaretPeriod { get; set; }
-    int CaretSticky { get; set; }
-    int CaretStyle { get; set; }
     int CaretWidth { get; set; }
     int ChangeLexerState(int start, int end)
     int CharPositionFromPoint(Point point)
@@ -7803,21 +7497,15 @@ class WxKit.StyledTextCtrl : Control
     int DisplayLineCount { get; }
     int DistanceToSecondaryStyles()
     int DocLineFromVisible(int displayLine)
-    int DocumentOptions { get; }
     int EdgeColumn { get; set; }
-    int EdgeMode { get; set; }
     int EndStyled { get; }
     int EolAnnotationGetStyle(int line)
-    int EolAnnotationGetStyleOffset()
-    int EolAnnotationGetVisible()
-    int EolMode { get; set; }
+    int EolAnnotationStyleOffset { get; set; }
     int ExtraAscent { get; set; }
     int ExtraDescent { get; set; }
     int FindColumn(int line, int column)
-    int FindText(int minPosition, int maxPosition, string text, int flags = 0)
+    int FindText(int minPosition, int maxPosition, string text, StyledTextFindFlags flags = StyledTextFindFlags.None)
     int FirstVisibleLine { get; set; }
-    int FoldDisplayTextGetStyle()
-    int FontQuality { get; set; }
     int FormatRange(bool doDraw, int startPosition, int endPosition, DC draw, DC target, Rect renderRect, Rect pageRect)
     int GapPosition { get; }
     int GetCharAt(int position)
@@ -7834,9 +7522,7 @@ class WxKit.StyledTextCtrl : Control
     int GetLineState(int line)
     int GetMarginCursor(int margin)
     int GetMarginMask(int margin)
-    int GetMarginType(int margin)
     int GetMarginWidth(int margin)
-    int GetMarkerSymbolDefined(int markerNumber)
     int GetMultiEdgeColumn(int which)
     int GetNextTabStop(int line, int x)
     int GetPrimaryStyleFromStyle(int style)
@@ -7855,39 +7541,27 @@ class WxKit.StyledTextCtrl : Control
     int GetSubStylesStart(int styleBase)
     int HighlightGuide { get; set; }
     int Identifier { get; set; }
-    int IdleStyling { get; set; }
-    int ImeInteraction { get; set; }
     int Indent { get; set; }
-    int IndentationGuides { get; set; }
     int IndicatorAllOnFor(int position)
     int IndicatorCurrent { get; set; }
     int IndicatorEnd(int indicator, int position)
     int IndicatorGetAlpha(int indicator)
-    int IndicatorGetFlags(int indicator)
-    int IndicatorGetHoverStyle(int indicator)
     int IndicatorGetOutlineAlpha(int indicator)
-    int IndicatorGetStyle(int indicator)
     int IndicatorStart(int indicator, int position)
     int IndicatorValue { get; set; }
     int IndicatorValueAt(int indicator, int position)
     int InsertionPoint { get; set; }
     int LastPosition { get; }
-    int LayoutCache { get; set; }
     int Length { get; }
-    int Lexer { get; set; }
     int LineCount { get; }
-    int LineEndTypesActive { get; }
-    int LineEndTypesAllowed { get; set; }
-    int LineEndTypesSupported { get; }
     int LineFromPosition(int position)
     int LinesOnScreen()
     int MainSelection { get; set; }
     int MarginCount { get; set; }
     int MarginGetStyle(int line)
-    int MarginGetStyleOffset()
     int MarginLeft { get; set; }
-    int MarginOptions { get; set; }
     int MarginRight { get; set; }
+    int MarginStyleOffset { get; set; }
     int MarkerAdd(int line, int markerNumber)
     int MarkerGet(int line)
     int MarkerHandleFromLine(int line, int which)
@@ -7896,11 +7570,8 @@ class WxKit.StyledTextCtrl : Control
     int MarkerNumberFromLine(int line, int which)
     int MarkerPrevious(int lineStart, int markerMask)
     int MaxLineState { get; }
-    int ModEventMask { get; set; }
     int MouseDwellTime { get; set; }
-    int MultiPaste { get; set; }
     int NamedStyles { get; }
-    int PhasesDraw { get; set; }
     int PositionAfter(int position)
     int PositionBefore(int position)
     int PositionCacheSize { get; set; }
@@ -7910,56 +7581,39 @@ class WxKit.StyledTextCtrl : Control
     int PositionFromPointClose(Point point)
     int PositionRelative(int position, int relative)
     int PositionRelativeCodeUnits(int position, int relative)
-    int PrintColorMode { get; set; }
     int PrintMagnification { get; set; }
     int PrintWrapMode { get; set; }
-    int PropertyType(string name)
     int RectangularSelectionAnchor { get; set; }
     int RectangularSelectionAnchorVirtualSpace { get; set; }
     int RectangularSelectionCaret { get; set; }
     int RectangularSelectionCaretVirtualSpace { get; set; }
-    int RectangularSelectionModifier { get; set; }
     int ReplaceTarget(string text)
     int ReplaceTargetRE(string text)
     int ScrollWidth { get; set; }
-    int SearchFlags { get; set; }
     int SearchInTarget(string text)
-    int SearchNext(int searchFlags, string text)
-    int SearchPrevious(int searchFlags, string text)
+    int SearchNext(StyledTextFindFlags searchFlags, string text)
+    int SearchPrevious(StyledTextFindFlags searchFlags, string text)
     int SelAlpha { get; set; }
+    int SelectionCount { get; }
     int SelectionEnd { get; set; }
-    int SelectionMode { get; set; }
     int SelectionStart { get; set; }
-    int Selections { get; }
-    int Status { get; set; }
-    int StcCursor { get; set; }
-    int StyleGetCase(int style)
-    int StyleGetCharacterSet(int style)
     int StyleGetSize(int style)
     int StyleGetSizeFractional(int style)
     int StyleGetWeight(int style)
-    int TabDrawMode { get; set; }
     int TabMinimumWidth { get; set; }
     int TabWidth { get; set; }
     int TargetEnd { get; set; }
     int TargetEndVirtualSpace { get; set; }
     int TargetStart { get; set; }
     int TargetStartVirtualSpace { get; set; }
-    int Technology { get; set; }
     int TextHeight(int line)
     int TextWidth(int style, string text)
-    int ViewWhiteSpace { get; set; }
-    int VirtualSpaceOptions { get; set; }
     int VisibleFromDocLine(int docLine)
     int WhitespaceSize { get; set; }
     int WordEndPosition(int position, bool onlyWordCharacters)
     int WordStartPosition(int position, bool onlyWordCharacters)
     int WrapCount(int docLine)
-    int WrapIndentMode { get; set; }
-    int WrapMode { get; set; }
     int WrapStartIndent { get; set; }
-    int WrapVisualFlags { get; set; }
-    int WrapVisualFlagsLocation { get; set; }
     int XOffset { get; set; }
     int Zoom { get; set; }
     string AnnotationGetStyles(int line)
@@ -7994,15 +7648,13 @@ class WxKit.StyledTextCtrl : Control
     void AddSelection(int caret, int anchor)
     void AddTabStop(int line, int x)
     void AddText(string text)
-    void AddUndoAction(int token, int flags)
+    void AddUndoAction(int token, StyledTextUndoFlags flags)
     void Allocate(int bytes)
     void AnnotationClearAll()
     void AnnotationClearLine(int line)
     void AnnotationSetStyle(int line, int style)
-    void AnnotationSetStyleOffset(int style)
     void AnnotationSetStyles(int line, string styles)
     void AnnotationSetText(int line, string text)
-    void AnnotationSetVisible(int visible)
     void AppendText(string text)
     void AutoCompCancel()
     void AutoCompComplete()
@@ -8040,12 +7692,12 @@ class WxKit.StyledTextCtrl : Control
     void ClearRepresentation(string encodedCharacter)
     void ClearSelections()
     void ClearTabStops(int line)
-    void CmdKeyAssign(int key, int modifiers, int command)
-    void CmdKeyClear(int key, int modifiers)
+    void CmdKeyAssign(int key, StyledTextKeyModifiers modifiers, StyledTextCommand command)
+    void CmdKeyClear(int key, StyledTextKeyModifiers modifiers)
     void CmdKeyClearAll()
-    void CmdKeyExecute(int command)
+    void CmdKeyExecute(StyledTextCommand command)
     void Colorize(int start, int end)
-    void ConvertEOLs(int eolMode)
+    void ConvertEOLs(StyledTextEolMode eolMode)
     void Copy()
     void CopyAllowLine()
     void CopyRange(int start, int end)
@@ -8074,14 +7726,11 @@ class WxKit.StyledTextCtrl : Control
     void EnsureVisibleEnforcePolicy(int line)
     void EolAnnotationClearAll()
     void EolAnnotationSetStyle(int line, int style)
-    void EolAnnotationSetStyleOffset(int style)
     void EolAnnotationSetText(int line, string text)
-    void EolAnnotationSetVisible(int visible)
     void ExpandChildren(int line, int level)
-    void FoldAll(int action)
-    void FoldChildren(int line, int action)
-    void FoldDisplayTextSetStyle(int style)
-    void FoldLine(int line, int action)
+    void FoldAll(StyledTextFoldAction action)
+    void FoldChildren(int line, StyledTextFoldAction action)
+    void FoldLine(int line, StyledTextFoldAction action)
     void FormFeed()
     void FreeSubStyles()
     void GotoLine(int line)
@@ -8098,12 +7747,12 @@ class WxKit.StyledTextCtrl : Control
     void IndicatorClearRange(int start, int lengthClear)
     void IndicatorFillRange(int start, int lengthFill)
     void IndicatorSetAlpha(int indicator, int alpha)
-    void IndicatorSetFlags(int indicator, int flags)
+    void IndicatorSetFlags(int indicator, StyledTextIndicatorFlags flags)
     void IndicatorSetForeground(int indicator, Color? fore)
     void IndicatorSetHoverForeground(int indicator, Color? fore)
-    void IndicatorSetHoverStyle(int indicator, int indicatorStyle)
+    void IndicatorSetHoverStyle(int indicator, StyledTextIndicatorStyle indicatorStyle)
     void IndicatorSetOutlineAlpha(int indicator, int alpha)
-    void IndicatorSetStyle(int indicator, int indicatorStyle)
+    void IndicatorSetStyle(int indicator, StyledTextIndicatorStyle indicatorStyle)
     void IndicatorSetUnder(int indicator, bool under)
     void InsertText(int position, string text)
     void LineCopy()
@@ -8131,13 +7780,12 @@ class WxKit.StyledTextCtrl : Control
     void LoadLexerLibrary(string path)
     void LowerCase()
     void MarginSetStyle(int line, int style)
-    void MarginSetStyleOffset(int style)
     void MarginSetStyles(int line, string styles)
     void MarginSetText(int line, string text)
     void MarginTextClearAll()
     void MarkDirty()
     void MarkerAddSet(int line, int markerSet)
-    void MarkerDefine(int markerNumber, int markerSymbol, Color? foreground = null, Color? background = null)
+    void MarkerDefine(int markerNumber, StyledTextMarkerSymbol markerSymbol, Color? foreground = null, Color? background = null)
     void MarkerDefineBitmap(int markerNumber, Bitmap bitmap)
     void MarkerDelete(int line, int markerNumber)
     void MarkerDeleteAll(int markerNumber)
@@ -8189,7 +7837,7 @@ class WxKit.StyledTextCtrl : Control
     void SetCustomDrawn(bool customDrawn)
     void SetEmptySelection(int caret)
     void SetFoldExpanded(int line, bool expanded)
-    void SetFoldFlags(int flags)
+    void SetFoldFlags(StyledTextFoldFlags flags)
     void SetFoldLevel(int line, int level)
     void SetFoldMarginColor(bool useSetting, Color? back)
     void SetFoldMarginHiColor(bool useSetting, Color? fore)
@@ -8205,7 +7853,7 @@ class WxKit.StyledTextCtrl : Control
     void SetMarginCursor(int margin, int cursor)
     void SetMarginMask(int margin, int mask)
     void SetMarginSensitive(int margin, bool sensitive)
-    void SetMarginType(int margin, int marginType)
+    void SetMarginType(int margin, StyledTextMarginType marginType)
     void SetMarginWidth(int margin, int pixelWidth)
     void SetMargins(int left, int right)
     void SetMirrorCtrl(StyledTextCtrl mirrorCtrl)
@@ -8224,11 +7872,11 @@ class WxKit.StyledTextCtrl : Control
     void SetStyling(int length, int style)
     void SetTargetRange(int start, int end)
     void SetVScrollBar(ScrollBar bar)
-    void SetVisiblePolicy(int visiblePolicy, int visibleSlop)
+    void SetVisiblePolicy(StyledTextVisiblePolicy visiblePolicy, int visibleSlop)
     void SetWhitespaceBackground(bool useSetting, Color? back)
     void SetWhitespaceForeground(bool useSetting, Color? fore)
-    void SetXCaretPolicy(int caretPolicy, int caretSlop)
-    void SetYCaretPolicy(int caretPolicy, int caretSlop)
+    void SetXCaretPolicy(StyledTextCaretPolicy caretPolicy, int caretSlop)
+    void SetYCaretPolicy(StyledTextCaretPolicy caretPolicy, int caretSlop)
     void ShowLines(int lineStart, int lineEnd)
     void ShowPosition(int position)
     void StartRecord()
@@ -8242,9 +7890,9 @@ class WxKit.StyledTextCtrl : Control
     void StyleResetDefault()
     void StyleSetBackground(int style, Color? back)
     void StyleSetBold(int style, bool bold)
-    void StyleSetCase(int style, int caseVisible)
+    void StyleSetCase(int style, StyledTextCase caseVisible)
     void StyleSetChangeable(int style, bool changeable)
-    void StyleSetCharacterSet(int style, int characterSet)
+    void StyleSetCharacterSet(int style, StyledTextCharacterSet characterSet)
     void StyleSetEolFilled(int style, bool eolFilled)
     void StyleSetFaceName(int style, string fontName)
     void StyleSetFont(int styleNumber, Font font)
@@ -8268,7 +7916,7 @@ class WxKit.StyledTextCtrl : Control
     void ToggleFoldShowText(int line, string text)
     void Undo()
     void UpperCase()
-    void UsePopUp(int popUpMode)
+    void UsePopUp(StyledTextPopUpMode popUpMode)
     void UserListShow(int listType, string itemList)
     void VCHome()
     void VCHomeDisplay()
@@ -8293,10 +7941,36 @@ class WxKit.StyledTextCtrl : Control
     void WriteText(string text)
     void ZoomIn()
     void ZoomOut()
+enum WxKit.StyledTextCursor : int
+    Arrow = 2
+    Normal = -1
+    ReverseArrow = 7
+    Wait = 4
+[Flags] enum WxKit.StyledTextDocumentOptions : int
+    Default = 0
+    StylesNone = 1
+    TextLarge = 256
+enum WxKit.StyledTextEdgeMode : int
+    Background = 2
+    Line = 1
+    MultiLine = 3
+    None = 0
+enum WxKit.StyledTextEolAnnotationVisible : int
+    Boxed = 2
+    Hidden = 0
+    Standard = 1
+enum WxKit.StyledTextEolMode : int
+    Cr = 1
+    CrLf = 0
+    Lf = 2
 class WxKit.StyledTextEvent : CommandEvent
     DragFlags DragFlags { get; set; }
     DragResult DragResult { get; set; }
     KeyModifiers Modifiers { get; }
+    Point MousePosition { get; }
+    StyledTextCompletionMethod ListCompletionMethod { get; }
+    StyledTextModificationFlags ModificationType { get; }
+    StyledTextUpdateFlags Updated { get; }
     bool IsAltDown { get; }
     bool IsControlDown { get; }
     bool IsShiftDown { get; }
@@ -8304,21 +7978,394 @@ class WxKit.StyledTextEvent : CommandEvent
     int FoldLevelNow { get; }
     int FoldLevelPrevious { get; }
     int Key { get; }
-    int LParam { get; }
     int Length { get; }
     int Line { get; }
     int LinesAdded { get; }
-    int ListCompletionMethod { get; }
     int ListType { get; }
     int Margin { get; }
-    int Message { get; }
-    int ModificationType { get; }
     int Position { get; }
     int Token { get; }
-    int Updated { get; }
-    int WParam { get; }
-    int X { get; }
-    int Y { get; }
+[Flags] enum WxKit.StyledTextFindFlags : int
+    MatchCase = 4
+    None = 0
+    Posix = 4194304
+    Regex = 2097152
+    WholeWord = 2
+    WordStart = 1048576
+enum WxKit.StyledTextFoldAction : int
+    Contract = 0
+    Expand = 1
+    Toggle = 2
+enum WxKit.StyledTextFoldDisplayText : int
+    Boxed = 2
+    Hidden = 0
+    Standard = 1
+[Flags] enum WxKit.StyledTextFoldFlags : int
+    LevelNumbers = 64
+    LineAfterContracted = 16
+    LineAfterExpanded = 8
+    LineBeforeContracted = 4
+    LineBeforeExpanded = 2
+    LineState = 128
+    None = 0
+enum WxKit.StyledTextFontQuality : int
+    AntiAliased = 2
+    Default = 0
+    LcdOptimized = 3
+    NonAntiAliased = 1
+enum WxKit.StyledTextIdleStyling : int
+    AfterVisible = 2
+    All = 3
+    None = 0
+    ToVisible = 1
+enum WxKit.StyledTextImeInteraction : int
+    Inline = 1
+    Windowed = 0
+enum WxKit.StyledTextIndentGuides : int
+    LookBoth = 3
+    LookForward = 2
+    None = 0
+    Real = 1
+[Flags] enum WxKit.StyledTextIndicatorFlags : int
+    None = 0
+    ValueFore = 1
+enum WxKit.StyledTextIndicatorStyle : int
+    Box = 6
+    CompositionThick = 14
+    CompositionThin = 15
+    Dash = 9
+    Diagonal = 3
+    DotBox = 12
+    Dots = 10
+    FullBox = 16
+    Gradient = 20
+    GradientCenter = 21
+    Hidden = 5
+    Plain = 0
+    Point = 18
+    PointCharacter = 19
+    RoundBox = 7
+    Squiggle = 1
+    SquiggleLow = 11
+    SquigglePixmap = 13
+    StraightBox = 8
+    Strike = 4
+    TextFore = 17
+    Tt = 2
+[Flags] enum WxKit.StyledTextKeyModifiers : int
+    Alt = 4
+    Control = 2
+    Meta = 16
+    None = 0
+    Shift = 1
+    Super = 8
+enum WxKit.StyledTextLayoutCache : int
+    Caret = 1
+    Document = 3
+    None = 0
+    Page = 2
+enum WxKit.StyledTextLexer : int
+    A68k = 100
+    Abaqus = 84
+    Ada = 20
+    Apdl = 61
+    As = 113
+    AsciiDoc = 134
+    Asm = 34
+    Asn1 = 63
+    Asymptote = 85
+    Au3 = 60
+    Automatic = 1000
+    Ave = 19
+    Avs = 104
+    Baan = 31
+    Bash = 62
+    Batch = 12
+    BibTex = 116
+    BlitzBasic = 66
+    Bullant = 27
+    CMake = 80
+    Caml = 65
+    Cil = 127
+    Clw = 45
+    ClwNoCase = 46
+    Cobol = 92
+    CoffeeScript = 102
+    Conf = 17
+    Container = 0
+    Cpp = 3
+    CppNoCase = 35
+    Csound = 74
+    Css = 38
+    D = 79
+    Dart = 138
+    DataFlex = 129
+    Diff = 16
+    Dmap = 112
+    Dmis = 114
+    Ecl = 105
+    Edifact = 121
+    Eiffel = 23
+    EiffelKw = 24
+    Erlang = 53
+    ErrorList = 10
+    EscapeSequence = 142
+    Escript = 41
+    F77 = 37
+    FSharp = 132
+    Flagship = 73
+    Forth = 52
+    Fortran = 36
+    FreeBasic = 75
+    GDScript = 135
+    Gap = 81
+    Gui4cli = 58
+    Haskell = 68
+    Hollywood = 130
+    Html = 4
+    Ihex = 118
+    Indent = 122
+    InnoSetup = 76
+    Json = 120
+    Julia = 133
+    Kix = 57
+    Kvirc = 110
+    Latex = 14
+    Lisp = 21
+    LiterateHaskell = 108
+    Lot = 47
+    Lout = 40
+    Lua = 15
+    Magik = 87
+    Makefile = 11
+    Markdown = 98
+    Matlab = 32
+    Maxima = 123
+    MetaPost = 50
+    Mmixal = 44
+    Modula = 101
+    MsSql = 55
+    MySql = 89
+    Nim = 126
+    Nimrod = 96
+    Nix = 140
+    NnCrontab = 26
+    Nsis = 43
+    Null = 1
+    Octave = 54
+    Opal = 77
+    Oscript = 106
+    Pascal = 18
+    Perl = 6
+    PhpScript = 69
+    Plm = 82
+    Po = 90
+    Pov = 39
+    PowerBasic = 51
+    PowerPro = 95
+    PowerShell = 88
+    Progress = 83
+    Properties = 9
+    Ps = 42
+    PureBasic = 67
+    Python = 2
+    R = 86
+    Raku = 131
+    Rebol = 71
+    Registry = 115
+    Ruby = 22
+    Rust = 111
+    Sas = 125
+    Scriptol = 33
+    Sinex = 141
+    Smalltalk = 72
+    Sml = 97
+    Sorcus = 94
+    Specman = 59
+    Spice = 78
+    Sql = 7
+    Srec = 117
+    Stata = 124
+    Sttxt = 109
+    Tacl = 93
+    Tads3 = 70
+    Tal = 91
+    Tcl = 25
+    Tcmd = 103
+    TeHex = 119
+    Tex = 49
+    Toml = 136
+    Troff = 137
+    Txt2Tags = 99
+    VBScript = 28
+    Vb = 8
+    Verilog = 56
+    Vhdl = 64
+    VisualProlog = 107
+    X12 = 128
+    Xcode = 13
+    Xml = 5
+    Yaml = 48
+    Zig = 139
+[Flags] enum WxKit.StyledTextLineEndTypes : int
+    Default = 0
+    Unicode = 1
+[Flags] enum WxKit.StyledTextMarginOptions : int
+    None = 0
+    SublineSelect = 1
+enum WxKit.StyledTextMarginType : int
+    Back = 2
+    Color = 6
+    Fore = 3
+    Number = 1
+    RightText = 5
+    Symbol = 0
+    Text = 4
+enum WxKit.StyledTextMarkerSymbol : int
+    Arrow = 2
+    ArrowDown = 6
+    Arrows = 24
+    Available = 28
+    Background = 22
+    Bookmark = 31
+    BoxMinus = 14
+    BoxMinusConnected = 15
+    BoxPlus = 12
+    BoxPlusConnected = 13
+    Character = 10000
+    Circle = 0
+    CircleMinus = 20
+    CircleMinusConnected = 21
+    CirclePlus = 18
+    CirclePlusConnected = 19
+    DotDotDot = 23
+    Empty = 5
+    FullRect = 26
+    LCorner = 10
+    LCornerCurve = 16
+    LeftRect = 27
+    Minus = 7
+    Pixmap = 25
+    Plus = 8
+    RgbaImage = 30
+    RoundRect = 1
+    ShortArrow = 4
+    SmallRect = 3
+    TCorner = 11
+    TCornerCurve = 17
+    Underline = 29
+    VLine = 9
+    VerticalBookmark = 32
+[Flags] enum WxKit.StyledTextModificationFlags : int
+    All = 8388607
+    BeforeDelete = 2048
+    BeforeInsert = 1024
+    ChangeAnnotation = 131072
+    ChangeEolAnnotation = 4194304
+    ChangeFold = 8
+    ChangeIndicator = 16384
+    ChangeLineState = 32768
+    ChangeMargin = 65536
+    ChangeMarker = 512
+    ChangeStyle = 4
+    ChangeTabStops = 2097152
+    Container = 262144
+    DeleteText = 2
+    InsertCheck = 1048576
+    InsertText = 1
+    LastStepInUndoRedo = 256
+    LexerState = 524288
+    MultiLineUndoRedo = 4096
+    MultiStepUndoRedo = 128
+    None = 0
+    Redo = 64
+    StartAction = 8192
+    Undo = 32
+    User = 16
+enum WxKit.StyledTextMultiAutoComplete : int
+    Each = 1
+    Once = 0
+enum WxKit.StyledTextMultiPaste : int
+    Each = 1
+    Once = 0
+enum WxKit.StyledTextPhasesDraw : int
+    Multiple = 2
+    One = 0
+    Two = 1
+enum WxKit.StyledTextPopUpMode : int
+    All = 1
+    Never = 0
+    Text = 2
+enum WxKit.StyledTextPrintColorMode : int
+    BlackOnWhite = 2
+    ColorOnWhite = 3
+    ColorOnWhiteDefaultBackground = 4
+    InvertLight = 1
+    Normal = 0
+    ScreenColors = 5
+enum WxKit.StyledTextPropertyType : int
+    Boolean = 0
+    Integer = 1
+    String = 2
+enum WxKit.StyledTextSelectionMode : int
+    Lines = 2
+    Rectangle = 1
+    Stream = 0
+    Thin = 3
+enum WxKit.StyledTextStatus : int
+    BadAlloc = 2
+    Failure = 1
+    Ok = 0
+    WarnRegex = 1001
+    WarnStart = 1000
+enum WxKit.StyledTextTabDrawMode : int
+    LongArrow = 0
+    Strikeout = 1
+enum WxKit.StyledTextTechnology : int
+    Default = 0
+    DirectWrite = 1
+[Flags] enum WxKit.StyledTextUndoFlags : int
+    MayCoalesce = 1
+    None = 0
+[Flags] enum WxKit.StyledTextUpdateFlags : int
+    Content = 1
+    HScroll = 8
+    None = 0
+    Selection = 2
+    VScroll = 4
+[Flags] enum WxKit.StyledTextVirtualSpace : int
+    NoWrapLineStart = 4
+    None = 0
+    RectangularSelection = 1
+    UserAccessible = 2
+[Flags] enum WxKit.StyledTextVisiblePolicy : int
+    None = 0
+    Slop = 1
+    Strict = 4
+enum WxKit.StyledTextWhiteSpace : int
+    Invisible = 0
+    VisibleAfterIndent = 2
+    VisibleAlways = 1
+    VisibleOnlyInIndent = 3
+enum WxKit.StyledTextWrapIndentMode : int
+    DeepIndent = 3
+    Fixed = 0
+    Indent = 2
+    Same = 1
+enum WxKit.StyledTextWrapMode : int
+    Char = 2
+    None = 0
+    WhiteSpace = 3
+    Word = 1
+[Flags] enum WxKit.StyledTextWrapVisualFlags : int
+    End = 1
+    Margin = 4
+    None = 0
+    Start = 2
+[Flags] enum WxKit.StyledTextWrapVisualLocation : int
+    Default = 0
+    EndByText = 1
+    StartByText = 2
 class WxKit.SysColorChangedEvent : Event
 sealed record WxKit.SystemAppearance : IEquatable<SystemAppearance>
     SystemAppearance(string Name, bool IsDark, bool IsUsingDarkBackground, bool AreAppsDark)

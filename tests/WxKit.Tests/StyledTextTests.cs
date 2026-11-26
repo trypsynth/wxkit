@@ -18,14 +18,14 @@ public class StyledTextTests {
 	[Fact]
 	public Task HighlightsWithALexer() => Gui.WithFrame(frame => {
 		StyledTextCtrl editor = new(frame);
-		editor.Lexer = Stc.LexPython;
-		Assert.Equal(Stc.LexPython, editor.Lexer);
+		editor.Lexer = StyledTextLexer.Python;
+		Assert.Equal(StyledTextLexer.Python, editor.Lexer);
 		editor.SetKeyWords(0, "def class return");
-		editor.StyleSetForeground(Stc.PWord, new Color(0, 0, 255));
-		editor.SetMarginType(0, Stc.MarginNumber);
+		editor.StyleSetForeground(StyledText.PWord, new Color(0, 0, 255));
+		editor.SetMarginType(0, StyledTextMarginType.Number);
 		editor.SetMarginWidth(0, 40);
 		editor.Value = "def f():\n    return 1\n";
-		Assert.Equal(Stc.MarginNumber, editor.GetMarginType(0));
+		Assert.Equal(StyledTextMarginType.Number, editor.GetMarginType(0));
 	});
 
 	[Fact]
@@ -33,7 +33,7 @@ public class StyledTextTests {
 		StyledTextCtrl editor = new(frame);
 		int modified = 0;
 		editor.Modified += (_, e) => {
-			if ((e.ModificationType & Stc.ModInserttext) != 0) modified++;
+			if ((e.ModificationType & StyledTextModificationFlags.InsertText) != 0) modified++;
 		};
 		editor.Value = "hello";
 		Assert.True(modified > 0);
@@ -41,6 +41,26 @@ public class StyledTextTests {
 		Assert.False(editor.IsModified);
 		editor.AppendText(" world");
 		Assert.True(editor.IsModified);
+	});
+
+	// The control's choices and flags are enums, where Scintilla has ints.
+	[Fact]
+	public Task TakesItsConstantsAsEnums() => Gui.WithFrame(frame => {
+		StyledTextCtrl editor = new(frame) { Value = "one two one" };
+		editor.WrapMode = StyledTextWrapMode.Word;
+		Assert.Equal(StyledTextWrapMode.Word, editor.WrapMode);
+		editor.SearchFlags = StyledTextFindFlags.WholeWord | StyledTextFindFlags.MatchCase;
+		Assert.Equal(StyledTextFindFlags.WholeWord | StyledTextFindFlags.MatchCase, editor.SearchFlags);
+		Assert.Equal(8, editor.FindText(1, editor.LastPosition, "one", StyledTextFindFlags.WholeWord));
+		editor.MarkerDefine(1, StyledTextMarkerSymbol.Arrow);
+		Assert.Equal(StyledTextMarkerSymbol.Arrow, editor.GetMarkerSymbolDefined(1));
+		editor.CmdKeyAssign('Q', StyledTextKeyModifiers.Control, StyledTextCommand.LineDelete);
+		editor.CmdKeyExecute(StyledTextCommand.DocumentEnd);
+		Assert.Equal(editor.LastPosition, editor.InsertionPoint);
+		Assert.True(editor.IsSelectionEmpty);
+		Assert.Equal(1, editor.SelectionCount);
+		editor.AnnotationVisible = StyledTextAnnotationVisible.Boxed;
+		Assert.Equal(StyledTextAnnotationVisible.Boxed, editor.AnnotationVisible);
 	});
 
 	// Scintilla numbers the modifier keys its own way, which an event gives as KeyModifiers.

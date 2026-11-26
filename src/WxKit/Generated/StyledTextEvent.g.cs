@@ -42,9 +42,6 @@ public unsafe partial class StyledTextEvent : CommandEvent {
 	/// <summary>Returns the key code of the key that generated this event.</summary>
 	public int Key => WxKitNative.StyledTextEventGetKey(Handle);
 
-	/// <summary>Returns the value of the LParam field for this event.</summary>
-	public int LParam => WxKitNative.StyledTextEventGetLParam(Handle);
-
 	/// <summary>Returns the length (number of characters) of this event.</summary>
 	public int Length => WxKitNative.StyledTextEventGetLength(Handle);
 
@@ -55,7 +52,7 @@ public unsafe partial class StyledTextEvent : CommandEvent {
 	public int LinesAdded => WxKitNative.StyledTextEventGetLinesAdded(Handle);
 
 	/// <summary>Returns a value describing the action that closed the list.</summary>
-	public int ListCompletionMethod => WxKitNative.StyledTextEventGetListCompletionMethod(Handle);
+	public StyledTextCompletionMethod ListCompletionMethod => (StyledTextCompletionMethod)WxKitNative.StyledTextEventGetListCompletionMethod(Handle);
 
 	/// <summary>Returns the list type for this event.</summary>
 	public int ListType => WxKitNative.StyledTextEventGetListType(Handle);
@@ -63,11 +60,8 @@ public unsafe partial class StyledTextEvent : CommandEvent {
 	/// <summary>Returns the zero-based index of the margin that generated this event.</summary>
 	public int Margin => WxKitNative.StyledTextEventGetMargin(Handle);
 
-	/// <summary>Returns a message number while a macro is being recorded.</summary>
-	public int Message => WxKitNative.StyledTextEventGetMessage(Handle);
-
 	/// <summary>Returns the modification type for this event.</summary>
-	public int ModificationType => WxKitNative.StyledTextEventGetModificationType(Handle);
+	public StyledTextModificationFlags ModificationType => (StyledTextModificationFlags)WxKitNative.StyledTextEventGetModificationType(Handle);
 
 	/// <summary>Returns the zero-based text position associated this event.</summary>
 	public int Position => WxKitNative.StyledTextEventGetPosition(Handle);
@@ -76,14 +70,5 @@ public unsafe partial class StyledTextEvent : CommandEvent {
 	public int Token => WxKitNative.StyledTextEventGetToken(Handle);
 
 	/// <summary>Returns the value of the updated field for this event.</summary>
-	public int Updated => WxKitNative.StyledTextEventGetUpdated(Handle);
-
-	/// <summary>Returns value of the WParam field for this event.</summary>
-	public int WParam => WxKitNative.StyledTextEventGetWParam(Handle);
-
-	/// <summary>Returns the X coordinate of the mouse for this event.</summary>
-	public int X => WxKitNative.StyledTextEventGetX(Handle);
-
-	/// <summary>Returns the Y coordinate of the mouse for this event.</summary>
-	public int Y => WxKitNative.StyledTextEventGetY(Handle);
+	public StyledTextUpdateFlags Updated => (StyledTextUpdateFlags)WxKitNative.StyledTextEventGetUpdated(Handle);
 }

@@ -14,9 +14,9 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Report accessibility status.</summary>
-	public int Accessibility {
-		get => WxKitNative.StyledTextCtrlGetAccessibility(Native);
-		set => WxKitNative.StyledTextCtrlSetAccessibility(Native, value);
+	public StyledTextAccessibility Accessibility {
+		get => (StyledTextAccessibility)WxKitNative.StyledTextCtrlGetAccessibility(Native);
+		set => WxKitNative.StyledTextCtrlSetAccessibility(Native, (int)value);
 	}
 
 	/// <summary>Get the foreground colour of additional carets.</summary>
@@ -58,6 +58,18 @@ public unsafe partial class StyledTextCtrl : Control {
 		set => WxKitNative.StyledTextCtrlSetAnchor(Native, value);
 	}
 
+	/// <summary>Get the start of the range of style numbers used for annotations.</summary>
+	public int AnnotationStyleOffset {
+		get => WxKitNative.StyledTextCtrlAnnotationGetStyleOffset(Native);
+		set => WxKitNative.StyledTextCtrlAnnotationSetStyleOffset(Native, value);
+	}
+
+	/// <summary>Get the visibility for the annotations for a view.</summary>
+	public StyledTextAnnotationVisible AnnotationVisible {
+		get => (StyledTextAnnotationVisible)WxKitNative.StyledTextCtrlAnnotationGetVisible(Native);
+		set => WxKitNative.StyledTextCtrlAnnotationSetVisible(Native, (int)value);
+	}
+
 	/// <summary>Retrieve whether or not autocompletion is hidden automatically when nothing matches.</summary>
 	public bool AutoCompAutoHide {
 		get => WxKitNative.StyledTextCtrlAutoCompGetAutoHide(Native) != 0;
@@ -71,9 +83,9 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Get auto-completion case insensitive behaviour.</summary>
-	public int AutoCompCaseInsensitiveBehavior {
-		get => WxKitNative.StyledTextCtrlAutoCompGetCaseInsensitiveBehaviour(Native);
-		set => WxKitNative.StyledTextCtrlAutoCompSetCaseInsensitiveBehaviour(Native, value);
+	public StyledTextCaseInsensitiveBehavior AutoCompCaseInsensitiveBehavior {
+		get => (StyledTextCaseInsensitiveBehavior)WxKitNative.StyledTextCtrlAutoCompGetCaseInsensitiveBehaviour(Native);
+		set => WxKitNative.StyledTextCtrlAutoCompSetCaseInsensitiveBehaviour(Native, (int)value);
 	}
 
 	/// <summary>Retrieve whether a single item auto-completion list automatically choose the item.</summary>
@@ -113,15 +125,15 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Retrieve the effect of autocompleting when there are multiple selections.</summary>
-	public int AutoCompMulti {
-		get => WxKitNative.StyledTextCtrlAutoCompGetMulti(Native);
-		set => WxKitNative.StyledTextCtrlAutoCompSetMulti(Native, value);
+	public StyledTextMultiAutoComplete AutoCompMulti {
+		get => (StyledTextMultiAutoComplete)WxKitNative.StyledTextCtrlAutoCompGetMulti(Native);
+		set => WxKitNative.StyledTextCtrlAutoCompSetMulti(Native, (int)value);
 	}
 
 	/// <summary>Get the way autocompletion lists are ordered.</summary>
-	public int AutoCompOrder {
-		get => WxKitNative.StyledTextCtrlAutoCompGetOrder(Native);
-		set => WxKitNative.StyledTextCtrlAutoCompSetOrder(Native, value);
+	public StyledTextAutoCompleteOrder AutoCompOrder {
+		get => (StyledTextAutoCompleteOrder)WxKitNative.StyledTextCtrlAutoCompGetOrder(Native);
+		set => WxKitNative.StyledTextCtrlAutoCompSetOrder(Native, (int)value);
 	}
 
 	/// <summary>Retrieve the auto-completion list separator character.</summary>
@@ -137,9 +149,9 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Get automatic folding behaviours.</summary>
-	public int AutomaticFold {
-		get => WxKitNative.StyledTextCtrlGetAutomaticFold(Native);
-		set => WxKitNative.StyledTextCtrlSetAutomaticFold(Native, value);
+	public StyledTextAutomaticFold AutomaticFold {
+		get => (StyledTextAutomaticFold)WxKitNative.StyledTextCtrlGetAutomaticFold(Native);
+		set => WxKitNative.StyledTextCtrlSetAutomaticFold(Native, (int)value);
 	}
 
 	/// <summary>Does a backspace pressed when caret is within indentation unindent?</summary>
@@ -218,15 +230,15 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Can the caret preferred x position only be changed by explicit movement commands?</summary>
-	public int CaretSticky {
-		get => WxKitNative.StyledTextCtrlGetCaretSticky(Native);
-		set => WxKitNative.StyledTextCtrlSetCaretSticky(Native, value);
+	public StyledTextCaretSticky CaretSticky {
+		get => (StyledTextCaretSticky)WxKitNative.StyledTextCtrlGetCaretSticky(Native);
+		set => WxKitNative.StyledTextCtrlSetCaretSticky(Native, (int)value);
 	}
 
 	/// <summary>Returns the current style of the caret.</summary>
-	public int CaretStyle {
-		get => WxKitNative.StyledTextCtrlGetCaretStyle(Native);
-		set => WxKitNative.StyledTextCtrlSetCaretStyle(Native, value);
+	public StyledTextCaretStyle CaretStyle {
+		get => (StyledTextCaretStyle)WxKitNative.StyledTextCtrlGetCaretStyle(Native);
+		set => WxKitNative.StyledTextCtrlSetCaretStyle(Native, (int)value);
 	}
 
 	/// <summary>Returns the width of the insert mode caret.</summary>
@@ -280,7 +292,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public int DisplayLineCount => WxKitNative.StyledTextCtrlGetDisplayLineCount(Native);
 
 	/// <summary>Get which document options are set.</summary>
-	public int DocumentOptions => WxKitNative.StyledTextCtrlGetDocumentOptions(Native);
+	public StyledTextDocumentOptions DocumentOptions => (StyledTextDocumentOptions)WxKitNative.StyledTextCtrlGetDocumentOptions(Native);
 
 	/// <summary>Retrieve the colour used in edge indication.</summary>
 	public Color? EdgeColor {
@@ -295,9 +307,9 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Retrieve the edge highlight mode.</summary>
-	public int EdgeMode {
-		get => WxKitNative.StyledTextCtrlGetEdgeMode(Native);
-		set => WxKitNative.StyledTextCtrlSetEdgeMode(Native, value);
+	public StyledTextEdgeMode EdgeMode {
+		get => (StyledTextEdgeMode)WxKitNative.StyledTextCtrlGetEdgeMode(Native);
+		set => WxKitNative.StyledTextCtrlSetEdgeMode(Native, (int)value);
 	}
 
 	/// <summary>Retrieve whether the maximum scroll position has the last line at the bottom of the view.</summary>
@@ -309,10 +321,22 @@ public unsafe partial class StyledTextCtrl : Control {
 	/// <summary>Retrieve the position of the last correctly styled character.</summary>
 	public int EndStyled => WxKitNative.StyledTextCtrlGetEndStyled(Native);
 
+	/// <summary>Get the start of the range of style numbers used for end of line annotations.</summary>
+	public int EolAnnotationStyleOffset {
+		get => WxKitNative.StyledTextCtrlEOLAnnotationGetStyleOffset(Native);
+		set => WxKitNative.StyledTextCtrlEOLAnnotationSetStyleOffset(Native, value);
+	}
+
+	/// <summary>Get the visibility for the end of line annotations for a view.</summary>
+	public StyledTextEolAnnotationVisible EolAnnotationVisible {
+		get => (StyledTextEolAnnotationVisible)WxKitNative.StyledTextCtrlEOLAnnotationGetVisible(Native);
+		set => WxKitNative.StyledTextCtrlEOLAnnotationSetVisible(Native, (int)value);
+	}
+
 	/// <summary>Retrieve the current end of line mode - one of wxSTC_EOL_CRLF, wxSTC_EOL_CR, or wxSTC_EOL_LF.</summary>
-	public int EolMode {
-		get => WxKitNative.StyledTextCtrlGetEOLMode(Native);
-		set => WxKitNative.StyledTextCtrlSetEOLMode(Native, value);
+	public StyledTextEolMode EolMode {
+		get => (StyledTextEolMode)WxKitNative.StyledTextCtrlGetEOLMode(Native);
+		set => WxKitNative.StyledTextCtrlSetEOLMode(Native, (int)value);
 	}
 
 	/// <summary>Get extra ascent for each line.</summary>
@@ -333,10 +357,16 @@ public unsafe partial class StyledTextCtrl : Control {
 		set => WxKitNative.StyledTextCtrlSetFirstVisibleLine(Native, value);
 	}
 
+	/// <summary>Get the style of fold display text.</summary>
+	public StyledTextFoldDisplayText FoldDisplayTextStyle {
+		get => (StyledTextFoldDisplayText)WxKitNative.StyledTextCtrlFoldDisplayTextGetStyle(Native);
+		set => WxKitNative.StyledTextCtrlFoldDisplayTextSetStyle(Native, (int)value);
+	}
+
 	/// <summary>Retrieve the quality level for text.</summary>
-	public int FontQuality {
-		get => WxKitNative.StyledTextCtrlGetFontQuality(Native);
-		set => WxKitNative.StyledTextCtrlSetFontQuality(Native, value);
+	public StyledTextFontQuality FontQuality {
+		get => (StyledTextFontQuality)WxKitNative.StyledTextCtrlGetFontQuality(Native);
+		set => WxKitNative.StyledTextCtrlSetFontQuality(Native, (int)value);
 	}
 
 	/// <summary>Return a position which, to avoid performance costs, should not be within the range of a call to GetRangePointer.</summary>
@@ -373,15 +403,15 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Retrieve the limits to idle styling.</summary>
-	public int IdleStyling {
-		get => WxKitNative.StyledTextCtrlGetIdleStyling(Native);
-		set => WxKitNative.StyledTextCtrlSetIdleStyling(Native, value);
+	public StyledTextIdleStyling IdleStyling {
+		get => (StyledTextIdleStyling)WxKitNative.StyledTextCtrlGetIdleStyling(Native);
+		set => WxKitNative.StyledTextCtrlSetIdleStyling(Native, (int)value);
 	}
 
 	/// <summary>Is the IME displayed in a window or inline?</summary>
-	public int ImeInteraction {
-		get => WxKitNative.StyledTextCtrlGetIMEInteraction(Native);
-		set => WxKitNative.StyledTextCtrlSetIMEInteraction(Native, value);
+	public StyledTextImeInteraction ImeInteraction {
+		get => (StyledTextImeInteraction)WxKitNative.StyledTextCtrlGetIMEInteraction(Native);
+		set => WxKitNative.StyledTextCtrlSetIMEInteraction(Native, (int)value);
 	}
 
 	/// <summary>Retrieve indentation size.</summary>
@@ -391,9 +421,9 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Are the indentation guides visible?</summary>
-	public int IndentationGuides {
-		get => WxKitNative.StyledTextCtrlGetIndentationGuides(Native);
-		set => WxKitNative.StyledTextCtrlSetIndentationGuides(Native, value);
+	public StyledTextIndentGuides IndentationGuides {
+		get => (StyledTextIndentGuides)WxKitNative.StyledTextCtrlGetIndentationGuides(Native);
+		set => WxKitNative.StyledTextCtrlSetIndentationGuides(Native, (int)value);
 	}
 
 	/// <summary>Get the current indicator.</summary>
@@ -432,6 +462,15 @@ public unsafe partial class StyledTextCtrl : Control {
 	/// <summary>Returns true if the text has been modified by user.</summary>
 	public bool IsModified => WxKitNative.StyledTextCtrlIsModified(Native) != 0;
 
+	/// <summary>Returns true if overtype mode is active otherwise false is returned.</summary>
+	public bool IsOvertype {
+		get => WxKitNative.StyledTextCtrlGetOvertype(Native) != 0;
+		set => WxKitNative.StyledTextCtrlSetOvertype(Native, value ? (byte)1 : (byte)0);
+	}
+
+	/// <summary>Is every selected range empty?</summary>
+	public bool IsSelectionEmpty => WxKitNative.StyledTextCtrlGetSelectionEmpty(Native) != 0;
+
 	/// <summary>Is the selection rectangular?</summary>
 	public bool IsSelectionRectangle => WxKitNative.StyledTextCtrlSelectionIsRectangle(Native) != 0;
 
@@ -445,18 +484,18 @@ public unsafe partial class StyledTextCtrl : Control {
 	public int LastPosition => WxKitNative.StyledTextCtrlGetLastPosition(Native);
 
 	/// <summary>Retrieve the degree of caching of layout information.</summary>
-	public int LayoutCache {
-		get => WxKitNative.StyledTextCtrlGetLayoutCache(Native);
-		set => WxKitNative.StyledTextCtrlSetLayoutCache(Native, value);
+	public StyledTextLayoutCache LayoutCache {
+		get => (StyledTextLayoutCache)WxKitNative.StyledTextCtrlGetLayoutCache(Native);
+		set => WxKitNative.StyledTextCtrlSetLayoutCache(Native, (int)value);
 	}
 
 	/// <summary>Returns the number of bytes in the document.</summary>
 	public int Length => WxKitNative.StyledTextCtrlGetLength(Native);
 
 	/// <summary>Retrieve the lexing language of the document.</summary>
-	public int Lexer {
-		get => WxKitNative.StyledTextCtrlGetLexer(Native);
-		set => WxKitNative.StyledTextCtrlSetLexer(Native, value);
+	public StyledTextLexer Lexer {
+		get => (StyledTextLexer)WxKitNative.StyledTextCtrlGetLexer(Native);
+		set => WxKitNative.StyledTextCtrlSetLexer(Native, (int)value);
 	}
 
 	/// <summary>Retrieve the lexing language of the document.</summary>
@@ -474,16 +513,16 @@ public unsafe partial class StyledTextCtrl : Control {
 	public int LineCount => WxKitNative.StyledTextCtrlGetNumberOfLines(Native);
 
 	/// <summary>Get the line end types currently recognised.</summary>
-	public int LineEndTypesActive => WxKitNative.StyledTextCtrlGetLineEndTypesActive(Native);
+	public StyledTextLineEndTypes LineEndTypesActive => (StyledTextLineEndTypes)WxKitNative.StyledTextCtrlGetLineEndTypesActive(Native);
 
 	/// <summary>Get the line end types currently allowed.</summary>
-	public int LineEndTypesAllowed {
-		get => WxKitNative.StyledTextCtrlGetLineEndTypesAllowed(Native);
-		set => WxKitNative.StyledTextCtrlSetLineEndTypesAllowed(Native, value);
+	public StyledTextLineEndTypes LineEndTypesAllowed {
+		get => (StyledTextLineEndTypes)WxKitNative.StyledTextCtrlGetLineEndTypesAllowed(Native);
+		set => WxKitNative.StyledTextCtrlSetLineEndTypesAllowed(Native, (int)value);
 	}
 
 	/// <summary>Bit set of LineEndType enumertion for which line ends beyond the standard LF, CR, and CRLF are supported by the lexer.</summary>
-	public int LineEndTypesSupported => WxKitNative.StyledTextCtrlGetLineEndTypesSupported(Native);
+	public StyledTextLineEndTypes LineEndTypesSupported => (StyledTextLineEndTypes)WxKitNative.StyledTextCtrlGetLineEndTypesSupported(Native);
 
 	/// <summary>Which selection is the main selection.</summary>
 	public int MainSelection {
@@ -504,9 +543,9 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Get the margin options.</summary>
-	public int MarginOptions {
-		get => WxKitNative.StyledTextCtrlGetMarginOptions(Native);
-		set => WxKitNative.StyledTextCtrlSetMarginOptions(Native, value);
+	public StyledTextMarginOptions MarginOptions {
+		get => (StyledTextMarginOptions)WxKitNative.StyledTextCtrlGetMarginOptions(Native);
+		set => WxKitNative.StyledTextCtrlSetMarginOptions(Native, (int)value);
 	}
 
 	/// <summary>Returns the size in pixels of the right margin.</summary>
@@ -515,13 +554,19 @@ public unsafe partial class StyledTextCtrl : Control {
 		set => WxKitNative.StyledTextCtrlSetMarginRight(Native, value);
 	}
 
+	/// <summary>Get the start of the range of style numbers used for margin text.</summary>
+	public int MarginStyleOffset {
+		get => WxKitNative.StyledTextCtrlMarginGetStyleOffset(Native);
+		set => WxKitNative.StyledTextCtrlMarginSetStyleOffset(Native, value);
+	}
+
 	/// <summary>Retrieve the last line number that has line state.</summary>
 	public int MaxLineState => WxKitNative.StyledTextCtrlGetMaxLineState(Native);
 
 	/// <summary>Get which document modification events are sent to the container.</summary>
-	public int ModEventMask {
-		get => WxKitNative.StyledTextCtrlGetModEventMask(Native);
-		set => WxKitNative.StyledTextCtrlSetModEventMask(Native, value);
+	public StyledTextModificationFlags ModEventMask {
+		get => (StyledTextModificationFlags)WxKitNative.StyledTextCtrlGetModEventMask(Native);
+		set => WxKitNative.StyledTextCtrlSetModEventMask(Native, (int)value);
 	}
 
 	/// <summary>Get whether mouse gets captured.</summary>
@@ -552,9 +597,9 @@ public unsafe partial class StyledTextCtrl : Control {
 	public bool MoveExtendsSelection => WxKitNative.StyledTextCtrlGetMoveExtendsSelection(Native) != 0;
 
 	/// <summary>Retrieve the effect of pasting when there are multiple selections.</summary>
-	public int MultiPaste {
-		get => WxKitNative.StyledTextCtrlGetMultiPaste(Native);
-		set => WxKitNative.StyledTextCtrlSetMultiPaste(Native, value);
+	public StyledTextMultiPaste MultiPaste {
+		get => (StyledTextMultiPaste)WxKitNative.StyledTextCtrlGetMultiPaste(Native);
+		set => WxKitNative.StyledTextCtrlSetMultiPaste(Native, (int)value);
 	}
 
 	/// <summary>Whether multiple selections can be made.</summary>
@@ -566,12 +611,6 @@ public unsafe partial class StyledTextCtrl : Control {
 	/// <summary>Retrieve the number of named styles for the lexer.</summary>
 	public int NamedStyles => WxKitNative.StyledTextCtrlGetNamedStyles(Native);
 
-	/// <summary>Returns true if overtype mode is active otherwise false is returned.</summary>
-	public bool Overtype {
-		get => WxKitNative.StyledTextCtrlGetOvertype(Native) != 0;
-		set => WxKitNative.StyledTextCtrlSetOvertype(Native, value ? (byte)1 : (byte)0);
-	}
-
 	/// <summary>Get convert-on-paste setting.</summary>
 	public bool PasteConvertEndings {
 		get => WxKitNative.StyledTextCtrlGetPasteConvertEndings(Native) != 0;
@@ -579,9 +618,9 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>How many phases is drawing done in?</summary>
-	public int PhasesDraw {
-		get => WxKitNative.StyledTextCtrlGetPhasesDraw(Native);
-		set => WxKitNative.StyledTextCtrlSetPhasesDraw(Native, value);
+	public StyledTextPhasesDraw PhasesDraw {
+		get => (StyledTextPhasesDraw)WxKitNative.StyledTextCtrlGetPhasesDraw(Native);
+		set => WxKitNative.StyledTextCtrlSetPhasesDraw(Native, (int)value);
 	}
 
 	/// <summary>How many entries are allocated to the position cache?</summary>
@@ -591,9 +630,9 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Returns the print colour mode.</summary>
-	public int PrintColorMode {
-		get => WxKitNative.StyledTextCtrlGetPrintColourMode(Native);
-		set => WxKitNative.StyledTextCtrlSetPrintColourMode(Native, value);
+	public StyledTextPrintColorMode PrintColorMode {
+		get => (StyledTextPrintColorMode)WxKitNative.StyledTextCtrlGetPrintColourMode(Native);
+		set => WxKitNative.StyledTextCtrlSetPrintColourMode(Native, (int)value);
 	}
 
 	/// <summary>Returns the print magnification.</summary>
@@ -644,9 +683,9 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Get the modifier key used for rectangular selection.</summary>
-	public int RectangularSelectionModifier {
-		get => WxKitNative.StyledTextCtrlGetRectangularSelectionModifier(Native);
-		set => WxKitNative.StyledTextCtrlSetRectangularSelectionModifier(Native, value);
+	public StyledTextKeyModifiers RectangularSelectionModifier {
+		get => (StyledTextKeyModifiers)WxKitNative.StyledTextCtrlGetRectangularSelectionModifier(Native);
+		set => WxKitNative.StyledTextCtrlSetRectangularSelectionModifier(Native, (int)value);
 	}
 
 	/// <summary>Retrieve the document width assumed for scrolling.</summary>
@@ -662,9 +701,9 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Get the search flags used by SearchInTarget.</summary>
-	public int SearchFlags {
-		get => WxKitNative.StyledTextCtrlGetSearchFlags(Native);
-		set => WxKitNative.StyledTextCtrlSetSearchFlags(Native, value);
+	public StyledTextFindFlags SearchFlags {
+		get => (StyledTextFindFlags)WxKitNative.StyledTextCtrlGetSearchFlags(Native);
+		set => WxKitNative.StyledTextCtrlSetSearchFlags(Native, (int)value);
 	}
 
 	/// <summary>Get the alpha of the selection.</summary>
@@ -682,8 +721,8 @@ public unsafe partial class StyledTextCtrl : Control {
 	/// <summary>Gets the text currently selected in the control.</summary>
 	public string SelectedText => NativeString.Take(WxKitNative.StyledTextCtrlGetStringSelection(Native));
 
-	/// <summary>Is every selected range empty?</summary>
-	public bool SelectionEmpty => WxKitNative.StyledTextCtrlGetSelectionEmpty(Native) != 0;
+	/// <summary>How many selections are there?</summary>
+	public int SelectionCount => WxKitNative.StyledTextCtrlGetSelections(Native);
 
 	/// <summary>Returns the position at the end of the selection.</summary>
 	public int SelectionEnd {
@@ -692,9 +731,9 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Get the mode of the current selection.</summary>
-	public int SelectionMode {
-		get => WxKitNative.StyledTextCtrlGetSelectionMode(Native);
-		set => WxKitNative.StyledTextCtrlSetSelectionMode(Native, value);
+	public StyledTextSelectionMode SelectionMode {
+		get => (StyledTextSelectionMode)WxKitNative.StyledTextCtrlGetSelectionMode(Native);
+		set => WxKitNative.StyledTextCtrlSetSelectionMode(Native, (int)value);
 	}
 
 	/// <summary>Returns the position at the start of the selection.</summary>
@@ -703,19 +742,16 @@ public unsafe partial class StyledTextCtrl : Control {
 		set => WxKitNative.StyledTextCtrlSetSelectionStart(Native, value);
 	}
 
-	/// <summary>How many selections are there?</summary>
-	public int Selections => WxKitNative.StyledTextCtrlGetSelections(Native);
-
 	/// <summary>Get error status.</summary>
-	public int Status {
-		get => WxKitNative.StyledTextCtrlGetStatus(Native);
-		set => WxKitNative.StyledTextCtrlSetStatus(Native, value);
+	public StyledTextStatus Status {
+		get => (StyledTextStatus)WxKitNative.StyledTextCtrlGetStatus(Native);
+		set => WxKitNative.StyledTextCtrlSetStatus(Native, (int)value);
 	}
 
 	/// <summary>Get cursor type.</summary>
-	public int StcCursor {
-		get => WxKitNative.StyledTextCtrlGetSTCCursor(Native);
-		set => WxKitNative.StyledTextCtrlSetSTCCursor(Native, value);
+	public StyledTextCursor StcCursor {
+		get => (StyledTextCursor)WxKitNative.StyledTextCtrlGetSTCCursor(Native);
+		set => WxKitNative.StyledTextCtrlSetSTCCursor(Native, (int)value);
 	}
 
 	/// <summary>Get internal focus flag.</summary>
@@ -728,9 +764,9 @@ public unsafe partial class StyledTextCtrl : Control {
 	public string SubStyleBases => NativeString.Take(WxKitNative.StyledTextCtrlGetSubStyleBases(Native));
 
 	/// <summary>Retrieve the current tab draw mode.</summary>
-	public int TabDrawMode {
-		get => WxKitNative.StyledTextCtrlGetTabDrawMode(Native);
-		set => WxKitNative.StyledTextCtrlSetTabDrawMode(Native, value);
+	public StyledTextTabDrawMode TabDrawMode {
+		get => (StyledTextTabDrawMode)WxKitNative.StyledTextCtrlGetTabDrawMode(Native);
+		set => WxKitNative.StyledTextCtrlSetTabDrawMode(Native, (int)value);
 	}
 
 	/// <summary>Does a tab pressed when caret is within indentation indent?</summary>
@@ -779,9 +815,9 @@ public unsafe partial class StyledTextCtrl : Control {
 	public string TargetText => NativeString.Take(WxKitNative.StyledTextCtrlGetTargetText(Native));
 
 	/// <summary>Get the tech.</summary>
-	public int Technology {
-		get => WxKitNative.StyledTextCtrlGetTechnology(Native);
-		set => WxKitNative.StyledTextCtrlSetTechnology(Native, value);
+	public StyledTextTechnology Technology {
+		get => (StyledTextTechnology)WxKitNative.StyledTextCtrlGetTechnology(Native);
+		set => WxKitNative.StyledTextCtrlSetTechnology(Native, (int)value);
 	}
 
 	/// <summary>Is undo history being collected?</summary>
@@ -832,15 +868,15 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Are white space characters currently visible?</summary>
-	public int ViewWhiteSpace {
-		get => WxKitNative.StyledTextCtrlGetViewWhiteSpace(Native);
-		set => WxKitNative.StyledTextCtrlSetViewWhiteSpace(Native, value);
+	public StyledTextWhiteSpace ViewWhiteSpace {
+		get => (StyledTextWhiteSpace)WxKitNative.StyledTextCtrlGetViewWhiteSpace(Native);
+		set => WxKitNative.StyledTextCtrlSetViewWhiteSpace(Native, (int)value);
 	}
 
 	/// <summary>Return options for virtual space behaviour.</summary>
-	public int VirtualSpaceOptions {
-		get => WxKitNative.StyledTextCtrlGetVirtualSpaceOptions(Native);
-		set => WxKitNative.StyledTextCtrlSetVirtualSpaceOptions(Native, value);
+	public StyledTextVirtualSpace VirtualSpaceOptions {
+		get => (StyledTextVirtualSpace)WxKitNative.StyledTextCtrlGetVirtualSpaceOptions(Native);
+		set => WxKitNative.StyledTextCtrlSetVirtualSpaceOptions(Native, (int)value);
 	}
 
 	/// <summary>Get the set of characters making up whitespace for when moving or selecting by word.</summary>
@@ -872,15 +908,15 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Retrieve how wrapped sublines are placed.</summary>
-	public int WrapIndentMode {
-		get => WxKitNative.StyledTextCtrlGetWrapIndentMode(Native);
-		set => WxKitNative.StyledTextCtrlSetWrapIndentMode(Native, value);
+	public StyledTextWrapIndentMode WrapIndentMode {
+		get => (StyledTextWrapIndentMode)WxKitNative.StyledTextCtrlGetWrapIndentMode(Native);
+		set => WxKitNative.StyledTextCtrlSetWrapIndentMode(Native, (int)value);
 	}
 
 	/// <summary>Retrieve whether text is word wrapped.</summary>
-	public int WrapMode {
-		get => WxKitNative.StyledTextCtrlGetWrapMode(Native);
-		set => WxKitNative.StyledTextCtrlSetWrapMode(Native, value);
+	public StyledTextWrapMode WrapMode {
+		get => (StyledTextWrapMode)WxKitNative.StyledTextCtrlGetWrapMode(Native);
+		set => WxKitNative.StyledTextCtrlSetWrapMode(Native, (int)value);
 	}
 
 	/// <summary>Retrieve the start indent for wrapped lines.</summary>
@@ -890,15 +926,15 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Retrieve the display mode of visual flags for wrapped lines.</summary>
-	public int WrapVisualFlags {
-		get => WxKitNative.StyledTextCtrlGetWrapVisualFlags(Native);
-		set => WxKitNative.StyledTextCtrlSetWrapVisualFlags(Native, value);
+	public StyledTextWrapVisualFlags WrapVisualFlags {
+		get => (StyledTextWrapVisualFlags)WxKitNative.StyledTextCtrlGetWrapVisualFlags(Native);
+		set => WxKitNative.StyledTextCtrlSetWrapVisualFlags(Native, (int)value);
 	}
 
 	/// <summary>Retrieve the location of visual flags for wrapped lines.</summary>
-	public int WrapVisualFlagsLocation {
-		get => WxKitNative.StyledTextCtrlGetWrapVisualFlagsLocation(Native);
-		set => WxKitNative.StyledTextCtrlSetWrapVisualFlagsLocation(Native, value);
+	public StyledTextWrapVisualLocation WrapVisualFlagsLocation {
+		get => (StyledTextWrapVisualLocation)WxKitNative.StyledTextCtrlGetWrapVisualFlagsLocation(Native);
+		set => WxKitNative.StyledTextCtrlSetWrapVisualFlagsLocation(Native, (int)value);
 	}
 
 	/// <summary>Get the xOffset (ie, horizontal scroll position).</summary>
@@ -1098,7 +1134,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Add a container action to the undo stack.</summary>
-	public void AddUndoAction(int token, int flags) => WxKitNative.StyledTextCtrlAddUndoAction(Native, token, flags);
+	public void AddUndoAction(int token, StyledTextUndoFlags flags) => WxKitNative.StyledTextCtrlAddUndoAction(Native, token, (int)flags);
 
 	/// <summary>Enlarge the document to a particular size of text bytes.</summary>
 	public void Allocate(int bytes) => WxKitNative.StyledTextCtrlAllocate(Native, bytes);
@@ -1121,23 +1157,14 @@ public unsafe partial class StyledTextCtrl : Control {
 	/// <summary>Get the style number for the annotations for a line.</summary>
 	public int AnnotationGetStyle(int line) => WxKitNative.StyledTextCtrlAnnotationGetStyle(Native, line);
 
-	/// <summary>Get the start of the range of style numbers used for annotations.</summary>
-	public int AnnotationGetStyleOffset() => WxKitNative.StyledTextCtrlAnnotationGetStyleOffset(Native);
-
 	/// <summary>Get the annotation styles for a line.</summary>
 	public string AnnotationGetStyles(int line) => NativeString.Take(WxKitNative.StyledTextCtrlAnnotationGetStyles(Native, line));
 
 	/// <summary>Get the annotation text for a line.</summary>
 	public string AnnotationGetText(int line) => NativeString.Take(WxKitNative.StyledTextCtrlAnnotationGetText(Native, line));
 
-	/// <summary>Get the visibility for the annotations for a view.</summary>
-	public int AnnotationGetVisible() => WxKitNative.StyledTextCtrlAnnotationGetVisible(Native);
-
 	/// <summary>Set the style number for the annotations for a line.</summary>
 	public void AnnotationSetStyle(int line, int style) => WxKitNative.StyledTextCtrlAnnotationSetStyle(Native, line, style);
-
-	/// <summary>Get the start of the range of style numbers used for annotations.</summary>
-	public void AnnotationSetStyleOffset(int style) => WxKitNative.StyledTextCtrlAnnotationSetStyleOffset(Native, style);
 
 	/// <summary>Set the annotation styles for a line.</summary>
 	public void AnnotationSetStyles(int line, string styles) {
@@ -1154,9 +1181,6 @@ public unsafe partial class StyledTextCtrl : Control {
 			WxKitNative.StyledTextCtrlAnnotationSetText(Native, line, textText, NativeString.Length(text));
 		}
 	}
-
-	/// <summary>Set the visibility for the annotations for a view.</summary>
-	public void AnnotationSetVisible(int visible) => WxKitNative.StyledTextCtrlAnnotationSetVisible(Native, visible);
 
 	/// <summary>Append a string to the end of the document without changing the selection.</summary>
 	public void AppendText(string text) {
@@ -1327,16 +1351,16 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void ClearTabStops(int line) => WxKitNative.StyledTextCtrlClearTabStops(Native, line);
 
 	/// <summary>When key+modifier combination keyDefinition is pressed perform sciCommand.</summary>
-	public void CmdKeyAssign(int key, int modifiers, int command) => WxKitNative.StyledTextCtrlCmdKeyAssign(Native, key, modifiers, command);
+	public void CmdKeyAssign(int key, StyledTextKeyModifiers modifiers, StyledTextCommand command) => WxKitNative.StyledTextCtrlCmdKeyAssign(Native, key, (int)modifiers, (int)command);
 
 	/// <summary>When key+modifier combination keyDefinition is pressed do nothing.</summary>
-	public void CmdKeyClear(int key, int modifiers) => WxKitNative.StyledTextCtrlCmdKeyClear(Native, key, modifiers);
+	public void CmdKeyClear(int key, StyledTextKeyModifiers modifiers) => WxKitNative.StyledTextCtrlCmdKeyClear(Native, key, (int)modifiers);
 
 	/// <summary>Drop all key mappings.</summary>
 	public void CmdKeyClearAll() => WxKitNative.StyledTextCtrlCmdKeyClearAll(Native);
 
 	/// <summary>Perform one of the operations defined by the wxSTC_CMD_* constants.</summary>
-	public void CmdKeyExecute(int command) => WxKitNative.StyledTextCtrlCmdKeyExecute(Native, command);
+	public void CmdKeyExecute(StyledTextCommand command) => WxKitNative.StyledTextCtrlCmdKeyExecute(Native, (int)command);
 
 	/// <summary>Colourise a segment of the document using the current lexing language.</summary>
 	public void Colorize(int start, int end) => WxKitNative.StyledTextCtrlColourise(Native, start, end);
@@ -1345,7 +1369,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public int ContractedFoldNext(int lineStart) => WxKitNative.StyledTextCtrlContractedFoldNext(Native, lineStart);
 
 	/// <summary>Convert all line endings in the document to one mode.</summary>
-	public void ConvertEOLs(int eolMode) => WxKitNative.StyledTextCtrlConvertEOLs(Native, eolMode);
+	public void ConvertEOLs(StyledTextEolMode eolMode) => WxKitNative.StyledTextCtrlConvertEOLs(Native, (int)eolMode);
 
 	/// <summary>Copy the selection to the clipboard.</summary>
 	public void Copy() => WxKitNative.StyledTextCtrlCopy(Native);
@@ -1462,20 +1486,11 @@ public unsafe partial class StyledTextCtrl : Control {
 	/// <summary>Get the style number for the end of line annotations for a line.</summary>
 	public int EolAnnotationGetStyle(int line) => WxKitNative.StyledTextCtrlEOLAnnotationGetStyle(Native, line);
 
-	/// <summary>Get the start of the range of style numbers used for end of line annotations.</summary>
-	public int EolAnnotationGetStyleOffset() => WxKitNative.StyledTextCtrlEOLAnnotationGetStyleOffset(Native);
-
 	/// <summary>Get the end of line annotation text for a line.</summary>
 	public string EolAnnotationGetText(int line) => NativeString.Take(WxKitNative.StyledTextCtrlEOLAnnotationGetText(Native, line));
 
-	/// <summary>Get the visibility for the end of line annotations for a view.</summary>
-	public int EolAnnotationGetVisible() => WxKitNative.StyledTextCtrlEOLAnnotationGetVisible(Native);
-
 	/// <summary>Set the style number for the end of line annotations for a line.</summary>
 	public void EolAnnotationSetStyle(int line, int style) => WxKitNative.StyledTextCtrlEOLAnnotationSetStyle(Native, line, style);
-
-	/// <summary>Get the start of the range of style numbers used for end of line annotations.</summary>
-	public void EolAnnotationSetStyleOffset(int style) => WxKitNative.StyledTextCtrlEOLAnnotationSetStyleOffset(Native, style);
 
 	/// <summary>Set the end of line annotation text for a line.</summary>
 	public void EolAnnotationSetText(int line, string text) {
@@ -1485,9 +1500,6 @@ public unsafe partial class StyledTextCtrl : Control {
 		}
 	}
 
-	/// <summary>Set the visibility for the end of line annotations for a view.</summary>
-	public void EolAnnotationSetVisible(int visible) => WxKitNative.StyledTextCtrlEOLAnnotationSetVisible(Native, visible);
-
 	/// <summary>Expand a fold header and all children.</summary>
 	public void ExpandChildren(int line, int level) => WxKitNative.StyledTextCtrlExpandChildren(Native, line, level);
 
@@ -1495,27 +1507,21 @@ public unsafe partial class StyledTextCtrl : Control {
 	public int FindColumn(int line, int column) => WxKitNative.StyledTextCtrlFindColumn(Native, line, column);
 
 	/// <summary>Find some text in the document.</summary>
-	public int FindText(int minPosition, int maxPosition, string text, int flags = 0) {
+	public int FindText(int minPosition, int maxPosition, string text, StyledTextFindFlags flags = StyledTextFindFlags.None) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return WxKitNative.StyledTextCtrlFindText(Native, minPosition, maxPosition, textText, NativeString.Length(text), flags);
+			return WxKitNative.StyledTextCtrlFindText(Native, minPosition, maxPosition, textText, NativeString.Length(text), (int)flags);
 		}
 	}
 
 	/// <summary>Expand or contract all fold headers.</summary>
-	public void FoldAll(int action) => WxKitNative.StyledTextCtrlFoldAll(Native, action);
+	public void FoldAll(StyledTextFoldAction action) => WxKitNative.StyledTextCtrlFoldAll(Native, (int)action);
 
 	/// <summary>Expand or contract a fold header and its children.</summary>
-	public void FoldChildren(int line, int action) => WxKitNative.StyledTextCtrlFoldChildren(Native, line, action);
-
-	/// <summary>Get the style of fold display text.</summary>
-	public int FoldDisplayTextGetStyle() => WxKitNative.StyledTextCtrlFoldDisplayTextGetStyle(Native);
-
-	/// <summary>Set the style of fold display text.</summary>
-	public void FoldDisplayTextSetStyle(int style) => WxKitNative.StyledTextCtrlFoldDisplayTextSetStyle(Native, style);
+	public void FoldChildren(int line, StyledTextFoldAction action) => WxKitNative.StyledTextCtrlFoldChildren(Native, line, (int)action);
 
 	/// <summary>Expand or contract a fold header.</summary>
-	public void FoldLine(int line, int action) => WxKitNative.StyledTextCtrlFoldLine(Native, line, action);
+	public void FoldLine(int line, StyledTextFoldAction action) => WxKitNative.StyledTextCtrlFoldLine(Native, line, (int)action);
 
 	/// <summary>Insert a Form Feed character.</summary>
 	public void FormFeed() => WxKitNative.StyledTextCtrlFormFeed(Native);
@@ -1588,13 +1594,13 @@ public unsafe partial class StyledTextCtrl : Control {
 	public bool GetMarginSensitive(int margin) => WxKitNative.StyledTextCtrlGetMarginSensitive(Native, margin) != 0;
 
 	/// <summary>Retrieve the type of a margin.</summary>
-	public int GetMarginType(int margin) => WxKitNative.StyledTextCtrlGetMarginType(Native, margin);
+	public StyledTextMarginType GetMarginType(int margin) => (StyledTextMarginType)WxKitNative.StyledTextCtrlGetMarginType(Native, margin);
 
 	/// <summary>Retrieve the width of a margin in pixels.</summary>
 	public int GetMarginWidth(int margin) => WxKitNative.StyledTextCtrlGetMarginWidth(Native, margin);
 
 	/// <summary>Which symbol was defined for markerNumber with MarkerDefine.</summary>
-	public int GetMarkerSymbolDefined(int markerNumber) => WxKitNative.StyledTextCtrlGetMarkerSymbolDefined(Native, markerNumber);
+	public StyledTextMarkerSymbol GetMarkerSymbolDefined(int markerNumber) => (StyledTextMarkerSymbol)WxKitNative.StyledTextCtrlGetMarkerSymbolDefined(Native, markerNumber);
 
 	/// <summary>Get multi edge positions.</summary>
 	public int GetMultiEdgeColumn(int which) => WxKitNative.StyledTextCtrlGetMultiEdgeColumn(Native, which);
@@ -1736,7 +1742,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public int IndicatorGetAlpha(int indicator) => WxKitNative.StyledTextCtrlIndicatorGetAlpha(Native, indicator);
 
 	/// <summary>Retrieve the attributes of an indicator.</summary>
-	public int IndicatorGetFlags(int indicator) => WxKitNative.StyledTextCtrlIndicatorGetFlags(Native, indicator);
+	public StyledTextIndicatorFlags IndicatorGetFlags(int indicator) => (StyledTextIndicatorFlags)WxKitNative.StyledTextCtrlIndicatorGetFlags(Native, indicator);
 
 	/// <summary>Retrieve the foreground colour of an indicator.</summary>
 	public Color? IndicatorGetForeground(int indicator) => global::WxKit.Color.FromNative(WxKitNative.StyledTextCtrlIndicatorGetForeground(Native, indicator));
@@ -1745,13 +1751,13 @@ public unsafe partial class StyledTextCtrl : Control {
 	public Color? IndicatorGetHoverForeground(int indicator) => global::WxKit.Color.FromNative(WxKitNative.StyledTextCtrlIndicatorGetHoverForeground(Native, indicator));
 
 	/// <summary>Retrieve the hover style of an indicator.</summary>
-	public int IndicatorGetHoverStyle(int indicator) => WxKitNative.StyledTextCtrlIndicatorGetHoverStyle(Native, indicator);
+	public StyledTextIndicatorStyle IndicatorGetHoverStyle(int indicator) => (StyledTextIndicatorStyle)WxKitNative.StyledTextCtrlIndicatorGetHoverStyle(Native, indicator);
 
 	/// <summary>Get the alpha outline colour of the given indicator.</summary>
 	public int IndicatorGetOutlineAlpha(int indicator) => WxKitNative.StyledTextCtrlIndicatorGetOutlineAlpha(Native, indicator);
 
 	/// <summary>Retrieve the style of an indicator.</summary>
-	public int IndicatorGetStyle(int indicator) => WxKitNative.StyledTextCtrlIndicatorGetStyle(Native, indicator);
+	public StyledTextIndicatorStyle IndicatorGetStyle(int indicator) => (StyledTextIndicatorStyle)WxKitNative.StyledTextCtrlIndicatorGetStyle(Native, indicator);
 
 	/// <summary>Retrieve whether indicator drawn under or over text.</summary>
 	public bool IndicatorGetUnder(int indicator) => WxKitNative.StyledTextCtrlIndicatorGetUnder(Native, indicator) != 0;
@@ -1760,7 +1766,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void IndicatorSetAlpha(int indicator, int alpha) => WxKitNative.StyledTextCtrlIndicatorSetAlpha(Native, indicator, alpha);
 
 	/// <summary>Set the attributes of an indicator.</summary>
-	public void IndicatorSetFlags(int indicator, int flags) => WxKitNative.StyledTextCtrlIndicatorSetFlags(Native, indicator, flags);
+	public void IndicatorSetFlags(int indicator, StyledTextIndicatorFlags flags) => WxKitNative.StyledTextCtrlIndicatorSetFlags(Native, indicator, (int)flags);
 
 	/// <summary>Set the foreground colour of an indicator.</summary>
 	public void IndicatorSetForeground(int indicator, Color? fore) => WxKitNative.StyledTextCtrlIndicatorSetForeground(Native, indicator, global::WxKit.Color.ToNative(fore));
@@ -1769,13 +1775,13 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void IndicatorSetHoverForeground(int indicator, Color? fore) => WxKitNative.StyledTextCtrlIndicatorSetHoverForeground(Native, indicator, global::WxKit.Color.ToNative(fore));
 
 	/// <summary>Set a hover indicator to plain, squiggle or TT.</summary>
-	public void IndicatorSetHoverStyle(int indicator, int indicatorStyle) => WxKitNative.StyledTextCtrlIndicatorSetHoverStyle(Native, indicator, indicatorStyle);
+	public void IndicatorSetHoverStyle(int indicator, StyledTextIndicatorStyle indicatorStyle) => WxKitNative.StyledTextCtrlIndicatorSetHoverStyle(Native, indicator, (int)indicatorStyle);
 
 	/// <summary>Set the alpha outline colour of the given indicator.</summary>
 	public void IndicatorSetOutlineAlpha(int indicator, int alpha) => WxKitNative.StyledTextCtrlIndicatorSetOutlineAlpha(Native, indicator, alpha);
 
 	/// <summary>Set an indicator to plain, squiggle or TT.</summary>
-	public void IndicatorSetStyle(int indicator, int indicatorStyle) => WxKitNative.StyledTextCtrlIndicatorSetStyle(Native, indicator, indicatorStyle);
+	public void IndicatorSetStyle(int indicator, StyledTextIndicatorStyle indicatorStyle) => WxKitNative.StyledTextCtrlIndicatorSetStyle(Native, indicator, (int)indicatorStyle);
 
 	/// <summary>Set an indicator to draw under text or over(default).</summary>
 	public void IndicatorSetUnder(int indicator, bool under) => WxKitNative.StyledTextCtrlIndicatorSetUnder(Native, indicator, under ? (byte)1 : (byte)0);
@@ -1891,9 +1897,6 @@ public unsafe partial class StyledTextCtrl : Control {
 	/// <summary>Get the style number for the text margin for a line.</summary>
 	public int MarginGetStyle(int line) => WxKitNative.StyledTextCtrlMarginGetStyle(Native, line);
 
-	/// <summary>Get the start of the range of style numbers used for margin text.</summary>
-	public int MarginGetStyleOffset() => WxKitNative.StyledTextCtrlMarginGetStyleOffset(Native);
-
 	/// <summary>Get the styles in the text margin for a line.</summary>
 	public string MarginGetStyles(int line) => NativeString.Take(WxKitNative.StyledTextCtrlMarginGetStyles(Native, line));
 
@@ -1902,9 +1905,6 @@ public unsafe partial class StyledTextCtrl : Control {
 
 	/// <summary>Set the style number for the text margin for a line.</summary>
 	public void MarginSetStyle(int line, int style) => WxKitNative.StyledTextCtrlMarginSetStyle(Native, line, style);
-
-	/// <summary>Get the start of the range of style numbers used for margin text.</summary>
-	public void MarginSetStyleOffset(int style) => WxKitNative.StyledTextCtrlMarginSetStyleOffset(Native, style);
 
 	/// <summary>Set the style in the text margin for a line.</summary>
 	public void MarginSetStyles(int line, string styles) {
@@ -1935,7 +1935,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void MarkerAddSet(int line, int markerSet) => WxKitNative.StyledTextCtrlMarkerAddSet(Native, line, markerSet);
 
 	/// <summary>Set the symbol used for a particular marker number, and optionally the fore and background colours.</summary>
-	public void MarkerDefine(int markerNumber, int markerSymbol, Color? foreground = null, Color? background = null) => WxKitNative.StyledTextCtrlMarkerDefine(Native, markerNumber, markerSymbol, global::WxKit.Color.ToNative(foreground), global::WxKit.Color.ToNative(background));
+	public void MarkerDefine(int markerNumber, StyledTextMarkerSymbol markerSymbol, Color? foreground = null, Color? background = null) => WxKitNative.StyledTextCtrlMarkerDefine(Native, markerNumber, (int)markerSymbol, global::WxKit.Color.ToNative(foreground), global::WxKit.Color.ToNative(background));
 
 	/// <summary>Define a marker with a wxBitmap.</summary>
 	public void MarkerDefineBitmap(int markerNumber, Bitmap bitmap) {
@@ -2067,10 +2067,10 @@ public unsafe partial class StyledTextCtrl : Control {
 	public string PropertyNames() => NativeString.Take(WxKitNative.StyledTextCtrlPropertyNames(Native));
 
 	/// <summary>Retrieve the type of a property.</summary>
-	public int PropertyType(string name) {
+	public StyledTextPropertyType PropertyType(string name) {
 		ArgumentNullException.ThrowIfNull(name);
 		fixed (char* nameText = name) {
-			return WxKitNative.StyledTextCtrlPropertyType(Native, nameText, NativeString.Length(name));
+			return (StyledTextPropertyType)WxKitNative.StyledTextCtrlPropertyType(Native, nameText, NativeString.Length(name));
 		}
 	}
 
@@ -2168,18 +2168,18 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Find some text starting at the search anchor.</summary>
-	public int SearchNext(int searchFlags, string text) {
+	public int SearchNext(StyledTextFindFlags searchFlags, string text) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return WxKitNative.StyledTextCtrlSearchNext(Native, searchFlags, textText, NativeString.Length(text));
+			return WxKitNative.StyledTextCtrlSearchNext(Native, (int)searchFlags, textText, NativeString.Length(text));
 		}
 	}
 
 	/// <summary>Find some text starting at the search anchor and moving backwards.</summary>
-	public int SearchPrevious(int searchFlags, string text) {
+	public int SearchPrevious(StyledTextFindFlags searchFlags, string text) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return WxKitNative.StyledTextCtrlSearchPrev(Native, searchFlags, textText, NativeString.Length(text));
+			return WxKitNative.StyledTextCtrlSearchPrev(Native, (int)searchFlags, textText, NativeString.Length(text));
 		}
 	}
 
@@ -2211,7 +2211,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void SetFoldExpanded(int line, bool expanded) => WxKitNative.StyledTextCtrlSetFoldExpanded(Native, line, expanded ? (byte)1 : (byte)0);
 
 	/// <summary>Set some style options for folding.</summary>
-	public void SetFoldFlags(int flags) => WxKitNative.StyledTextCtrlSetFoldFlags(Native, flags);
+	public void SetFoldFlags(StyledTextFoldFlags flags) => WxKitNative.StyledTextCtrlSetFoldFlags(Native, (int)flags);
 
 	/// <summary>Set the fold level of a line.</summary>
 	public void SetFoldLevel(int line, int level) => WxKitNative.StyledTextCtrlSetFoldLevel(Native, line, level);
@@ -2272,7 +2272,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void SetMarginSensitive(int margin, bool sensitive) => WxKitNative.StyledTextCtrlSetMarginSensitive(Native, margin, sensitive ? (byte)1 : (byte)0);
 
 	/// <summary>Set a margin to be either numeric or symbolic.</summary>
-	public void SetMarginType(int margin, int marginType) => WxKitNative.StyledTextCtrlSetMarginType(Native, margin, marginType);
+	public void SetMarginType(int margin, StyledTextMarginType marginType) => WxKitNative.StyledTextCtrlSetMarginType(Native, margin, (int)marginType);
 
 	/// <summary>Set the width of a margin to a width expressed in pixels.</summary>
 	public void SetMarginWidth(int margin, int pixelWidth) => WxKitNative.StyledTextCtrlSetMarginWidth(Native, margin, pixelWidth);
@@ -2349,7 +2349,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Set the way the display area is determined when a particular line is to be moved to by Find, FindNext, GotoLine, etc.</summary>
-	public void SetVisiblePolicy(int visiblePolicy, int visibleSlop) => WxKitNative.StyledTextCtrlSetVisiblePolicy(Native, visiblePolicy, visibleSlop);
+	public void SetVisiblePolicy(StyledTextVisiblePolicy visiblePolicy, int visibleSlop) => WxKitNative.StyledTextCtrlSetVisiblePolicy(Native, (int)visiblePolicy, visibleSlop);
 
 	/// <summary>Set the background colour of all whitespace and whether to use this setting.</summary>
 	public void SetWhitespaceBackground(bool useSetting, Color? back) => WxKitNative.StyledTextCtrlSetWhitespaceBackground(Native, useSetting ? (byte)1 : (byte)0, global::WxKit.Color.ToNative(back));
@@ -2358,10 +2358,10 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void SetWhitespaceForeground(bool useSetting, Color? fore) => WxKitNative.StyledTextCtrlSetWhitespaceForeground(Native, useSetting ? (byte)1 : (byte)0, global::WxKit.Color.ToNative(fore));
 
 	/// <summary>Set the way the caret is kept visible when going sideways.</summary>
-	public void SetXCaretPolicy(int caretPolicy, int caretSlop) => WxKitNative.StyledTextCtrlSetXCaretPolicy(Native, caretPolicy, caretSlop);
+	public void SetXCaretPolicy(StyledTextCaretPolicy caretPolicy, int caretSlop) => WxKitNative.StyledTextCtrlSetXCaretPolicy(Native, (int)caretPolicy, caretSlop);
 
 	/// <summary>Set the way the line the caret is on is kept visible.</summary>
-	public void SetYCaretPolicy(int caretPolicy, int caretSlop) => WxKitNative.StyledTextCtrlSetYCaretPolicy(Native, caretPolicy, caretSlop);
+	public void SetYCaretPolicy(StyledTextCaretPolicy caretPolicy, int caretSlop) => WxKitNative.StyledTextCtrlSetYCaretPolicy(Native, (int)caretPolicy, caretSlop);
 
 	/// <summary>Make a range of lines visible.</summary>
 	public void ShowLines(int lineStart, int lineEnd) => WxKitNative.StyledTextCtrlShowLines(Native, lineStart, lineEnd);
@@ -2400,13 +2400,13 @@ public unsafe partial class StyledTextCtrl : Control {
 	public bool StyleGetBold(int style) => WxKitNative.StyledTextCtrlStyleGetBold(Native, style) != 0;
 
 	/// <summary>Get is a style mixed case, or to force upper or lower case.</summary>
-	public int StyleGetCase(int style) => WxKitNative.StyledTextCtrlStyleGetCase(Native, style);
+	public StyledTextCase StyleGetCase(int style) => (StyledTextCase)WxKitNative.StyledTextCtrlStyleGetCase(Native, style);
 
 	/// <summary>Get is a style changeable or not (read only).</summary>
 	public bool StyleGetChangeable(int style) => WxKitNative.StyledTextCtrlStyleGetChangeable(Native, style) != 0;
 
 	/// <summary>Get the character get of the font in a style.</summary>
-	public int StyleGetCharacterSet(int style) => WxKitNative.StyledTextCtrlStyleGetCharacterSet(Native, style);
+	public StyledTextCharacterSet StyleGetCharacterSet(int style) => (StyledTextCharacterSet)WxKitNative.StyledTextCtrlStyleGetCharacterSet(Native, style);
 
 	/// <summary>Get is a style to have its end of line filled or not.</summary>
 	public bool StyleGetEolFilled(int style) => WxKitNative.StyledTextCtrlStyleGetEOLFilled(Native, style) != 0;
@@ -2451,13 +2451,13 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void StyleSetBold(int style, bool bold) => WxKitNative.StyledTextCtrlStyleSetBold(Native, style, bold ? (byte)1 : (byte)0);
 
 	/// <summary>Set a style to be mixed case, or to force upper or lower case.</summary>
-	public void StyleSetCase(int style, int caseVisible) => WxKitNative.StyledTextCtrlStyleSetCase(Native, style, caseVisible);
+	public void StyleSetCase(int style, StyledTextCase caseVisible) => WxKitNative.StyledTextCtrlStyleSetCase(Native, style, (int)caseVisible);
 
 	/// <summary>Set a style to be changeable or not (read only).</summary>
 	public void StyleSetChangeable(int style, bool changeable) => WxKitNative.StyledTextCtrlStyleSetChangeable(Native, style, changeable ? (byte)1 : (byte)0);
 
 	/// <summary>Set the character set of the font in a style.</summary>
-	public void StyleSetCharacterSet(int style, int characterSet) => WxKitNative.StyledTextCtrlStyleSetCharacterSet(Native, style, characterSet);
+	public void StyleSetCharacterSet(int style, StyledTextCharacterSet characterSet) => WxKitNative.StyledTextCtrlStyleSetCharacterSet(Native, style, (int)characterSet);
 
 	/// <summary>Set a style to have its end of line filled or not.</summary>
 	public void StyleSetEolFilled(int style, bool eolFilled) => WxKitNative.StyledTextCtrlStyleSetEOLFilled(Native, style, eolFilled ? (byte)1 : (byte)0);
@@ -2576,7 +2576,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void UpperCase() => WxKitNative.StyledTextCtrlUpperCase(Native);
 
 	/// <summary>Set whether a pop up menu is displayed automatically when the user presses the wrong mouse button on certain areas.</summary>
-	public void UsePopUp(int popUpMode) => WxKitNative.StyledTextCtrlUsePopUp(Native, popUpMode);
+	public void UsePopUp(StyledTextPopUpMode popUpMode) => WxKitNative.StyledTextCtrlUsePopUp(Native, (int)popUpMode);
 
 	/// <summary>Display a list of strings and send notification when user chooses one.</summary>
 	public void UserListShow(int listType, string itemList) {

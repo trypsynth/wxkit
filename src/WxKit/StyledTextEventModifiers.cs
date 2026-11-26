@@ -3,6 +3,9 @@ using WxKit.Interop;
 namespace WxKit;
 
 public unsafe partial class StyledTextEvent {
+	/// <summary>Where the pointer was, in the control, for the events of dwelling and of dragging.</summary>
+	public Point MousePosition => new(WxKitNative.StyledTextEventGetX(Handle), WxKitNative.StyledTextEventGetY(Handle));
+
 	/// <summary>The modifier keys held when the event happened, such as for a click on a margin or a hotspot.</summary>
 	public KeyModifiers Modifiers => FromScintilla(WxKitNative.StyledTextEventGetModifiers(Handle));
 
