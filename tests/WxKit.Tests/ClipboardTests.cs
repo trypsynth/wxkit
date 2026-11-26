@@ -25,8 +25,8 @@ public class ClipboardTests {
 		Assert.Equal(new Size(8, 8), pasted.Size);
 		using Image? image = pasted.ConvertToImage();
 		Assert.NotNull(image);
-		Assert.Equal((byte)255, image.GetRed(4, 4));
-		Assert.Equal((byte)0, image.GetGreen(4, 4));
+		Assert.Equal((byte)255, image.GetRgb(new Point(4, 4)).R);
+		Assert.Equal((byte)0, image.GetRgb(new Point(4, 4)).G);
 	});
 
 	[Fact]

@@ -73,6 +73,16 @@ public class ControlTests {
 		Assert.Equal(new Color(255, 0, 255), image.MaskColor);
 		image.MaskColor = null;
 		Assert.False(image.HasMask);
+		// A color is a Color, and a pixel is at a Point.
+		image.SetRgb(new Rect(0, 0, 4, 4), new Color(1, 2, 3));
+		image.SetRgb(new Point(1, 1), new Color(9, 8, 7));
+		Assert.Equal(new Color(9, 8, 7), image.GetRgb(new Point(1, 1)));
+		image.Replace(new Color(1, 2, 3), new Color(4, 5, 6));
+		Assert.Equal(new Color(4, 5, 6), image.GetRgb(new Point(0, 0)));
+		using Image? wider = image.Resized(new Size(6, 4), new Point(0, 0), new Color(50, 60, 70));
+		Assert.NotNull(wider);
+		Assert.Equal(new Color(50, 60, 70), wider.GetRgb(new Point(5, 0)));
+		Assert.False(image.IsTransparent(new Point(0, 0)));
 	});
 
 	[Fact]

@@ -54,11 +54,11 @@ public class ValueTests {
 		string path = Path.Combine(Path.GetTempPath(), $"wxkit-{Guid.NewGuid():N}.png");
 		try {
 			using Image image = new(4, 4);
-			image.SetRgb(1, 2, 10, 20, 30);
+			image.SetRgb(new Point(1, 2), new Color(10, 20, 30));
 			Assert.True(image.SaveFile(path, BitmapType.Png));
 			using Image loaded = new();
 			Assert.True(loaded.LoadFile(path, BitmapType.Png));
-			Assert.Equal((byte)20, loaded.GetGreen(1, 2));
+			Assert.Equal((byte)20, loaded.GetRgb(new Point(1, 2)).G);
 		} finally {
 			File.Delete(path);
 		}

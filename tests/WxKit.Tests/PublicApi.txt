@@ -2295,6 +2295,7 @@ enum WxKit.IdleMode : int
     Specified = 1
 class WxKit.Image : NativeObject
     BitmapType Type { get; set; }
+    Color GetRgb(Point pixel)
     Color? MaskColor { get; set; }
     Image()
     Image(Size size, bool clear = true)
@@ -2308,11 +2309,11 @@ class WxKit.Image : NativeObject
     Image? ConvertToDisabled(byte brightness = 255)
     Image? ConvertToGrayscale()
     Image? ConvertToGrayscale(double weightR, double weightG, double weightB)
-    Image? ConvertToMono(byte r, byte g, byte b)
+    Image? ConvertToMono(Color white)
     Image? Copy()
     Image? GetSubImage(Rect rect)
     Image? Mirror(bool horizontally = true)
-    Image? Resized(Size size, Point position, int red = -1, int green = -1, int blue = -1)
+    Image? Resized(Size size, Point position, Color? border = null)
     Image? Rotate(double angle, Point rotationCenter, bool interpolating = true)
     Image? Rotate180()
     Image? Rotate90(bool clockwise = true)
@@ -2320,13 +2321,13 @@ class WxKit.Image : NativeObject
     ImageLoadFlags LoadFlags { get; set; }
     Size Size { get; }
     bool ConvertAlphaToMask()
-    bool ConvertAlphaToMask(byte mr, byte mg, byte mb)
+    bool ConvertAlphaToMask(Color mask)
     bool Create(Size size, bool clear = true)
     bool HasAlpha { get; }
     bool HasMask { get; }
     bool HasOption(string name)
     bool IsOk { get; }
-    bool IsTransparent(int x, int y)
+    bool IsTransparent(Point pixel)
     bool LoadFile(Stream stream, BitmapType type = BitmapType.Any, int index = -1)
     bool LoadFile(string name, BitmapType type = BitmapType.Any, int index = -1)
     bool LoadFile(string name, string mimeType, int index = -1)
@@ -2334,11 +2335,8 @@ class WxKit.Image : NativeObject
     bool SaveFile(string name)
     bool SaveFile(string name, BitmapType type)
     bool SaveFile(string name, string mimeType)
-    bool SetMaskFromImage(Image mask, byte mr, byte mg, byte mb)
-    byte GetAlpha(int x, int y)
-    byte GetBlue(int x, int y)
-    byte GetGreen(int x, int y)
-    byte GetRed(int x, int y)
+    bool SetMaskFromImage(Image mask, Color color)
+    byte GetAlpha(Point pixel)
     int GetOptionInt(string name)
     int Height { get; }
     int Width { get; }
@@ -2368,15 +2366,15 @@ class WxKit.Image : NativeObject
     void Destroy()
     void InitAlpha()
     void Paste(Image image, int x, int y, ImageAlphaBlendMode alphaBlend = ImageAlphaBlendMode.Over)
-    void Replace(byte r1, byte g1, byte b1, byte r2, byte g2, byte b2)
+    void Replace(Color from, Color to)
     void Rescale(Size size, ImageResizeQuality quality = ImageResizeQuality.Normal)
-    void Resize(Size size, Point position, int red = -1, int green = -1, int blue = -1)
+    void Resize(Size size, Point position, Color? border = null)
     void RotateHue(double angle)
-    void SetAlpha(int x, int y, byte alpha)
+    void SetAlpha(Point pixel, byte alpha)
     void SetOption(string name, int value)
     void SetOption(string name, string value)
-    void SetRgb(Rect rect, byte red, byte green, byte blue)
-    void SetRgb(int x, int y, byte r, byte g, byte b)
+    void SetRgb(Point pixel, Color color)
+    void SetRgb(Rect rect, Color color)
 enum WxKit.ImageAlphaBlendMode : int
     Compose = 1
     Over = 0

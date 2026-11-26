@@ -3934,6 +3934,42 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* ImageNewStringStringInt(char* name, nuint nameLength, char* mimeType, nuint mimeTypeLength, int index);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Image_Replace")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void ImageReplace(WxkObject* self, byte r1, byte g1, byte b1, byte r2, byte g2, byte b2);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_Resize")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void ImageResize(WxkObject* self, Size size, Point position, int red, int green, int blue);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_Size")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* ImageSize(WxkObject* self, Size size, Point position, int red, int green, int blue);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_ConvertAlphaToMask_ByteByteByte")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ImageConvertAlphaToMaskByteByteByte(WxkObject* self, byte mr, byte mg, byte mb);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_ConvertToMono")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* ImageConvertToMono(WxkObject* self, byte r, byte g, byte b);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_GetAlpha")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ImageGetAlpha(WxkObject* self, int x, int y);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_GetRed")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ImageGetRed(WxkObject* self, int x, int y);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_GetGreen")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ImageGetGreen(WxkObject* self, int x, int y);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_GetBlue")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ImageGetBlue(WxkObject* self, int x, int y);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Image_GetMaskRed")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ImageGetMaskRed(WxkObject* self);
@@ -3950,6 +3986,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ImageHasMask(WxkObject* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Image_IsTransparent")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ImageIsTransparent(WxkObject* self, int x, int y);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_SetAlpha")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void ImageSetAlpha(WxkObject* self, int x, int y, byte alpha);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Image_SetMask")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void ImageSetMask(WxkObject* self, byte hasMask);
@@ -3957,6 +4001,18 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Image_SetMaskColour")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void ImageSetMaskColour(WxkObject* self, byte red, byte green, byte blue);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_SetMaskFromImage")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ImageSetMaskFromImage(WxkObject* self, WxkObject* mask, byte mr, byte mg, byte mb);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_SetRGB_IntIntByteByteByte")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void ImageSetRGBIntIntByteByteByte(WxkObject* self, int x, int y, byte r, byte g, byte b);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_SetRGB_RectByteByteByte")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void ImageSetRGBRectByteByteByte(WxkObject* self, Rect rect, byte red, byte green, byte blue);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Image_Copy")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -3998,17 +4054,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void ImagePaste(WxkObject* self, WxkObject* image, int x, int y, int alphaBlend);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Image_Replace")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ImageReplace(WxkObject* self, byte r1, byte g1, byte b1, byte r2, byte g2, byte b2);
-
 	[LibraryImport(Library, EntryPoint = "wxk_Image_Rescale")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void ImageRescale(WxkObject* self, Size size, int quality);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_Resize")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ImageResize(WxkObject* self, Size size, Point position, int red, int green, int blue);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Image_Rotate")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4042,17 +4090,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* ImageScale(WxkObject* self, Size size, int quality);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Image_Size")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkObject* ImageSize(WxkObject* self, Size size, Point position, int red, int green, int blue);
-
 	[LibraryImport(Library, EntryPoint = "wxk_Image_ConvertAlphaToMask_Default")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ImageConvertAlphaToMaskDefault(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_ConvertAlphaToMask_ByteByteByte")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ImageConvertAlphaToMaskByteByteByte(WxkObject* self, byte mr, byte mg, byte mb);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Image_ConvertToGreyscale_DoubleDoubleDouble")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4062,10 +4102,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* ImageConvertToGreyscaleDefault(WxkObject* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Image_ConvertToMono")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkObject* ImageConvertToMono(WxkObject* self, byte r, byte g, byte b);
-
 	[LibraryImport(Library, EntryPoint = "wxk_Image_ConvertToDisabled")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* ImageConvertToDisabled(WxkObject* self, byte brightness);
@@ -4073,22 +4109,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Image_ChangeLightness")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* ImageChangeLightness(WxkObject* self, int alpha);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_GetAlpha")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ImageGetAlpha(WxkObject* self, int x, int y);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_GetRed")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ImageGetRed(WxkObject* self, int x, int y);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_GetGreen")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ImageGetGreen(WxkObject* self, int x, int y);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_GetBlue")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ImageGetBlue(WxkObject* self, int x, int y);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Image_GetOption")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4105,10 +4125,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Image_HasOption")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ImageHasOption(WxkObject* self, char* name, nuint nameLength);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_IsTransparent")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ImageIsTransparent(WxkObject* self, int x, int y);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Image_LoadFile_StringBitmapTypeInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4130,17 +4146,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ImageSaveFileString(WxkObject* self, char* name, nuint nameLength);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Image_SetAlpha")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ImageSetAlpha(WxkObject* self, int x, int y, byte alpha);
-
 	[LibraryImport(Library, EntryPoint = "wxk_Image_ClearAlpha")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void ImageClearAlpha(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_SetMaskFromImage")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ImageSetMaskFromImage(WxkObject* self, WxkObject* mask, byte mr, byte mg, byte mb);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Image_SetOption_StringString")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4149,14 +4157,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Image_SetOption_StringInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void ImageSetOptionStringInt(WxkObject* self, char* name, nuint nameLength, int value);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_SetRGB_IntIntByteByteByte")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ImageSetRGBIntIntByteByteByte(WxkObject* self, int x, int y, byte r, byte g, byte b);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_SetRGB_RectByteByteByte")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ImageSetRGBRectByteByteByte(WxkObject* self, Rect rect, byte red, byte green, byte blue);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Image_RemoveHandler")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

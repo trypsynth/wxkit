@@ -20,7 +20,7 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 - `TreeCtrl.OnCompareItems` becomes an override, as `ListCtrl.OnGetItemText` is.
 - Two-step creation: `Bitmap()` and its `Create` members become static factories, such as `Bitmap.FromDipSize`, and `Image.Create` goes.
 - Members that only repeat another:
-  - Members that take x and y alone, which would take a `Point`, such as `Image.GetRed`, `Image.SetRgb`, `DC.Blit`, `Window.WarpPointer`, and `ToolBar.SetMargins`, about 20.
+  - Members that take x and y alone, which would take a `Point`, such as `DC.Blit`, `Image.Paste`, `Window.WarpPointer`, and `ToolBar.SetMargins`, about 12.
   - `KeyEvent.RawControlDown()` and `MouseEvent`'s, once `KeyModifiers` has a member for the Control key of a Mac, where `Control` is Command.
   - The styled text control's `Text` beside `Value`, `TextLength` beside `LastPosition`, and `CurrentPos` beside `InsertionPoint`, if one of each should go. Its `ClearAll` could be `Clear`, as `TextCtrl`'s is.
 - Zero members of flags enums that aren't a class's styles, which make `HasFlag` always true, if they should go as the styles' did: `Alignment.Left` and `Top`, `DragFlags.CopyOnly`, `NavigationFlags.Backward`, `SizeFlags.UseExisting`, and `Default` of `WebViewFindFlags` and `WebViewPrintFlags`. `Direction` and `Orientation` have no `None`.
@@ -32,7 +32,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
   - The print dialog's `Enable` members, which have no getters bound.
 - A window's style is one property of the class's own style enum, rather than `WindowStyle`, `WindowStyleFlag`, `SetWindowStyle`, and `HasFlag` taking three types.
 - The item controls, `Choice`, `ComboBox`, `ListBox`, and `CheckListBox`, have one constructor each, with optional items and a style, and share an `IItemContainer` interface rather than repeating its members. Their item data has one name.
-- `Image`'s colors given as three bytes, as `SetRgb`, `Replace`, and `ConvertToMono` take them, are `Color`s.
 - `ListCtrl` items, `TreeItemId`, `TreeListItem`, and `DataViewItem` can't be made from a number outside WxKit, which could crash the control.
 
 ## The hand-written classes

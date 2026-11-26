@@ -74,6 +74,10 @@ internal static class Internals {
 		tweaks.Class("wxTreebook").Ignore("GetSelection");
 		tweaks.Class("wxImage").Internal("GetMaskRed", "GetMaskGreen", "GetMaskBlue", "SetMaskColour", "HasMask", "SetMask");
 		tweaks.Class("wxWindow").Internal("GetToolTipText", "UnsetToolTip");
+		// An image's members that take a color as three bytes, or a pixel as x and y, are written
+		// by hand, in ImageColors.cs, to take a Color and a Point.
+		tweaks.Class("wxImage").Internal("GetRed", "GetGreen", "GetBlue", "GetAlpha", "SetAlpha", "SetRGB", "IsTransparent", "Replace", "ConvertToMono", "SetMaskFromImage", "Resize", "Size")
+			.InternalOverload("ConvertAlphaToMask", "mr", "unsigned char");
 		// GetItem and GetColumn, written by hand, return the item they fill.
 		tweaks.Class("wxListCtrl").Internal("GetItem", "GetColumn");
 		// ShowWindowModalAsync, written by hand, gives what the dialog returned as a task's result.

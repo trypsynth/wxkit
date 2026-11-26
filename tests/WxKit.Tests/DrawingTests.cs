@@ -16,9 +16,9 @@ public class DrawingTests {
 		}
 		using Image? image = bitmap.ConvertToImage();
 		Assert.NotNull(image);
-		Assert.Equal((byte)255, image.GetRed(5, 5));
-		Assert.Equal((byte)0, image.GetGreen(5, 5));
-		Assert.Equal((byte)255, image.GetGreen(15, 5));
+		Assert.Equal((byte)255, image.GetRgb(new Point(5, 5)).R);
+		Assert.Equal((byte)0, image.GetRgb(new Point(5, 5)).G);
+		Assert.Equal((byte)255, image.GetRgb(new Point(15, 5)).G);
 	});
 
 	[Fact]

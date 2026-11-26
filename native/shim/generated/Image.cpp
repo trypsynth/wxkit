@@ -36,6 +36,42 @@ WXK_FUNCTION(wxk_Object*) wxk_Image_new_StringStringInt(const char16_t* name, si
 	});
 }
 
+WXK_FUNCTION(void) wxk_Image_Replace(wxk_Object* self, uint8_t r1, uint8_t g1, uint8_t b1, uint8_t r2, uint8_t g2, uint8_t b2) noexcept {
+	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->Replace(static_cast<unsigned char>(r1), static_cast<unsigned char>(g1), static_cast<unsigned char>(b1), static_cast<unsigned char>(r2), static_cast<unsigned char>(g2), static_cast<unsigned char>(b2)); });
+}
+
+WXK_FUNCTION(void) wxk_Image_Resize(wxk_Object* self, wxk_Size size, wxk_Point position, int32_t red, int32_t green, int32_t blue) noexcept {
+	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->Resize(wxk::FromSize(size), wxk::FromPoint(position), static_cast<int>(red), static_cast<int>(green), static_cast<int>(blue)); });
+}
+
+WXK_FUNCTION(wxk_Object*) wxk_Image_Size(wxk_Object* self, wxk_Size size, wxk_Point position, int32_t red, int32_t green, int32_t blue) noexcept {
+	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxImage>(static_cast<wxImage*>(wxk::Unwrap(self))->Size(wxk::FromSize(size), wxk::FromPoint(position), static_cast<int>(red), static_cast<int>(green), static_cast<int>(blue))); });
+}
+
+WXK_FUNCTION(uint8_t) wxk_Image_ConvertAlphaToMask_ByteByteByte(wxk_Object* self, uint8_t mr, uint8_t mg, uint8_t mb) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->ConvertAlphaToMask(static_cast<unsigned char>(mr), static_cast<unsigned char>(mg), static_cast<unsigned char>(mb))) ? 1 : 0; });
+}
+
+WXK_FUNCTION(wxk_Object*) wxk_Image_ConvertToMono(wxk_Object* self, uint8_t r, uint8_t g, uint8_t b) noexcept {
+	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxImage>(static_cast<wxImage*>(wxk::Unwrap(self))->ConvertToMono(static_cast<unsigned char>(r), static_cast<unsigned char>(g), static_cast<unsigned char>(b))); });
+}
+
+WXK_FUNCTION(uint8_t) wxk_Image_GetAlpha(wxk_Object* self, int32_t x, int32_t y) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return static_cast<uint8_t>(static_cast<wxImage*>(wxk::Unwrap(self))->GetAlpha(static_cast<int>(x), static_cast<int>(y))); });
+}
+
+WXK_FUNCTION(uint8_t) wxk_Image_GetRed(wxk_Object* self, int32_t x, int32_t y) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return static_cast<uint8_t>(static_cast<wxImage*>(wxk::Unwrap(self))->GetRed(static_cast<int>(x), static_cast<int>(y))); });
+}
+
+WXK_FUNCTION(uint8_t) wxk_Image_GetGreen(wxk_Object* self, int32_t x, int32_t y) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return static_cast<uint8_t>(static_cast<wxImage*>(wxk::Unwrap(self))->GetGreen(static_cast<int>(x), static_cast<int>(y))); });
+}
+
+WXK_FUNCTION(uint8_t) wxk_Image_GetBlue(wxk_Object* self, int32_t x, int32_t y) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return static_cast<uint8_t>(static_cast<wxImage*>(wxk::Unwrap(self))->GetBlue(static_cast<int>(x), static_cast<int>(y))); });
+}
+
 WXK_FUNCTION(uint8_t) wxk_Image_GetMaskRed(wxk_Object* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return static_cast<uint8_t>(static_cast<wxImage*>(wxk::Unwrap(self))->GetMaskRed()); });
 }
@@ -52,12 +88,32 @@ WXK_FUNCTION(uint8_t) wxk_Image_HasMask(wxk_Object* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->HasMask()) ? 1 : 0; });
 }
 
+WXK_FUNCTION(uint8_t) wxk_Image_IsTransparent(wxk_Object* self, int32_t x, int32_t y) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->IsTransparent(static_cast<int>(x), static_cast<int>(y))) ? 1 : 0; });
+}
+
+WXK_FUNCTION(void) wxk_Image_SetAlpha(wxk_Object* self, int32_t x, int32_t y, uint8_t alpha) noexcept {
+	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->SetAlpha(static_cast<int>(x), static_cast<int>(y), static_cast<unsigned char>(alpha)); });
+}
+
 WXK_FUNCTION(void) wxk_Image_SetMask(wxk_Object* self, uint8_t hasMask) noexcept {
 	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->SetMask(hasMask != 0); });
 }
 
 WXK_FUNCTION(void) wxk_Image_SetMaskColour(wxk_Object* self, uint8_t red, uint8_t green, uint8_t blue) noexcept {
 	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->SetMaskColour(static_cast<unsigned char>(red), static_cast<unsigned char>(green), static_cast<unsigned char>(blue)); });
+}
+
+WXK_FUNCTION(uint8_t) wxk_Image_SetMaskFromImage(wxk_Object* self, const wxk_Object* mask, uint8_t mr, uint8_t mg, uint8_t mb) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->SetMaskFromImage(wxk::ValueOf<wxImage>(mask), static_cast<unsigned char>(mr), static_cast<unsigned char>(mg), static_cast<unsigned char>(mb))) ? 1 : 0; });
+}
+
+WXK_FUNCTION(void) wxk_Image_SetRGB_IntIntByteByteByte(wxk_Object* self, int32_t x, int32_t y, uint8_t r, uint8_t g, uint8_t b) noexcept {
+	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->SetRGB(static_cast<int>(x), static_cast<int>(y), static_cast<unsigned char>(r), static_cast<unsigned char>(g), static_cast<unsigned char>(b)); });
+}
+
+WXK_FUNCTION(void) wxk_Image_SetRGB_RectByteByteByte(wxk_Object* self, wxk_Rect rect, uint8_t red, uint8_t green, uint8_t blue) noexcept {
+	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->SetRGB(wxk::FromRect(rect), static_cast<unsigned char>(red), static_cast<unsigned char>(green), static_cast<unsigned char>(blue)); });
 }
 
 WXK_FUNCTION(wxk_Object*) wxk_Image_Copy(wxk_Object* self) noexcept {
@@ -100,16 +156,8 @@ WXK_FUNCTION(void) wxk_Image_Paste(wxk_Object* self, const wxk_Object* image, in
 	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->Paste(wxk::ValueOf<wxImage>(image), static_cast<int>(x), static_cast<int>(y), static_cast<wxImageAlphaBlendMode>(alphaBlend)); });
 }
 
-WXK_FUNCTION(void) wxk_Image_Replace(wxk_Object* self, uint8_t r1, uint8_t g1, uint8_t b1, uint8_t r2, uint8_t g2, uint8_t b2) noexcept {
-	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->Replace(static_cast<unsigned char>(r1), static_cast<unsigned char>(g1), static_cast<unsigned char>(b1), static_cast<unsigned char>(r2), static_cast<unsigned char>(g2), static_cast<unsigned char>(b2)); });
-}
-
 WXK_FUNCTION(void) wxk_Image_Rescale(wxk_Object* self, wxk_Size size, int32_t quality) noexcept {
 	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->Rescale(wxk::FromSize(size), static_cast<wxImageResizeQuality>(quality)); });
-}
-
-WXK_FUNCTION(void) wxk_Image_Resize(wxk_Object* self, wxk_Size size, wxk_Point position, int32_t red, int32_t green, int32_t blue) noexcept {
-	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->Resize(wxk::FromSize(size), wxk::FromPoint(position), static_cast<int>(red), static_cast<int>(green), static_cast<int>(blue)); });
 }
 
 WXK_FUNCTION(wxk_Object*) wxk_Image_Rotate(wxk_Object* self, double angle, wxk_Point rotationCenter, uint8_t interpolating) noexcept {
@@ -144,16 +192,8 @@ WXK_FUNCTION(wxk_Object*) wxk_Image_Scale(wxk_Object* self, wxk_Size size, int32
 	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxImage>(static_cast<wxImage*>(wxk::Unwrap(self))->Scale(wxk::FromSize(size), static_cast<wxImageResizeQuality>(quality))); });
 }
 
-WXK_FUNCTION(wxk_Object*) wxk_Image_Size(wxk_Object* self, wxk_Size size, wxk_Point position, int32_t red, int32_t green, int32_t blue) noexcept {
-	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxImage>(static_cast<wxImage*>(wxk::Unwrap(self))->Size(wxk::FromSize(size), wxk::FromPoint(position), static_cast<int>(red), static_cast<int>(green), static_cast<int>(blue))); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_Image_ConvertAlphaToMask_Default(wxk_Object* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->ConvertAlphaToMask()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Image_ConvertAlphaToMask_ByteByteByte(wxk_Object* self, uint8_t mr, uint8_t mg, uint8_t mb) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->ConvertAlphaToMask(static_cast<unsigned char>(mr), static_cast<unsigned char>(mg), static_cast<unsigned char>(mb))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(wxk_Object*) wxk_Image_ConvertToGreyscale_DoubleDoubleDouble(wxk_Object* self, double weightR, double weightG, double weightB) noexcept {
@@ -164,32 +204,12 @@ WXK_FUNCTION(wxk_Object*) wxk_Image_ConvertToGreyscale_Default(wxk_Object* self)
 	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxImage>(static_cast<wxImage*>(wxk::Unwrap(self))->ConvertToGreyscale()); });
 }
 
-WXK_FUNCTION(wxk_Object*) wxk_Image_ConvertToMono(wxk_Object* self, uint8_t r, uint8_t g, uint8_t b) noexcept {
-	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxImage>(static_cast<wxImage*>(wxk::Unwrap(self))->ConvertToMono(static_cast<unsigned char>(r), static_cast<unsigned char>(g), static_cast<unsigned char>(b))); });
-}
-
 WXK_FUNCTION(wxk_Object*) wxk_Image_ConvertToDisabled(wxk_Object* self, uint8_t brightness) noexcept {
 	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxImage>(static_cast<wxImage*>(wxk::Unwrap(self))->ConvertToDisabled(static_cast<unsigned char>(brightness))); });
 }
 
 WXK_FUNCTION(wxk_Object*) wxk_Image_ChangeLightness(wxk_Object* self, int32_t alpha) noexcept {
 	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxImage>(static_cast<wxImage*>(wxk::Unwrap(self))->ChangeLightness(static_cast<int>(alpha))); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Image_GetAlpha(wxk_Object* self, int32_t x, int32_t y) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return static_cast<uint8_t>(static_cast<wxImage*>(wxk::Unwrap(self))->GetAlpha(static_cast<int>(x), static_cast<int>(y))); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Image_GetRed(wxk_Object* self, int32_t x, int32_t y) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return static_cast<uint8_t>(static_cast<wxImage*>(wxk::Unwrap(self))->GetRed(static_cast<int>(x), static_cast<int>(y))); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Image_GetGreen(wxk_Object* self, int32_t x, int32_t y) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return static_cast<uint8_t>(static_cast<wxImage*>(wxk::Unwrap(self))->GetGreen(static_cast<int>(x), static_cast<int>(y))); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Image_GetBlue(wxk_Object* self, int32_t x, int32_t y) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return static_cast<uint8_t>(static_cast<wxImage*>(wxk::Unwrap(self))->GetBlue(static_cast<int>(x), static_cast<int>(y))); });
 }
 
 WXK_FUNCTION(wxk_String*) wxk_Image_GetOption(wxk_Object* self, const char16_t* name, size_t nameLength) noexcept {
@@ -206,10 +226,6 @@ WXK_FUNCTION(wxk_Object*) wxk_Image_GetSubImage(wxk_Object* self, wxk_Rect rect)
 
 WXK_FUNCTION(uint8_t) wxk_Image_HasOption(wxk_Object* self, const char16_t* name, size_t nameLength) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->HasOption(wxk::FromUtf16(name, nameLength))) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Image_IsTransparent(wxk_Object* self, int32_t x, int32_t y) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->IsTransparent(static_cast<int>(x), static_cast<int>(y))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Image_LoadFile_StringBitmapTypeInt(wxk_Object* self, const char16_t* name, size_t nameLength, int32_t type, int32_t index) noexcept {
@@ -232,16 +248,8 @@ WXK_FUNCTION(uint8_t) wxk_Image_SaveFile_String(wxk_Object* self, const char16_t
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->SaveFile(wxk::FromUtf16(name, nameLength))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_Image_SetAlpha(wxk_Object* self, int32_t x, int32_t y, uint8_t alpha) noexcept {
-	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->SetAlpha(static_cast<int>(x), static_cast<int>(y), static_cast<unsigned char>(alpha)); });
-}
-
 WXK_FUNCTION(void) wxk_Image_ClearAlpha(wxk_Object* self) noexcept {
 	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->ClearAlpha(); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Image_SetMaskFromImage(wxk_Object* self, const wxk_Object* mask, uint8_t mr, uint8_t mg, uint8_t mb) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->SetMaskFromImage(wxk::ValueOf<wxImage>(mask), static_cast<unsigned char>(mr), static_cast<unsigned char>(mg), static_cast<unsigned char>(mb))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(void) wxk_Image_SetOption_StringString(wxk_Object* self, const char16_t* name, size_t nameLength, const char16_t* value, size_t valueLength) noexcept {
@@ -250,14 +258,6 @@ WXK_FUNCTION(void) wxk_Image_SetOption_StringString(wxk_Object* self, const char
 
 WXK_FUNCTION(void) wxk_Image_SetOption_StringInt(wxk_Object* self, const char16_t* name, size_t nameLength, int32_t value) noexcept {
 	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->SetOption(wxk::FromUtf16(name, nameLength), static_cast<int>(value)); });
-}
-
-WXK_FUNCTION(void) wxk_Image_SetRGB_IntIntByteByteByte(wxk_Object* self, int32_t x, int32_t y, uint8_t r, uint8_t g, uint8_t b) noexcept {
-	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->SetRGB(static_cast<int>(x), static_cast<int>(y), static_cast<unsigned char>(r), static_cast<unsigned char>(g), static_cast<unsigned char>(b)); });
-}
-
-WXK_FUNCTION(void) wxk_Image_SetRGB_RectByteByteByte(wxk_Object* self, wxk_Rect rect, uint8_t red, uint8_t green, uint8_t blue) noexcept {
-	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->SetRGB(wxk::FromRect(rect), static_cast<unsigned char>(red), static_cast<unsigned char>(green), static_cast<unsigned char>(blue)); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Image_RemoveHandler(const char16_t* name, size_t nameLength) noexcept {

@@ -15,8 +15,8 @@ public class ImageStreamTests {
 		using Image loaded = new();
 		Assert.True(loaded.LoadFile(saved));
 		Assert.Equal(new Size(4, 3), loaded.Size);
-		Assert.Equal((byte)200, loaded.GetRed(1, 2));
-		Assert.Equal((byte)100, loaded.GetGreen(3, 0));
+		Assert.Equal((byte)200, loaded.GetRgb(new Point(1, 2)).R);
+		Assert.Equal((byte)100, loaded.GetRgb(new Point(3, 0)).G);
 		Assert.Equal(saved.Length, saved.Position);
 	});
 
@@ -41,7 +41,7 @@ public class ImageStreamTests {
 		saved.Position = 0;
 		using Image loaded = new();
 		Assert.True(loaded.LoadFile(saved, BitmapType.Bmp));
-		Assert.Equal((byte)200, loaded.GetRed(1, 2));
+		Assert.Equal((byte)200, loaded.GetRgb(new Point(1, 2)).R);
 	});
 
 	[Fact]
@@ -69,7 +69,7 @@ public class ImageStreamTests {
 		using BufferedStream buffered = new(new MemoryStream(png.ToArray()));
 		using Image fromStream = new();
 		Assert.True(fromStream.LoadFile(buffered));
-		Assert.Equal((byte)100, fromStream.GetGreen(3, 0));
+		Assert.Equal((byte)100, fromStream.GetRgb(new Point(3, 0)).G);
 	});
 
 	[Fact]
@@ -86,8 +86,8 @@ public class ImageStreamTests {
 
 	private static Image Pattern() {
 		Image image = new(4, 3);
-		image.SetRgb(1, 2, 200, 0, 0);
-		image.SetRgb(3, 0, 0, 100, 0);
+		image.SetRgb(new Point(1, 2), new Color(200, 0, 0));
+		image.SetRgb(new Point(3, 0), new Color(0, 100, 0));
 		return image;
 	}
 }
