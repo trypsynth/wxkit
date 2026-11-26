@@ -312,6 +312,10 @@ WXK_FUNCTION(void) wxk_Window_SetAccessibleRows(wxk_Window* window, const wxk_Ac
 // Tells screen readers which row, by its index, is the current one, or none for -1.
 WXK_FUNCTION(void) wxk_Window_SetAccessibleCurrentRow(wxk_Window* window, int64_t row) WXK_NOEXCEPT;
 
+// Makes a sizer with a dialog's standard buttons, such as wxOK | wxCANCEL, in the platform's
+// order, which the caller owns until a sizer takes it. The buttons are the dialog's children.
+WXK_FUNCTION(wxk_Sizer*) wxk_Dialog_CreateStdDialogButtonSizer(wxk_Window* dialog, int64_t flags) WXK_NOEXCEPT;
+
 // Live regions
 
 // Gets a window ready to announce through, and returns whether announcements can work, which on

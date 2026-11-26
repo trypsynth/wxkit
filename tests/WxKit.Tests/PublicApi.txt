@@ -1297,6 +1297,7 @@ static class WxKit.Desktop
 class WxKit.Dialog : TopLevelWindow, IDisposable
     Dialog(Window? parent, string title, int id = -1, Point? position = null, Size? size = null, DialogStyle style = DialogStyle.Default)
     IReadOnlyList<int> MainButtonIds { get; }
+    StdDialogButtonSizer CreateStdDialogButtonSizer(DialogButtons buttons)
     Task<int> ShowWindowModalAsync()
     Window? ContentWindow { get; }
     bool IsMainButtonId(int id)

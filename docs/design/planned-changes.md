@@ -46,7 +46,7 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 Porting the samples to F# found these, which F# makes more of than C# does:
 
 - `DataViewTreeModel<T>` knows its items by reference, so an F# record, which changes by being copied, is a new item each time it changes. It could take an `IEqualityComparer<T>`, so an item is known by a key, such as an id, and `NotifyItemChanged` with a changed copy keeps the copy.
-- `Dialog.CreateStdDialogButtonSizer`, which gives a dialog OK and Cancel, or the other standard buttons, in the platform's order, isn't bound, since it returns a sizer the caller owns until a sizer takes it, so each sample makes the buttons itself. It could give the sizer as a sizer the caller adds.
+- The samples make their dialogs' buttons themselves, and could use `Dialog.CreateStdDialogButtonSizer`.
 
 ## Considered and not planned
 

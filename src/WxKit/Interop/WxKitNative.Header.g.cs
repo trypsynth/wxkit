@@ -270,6 +270,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void WindowSetAccessibleCurrentRow(WxkWindow* window, long row);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Dialog_CreateStdDialogButtonSizer")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkSizer* DialogCreateStdDialogButtonSizer(WxkWindow* dialog, long flags);
+
 	// Live regions
 
 	[LibraryImport(Library, EntryPoint = "wxk_LiveRegion_Prepare")]

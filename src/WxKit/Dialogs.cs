@@ -25,6 +25,13 @@ public unsafe partial class Dialog : IDisposable {
 		return closed.Task;
 	}
 
+	/// <summary>
+	/// Makes a sizer with the dialog's standard buttons, in the platform's order, with the usual
+	/// one the default. Add it to the dialog's sizer. The buttons close the dialog as their ids
+	/// say, such as <see cref="StandardId.Ok"/>. Wraps CreateStdDialogButtonSizer.
+	/// </summary>
+	public StdDialogButtonSizer CreateStdDialogButtonSizer(DialogButtons buttons) => new(WxKitNative.DialogCreateStdDialogButtonSizer(Native, (long)buttons));
+
 	/// <summary>Destroys the dialog, unless wxWidgets already has.</summary>
 	public void Dispose() {
 		if (!IsDestroyed) Destroy();

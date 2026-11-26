@@ -21,3 +21,10 @@ WXK_FUNCTION(wxk_Window*) wxk_WindowList_Item(const wxk_WindowList* list, size_t
 WXK_FUNCTION(void) wxk_WindowList_Free(wxk_WindowList* list) noexcept {
 	delete reinterpret_cast<wxk::WindowList*>(list);
 }
+
+WXK_FUNCTION(wxk_Sizer*) wxk_Dialog_CreateStdDialogButtonSizer(wxk_Window* dialog, int64_t flags) noexcept {
+	return wxk::Guard<wxk_Sizer*>(nullptr, [&] {
+		wxSizer* created = static_cast<wxDialog*>(wxk::Unwrap(dialog))->CreateStdDialogButtonSizer(static_cast<long>(flags));
+		return wxk::Wrap(created);
+	});
+}

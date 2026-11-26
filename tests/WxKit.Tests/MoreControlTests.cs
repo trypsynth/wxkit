@@ -12,6 +12,20 @@ public class MoreControlTests {
 		dialog.Destroy();
 	});
 
+	// A dialog makes its standard buttons, in the platform's order, as a sizer to add.
+	[Fact]
+	public Task MakesADialogsStandardButtons() => Gui.WithFrame(frame => {
+		using Dialog dialog = new(frame, "Buttons");
+		StdDialogButtonSizer buttons = dialog.CreateStdDialogButtonSizer(DialogButtons.Ok | DialogButtons.Cancel);
+		Assert.Equal(StandardId.Ok, buttons.AffirmativeButton?.Id);
+		Assert.Equal(StandardId.Cancel, buttons.CancelButton?.Id);
+		Assert.Null(buttons.ApplyButton);
+		BoxSizer column = new(Orientation.Vertical);
+		column.Add(buttons, SizerFlags.Default.Expand());
+		dialog.Sizer = column;
+		Assert.NotNull(dialog.FindWindow(StandardId.Ok));
+	});
+
 	// A progress dialog shows how far a task has got, and says whether the user canceled it.
 	[Fact]
 	public Task ShowsProgress() => Gui.WithFrame(frame => {
