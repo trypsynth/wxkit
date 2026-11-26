@@ -98,21 +98,6 @@ public unsafe partial class PrintDialogData : NativeObject {
 		set => WxKitNative.PrintDialogDataSetToPage(Native, value);
 	}
 
-	/// <summary>Allows or disallows selecting printing the "Current Page" in the dialog.</summary>
-	public void EnableCurrentPage(bool flag) => WxKitNative.PrintDialogDataEnableCurrentPage(Native, flag ? (byte)1 : (byte)0);
-
-	/// <summary>Enables or disables the "Help" button.</summary>
-	public void EnableHelp(bool flag) => WxKitNative.PrintDialogDataEnableHelp(Native, flag ? (byte)1 : (byte)0);
-
-	/// <summary>Enables or disables the "Page numbers" controls.</summary>
-	public void EnablePageNumbers(bool flag) => WxKitNative.PrintDialogDataEnablePageNumbers(Native, flag ? (byte)1 : (byte)0);
-
-	/// <summary>Enables or disables the "Print to file" checkbox.</summary>
-	public void EnablePrintToFile(bool flag) => WxKitNative.PrintDialogDataEnablePrintToFile(Native, flag ? (byte)1 : (byte)0);
-
-	/// <summary>Enables or disables the "Selection" radio button.</summary>
-	public void EnableSelection(bool flag) => WxKitNative.PrintDialogDataEnableSelection(Native, flag ? (byte)1 : (byte)0);
-
 	private static WxkObject* CreateNative() {
 		Application.VerifyAccess();
 		return WxKitNative.PrintDialogDataNewDefault();

@@ -81,3 +81,35 @@ public unsafe partial class CalendarCtrl {
 		set => WxKitNative.CalendarCtrlSetHolidayColours(Native, WxKitNative.CalendarCtrlGetHolidayColourFg(Native), Color.ToNative(value));
 	}
 }
+
+public unsafe partial class PrintDialogData {
+	/// <summary>Whether the dialog lets the user print to a file.</summary>
+	public bool EnablePrintToFile {
+		get => WxKitNative.PrintDialogDataGetEnable(Native, 0) != 0;
+		set => WxKitNative.PrintDialogDataEnablePrintToFile(Native, value ? (byte)1 : (byte)0);
+	}
+
+	/// <summary>Whether the dialog lets the user print only what is selected.</summary>
+	public bool EnableSelection {
+		get => WxKitNative.PrintDialogDataGetEnable(Native, 1) != 0;
+		set => WxKitNative.PrintDialogDataEnableSelection(Native, value ? (byte)1 : (byte)0);
+	}
+
+	/// <summary>Whether the dialog lets the user print only the current page.</summary>
+	public bool EnableCurrentPage {
+		get => WxKitNative.PrintDialogDataGetEnable(Native, 2) != 0;
+		set => WxKitNative.PrintDialogDataEnableCurrentPage(Native, value ? (byte)1 : (byte)0);
+	}
+
+	/// <summary>Whether the dialog lets the user choose which pages to print.</summary>
+	public bool EnablePageNumbers {
+		get => WxKitNative.PrintDialogDataGetEnable(Native, 3) != 0;
+		set => WxKitNative.PrintDialogDataEnablePageNumbers(Native, value ? (byte)1 : (byte)0);
+	}
+
+	/// <summary>Whether the dialog has a Help button.</summary>
+	public bool EnableHelp {
+		get => WxKitNative.PrintDialogDataGetEnable(Native, 4) != 0;
+		set => WxKitNative.PrintDialogDataEnableHelp(Native, value ? (byte)1 : (byte)0);
+	}
+}

@@ -13,6 +13,10 @@ public class PrintingTests {
 		using PrintDialogData dialog = new() { MinPage = 1, MaxPage = 9, FromPage = 2, ToPage = 4 };
 		dialog.PrintData = print;
 		Assert.Equal((2, 4), (dialog.FromPage, dialog.ToPage));
+		dialog.EnableSelection = true;
+		dialog.EnablePageNumbers = false;
+		Assert.True(dialog.EnableSelection);
+		Assert.False(dialog.EnablePageNumbers);
 		Assert.Equal(PrintOrientation.Landscape, dialog.PrintData?.Orientation);
 		using PageSetupDialogData setup = new() { EnableHelp = false };
 		Assert.False(setup.EnableHelp);

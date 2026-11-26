@@ -3438,6 +3438,11 @@ class WxKit.PrintDialogData : NativeObject
     bool AllPages { get; set; }
     bool Collate { get; set; }
     bool CurrentPage { get; set; }
+    bool EnableCurrentPage { get; set; }
+    bool EnableHelp { get; set; }
+    bool EnablePageNumbers { get; set; }
+    bool EnablePrintToFile { get; set; }
+    bool EnableSelection { get; set; }
     bool IsOk { get; }
     bool PrintToFile { get; set; }
     bool Selection { get; set; }
@@ -3448,11 +3453,6 @@ class WxKit.PrintDialogData : NativeObject
     int MaxPageRanges { get; set; }
     int MinPage { get; set; }
     int ToPage { get; set; }
-    void EnableCurrentPage(bool flag)
-    void EnableHelp(bool flag)
-    void EnablePageNumbers(bool flag)
-    void EnablePrintToFile(bool flag)
-    void EnableSelection(bool flag)
 enum WxKit.PrintMode : int
     File = 2
     None = 0

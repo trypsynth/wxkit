@@ -236,6 +236,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void CredentialEntryDialogSetPassword(WxkWindow* dialog, char* password, nuint passwordLength);
 
+	[LibraryImport(Library, EntryPoint = "wxk_PrintDialogData_GetEnable")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte PrintDialogDataGetEnable(WxkObject* data, int part);
+
 	[LibraryImport(Library, EntryPoint = "wxk_PrintPreview_Show")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* PrintPreviewShow(WxkObject* printout, WxkObject* printoutForPrinting, WxkObject* data, WxkWindow* parent, char* title, nuint titleLength, Size size);

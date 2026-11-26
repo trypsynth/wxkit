@@ -19,6 +19,9 @@ internal static class Printing {
 		tweaks.Class("wxPageSetupDialogData").Property("PaperKind", "GetPaperId", "SetPaperId");
 		// The page setup dialog's Enable setters pair with GetEnable getters, as properties of the same name.
 		foreach (string part in (string[])["Help", "Margins", "Orientation", "Paper", "Printer"]) tweaks.Class("wxPageSetupDialogData").Property("Enable" + part, "GetEnable" + part, "Enable" + part);
+		// The print dialog's have getters too, which the interface headers leave out, so its
+		// properties are written by hand, in PairedProperties.cs.
+		tweaks.Class("wxPrintDialogData").Internal("EnablePrintToFile", "EnableSelection", "EnableCurrentPage", "EnablePageNumbers", "EnableHelp");
 		foreach (string owned in (string[])["wxPrinter", "wxPrintDialog", "wxPageSetupDialog"]) tweaks.Class(owned, value => value.Owned());
 		// The hand-written Printout makes a director, whose callbacks it gives, and draws on the DC it
 		// reads while a page prints. wxWidgets starts each copy's document before .NET's OnBeginDocument

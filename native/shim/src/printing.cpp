@@ -16,3 +16,16 @@ WXK_FUNCTION(wxk_Window*) wxk_PrintPreview_Show(wxk_Object* printout, wxk_Object
 		return wxk::Wrap(static_cast<wxWindow*>(frame));
 	});
 }
+
+WXK_FUNCTION(uint8_t) wxk_PrintDialogData_GetEnable(wxk_Object* data, int32_t part) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t {
+		auto* dialogData = static_cast<wxPrintDialogData*>(wxk::Unwrap(data));
+		switch (part) {
+			case 0: return dialogData->GetEnablePrintToFile() ? 1 : 0;
+			case 1: return dialogData->GetEnableSelection() ? 1 : 0;
+			case 2: return dialogData->GetEnableCurrentPage() ? 1 : 0;
+			case 3: return dialogData->GetEnablePageNumbers() ? 1 : 0;
+			default: return dialogData->GetEnableHelp() ? 1 : 0;
+		}
+	});
+}

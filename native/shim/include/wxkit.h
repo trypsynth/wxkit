@@ -271,6 +271,11 @@ WXK_FUNCTION(void) wxk_CredentialEntryDialog_SetUserName(wxk_Window* dialog, con
 WXK_FUNCTION(wxk_String*) wxk_CredentialEntryDialog_GetPassword(wxk_Window* dialog) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_CredentialEntryDialog_SetPassword(wxk_Window* dialog, const char16_t* password, size_t passwordLength) WXK_NOEXCEPT;
 
+// Whether a print dialog lets the user use one of its parts: 0 for printing to a file, 1 for the
+// selection, 2 for the current page, 3 for page numbers, and 4 for help. The interface headers
+// leave these getters out, so they aren't generated.
+WXK_FUNCTION(uint8_t) wxk_PrintDialogData_GetEnable(wxk_Object* data, int32_t part) WXK_NOEXCEPT;
+
 // Shows a preview of printout in a frame of its own, and returns the frame, or null when the
 // preview could not be made. The preview takes the printouts, and deletes them when it closes.
 WXK_FUNCTION(wxk_Window*) wxk_PrintPreview_Show(wxk_Object* printout, wxk_Object* printoutForPrinting, wxk_Object* data, wxk_Window* parent, const char16_t* title, size_t titleLength, wxk_Size size) WXK_NOEXCEPT;
