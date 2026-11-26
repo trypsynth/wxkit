@@ -670,10 +670,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void CheckBoxSet3StateValue(WxkWindow* self, int state);
 
-	[LibraryImport(Library, EntryPoint = "wxk_CheckListBox_new_WindowIntPointSize")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkWindow* CheckListBoxNewWindowIntPointSize(WxkWindow* parent, int id, Point position, Size size);
-
 	[LibraryImport(Library, EntryPoint = "wxk_CheckListBox_new_WindowIntPointSizeStringsListBoxStyle")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* CheckListBoxNewWindowIntPointSizeStringsListBoxStyle(WxkWindow* parent, int id, Point position, Size size, WxkStringArray* choices, long style);
@@ -693,10 +689,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_ChildFocusEvent_GetWindow")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* ChildFocusEventGetWindow(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Choice_new_WindowIntPointSize")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkWindow* ChoiceNewWindowIntPointSize(WxkWindow* parent, int id, Point position, Size size);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Choice_new_WindowIntPointSizeStringsChoiceStyle")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -937,10 +929,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_ColorPickerEvent_GetColour")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkColor ColorPickerEventGetColour(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ComboBox_new_WindowIntStringPointSize")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkWindow* ComboBoxNewWindowIntStringPointSize(WxkWindow* parent, int id, char* value, nuint valueLength, Point position, Size size);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ComboBox_new_WindowIntStringPointSizeStringsComboBoxStyle")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4301,10 +4289,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_KeyEvent_HasModifiers")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte KeyEventHasModifiers(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ListBox_new_WindowIntPointSize")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkWindow* ListBoxNewWindowIntPointSize(WxkWindow* parent, int id, Point position, Size size);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListBox_new_WindowIntPointSizeStringsListBoxStyle")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

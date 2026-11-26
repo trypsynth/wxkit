@@ -7,11 +7,7 @@ namespace WxKit;
 /// <summary>A choice item is used to select one of a list of strings. Wraps wxChoice.</summary>
 public unsafe partial class Choice : Control {
 	/// <summary>Constructor, creating and showing a choice.</summary>
-	public Choice(Window parent, int id = StandardId.Any, Point? position = null, Size? size = null) : this(CreateNative(parent, id, position, size)) {
-	}
-
-	/// <summary>Constructor, creating and showing a choice.</summary>
-	public Choice(Window parent, IEnumerable<string> choices, int id = StandardId.Any, Point? position = null, Size? size = null, ChoiceStyle style = ChoiceStyle.None) : this(CreateNative(parent, choices, id, position, size, style)) {
+	public Choice(Window parent, IEnumerable<string>? choices = null, int id = StandardId.Any, Point? position = null, Size? size = null, ChoiceStyle style = ChoiceStyle.None) : this(CreateNative(parent, choices, id, position, size, style)) {
 	}
 
 	internal Choice(WxkWindow* native) : base(native) {
@@ -156,16 +152,9 @@ public unsafe partial class Choice : Control {
 		}
 	}
 
-	private static WxkWindow* CreateNative(Window parent, int id, Point? position, Size? size) {
+	private static WxkWindow* CreateNative(Window parent, IEnumerable<string>? choices, int id, Point? position, Size? size, ChoiceStyle style) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(parent);
-		return WxKitNative.ChoiceNewWindowIntPointSize((WxkWindow*)parent.Native, id, position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default);
-	}
-
-	private static WxkWindow* CreateNative(Window parent, IEnumerable<string> choices, int id, Point? position, Size? size, ChoiceStyle style) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(parent);
-		ArgumentNullException.ThrowIfNull(choices);
 		using NativeStringArray choicesNative = new(choices);
 		return WxKitNative.ChoiceNewWindowIntPointSizeStringsChoiceStyle((WxkWindow*)parent.Native, id, position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default, choicesNative.Handle, (long)style);
 	}

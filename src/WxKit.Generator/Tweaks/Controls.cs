@@ -23,6 +23,8 @@ internal static class Controls {
 		// An item's data is an object, which the control deletes with the item. Detaching it would
 		// leave no one to free it.
 		foreach (string container in (string[])["wxControlWithItems", "wxChoice", "wxComboBox", "wxListBox"]) tweaks.Class(container).Ignore("DetachClientObject");
+		// Each has one constructor, whose list of items can be left out, and filled later.
+		foreach (string items in (string[])["wxChoice", "wxComboBox", "wxListBox", "wxCheckListBox"]) tweaks.Class(items).OptionalItems();
 		// Null removes the search control's menu. Its documentation lists only its search events, but
 		// every port sends a text event as it's typed in, as a text control does, which filtering as the
 		// user types needs.

@@ -225,6 +225,15 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		// out, as wxBannerWindow(parent, dir) is beside the one that adds the id, position, size, and
 		// style, since a call such as new BannerWindow(parent) could mean either.
 		constructors.RemoveAll(shorter => constructors.Any(longer => !ReferenceEquals(longer, shorter) && Extends(longer, shorter)));
+		// With a list of items that can be left out, so is the constructor that has no list, whose
+		// parameters are among the other's. What it defaults, the other does too.
+		if (bound.Tweak.HasOptionalItems) {
+			foreach (BoundFunction shorter in constructors.ToArray()) {
+				if (constructors.FirstOrDefault(longer => !ReferenceEquals(longer, shorter) && Includes(longer, shorter)) is not BoundFunction longer) continue;
+				longer.ManagedParameters = [.. longer.ManagedParameters.Select(parameter => parameter.Default is null && shorter.ManagedParameters.FirstOrDefault(other => other.Name == parameter.Name)?.Default is string value ? parameter with { Default = value } : parameter)];
+				constructors.Remove(shorter);
+			}
+		}
 		bound.Constructors.AddRange(constructors);
 		PairProperties(bound, [.. functions.Where(static function => !function.IsConstructor)]);
 		RemoveRedeclarations(bound);
@@ -365,6 +374,11 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 				managedDefault = "null";
 				nullable = true;
 			}
+			// An item control can be made empty and filled later, so its list of items can be left out.
+			if (isConstructor && owner.Tweak.HasOptionalItems && managedDefault is null && conversion is StringArrayConversion) {
+				managedDefault = "null";
+				nullable = true;
+			}
 			// wxWidgets abbreviates both a column and a color as col, and only a number is a column.
 			string managedName = owner.Tweak.ParameterNames.GetValueOrDefault((member.Name, parameter.Name)) ?? (parameter.Name == "col" && parameter.Type.Contains("wxColour", StringComparison.Ordinal) ? "color" : Naming.Parameter(parameter.Name));
 			parameters.Add(new BoundParameter(parameter.Name, managedName, conversion, nullable, managedDefault));
@@ -414,7 +428,10 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		}
 		// C# needs every parameter after an optional one to be optional too, so the required ones
 		// move first, keeping their order, as wxChoice's list moves ahead of its id and position.
-		return [.. ordered.Where(static parameter => parameter.Default is null), .. ordered.Where(static parameter => parameter.Default is not null)];
+		// A list of items that can be left out stays ahead of the rest that can, as it is what a
+		// call most often gives.
+		static bool IsItems(BoundParameter parameter) => parameter is { Conversion: StringArrayConversion, Default: "null" };
+		return [.. ordered.Where(static parameter => parameter.Default is null), .. ordered.Where(IsItems), .. ordered.Where(static parameter => parameter.Default is not null && !IsItems(parameter))];
 	}
 
 	// What a hand-written callback gives back through a pointer or a reference: text, a long, an
@@ -872,6 +889,23 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		int shared = 0;
 		while (words.All(found => found.Length > shared + 1 && found[shared] == words[0][shared])) shared++;
 		return shared;
+	}
+
+	// Whether every parameter of one constructor is among another's, in order, and the rest of the
+	// other's can be left out.
+	private static bool Includes(BoundFunction longer, BoundFunction shorter) {
+		IReadOnlyList<BoundParameter> all = longer.ManagedParameters;
+		if (all.Count <= shorter.ManagedParameters.Count) return false;
+		int next = 0;
+		foreach (BoundParameter parameter in shorter.ManagedParameters) {
+			while (next < all.Count && (all[next].Name != parameter.Name || all[next].Conversion.ManagedType(all[next].Nullable) != parameter.Conversion.ManagedType(parameter.Nullable))) {
+				if (all[next].Default is null) return false;
+				next++;
+			}
+			if (next == all.Count) return false;
+			next++;
+		}
+		return all.Skip(next).All(static parameter => parameter.Default is not null);
 	}
 
 	private static bool Extends(BoundFunction longer, BoundFunction shorter) {

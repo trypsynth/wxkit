@@ -426,6 +426,14 @@ internal sealed class ClassTweak(string name) {
 		return this;
 	}
 
+	/// <summary>Whether a constructor's list of items can be left out, as an item control's can, which is made empty and filled later.</summary>
+	public bool HasOptionalItems { get; private set; }
+
+	public ClassTweak OptionalItems() {
+		HasOptionalItems = true;
+		return this;
+	}
+
 	public ClassTweak NoConstructors() {
 		HasConstructors = false;
 		return this;

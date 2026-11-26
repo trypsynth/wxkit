@@ -7,11 +7,7 @@ namespace WxKit;
 /// <summary>A wxCheckListBox is like a wxListBox, but allows items to be checked or unchecked. Wraps wxCheckListBox.</summary>
 public unsafe partial class CheckListBox : ListBox {
 	/// <summary>Constructor, creating and showing a list box.</summary>
-	public CheckListBox(Window parent, int id = StandardId.Any, Point? position = null, Size? size = null) : this(CreateNative(parent, id, position, size)) {
-	}
-
-	/// <summary>Constructor, creating and showing a list box.</summary>
-	public CheckListBox(Window parent, IEnumerable<string> choices, int id = StandardId.Any, Point? position = null, Size? size = null, ListBoxStyle style = ListBoxStyle.None) : this(CreateNative(parent, choices, id, position, size, style)) {
+	public CheckListBox(Window parent, IEnumerable<string>? choices = null, int id = StandardId.Any, Point? position = null, Size? size = null, ListBoxStyle style = ListBoxStyle.None) : this(CreateNative(parent, choices, id, position, size, style)) {
 	}
 
 	internal CheckListBox(WxkWindow* native) : base(native) {
@@ -32,16 +28,9 @@ public unsafe partial class CheckListBox : ListBox {
 	/// <summary>Returns true if the given item is checked, false otherwise.</summary>
 	public bool IsChecked(int item) => WxKitNative.CheckListBoxIsChecked(Native, checked((uint)item)) != 0;
 
-	private static WxkWindow* CreateNative(Window parent, int id, Point? position, Size? size) {
+	private static WxkWindow* CreateNative(Window parent, IEnumerable<string>? choices, int id, Point? position, Size? size, ListBoxStyle style) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(parent);
-		return WxKitNative.CheckListBoxNewWindowIntPointSize((WxkWindow*)parent.Native, id, position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default);
-	}
-
-	private static WxkWindow* CreateNative(Window parent, IEnumerable<string> choices, int id, Point? position, Size? size, ListBoxStyle style) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(parent);
-		ArgumentNullException.ThrowIfNull(choices);
 		using NativeStringArray choicesNative = new(choices);
 		return WxKitNative.CheckListBoxNewWindowIntPointSizeStringsListBoxStyle((WxkWindow*)parent.Native, id, position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default, choicesNative.Handle, (long)style);
 	}

@@ -237,7 +237,6 @@ WXK_FUNCTION(void) wxk_CheckBox_Set3StateValue(wxk_Window* self, int32_t state) 
 
 // wxCheckListBox
 
-WXK_FUNCTION(wxk_Window*) wxk_CheckListBox_new_WindowIntPointSize(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_CheckListBox_new_WindowIntPointSizeStringsListBoxStyle(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, const wxk_StringArray* choices, int64_t style) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_CheckListBox_Check(wxk_Window* self, uint32_t item, uint8_t check) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_CheckListBox_IsChecked(wxk_Window* self, uint32_t item) WXK_NOEXCEPT;
@@ -249,7 +248,6 @@ WXK_FUNCTION(wxk_Window*) wxk_ChildFocusEvent_GetWindow(wxk_Event* self) WXK_NOE
 
 // wxChoice
 
-WXK_FUNCTION(wxk_Window*) wxk_Choice_new_WindowIntPointSize(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_Choice_new_WindowIntPointSizeStringsChoiceStyle(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, const wxk_StringArray* choices, int64_t style) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Choice_FindString(wxk_Window* self, const char16_t* text, size_t textLength, uint8_t caseSensitive) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_Choice_GetString(wxk_Window* self, uint32_t index) WXK_NOEXCEPT;
@@ -343,7 +341,6 @@ WXK_FUNCTION(wxk_Colour) wxk_ColorPickerEvent_GetColour(wxk_Event* self) WXK_NOE
 
 // wxComboBox
 
-WXK_FUNCTION(wxk_Window*) wxk_ComboBox_new_WindowIntStringPointSize(wxk_Window* parent, int32_t id, const char16_t* value, size_t valueLength, wxk_Point position, wxk_Size size) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_ComboBox_new_WindowIntStringPointSizeStringsComboBoxStyle(wxk_Window* parent, int32_t id, const char16_t* value, size_t valueLength, wxk_Point position, wxk_Size size, const wxk_StringArray* choices, int64_t style) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ComboBox_GetSelection_OutLongOutLong(wxk_Window* self, int64_t* from, int64_t* to) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ComboBox_SetSelection_IntInt(wxk_Window* self, int32_t from, int32_t to) WXK_NOEXCEPT;
@@ -1355,7 +1352,6 @@ WXK_FUNCTION(uint8_t) wxk_KeyEvent_HasModifiers(wxk_Event* self) WXK_NOEXCEPT;
 
 // wxListBox
 
-WXK_FUNCTION(wxk_Window*) wxk_ListBox_new_WindowIntPointSize(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_ListBox_new_WindowIntPointSizeStringsListBoxStyle(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, const wxk_StringArray* choices, int64_t style) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListBox_Deselect(wxk_Window* self, int32_t index) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListBox_SetStringSelection_StringBool(wxk_Window* self, const char16_t* s, size_t sLength, uint8_t select) WXK_NOEXCEPT;

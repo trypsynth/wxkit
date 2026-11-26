@@ -885,11 +885,12 @@ internal sealed class StringArrayConversion : Conversion {
 
 	public override IEnumerable<string> InteropParameters(string name) => [$"WxkStringArray* {name}"];
 
-	public override string ManagedType(bool nullable) => "IEnumerable<string>";
+	public override string ManagedType(bool nullable) => nullable ? "IEnumerable<string>?" : "IEnumerable<string>";
 
 	public override string ManagedReturnType(bool nullable) => "string[]";
 
-	public override string? Check(string name, bool nullable) => $"ArgumentNullException.ThrowIfNull({name});";
+	// A list that can be left out is null, which NativeStringArray makes empty.
+	public override string? Check(string name, bool nullable) => nullable ? null : $"ArgumentNullException.ThrowIfNull({name});";
 
 	public override string? Prepare(string name) => $"using NativeStringArray {Native(name)} = new({name});";
 

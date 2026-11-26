@@ -627,8 +627,7 @@ enum WxKit.CheckBoxState : int
     ThreeState = 4096
     TwoState = 16384
 class WxKit.CheckListBox : ListBox
-    CheckListBox(Window parent, IEnumerable<string> choices, int id = -1, Point? position = null, Size? size = null, ListBoxStyle style = ListBoxStyle.None)
-    CheckListBox(Window parent, int id = -1, Point? position = null, Size? size = null)
+    CheckListBox(Window parent, IEnumerable<string>? choices = null, int id = -1, Point? position = null, Size? size = null, ListBoxStyle style = ListBoxStyle.None)
     IReadOnlyList<int> CheckedItems { get; }
     bool IsChecked(int item)
     event EventHandler<CommandEvent>? ItemCheckedChanged
@@ -636,8 +635,7 @@ class WxKit.CheckListBox : ListBox
 class WxKit.ChildFocusEvent : CommandEvent
     Window? Window { get; }
 class WxKit.Choice : Control
-    Choice(Window parent, IEnumerable<string> choices, int id = -1, Point? position = null, Size? size = null, ChoiceStyle style = ChoiceStyle.None)
-    Choice(Window parent, int id = -1, Point? position = null, Size? size = null)
+    Choice(Window parent, IEnumerable<string>? choices = null, int id = -1, Point? position = null, Size? size = null, ChoiceStyle style = ChoiceStyle.None)
     IReadOnlyList<string> Strings { get; }
     bool HasClientData { get; }
     bool HasClientObjectData { get; }
@@ -767,8 +765,7 @@ class WxKit.ColorPickerCtrl : PickerBase
 class WxKit.ColorPickerEvent : CommandEvent
     Color? Color { get; }
 class WxKit.ComboBox : Control
-    ComboBox(Window parent, string value = "", int id = -1, Point? position = null, Size? size = null)
-    ComboBox(Window parent, string value, IEnumerable<string> choices, int id = -1, Point? position = null, Size? size = null, ComboBoxStyle style = ComboBoxStyle.None)
+    ComboBox(Window parent, string value = "", IEnumerable<string>? choices = null, int id = -1, Point? position = null, Size? size = null, ComboBoxStyle style = ComboBoxStyle.None)
     IReadOnlyList<string> Strings { get; }
     Point Margins { get; set; }
     bool AutoComplete(IEnumerable<string> choices)
@@ -2644,8 +2641,7 @@ enum WxKit.ListArrangement : int
 class WxKit.ListBox : Control
     IReadOnlyList<int> Selections { get; }
     IReadOnlyList<string> Strings { get; }
-    ListBox(Window parent, IEnumerable<string> choices, int id = -1, Point? position = null, Size? size = null, ListBoxStyle style = ListBoxStyle.None)
-    ListBox(Window parent, int id = -1, Point? position = null, Size? size = null)
+    ListBox(Window parent, IEnumerable<string>? choices = null, int id = -1, Point? position = null, Size? size = null, ListBoxStyle style = ListBoxStyle.None)
     bool HasClientData { get; }
     bool HasClientObjectData { get; }
     bool HasClientUntypedData { get; }

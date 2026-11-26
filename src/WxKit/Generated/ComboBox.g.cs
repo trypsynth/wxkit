@@ -7,11 +7,7 @@ namespace WxKit;
 /// <summary>A combobox is like a combination of an edit control and a listbox. Wraps wxComboBox.</summary>
 public unsafe partial class ComboBox : Control {
 	/// <summary>Constructor, creating and showing a combobox.</summary>
-	public ComboBox(Window parent, string value = "", int id = StandardId.Any, Point? position = null, Size? size = null) : this(CreateNative(parent, value, id, position, size)) {
-	}
-
-	/// <summary>Constructor, creating and showing a combobox.</summary>
-	public ComboBox(Window parent, string value, IEnumerable<string> choices, int id = StandardId.Any, Point? position = null, Size? size = null, ComboBoxStyle style = ComboBoxStyle.None) : this(CreateNative(parent, value, choices, id, position, size, style)) {
+	public ComboBox(Window parent, string value = "", IEnumerable<string>? choices = null, int id = StandardId.Any, Point? position = null, Size? size = null, ComboBoxStyle style = ComboBoxStyle.None) : this(CreateNative(parent, value, choices, id, position, size, style)) {
 	}
 
 	internal ComboBox(WxkWindow* native) : base(native) {
@@ -329,20 +325,10 @@ public unsafe partial class ComboBox : Control {
 		}
 	}
 
-	private static WxkWindow* CreateNative(Window parent, string value, int id, Point? position, Size? size) {
+	private static WxkWindow* CreateNative(Window parent, string value, IEnumerable<string>? choices, int id, Point? position, Size? size, ComboBoxStyle style) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(parent);
 		ArgumentNullException.ThrowIfNull(value);
-		fixed (char* valueText = value) {
-			return WxKitNative.ComboBoxNewWindowIntStringPointSize((WxkWindow*)parent.Native, id, valueText, NativeString.Length(value), position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default);
-		}
-	}
-
-	private static WxkWindow* CreateNative(Window parent, string value, IEnumerable<string> choices, int id, Point? position, Size? size, ComboBoxStyle style) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(parent);
-		ArgumentNullException.ThrowIfNull(value);
-		ArgumentNullException.ThrowIfNull(choices);
 		using NativeStringArray choicesNative = new(choices);
 		fixed (char* valueText = value) {
 			return WxKitNative.ComboBoxNewWindowIntStringPointSizeStringsComboBoxStyle((WxkWindow*)parent.Native, id, valueText, NativeString.Length(value), position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default, choicesNative.Handle, (long)style);

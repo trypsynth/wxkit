@@ -112,6 +112,15 @@ public class ControlTests {
 		// wxChoice(parent, id, pos, size, int n, const wxString choices[]) is bound without n.
 		Choice empty = new(frame);
 		Assert.Equal(0, empty.Count);
+		// The list can be left out, so a control made empty can still be given a style.
+		ListBox several = new(frame, style: ListBoxStyle.Multiple);
+		Assert.True(several.HasMultipleSelection);
+		several.Append(["One", "Two"]);
+		Assert.Equal(2, several.Count);
+		ComboBox combo = new(frame, style: ComboBoxStyle.ReadOnly);
+		Assert.Equal(string.Empty, combo.Value);
+		ComboBox filled = new(frame, "Two", ["One", "Two"]);
+		Assert.Equal(2, filled.Count);
 	});
 
 	// Windows checks spelling in a rich text control, and macOS in a multi-line one. Linux would

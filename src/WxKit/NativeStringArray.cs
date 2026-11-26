@@ -4,11 +4,11 @@ namespace WxKit;
 
 // A wxArrayString built from managed strings for the length of one call, and freed after it.
 internal readonly unsafe ref struct NativeStringArray {
-	public NativeStringArray(IEnumerable<string> items) {
-		ArgumentNullException.ThrowIfNull(items);
+	// Null is no strings, for a list a caller can leave out. One that can't is checked before this.
+	public NativeStringArray(IEnumerable<string>? items) {
 		Handle = WxKitNative.StringArrayNew();
 		try {
-			foreach (string item in items) {
+			foreach (string item in items ?? []) {
 				ArgumentNullException.ThrowIfNull(item, nameof(items));
 				fixed (char* text = item) WxKitNative.StringArrayAdd(Handle, text, NativeString.Length(item));
 			}
