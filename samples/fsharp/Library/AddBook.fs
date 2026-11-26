@@ -29,10 +29,7 @@ let ask (parent: Window) =
     let yearLabel = new StaticText(dialog, "&Year:")
     let year = new SpinCtrl(dialog, min = 1450, max = DateTime.Now.Year, initial = DateTime.Now.Year)
     // OK and Cancel, in the order and with the labels the platform uses.
-    let buttons = new StdDialogButtonSizer()
-    buttons.AddButton(new Button(dialog, id = StandardId.Ok))
-    buttons.AddButton(new Button(dialog, id = StandardId.Cancel))
-    buttons.Realize()
+    let buttons = dialog.CreateStdDialogButtonSizer(DialogButtons.Ok ||| DialogButtons.Cancel)
     dialog.Sizer <-
         column {
             form {

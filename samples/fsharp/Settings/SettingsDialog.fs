@@ -93,10 +93,7 @@ type SettingsDialog(parent: Window, settings: AppSettings) as this =
         pages.AddPage(notifications, tr "Notifications") |> ignore
         // OK and Cancel, in the order and with the labels the platform uses, which wxWidgets
         // translates itself.
-        let buttons = new StdDialogButtonSizer()
-        buttons.AddButton(new Button(this, id = StandardId.Ok))
-        buttons.AddButton(new Button(this, id = StandardId.Cancel))
-        buttons.Realize()
+        let buttons = this.CreateStdDialogButtonSizer(DialogButtons.Ok ||| DialogButtons.Cancel)
         this.Sizer <-
             column {
                 item pages |> grow

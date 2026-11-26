@@ -4,26 +4,9 @@ These are changes WxKit wants that need code changes, so they're for 0.2.0, as [
 
 Most of these are patterns, which a change to the generator's rules fixes everywhere at once, rather than a member at a time. A review of the whole API on 2026-11-23 found most of them.
 
-## The generator's naming
+## Planned
 
-
-## Types
-
-
-## Members that go
-
-
-## Members that have a better form now
-
-
-## The hand-written classes
-
-
-## What the F# samples found
-
-Porting the samples to F# found these, which F# makes more of than C# does:
-
-- The samples make their dialogs' buttons themselves, and could use `Dialog.CreateStdDialogButtonSizer`.
+Nothing is waiting. Every change the review found is made on `master`, and listed in [the first preview's notes](../releases/0.2.0-preview.1.md).
 
 ## Considered and not planned
 

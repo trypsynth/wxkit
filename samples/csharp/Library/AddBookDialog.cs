@@ -25,10 +25,7 @@ internal sealed class AddBookDialog : Dialog {
 		BoxSizer sizer = new(Orientation.Vertical);
 		sizer.Add(form, SizerFlags.Default.Expand().Border());
 		// OK and Cancel, in the order and with the labels the platform uses.
-		StdDialogButtonSizer buttons = new();
-		buttons.AddButton(new Button(this, id: StandardId.Ok));
-		buttons.AddButton(new Button(this, id: StandardId.Cancel));
-		buttons.Realize();
+		StdDialogButtonSizer buttons = CreateStdDialogButtonSizer(DialogButtons.Ok | DialogButtons.Cancel);
 		sizer.Add(buttons, SizerFlags.Default.Expand().Border(Direction.Left | Direction.Right | Direction.Bottom));
 		Sizer = sizer;
 		Fit();

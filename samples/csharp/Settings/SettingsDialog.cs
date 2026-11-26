@@ -70,10 +70,7 @@ internal sealed class SettingsDialog : Dialog {
 		pages.AddPage(notifications, _("Notifications"));
 		// OK and Cancel, in the order and with the labels the platform uses, which wxWidgets
 		// translates itself.
-		StdDialogButtonSizer buttons = new();
-		buttons.AddButton(new Button(this, id: StandardId.Ok));
-		buttons.AddButton(new Button(this, id: StandardId.Cancel));
-		buttons.Realize();
+		StdDialogButtonSizer buttons = CreateStdDialogButtonSizer(DialogButtons.Ok | DialogButtons.Cancel);
 		BoxSizer sizer = new(Orientation.Vertical);
 		sizer.Add(pages, new SizerFlags(1).Expand().Border());
 		sizer.Add(buttons, SizerFlags.Default.Expand().Border(Direction.Left | Direction.Right | Direction.Bottom));
