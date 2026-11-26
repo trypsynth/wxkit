@@ -8,11 +8,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 
 A second review of the whole API on 2026-11-26, before the first preview, found these. The earlier review's changes are made, and listed in [the first preview's notes](../releases/0.2.0-preview.1.md).
 
-### Loading that can fail
-
-- `Icon` and `Cursor` still load from a file through a constructor, or `Icon()` and `LoadFile`, which give an object that isn't usable when loading fails. They get `FromFile`, as `Bitmap` and `Image` have.
-- `TreeItemId` and `TreeListItem` say there is no item with `IsOk`. `TreeCtrl.Selection`, `RootItem`, `GetItemParent`, `GetNextSibling`, and the like could return null instead.
-
 ### Getters and setters that aren't properties, and booleans without Is
 
 - Methods that take nothing and return a boolean: `CheckBox.Is3State` and `Is3rdStateAllowedForUser`, `UpdateUIEvent.Is3State`, `ListCtrl.InReportView`, `IdleEvent.MoreRequested`, `Window.InheritsBackgroundColor` and `InheritsForegroundColor`, and `TopLevelWindow.OsxIsModified`. `3State` is `ThreeState`, as the style is.

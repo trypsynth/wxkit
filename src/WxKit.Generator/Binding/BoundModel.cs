@@ -134,10 +134,10 @@ internal sealed class BoundFunction(BoundClass owner, DoxygenMember source, Conv
 	public Conversion Returns { get; } = returns;
 
 	/// <summary>Whether the object returned can be null, as a pointer can, unless a tweak says it never is.</summary>
-	public bool ReturnsNullable => Returns is ObjectConversion or AnyObjectConversion && !Owner.Tweak.NonNullReturns.Contains(Source.Name);
+	public bool ReturnsNullable => Returns is ObjectConversion or AnyObjectConversion or ItemIdConversion { NullWhenNone: true } && !Owner.Tweak.NonNullReturns.Contains(Source.Name);
 
 	/// <summary>The managed expression for the value returned, which says it isn't null when it never is.</summary>
-	public string ManagedReturn(string expression) => Returns is ObjectConversion && !ReturnsNullable ? Returns.ManagedReturn(expression) + "!" : Returns.ManagedReturn(expression);
+	public string ManagedReturn(string expression) => Returns is ItemIdConversion item && ReturnsNullable ? item.ManagedReturnOrNull(expression) : Returns is ObjectConversion && !ReturnsNullable ? Returns.ManagedReturn(expression) + "!" : Returns.ManagedReturn(expression);
 
 	/// <summary>In the order the C++ function takes them.</summary>
 	public IReadOnlyList<BoundParameter> Parameters { get; } = parameters;

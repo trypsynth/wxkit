@@ -21,12 +21,12 @@ public unsafe partial class TreeCtrl : Control {
 	public TextCtrl? EditControl => ObjectRegistry.Wrap<TextCtrl>(WxKitNative.TreeCtrlGetEditControl(Native));
 
 	/// <summary>Returns the first visible item.</summary>
-	public TreeItemId FirstVisibleItem => new global::WxKit.TreeItemId(WxKitNative.TreeCtrlGetFirstVisibleItem(Native));
+	public TreeItemId? FirstVisibleItem => global::WxKit.TreeItemId.OrNull(WxKitNative.TreeCtrlGetFirstVisibleItem(Native));
 
 	/// <summary>Returns the item last clicked or otherwise selected.</summary>
-	public TreeItemId FocusedItem {
-		get => new global::WxKit.TreeItemId(WxKitNative.TreeCtrlGetFocusedItem(Native));
-		set => WxKitNative.TreeCtrlSetFocusedItem(Native, value.Value);
+	public TreeItemId? FocusedItem {
+		get => global::WxKit.TreeItemId.OrNull(WxKitNative.TreeCtrlGetFocusedItem(Native));
+		set => WxKitNative.TreeCtrlSetFocusedItem(Native, (value?.Value ?? 0));
 	}
 
 	/// <summary>Return true if the control has any images associated with it.</summary>
@@ -54,10 +54,10 @@ public unsafe partial class TreeCtrl : Control {
 	}
 
 	/// <summary>Returns the root item for the tree control.</summary>
-	public TreeItemId RootItem => new global::WxKit.TreeItemId(WxKitNative.TreeCtrlGetRootItem(Native));
+	public TreeItemId? RootItem => global::WxKit.TreeItemId.OrNull(WxKitNative.TreeCtrlGetRootItem(Native));
 
 	/// <summary>Returns the selection, or an invalid item if there is no selection.</summary>
-	public TreeItemId Selection => new global::WxKit.TreeItemId(WxKitNative.TreeCtrlGetSelection(Native));
+	public TreeItemId? Selection => global::WxKit.TreeItemId.OrNull(WxKitNative.TreeCtrlGetSelection(Native));
 
 	/// <summary>Fills the array of tree items passed in with the currently selected items.</summary>
 	public IReadOnlyList<TreeItemId> Selections => NativeNumbers.TakeTreeItems(WxKitNative.TreeCtrlGetSelections(Native));
@@ -280,7 +280,7 @@ public unsafe partial class TreeCtrl : Control {
 	public int GetItemImage(TreeItemId item, TreeItemIcon which = TreeItemIcon.Normal) => WxKitNative.TreeCtrlGetItemImage(Native, item.Value, (int)which);
 
 	/// <summary>Returns the item's parent.</summary>
-	public TreeItemId GetItemParent(TreeItemId item) => new global::WxKit.TreeItemId(WxKitNative.TreeCtrlGetItemParent(Native, item.Value));
+	public TreeItemId? GetItemParent(TreeItemId item) => global::WxKit.TreeItemId.OrNull(WxKitNative.TreeCtrlGetItemParent(Native, item.Value));
 
 	/// <summary>Gets the specified item state.</summary>
 	public int GetItemState(TreeItemId item) => WxKitNative.TreeCtrlGetItemState(Native, item.Value);
@@ -292,19 +292,19 @@ public unsafe partial class TreeCtrl : Control {
 	public Color? GetItemTextColor(TreeItemId item) => global::WxKit.Color.FromNative(WxKitNative.TreeCtrlGetItemTextColour(Native, item.Value));
 
 	/// <summary>Returns the last child of the item (or an invalid tree item if this item has no children).</summary>
-	public TreeItemId GetLastChild(TreeItemId item) => new global::WxKit.TreeItemId(WxKitNative.TreeCtrlGetLastChild(Native, item.Value));
+	public TreeItemId? GetLastChild(TreeItemId item) => global::WxKit.TreeItemId.OrNull(WxKitNative.TreeCtrlGetLastChild(Native, item.Value));
 
 	/// <summary>Returns the next sibling of the specified item; call GetPrevSibling() for the previous sibling.</summary>
-	public TreeItemId GetNextSibling(TreeItemId item) => new global::WxKit.TreeItemId(WxKitNative.TreeCtrlGetNextSibling(Native, item.Value));
+	public TreeItemId? GetNextSibling(TreeItemId item) => global::WxKit.TreeItemId.OrNull(WxKitNative.TreeCtrlGetNextSibling(Native, item.Value));
 
 	/// <summary>Returns the next visible item or an invalid item if this item is the last visible one.</summary>
-	public TreeItemId GetNextVisible(TreeItemId item) => new global::WxKit.TreeItemId(WxKitNative.TreeCtrlGetNextVisible(Native, item.Value));
+	public TreeItemId? GetNextVisible(TreeItemId item) => global::WxKit.TreeItemId.OrNull(WxKitNative.TreeCtrlGetNextVisible(Native, item.Value));
 
 	/// <summary>Returns the previous sibling of the specified item; call GetNextSibling() for the next sibling.</summary>
-	public TreeItemId GetPreviousSibling(TreeItemId item) => new global::WxKit.TreeItemId(WxKitNative.TreeCtrlGetPrevSibling(Native, item.Value));
+	public TreeItemId? GetPreviousSibling(TreeItemId item) => global::WxKit.TreeItemId.OrNull(WxKitNative.TreeCtrlGetPrevSibling(Native, item.Value));
 
 	/// <summary>Returns the previous visible item or an invalid item if this item is the first visible one.</summary>
-	public TreeItemId GetPreviousVisible(TreeItemId item) => new global::WxKit.TreeItemId(WxKitNative.TreeCtrlGetPrevVisible(Native, item.Value));
+	public TreeItemId? GetPreviousVisible(TreeItemId item) => global::WxKit.TreeItemId.OrNull(WxKitNative.TreeCtrlGetPrevVisible(Native, item.Value));
 
 	/// <summary>Inserts an item after a given one (previous).</summary>
 	public TreeItemId InsertItem(TreeItemId parent, TreeItemId previous, string text, int image = -1, int selectedImage = -1, object? data = null) {

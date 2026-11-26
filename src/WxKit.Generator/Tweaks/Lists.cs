@@ -3,6 +3,11 @@ namespace WxKit.Generator.Tweaks;
 // Lists and trees, data views, and the controls made of others that show them.
 internal static class Lists {
 	public static void Apply(Binding.Tweaks tweaks) {
+		// A tree gives null where there is no item, but what adds an item always gives one, as
+		// does the tree list's root, which it has from the start.
+		tweaks.Class("wxTreeCtrl").NonNullReturn("AddRoot", "AppendItem", "InsertItem", "PrependItem");
+		tweaks.Class("wxTreeListCtrl").NonNullReturn("AppendItem", "InsertItem", "PrependItem", "GetRootItem");
+		tweaks.Class("wxGenericDirCtrl").NonNullReturn("GetRootId");
 		// A virtual list asks for each row as it shows it, through members C# overrides. A getter
 		// that can fail returns whether it could, as .NET's Try methods do.
 		// A list's items and columns, and a text control's positions and lines, are ints, as .NET's

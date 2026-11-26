@@ -161,7 +161,7 @@ wxWidgets makes some dialogs and controls out of standard controls, which screen
 - `RichMessageDialog` is a message box with a check box, such as "Don't ask again", from `ShowCheckBox`, details that can be shown, from `ShowDetailedText`, and a footer. It isn't a `MessageDialog`, since wxWidgets makes it from its own message dialog rather than the platform's, but it has the same members.
 - `PropertySheetDialog` is a dialog with a notebook, `BookCtrl`, and the buttons `CreateButtons` makes.
 - `Wizard` shows `WizardPageSimple` pages in turn, chained with `WizardPageSimple.Chain`. Call `FitToPage` with the first page to size the wizard for the largest, then `RunWizard`.
-- `TreeListCtrl` is a tree with columns, whose items are `TreeListItem` values, and which can have check boxes.
+- `TreeListCtrl` is a tree with columns, whose items are `TreeListItem` values, and which can have check boxes. It and `TreeCtrl` give null where there is no item, such as the selection when nothing is selected or the sibling after the last, so a loop over an item's children reads `for (TreeItemId? item = tree.GetLastChild(parent); item is TreeItemId child; item = tree.GetPreviousSibling(child))`.
 - `GenericDirCtrl` shows the file system as a tree, and `FileCtrl` is a file chooser to put in a window. On Linux, `FileCtrl` is GTK's own, and its `Paths` are one empty path when nothing is chosen.
 - `EditableListBox` is a list of strings, `Strings`, with buttons to add, edit, delete, and move them, which screen readers name by their tooltips.
 

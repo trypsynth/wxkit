@@ -37,28 +37,28 @@ public readonly record struct Color(byte R, byte G, byte B, byte A = 255) {
 
 /// <summary>
 /// An item in a <see cref="TreeCtrl"/>, which only the control gives out, since it is a pointer
-/// the control follows. Wraps wxTreeItemId. The default one is no item.
+/// the control follows. Wraps wxTreeItemId. Where there is no item, the control gives null.
 /// </summary>
 public readonly record struct TreeItemId {
 	internal TreeItemId(nint value) => Value = value;
 
-	internal nint Value { get; }
+	// The item a native call gave, or null when it gave none.
+	internal static TreeItemId? OrNull(nint value) => value == 0 ? null : new TreeItemId(value);
 
-	/// <summary>Whether this is an item, rather than none.</summary>
-	public bool IsOk => Value != 0;
+	internal nint Value { get; }
 }
 
 /// <summary>
 /// An item in a <see cref="TreeListCtrl"/>, which only the control gives out, since it is a
-/// pointer the control follows. Wraps wxTreeListItem. The default one is no item.
+/// pointer the control follows. Wraps wxTreeListItem. Where there is no item, the control gives null.
 /// </summary>
 public readonly record struct TreeListItem {
 	internal TreeListItem(nint value) => Value = value;
 
-	internal nint Value { get; }
+	// The item a native call gave, or null when it gave none.
+	internal static TreeListItem? OrNull(nint value) => value == 0 ? null : new TreeListItem(value);
 
-	/// <summary>Whether this is an item, rather than none.</summary>
-	public bool IsOk => Value != 0;
+	internal nint Value { get; }
 }
 
 /// <summary>A size in pixels. Wraps wxSize, and crosses into the shim as it is.</summary>

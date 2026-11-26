@@ -2,13 +2,21 @@ namespace WxKit.Generator.Binding;
 
 // An item id that wraps one pointer, as wxTreeItemId and wxDataViewItem do, crosses as that
 // pointer and becomes a value type that holds it, such as TreeItemId. One whose pointer is typed,
-// as wxTreeListItem's is, is made from it after a cast.
-internal sealed class ItemIdConversion(string managedName, string cppName, string? pointerType = null) : Conversion {
-	public static ItemIdConversion TreeItem { get; } = new("TreeItemId", "wxTreeItemId");
+// as wxTreeListItem's is, is made from it after a cast. A tree's item that isn't one, such as the
+// selection when nothing is selected, is null in the managed API. A data view's is an item that
+// isn't valid, since a model makes its own and gives the root as one.
+internal sealed class ItemIdConversion(string managedName, string cppName, string? pointerType = null, bool nullWhenNone = false) : Conversion {
+	public static ItemIdConversion TreeItem { get; } = new("TreeItemId", "wxTreeItemId", nullWhenNone: true);
 
 	public static ItemIdConversion DataViewItem { get; } = new("DataViewItem", "wxDataViewItem");
 
-	public static ItemIdConversion TreeListItem { get; } = new("TreeListItem", "wxTreeListItem", "wxTreeListModelNode*");
+	public static ItemIdConversion TreeListItem { get; } = new("TreeListItem", "wxTreeListItem", "wxTreeListModelNode*", nullWhenNone: true);
+
+	/// <summary>Whether a return that is no item is null.</summary>
+	public bool NullWhenNone => nullWhenNone;
+
+	/// <summary>The managed expression for a return that is null when it is no item.</summary>
+	public string ManagedReturnOrNull(string expression) => $"global::WxKit.{managedName}.OrNull({expression})";
 
 	public override string Suffix => managedName;
 
@@ -34,9 +42,9 @@ internal sealed class ItemIdConversion(string managedName, string cppName, strin
 
 	public override IEnumerable<string> InteropParameters(string name) => [$"nint {name}"];
 
-	public override string ManagedType(bool nullable) => managedName;
+	public override string ManagedType(bool nullable) => nullable ? managedName + "?" : managedName;
 
-	public override IEnumerable<string> InteropArguments(string name, bool nullable) => [$"{name}.Value"];
+	public override IEnumerable<string> InteropArguments(string name, bool nullable) => [nullable ? $"({name}?.Value ?? 0)" : $"{name}.Value"];
 
 	public override string ManagedReturn(string expression) => $"new global::WxKit.{managedName}({expression})";
 

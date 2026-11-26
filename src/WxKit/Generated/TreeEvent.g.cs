@@ -13,7 +13,7 @@ public unsafe partial class TreeEvent : NotifyEvent {
 	public bool IsEditCanceled => WxKitNative.TreeEventIsEditCancelled(Handle) != 0;
 
 	/// <summary>Returns the item.</summary>
-	public TreeItemId Item => new global::WxKit.TreeItemId(WxKitNative.TreeEventGetItem(Handle));
+	public TreeItemId? Item => global::WxKit.TreeItemId.OrNull(WxKitNative.TreeEventGetItem(Handle));
 
 	/// <summary>Returns the key code if the event is a key event.</summary>
 	public KeyCode KeyCode => (KeyCode)WxKitNative.TreeEventGetKeyCode(Handle);
@@ -22,7 +22,7 @@ public unsafe partial class TreeEvent : NotifyEvent {
 	public string Label => NativeString.Take(WxKitNative.TreeEventGetLabel(Handle));
 
 	/// <summary>Returns the old item index (valid for EVT_TREE_SEL_CHANGING and EVT_TREE_SEL_CHANGED events).</summary>
-	public TreeItemId OldItem => new global::WxKit.TreeItemId(WxKitNative.TreeEventGetOldItem(Handle));
+	public TreeItemId? OldItem => global::WxKit.TreeItemId.OrNull(WxKitNative.TreeEventGetOldItem(Handle));
 
 	/// <summary>Returns the position of the mouse pointer if the event is a drag or menu-context event.</summary>
 	public Point Point => WxKitNative.TreeEventGetPoint(Handle);

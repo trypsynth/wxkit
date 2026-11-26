@@ -20,13 +20,13 @@ public unsafe partial class TreeListCtrl : Window {
 	public DataViewCtrl? DataView => ObjectRegistry.Wrap<DataViewCtrl>(WxKitNative.TreeListCtrlGetDataView(Native));
 
 	/// <summary>Return the first item in the tree.</summary>
-	public TreeListItem FirstItem => new global::WxKit.TreeListItem(WxKitNative.TreeListCtrlGetFirstItem(Native));
+	public TreeListItem? FirstItem => global::WxKit.TreeListItem.OrNull(WxKitNative.TreeListCtrlGetFirstItem(Native));
 
 	/// <summary>Return the (never shown) root item.</summary>
 	public TreeListItem RootItem => new global::WxKit.TreeListItem(WxKitNative.TreeListCtrlGetRootItem(Native));
 
 	/// <summary>Return the currently selected item.</summary>
-	public TreeListItem Selection => new global::WxKit.TreeListItem(WxKitNative.TreeListCtrlGetSelection(Native));
+	public TreeListItem? Selection => global::WxKit.TreeListItem.OrNull(WxKitNative.TreeListCtrlGetSelection(Native));
 
 	/// <summary>Fill in the provided array with all the selected items.</summary>
 	public IReadOnlyList<TreeListItem> Selections => NativeNumbers.TakeTreeListItems(WxKitNative.TreeListCtrlGetSelections(Native));
@@ -135,22 +135,22 @@ public unsafe partial class TreeListCtrl : Window {
 	public int GetColumnWidth(int column) => WxKitNative.TreeListCtrlGetColumnWidth(Native, checked((uint)column));
 
 	/// <summary>Return the first child of the given item.</summary>
-	public TreeListItem GetFirstChild(TreeListItem item) => new global::WxKit.TreeListItem(WxKitNative.TreeListCtrlGetFirstChild(Native, item.Value));
+	public TreeListItem? GetFirstChild(TreeListItem item) => global::WxKit.TreeListItem.OrNull(WxKitNative.TreeListCtrlGetFirstChild(Native, item.Value));
 
 	/// <summary>Get the data associated with the given item.</summary>
 	public object? GetItemData(TreeListItem item) => global::WxKit.ItemData.Get(WxKitNative.TreeListCtrlGetItemData(Native, item.Value));
 
 	/// <summary>Return the parent of the given item.</summary>
-	public TreeListItem GetItemParent(TreeListItem item) => new global::WxKit.TreeListItem(WxKitNative.TreeListCtrlGetItemParent(Native, item.Value));
+	public TreeListItem? GetItemParent(TreeListItem item) => global::WxKit.TreeListItem.OrNull(WxKitNative.TreeListCtrlGetItemParent(Native, item.Value));
 
 	/// <summary>Return the text of the given item.</summary>
 	public string GetItemText(TreeListItem item, int column = 0) => NativeString.Take(WxKitNative.TreeListCtrlGetItemText(Native, item.Value, checked((uint)column)));
 
 	/// <summary>Get item after the given one in the depth-first tree-traversal order.</summary>
-	public TreeListItem GetNextItem(TreeListItem item) => new global::WxKit.TreeListItem(WxKitNative.TreeListCtrlGetNextItem(Native, item.Value));
+	public TreeListItem? GetNextItem(TreeListItem item) => global::WxKit.TreeListItem.OrNull(WxKitNative.TreeListCtrlGetNextItem(Native, item.Value));
 
 	/// <summary>Return the next sibling of the given item.</summary>
-	public TreeListItem GetNextSibling(TreeListItem item) => new global::WxKit.TreeListItem(WxKitNative.TreeListCtrlGetNextSibling(Native, item.Value));
+	public TreeListItem? GetNextSibling(TreeListItem item) => global::WxKit.TreeListItem.OrNull(WxKitNative.TreeListCtrlGetNextSibling(Native, item.Value));
 
 	/// <summary>Insert a new item into the tree.</summary>
 	public TreeListItem InsertItem(TreeListItem parent, TreeListItem previous, string text, int imageClosed = -1, int imageOpened = -1, object? data = null) {

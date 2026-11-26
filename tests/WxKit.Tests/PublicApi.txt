@@ -8821,19 +8821,19 @@ class WxKit.TreeCtrl : Control
     TreeCtrlStyle Style { get; set; }
     TreeItemId AddRoot(string text, int image = -1, int selectedImage = -1, object? data = null)
     TreeItemId AppendItem(TreeItemId parent, string text, int image = -1, int selectedImage = -1, object? data = null)
-    TreeItemId FirstVisibleItem { get; }
-    TreeItemId FocusedItem { get; set; }
-    TreeItemId GetItemParent(TreeItemId item)
-    TreeItemId GetLastChild(TreeItemId item)
-    TreeItemId GetNextSibling(TreeItemId item)
-    TreeItemId GetNextVisible(TreeItemId item)
-    TreeItemId GetPreviousSibling(TreeItemId item)
-    TreeItemId GetPreviousVisible(TreeItemId item)
     TreeItemId InsertItem(TreeItemId parent, TreeItemId previous, string text, int image = -1, int selectedImage = -1, object? data = null)
     TreeItemId InsertItem(TreeItemId parent, int position, string text, int image = -1, int selectedImage = -1, object? data = null)
     TreeItemId PrependItem(TreeItemId parent, string text, int image = -1, int selectedImage = -1, object? data = null)
-    TreeItemId RootItem { get; }
-    TreeItemId Selection { get; }
+    TreeItemId? FirstVisibleItem { get; }
+    TreeItemId? FocusedItem { get; set; }
+    TreeItemId? GetItemParent(TreeItemId item)
+    TreeItemId? GetLastChild(TreeItemId item)
+    TreeItemId? GetNextSibling(TreeItemId item)
+    TreeItemId? GetNextVisible(TreeItemId item)
+    TreeItemId? GetPreviousSibling(TreeItemId item)
+    TreeItemId? GetPreviousVisible(TreeItemId item)
+    TreeItemId? RootItem { get; }
+    TreeItemId? Selection { get; }
     bool HasImages { get; }
     bool HasStateImages { get; }
     bool IsBold(TreeItemId item)
@@ -8939,8 +8939,8 @@ class WxKit.TreeCtrl : Control
 class WxKit.TreeEvent : NotifyEvent
     KeyCode KeyCode { get; }
     Point Point { get; }
-    TreeItemId Item { get; }
-    TreeItemId OldItem { get; }
+    TreeItemId? Item { get; }
+    TreeItemId? OldItem { get; }
     bool IsEditCanceled { get; }
     string Label { get; }
     void SetToolTip(string toolTip)
@@ -8951,7 +8951,6 @@ enum WxKit.TreeItemIcon : int
     SelectedExpanded = 3
 readonly record struct WxKit.TreeItemId : IEquatable<TreeItemId>
     bool Equals(TreeItemId other)
-    bool IsOk { get; }
     override bool Equals(object obj)
     override int GetHashCode()
     override string ToString()
@@ -8964,15 +8963,15 @@ class WxKit.TreeListCtrl : Window
     TreeListCtrl(Window parent, int id = -1, Point? position = null, Size? size = null, TreeListCtrlStyle style = TreeListCtrlStyle.None)
     TreeListCtrlStyle Style { get; set; }
     TreeListItem AppendItem(TreeListItem parent, string text, int imageClosed = -1, int imageOpened = -1, object? data = null)
-    TreeListItem FirstItem { get; }
-    TreeListItem GetFirstChild(TreeListItem item)
-    TreeListItem GetItemParent(TreeListItem item)
-    TreeListItem GetNextItem(TreeListItem item)
-    TreeListItem GetNextSibling(TreeListItem item)
     TreeListItem InsertItem(TreeListItem parent, TreeListItem previous, string text, int imageClosed = -1, int imageOpened = -1, object? data = null)
     TreeListItem PrependItem(TreeListItem parent, string text, int imageClosed = -1, int imageOpened = -1, object? data = null)
     TreeListItem RootItem { get; }
-    TreeListItem Selection { get; }
+    TreeListItem? FirstItem { get; }
+    TreeListItem? GetFirstChild(TreeListItem item)
+    TreeListItem? GetItemParent(TreeListItem item)
+    TreeListItem? GetNextItem(TreeListItem item)
+    TreeListItem? GetNextSibling(TreeListItem item)
+    TreeListItem? Selection { get; }
     Window? View { get; }
     bool AreAllChildrenInState(TreeListItem item, CheckBoxState state)
     bool DeleteColumn(int column)
@@ -9033,11 +9032,10 @@ class WxKit.TreeListCtrl : Window
     WantsChars = 262144
 class WxKit.TreeListEvent : NotifyEvent
     CheckBoxState OldCheckedState { get; }
-    TreeListItem Item { get; }
+    TreeListItem? Item { get; }
     int Column { get; }
 readonly record struct WxKit.TreeListItem : IEquatable<TreeListItem>
     bool Equals(TreeListItem other)
-    bool IsOk { get; }
     override bool Equals(object obj)
     override int GetHashCode()
     override string ToString()

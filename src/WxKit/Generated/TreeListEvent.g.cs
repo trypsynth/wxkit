@@ -13,7 +13,7 @@ public unsafe partial class TreeListEvent : NotifyEvent {
 	public int Column => checked((int)WxKitNative.TreeListEventGetColumn(Handle));
 
 	/// <summary>Return the item affected by the event.</summary>
-	public TreeListItem Item => new global::WxKit.TreeListItem(WxKitNative.TreeListEventGetItem(Handle));
+	public TreeListItem? Item => global::WxKit.TreeListItem.OrNull(WxKitNative.TreeListEventGetItem(Handle));
 
 	/// <summary>Return the previous state of the item checkbox.</summary>
 	public CheckBoxState OldCheckedState => (CheckBoxState)WxKitNative.TreeListEventGetOldCheckedState(Handle);

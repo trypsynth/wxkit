@@ -67,7 +67,8 @@ public class CompositeControlTests {
 		tree.Expand(folder);
 		tree.Select(file);
 		tree.CheckItem(file, CheckBoxState.Checked);
-		Assert.True(folder.IsOk);
+		// Where there is no item, the tree gives null.
+		Assert.Null(tree.GetNextSibling(folder));
 		Assert.Equal(folder, tree.GetItemParent(file));
 		Assert.Equal("2 KB", tree.GetItemText(file, 1));
 		Assert.Equal(CheckBoxState.Checked, tree.GetCheckedState(file));

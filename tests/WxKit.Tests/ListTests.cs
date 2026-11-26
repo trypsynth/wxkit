@@ -44,13 +44,15 @@ public class ListTests {
 		TreeItemId fiction = tree.AppendItem(root, "Fiction");
 		TreeItemId novel = tree.AppendItem(fiction, "A novel");
 		tree.AppendItem(root, "Poetry");
-		Assert.True(root.IsOk);
 		Assert.Equal(root, tree.RootItem);
 		Assert.Equal(3, tree.GetChildrenCount(root));
 		Assert.Equal(2, tree.GetChildrenCount(root, recursively: false));
 		Assert.Equal(fiction, tree.GetItemParent(novel));
 		Assert.Equal("A novel", tree.GetItemText(novel));
-		Assert.False(default(TreeItemId).IsOk);
+		// Where there is no item, the tree gives null.
+		Assert.Null(tree.GetItemParent(root));
+		Assert.Null(tree.GetNextSibling(novel));
+		Assert.Null(tree.Selection);
 	});
 
 	// A tree sorts an item's children by their text, or as a derived class's OnCompareItems says.
@@ -61,7 +63,7 @@ public class ListTests {
 			foreach (string text in (string[])["Poetry", "Art", "Fiction"]) tree.AppendItem(root, text);
 			tree.SortChildren(root);
 			List<string> texts = [];
-			for (TreeItemId item = tree.GetLastChild(root); item.IsOk; item = tree.GetPreviousSibling(item)) texts.Insert(0, tree.GetItemText(item));
+			for (TreeItemId? item = tree.GetLastChild(root); item is TreeItemId child; item = tree.GetPreviousSibling(child)) texts.Insert(0, tree.GetItemText(child));
 			return [.. texts];
 		}
 		Assert.Equal(["Art", "Fiction", "Poetry"], Sorted(new TreeCtrl(frame)));

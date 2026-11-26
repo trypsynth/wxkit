@@ -135,7 +135,7 @@ internal static class ManagedEmitter {
 		}
 		if (property.Setter is BoundFunction setter) {
 			// A value object set to null is set to its empty one, which for a window's font or cursor restores the default.
-			BoundParameter value = setter.Parameters[0] with { Name = "value", Nullable = setter.Parameters[0].Nullable || setter.Parameters[0].Conversion is ValueConversion };
+			BoundParameter value = setter.Parameters[0] with { Name = "value", Nullable = setter.Parameters[0].Nullable || setter.Parameters[0].Conversion is ValueConversion || (setter.Parameters[0].Conversion is ItemIdConversion && property.Getter.ReturnsNullable) };
 			BoundFunction renamed = new(setter.Owner, setter.Source, setter.Returns, [value], isConstructor: false) { ExportName = setter.ExportName };
 			if (IsSimple(renamed)) {
 				writer.Line($"set => {Call(bound, renamed, static result => result)};");
