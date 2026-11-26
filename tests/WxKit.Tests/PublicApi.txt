@@ -2164,7 +2164,7 @@ class WxKit.Font : NativeObject
     string NativeFontInfoDescription { get; }
     string NativeFontInfoUserDescription { get; set; }
     void SetSymbolicSize(FontSymbolicSize size)
-    void SetSymbolicSizeRelativeTo(FontSymbolicSize size, int base)
+    void SetSymbolicSizeRelativeTo(FontSymbolicSize size, int baseSize)
 class WxKit.FontData : NativeObject
     Color? Color { get; set; }
     Font? ChosenFont { get; set; }
@@ -2730,7 +2730,7 @@ class WxKit.InfoBar : Control
     void Dismiss()
     void RemoveButton(int buttonId)
     void SetShowHideEffects(ShowEffect showEffect, ShowEffect hideEffect)
-    void ShowCheckBox(string checkBoxText, bool checked)
+    void ShowCheckBox(string checkBoxText, bool isChecked)
     void ShowMessage(string message, MessageIcon icon = MessageIcon.Information)
 class WxKit.InitDialogEvent : Event
 [Flags] enum WxKit.KeyCategory : int
@@ -3077,7 +3077,7 @@ class WxKit.ListCtrl : Control
     bool SetItem(ListItem info)
     bool SetItem(int index, int column, string label, int imageId = -1)
     bool SetItemColumnImage(int item, int column, int image)
-    bool SetItemData(int item, int data)
+    bool SetItemData(int item, long data)
     bool SetItemImage(int item, int image, int selectedImage = -1)
     bool SetItemPosition(int item, Point position)
     bool SetItemState(int item, ListItemState state, ListItemState stateMask)
@@ -3208,10 +3208,9 @@ class WxKit.ListItem : NativeObject
     int Id { get; set; }
     int Image { get; set; }
     int Width { get; set; }
-    long Data { get; }
+    long Data { get; set; }
     string Text { get; set; }
     void Clear()
-    void SetData(int data)
     void SetStateMask(ListItemState stateMask)
 [Flags] enum WxKit.ListItemMask : int
     Data = 8
@@ -8634,7 +8633,6 @@ class WxKit.TextValidator : Validator
     IReadOnlyList<string> Includes { get; set; }
     TextValidator(TextValidatorStyle style = TextValidatorStyle.None)
     TextValidatorStyle Style { get; set; }
-    bool HasFlag(TextValidatorStyle style)
     string CharExcludes { get; set; }
     string CharIncludes { get; set; }
     string GetError(string value)
@@ -8642,7 +8640,7 @@ class WxKit.TextValidator : Validator
     void AddCharIncludes(string chars)
     void AddExclude(string exclude)
     void AddInclude(string include)
-enum WxKit.TextValidatorStyle : int
+[Flags] enum WxKit.TextValidatorStyle : int
     Alpha = 4
     Alphanumeric = 8
     Ascii = 2
@@ -9267,7 +9265,6 @@ class WxKit.Window : EvtHandler
     Color? ForegroundColor { get; set; }
     Cursor? Cursor { get; set; }
     DropTarget? DropTarget { get; set; }
-    EvtHandler? EventHandler { get; set; }
     Font? Font { get; set; }
     HitTestResult HitTest(Point point)
     IReadOnlyList<Window> Children { get; }

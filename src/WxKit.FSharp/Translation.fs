@@ -14,10 +14,10 @@ module Translation =
     let tr (text: string) : string = Translations.Translate text
 
     /// <summary>The singular or plural form, for <paramref name="n"/> things, such as <c>trn "{0} file" "{0} files" count</c>.</summary>
-    let trn (singular: string) (plural: string) (n: int64) : string = Translations.TranslatePlural(singular, plural, n)
+    let inline trn (singular: string) (plural: string) (n: ^Count) : string = Translations.TranslatePlural(singular, plural, int64 n)
 
     /// <summary>The translation of <paramref name="text"/> in a context, which tells apart two uses of the same words, such as <c>trp "verb" "Open"</c>.</summary>
     let trp (context: string) (text: string) : string = Translations.TranslateInContext(context, text)
 
     /// <summary>The singular or plural form, in a context.</summary>
-    let trpn (context: string) (singular: string) (plural: string) (n: int64) : string = Translations.TranslatePluralInContext(context, singular, plural, n)
+    let inline trpn (context: string) (singular: string) (plural: string) (n: ^Count) : string = Translations.TranslatePluralInContext(context, singular, plural, int64 n)

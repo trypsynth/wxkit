@@ -75,8 +75,8 @@ WXK_FUNCTION(void) wxk_Font_SetSymbolicSize(wxk_Object* self, int32_t size) noex
 	wxk::Guard([&] { static_cast<wxFont*>(wxk::Unwrap(self))->SetSymbolicSize(static_cast<wxFontSymbolicSize>(size)); });
 }
 
-WXK_FUNCTION(void) wxk_Font_SetSymbolicSizeRelativeTo(wxk_Object* self, int32_t size, int32_t base) noexcept {
-	wxk::Guard([&] { static_cast<wxFont*>(wxk::Unwrap(self))->SetSymbolicSizeRelativeTo(static_cast<wxFontSymbolicSize>(size), static_cast<int>(base)); });
+WXK_FUNCTION(void) wxk_Font_SetSymbolicSizeRelativeTo(wxk_Object* self, int32_t size, int32_t baseSize) noexcept {
+	wxk::Guard([&] { static_cast<wxFont*>(wxk::Unwrap(self))->SetSymbolicSizeRelativeTo(static_cast<wxFontSymbolicSize>(size), static_cast<int>(baseSize)); });
 }
 
 WXK_FUNCTION(int32_t) wxk_Font_GetNumericWeightOf(int32_t weight) noexcept {

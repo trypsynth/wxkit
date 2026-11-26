@@ -2497,6 +2497,7 @@ public enum TextCtrlHitTestResult {
 }
 
 /// <summary>Wraps wxTextValidatorStyle.</summary>
+[Flags]
 public enum TextValidatorStyle {
 	/// <summary>No filtering takes place. Wraps wxFILTER_NONE.</summary>
 	None = 0,

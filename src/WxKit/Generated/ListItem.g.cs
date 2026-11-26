@@ -35,7 +35,10 @@ public unsafe partial class ListItem : NativeObject {
 	}
 
 	/// <summary>Returns client data associated with the control.</summary>
-	public long Data => WxKitNative.ListItemGetData(Native);
+	public long Data {
+		get => WxKitNative.ListItemGetData(Native);
+		set => WxKitNative.ListItemSetData(Native, value);
+	}
 
 	/// <summary>Returns the font used to display the item.</summary>
 	public Font? Font {
@@ -92,9 +95,6 @@ public unsafe partial class ListItem : NativeObject {
 
 	/// <summary>Resets the item state to the default.</summary>
 	public void Clear() => WxKitNative.ListItemClear(Native);
-
-	/// <summary>Sets client data for the item.</summary>
-	public void SetData(int data) => WxKitNative.ListItemSetData(Native, data);
 
 	/// <summary>Sets the bitmask that is used to determine which of the state flags are to be set.</summary>
 	public void SetStateMask(ListItemState stateMask) => WxKitNative.ListItemSetStateMask(Native, (long)stateMask);

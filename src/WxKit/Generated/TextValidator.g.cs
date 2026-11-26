@@ -101,9 +101,6 @@ public unsafe partial class TextValidator : Validator {
 		}
 	}
 
-	/// <summary>Returns true if the given style bit is set in the current style.</summary>
-	public bool HasFlag(TextValidatorStyle style) => WxKitNative.TextValidatorHasFlag(Native, (int)style) != 0;
-
 	private static WxkObject* CreateNative(TextValidatorStyle style) {
 		Application.VerifyAccess();
 		return WxKitNative.TextValidatorNew((long)style);

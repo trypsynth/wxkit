@@ -8,14 +8,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 
 A second review of the whole API on 2026-11-26, before the first preview, found these. The earlier review's changes are made, and listed in [the first preview's notes](../releases/0.2.0-preview.1.md).
 
-### Bugs and traps
-
-- F#'s `trn` and `trpn` take the count as an `int64`, so `trn "{0} file" "{0} files" count` doesn't compile with an `int`, which F# doesn't widen.
-- `Window.EventHandler` hides `System.EventHandler` in every class derived from a window, as `Window.Char` hid `System.Char`, and setting it is wxWidgets' own plumbing.
-- `TextValidatorStyle` has the values of flags without `[Flags]`, and `TextValidator.HasFlag` repeats `Style.HasFlag`.
-- `ListItem.Data` is a `long` to read and `SetData(int)` to set, and `ListCtrl.SetItemData` takes an `int` where `GetItemData` gives a `long`.
-- `Font.SetSymbolicSizeRelativeTo`'s `base` and `InfoBar.ShowCheckBox`'s `checked` are C# keywords, which a call that names them has to escape.
-
 ### Members only wxWidgets calls, or that repeat another
 
 - `Window.SetFocusFromKbd`, `GetMinSizeFromKnownDirection`, `AdjustForLayoutDirection`, `UseBackgroundColor`, `UseForegroundColor`, and `GetBorder(long)`, and `TopLevelWindow.ShouldPreventAppExit` and `TmpDefaultItem`.

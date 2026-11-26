@@ -161,7 +161,7 @@ public unsafe partial class Font : NativeObject {
 	public void SetSymbolicSize(FontSymbolicSize size) => WxKitNative.FontSetSymbolicSize(Native, (int)size);
 
 	/// <summary>Sets the font size compared to the base font size.</summary>
-	public void SetSymbolicSizeRelativeTo(FontSymbolicSize size, int @base) => WxKitNative.FontSetSymbolicSizeRelativeTo(Native, (int)size, @base);
+	public void SetSymbolicSizeRelativeTo(FontSymbolicSize size, int baseSize) => WxKitNative.FontSetSymbolicSizeRelativeTo(Native, (int)size, baseSize);
 
 	/// <summary>Returns a bold version of this font.</summary>
 	public Font? WithBold() => global::WxKit.Font.Take(WxKitNative.FontBold(Native));

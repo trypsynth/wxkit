@@ -12,8 +12,8 @@ WXK_FUNCTION(void) wxk_InfoBar_SetShowHideEffects(wxk_Window* self, int32_t show
 	wxk::Guard([&] { static_cast<wxInfoBar*>(wxk::Unwrap(self))->SetShowHideEffects(static_cast<wxShowEffect>(showEffect), static_cast<wxShowEffect>(hideEffect)); });
 }
 
-WXK_FUNCTION(void) wxk_InfoBar_ShowCheckBox(wxk_Window* self, const char16_t* checkBoxText, size_t checkBoxTextLength, uint8_t checked) noexcept {
-	wxk::Guard([&] { static_cast<wxInfoBar*>(wxk::Unwrap(self))->ShowCheckBox(wxk::FromUtf16(checkBoxText, checkBoxTextLength), checked != 0); });
+WXK_FUNCTION(void) wxk_InfoBar_ShowCheckBox(wxk_Window* self, const char16_t* checkBoxText, size_t checkBoxTextLength, uint8_t isChecked) noexcept {
+	wxk::Guard([&] { static_cast<wxInfoBar*>(wxk::Unwrap(self))->ShowCheckBox(wxk::FromUtf16(checkBoxText, checkBoxTextLength), isChecked != 0); });
 }
 
 WXK_FUNCTION(void) wxk_InfoBar_AddButton(wxk_Window* self, int32_t buttonId, const char16_t* label, size_t labelLength) noexcept {

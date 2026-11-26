@@ -783,14 +783,6 @@ WXK_FUNCTION(uint8_t) wxk_Window_CanSetTransparent(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->CanSetTransparent()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(wxk_EvtHandler*) wxk_Window_GetEventHandler(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_EvtHandler*>(nullptr, [&]() -> wxk_EvtHandler* { return wxk::Wrap(static_cast<wxEvtHandler*>(static_cast<wxWindow*>(wxk::Unwrap(self))->GetEventHandler())); });
-}
-
-WXK_FUNCTION(void) wxk_Window_SetEventHandler(wxk_Window* self, wxk_EvtHandler* handler) noexcept {
-	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->SetEventHandler(static_cast<wxEvtHandler*>(wxk::Unwrap(handler))); });
-}
-
 WXK_FUNCTION(int64_t) wxk_Window_GetExtraStyle(wxk_Window* self) noexcept {
 	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxWindow*>(wxk::Unwrap(self))->GetExtraStyle()); });
 }

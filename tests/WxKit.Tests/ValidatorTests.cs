@@ -8,7 +8,7 @@ public class ValidatorTests {
 	public Task ChecksTextAgainstAStyle() => Gui.Run(() => {
 		using TextValidator validator = new(TextValidatorStyle.Digits);
 		Assert.Equal(TextValidatorStyle.Digits, validator.Style);
-		Assert.True(validator.HasFlag(TextValidatorStyle.Digits));
+		Assert.True(validator.Style.HasFlag(TextValidatorStyle.Digits));
 		Assert.Empty(validator.GetError("123"));
 		Assert.NotEmpty(validator.GetError("12a"));
 	});

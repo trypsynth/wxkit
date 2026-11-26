@@ -55,10 +55,10 @@ public unsafe partial class InfoBar : Control {
 	public void SetShowHideEffects(ShowEffect showEffect, ShowEffect hideEffect) => WxKitNative.InfoBarSetShowHideEffects(Native, (int)showEffect, (int)hideEffect);
 
 	/// <summary>Sets whether the checkbox should be shown, its label, and whether it is checked by default.</summary>
-	public void ShowCheckBox(string checkBoxText, bool @checked) {
+	public void ShowCheckBox(string checkBoxText, bool isChecked) {
 		ArgumentNullException.ThrowIfNull(checkBoxText);
 		fixed (char* checkBoxTextText = checkBoxText) {
-			WxKitNative.InfoBarShowCheckBox(Native, checkBoxTextText, NativeString.Length(checkBoxText), @checked ? (byte)1 : (byte)0);
+			WxKitNative.InfoBarShowCheckBox(Native, checkBoxTextText, NativeString.Length(checkBoxText), isChecked ? (byte)1 : (byte)0);
 		}
 	}
 

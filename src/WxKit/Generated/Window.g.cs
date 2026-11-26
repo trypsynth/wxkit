@@ -92,15 +92,6 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>Merges the window's best size into the min size and returns the result.</summary>
 	public Size EffectiveMinSize => WxKitNative.WindowGetEffectiveMinSize(Native);
 
-	/// <summary>Returns the event handler for this window.</summary>
-	public EvtHandler? EventHandler {
-		get => ObjectRegistry.Wrap<EvtHandler>(WxKitNative.WindowGetEventHandler(Native));
-		set {
-			ArgumentNullException.ThrowIfNull(value);
-			WxKitNative.WindowSetEventHandler(Native, (WxkEvtHandler*)value.NativeHandler);
-		}
-	}
-
 	/// <summary>Returns the extra style bits for the window.</summary>
 	public WindowExtraStyle ExtraStyle {
 		get => (WindowExtraStyle)WxKitNative.WindowGetExtraStyle(Native);

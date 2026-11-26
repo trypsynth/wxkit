@@ -405,7 +405,7 @@ public unsafe partial class ListCtrl : Control {
 	public bool SetItemColumnImage(int item, int column, int image) => WxKitNative.ListCtrlSetItemColumnImage(Native, item, column, image) != 0;
 
 	/// <summary>Associates application-defined data with this item.</summary>
-	public bool SetItemData(int item, int data) => WxKitNative.ListCtrlSetItemData(Native, item, data) != 0;
+	public bool SetItemData(int item, long data) => WxKitNative.ListCtrlSetItemData(Native, item, data) != 0;
 
 	/// <summary>Sets the item's font.</summary>
 	public void SetItemFont(int item, Font font) {

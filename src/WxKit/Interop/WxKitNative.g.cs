@@ -3152,7 +3152,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_Font_SetSymbolicSizeRelativeTo")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void FontSetSymbolicSizeRelativeTo(WxkObject* self, int size, int @base);
+	public static partial void FontSetSymbolicSizeRelativeTo(WxkObject* self, int size, int baseSize);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Font_GetNumericWeightOf")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4148,7 +4148,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_InfoBar_ShowCheckBox")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void InfoBarShowCheckBox(WxkWindow* self, char* checkBoxText, nuint checkBoxTextLength, byte @checked);
+	public static partial void InfoBarShowCheckBox(WxkWindow* self, char* checkBoxText, nuint checkBoxTextLength, byte isChecked);
 
 	[LibraryImport(Library, EntryPoint = "wxk_InfoBar_AddButton")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4604,7 +4604,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_SetItemData")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ListCtrlSetItemData(WxkWindow* self, int item, int data);
+	public static partial byte ListCtrlSetItemData(WxkWindow* self, int item, long data);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_SetItemFont")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4802,10 +4802,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* ListItemNew();
 
-	[LibraryImport(Library, EntryPoint = "wxk_ListItem_SetData")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ListItemSetData(WxkObject* self, int data);
-
 	[LibraryImport(Library, EntryPoint = "wxk_ListItem_Clear")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void ListItemClear(WxkObject* self);
@@ -4817,6 +4813,10 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_ListItem_GetData")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial long ListItemGetData(WxkObject* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ListItem_SetData")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void ListItemSetData(WxkObject* self, long data);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListItem_GetAlign")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -11054,10 +11054,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* TextValidatorNew(long style);
 
-	[LibraryImport(Library, EntryPoint = "wxk_TextValidator_HasFlag")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte TextValidatorHasFlag(WxkObject* self, int style);
-
 	[LibraryImport(Library, EntryPoint = "wxk_TextValidator_AddExclude")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void TextValidatorAddExclude(WxkObject* self, char* exclude, nuint excludeLength);
@@ -13293,14 +13289,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Window_CanSetTransparent")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte WindowCanSetTransparent(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_GetEventHandler")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkEvtHandler* WindowGetEventHandler(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_SetEventHandler")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void WindowSetEventHandler(WxkWindow* self, WxkEvtHandler* handler);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Window_GetExtraStyle")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

@@ -94,6 +94,18 @@ internal static class Internals {
 				.Style("wxCHOICEDLG_STYLE", "Default", "A resizable dialog with a caption, a system menu, a close box, and OK and Cancel buttons, centered, which is what the dialog has when no styles are given.");
 		}
 		tweaks.Class("wxTreeCtrl").Ignore("SetWindowStyle");
+		// The number an application keeps with a list's item is as wide to set as to read.
+		tweaks.Class("wxListItem").LongParameter("SetData", "data").IgnoreOverload("SetData", "data", "void *").Property("Data", "GetData", "SetData");
+		tweaks.Class("wxListCtrl").LongParameter("SetItemData", "data");
+		// A window's event handler is wxWidgets' own chain, which PushEventHandler was for, and the
+		// property hid System.EventHandler in every class derived from a window.
+		tweaks.Class("wxWindow").Ignore("GetEventHandler", "SetEventHandler");
+		// Style.HasFlag says it.
+		tweaks.Class("wxTextValidator").Ignore("HasFlag");
+		tweaks.Enum("wxTextValidatorStyle", "TextValidatorStyle", isFlags: true);
+		// Names that are C# keywords, which a call that names them would have to escape.
+		tweaks.Class("wxFont").ParameterName("SetSymbolicSizeRelativeTo", "base", "baseSize");
+		tweaks.Class("wxInfoBar").ParameterName("ShowCheckBox", "checked", "isChecked");
 		tweaks.Class("wxCollapsiblePane").Property("IsCollapsed", "IsCollapsed", "Collapse");
 		tweaks.Class("wxListCtrl").Property("HasCheckBoxes", "HasCheckBoxes", "EnableCheckBoxes");
 		tweaks.Class("wxSearchCtrl").Property("IsSearchButtonVisible", "IsSearchButtonVisible", "ShowSearchButton").Property("IsCancelButtonVisible", "IsCancelButtonVisible", "ShowCancelButton");

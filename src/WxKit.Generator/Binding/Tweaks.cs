@@ -336,6 +336,14 @@ internal sealed class ClassTweak(string name) {
 		return this;
 	}
 
+	/// <summary>A member's long parameters that stay long in a class whose others are indexes, such as the number an application keeps with a list's item.</summary>
+	public HashSet<(string Member, string Parameter)> LongParameters { get; } = [];
+
+	public ClassTweak LongParameter(string member, string parameter) {
+		LongParameters.Add((member, parameter));
+		return this;
+	}
+
 	public ClassTweak IntIndexes() {
 		HasIntIndexes = true;
 		return this;

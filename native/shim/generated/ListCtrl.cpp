@@ -303,7 +303,7 @@ WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItemColumnImage(wxk_Window* self, int32_t 
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItemColumnImage(static_cast<long>(item), static_cast<long>(column), static_cast<int>(image))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItemData(wxk_Window* self, int32_t item, int32_t data) noexcept {
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItemData(wxk_Window* self, int32_t item, int64_t data) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItemData(static_cast<long>(item), static_cast<long>(data))) ? 1 : 0; });
 }
 

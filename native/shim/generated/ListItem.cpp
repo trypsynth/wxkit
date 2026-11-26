@@ -8,10 +8,6 @@ WXK_FUNCTION(wxk_Object*) wxk_ListItem_new(void) noexcept {
 	});
 }
 
-WXK_FUNCTION(void) wxk_ListItem_SetData(wxk_Object* self, int32_t data) noexcept {
-	wxk::Guard([&] { static_cast<wxListItem*>(wxk::Unwrap(self))->SetData(static_cast<long>(data)); });
-}
-
 WXK_FUNCTION(void) wxk_ListItem_Clear(wxk_Object* self) noexcept {
 	wxk::Guard([&] { static_cast<wxListItem*>(wxk::Unwrap(self))->Clear(); });
 }
@@ -22,6 +18,10 @@ WXK_FUNCTION(void) wxk_ListItem_SetStateMask(wxk_Object* self, int64_t stateMask
 
 WXK_FUNCTION(int64_t) wxk_ListItem_GetData(wxk_Object* self) noexcept {
 	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListItem*>(wxk::Unwrap(self))->GetData()); });
+}
+
+WXK_FUNCTION(void) wxk_ListItem_SetData(wxk_Object* self, int64_t data) noexcept {
+	wxk::Guard([&] { static_cast<wxListItem*>(wxk::Unwrap(self))->SetData(static_cast<long>(data)); });
 }
 
 WXK_FUNCTION(int32_t) wxk_ListItem_GetAlign(wxk_Object* self) noexcept {

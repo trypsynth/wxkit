@@ -8,10 +8,6 @@ WXK_FUNCTION(wxk_Object*) wxk_TextValidator_new(int64_t style) noexcept {
 	});
 }
 
-WXK_FUNCTION(uint8_t) wxk_TextValidator_HasFlag(wxk_Object* self, int32_t style) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTextValidator*>(wxk::Unwrap(self))->HasFlag(static_cast<wxTextValidatorStyle>(style))) ? 1 : 0; });
-}
-
 WXK_FUNCTION(void) wxk_TextValidator_AddExclude(wxk_Object* self, const char16_t* exclude, size_t excludeLength) noexcept {
 	wxk::Guard([&] { static_cast<wxTextValidator*>(wxk::Unwrap(self))->AddExclude(wxk::FromUtf16(exclude, excludeLength)); });
 }
