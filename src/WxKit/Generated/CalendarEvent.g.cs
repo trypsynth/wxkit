@@ -10,5 +10,5 @@ public unsafe partial class CalendarEvent : DateEvent {
 	}
 
 	/// <summary>Returns the week day on which the user clicked in EVT_CALENDAR_WEEKDAY_CLICKED handler.</summary>
-	public WeekDay WeekDay => (WeekDay)WxKitNative.CalendarEventGetWeekDay(Handle);
+	public DayOfWeek DayOfWeek => (DayOfWeek)WxKitNative.CalendarEventGetWeekDay(Handle);
 }

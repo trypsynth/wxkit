@@ -627,7 +627,7 @@ class WxKit.CalendarCtrl : Control
     ShowWeekNumbers = 64
     SundayFirst = 128
 class WxKit.CalendarEvent : DateEvent
-    WeekDay WeekDay { get; }
+    DayOfWeek DayOfWeek { get; }
 enum WxKit.CalendarHitTestResult : int
     Day = 2
     DecrementMonth = 4
@@ -8796,15 +8796,6 @@ enum WxKit.WebViewZoom : int
 enum WxKit.WebViewZoomType : int
     Layout = 0
     Text = 1
-enum WxKit.WeekDay : int
-    Fri = 5
-    InvWeekDay = 7
-    Mon = 1
-    Sat = 6
-    Sun = 0
-    Thu = 4
-    Tue = 2
-    Wed = 3
 class WxKit.Window : EvtHandler
     Accessible? Accessible { get; }
     BackgroundStyle BackgroundStyle { get; set; }

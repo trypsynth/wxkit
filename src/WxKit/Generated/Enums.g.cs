@@ -2719,26 +2719,6 @@ public enum WebViewZoomType {
 	Text = 1,
 }
 
-/// <summary>Wraps wxDateTime::WeekDay.</summary>
-public enum WeekDay {
-	/// <summary>Wraps Sun.</summary>
-	Sun = 0,
-	/// <summary>Wraps Mon.</summary>
-	Mon = 1,
-	/// <summary>Wraps Tue.</summary>
-	Tue = 2,
-	/// <summary>Wraps Wed.</summary>
-	Wed = 3,
-	/// <summary>Wraps Thu.</summary>
-	Thu = 4,
-	/// <summary>Wraps Fri.</summary>
-	Fri = 5,
-	/// <summary>Wraps Sat.</summary>
-	Sat = 6,
-	/// <summary>Invalid week day value. Wraps Inv_WeekDay.</summary>
-	InvWeekDay = 7,
-}
-
 /// <summary>Wraps wxWS_EX_*.</summary>
 [Flags]
 public enum WindowExtraStyle {
