@@ -1328,7 +1328,6 @@ WXK_FUNCTION(size_t) wxk_InfoBar_GetButtonCount(wxk_Window* self) WXK_NOEXCEPT;
 
 WXK_FUNCTION(uint8_t) wxk_KeyEvent_IsKeyInCategory(wxk_Event* self, int32_t category) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_KeyEvent_DoAllowNextEvent(wxk_Event* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_KeyEvent_RawControlDown(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Point) wxk_KeyEvent_GetPosition(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_KeyEvent_GetKeyCode(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_KeyEvent_IsAutoRepeat(wxk_Event* self) WXK_NOEXCEPT;
@@ -1638,7 +1637,6 @@ WXK_FUNCTION(uint8_t) wxk_MouseEvent_ButtonDClick(wxk_Event* self, int32_t butto
 WXK_FUNCTION(uint8_t) wxk_MouseEvent_ButtonDown(wxk_Event* self, int32_t button) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_MouseEvent_ButtonUp(wxk_Event* self, int32_t button) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Point) wxk_MouseEvent_GetLogicalPosition(wxk_Event* self, wxk_Object* dc) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_MouseEvent_RawControlDown(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_MouseEvent_Dragging(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_MouseEvent_Entering(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_MouseEvent_Leaving(wxk_Event* self) WXK_NOEXCEPT;
@@ -2878,8 +2876,6 @@ WXK_FUNCTION(void) wxk_StyledTextCtrl_CallTipSetPosAtStart(wxk_Window* self, int
 WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_AutoCompActive(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_CallTipActive(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_SelectionIsRectangle(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetText(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_StyledTextCtrl_SetText(wxk_Window* self, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetTargetStart(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_SetTargetStart(wxk_Window* self, int32_t start) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetTargetEnd(wxk_Window* self) WXK_NOEXCEPT;
@@ -2899,8 +2895,6 @@ WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_GetUndoCollection(wxk_Window* self) WXK
 WXK_FUNCTION(void) wxk_StyledTextCtrl_SetUndoCollection(wxk_Window* self, uint8_t collectUndo) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_CanUndo(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetLength(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetCurrentPos(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_StyledTextCtrl_SetCurrentPos(wxk_Window* self, int32_t caret) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetAnchor(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_SetAnchor(wxk_Window* self, int32_t anchor) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetCurLine(wxk_Window* self) WXK_NOEXCEPT;
@@ -2909,7 +2903,6 @@ WXK_FUNCTION(void) wxk_StyledTextCtrl_SetSelectionStart(wxk_Window* self, int32_
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetSelectionEnd(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_SetSelectionEnd(wxk_Window* self, int32_t caret) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetSelectedText(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetTextLength(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetSelectionMode(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_SetSelectionMode(wxk_Window* self, int32_t selectionMode) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_GetMouseSelectionRectangularSwitch(wxk_Window* self) WXK_NOEXCEPT;

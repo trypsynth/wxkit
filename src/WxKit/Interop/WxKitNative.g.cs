@@ -4206,10 +4206,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void KeyEventDoAllowNextEvent(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_KeyEvent_RawControlDown")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte KeyEventRawControlDown(WxkEvent* self);
-
 	[LibraryImport(Library, EntryPoint = "wxk_KeyEvent_GetPosition")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Point KeyEventGetPosition(WxkEvent* self);
@@ -5277,10 +5273,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_GetLogicalPosition")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Point MouseEventGetLogicalPosition(WxkEvent* self, WxkObject* dc);
-
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_RawControlDown")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte MouseEventRawControlDown(WxkEvent* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Dragging")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -9554,14 +9546,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte StyledTextCtrlSelectionIsRectangle(WxkWindow* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetText")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkString* StyledTextCtrlGetText(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetText")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlSetText(WxkWindow* self, char* text, nuint textLength);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetTargetStart")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextCtrlGetTargetStart(WxkWindow* self);
@@ -9638,14 +9622,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextCtrlGetLength(WxkWindow* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetCurrentPos")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlGetCurrentPos(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetCurrentPos")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlSetCurrentPos(WxkWindow* self, int caret);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetAnchor")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextCtrlGetAnchor(WxkWindow* self);
@@ -9677,10 +9653,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelectedText")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkString* StyledTextCtrlGetSelectedText(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetTextLength")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlGetTextLength(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelectionMode")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

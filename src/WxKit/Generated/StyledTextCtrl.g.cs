@@ -265,12 +265,6 @@ public unsafe partial class StyledTextCtrl : Control {
 	/// <summary>Returns the line number of the line with the caret.</summary>
 	public int CurrentLine => WxKitNative.StyledTextCtrlGetCurrentLine(Native);
 
-	/// <summary>Returns the position of the caret.</summary>
-	public int CurrentPos {
-		get => WxKitNative.StyledTextCtrlGetCurrentPos(Native);
-		set => WxKitNative.StyledTextCtrlSetCurrentPos(Native, value);
-	}
-
 	/// <summary>Get the default fold display text.</summary>
 	public string DefaultFoldDisplayText {
 		get => NativeString.Take(WxKitNative.StyledTextCtrlGetDefaultFoldDisplayText(Native));
@@ -792,20 +786,6 @@ public unsafe partial class StyledTextCtrl : Control {
 		get => WxKitNative.StyledTextCtrlGetTechnology(Native);
 		set => WxKitNative.StyledTextCtrlSetTechnology(Native, value);
 	}
-
-	/// <summary>Retrieve all the text in the document.</summary>
-	public string Text {
-		get => NativeString.Take(WxKitNative.StyledTextCtrlGetText(Native));
-		set {
-			ArgumentNullException.ThrowIfNull(value);
-			fixed (char* valueText = value) {
-				WxKitNative.StyledTextCtrlSetText(Native, valueText, NativeString.Length(value));
-			}
-		}
-	}
-
-	/// <summary>Retrieve the number of characters in the document.</summary>
-	public int TextLength => WxKitNative.StyledTextCtrlGetTextLength(Native);
 
 	/// <summary>Is undo history being collected?</summary>
 	public bool UndoCollection {

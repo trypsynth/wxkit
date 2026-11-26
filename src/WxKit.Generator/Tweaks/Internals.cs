@@ -28,6 +28,9 @@ internal static class Internals {
 			"GetLayoutAdaptationLevel", "SetLayoutAdaptationLevel", "GetLayoutAdaptationMode", "SetLayoutAdaptationMode");
 		// What the styled text control's drop target calls.
 		tweaks.Class("wxStyledTextCtrl").Ignore("DoDragEnter", "DoDragOver", "DoDragLeave", "DoDropText");
+		// Scintilla's names for what every text control has under another: Value, LastPosition, and
+		// InsertionPoint, which wxWidgets implements with these.
+		tweaks.Class("wxStyledTextCtrl").Ignore("GetText", "SetText", "GetTextLength", "GetCurrentPos", "SetCurrentPos");
 		tweaks.Class("wxScrolledWindow").Ignore("PrepareDC");
 		Repeats(tweaks);
 		Forms(tweaks);

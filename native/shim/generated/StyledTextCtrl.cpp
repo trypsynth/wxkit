@@ -1916,14 +1916,6 @@ WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_SelectionIsRectangle(wxk_Window* self) 
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->SelectionIsRectangle()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetText(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->GetText()); });
-}
-
-WXK_FUNCTION(void) wxk_StyledTextCtrl_SetText(wxk_Window* self, const char16_t* text, size_t textLength) noexcept {
-	wxk::Guard([&] { static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->SetText(wxk::FromUtf16(text, textLength)); });
-}
-
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetTargetStart(wxk_Window* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->GetTargetStart()); });
 }
@@ -2000,14 +1992,6 @@ WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetLength(wxk_Window* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->GetLength()); });
 }
 
-WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetCurrentPos(wxk_Window* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->GetCurrentPos()); });
-}
-
-WXK_FUNCTION(void) wxk_StyledTextCtrl_SetCurrentPos(wxk_Window* self, int32_t caret) noexcept {
-	wxk::Guard([&] { static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->SetCurrentPos(static_cast<int>(caret)); });
-}
-
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetAnchor(wxk_Window* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->GetAnchor()); });
 }
@@ -2038,10 +2022,6 @@ WXK_FUNCTION(void) wxk_StyledTextCtrl_SetSelectionEnd(wxk_Window* self, int32_t 
 
 WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetSelectedText(wxk_Window* self) noexcept {
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->GetSelectedText()); });
-}
-
-WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetTextLength(wxk_Window* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->GetTextLength()); });
 }
 
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetSelectionMode(wxk_Window* self) noexcept {

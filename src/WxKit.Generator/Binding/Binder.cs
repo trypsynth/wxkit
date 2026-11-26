@@ -833,6 +833,7 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		EnumTweak? tweak = tweaks.Enums.GetValueOrDefault(cppName);
 		string managed = tweak?.Name ?? Naming.Type(cppName.Contains("::", StringComparison.Ordinal) ? cppName[(cppName.LastIndexOf(':') + 1)..] : cppName);
 		List<BoundStyle> members = EnumMembers(cppName, source, tweak?.MemberPrefix, tweak?.Exclude);
+		if (tweaks.AddedEnumMembers.TryGetValue(cppName, out List<(string Name, long Value, string Description, string Wraps)>? added)) members.AddRange(added.Select(static member => new BoundStyle(member.Name, member.Wraps, member.Value, member.Description)));
 		if (tweak?.IsFlags == true && members.All(static member => member.Value != 0)) members.Insert(0, new BoundStyle("None", "0", 0, "None of the flags."));
 		BoundEnum bound = new(managed, cppName, members) { IsFlags = tweak?.IsFlags ?? false, Guard = tweak?.Guard };
 		_enums[cppName] = bound;

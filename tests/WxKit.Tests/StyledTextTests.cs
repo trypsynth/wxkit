@@ -5,14 +5,14 @@ public class StyledTextTests {
 	[Fact]
 	public Task EditsText() => Gui.WithFrame(frame => {
 		StyledTextCtrl editor = new(frame);
-		editor.Text = "first line\nsecond line";
-		Assert.Equal("first line\nsecond line", editor.Text);
+		editor.Value = "first line\nsecond line";
+		Assert.Equal("first line\nsecond line", editor.Value);
 		Assert.Equal(2, editor.NumberOfLines);
 		editor.AppendText("\nthird line");
 		Assert.Equal(3, editor.NumberOfLines);
 		editor.GotoLine(2);
 		Assert.Equal(2, editor.CurrentLine);
-		Assert.Equal(editor.Text.Length, editor.TextLength);
+		Assert.Equal(editor.Value.Length, editor.LastPosition);
 	});
 
 	[Fact]
@@ -24,7 +24,7 @@ public class StyledTextTests {
 		editor.StyleSetForeground(Stc.PWord, new Color(0, 0, 255));
 		editor.SetMarginType(0, Stc.MarginNumber);
 		editor.SetMarginWidth(0, 40);
-		editor.Text = "def f():\n    return 1\n";
+		editor.Value = "def f():\n    return 1\n";
 		Assert.Equal(Stc.MarginNumber, editor.GetMarginType(0));
 	});
 
@@ -35,7 +35,7 @@ public class StyledTextTests {
 		editor.Modified += (_, e) => {
 			if ((e.ModificationType & Stc.ModInserttext) != 0) modified++;
 		};
-		editor.Text = "hello";
+		editor.Value = "hello";
 		Assert.True(modified > 0);
 		editor.SetSavePoint();
 		Assert.False(editor.IsModified);
@@ -50,5 +50,6 @@ public class StyledTextTests {
 		Assert.Equal(KeyModifiers.Shift, StyledTextEvent.FromScintilla(1));
 		Assert.Equal(KeyModifiers.Control | KeyModifiers.Alt, StyledTextEvent.FromScintilla(2 | 4));
 		Assert.Equal(KeyModifiers.Meta, StyledTextEvent.FromScintilla(8));
+		Assert.Equal(KeyModifiers.RawControl | KeyModifiers.Shift, StyledTextEvent.FromScintilla(16 | 1));
 	}
 }

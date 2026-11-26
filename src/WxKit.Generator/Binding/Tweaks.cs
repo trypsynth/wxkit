@@ -34,6 +34,14 @@ internal sealed class Tweaks {
 	/// <param name="guard">The preprocessor condition under which wxWidgets declares the enum, such as wxUSE_ACCESSIBILITY, which only wxMSW has.</param>
 	public void Enum(string cppName, string managedName, bool isFlags = false, string? memberPrefix = null, string? guard = null, string[]? exclude = null) => Enums[cppName] = new EnumTweak(managedName, isFlags, memberPrefix, guard, exclude ?? []);
 
+	/// <summary>Members an enum gains that the headers give no one value, each with the value WxKit gives it, a description, and what it wraps.</summary>
+	public Dictionary<string, List<(string Name, long Value, string Description, string Wraps)>> AddedEnumMembers { get; } = new(StringComparer.Ordinal);
+
+	public void EnumMember(string cppName, string name, long value, string description, string wraps) {
+		if (!AddedEnumMembers.TryGetValue(cppName, out List<(string Name, long Value, string Description, string Wraps)>? members)) AddedEnumMembers[cppName] = members = [];
+		members.Add((name, value, description, wraps));
+	}
+
 	/// <param name="excludePrefixes">Prefixes of constants that share the prefix but belong to something else, such as wxSIZE_CONV_ under wxSIZE_.</param>
 	public void ConstantEnum(string managedName, string prefix, bool isFlags = false, string? guard = null, string[]? excludePrefixes = null) => ConstantEnums.Add(new ConstantEnumTweak(managedName, prefix, isFlags, guard, excludePrefixes ?? []));
 

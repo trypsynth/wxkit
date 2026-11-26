@@ -34,6 +34,12 @@ internal static class Events {
 		// Whether the focus moves forward, a bool, which a Direction property would read as the enum.
 		tweaks.Class("wxNavigationKeyEvent").Property("IsForward", "GetDirection");
 		tweaks.Enum("wxKeyModifier", "KeyModifiers", isFlags: true);
+		// wxMOD_RAW_CONTROL is 16 on macOS, where it is the Control key and wxMOD_CONTROL is Command,
+		// and wxMOD_CONTROL itself elsewhere, so no other platform reports 16. With it in Modifiers,
+		// RawControlDown says nothing more.
+		tweaks.EnumMember("wxKeyModifier", "RawControl", 16, "The Control key of a Mac, where Control is the Command key. Only macOS reports it", "macOS's wxMOD_RAW_CONTROL");
+		tweaks.Class("wxKeyEvent").Ignore("RawControlDown");
+		tweaks.Class("wxMouseEvent").Ignore("RawControlDown");
 		tweaks.Class("wxKeyEvent", e => e.ParameterEnum("GetKeyCode", "return", "wxKeyCode").ParameterEnum("GetModifiers", "return", "wxKeyModifier"));
 		// Button(button) asks whether the event came from that button. GetButton is the Button
 		// property, and IsButton is taken too.

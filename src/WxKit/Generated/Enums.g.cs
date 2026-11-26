@@ -1445,6 +1445,8 @@ public enum KeyModifiers {
 	Cmd = 2,
 	/// <summary>Wraps wxMOD_ALL.</summary>
 	All = 65535,
+	/// <summary>The Control key of a Mac, where Control is the Command key. Only macOS reports it. Wraps macOS's wxMOD_RAW_CONTROL.</summary>
+	RawControl = 16,
 }
 
 /// <summary>Wraps wxLayoutDirection.</summary>

@@ -21,10 +21,6 @@ WXK_FUNCTION(wxk_Point) wxk_MouseEvent_GetLogicalPosition(wxk_Event* self, wxk_O
 	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxMouseEvent*>(wxk::Unwrap(self))->GetLogicalPosition(*static_cast<wxDC*>(wxk::Unwrap(dc)))); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_MouseEvent_RawControlDown(wxk_Event* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxKeyboardState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->RawControlDown()) ? 1 : 0; });
-}
-
 WXK_FUNCTION(uint8_t) wxk_MouseEvent_Dragging(wxk_Event* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMouseEvent*>(wxk::Unwrap(self))->Dragging()) ? 1 : 0; });
 }

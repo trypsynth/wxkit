@@ -47,7 +47,4 @@ public unsafe partial class KeyEvent : Event {
 
 	/// <summary>Returns true if the key is in the given key category.</summary>
 	public bool IsKeyInCategory(KeyCategory category) => WxKitNative.KeyEventIsKeyInCategory(Handle, (int)category) != 0;
-
-	/// <summary>Returns true if the Control key (also under macOS).</summary>
-	public bool RawControlDown() => WxKitNative.KeyEventRawControlDown(Handle) != 0;
 }

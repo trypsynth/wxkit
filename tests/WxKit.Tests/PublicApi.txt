@@ -2939,7 +2939,6 @@ class WxKit.KeyEvent : Event
     bool IsAutoRepeat { get; }
     bool IsKeyInCategory(KeyCategory category)
     bool IsNextEventAllowed { get; }
-    bool RawControlDown()
     int RawKeyCode { get; }
     int RawKeyFlags { get; }
     int X { get; }
@@ -2953,6 +2952,7 @@ class WxKit.KeyEvent : Event
     Control = 2
     Meta = 8
     None = 0
+    RawControl = 16
     Shift = 4
     Win = 8
 static class WxKit.Keyboard
@@ -3467,7 +3467,6 @@ class WxKit.MouseEvent : Event
     bool IsRightUp { get; }
     bool IsSynthesized { get; }
     bool IsWheelInverted { get; }
-    bool RawControlDown()
     float Magnification { get; }
     int ClickCount { get; }
     int ColumnsPerAction { get; }
@@ -7847,7 +7846,6 @@ class WxKit.StyledTextCtrl : Control
     int CountCharacters(int start, int end)
     int CountCodeUnits(int start, int end)
     int CurrentLine { get; }
-    int CurrentPos { get; set; }
     int DisplayLineCount { get; }
     int DistanceToSecondaryStyles()
     int DocLineFromVisible(int displayLine)
@@ -7995,7 +7993,6 @@ class WxKit.StyledTextCtrl : Control
     int TargetStartVirtualSpace { get; set; }
     int Technology { get; set; }
     int TextHeight(int line)
-    int TextLength { get; }
     int TextWidth(int style, string text)
     int ViewWhiteSpace { get; set; }
     int VirtualSpaceOptions { get; set; }
@@ -8038,7 +8035,6 @@ class WxKit.StyledTextCtrl : Control
     string SubStyleBases { get; }
     string TagsOfStyle(int style)
     string TargetText { get; }
-    string Text { get; set; }
     string Value { get; set; }
     string WhitespaceChars { get; set; }
     string WordChars { get; set; }
