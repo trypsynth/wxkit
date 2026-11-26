@@ -23,7 +23,7 @@ public unsafe partial class RichMessageDialog : Dialog {
 	/// <summary>Retrieves the detailed text.</summary>
 	public string DetailedText => NativeString.Take(WxKitNative.RichMessageDialogGetDetailedText(Native));
 
-	public long EffectiveIcon => WxKitNative.RichMessageDialogGetEffectiveIcon(Native);
+	public MessageIcon EffectiveIcon => (MessageIcon)WxKitNative.RichMessageDialogGetEffectiveIcon(Native);
 
 	public string ExtendedMessage {
 		get => NativeString.Take(WxKitNative.RichMessageDialogGetExtendedMessage(Native));

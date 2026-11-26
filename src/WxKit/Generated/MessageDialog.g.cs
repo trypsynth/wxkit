@@ -17,7 +17,7 @@ public unsafe partial class MessageDialog : Dialog {
 
 	public string Caption => NativeString.Take(WxKitNative.MessageDialogGetCaption(Native));
 
-	public long EffectiveIcon => WxKitNative.MessageDialogGetEffectiveIcon(Native);
+	public MessageIcon EffectiveIcon => (MessageIcon)WxKitNative.MessageDialogGetEffectiveIcon(Native);
 
 	public string ExtendedMessage {
 		get => NativeString.Take(WxKitNative.MessageDialogGetExtendedMessage(Native));

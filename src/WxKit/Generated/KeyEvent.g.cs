@@ -55,7 +55,7 @@ public unsafe partial class KeyEvent : Event {
 	public void DoAllowNextEvent() => WxKitNative.KeyEventDoAllowNextEvent(Handle);
 
 	/// <summary>Returns true if the key is in the given key category.</summary>
-	public bool IsKeyInCategory(int category) => WxKitNative.KeyEventIsKeyInCategory(Handle, category) != 0;
+	public bool IsKeyInCategory(KeyCategory category) => WxKitNative.KeyEventIsKeyInCategory(Handle, (int)category) != 0;
 
 	/// <summary>Returns true if the Meta/Windows/Apple key is pressed.</summary>
 	public bool MetaDown() => WxKitNative.KeyEventMetaDown(Handle) != 0;

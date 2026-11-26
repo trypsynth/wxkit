@@ -90,10 +90,10 @@ public unsafe partial class FileDialog : Dialog {
 	}
 
 	/// <summary>Add a directory to the list of shortcuts shown in the dialog.</summary>
-	public bool AddShortcut(string directory, int flags = 0) {
+	public bool AddShortcut(string directory, FileDialogShortcut flags = 0) {
 		ArgumentNullException.ThrowIfNull(directory);
 		fixed (char* directoryText = directory) {
-			return WxKitNative.FileDialogAddShortcut(Native, directoryText, NativeString.Length(directory), flags) != 0;
+			return WxKitNative.FileDialogAddShortcut(Native, directoryText, NativeString.Length(directory), (int)flags) != 0;
 		}
 	}
 

@@ -228,6 +228,7 @@ internal static class Naming {
 		{ "ACCELERATORCHANGE", "AcceleratorChange" },
 		// Words in enum members that the headers run together.
 		{ "DROPHILITED", "DropHighlighted" },
+		{ "FIXEDPITCH", "FixedPitch" },
 		// A list item state of no state, which is what a flags enum calls None.
 		{ "DONTCARE", "None" },
 		{ "VERTICALCENTRECARET", "VerticalCenterCaret" },

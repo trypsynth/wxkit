@@ -33,14 +33,14 @@ public unsafe partial class Image : NativeObject {
 	internal static Image? Take(WxkObject* native) => native is null ? null : new Image(native);
 
 	/// <summary>Returns the currently used default file load flags.</summary>
-	public static int DefaultLoadFlags {
+	public static ImageLoadFlags DefaultLoadFlags {
 		get {
 			Application.VerifyAccess();
-			return WxKitNative.ImageGetDefaultLoadFlags();
+			return (ImageLoadFlags)WxKitNative.ImageGetDefaultLoadFlags();
 		}
 		set {
 			Application.VerifyAccess();
-			WxKitNative.ImageSetDefaultLoadFlags(value);
+			WxKitNative.ImageSetDefaultLoadFlags((int)value);
 		}
 	}
 
@@ -65,9 +65,9 @@ public unsafe partial class Image : NativeObject {
 	public bool IsOk => WxKitNative.ImageIsOk(Native) != 0;
 
 	/// <summary>Returns the file load flags used for this object.</summary>
-	public int LoadFlags {
-		get => WxKitNative.ImageGetLoadFlags(Native);
-		set => WxKitNative.ImageSetLoadFlags(Native, value);
+	public ImageLoadFlags LoadFlags {
+		get => (ImageLoadFlags)WxKitNative.ImageGetLoadFlags(Native);
+		set => WxKitNative.ImageSetLoadFlags(Native, (int)value);
 	}
 
 	/// <summary>Gets the blue value of the mask colour.</summary>

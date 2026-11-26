@@ -42,6 +42,18 @@ internal static class Events {
 		foreach (string scroll in (string[])["wxScrollEvent", "wxScrollWinEvent"]) tweaks.Class(scroll, e => e.ParameterEnum("GetOrientation", "return", "Orientation").ParameterEnum("SetOrientation", "orient", "Orientation"));
 		tweaks.Class("wxListEvent", e => e.ParameterEnum("GetKeyCode", "return", "wxKeyCode").ParameterEnum("SetKeyCode", "code", "wxKeyCode"));
 		tweaks.Class("wxTreeEvent", e => e.ParameterEnum("GetKeyCode", "return", "wxKeyCode"));
+		tweaks.Enum("wxKeyCategoryFlags", "KeyCategory", isFlags: true);
+		tweaks.Class("wxKeyEvent", e => e.ParameterEnum("IsKeyInCategory", "category", "wxKeyCategoryFlags"));
+		foreach (string dialog in (string[])["wxMessageDialog", "wxRichMessageDialog"]) tweaks.Class(dialog, value => value.ParameterEnum("GetEffectiveIcon", "return", "MessageIcon"));
+		tweaks.ConstantEnum("FontRestriction", "wxFONTRESTRICT_", isFlags: true);
+		tweaks.Class("wxFontData", data => data.ParameterEnum("GetRestrictSelection", "return", "FontRestriction").ParameterEnum("RestrictSelection", "flags", "FontRestriction"));
+		tweaks.ConstantEnum("FileDialogShortcut", "wxFD_SHORTCUT_");
+		tweaks.Class("wxFileDialog", dialog => dialog.ParameterEnum("AddShortcut", "flags", "FileDialogShortcut"));
+		// wxWidgets defines an image's one load flag in an enum without a name, so ImageLoadFlags is hand-written.
+		tweaks.Class("wxImage", image => {
+			foreach (string getter in (string[])["GetLoadFlags", "GetDefaultLoadFlags"]) image.ParameterEnum(getter, "return", "ImageLoadFlags");
+			foreach (string setter in (string[])["SetLoadFlags", "SetDefaultLoadFlags"]) image.ParameterEnum(setter, "flags", "ImageLoadFlags");
+		});
 		tweaks.Class("wxWindow", window => {
 			foreach (string member in (string[])["CanScroll", "HasScrollbar", "IsScrollbarAlwaysShown"]) window.ParameterEnum(member, "orient", "Orientation");
 			foreach (string member in (string[])["GetScrollPos", "GetScrollRange", "GetScrollThumb", "SetScrollPos", "SetScrollbar"]) window.ParameterEnum(member, "orientation", "Orientation");

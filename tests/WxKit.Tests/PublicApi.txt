@@ -1877,7 +1877,7 @@ class WxKit.FileCtrlEvent : CommandEvent
 class WxKit.FileDialog : Dialog
     FileDialog(Window? parent, string? message = null, string defaultDirectory = "", string defaultFile = "", string? wildcard = null, FileDialogStyle style = FileDialogStyle.Open, Point? position = null, Size? size = null)
     Window? ExtraControl { get; }
-    bool AddShortcut(string directory, int flags = 0)
+    bool AddShortcut(string directory, FileDialogShortcut flags = FileDialogShortcut.0)
     int CurrentlySelectedFilterIndex { get; }
     int FilterIndex { get; set; }
     string CurrentlySelectedFileName { get; }
@@ -1888,6 +1888,9 @@ class WxKit.FileDialog : Dialog
     string Wildcard { get; set; }
     string[] FileNames { get; }
     string[] Paths { get; }
+enum WxKit.FileDialogShortcut : int
+    Bottom = 2
+    Top = 1
 [Flags] enum WxKit.FileDialogStyle : long
     ChangeDirectory = 128
     Default = 1
@@ -2012,10 +2015,10 @@ class WxKit.FontData : NativeObject
     Font? ChosenFont { get; set; }
     Font? InitialFont { get; set; }
     FontData()
+    FontRestriction RestrictSelection { get; set; }
     bool AllowSymbols { get; set; }
     bool EnableEffects { get; set; }
     bool ShowHelp { get; set; }
-    int RestrictSelection { get; set; }
     void SetRange(int min, int max)
 class WxKit.FontDialog : Dialog
     FontData? FontData { get; }
@@ -2147,6 +2150,10 @@ class WxKit.FontPickerCtrl : PickerBase
     UseTextCtrl = 2
 class WxKit.FontPickerEvent : CommandEvent
     Font? Font { get; }
+[Flags] enum WxKit.FontRestriction : int
+    FixedPitch = 2
+    None = 0
+    Scalable = 1
 enum WxKit.FontStyle : int
     Italic = 93
     Max = 95
@@ -2417,6 +2424,7 @@ class WxKit.Image : NativeObject
     Image? Rotate90(bool clockwise = true)
     Image? Scale(Size size, ImageResizeQuality quality = ImageResizeQuality.Normal)
     Image? Scale(int width, int height, ImageResizeQuality quality = ImageResizeQuality.Normal)
+    ImageLoadFlags LoadFlags { get; set; }
     Size Size { get; }
     bool ConvertAlphaToMask()
     bool ConvertAlphaToMask(byte mr, byte mg, byte mb)
@@ -2444,11 +2452,10 @@ class WxKit.Image : NativeObject
     byte MaskRed { get; }
     int GetOptionInt(string name)
     int Height { get; }
-    int LoadFlags { get; set; }
     int Width { get; }
+    static ImageLoadFlags DefaultLoadFlags { get; set; }
     static bool CanRead(string fileName)
     static bool RemoveHandler(string name)
-    static int DefaultLoadFlags { get; set; }
     static int GetImageCount(string fileName, BitmapType type = BitmapType.Any)
     static string ImageExtensionWildcard { get; }
     static void AddAllHandlers()
@@ -2486,6 +2493,9 @@ class WxKit.Image : NativeObject
 enum WxKit.ImageAlphaBlendMode : int
     Compose = 1
     Over = 0
+[Flags] enum WxKit.ImageLoadFlags : int
+    None = 0
+    Verbose = 1
 enum WxKit.ImageResizeQuality : int
     Bicubic = 2
     Bilinear = 1
@@ -2511,6 +2521,13 @@ class WxKit.InfoBar : Control
     void ShowCheckBox(string checkBoxText, bool checked)
     void ShowMessage(string message, MessageIcon icon = MessageIcon.Information)
 class WxKit.InitDialogEvent : Event
+[Flags] enum WxKit.KeyCategory : int
+    Arrow = 1
+    Cut = 16
+    Jump = 4
+    Navigation = 7
+    Paging = 2
+    Tab = 8
 enum WxKit.KeyCode : int
     Add = 335
     Alt = 307
@@ -2705,7 +2722,7 @@ class WxKit.KeyEvent : Event
     bool HasAnyModifiers { get; }
     bool HasModifiers { get; }
     bool IsAutoRepeat { get; }
-    bool IsKeyInCategory(int category)
+    bool IsKeyInCategory(KeyCategory category)
     bool IsNextEventAllowed { get; }
     bool MetaDown()
     bool RawControlDown()
@@ -3094,11 +3111,11 @@ static class WxKit.MessageBox
 class WxKit.MessageDialog : Dialog
     MessageDialog(Window? parent, string message, string caption = "Message", MessageDialogStyle style = MessageDialogStyle.Center | MessageDialogStyle.Ok, Point? position = null)
     MessageDialogStyle MessageDialogStyle { get; }
+    MessageIcon EffectiveIcon { get; }
     bool HasCustomLabels { get; }
     bool SetOkCancelLabels(string ok, string cancel)
     bool SetYesNoCancelLabels(string yes, string no, string cancel)
     bool SetYesNoLabels(string yes, string no)
-    long EffectiveIcon { get; }
     string CancelLabel { get; }
     string Caption { get; }
     string ExtendedMessage { get; set; }
@@ -3786,13 +3803,13 @@ readonly record struct WxKit.Rect : IEquatable<Rect>
 class WxKit.RichMessageDialog : Dialog
     MessageDialogStyle FooterIcon { get; set; }
     MessageDialogStyle MessageDialogStyle { get; }
+    MessageIcon EffectiveIcon { get; }
     RichMessageDialog(Window? parent, string message, string caption = "Message", MessageDialogStyle style = MessageDialogStyle.Center | MessageDialogStyle.Ok)
     bool HasCustomLabels { get; }
     bool IsCheckBoxChecked { get; }
     bool SetOkCancelLabels(string ok, string cancel)
     bool SetYesNoCancelLabels(string yes, string no, string cancel)
     bool SetYesNoLabels(string yes, string no)
-    long EffectiveIcon { get; }
     string CancelLabel { get; }
     string Caption { get; }
     string CheckBoxText { get; }

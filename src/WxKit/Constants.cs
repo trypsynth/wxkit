@@ -7,6 +7,14 @@ namespace WxKit;
 /// </summary>
 public static partial class StandardId;
 
+/// <summary>How an <see cref="Image"/> loads a file.</summary>
+[Flags]
+public enum ImageLoadFlags {
+	None = 0,
+	/// <summary>Logs a warning for a problem that does not keep the image from loading. It is on by default.</summary>
+	Verbose = 1,
+}
+
 /// <summary>Which way a sizer lays its items out, or which way to center a window.</summary>
 [Flags]
 public enum Orientation {

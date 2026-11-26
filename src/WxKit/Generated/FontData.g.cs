@@ -47,9 +47,9 @@ public unsafe partial class FontData : NativeObject {
 	}
 
 	/// <summary>Returns the state of the flags restricting the selection.</summary>
-	public int RestrictSelection {
-		get => WxKitNative.FontDataGetRestrictSelection(Native);
-		set => WxKitNative.FontDataRestrictSelection(Native, value);
+	public FontRestriction RestrictSelection {
+		get => (FontRestriction)WxKitNative.FontDataGetRestrictSelection(Native);
+		set => WxKitNative.FontDataRestrictSelection(Native, (int)value);
 	}
 
 	/// <summary>Returns true if the Help button will be shown (Windows only).</summary>

@@ -648,6 +648,14 @@ public enum EventCategory {
 	All = 127,
 }
 
+/// <summary>Wraps wxFD_SHORTCUT_*.</summary>
+public enum FileDialogShortcut {
+	/// <summary>Wraps wxFD_SHORTCUT_TOP.</summary>
+	Top = 1,
+	/// <summary>Wraps wxFD_SHORTCUT_BOTTOM.</summary>
+	Bottom = 2,
+}
+
 /// <summary>Wraps wxFindReplaceDialogStyles.</summary>
 [Flags]
 public enum FindReplaceDialogStyle {
@@ -916,6 +924,17 @@ public enum FontFamily {
 	Unknown = 77,
 }
 
+/// <summary>Wraps wxFONTRESTRICT_*.</summary>
+[Flags]
+public enum FontRestriction {
+	/// <summary>Wraps wxFONTRESTRICT_NONE.</summary>
+	None = 0,
+	/// <summary>Wraps wxFONTRESTRICT_SCALABLE.</summary>
+	Scalable = 1,
+	/// <summary>Wraps wxFONTRESTRICT_FIXEDPITCH.</summary>
+	FixedPitch = 2,
+}
+
 /// <summary>Wraps wxFontStyle.</summary>
 public enum FontStyle {
 	/// <summary>The font is drawn without slant. Wraps wxFONTSTYLE_NORMAL.</summary>
@@ -1071,6 +1090,23 @@ public enum ImageResizeQuality {
 	Fast = 6,
 	/// <summary>Best image resizing algorithm. Wraps wxIMAGE_QUALITY_HIGH.</summary>
 	High = 4,
+}
+
+/// <summary>Wraps wxKeyCategoryFlags.</summary>
+[Flags]
+public enum KeyCategory {
+	/// <summary>arrow keys, on and off numeric keypads. Wraps WXK_CATEGORY_ARROW.</summary>
+	Arrow = 1,
+	/// <summary>page up and page down keys, on and off numeric keypads. Wraps WXK_CATEGORY_PAGING.</summary>
+	Paging = 2,
+	/// <summary>home and end keys, on and off numeric keypads. Wraps WXK_CATEGORY_JUMP.</summary>
+	Jump = 4,
+	/// <summary>Tab key, on and off numeric keypads. Wraps WXK_CATEGORY_TAB.</summary>
+	Tab = 8,
+	/// <summary>Backspace and delete keys, on and off numeric keypads. Wraps WXK_CATEGORY_CUT.</summary>
+	Cut = 16,
+	/// <summary>union of WXK_CATEGORY_ARROW, WXK_CATEGORY_PAGING, and WXK_CATEGORY_JUMP categories. Wraps WXK_CATEGORY_NAVIGATION.</summary>
+	Navigation = 7,
 }
 
 /// <summary>Wraps wxKeyCode.</summary>
