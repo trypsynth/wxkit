@@ -28,6 +28,24 @@ internal static class Internals {
 		tweaks.Class("wxStyledTextCtrl").Ignore("DoDragEnter", "DoDragOver", "DoDragLeave", "DoDropText");
 		tweaks.Class("wxScrolledWindow").Ignore("PrepareDC");
 		Repeats(tweaks);
+		Forms(tweaks);
+	}
+
+	// Members that say better what they are under another name or as a property.
+	private static void Forms(Binding.Tweaks tweaks) {
+		// A font is changed by making a copy that differs, each named for what the copy has. The
+		// members that changed the font itself, and returned it, read the same and are left out.
+		tweaks.Class("wxFont").Ignore("MakeBold", "MakeItalic", "MakeLarger", "MakeSmaller", "MakeStrikethrough", "MakeUnderlined", "Scale")
+			.Rename("Bold", "WithBold").Rename("Italic", "WithItalic").Rename("Underlined", "WithUnderline").Rename("Strikethrough", "WithStrikethrough")
+			.Rename("Larger", "WithLargerSize").Rename("Smaller", "WithSmallerSize").Rename("Scaled", "WithScaledSize");
+		// What kind of mouse event one is, and which buttons are held, are properties. IsLeftDown
+		// says the event is the left button going down, and IsLeftButtonPressed that it is held.
+		tweaks.Class("wxMouseEvent", e => {
+			foreach (string kind in (string[])["Dragging", "Entering", "Leaving", "Moving", "Magnify"]) e.Property("Is" + kind, kind);
+			foreach (string button in (string[])["Left", "Middle", "Right", "Aux1", "Aux2"]) {
+				e.Property($"Is{button}Down", button + "Down").Property($"Is{button}Up", button + "Up").Property($"Is{button}DoubleClick", button + "DClick").Property($"Is{button}ButtonPressed", button + "IsDown");
+			}
+		});
 	}
 
 	// Members that only repeat another, which is the one to use.

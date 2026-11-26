@@ -47,11 +47,13 @@ public class ConversionTests {
 	});
 
 	[Fact]
-	public Task ReturnsTheSameObjectFromAnInPlaceChange() => Gui.Run(() => {
+	public Task ChangesAFontByCopyingIt() => Gui.Run(() => {
 		using Font font = new(11, FontFamily.Default, FontStyle.Normal, FontWeight.Normal);
-		Assert.Same(font, font.MakeBold().MakeItalic());
-		Assert.Equal(FontWeight.Bold, font.Weight);
-		Assert.Equal(FontStyle.Italic, font.Style);
+		using Font? bold = font.WithBold();
+		Assert.NotNull(bold);
+		Assert.NotSame(font, bold);
+		Assert.Equal(FontWeight.Bold, bold.Weight);
+		Assert.Equal(FontWeight.Normal, font.Weight);
 	});
 
 	[Fact]

@@ -42,7 +42,7 @@ internal sealed class ScrapbookFrame : Frame {
 		};
 		// Dragging the selected snippet out of the list gives it to wherever it's dropped.
 		_list.MouseMoved += (_, e) => {
-			if (!e.Dragging() || !e.LeftIsDown() || _dragging || _list.Selection < 0) {
+			if (!e.IsDragging || !e.IsLeftButtonPressed || _dragging || _list.Selection < 0) {
 				e.Skip();
 				return;
 			}

@@ -63,34 +63,6 @@ WXK_FUNCTION(wxk_Object*) wxk_Font_Strikethrough(wxk_Object* self) noexcept {
 	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxFont>(static_cast<wxFont*>(wxk::Unwrap(self))->Strikethrough()); });
 }
 
-WXK_FUNCTION(void) wxk_Font_MakeBold(wxk_Object* self) noexcept {
-	wxk::Guard([&] { static_cast<wxFont*>(wxk::Unwrap(self))->MakeBold(); });
-}
-
-WXK_FUNCTION(void) wxk_Font_MakeItalic(wxk_Object* self) noexcept {
-	wxk::Guard([&] { static_cast<wxFont*>(wxk::Unwrap(self))->MakeItalic(); });
-}
-
-WXK_FUNCTION(void) wxk_Font_MakeLarger(wxk_Object* self) noexcept {
-	wxk::Guard([&] { static_cast<wxFont*>(wxk::Unwrap(self))->MakeLarger(); });
-}
-
-WXK_FUNCTION(void) wxk_Font_MakeSmaller(wxk_Object* self) noexcept {
-	wxk::Guard([&] { static_cast<wxFont*>(wxk::Unwrap(self))->MakeSmaller(); });
-}
-
-WXK_FUNCTION(void) wxk_Font_MakeUnderlined(wxk_Object* self) noexcept {
-	wxk::Guard([&] { static_cast<wxFont*>(wxk::Unwrap(self))->MakeUnderlined(); });
-}
-
-WXK_FUNCTION(void) wxk_Font_MakeStrikethrough(wxk_Object* self) noexcept {
-	wxk::Guard([&] { static_cast<wxFont*>(wxk::Unwrap(self))->MakeStrikethrough(); });
-}
-
-WXK_FUNCTION(void) wxk_Font_Scale(wxk_Object* self, float x) noexcept {
-	wxk::Guard([&] { static_cast<wxFont*>(wxk::Unwrap(self))->Scale(static_cast<float>(x)); });
-}
-
 WXK_FUNCTION(wxk_Object*) wxk_Font_Scaled(wxk_Object* self, float x) noexcept {
 	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxFont>(static_cast<wxFont*>(wxk::Unwrap(self))->Scaled(static_cast<float>(x))); });
 }

@@ -3306,34 +3306,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* FontStrikethrough(WxkObject* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Font_MakeBold")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void FontMakeBold(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Font_MakeItalic")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void FontMakeItalic(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Font_MakeLarger")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void FontMakeLarger(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Font_MakeSmaller")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void FontMakeSmaller(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Font_MakeUnderlined")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void FontMakeUnderlined(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Font_MakeStrikethrough")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void FontMakeStrikethrough(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Font_Scale")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void FontScale(WxkObject* self, float x);
-
 	[LibraryImport(Library, EntryPoint = "wxk_Font_Scaled")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* FontScaled(WxkObject* self, float x);
@@ -5474,30 +5446,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* MiniFrameNew(WxkWindow* parent, int id, char* title, nuint titleLength, Point position, Size size, long style);
 
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Aux1DClick")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte MouseEventAux1DClick(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Aux1Down")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte MouseEventAux1Down(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Aux1Up")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte MouseEventAux1Up(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Aux2DClick")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte MouseEventAux2DClick(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Aux2Down")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte MouseEventAux2Down(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Aux2Up")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte MouseEventAux2Up(WxkEvent* self);
-
 	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Button")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte MouseEventButton(WxkEvent* self, int button);
@@ -5514,6 +5462,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte MouseEventButtonUp(WxkEvent* self, int button);
 
+	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_GetLogicalPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial Point MouseEventGetLogicalPosition(WxkEvent* self, WxkObject* dc);
+
+	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_RawControlDown")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte MouseEventRawControlDown(WxkEvent* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Dragging")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte MouseEventDragging(WxkEvent* self);
@@ -5522,17 +5478,17 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte MouseEventEntering(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_GetLogicalPosition")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial Point MouseEventGetLogicalPosition(WxkEvent* self, WxkObject* dc);
-
 	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Leaving")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte MouseEventLeaving(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_LeftDClick")]
+	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Moving")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte MouseEventLeftDClick(WxkEvent* self);
+	public static partial byte MouseEventMoving(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Magnify")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte MouseEventMagnify(WxkEvent* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_LeftDown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -5542,13 +5498,13 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte MouseEventLeftUp(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Magnify")]
+	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_LeftDClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte MouseEventMagnify(WxkEvent* self);
+	public static partial byte MouseEventLeftDClick(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_MiddleDClick")]
+	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_LeftIsDown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte MouseEventMiddleDClick(WxkEvent* self);
+	public static partial byte MouseEventLeftIsDown(WxkEvent* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_MiddleDown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -5558,13 +5514,13 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte MouseEventMiddleUp(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Moving")]
+	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_MiddleDClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte MouseEventMoving(WxkEvent* self);
+	public static partial byte MouseEventMiddleDClick(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_RightDClick")]
+	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_MiddleIsDown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte MouseEventRightDClick(WxkEvent* self);
+	public static partial byte MouseEventMiddleIsDown(WxkEvent* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_RightDown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -5574,29 +5530,45 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte MouseEventRightUp(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_LeftIsDown")]
+	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_RightDClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte MouseEventLeftIsDown(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_MiddleIsDown")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte MouseEventMiddleIsDown(WxkEvent* self);
+	public static partial byte MouseEventRightDClick(WxkEvent* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_RightIsDown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte MouseEventRightIsDown(WxkEvent* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Aux1Down")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte MouseEventAux1Down(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Aux1Up")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte MouseEventAux1Up(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Aux1DClick")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte MouseEventAux1DClick(WxkEvent* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Aux1IsDown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte MouseEventAux1IsDown(WxkEvent* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Aux2Down")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte MouseEventAux2Down(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Aux2Up")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte MouseEventAux2Up(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Aux2DClick")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte MouseEventAux2DClick(WxkEvent* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_Aux2IsDown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte MouseEventAux2IsDown(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_RawControlDown")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte MouseEventRawControlDown(WxkEvent* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_GetButton")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

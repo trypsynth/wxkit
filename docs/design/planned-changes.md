@@ -24,7 +24,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
   - Overloads that take x and y beside one that takes a `Point` or `Size`, and members that take x and y alone take a `Point`.
   - `KeyEvent.RawControlDown()` and `MouseEvent`'s, once `KeyModifiers` has a member for the Control key of a Mac, where `Control` is Command.
   - The styled text control's `Text` beside `Value`, `TextLength` beside `LastPosition`, and `CurrentPos` beside `InsertionPoint`, if one of each should go. Its `ClearAll` could be `Clear`, as `TextCtrl`'s is.
-  - `Font`'s `MakeBold` family, which change a font in place, beside `Bold` and the others that return a changed copy, which are named one way, such as `WithBold`.
 - Zero members of flags enums that aren't a class's styles, which make `HasFlag` always true, if they should go as the styles' did: `Alignment.Left` and `Top`, `DragFlags.CopyOnly`, `NavigationFlags.Backward`, `SizeFlags.UseExisting`, and `Default` of `WebViewFindFlags` and `WebViewPrintFlags`. `Direction` and `Orientation` have no `None`.
 
 ## Members that have a better form now
@@ -33,7 +32,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
   - The styled text control's, which Scintilla names `AutoCompGetAutoHide` and `AutoCompSetAutoHide`, 18 pairs, and its queries such as `CallTipActive()`.
   - `DC.DeviceOrigin` and `LogicalOrigin`, the calendar's colors, `CollapsiblePane.IsCollapsed`, `BookCtrlBase.Selection`, `ListCtrl.HasCheckBoxes`, `SearchCtrl`'s buttons, `SplitterWindow.SashPosition`, `Image.MaskColor`, `MemoryDC.SelectedBitmap`, and the printing dialogs' `Enable` members.
   - `Window.ToolTipText`, which can only be read, beside `SetToolTip`.
-  - `MouseEvent.Dragging()` and the others, which become `IsDragging` and so on, with `LeftDClick` and its siblings becoming `IsLeftDoubleClick`.
 - `TextCtrl.PositionToXY(long position, out long x, out long y)` and the styled text control's become `TryGetColumnAndLine`, and `XYToPosition` becomes `PositionFromColumnAndLine`.
 - A window's style is one property of the class's own style enum, rather than `WindowStyle`, `WindowStyleFlag`, `SetWindowStyle`, and `HasFlag` taking three types.
 - The item controls, `Choice`, `ComboBox`, `ListBox`, and `CheckListBox`, have one constructor each, with optional items and a style, and share an `IItemContainer` interface rather than repeating its members. Their item data has one name.

@@ -1921,23 +1921,16 @@ enum WxKit.FloodFillStyle : int
 class WxKit.FocusEvent : Event
     Window? Window { get; }
 class WxKit.Font : NativeObject
-    Font MakeBold()
-    Font MakeItalic()
-    Font MakeLarger()
-    Font MakeSmaller()
-    Font MakeStrikethrough()
-    Font MakeUnderlined()
-    Font Scale(float x)
     Font()
     Font(Size pixelSize, FontFamily family, FontStyle style, FontWeight weight, bool underline = false, string faceName = "", FontEncoding encoding = FontEncoding.Default)
     Font(int pointSize, FontFamily family, FontStyle style, FontWeight weight, bool underline = false, string faceName = "", FontEncoding encoding = FontEncoding.Default)
     Font(string nativeInfoString)
     Font? BaseFont { get; }
-    Font? Bold()
-    Font? Italic()
-    Font? Larger()
-    Font? Scaled(float x)
-    Font? Smaller()
+    Font? WithBold()
+    Font? WithItalic()
+    Font? WithLargerSize()
+    Font? WithScaledSize(float x)
+    Font? WithSmallerSize()
     Font? WithStrikethrough()
     Font? WithUnderline()
     FontEncoding Encoding { get; set; }
@@ -3098,42 +3091,42 @@ class WxKit.MouseEvent : Event
     MouseWheelAxis WheelAxis { get; }
     Point GetLogicalPosition(DC dc)
     Point Position { get; }
-    bool Aux1DClick()
-    bool Aux1Down()
-    bool Aux1IsDown()
-    bool Aux1Up()
-    bool Aux2DClick()
-    bool Aux2Down()
-    bool Aux2IsDown()
-    bool Aux2Up()
     bool ButtonDClick(MouseButton button = MouseButton.Any)
     bool ButtonDown(MouseButton button = MouseButton.Any)
     bool ButtonUp(MouseButton button = MouseButton.Any)
-    bool Dragging()
-    bool Entering()
     bool HasAnyModifiers { get; }
     bool HasModifiers { get; }
+    bool IsAux1ButtonPressed { get; }
+    bool IsAux1DoubleClick { get; }
+    bool IsAux1Down { get; }
+    bool IsAux1Up { get; }
+    bool IsAux2ButtonPressed { get; }
+    bool IsAux2DoubleClick { get; }
+    bool IsAux2Down { get; }
+    bool IsAux2Up { get; }
     bool IsButton { get; }
+    bool IsDragging { get; }
+    bool IsEntering { get; }
     bool IsFromButton(MouseButton button)
+    bool IsLeaving { get; }
+    bool IsLeftButtonPressed { get; }
+    bool IsLeftDoubleClick { get; }
+    bool IsLeftDown { get; }
+    bool IsLeftUp { get; }
+    bool IsMagnify { get; }
+    bool IsMiddleButtonPressed { get; }
+    bool IsMiddleDoubleClick { get; }
+    bool IsMiddleDown { get; }
+    bool IsMiddleUp { get; }
+    bool IsMoving { get; }
     bool IsPageScroll { get; }
+    bool IsRightButtonPressed { get; }
+    bool IsRightDoubleClick { get; }
+    bool IsRightDown { get; }
+    bool IsRightUp { get; }
     bool IsSynthesized { get; }
     bool IsWheelInverted { get; }
-    bool Leaving()
-    bool LeftDClick()
-    bool LeftDown()
-    bool LeftIsDown()
-    bool LeftUp()
-    bool Magnify()
-    bool MiddleDClick()
-    bool MiddleDown()
-    bool MiddleIsDown()
-    bool MiddleUp()
-    bool Moving()
     bool RawControlDown()
-    bool RightDClick()
-    bool RightDown()
-    bool RightIsDown()
-    bool RightUp()
     float Magnification { get; }
     int ClickCount { get; }
     int ColumnsPerAction { get; }

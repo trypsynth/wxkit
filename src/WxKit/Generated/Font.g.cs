@@ -143,65 +143,11 @@ public unsafe partial class Font : NativeObject {
 		}
 	}
 
-	/// <summary>Returns a bold version of this font.</summary>
-	public Font? Bold() => global::WxKit.Font.Take(WxKitNative.FontBold(Native));
-
 	/// <summary>Get the raw weight value corresponding to the given symbolic constant.</summary>
 	public static int GetNumericWeightOf(FontWeight weight) {
 		Application.VerifyAccess();
 		return WxKitNative.FontGetNumericWeightOf((int)weight);
 	}
-
-	/// <summary>Returns an italic version of this font.</summary>
-	public Font? Italic() => global::WxKit.Font.Take(WxKitNative.FontItalic(Native));
-
-	/// <summary>Returns a larger version of this font.</summary>
-	public Font? Larger() => global::WxKit.Font.Take(WxKitNative.FontLarger(Native));
-
-	/// <summary>Changes this font to be bold.</summary>
-	public Font MakeBold() {
-		WxKitNative.FontMakeBold(Native);
-		return this;
-	}
-
-	/// <summary>Changes this font to be italic.</summary>
-	public Font MakeItalic() {
-		WxKitNative.FontMakeItalic(Native);
-		return this;
-	}
-
-	/// <summary>Changes this font to be larger.</summary>
-	public Font MakeLarger() {
-		WxKitNative.FontMakeLarger(Native);
-		return this;
-	}
-
-	/// <summary>Changes this font to be smaller.</summary>
-	public Font MakeSmaller() {
-		WxKitNative.FontMakeSmaller(Native);
-		return this;
-	}
-
-	/// <summary>Changes this font to be stricken-through.</summary>
-	public Font MakeStrikethrough() {
-		WxKitNative.FontMakeStrikethrough(Native);
-		return this;
-	}
-
-	/// <summary>Changes this font to be underlined.</summary>
-	public Font MakeUnderlined() {
-		WxKitNative.FontMakeUnderlined(Native);
-		return this;
-	}
-
-	/// <summary>Changes the size of this font.</summary>
-	public Font Scale(float x) {
-		WxKitNative.FontScale(Native, x);
-		return this;
-	}
-
-	/// <summary>Returns a scaled version of this font.</summary>
-	public Font? Scaled(float x) => global::WxKit.Font.Take(WxKitNative.FontScaled(Native, x));
 
 	/// <summary>Creates the font corresponding to the given native font description string which must have been previously returned by GetNativeFontInfoDesc().</summary>
 	public bool SetNativeFontInfo(string info) {
@@ -217,8 +163,20 @@ public unsafe partial class Font : NativeObject {
 	/// <summary>Sets the font size compared to the base font size.</summary>
 	public void SetSymbolicSizeRelativeTo(FontSymbolicSize size, int @base) => WxKitNative.FontSetSymbolicSizeRelativeTo(Native, (int)size, @base);
 
+	/// <summary>Returns a bold version of this font.</summary>
+	public Font? WithBold() => global::WxKit.Font.Take(WxKitNative.FontBold(Native));
+
+	/// <summary>Returns an italic version of this font.</summary>
+	public Font? WithItalic() => global::WxKit.Font.Take(WxKitNative.FontItalic(Native));
+
+	/// <summary>Returns a larger version of this font.</summary>
+	public Font? WithLargerSize() => global::WxKit.Font.Take(WxKitNative.FontLarger(Native));
+
+	/// <summary>Returns a scaled version of this font.</summary>
+	public Font? WithScaledSize(float x) => global::WxKit.Font.Take(WxKitNative.FontScaled(Native, x));
+
 	/// <summary>Returns a smaller version of this font.</summary>
-	public Font? Smaller() => global::WxKit.Font.Take(WxKitNative.FontSmaller(Native));
+	public Font? WithSmallerSize() => global::WxKit.Font.Take(WxKitNative.FontSmaller(Native));
 
 	/// <summary>Returns stricken-through version of this font.</summary>
 	public Font? WithStrikethrough() => global::WxKit.Font.Take(WxKitNative.FontStrikethrough(Native));

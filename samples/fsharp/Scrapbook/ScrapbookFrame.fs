@@ -80,7 +80,7 @@ type ScrapbookFrame() as this =
         // Dragging the selected snippet out of the list gives it to wherever it's dropped.
         list.MouseMoved.Add(fun e ->
             match selected () with
-            | Some index when e.Dragging() && e.LeftIsDown() && not dragging ->
+            | Some index when e.IsDragging && e.IsLeftButtonPressed && not dragging ->
                 dragging <- true
                 try
                     DragDrop.DoDragDrop(list, toContent snippets[index]) |> ignore

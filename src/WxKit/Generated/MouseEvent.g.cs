@@ -24,11 +24,86 @@ public unsafe partial class MouseEvent : Event {
 	/// <summary>Returns true if Control or Alt are pressed.</summary>
 	public bool HasModifiers => WxKitNative.MouseEventHasModifiers(Handle) != 0;
 
+	/// <summary>Returns true if the first extra button mouse button is currently down.</summary>
+	public bool IsAux1ButtonPressed => WxKitNative.MouseEventAux1IsDown(Handle) != 0;
+
+	/// <summary>Returns true if the event was a first extra button double click.</summary>
+	public bool IsAux1DoubleClick => WxKitNative.MouseEventAux1DClick(Handle) != 0;
+
+	/// <summary>Returns true if the first extra button mouse button changed to down.</summary>
+	public bool IsAux1Down => WxKitNative.MouseEventAux1Down(Handle) != 0;
+
+	/// <summary>Returns true if the first extra button mouse button changed to up.</summary>
+	public bool IsAux1Up => WxKitNative.MouseEventAux1Up(Handle) != 0;
+
+	/// <summary>Returns true if the second extra button mouse button is currently down.</summary>
+	public bool IsAux2ButtonPressed => WxKitNative.MouseEventAux2IsDown(Handle) != 0;
+
+	/// <summary>Returns true if the event was a second extra button double click.</summary>
+	public bool IsAux2DoubleClick => WxKitNative.MouseEventAux2DClick(Handle) != 0;
+
+	/// <summary>Returns true if the second extra button mouse button changed to down.</summary>
+	public bool IsAux2Down => WxKitNative.MouseEventAux2Down(Handle) != 0;
+
+	/// <summary>Returns true if the second extra button mouse button changed to up.</summary>
+	public bool IsAux2Up => WxKitNative.MouseEventAux2Up(Handle) != 0;
+
 	/// <summary>Returns true if the event was a mouse button event (not necessarily a button down event - that may be tested using ButtonDown()).</summary>
 	public bool IsButton => WxKitNative.MouseEventIsButton(Handle) != 0;
 
+	/// <summary>Returns true if this was a dragging event (motion while a button is depressed).</summary>
+	public bool IsDragging => WxKitNative.MouseEventDragging(Handle) != 0;
+
+	/// <summary>Returns true if the mouse was entering the window.</summary>
+	public bool IsEntering => WxKitNative.MouseEventEntering(Handle) != 0;
+
+	/// <summary>Returns true if the mouse was leaving the window.</summary>
+	public bool IsLeaving => WxKitNative.MouseEventLeaving(Handle) != 0;
+
+	/// <summary>Returns true if the left mouse button is currently down.</summary>
+	public bool IsLeftButtonPressed => WxKitNative.MouseEventLeftIsDown(Handle) != 0;
+
+	/// <summary>Returns true if the event was a left double click.</summary>
+	public bool IsLeftDoubleClick => WxKitNative.MouseEventLeftDClick(Handle) != 0;
+
+	/// <summary>Returns true if the left mouse button changed to down.</summary>
+	public bool IsLeftDown => WxKitNative.MouseEventLeftDown(Handle) != 0;
+
+	/// <summary>Returns true if the left mouse button changed to up.</summary>
+	public bool IsLeftUp => WxKitNative.MouseEventLeftUp(Handle) != 0;
+
+	/// <summary>Returns true if the event is a magnify (i.e. pinch to zoom) event.</summary>
+	public bool IsMagnify => WxKitNative.MouseEventMagnify(Handle) != 0;
+
+	/// <summary>Returns true if the middle mouse button is currently down.</summary>
+	public bool IsMiddleButtonPressed => WxKitNative.MouseEventMiddleIsDown(Handle) != 0;
+
+	/// <summary>Returns true if the event was a middle double click.</summary>
+	public bool IsMiddleDoubleClick => WxKitNative.MouseEventMiddleDClick(Handle) != 0;
+
+	/// <summary>Returns true if the middle mouse button changed to down.</summary>
+	public bool IsMiddleDown => WxKitNative.MouseEventMiddleDown(Handle) != 0;
+
+	/// <summary>Returns true if the middle mouse button changed to up.</summary>
+	public bool IsMiddleUp => WxKitNative.MouseEventMiddleUp(Handle) != 0;
+
+	/// <summary>Returns true if this was a motion event and no mouse buttons were pressed.</summary>
+	public bool IsMoving => WxKitNative.MouseEventMoving(Handle) != 0;
+
 	/// <summary>Returns true if the system has been setup to do page scrolling with the mouse wheel instead of line scrolling.</summary>
 	public bool IsPageScroll => WxKitNative.MouseEventIsPageScroll(Handle) != 0;
+
+	/// <summary>Returns true if the right mouse button is currently down.</summary>
+	public bool IsRightButtonPressed => WxKitNative.MouseEventRightIsDown(Handle) != 0;
+
+	/// <summary>Returns true if the event was a right double click.</summary>
+	public bool IsRightDoubleClick => WxKitNative.MouseEventRightDClick(Handle) != 0;
+
+	/// <summary>Returns true if the right mouse button changed to down.</summary>
+	public bool IsRightDown => WxKitNative.MouseEventRightDown(Handle) != 0;
+
+	/// <summary>Returns true if the right mouse button changed to up.</summary>
+	public bool IsRightUp => WxKitNative.MouseEventRightUp(Handle) != 0;
 
 	/// <summary>Returns true if the event was synthesized from a touch event.</summary>
 	public bool IsSynthesized => WxKitNative.MouseEventIsSynthesized(Handle) != 0;
@@ -63,30 +138,6 @@ public unsafe partial class MouseEvent : Event {
 	/// <summary>Returns Y coordinate of the physical mouse event position.</summary>
 	public int Y => WxKitNative.MouseEventGetY(Handle);
 
-	/// <summary>Returns true if the event was a first extra button double click.</summary>
-	public bool Aux1DClick() => WxKitNative.MouseEventAux1DClick(Handle) != 0;
-
-	/// <summary>Returns true if the first extra button mouse button changed to down.</summary>
-	public bool Aux1Down() => WxKitNative.MouseEventAux1Down(Handle) != 0;
-
-	/// <summary>Returns true if the first extra button mouse button is currently down.</summary>
-	public bool Aux1IsDown() => WxKitNative.MouseEventAux1IsDown(Handle) != 0;
-
-	/// <summary>Returns true if the first extra button mouse button changed to up.</summary>
-	public bool Aux1Up() => WxKitNative.MouseEventAux1Up(Handle) != 0;
-
-	/// <summary>Returns true if the event was a second extra button double click.</summary>
-	public bool Aux2DClick() => WxKitNative.MouseEventAux2DClick(Handle) != 0;
-
-	/// <summary>Returns true if the second extra button mouse button changed to down.</summary>
-	public bool Aux2Down() => WxKitNative.MouseEventAux2Down(Handle) != 0;
-
-	/// <summary>Returns true if the second extra button mouse button is currently down.</summary>
-	public bool Aux2IsDown() => WxKitNative.MouseEventAux2IsDown(Handle) != 0;
-
-	/// <summary>Returns true if the second extra button mouse button changed to up.</summary>
-	public bool Aux2Up() => WxKitNative.MouseEventAux2Up(Handle) != 0;
-
 	/// <summary>If the argument is omitted, this returns true if the event was a mouse double click event.</summary>
 	public bool ButtonDClick(MouseButton button = MouseButton.Any) => WxKitNative.MouseEventButtonDClick(Handle, (int)button) != 0;
 
@@ -95,12 +146,6 @@ public unsafe partial class MouseEvent : Event {
 
 	/// <summary>If the argument is omitted, this returns true if the event was a mouse button up event.</summary>
 	public bool ButtonUp(MouseButton button = MouseButton.Any) => WxKitNative.MouseEventButtonUp(Handle, (int)button) != 0;
-
-	/// <summary>Returns true if this was a dragging event (motion while a button is depressed).</summary>
-	public bool Dragging() => WxKitNative.MouseEventDragging(Handle) != 0;
-
-	/// <summary>Returns true if the mouse was entering the window.</summary>
-	public bool Entering() => WxKitNative.MouseEventEntering(Handle) != 0;
 
 	/// <summary>Returns the logical mouse position in pixels (i.e. translated according to the translation set for the DC, which usually indicates that the window has been scrolled).</summary>
 	public Point GetLogicalPosition(DC dc) {
@@ -111,51 +156,6 @@ public unsafe partial class MouseEvent : Event {
 	/// <summary>Returns true if the event was generated by the specified button.</summary>
 	public bool IsFromButton(MouseButton button) => WxKitNative.MouseEventButton(Handle, (int)button) != 0;
 
-	/// <summary>Returns true if the mouse was leaving the window.</summary>
-	public bool Leaving() => WxKitNative.MouseEventLeaving(Handle) != 0;
-
-	/// <summary>Returns true if the event was a left double click.</summary>
-	public bool LeftDClick() => WxKitNative.MouseEventLeftDClick(Handle) != 0;
-
-	/// <summary>Returns true if the left mouse button changed to down.</summary>
-	public bool LeftDown() => WxKitNative.MouseEventLeftDown(Handle) != 0;
-
-	/// <summary>Returns true if the left mouse button is currently down.</summary>
-	public bool LeftIsDown() => WxKitNative.MouseEventLeftIsDown(Handle) != 0;
-
-	/// <summary>Returns true if the left mouse button changed to up.</summary>
-	public bool LeftUp() => WxKitNative.MouseEventLeftUp(Handle) != 0;
-
-	/// <summary>Returns true if the event is a magnify (i.e. pinch to zoom) event.</summary>
-	public bool Magnify() => WxKitNative.MouseEventMagnify(Handle) != 0;
-
-	/// <summary>Returns true if the event was a middle double click.</summary>
-	public bool MiddleDClick() => WxKitNative.MouseEventMiddleDClick(Handle) != 0;
-
-	/// <summary>Returns true if the middle mouse button changed to down.</summary>
-	public bool MiddleDown() => WxKitNative.MouseEventMiddleDown(Handle) != 0;
-
-	/// <summary>Returns true if the middle mouse button is currently down.</summary>
-	public bool MiddleIsDown() => WxKitNative.MouseEventMiddleIsDown(Handle) != 0;
-
-	/// <summary>Returns true if the middle mouse button changed to up.</summary>
-	public bool MiddleUp() => WxKitNative.MouseEventMiddleUp(Handle) != 0;
-
-	/// <summary>Returns true if this was a motion event and no mouse buttons were pressed.</summary>
-	public bool Moving() => WxKitNative.MouseEventMoving(Handle) != 0;
-
 	/// <summary>Returns true if the Control key (also under macOS).</summary>
 	public bool RawControlDown() => WxKitNative.MouseEventRawControlDown(Handle) != 0;
-
-	/// <summary>Returns true if the event was a right double click.</summary>
-	public bool RightDClick() => WxKitNative.MouseEventRightDClick(Handle) != 0;
-
-	/// <summary>Returns true if the right mouse button changed to down.</summary>
-	public bool RightDown() => WxKitNative.MouseEventRightDown(Handle) != 0;
-
-	/// <summary>Returns true if the right mouse button is currently down.</summary>
-	public bool RightIsDown() => WxKitNative.MouseEventRightIsDown(Handle) != 0;
-
-	/// <summary>Returns true if the right mouse button changed to up.</summary>
-	public bool RightUp() => WxKitNative.MouseEventRightUp(Handle) != 0;
 }
