@@ -30,7 +30,7 @@ public enum AnnouncementPriority {
 }
 
 /// <summary>
-/// An empty label that a window has screen readers speak through, for news that has no control of
+/// A control that a window has screen readers speak through, for news that has no control of
 /// its own to land on, such as a status that changed. It shows nothing. Add it to the window's
 /// sizer or not, as it has no size to speak of.
 /// </summary>
@@ -38,7 +38,7 @@ public enum AnnouncementPriority {
 /// <para>
 /// It follows accessware/live-region, a crate for wxDragon tested against NVDA, VoiceOver, and
 /// Orca. On Windows it raises a UI Automation notification, which a screen reader speaks without
-/// moving the focus, and gives the label the UI Automation provider of its own that raising one
+/// moving the focus, and gives the control the UI Automation provider of its own that raising one
 /// needs, since the window's default provider raises it to no one. On macOS it posts VoiceOver an
 /// announcement, on the next pass of the run loop, and on Linux it emits ATK's notification
 /// signal, or before ATK 2.50 its announcement signal.
@@ -49,11 +49,19 @@ public enum AnnouncementPriority {
 /// not announced.
 /// </para>
 /// </remarks>
-public sealed unsafe class LiveRegion : StaticText {
+public sealed unsafe class LiveRegion : Control {
 	internal const int MaxLength = 512;
 
 	/// <summary>Makes a live region in a window, usually the window's panel or the window itself.</summary>
-	public LiveRegion(Window parent) : base(parent, string.Empty) {
+	public LiveRegion(Window parent) : base(CreateNative(parent)) {
+	}
+
+	// It is an empty wxStaticText, which is the window each platform's announcement is raised from.
+	// It isn't a StaticText here, since it has no label to set.
+	private static WxkWindow* CreateNative(Window parent) {
+		Application.VerifyAccess();
+		ArgumentNullException.ThrowIfNull(parent);
+		return WxKitNative.StaticTextNew((WxkWindow*)parent.Native, StandardId.Any, null, 0, Point.Default, Size.Default, 0);
 	}
 
 	/// <summary>

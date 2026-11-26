@@ -38,7 +38,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 
 - One lifetime model: everything the application owns is `IDisposable`, says whether it's gone with `IsDisposed`, rather than some with `IsDestroyed`, and is freed when it's disposed. `Menu` gets `Dispose`.
 - `MenuItem` wraps the native item, as `ToolBarTool` does, rather than a menu and an id.
-- `LiveRegion` derives from `Control` rather than `StaticText`, whose label it has no use for.
 - A window's accessible object and drop target are set the same way, as `window.DropTarget = new DropTarget(...)` would be, rather than as a side effect of their constructors.
 - A `PaintDC` is lent through the paint event, as a printout's DC is, so a handler can't forget to dispose it.
 

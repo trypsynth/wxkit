@@ -2903,7 +2903,7 @@ class WxKit.Listbook : BookCtrlBase
     None = 0
     Right = 128
     Top = 16
-sealed class WxKit.LiveRegion : StaticText
+sealed class WxKit.LiveRegion : Control
     LiveRegion(Window parent)
     bool Announce(string message, AnnouncementPriority priority = AnnouncementPriority.High)
     bool Prepare()
