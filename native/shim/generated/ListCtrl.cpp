@@ -167,7 +167,7 @@ WXK_FUNCTION(int64_t) wxk_ListCtrl_FindItem_LongLong(wxk_Window* self, int64_t s
 	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->FindItem(static_cast<long>(start), static_cast<wxUIntPtr>(data))); });
 }
 
-WXK_FUNCTION(int64_t) wxk_ListCtrl_FindItem_LongPointInt(wxk_Window* self, int64_t start, wxk_Point point, int32_t direction) noexcept {
+WXK_FUNCTION(int64_t) wxk_ListCtrl_FindItem_LongPointListFindDirection(wxk_Window* self, int64_t start, wxk_Point point, int32_t direction) noexcept {
 	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->FindItem(static_cast<long>(start), wxk::FromPoint(point), static_cast<int>(direction))); });
 }
 

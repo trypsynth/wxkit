@@ -91,6 +91,19 @@ public class CompositeControlTests {
 	});
 
 	[Fact]
+	public Task SelectsAListItemByItsState() => Gui.WithFrame(frame => {
+		ListCtrl list = new(frame, style: ListCtrlStyle.Report);
+		list.AppendColumn("Name");
+		list.InsertItem(0, "One");
+		list.InsertItem(1, "Two");
+		Assert.Equal(-1, list.GetNextItem(-1, ListNextItem.All, ListItemState.Selected));
+		Assert.True(list.SetItemState(1, ListItemState.Selected, ListItemState.Selected));
+		Assert.Equal(ListItemState.Selected, list.GetItemState(1, ListItemState.Selected));
+		Assert.Equal(ListItemState.None, list.GetItemState(0, ListItemState.Selected));
+		Assert.Equal(1, list.GetNextItem(-1, ListNextItem.All, ListItemState.Selected));
+	});
+
+	[Fact]
 	public Task ChoosesFromTheFileSystem() => Gui.WithFrame(frame => {
 		string folder = Directory.CreateTempSubdirectory("wxkit-").FullName;
 		try {

@@ -2753,6 +2753,11 @@ enum WxKit.LayoutDirection : int
     Default = 0
     LeftToRight = 1
     RightToLeft = 2
+enum WxKit.ListArrangement : int
+    Default = 0
+    Left = 1
+    SnapToGrid = 3
+    Top = 2
 class WxKit.ListBox : Control
     ListBox(Window parent, IEnumerable<string> choices, int id = -1, Point? position = null, Size? size = null, ListBoxStyle style = ListBoxStyle.None)
     ListBox(Window parent, int id = -1, Point? position = null, Size? size = null)
@@ -2814,11 +2819,12 @@ class WxKit.ListCtrl : Control
     Color? TextColor { get; set; }
     Font? GetItemFont(long item)
     ListCtrl(Window parent, int id = -1, Point? position = null, Size? size = null, ListCtrlStyle style = ListCtrlStyle.Icon)
+    ListItemState GetItemState(long item, ListItemState stateMask)
     Rect ViewRect { get; }
     Size ItemSpacing { get; }
     TextCtrl? EditControl { get; }
     TextCtrl? EditLabel(long item)
-    bool Arrange(int flag = 0)
+    bool Arrange(ListArrangement flag = ListArrangement.Default)
     bool DeleteAllColumns()
     bool DeleteAllItems()
     bool DeleteColumn(int column)
@@ -2846,9 +2852,9 @@ class WxKit.ListCtrl : Control
     bool SetItemData(long item, long data)
     bool SetItemImage(long item, int image, int selectedImage = -1)
     bool SetItemPosition(long item, Point position)
-    bool SetItemState(long item, long state, long stateMask)
-    bool TryGetItemRect(long item, out Rect rect, int code = 0)
-    bool TryGetSubItemRect(long item, long subItem, out Rect rect, int code = 0)
+    bool SetItemState(long item, ListItemState state, ListItemState stateMask)
+    bool TryGetItemRect(long item, out Rect rect, ListRect code = ListRect.Bounds)
+    bool TryGetSubItemRect(long item, long subItem, out Rect rect, ListRect code = ListRect.Bounds)
     event EventHandler<ListEvent>? AllItemsDeleted
     event EventHandler<ListEvent>? BeginDrag
     event EventHandler<ListEvent>? BeginLabelEdit
@@ -2876,17 +2882,16 @@ class WxKit.ListCtrl : Control
     int GetColumnIndexFromOrder(int position)
     int GetColumnOrder(int column)
     int GetColumnWidth(int column)
-    int GetItemState(long item, long stateMask)
     int ItemCount { get; }
     int SelectedItemCount { get; }
     int SortIndicator { get; }
     int[] ColumnsOrder { get; set; }
     long AppendColumn(string heading, ListColumnFormat format = ListColumnFormat.Left, int width = -1)
-    long FindItem(long start, Point point, int direction)
+    long FindItem(long start, Point point, ListFindDirection direction)
     long FindItem(long start, long data)
     long FindItem(long start, string text, bool partial = false)
     long GetItemData(long item)
-    long GetNextItem(long item, int geometry = 1, int state = 0)
+    long GetNextItem(long item, ListNextItem geometry = ListNextItem.All, ListItemState state = ListItemState.None)
     long InsertColumn(long column, ListItem info)
     long InsertColumn(long column, string heading, ListColumnFormat format = ListColumnFormat.Left, int width = -1)
     long InsertItem(ListItem info)
@@ -2936,6 +2941,7 @@ class WxKit.ListCtrl : Control
     Virtual = 512
 class WxKit.ListEvent : NotifyEvent
     ListItem? Item { get; set; }
+    ListItemMask Mask { get; }
     Point Point { get; set; }
     bool IsEditCanceled { get; }
     int Column { get; set; }
@@ -2945,26 +2951,54 @@ class WxKit.ListEvent : NotifyEvent
     long CacheTo { get; set; }
     long Data { get; }
     long Index { get; set; }
-    long Mask { get; }
     string Label { get; }
     string Text { get; }
+enum WxKit.ListFindDirection : int
+    Down = 1
+    Left = 2
+    Right = 3
+    Up = 0
 class WxKit.ListItem : NativeObject
     Color? BackgroundColor { get; set; }
     Color? TextColor { get; set; }
     Font? Font { get; set; }
     ListColumnFormat Align { get; set; }
     ListItem()
+    ListItemMask Mask { get; set; }
+    ListItemState State { get; set; }
     int Column { get; set; }
     int Image { get; set; }
     int Width { get; set; }
     long Data { get; }
     long Id { get; set; }
-    long Mask { get; set; }
-    long State { get; set; }
     string Text { get; set; }
     void Clear()
     void SetData(long data)
-    void SetStateMask(long stateMask)
+    void SetStateMask(ListItemState stateMask)
+[Flags] enum WxKit.ListItemMask : int
+    Data = 8
+    Format = 64
+    Image = 4
+    None = 0
+    State = 1
+    Text = 2
+    Width = 32
+[Flags] enum WxKit.ListItemState : int
+    Cut = 8
+    DropHighlighted = 1
+    Focused = 2
+    None = 0
+    Selected = 4
+enum WxKit.ListNextItem : int
+    Above = 0
+    All = 1
+    Below = 2
+    Left = 3
+    Right = 4
+enum WxKit.ListRect : int
+    Bounds = 0
+    Icon = 1
+    Label = 2
 class WxKit.ListView : ListCtrl
     ListView(Window parent, int id = -1, Point? position = null, Size? size = null, ListCtrlStyle style = ListCtrlStyle.Report)
     bool IsSelected(long index)

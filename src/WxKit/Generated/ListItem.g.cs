@@ -56,15 +56,15 @@ public unsafe partial class ListItem : NativeObject {
 	}
 
 	/// <summary>Returns a bit mask indicating which fields of the structure are valid.</summary>
-	public long Mask {
-		get => WxKitNative.ListItemGetMask(Native);
-		set => WxKitNative.ListItemSetMask(Native, value);
+	public ListItemMask Mask {
+		get => (ListItemMask)WxKitNative.ListItemGetMask(Native);
+		set => WxKitNative.ListItemSetMask(Native, (long)value);
 	}
 
 	/// <summary>Returns a bit field representing the state of the item.</summary>
-	public long State {
-		get => WxKitNative.ListItemGetState(Native);
-		set => WxKitNative.ListItemSetState(Native, value);
+	public ListItemState State {
+		get => (ListItemState)WxKitNative.ListItemGetState(Native);
+		set => WxKitNative.ListItemSetState(Native, (long)value);
 	}
 
 	/// <summary>Returns the label/header text.</summary>
@@ -97,7 +97,7 @@ public unsafe partial class ListItem : NativeObject {
 	public void SetData(long data) => WxKitNative.ListItemSetData(Native, data);
 
 	/// <summary>Sets the bitmask that is used to determine which of the state flags are to be set.</summary>
-	public void SetStateMask(long stateMask) => WxKitNative.ListItemSetStateMask(Native, stateMask);
+	public void SetStateMask(ListItemState stateMask) => WxKitNative.ListItemSetStateMask(Native, (long)stateMask);
 
 	private static WxkObject* CreateNative() {
 		Application.VerifyAccess();

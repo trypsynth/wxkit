@@ -5,7 +5,24 @@ internal static class Lists {
 	public static void Apply(Binding.Tweaks tweaks) {
 		// A virtual list asks for each row as it shows it, through members C# overrides. A getter
 		// that can fail returns whether it could, as .NET's Try methods do.
+		// What wxWidgets takes as numbers, and names with constants, are enums.
+		tweaks.ConstantEnum("ListItemState", "wxLIST_STATE_", isFlags: true);
+		tweaks.ConstantEnum("ListItemMask", "wxLIST_MASK_", isFlags: true);
+		tweaks.ConstantEnum("ListNextItem", "wxLIST_NEXT_");
+		tweaks.ConstantEnum("ListArrangement", "wxLIST_ALIGN_");
+		tweaks.ConstantEnum("ListRect", "wxLIST_RECT_");
+		tweaks.ConstantEnum("ListFindDirection", "wxLIST_FIND_");
 		tweaks.Class("wxListCtrl", list => list
+			.ParameterEnum("SetItemState", "state", "ListItemState")
+			.ParameterEnum("SetItemState", "stateMask", "ListItemState")
+			.ParameterEnum("GetItemState", "stateMask", "ListItemState")
+			.ParameterEnum("GetItemState", "return", "ListItemState")
+			.ParameterEnum("GetNextItem", "geometry", "ListNextItem")
+			.ParameterEnum("GetNextItem", "state", "ListItemState")
+			.ParameterEnum("Arrange", "flag", "ListArrangement")
+			.ParameterEnum("GetItemRect", "code", "ListRect")
+			.ParameterEnum("GetSubItemRect", "code", "ListRect")
+			.ParameterEnum("FindItem", "direction", "ListFindDirection")
 			.ParameterEnum("InsertColumn", "format", "wxListColumnFormat")
 			.ParameterEnum("SetSingleStyle", "style", "ListCtrlStyle")
 			.ParameterEnum("SetWindowStyleFlag", "style", "ListCtrlStyle")
@@ -16,8 +33,13 @@ internal static class Lists {
 			.Rename("GetSubItemRect", "TryGetSubItemRect"));
 		tweaks.Class("wxListView");
 		// SetData stays a method beside the data, as it was before the data could be read.
-		tweaks.Class("wxListItem", item => item.ValueObject().Property("Data", "GetData"));
-		tweaks.Class("wxListEvent");
+		tweaks.Class("wxListItem", item => item.ValueObject().Property("Data", "GetData")
+			.ParameterEnum("GetState", "return", "ListItemState")
+			.ParameterEnum("SetState", "state", "ListItemState")
+			.ParameterEnum("SetStateMask", "stateMask", "ListItemState")
+			.ParameterEnum("GetMask", "return", "ListItemMask")
+			.ParameterEnum("SetMask", "mask", "ListItemMask"));
+		tweaks.Class("wxListEvent", e => e.ParameterEnum("GetMask", "return", "ListItemMask"));
 		// SetItemData is written by hand, since wxTreeCtrl does not delete the data it replaces.
 		tweaks.Class("wxTreeCtrl", tree => tree
 			.Ignore("SetItemData")

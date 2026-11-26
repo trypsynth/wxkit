@@ -1521,7 +1521,7 @@ WXK_FUNCTION(uint8_t) wxk_ListCtrl_EndEditLabel(wxk_Window* self, uint8_t cancel
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_EnsureVisible(wxk_Window* self, int64_t item) WXK_NOEXCEPT;
 WXK_FUNCTION(int64_t) wxk_ListCtrl_FindItem_LongStringBool(wxk_Window* self, int64_t start, const char16_t* text, size_t textLength, uint8_t partial) WXK_NOEXCEPT;
 WXK_FUNCTION(int64_t) wxk_ListCtrl_FindItem_LongLong(wxk_Window* self, int64_t start, int64_t data) WXK_NOEXCEPT;
-WXK_FUNCTION(int64_t) wxk_ListCtrl_FindItem_LongPointInt(wxk_Window* self, int64_t start, wxk_Point point, int32_t direction) WXK_NOEXCEPT;
+WXK_FUNCTION(int64_t) wxk_ListCtrl_FindItem_LongPointListFindDirection(wxk_Window* self, int64_t start, wxk_Point point, int32_t direction) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetColumn(wxk_Window* self, int32_t column, wxk_Object* item) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListCtrl_GetColumnIndexFromOrder(wxk_Window* self, int32_t position) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListCtrl_GetColumnOrder(wxk_Window* self, int32_t column) WXK_NOEXCEPT;

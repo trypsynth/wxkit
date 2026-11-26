@@ -4954,9 +4954,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial long ListCtrlFindItemLongLong(WxkWindow* self, long start, long data);
 
-	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_FindItem_LongPointInt")]
+	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_FindItem_LongPointListFindDirection")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial long ListCtrlFindItemLongPointInt(WxkWindow* self, long start, Point point, int direction);
+	public static partial long ListCtrlFindItemLongPointListFindDirection(WxkWindow* self, long start, Point point, int direction);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_GetColumn")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

@@ -1476,6 +1476,18 @@ public enum LayoutDirection {
 	RightToLeft = 2,
 }
 
+/// <summary>Wraps wxLIST_ALIGN_*.</summary>
+public enum ListArrangement {
+	/// <summary>Wraps wxLIST_ALIGN_DEFAULT.</summary>
+	Default = 0,
+	/// <summary>Wraps wxLIST_ALIGN_LEFT.</summary>
+	Left = 1,
+	/// <summary>Wraps wxLIST_ALIGN_TOP.</summary>
+	Top = 2,
+	/// <summary>Wraps wxLIST_ALIGN_SNAP_TO_GRID.</summary>
+	SnapToGrid = 3,
+}
+
 /// <summary>Wraps wxListColumnFormat.</summary>
 public enum ListColumnFormat {
 	/// <summary>Wraps wxLIST_FORMAT_LEFT.</summary>
@@ -1484,6 +1496,76 @@ public enum ListColumnFormat {
 	Right = 1,
 	/// <summary>Wraps wxLIST_FORMAT_CENTRE.</summary>
 	Center = 2,
+}
+
+/// <summary>Wraps wxLIST_FIND_*.</summary>
+public enum ListFindDirection {
+	/// <summary>Wraps wxLIST_FIND_UP.</summary>
+	Up = 0,
+	/// <summary>Wraps wxLIST_FIND_DOWN.</summary>
+	Down = 1,
+	/// <summary>Wraps wxLIST_FIND_LEFT.</summary>
+	Left = 2,
+	/// <summary>Wraps wxLIST_FIND_RIGHT.</summary>
+	Right = 3,
+}
+
+/// <summary>Wraps wxLIST_MASK_*.</summary>
+[Flags]
+public enum ListItemMask {
+	/// <summary>None of the flags. Wraps 0.</summary>
+	None = 0,
+	/// <summary>Wraps wxLIST_MASK_STATE.</summary>
+	State = 1,
+	/// <summary>Wraps wxLIST_MASK_TEXT.</summary>
+	Text = 2,
+	/// <summary>Wraps wxLIST_MASK_IMAGE.</summary>
+	Image = 4,
+	/// <summary>Wraps wxLIST_MASK_DATA.</summary>
+	Data = 8,
+	/// <summary>Wraps wxLIST_MASK_WIDTH.</summary>
+	Width = 32,
+	/// <summary>Wraps wxLIST_MASK_FORMAT.</summary>
+	Format = 64,
+}
+
+/// <summary>Wraps wxLIST_STATE_*.</summary>
+[Flags]
+public enum ListItemState {
+	/// <summary>Wraps wxLIST_STATE_DONTCARE.</summary>
+	None = 0,
+	/// <summary>Wraps wxLIST_STATE_DROPHILITED.</summary>
+	DropHighlighted = 1,
+	/// <summary>Wraps wxLIST_STATE_FOCUSED.</summary>
+	Focused = 2,
+	/// <summary>Wraps wxLIST_STATE_SELECTED.</summary>
+	Selected = 4,
+	/// <summary>Wraps wxLIST_STATE_CUT.</summary>
+	Cut = 8,
+}
+
+/// <summary>Wraps wxLIST_NEXT_*.</summary>
+public enum ListNextItem {
+	/// <summary>Wraps wxLIST_NEXT_ABOVE.</summary>
+	Above = 0,
+	/// <summary>Wraps wxLIST_NEXT_ALL.</summary>
+	All = 1,
+	/// <summary>Wraps wxLIST_NEXT_BELOW.</summary>
+	Below = 2,
+	/// <summary>Wraps wxLIST_NEXT_LEFT.</summary>
+	Left = 3,
+	/// <summary>Wraps wxLIST_NEXT_RIGHT.</summary>
+	Right = 4,
+}
+
+/// <summary>Wraps wxLIST_RECT_*.</summary>
+public enum ListRect {
+	/// <summary>Wraps wxLIST_RECT_BOUNDS.</summary>
+	Bounds = 0,
+	/// <summary>Wraps wxLIST_RECT_ICON.</summary>
+	Icon = 1,
+	/// <summary>Wraps wxLIST_RECT_LABEL.</summary>
+	Label = 2,
 }
 
 /// <summary>Wraps wxMappingMode.</summary>

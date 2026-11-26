@@ -11,7 +11,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 ## Types
 
 - Numbers where an enum exists or should:
-  - `ListCtrl`'s item states, masks, directions, and arrangement, and `ListItem`'s and `ListEvent`'s, which have no names today, so selecting an item is `SetItemState(i, 4, 4)`. They become enums such as `ListItemState` and `ListNextItem`.
   - `MouseEvent.Button`, which becomes `MouseButton`, `KeyCode` on list and tree events, `Orientation` on the scroll events and on `Window`'s scroll bar members, `StyledTextEvent.Modifiers` and `RegisterHotKey`'s modifiers, which become `KeyModifiers`, and `DC.DrawLabel`'s alignment.
   - `Image.LoadFlags` and `DefaultLoadFlags`, which become an `ImageLoadFlags` enum. wxWidgets defines its one flag in an enum without a name.
   - `KeyEvent.IsKeyInCategory`, the effective icons of the message dialogs, which become `MessageIcon`, `StatusBar.SetStatusStyles`, `FontData.RestrictSelection`, and `FileDialog.AddShortcut`.
