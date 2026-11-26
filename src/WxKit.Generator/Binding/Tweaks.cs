@@ -255,6 +255,14 @@ internal sealed class ClassTweak(string name) {
 		return this;
 	}
 
+	/// <summary>Whether the director is a class of its own to wxWidgets, which a port may only call an overridable member for, as wxMSW does to sort a tree.</summary>
+	public bool HasDirectorClassInfo { get; private set; }
+
+	public ClassTweak DirectorClassInfo() {
+		HasDirectorClassInfo = true;
+		return this;
+	}
+
 	/// <summary>Whether hand-written code gives the directors' callbacks, as Printout does, rather than a generated managed class.</summary>
 	public bool IsDirectorInternal { get; private set; }
 

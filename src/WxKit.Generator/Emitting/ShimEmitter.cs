@@ -221,6 +221,13 @@ internal static class ShimEmitter {
 		writer.Open($"~{Director(bound)}() override");
 		writer.Line("if (_userdata != nullptr && wxk::directors::onFree != nullptr) wxk::directors::onFree(_userdata);");
 		writer.Close();
+		if (bound.Tweak.HasDirectorClassInfo) {
+			writer.Line();
+			writer.Open("wxClassInfo* GetClassInfo() const override");
+			writer.Line($"static wxClassInfo info(wxT(\"wxk{Director(bound)}\"), wxCLASSINFO({bound.CppName}), nullptr, static_cast<int>(sizeof({Director(bound)})), nullptr);");
+			writer.Line("return &info;");
+			writer.Close();
+		}
 		foreach (BoundFunction director in bound.AllDirectors.Where(static director => director.HasBaseExport)) {
 			writer.Line();
 			writer.Open($"{director.Source.Type} Base{director.Source.Name}({Parameters(director)}){Constness(director)} override");

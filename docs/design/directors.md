@@ -11,6 +11,7 @@ Each override calls a callback, a C function pointer that .NET sets once, before
 These classes have directors:
 
 - `wxListCtrl`, whose `OnGetItemText`, `OnGetItemImage`, `OnGetItemColumnImage`, and `OnGetItemIsChecked` a virtual list overrides, and `wxListView`, which has them through it.
+- `wxTreeCtrl`, whose `OnCompareItems` gives the order `SortChildren` sorts in. Its director is a class of its own to wxWidgets, from the `DirectorClassInfo` tweak, since wxMSW only asks `OnCompareItems` of a class that isn't `wxTreeCtrl` itself.
 - `wxPrintout`, whose page and document members `Printout` overrides.
 - `wxAccessible`, whose sixteen questions `Accessible` answers, only on wxMSW.
 - `wxDataViewModel` and `wxDataViewVirtualListModel`, whose values, hierarchy, and rows `DataViewTreeModel` and `DataViewVirtualListModel` give.
@@ -29,7 +30,7 @@ An `InternalDirector` tweak generates only the C++ and the imports, and hand-wri
 
 ## What a callback can take and give
 
-A generated director's parameters can be numbers, enums, and booleans, and its result can also be text or an item id. A hand-written one's can also be:
+A generated director's parameters can be numbers, enums, booleans, and item ids, and its result can also be text. A hand-written one's can also be:
 
 - A count, such as the number of children a model's `GetChildren` added, as its C type.
 - A point, by value, and a data view item, as its id.

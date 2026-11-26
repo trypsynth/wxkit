@@ -69,4 +69,15 @@ extern void (*Printout_OnEndPrinting)(wxk_Object* self, void* userdata);
 extern uint8_t (*Printout_OnBeginDocument)(wxk_Object* self, void* userdata, int32_t startPage, int32_t endPage);
 extern void (*Printout_OnEndDocument)(wxk_Object* self, void* userdata);
 
+// wxTreeCtrl's overridable members call into .NET through these, once it sets them.
+extern int32_t (*TreeCtrl_OnCompareItems)(wxk_Window* self, void* userdata, void* item1, void* item2);
+
+// What wxTreeCtrl's own members do, which each director made from it gives.
+struct TreeCtrlBase {
+	virtual int BaseOnCompareItems(const wxTreeItemId & item1, const wxTreeItemId & item2) = 0;
+
+	protected:
+	~TreeCtrlBase() = default;
+};
+
 } // namespace wxk::directors

@@ -11632,7 +11632,11 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_TreeCtrl_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkWindow* TreeCtrlNew(WxkWindow* parent, int id, Point position, Size size, long style, byte styleGiven);
+	public static partial WxkWindow* TreeCtrlNew(void* userdata, WxkWindow* parent, int id, Point position, Size size, long style, byte styleGiven);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeCtrl_base_OnCompareItems")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int TreeCtrlBaseOnCompareItems(WxkWindow* self, nint item1, nint item2);
 
 	[LibraryImport(Library, EntryPoint = "wxk_TreeCtrl_AddRoot")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -11789,10 +11793,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_TreeCtrl_ItemHasChildren")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte TreeCtrlItemHasChildren(WxkWindow* self, nint item);
-
-	[LibraryImport(Library, EntryPoint = "wxk_TreeCtrl_OnCompareItems")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int TreeCtrlOnCompareItems(WxkWindow* self, nint item1, nint item2);
 
 	[LibraryImport(Library, EntryPoint = "wxk_TreeCtrl_PrependItem")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -11953,6 +11953,10 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_TreeCtrl_HasImages")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte TreeCtrlHasImages(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_TreeCtrl_SetDirectors")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void TreeCtrlSetDirectors(delegate* unmanaged[Cdecl]<WxkWindow*, void*, nint, nint, int> onCompareItems);
 
 	[LibraryImport(Library, EntryPoint = "wxk_TreeEvent_SetToolTip")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

@@ -7,7 +7,8 @@ namespace WxKit;
 /// <summary>A tree control presents information as a hierarchy, with items that may be expanded to show further items. Wraps wxTreeCtrl.</summary>
 public unsafe partial class TreeCtrl : Control {
 	/// <summary>Constructor, creating and showing a tree control.</summary>
-	public TreeCtrl(Window parent, int id = StandardId.Any, Point? position = null, Size? size = null, TreeCtrlStyle? style = null) : this(CreateNative(parent, id, position, size, style)) {
+	public TreeCtrl(Window parent, int id = StandardId.Any, Point? position = null, Size? size = null, TreeCtrlStyle? style = null) : this(CreateNative(out DirectorTarget director, parent, id, position, size, style)) {
+		director.Object = this;
 	}
 
 	internal TreeCtrl(WxkWindow* native) : base(native) {
@@ -330,9 +331,6 @@ public unsafe partial class TreeCtrl : Control {
 	/// <summary>Returns true if the item has children.</summary>
 	public bool ItemHasChildren(TreeItemId item) => WxKitNative.TreeCtrlItemHasChildren(Native, item.Value) != 0;
 
-	/// <summary>Override this function in the derived class to change the sort order of the items in the tree control.</summary>
-	public int OnCompareItems(TreeItemId item1, TreeItemId item2) => WxKitNative.TreeCtrlOnCompareItems(Native, item1.Value, item2.Value);
-
 	/// <summary>Appends an item as the first child of parent, return a new item id.</summary>
 	public TreeItemId PrependItem(TreeItemId parent, string text, int image = -1, int selectedImage = -1, object? data = null) {
 		ArgumentNullException.ThrowIfNull(text);
@@ -429,9 +427,34 @@ public unsafe partial class TreeCtrl : Control {
 	/// <summary>Unselects the given item.</summary>
 	public void UnselectItem(TreeItemId item) => WxKitNative.TreeCtrlUnselectItem(Native, item.Value);
 
-	private static WxkWindow* CreateNative(Window parent, int id, Point? position, Size? size, TreeCtrlStyle? style) {
+	/// <summary>Override this function in the derived class to change the sort order of the items in the tree control.</summary>
+	protected virtual int OnCompareItems(TreeItemId item1, TreeItemId item2) => WxKitNative.TreeCtrlBaseOnCompareItems(Native, item1.Value, item2.Value);
+
+	[global::System.Runtime.InteropServices.UnmanagedCallersOnly(CallConvs = [typeof(global::System.Runtime.CompilerServices.CallConvCdecl)])]
+	private static int DirectorOnCompareItems(WxkWindow* self, void* userdata, nint item1, nint item2) {
+		try {
+			if (DirectorTarget.Find<TreeCtrl>(userdata) is not TreeCtrl owner) return WxKitNative.TreeCtrlBaseOnCompareItems(self, item1, item2);
+			return owner.OnCompareItems(new global::WxKit.TreeItemId(item1), new global::WxKit.TreeItemId(item2));
+		} catch (Exception error) {
+			Application.ReportException(error);
+			return default;
+		}
+	}
+
+	private static bool _directorsInstalled;
+
+	internal static void InstallTreeCtrlDirectors() {
+		if (_directorsInstalled) return;
+		_directorsInstalled = true;
+		Directors.Install();
+		WxKitNative.TreeCtrlSetDirectors(&DirectorOnCompareItems);
+	}
+
+	private static WxkWindow* CreateNative(out DirectorTarget director, Window parent, int id, Point? position, Size? size, TreeCtrlStyle? style) {
 		Application.VerifyAccess();
+		TreeCtrl.InstallTreeCtrlDirectors();
+		director = new DirectorTarget();
 		ArgumentNullException.ThrowIfNull(parent);
-		return WxKitNative.TreeCtrlNew((WxkWindow*)parent.Native, id, position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default, (long)style.GetValueOrDefault(), style.HasValue ? (byte)1 : (byte)0);
+		return director.Created(WxKitNative.TreeCtrlNew(director.Userdata, (WxkWindow*)parent.Native, id, position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default, (long)style.GetValueOrDefault(), style.HasValue ? (byte)1 : (byte)0));
 	}
 }

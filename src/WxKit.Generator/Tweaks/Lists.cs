@@ -44,8 +44,12 @@ internal static class Lists {
 			.ParameterEnum("SetMask", "mask", "ListItemMask"));
 		tweaks.Class("wxListEvent", e => e.ParameterEnum("GetMask", "return", "ListItemMask"));
 		// SetItemData is written by hand, since wxTreeCtrl does not delete the data it replaces.
+		// SortChildren asks OnCompareItems for the order, which wxMSW only does of a class that isn't
+		// wxTreeCtrl itself, so the director is one.
 		tweaks.Class("wxTreeCtrl", tree => tree
-			.Ignore("SetItemData")
+			.Director("OnCompareItems")
+			.DirectorClassInfo()
+			.Ignore("SetItemData", "OnCompareItems")
 			.ParameterName("GetSelections", "selection", "selections")
 			.Rename("GetBoundingRect", "TryGetBoundingRect"));
 		tweaks.Class("wxTreeEvent");

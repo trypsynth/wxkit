@@ -3442,7 +3442,8 @@ WXK_FUNCTION(wxk_Size) wxk_TopLevelWindow_GetDefaultSize(void) WXK_NOEXCEPT;
 
 // wxTreeCtrl
 
-WXK_FUNCTION(wxk_Window*) wxk_TreeCtrl_new(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, int64_t style, uint8_t styleGiven) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Window*) wxk_TreeCtrl_new(void* userdata, wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, int64_t style, uint8_t styleGiven) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_TreeCtrl_base_OnCompareItems(wxk_Window* self, void* item1, void* item2) WXK_NOEXCEPT;
 WXK_FUNCTION(void*) wxk_TreeCtrl_AddRoot(wxk_Window* self, const char16_t* text, size_t textLength, int32_t image, int32_t selectedImage, void* data) WXK_NOEXCEPT;
 WXK_FUNCTION(void*) wxk_TreeCtrl_AppendItem(wxk_Window* self, void* parent, const char16_t* text, size_t textLength, int32_t image, int32_t selectedImage, void* data) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_TreeCtrl_Collapse(wxk_Window* self, void* item) WXK_NOEXCEPT;
@@ -3482,7 +3483,6 @@ WXK_FUNCTION(uint8_t) wxk_TreeCtrl_IsExpanded(wxk_Window* self, void* item) WXK_
 WXK_FUNCTION(uint8_t) wxk_TreeCtrl_IsSelected(wxk_Window* self, void* item) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_TreeCtrl_IsVisible(wxk_Window* self, void* item) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_TreeCtrl_ItemHasChildren(wxk_Window* self, void* item) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_TreeCtrl_OnCompareItems(wxk_Window* self, void* item1, void* item2) WXK_NOEXCEPT;
 WXK_FUNCTION(void*) wxk_TreeCtrl_PrependItem(wxk_Window* self, void* parent, const char16_t* text, size_t textLength, int32_t image, int32_t selectedImage, void* data) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_TreeCtrl_ScrollTo(wxk_Window* self, void* item) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_TreeCtrl_SelectItem(wxk_Window* self, void* item, uint8_t select) WXK_NOEXCEPT;
@@ -3523,6 +3523,7 @@ WXK_FUNCTION(uint8_t) wxk_TreeCtrl_HasStateImages(wxk_Window* self) WXK_NOEXCEPT
 WXK_FUNCTION(uint8_t) wxk_TreeCtrl_IsEmpty(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_TreeCtrl_GetImageCount(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_TreeCtrl_HasImages(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_TreeCtrl_SetDirectors(int32_t (*onCompareItems)(wxk_Window* self, void* userdata, void* item1, void* item2)) WXK_NOEXCEPT;
 
 // wxTreeEvent
 

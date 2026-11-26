@@ -8245,10 +8245,10 @@ class WxKit.TreeCtrl : Control
     int GetItemState(TreeItemId item)
     int ImageCount { get; }
     int Indent { get; set; }
-    int OnCompareItems(TreeItemId item1, TreeItemId item2)
     int Spacing { get; set; }
     int StateImageCount { get; }
     object? GetItemData(TreeItemId item)
+    protected virtual int OnCompareItems(TreeItemId item1, TreeItemId item2)
     string GetItemText(TreeItemId item)
     void ClearFocusedItem()
     void Collapse(TreeItemId item)

@@ -53,6 +53,25 @@ public class ListTests {
 		Assert.False(default(TreeItemId).IsOk);
 	});
 
+	// A tree sorts an item's children by their text, or as a derived class's OnCompareItems says.
+	[Fact]
+	public Task SortsATreesItems() => Gui.WithFrame(frame => {
+		static string[] Sorted(TreeCtrl tree) {
+			TreeItemId root = tree.AddRoot("Library");
+			foreach (string text in (string[])["Poetry", "Art", "Fiction"]) tree.AppendItem(root, text);
+			tree.SortChildren(root);
+			List<string> texts = [];
+			for (TreeItemId item = tree.GetLastChild(root); item.IsOk; item = tree.GetPreviousSibling(item)) texts.Insert(0, tree.GetItemText(item));
+			return [.. texts];
+		}
+		Assert.Equal(["Art", "Fiction", "Poetry"], Sorted(new TreeCtrl(frame)));
+		Assert.Equal(["Art", "Poetry", "Fiction"], Sorted(new ByLength(frame)));
+	});
+
+	private sealed class ByLength(Window parent) : TreeCtrl(parent) {
+		protected override int OnCompareItems(TreeItemId item1, TreeItemId item2) => GetItemText(item1).Length.CompareTo(GetItemText(item2).Length);
+	}
+
 	[Fact]
 	public Task GivesATreeItsImages() => Gui.WithFrame(frame => {
 		TreeCtrl tree = new(frame);
