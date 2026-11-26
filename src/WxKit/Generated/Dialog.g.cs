@@ -63,9 +63,6 @@ public unsafe partial class Dialog : TopLevelWindow {
 	/// <summary>Shows an application-modal dialog.</summary>
 	public int ShowModal() => WxKitNative.DialogShowModal(Native);
 
-	/// <summary>Shows a dialog modal to the parent top level window only.</summary>
-	public void ShowWindowModal() => WxKitNative.DialogShowWindowModal(Native);
-
 	private static WxkWindow* CreateNative(Window? parent, string title, int id, Point? position, Size? size, DialogStyle style) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(title);

@@ -1301,6 +1301,7 @@ static class WxKit.Desktop
 class WxKit.Dialog : TopLevelWindow, IDisposable
     Dialog(Window? parent, string title, int id = -1, Point? position = null, Size? size = null, DialogStyle style = DialogStyle.Default)
     IReadOnlyList<int> MainButtonIds { get; }
+    Task<int> ShowWindowModalAsync()
     Window? ContentWindow { get; }
     bool IsMainButtonId(int id)
     bool IsModal { get; }
@@ -1313,7 +1314,6 @@ class WxKit.Dialog : TopLevelWindow, IDisposable
     void AddMainButtonId(int id)
     void Dispose()
     void EndModal(int returnCode)
-    void ShowWindowModal()
 [Flags] enum WxKit.DialogButtons : int
     Apply = 32
     Cancel = 16

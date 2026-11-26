@@ -2,17 +2,13 @@ namespace WxKit.Tests;
 
 // Bitmaps and bitmap buttons, the book controls besides the notebook, and other smaller controls.
 public class MoreControlTests {
-	// A window-modal dialog, which on macOS is a sheet ShowWindowModal doesn't wait for, says when it
-	// closes, and what it returned.
+	// A window-modal dialog, which on macOS is a sheet that isn't waited for, gives what it
+	// returned when it closes.
 	[Fact]
 	public Task SaysWhenAWindowModalDialogCloses() => Gui.WithFrame(async frame => {
 		Dialog dialog = new(frame, "Window modal");
-		int? returned = null;
-		dialog.WindowModalClosed += (_, e) => returned = e.ReturnCode;
 		Application.Post(() => dialog.EndModal(StandardId.Ok));
-		dialog.ShowWindowModal();
-		await Gui.WaitUntil(() => returned is not null);
-		Assert.Equal(StandardId.Ok, returned);
+		Assert.Equal(StandardId.Ok, await dialog.ShowWindowModalAsync());
 		dialog.Destroy();
 	});
 

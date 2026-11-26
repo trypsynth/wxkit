@@ -837,11 +837,11 @@ WXK_FUNCTION(void) wxk_DatePickerCtrl_SetValue(wxk_Window* self, wxk_DateTime dt
 // wxDialog
 
 WXK_FUNCTION(wxk_Window*) wxk_Dialog_new(wxk_Window* parent, int32_t id, const char16_t* title, size_t titleLength, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Dialog_ShowWindowModal(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Dialog_AddMainButtonId(wxk_Window* self, int32_t id) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Dialog_EndModal(wxk_Window* self, int32_t returnCode) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Dialog_IsMainButtonId(wxk_Window* self, int32_t id) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Dialog_ShowModal(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Dialog_ShowWindowModal(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Dialog_GetAffirmativeId(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Dialog_SetAffirmativeId(wxk_Window* self, int32_t id) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_Dialog_GetContentWindow(wxk_Window* self) WXK_NOEXCEPT;

@@ -1,3 +1,5 @@
+using WxKit.Interop;
+
 namespace WxKit;
 
 // A dialog is shown modally and then destroyed, which IDisposable lets a using block do.
@@ -5,7 +7,24 @@ namespace WxKit;
 /// Show a dialog with <see cref="ShowModal"/> inside a <c>using</c> block, which destroys it once
 /// it closes.
 /// </remarks>
-public partial class Dialog : IDisposable {
+public unsafe partial class Dialog : IDisposable {
+	/// <summary>
+	/// Shows the dialog modal to its parent window alone, which on macOS is a sheet, and returns at
+	/// once. The task ends when the dialog closes, with what it returned, such as
+	/// <see cref="StandardId.Ok"/>. Wraps ShowWindowModal.
+	/// </summary>
+	public Task<int> ShowWindowModalAsync() {
+		TaskCompletionSource<int> closed = new(TaskCreationOptions.RunContinuationsAsynchronously);
+		EventHandler<WindowModalDialogEvent>? handler = null;
+		handler = (_, e) => {
+			WindowModalClosed -= handler;
+			closed.TrySetResult(e.ReturnCode);
+		};
+		WindowModalClosed += handler;
+		WxKitNative.DialogShowWindowModal(Native);
+		return closed.Task;
+	}
+
 	/// <summary>Destroys the dialog, unless wxWidgets already has.</summary>
 	public void Dispose() {
 		if (!IsDestroyed) Destroy();

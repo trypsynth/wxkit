@@ -2674,6 +2674,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* DialogNew(WxkWindow* parent, int id, char* title, nuint titleLength, Point position, Size size, long style);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Dialog_ShowWindowModal")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DialogShowWindowModal(WxkWindow* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Dialog_AddMainButtonId")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DialogAddMainButtonId(WxkWindow* self, int id);
@@ -2689,10 +2693,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Dialog_ShowModal")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int DialogShowModal(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Dialog_ShowWindowModal")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DialogShowWindowModal(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Dialog_GetAffirmativeId")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

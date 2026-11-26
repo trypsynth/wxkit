@@ -74,6 +74,8 @@ internal static class Internals {
 		tweaks.Class("wxTreebook").Ignore("GetSelection");
 		tweaks.Class("wxImage").Internal("GetMaskRed", "GetMaskGreen", "GetMaskBlue", "SetMaskColour", "HasMask", "SetMask");
 		tweaks.Class("wxWindow").Internal("GetToolTipText", "UnsetToolTip");
+		// ShowWindowModalAsync, written by hand, gives what the dialog returned as a task's result.
+		tweaks.Class("wxDialog").Internal("ShowWindowModal");
 		// The origins are written by hand, since the setters take x and y.
 		tweaks.Class("wxDC").Internal("GetDeviceOrigin", "SetDeviceOrigin", "GetLogicalOrigin", "SetLogicalOrigin");
 		tweaks.Class("wxMemoryDC").Property("SelectedBitmap", "GetSelectedBitmap", "SelectObject");

@@ -8,6 +8,10 @@ WXK_FUNCTION(wxk_Window*) wxk_Dialog_new(wxk_Window* parent, int32_t id, const c
 	});
 }
 
+WXK_FUNCTION(void) wxk_Dialog_ShowWindowModal(wxk_Window* self) noexcept {
+	wxk::Guard([&] { static_cast<wxDialog*>(wxk::Unwrap(self))->ShowWindowModal(); });
+}
+
 WXK_FUNCTION(void) wxk_Dialog_AddMainButtonId(wxk_Window* self, int32_t id) noexcept {
 	wxk::Guard([&] { static_cast<wxDialog*>(wxk::Unwrap(self))->AddMainButtonId(static_cast<int>(id)); });
 }
@@ -28,10 +32,6 @@ WXK_FUNCTION(uint8_t) wxk_Dialog_IsMainButtonId(wxk_Window* self, int32_t id) no
 
 WXK_FUNCTION(int32_t) wxk_Dialog_ShowModal(wxk_Window* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxDialog*>(wxk::Unwrap(self))->ShowModal()); });
-}
-
-WXK_FUNCTION(void) wxk_Dialog_ShowWindowModal(wxk_Window* self) noexcept {
-	wxk::Guard([&] { static_cast<wxDialog*>(wxk::Unwrap(self))->ShowWindowModal(); });
 }
 
 WXK_FUNCTION(int32_t) wxk_Dialog_GetAffirmativeId(wxk_Window* self) noexcept {
