@@ -21,9 +21,6 @@ public unsafe partial class BookCtrlBase : Control {
 	/// <summary>Returns the number of pages in the control.</summary>
 	public int PageCount => checked((int)WxKitNative.BookCtrlBaseGetPageCount(Native));
 
-	/// <summary>Returns the currently selected page, or wxNOT_FOUND if none was selected.</summary>
-	public int Selection => WxKitNative.BookCtrlBaseGetSelection(Native);
-
 	/// <summary>Adds a new page.</summary>
 	public bool AddPage(Window page, string text, bool select = false, int imageId = -1) {
 		ArgumentNullException.ThrowIfNull(page);
@@ -35,9 +32,6 @@ public unsafe partial class BookCtrlBase : Control {
 
 	/// <summary>Cycles through the tabs.</summary>
 	public void AdvanceSelection(bool forward = true) => WxKitNative.BookCtrlBaseAdvanceSelection(Native, forward ? (byte)1 : (byte)0);
-
-	/// <summary>Changes the selection to the given page, returning the previous selection.</summary>
-	public int ChangeSelection(int page) => WxKitNative.BookCtrlBaseChangeSelection(Native, checked((nuint)page));
 
 	/// <summary>Deletes all pages.</summary>
 	public bool DeleteAllPages() => WxKitNative.BookCtrlBaseDeleteAllPages(Native) != 0;
@@ -94,7 +88,4 @@ public unsafe partial class BookCtrlBase : Control {
 			return WxKitNative.BookCtrlBaseSetPageText(Native, checked((nuint)page), textText, NativeString.Length(text)) != 0;
 		}
 	}
-
-	/// <summary>Sets the selection to the given page, returning the previous selection.</summary>
-	public int SetSelection(int page) => WxKitNative.BookCtrlBaseSetSelection(Native, checked((nuint)page));
 }

@@ -47,9 +47,6 @@ public unsafe partial class Image : NativeObject {
 	/// <summary>Returns true if this image has alpha channel, false otherwise.</summary>
 	public bool HasAlpha => WxKitNative.ImageHasAlpha(Native) != 0;
 
-	/// <summary>Returns true if there is a mask active, false otherwise.</summary>
-	public bool HasMask => WxKitNative.ImageHasMask(Native) != 0;
-
 	/// <summary>Gets the height of the image in pixels.</summary>
 	public int Height => WxKitNative.ImageGetHeight(Native);
 
@@ -69,15 +66,6 @@ public unsafe partial class Image : NativeObject {
 		get => (ImageLoadFlags)WxKitNative.ImageGetLoadFlags(Native);
 		set => WxKitNative.ImageSetLoadFlags(Native, (int)value);
 	}
-
-	/// <summary>Gets the blue value of the mask colour.</summary>
-	public byte MaskBlue => WxKitNative.ImageGetMaskBlue(Native);
-
-	/// <summary>Gets the green value of the mask colour.</summary>
-	public byte MaskGreen => WxKitNative.ImageGetMaskGreen(Native);
-
-	/// <summary>Gets the red value of the mask colour.</summary>
-	public byte MaskRed => WxKitNative.ImageGetMaskRed(Native);
 
 	/// <summary>Returns the size of the image in pixels.</summary>
 	public Size Size => WxKitNative.ImageGetSize(Native);
@@ -308,12 +296,6 @@ public unsafe partial class Image : NativeObject {
 
 	/// <summary>Sets the alpha value for the given pixel.</summary>
 	public void SetAlpha(int x, int y, byte alpha) => WxKitNative.ImageSetAlpha(Native, x, y, alpha);
-
-	/// <summary>Specifies whether there is a mask or not.</summary>
-	public void SetMask(bool hasMask = true) => WxKitNative.ImageSetMask(Native, hasMask ? (byte)1 : (byte)0);
-
-	/// <summary>Sets the mask colour for this image (and tells the image to use the mask).</summary>
-	public void SetMaskColor(byte red, byte green, byte blue) => WxKitNative.ImageSetMaskColour(Native, red, green, blue);
 
 	/// <summary>Sets image's mask so that the pixels that have RGB value of mr,mg,mb in mask will be masked in the image.</summary>
 	public bool SetMaskFromImage(Image mask, byte mr, byte mg, byte mb) {

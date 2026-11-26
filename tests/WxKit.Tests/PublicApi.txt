@@ -509,13 +509,11 @@ class WxKit.BookCtrlBase : Control
     bool RemovePage(int page)
     bool SetPageImage(int page, int image)
     bool SetPageText(int page, string text)
-    int ChangeSelection(int page)
     int FindPage(Window page)
     int GetPageImage(int page)
     int ImageCount { get; }
     int PageCount { get; }
-    int Selection { get; }
-    int SetSelection(int page)
+    int Selection { get; set; }
     string GetPageText(int page)
     void AdvanceSelection(bool forward = true)
     void SetImages(IEnumerable<Bitmap> images)
@@ -580,12 +578,12 @@ class WxKit.Button : AnyButton
     Top = 128
 class WxKit.CalendarCtrl : Control
     CalendarCtrl(Window parent, DateTime? date = null, int id = -1, Point? position = null, Size? size = null, CalendarCtrlStyle style = CalendarCtrlStyle.ShowHolidays)
-    Color? HeaderBackgroundColor { get; }
-    Color? HeaderForegroundColor { get; }
-    Color? HighlightBackgroundColor { get; }
-    Color? HighlightForegroundColor { get; }
-    Color? HolidayBackgroundColor { get; }
-    Color? HolidayForegroundColor { get; }
+    Color? HeaderBackgroundColor { get; set; }
+    Color? HeaderForegroundColor { get; set; }
+    Color? HighlightBackgroundColor { get; set; }
+    Color? HighlightForegroundColor { get; set; }
+    Color? HolidayBackgroundColor { get; set; }
+    Color? HolidayForegroundColor { get; set; }
     DateTime? Date { get; set; }
     bool EnableMonthChange(bool enable = true)
     bool SetDateRange(DateTime? earliest = null, DateTime? latest = null)
@@ -597,10 +595,7 @@ class WxKit.CalendarCtrl : Control
     void EnableHolidayDisplay(bool display = true)
     void Mark(int day, bool mark)
     void ResetAttributes(int day)
-    void SetHeaderColors(Color? foreground, Color? background)
-    void SetHighlightColors(Color? foreground, Color? background)
     void SetHoliday(int day)
-    void SetHolidayColors(Color? foreground, Color? background)
 [Flags] enum WxKit.CalendarCtrlStyle : long
     MondayFirst = 1
     NoMonthChange = 12
@@ -2321,6 +2316,7 @@ enum WxKit.IdleMode : int
     Specified = 1
 class WxKit.Image : NativeObject
     BitmapType Type { get; set; }
+    Color? MaskColor { get; set; }
     Image()
     Image(Size size, bool clear = true)
     Image(int width, int height, bool clear = true)
@@ -2366,9 +2362,6 @@ class WxKit.Image : NativeObject
     byte GetBlue(int x, int y)
     byte GetGreen(int x, int y)
     byte GetRed(int x, int y)
-    byte MaskBlue { get; }
-    byte MaskGreen { get; }
-    byte MaskRed { get; }
     int GetOptionInt(string name)
     int Height { get; }
     int Width { get; }
@@ -2404,8 +2397,6 @@ class WxKit.Image : NativeObject
     void Resize(Size size, Point position, int red = -1, int green = -1, int blue = -1)
     void RotateHue(double angle)
     void SetAlpha(int x, int y, byte alpha)
-    void SetMask(bool hasMask = true)
-    void SetMaskColor(byte red, byte green, byte blue)
     void SetOption(string name, int value)
     void SetOption(string name, string value)
     void SetRgb(Rect rect, byte red, byte green, byte blue)
@@ -4062,10 +4053,9 @@ class WxKit.SplitterWindow : Window
     event EventHandler<SplitterEvent>? WindowRemoved
     int DefaultSashSize { get; }
     int MinimumPaneSize { get; set; }
-    int SashPosition { get; }
+    int SashPosition { get; set; }
     int SashSize { get; }
     void Initialize(Window window)
-    void SetSashPosition(int position, bool redraw = true)
     void UpdateSize()
 [Flags] enum WxKit.SplitterWindowStyle : long
     Border = 512
@@ -8807,7 +8797,7 @@ class WxKit.Window : EvtHandler
     string HelpText { get; set; }
     string Label { get; set; }
     string Name { get; set; }
-    string ToolTipText { get; }
+    string ToolTipText { get; set; }
     void AlwaysShowScrollBars(bool horizontal = true, bool vertical = true)
     void CaptureMouse()
     void Center(Orientation direction = Orientation.Both)
@@ -8857,11 +8847,9 @@ class WxKit.Window : EvtHandler
     void SetSize(int x, int y, int width, int height, SizeFlags sizeFlags = SizeFlags.Auto)
     void SetSizeHints(Size minSize, Size? maxSize = null, Size? incSize = null)
     void SetSizeHints(int minWidth, int minHeight, int maxWidth = -1, int maxHeight = -1, int widthIncrement = -1, int heightIncrement = -1)
-    void SetToolTip(string text)
     void SetVirtualSize(int width, int height)
     void SetWindowStyle(long style)
     void Thaw()
-    void UnsetToolTip()
     void Update()
     void UpdateInputMethodCursorRect(Rect rect)
     void UpdateWindowUI(UpdateUIFlags flags = UpdateUIFlags.None)

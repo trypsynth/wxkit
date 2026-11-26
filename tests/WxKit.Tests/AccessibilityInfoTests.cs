@@ -81,15 +81,15 @@ public partial class AccessibilityInfoTests {
 	public Task NamesIconButtons() => Gui.WithFrame(async frame => {
 		Panel panel = new(frame);
 		BitmapButton add = new(panel, ArtProvider.GetBitmap(ArtId.Plus, ArtClient.Button)!);
-		add.SetToolTip("Add");
+		add.ToolTipText = "Add";
 		BitmapButton remove = new(panel, ArtProvider.GetBitmap(ArtId.Minus, ArtClient.Button)!);
 		remove.SetAccessibleName("Remove item");
-		remove.SetToolTip("Remove");
+		remove.ToolTipText = "Remove";
 		BitmapButton help = new(panel, ArtProvider.GetBitmap(ArtId.Help, ArtClient.Button)!);
-		help.SetToolTip("Help");
-		help.SetToolTip("Show help");
+		help.ToolTipText = "Help";
+		help.ToolTipText = "Show help";
 		Button labeled = new(panel, "&Save");
-		labeled.SetToolTip("Saves the file");
+		labeled.ToolTipText = "Saves the file";
 		frame.Show();
 		await Gui.WaitUntil(() => AccessibilityInfo.Of(add).Name.Length > 0);
 		Expect(add, AccessibleRole.PushButton, "Add");

@@ -36,6 +36,30 @@ WXK_FUNCTION(wxk_Object*) wxk_Image_new_StringStringInt(const char16_t* name, si
 	});
 }
 
+WXK_FUNCTION(uint8_t) wxk_Image_GetMaskRed(wxk_Object* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return static_cast<uint8_t>(static_cast<wxImage*>(wxk::Unwrap(self))->GetMaskRed()); });
+}
+
+WXK_FUNCTION(uint8_t) wxk_Image_GetMaskGreen(wxk_Object* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return static_cast<uint8_t>(static_cast<wxImage*>(wxk::Unwrap(self))->GetMaskGreen()); });
+}
+
+WXK_FUNCTION(uint8_t) wxk_Image_GetMaskBlue(wxk_Object* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return static_cast<uint8_t>(static_cast<wxImage*>(wxk::Unwrap(self))->GetMaskBlue()); });
+}
+
+WXK_FUNCTION(uint8_t) wxk_Image_HasMask(wxk_Object* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->HasMask()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(void) wxk_Image_SetMask(wxk_Object* self, uint8_t hasMask) noexcept {
+	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->SetMask(hasMask != 0); });
+}
+
+WXK_FUNCTION(void) wxk_Image_SetMaskColour(wxk_Object* self, uint8_t red, uint8_t green, uint8_t blue) noexcept {
+	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->SetMaskColour(static_cast<unsigned char>(red), static_cast<unsigned char>(green), static_cast<unsigned char>(blue)); });
+}
+
 WXK_FUNCTION(wxk_Object*) wxk_Image_Copy(wxk_Object* self) noexcept {
 	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxImage>(static_cast<wxImage*>(wxk::Unwrap(self))->Copy()); });
 }
@@ -228,14 +252,6 @@ WXK_FUNCTION(void) wxk_Image_ClearAlpha(wxk_Object* self) noexcept {
 	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->ClearAlpha(); });
 }
 
-WXK_FUNCTION(void) wxk_Image_SetMask(wxk_Object* self, uint8_t hasMask) noexcept {
-	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->SetMask(hasMask != 0); });
-}
-
-WXK_FUNCTION(void) wxk_Image_SetMaskColour(wxk_Object* self, uint8_t red, uint8_t green, uint8_t blue) noexcept {
-	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->SetMaskColour(static_cast<unsigned char>(red), static_cast<unsigned char>(green), static_cast<unsigned char>(blue)); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_Image_SetMaskFromImage(wxk_Object* self, const wxk_Object* mask, uint8_t mr, uint8_t mg, uint8_t mb) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->SetMaskFromImage(wxk::ValueOf<wxImage>(mask), static_cast<unsigned char>(mr), static_cast<unsigned char>(mg), static_cast<unsigned char>(mb))) ? 1 : 0; });
 }
@@ -268,18 +284,6 @@ WXK_FUNCTION(uint8_t) wxk_Image_CanRead(const char16_t* fileName, size_t fileNam
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (wxImage::CanRead(wxk::FromUtf16(fileName, fileNameLength))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_Image_GetMaskRed(wxk_Object* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return static_cast<uint8_t>(static_cast<wxImage*>(wxk::Unwrap(self))->GetMaskRed()); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Image_GetMaskGreen(wxk_Object* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return static_cast<uint8_t>(static_cast<wxImage*>(wxk::Unwrap(self))->GetMaskGreen()); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Image_GetMaskBlue(wxk_Object* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return static_cast<uint8_t>(static_cast<wxImage*>(wxk::Unwrap(self))->GetMaskBlue()); });
-}
-
 WXK_FUNCTION(int32_t) wxk_Image_GetWidth(wxk_Object* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxImage*>(wxk::Unwrap(self))->GetWidth()); });
 }
@@ -302,10 +306,6 @@ WXK_FUNCTION(void) wxk_Image_SetType(wxk_Object* self, int32_t type) noexcept {
 
 WXK_FUNCTION(uint8_t) wxk_Image_HasAlpha(wxk_Object* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->HasAlpha()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Image_HasMask(wxk_Object* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->HasMask()) ? 1 : 0; });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Image_IsOk(wxk_Object* self) noexcept {

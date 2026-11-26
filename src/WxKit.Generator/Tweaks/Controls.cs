@@ -125,12 +125,8 @@ internal static class Controls {
 			.Ignore("GetTime"));
 		// The headers list the double click as EVT_CALENDAR, which sends wxEVT_CALENDAR_DOUBLECLICKED.
 		tweaks.Class("wxCalendarCtrl", calendar => calendar
-			.Property("HeaderForegroundColor", "GetHeaderColourFg")
-			.Property("HeaderBackgroundColor", "GetHeaderColourBg")
-			.Property("HighlightForegroundColor", "GetHighlightColourFg")
-			.Property("HighlightBackgroundColor", "GetHighlightColourBg")
-			.Property("HolidayForegroundColor", "GetHolidayColourFg")
-			.Property("HolidayBackgroundColor", "GetHolidayColourBg")
+			// Its colors are properties written by hand, since wxWidgets sets them a pair at a time.
+			.Internal("GetHeaderColourFg", "GetHeaderColourBg", "GetHighlightColourFg", "GetHighlightColourBg", "GetHolidayColourFg", "GetHolidayColourBg", "SetHeaderColours", "SetHighlightColours", "SetHolidayColours")
 			.ParameterName("SetDateRange", "lowerdate", "earliest")
 			.ParameterName("SetDateRange", "upperdate", "latest")
 			.Event("EVT_CALENDAR_SEL_CHANGED", "SelectionChanged")

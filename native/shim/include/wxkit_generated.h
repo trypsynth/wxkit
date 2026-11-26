@@ -152,13 +152,14 @@ WXK_FUNCTION(void) wxk_BitmapToggleButton_SetValue(wxk_Window* self, uint8_t sta
 
 // wxBookCtrlBase
 
+WXK_FUNCTION(int32_t) wxk_BookCtrlBase_GetSelection(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_BookCtrlBase_SetSelection(wxk_Window* self, size_t page) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_BookCtrlBase_ChangeSelection(wxk_Window* self, size_t page) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_BookCtrlBase_GetPageImage(wxk_Window* self, size_t page) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_BookCtrlBase_SetPageImage(wxk_Window* self, size_t page, int32_t image) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_BookCtrlBase_GetPageText(wxk_Window* self, size_t page) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_BookCtrlBase_SetPageText(wxk_Window* self, size_t page, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_BookCtrlBase_SetSelection(wxk_Window* self, size_t page) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_BookCtrlBase_AdvanceSelection(wxk_Window* self, uint8_t forward) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_BookCtrlBase_ChangeSelection(wxk_Window* self, size_t page) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_BookCtrlBase_FindPage(wxk_Window* self, wxk_Window* page) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_BookCtrlBase_AddPage(wxk_Window* self, wxk_Window* page, const char16_t* text, size_t textLength, uint8_t select, int32_t imageId) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_BookCtrlBase_DeleteAllPages(wxk_Window* self) WXK_NOEXCEPT;
@@ -168,7 +169,6 @@ WXK_FUNCTION(uint8_t) wxk_BookCtrlBase_RemovePage(wxk_Window* self, size_t page)
 WXK_FUNCTION(wxk_Window*) wxk_BookCtrlBase_GetPage(wxk_Window* self, size_t page) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_BookCtrlBase_SetPageSize(wxk_Window* self, wxk_Size size) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_BookCtrlBase_SetImages(wxk_Window* self, wxk_Object* const* images, size_t imagesCount) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_BookCtrlBase_GetSelection(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_BookCtrlBase_GetCurrentPage(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(size_t) wxk_BookCtrlBase_GetPageCount(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_BookCtrlBase_GetImageCount(wxk_Window* self) WXK_NOEXCEPT;
@@ -210,21 +210,21 @@ WXK_FUNCTION(void) wxk_Button_SetAuthNeeded(wxk_Window* self, uint8_t needed) WX
 // wxCalendarCtrl
 
 WXK_FUNCTION(wxk_Window*) wxk_CalendarCtrl_new(wxk_Window* parent, int32_t id, wxk_DateTime date, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHeaderColourBg(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHeaderColourFg(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHighlightColourBg(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHighlightColourFg(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHolidayColourBg(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHolidayColourFg(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_CalendarCtrl_SetHeaderColours(wxk_Window* self, wxk_Colour foreground, wxk_Colour background) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_CalendarCtrl_SetHighlightColours(wxk_Window* self, wxk_Colour foreground, wxk_Colour background) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_CalendarCtrl_SetHolidayColours(wxk_Window* self, wxk_Colour foreground, wxk_Colour background) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_CalendarCtrl_SetDateRange(wxk_Window* self, wxk_DateTime earliest, wxk_DateTime latest) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_CalendarCtrl_EnableHolidayDisplay(wxk_Window* self, uint8_t display) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_CalendarCtrl_EnableMonthChange(wxk_Window* self, uint8_t enable) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_CalendarCtrl_ResetAttr(wxk_Window* self, size_t day) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_CalendarCtrl_SetHeaderColours(wxk_Window* self, wxk_Colour foreground, wxk_Colour background) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_CalendarCtrl_SetHighlightColours(wxk_Window* self, wxk_Colour foreground, wxk_Colour background) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_CalendarCtrl_SetHoliday(wxk_Window* self, size_t day) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_CalendarCtrl_SetHolidayColours(wxk_Window* self, wxk_Colour foreground, wxk_Colour background) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_CalendarCtrl_Mark(wxk_Window* self, size_t day, uint8_t mark) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHeaderColourFg(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHeaderColourBg(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHighlightColourFg(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHighlightColourBg(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHolidayColourFg(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Colour) wxk_CalendarCtrl_GetHolidayColourBg(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_DateTime) wxk_CalendarCtrl_GetDate(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_CalendarCtrl_SetDate(wxk_Window* self, wxk_DateTime date) WXK_NOEXCEPT;
 
@@ -1275,6 +1275,12 @@ WXK_FUNCTION(wxk_Object*) wxk_Image_new_IntIntBool(int32_t width, int32_t height
 WXK_FUNCTION(wxk_Object*) wxk_Image_new_SizeBool(wxk_Size size, uint8_t clear) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Image_new_StringBitmapTypeInt(const char16_t* name, size_t nameLength, int32_t type, int32_t index) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Image_new_StringStringInt(const char16_t* name, size_t nameLength, const char16_t* mimeType, size_t mimeTypeLength, int32_t index) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Image_GetMaskRed(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Image_GetMaskGreen(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Image_GetMaskBlue(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Image_HasMask(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Image_SetMask(wxk_Object* self, uint8_t hasMask) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Image_SetMaskColour(wxk_Object* self, uint8_t red, uint8_t green, uint8_t blue) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Image_Copy(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Image_Create_IntIntBool(wxk_Object* self, int32_t width, int32_t height, uint8_t clear) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Image_Create_SizeBool(wxk_Object* self, wxk_Size size, uint8_t clear) WXK_NOEXCEPT;
@@ -1323,8 +1329,6 @@ WXK_FUNCTION(uint8_t) wxk_Image_SaveFile_StringString(wxk_Object* self, const ch
 WXK_FUNCTION(uint8_t) wxk_Image_SaveFile_String(wxk_Object* self, const char16_t* name, size_t nameLength) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_SetAlpha(wxk_Object* self, int32_t x, int32_t y, uint8_t alpha) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_ClearAlpha(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Image_SetMask(wxk_Object* self, uint8_t hasMask) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Image_SetMaskColour(wxk_Object* self, uint8_t red, uint8_t green, uint8_t blue) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Image_SetMaskFromImage(wxk_Object* self, const wxk_Object* mask, uint8_t mr, uint8_t mg, uint8_t mb) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_SetOption_StringString(wxk_Object* self, const char16_t* name, size_t nameLength, const char16_t* value, size_t valueLength) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_SetOption_StringInt(wxk_Object* self, const char16_t* name, size_t nameLength, int32_t value) WXK_NOEXCEPT;
@@ -1333,16 +1337,12 @@ WXK_FUNCTION(void) wxk_Image_SetRGB_RectByteByteByte(wxk_Object* self, wxk_Rect 
 WXK_FUNCTION(uint8_t) wxk_Image_RemoveHandler(const char16_t* name, size_t nameLength) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Image_GetImageCount(const char16_t* fileName, size_t fileNameLength, int32_t type) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Image_CanRead(const char16_t* fileName, size_t fileNameLength) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Image_GetMaskRed(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Image_GetMaskGreen(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Image_GetMaskBlue(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Image_GetWidth(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Image_GetHeight(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_Image_GetSize(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Image_GetType(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_SetType(wxk_Object* self, int32_t type) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Image_HasAlpha(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Image_HasMask(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Image_IsOk(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Image_GetLoadFlags(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_SetLoadFlags(wxk_Object* self, int32_t flags) WXK_NOEXCEPT;
@@ -2352,9 +2352,10 @@ WXK_FUNCTION(int32_t) wxk_SplitterEvent_GetNewSize(wxk_Event* self) WXK_NOEXCEPT
 // wxSplitterWindow
 
 WXK_FUNCTION(wxk_Window*) wxk_SplitterWindow_new(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_SplitterWindow_GetSashPosition(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_SplitterWindow_SetSashPosition(wxk_Window* self, int32_t position, uint8_t redraw) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_SplitterWindow_Initialize(wxk_Window* self, wxk_Window* window) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_SplitterWindow_ReplaceWindow(wxk_Window* self, wxk_Window* oldWindow, wxk_Window* newWindow) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_SplitterWindow_SetSashPosition(wxk_Window* self, int32_t position, uint8_t redraw) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_SplitterWindow_SplitHorizontally(wxk_Window* self, wxk_Window* window1, wxk_Window* window2, int32_t sashPosition) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_SplitterWindow_SplitVertically(wxk_Window* self, wxk_Window* window1, wxk_Window* window2, int32_t sashPosition) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_SplitterWindow_Unsplit(wxk_Window* self, wxk_Window* toRemove) WXK_NOEXCEPT;
@@ -2363,7 +2364,6 @@ WXK_FUNCTION(int32_t) wxk_SplitterWindow_GetMinimumPaneSize(wxk_Window* self) WX
 WXK_FUNCTION(void) wxk_SplitterWindow_SetMinimumPaneSize(wxk_Window* self, int32_t paneSize) WXK_NOEXCEPT;
 WXK_FUNCTION(double) wxk_SplitterWindow_GetSashGravity(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_SplitterWindow_SetSashGravity(wxk_Window* self, double gravity) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_SplitterWindow_GetSashPosition(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_SplitterWindow_GetSashSize(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_SplitterWindow_GetDefaultSashSize(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_SplitterWindow_GetSplitMode(wxk_Window* self) WXK_NOEXCEPT;
@@ -3747,6 +3747,8 @@ WXK_FUNCTION(uint8_t) wxk_WebViewEvent_IsTargetMainFrame(wxk_Event* self) WXK_NO
 
 // wxWindow
 
+WXK_FUNCTION(wxk_String*) wxk_Window_GetToolTipText(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Window_UnsetToolTip(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_SetSizer(wxk_Window* self, wxk_Sizer* sizer, uint8_t deleteOld) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_DisableFocusFromKeyboard(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_EnableFocusFromKeyboard(wxk_Window* self) WXK_NOEXCEPT;
@@ -3857,7 +3859,6 @@ WXK_FUNCTION(uint8_t) wxk_Window_Show(wxk_Window* self, uint8_t show) WXK_NOEXCE
 WXK_FUNCTION(uint8_t) wxk_Window_ShowWithEffect(wxk_Window* self, int32_t effect, uint32_t timeout) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Window_GetHelpIdAtPoint(wxk_Window* self, wxk_Point point) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_Window_GetHelpTextAtPoint(wxk_Window* self, wxk_Point point, int32_t origin) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Window_UnsetToolTip(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_PopupMenu_MenuPoint(wxk_Window* self, wxk_Menu* menu, wxk_Point position) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_PopupMenu_MenuIntInt(wxk_Window* self, wxk_Menu* menu, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_TransferDataFromWindow(wxk_Window* self) WXK_NOEXCEPT;
@@ -3959,7 +3960,6 @@ WXK_FUNCTION(uint8_t) wxk_Window_IsShown(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_IsShownOnScreen(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_Window_GetHelpText(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_SetHelpText(wxk_Window* self, const char16_t* helpText, size_t helpTextLength) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_String*) wxk_Window_GetToolTipText(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Window_GetId(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_SetId(wxk_Window* self, int32_t id) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_Window_GetLabel(wxk_Window* self) WXK_NOEXCEPT;

@@ -58,13 +58,21 @@ public unsafe partial class Window {
 	}
 
 	/// <summary>
-	/// Sets the tooltip that shows when the pointer rests on the window. A button that shows only
-	/// an icon is named by its tooltip for screen readers, unless <see cref="SetAccessibleName"/>
-	/// gave it a name. Wraps SetToolTip.
+	/// The tooltip that shows when the pointer rests on the window, which is empty when it has
+	/// none, and setting it empty takes it away. A button that shows only an icon is named by its
+	/// tooltip for screen readers, unless <see cref="SetAccessibleName"/> gave it a name. Wraps
+	/// GetToolTipText, SetToolTip, and UnsetToolTip.
 	/// </summary>
-	public void SetToolTip(string text) {
-		ArgumentNullException.ThrowIfNull(text);
-		fixed (char* chars = text) WxKitNative.WindowSetToolTip(Native, chars, NativeString.Length(text));
+	public string ToolTipText {
+		get => NativeString.Take(WxKitNative.WindowGetToolTipText(Native));
+		set {
+			ArgumentNullException.ThrowIfNull(value);
+			if (value.Length == 0) {
+				WxKitNative.WindowUnsetToolTip(Native);
+				return;
+			}
+			fixed (char* chars = value) WxKitNative.WindowSetToolTip(Native, chars, NativeString.Length(value));
+		}
 	}
 
 	private protected override void OnDestroyed() {

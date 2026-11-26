@@ -45,6 +45,34 @@ public class ControlTests {
 		Assert.True(notebook.AddPage(new Panel(notebook), "&Second", select: true));
 		Assert.Equal(2, notebook.PageCount);
 		Assert.Equal(1, notebook.Selection);
+		int changes = 0;
+		notebook.PageChanged += (_, _) => changes++;
+		notebook.Selection = 0;
+		Assert.Equal(0, notebook.Selection);
+		Assert.Equal(0, changes);
+	});
+
+	[Fact]
+	public Task SetsWhatWxWidgetsSetsWithAnotherMember() => Gui.WithFrame(frame => {
+		Button button = new(frame, "&Save");
+		Assert.Equal(string.Empty, button.ToolTipText);
+		button.ToolTipText = "Saves the file";
+		Assert.Equal("Saves the file", button.ToolTipText);
+		button.ToolTipText = string.Empty;
+		Assert.Equal(string.Empty, button.ToolTipText);
+		CalendarCtrl calendar = new(frame);
+		// A platform's own calendar, such as Windows', keeps no colors, and gives none back.
+		Color? background = calendar.HeaderBackgroundColor;
+		calendar.HeaderForegroundColor = new Color(10, 20, 30);
+		if (calendar.HeaderForegroundColor is Color kept) Assert.Equal(new Color(10, 20, 30), kept);
+		Assert.Equal(background, calendar.HeaderBackgroundColor);
+		using Image image = new(4, 4);
+		Assert.Null(image.MaskColor);
+		image.MaskColor = new Color(255, 0, 255);
+		Assert.True(image.HasMask);
+		Assert.Equal(new Color(255, 0, 255), image.MaskColor);
+		image.MaskColor = null;
+		Assert.False(image.HasMask);
 	});
 
 	[Fact]

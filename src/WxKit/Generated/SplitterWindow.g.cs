@@ -43,9 +43,6 @@ public unsafe partial class SplitterWindow : Window {
 		set => WxKitNative.SplitterWindowSetSashGravity(Native, value);
 	}
 
-	/// <summary>Returns the current sash position.</summary>
-	public int SashPosition => WxKitNative.SplitterWindowGetSashPosition(Native);
-
 	/// <summary>Returns the default sash size in pixels or 0 if it is invisible.</summary>
 	public int SashSize => WxKitNative.SplitterWindowGetSashSize(Native);
 
@@ -103,9 +100,6 @@ public unsafe partial class SplitterWindow : Window {
 		ArgumentNullException.ThrowIfNull(newWindow);
 		return WxKitNative.SplitterWindowReplaceWindow(Native, (WxkWindow*)oldWindow.Native, (WxkWindow*)newWindow.Native) != 0;
 	}
-
-	/// <summary>Sets the sash position.</summary>
-	public void SetSashPosition(int position, bool redraw = true) => WxKitNative.SplitterWindowSetSashPosition(Native, position, redraw ? (byte)1 : (byte)0);
 
 	/// <summary>Initializes the top and bottom panes of the splitter window.</summary>
 	public bool SplitHorizontally(Window window1, Window window2, int sashPosition = 0) {

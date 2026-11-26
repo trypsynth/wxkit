@@ -29,8 +29,7 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 
 - Getter and setter pairs become properties:
   - The styled text control's, which Scintilla names `AutoCompGetAutoHide` and `AutoCompSetAutoHide`, 18 pairs, and its queries such as `CallTipActive()`.
-  - The calendar's colors, `BookCtrlBase.Selection`, `SplitterWindow.SashPosition`, `Image.MaskColor`, and the print dialog's `Enable` members, each of which needs writing by hand: the setters take two values, return one, or have no getter.
-  - `Window.ToolTipText`, which can only be read, beside `SetToolTip`, whose overloads the property tweak can't choose between.
+  - The print dialog's `Enable` members, which have no getters bound.
 - A window's style is one property of the class's own style enum, rather than `WindowStyle`, `WindowStyleFlag`, `SetWindowStyle`, and `HasFlag` taking three types.
 - The item controls, `Choice`, `ComboBox`, `ListBox`, and `CheckListBox`, have one constructor each, with optional items and a style, and share an `IItemContainer` interface rather than repeating its members. Their item data has one name.
 - `ListCtrl.GetItem` and `GetColumn` return a `ListItem` rather than filling one the caller makes.

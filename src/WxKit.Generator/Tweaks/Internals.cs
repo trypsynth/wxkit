@@ -66,6 +66,14 @@ internal static class Internals {
 		tweaks.Class("wxCollapsiblePane").Property("IsCollapsed", "IsCollapsed", "Collapse");
 		tweaks.Class("wxListCtrl").Property("HasCheckBoxes", "HasCheckBoxes", "EnableCheckBoxes");
 		tweaks.Class("wxSearchCtrl").Property("IsSearchButtonVisible", "IsSearchButtonVisible", "ShowSearchButton").Property("IsCancelButtonVisible", "IsCancelButtonVisible", "ShowCancelButton");
+		// These are written by hand, in PairedProperties.cs, since a setter takes two values, or
+		// returns one, or there are two to choose between.
+		tweaks.Class("wxSplitterWindow").Internal("GetSashPosition", "SetSashPosition");
+		tweaks.Class("wxBookCtrlBase").Internal("GetSelection", "SetSelection", "ChangeSelection");
+		tweaks.Class("wxNotebook").Ignore("GetSelection", "SetSelection", "ChangeSelection");
+		tweaks.Class("wxTreebook").Ignore("GetSelection");
+		tweaks.Class("wxImage").Internal("GetMaskRed", "GetMaskGreen", "GetMaskBlue", "SetMaskColour", "HasMask", "SetMask");
+		tweaks.Class("wxWindow").Internal("GetToolTipText", "UnsetToolTip");
 		// The origins are written by hand, since the setters take x and y.
 		tweaks.Class("wxDC").Internal("GetDeviceOrigin", "SetDeviceOrigin", "GetLogicalOrigin", "SetLogicalOrigin");
 		tweaks.Class("wxMemoryDC").Property("SelectedBitmap", "GetSelectedBitmap", "SelectObject");

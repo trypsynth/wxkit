@@ -296,9 +296,6 @@ public unsafe partial class Window : EvtHandler {
 		set => WxKitNative.WindowSetThemeEnabled(Native, value ? (byte)1 : (byte)0);
 	}
 
-	/// <summary>Get the text of the associated tooltip or empty string if none.</summary>
-	public string ToolTipText => NativeString.Take(WxKitNative.WindowGetToolTipText(Native));
-
 	/// <summary>Get the update rectangle bounding box in client coords.</summary>
 	public Rect UpdateClientRect => WxKitNative.WindowGetUpdateClientRect(Native);
 
@@ -941,9 +938,6 @@ public unsafe partial class Window : EvtHandler {
 		Application.VerifyAccess();
 		WxKitNative.WindowUnreserveControlId(id, count);
 	}
-
-	/// <summary>Unset any existing tooltip.</summary>
-	public void UnsetToolTip() => WxKitNative.WindowUnsetToolTip(Native);
 
 	/// <summary>Immediately repaints the invalidated area of the window and all of its children recursively.</summary>
 	public void Update() => WxKitNative.WindowUpdate(Native);

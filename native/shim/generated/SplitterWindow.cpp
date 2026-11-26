@@ -8,16 +8,20 @@ WXK_FUNCTION(wxk_Window*) wxk_SplitterWindow_new(wxk_Window* parent, int32_t id,
 	});
 }
 
+WXK_FUNCTION(int32_t) wxk_SplitterWindow_GetSashPosition(wxk_Window* self) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxSplitterWindow*>(wxk::Unwrap(self))->GetSashPosition()); });
+}
+
+WXK_FUNCTION(void) wxk_SplitterWindow_SetSashPosition(wxk_Window* self, int32_t position, uint8_t redraw) noexcept {
+	wxk::Guard([&] { static_cast<wxSplitterWindow*>(wxk::Unwrap(self))->SetSashPosition(static_cast<int>(position), redraw != 0); });
+}
+
 WXK_FUNCTION(void) wxk_SplitterWindow_Initialize(wxk_Window* self, wxk_Window* window) noexcept {
 	wxk::Guard([&] { static_cast<wxSplitterWindow*>(wxk::Unwrap(self))->Initialize(static_cast<wxWindow*>(wxk::Unwrap(window))); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_SplitterWindow_ReplaceWindow(wxk_Window* self, wxk_Window* oldWindow, wxk_Window* newWindow) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxSplitterWindow*>(wxk::Unwrap(self))->ReplaceWindow(static_cast<wxWindow*>(wxk::Unwrap(oldWindow)), static_cast<wxWindow*>(wxk::Unwrap(newWindow)))) ? 1 : 0; });
-}
-
-WXK_FUNCTION(void) wxk_SplitterWindow_SetSashPosition(wxk_Window* self, int32_t position, uint8_t redraw) noexcept {
-	wxk::Guard([&] { static_cast<wxSplitterWindow*>(wxk::Unwrap(self))->SetSashPosition(static_cast<int>(position), redraw != 0); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_SplitterWindow_SplitHorizontally(wxk_Window* self, wxk_Window* window1, wxk_Window* window2, int32_t sashPosition) noexcept {
@@ -50,10 +54,6 @@ WXK_FUNCTION(double) wxk_SplitterWindow_GetSashGravity(wxk_Window* self) noexcep
 
 WXK_FUNCTION(void) wxk_SplitterWindow_SetSashGravity(wxk_Window* self, double gravity) noexcept {
 	wxk::Guard([&] { static_cast<wxSplitterWindow*>(wxk::Unwrap(self))->SetSashGravity(static_cast<double>(gravity)); });
-}
-
-WXK_FUNCTION(int32_t) wxk_SplitterWindow_GetSashPosition(wxk_Window* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxSplitterWindow*>(wxk::Unwrap(self))->GetSashPosition()); });
 }
 
 WXK_FUNCTION(int32_t) wxk_SplitterWindow_GetSashSize(wxk_Window* self) noexcept {

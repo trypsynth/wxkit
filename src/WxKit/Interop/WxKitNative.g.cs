@@ -426,6 +426,18 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void BitmapToggleButtonSetValue(WxkWindow* self, byte state);
 
+	[LibraryImport(Library, EntryPoint = "wxk_BookCtrlBase_GetSelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int BookCtrlBaseGetSelection(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_BookCtrlBase_SetSelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int BookCtrlBaseSetSelection(WxkWindow* self, nuint page);
+
+	[LibraryImport(Library, EntryPoint = "wxk_BookCtrlBase_ChangeSelection")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int BookCtrlBaseChangeSelection(WxkWindow* self, nuint page);
+
 	[LibraryImport(Library, EntryPoint = "wxk_BookCtrlBase_GetPageImage")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int BookCtrlBaseGetPageImage(WxkWindow* self, nuint page);
@@ -442,17 +454,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte BookCtrlBaseSetPageText(WxkWindow* self, nuint page, char* text, nuint textLength);
 
-	[LibraryImport(Library, EntryPoint = "wxk_BookCtrlBase_SetSelection")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int BookCtrlBaseSetSelection(WxkWindow* self, nuint page);
-
 	[LibraryImport(Library, EntryPoint = "wxk_BookCtrlBase_AdvanceSelection")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void BookCtrlBaseAdvanceSelection(WxkWindow* self, byte forward);
-
-	[LibraryImport(Library, EntryPoint = "wxk_BookCtrlBase_ChangeSelection")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int BookCtrlBaseChangeSelection(WxkWindow* self, nuint page);
 
 	[LibraryImport(Library, EntryPoint = "wxk_BookCtrlBase_FindPage")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -489,10 +493,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_BookCtrlBase_SetImages")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void BookCtrlBaseSetImages(WxkWindow* self, WxkObject** images, nuint imagesCount);
-
-	[LibraryImport(Library, EntryPoint = "wxk_BookCtrlBase_GetSelection")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int BookCtrlBaseGetSelection(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_BookCtrlBase_GetCurrentPage")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -598,6 +598,42 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* CalendarCtrlNew(WxkWindow* parent, int id, WxkDateTime date, Point position, Size size, long style);
 
+	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHeaderColourBg")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor CalendarCtrlGetHeaderColourBg(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHeaderColourFg")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor CalendarCtrlGetHeaderColourFg(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHighlightColourBg")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor CalendarCtrlGetHighlightColourBg(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHighlightColourFg")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor CalendarCtrlGetHighlightColourFg(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHolidayColourBg")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor CalendarCtrlGetHolidayColourBg(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHolidayColourFg")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkColor CalendarCtrlGetHolidayColourFg(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_SetHeaderColours")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void CalendarCtrlSetHeaderColours(WxkWindow* self, WxkColor foreground, WxkColor background);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_SetHighlightColours")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void CalendarCtrlSetHighlightColours(WxkWindow* self, WxkColor foreground, WxkColor background);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_SetHolidayColours")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void CalendarCtrlSetHolidayColours(WxkWindow* self, WxkColor foreground, WxkColor background);
+
 	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_SetDateRange")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte CalendarCtrlSetDateRange(WxkWindow* self, WxkDateTime earliest, WxkDateTime latest);
@@ -614,49 +650,13 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void CalendarCtrlResetAttr(WxkWindow* self, nuint day);
 
-	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_SetHeaderColours")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void CalendarCtrlSetHeaderColours(WxkWindow* self, WxkColor foreground, WxkColor background);
-
-	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_SetHighlightColours")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void CalendarCtrlSetHighlightColours(WxkWindow* self, WxkColor foreground, WxkColor background);
-
 	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_SetHoliday")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void CalendarCtrlSetHoliday(WxkWindow* self, nuint day);
 
-	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_SetHolidayColours")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void CalendarCtrlSetHolidayColours(WxkWindow* self, WxkColor foreground, WxkColor background);
-
 	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_Mark")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void CalendarCtrlMark(WxkWindow* self, nuint day, byte mark);
-
-	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHeaderColourFg")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkColor CalendarCtrlGetHeaderColourFg(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHeaderColourBg")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkColor CalendarCtrlGetHeaderColourBg(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHighlightColourFg")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkColor CalendarCtrlGetHighlightColourFg(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHighlightColourBg")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkColor CalendarCtrlGetHighlightColourBg(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHolidayColourFg")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkColor CalendarCtrlGetHolidayColourFg(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetHolidayColourBg")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkColor CalendarCtrlGetHolidayColourBg(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_CalendarCtrl_GetDate")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4018,6 +4018,30 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* ImageNewStringStringInt(char* name, nuint nameLength, char* mimeType, nuint mimeTypeLength, int index);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Image_GetMaskRed")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ImageGetMaskRed(WxkObject* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_GetMaskGreen")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ImageGetMaskGreen(WxkObject* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_GetMaskBlue")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ImageGetMaskBlue(WxkObject* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_HasMask")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ImageHasMask(WxkObject* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_SetMask")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void ImageSetMask(WxkObject* self, byte hasMask);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_SetMaskColour")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void ImageSetMaskColour(WxkObject* self, byte red, byte green, byte blue);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Image_Copy")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* ImageCopy(WxkObject* self);
@@ -4210,14 +4234,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void ImageClearAlpha(WxkObject* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Image_SetMask")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ImageSetMask(WxkObject* self, byte hasMask);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_SetMaskColour")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ImageSetMaskColour(WxkObject* self, byte red, byte green, byte blue);
-
 	[LibraryImport(Library, EntryPoint = "wxk_Image_SetMaskFromImage")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ImageSetMaskFromImage(WxkObject* self, WxkObject* mask, byte mr, byte mg, byte mb);
@@ -4250,18 +4266,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ImageCanRead(char* fileName, nuint fileNameLength);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Image_GetMaskRed")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ImageGetMaskRed(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_GetMaskGreen")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ImageGetMaskGreen(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_GetMaskBlue")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ImageGetMaskBlue(WxkObject* self);
-
 	[LibraryImport(Library, EntryPoint = "wxk_Image_GetWidth")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int ImageGetWidth(WxkObject* self);
@@ -4285,10 +4289,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Image_HasAlpha")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ImageHasAlpha(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_HasMask")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ImageHasMask(WxkObject* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Image_IsOk")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -7546,6 +7546,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* SplitterWindowNew(WxkWindow* parent, int id, Point position, Size size, long style);
 
+	[LibraryImport(Library, EntryPoint = "wxk_SplitterWindow_GetSashPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int SplitterWindowGetSashPosition(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_SplitterWindow_SetSashPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void SplitterWindowSetSashPosition(WxkWindow* self, int position, byte redraw);
+
 	[LibraryImport(Library, EntryPoint = "wxk_SplitterWindow_Initialize")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void SplitterWindowInitialize(WxkWindow* self, WxkWindow* window);
@@ -7553,10 +7561,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_SplitterWindow_ReplaceWindow")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte SplitterWindowReplaceWindow(WxkWindow* self, WxkWindow* oldWindow, WxkWindow* newWindow);
-
-	[LibraryImport(Library, EntryPoint = "wxk_SplitterWindow_SetSashPosition")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void SplitterWindowSetSashPosition(WxkWindow* self, int position, byte redraw);
 
 	[LibraryImport(Library, EntryPoint = "wxk_SplitterWindow_SplitHorizontally")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -7589,10 +7593,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_SplitterWindow_SetSashGravity")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void SplitterWindowSetSashGravity(WxkWindow* self, double gravity);
-
-	[LibraryImport(Library, EntryPoint = "wxk_SplitterWindow_GetSashPosition")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int SplitterWindowGetSashPosition(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_SplitterWindow_GetSashSize")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -12730,6 +12730,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte WebViewEventIsTargetMainFrame(WxkEvent* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Window_GetToolTipText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* WindowGetToolTipText(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Window_UnsetToolTip")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WindowUnsetToolTip(WxkWindow* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Window_SetSizer")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void WindowSetSizer(WxkWindow* self, WxkSizer* sizer, byte deleteOld);
@@ -13170,10 +13178,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkString* WindowGetHelpTextAtPoint(WxkWindow* self, Point point, int origin);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Window_UnsetToolTip")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void WindowUnsetToolTip(WxkWindow* self);
-
 	[LibraryImport(Library, EntryPoint = "wxk_Window_PopupMenu_MenuPoint")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte WindowPopupMenuMenuPoint(WxkWindow* self, WxkMenu* menu, Point position);
@@ -13577,10 +13581,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Window_SetHelpText")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void WindowSetHelpText(WxkWindow* self, char* helpText, nuint helpTextLength);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_GetToolTipText")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkString* WindowGetToolTipText(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Window_GetId")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
