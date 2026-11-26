@@ -25,7 +25,7 @@ public abstract unsafe class Sizer {
 	}
 
 	/// <summary>Whether wxWidgets has destroyed the sizer, along with the window or sizer that owned it.</summary>
-	public bool IsDestroyed => _native is null;
+	public bool IsDisposed => _native is null;
 
 	internal WxkSizer* Native {
 		get {

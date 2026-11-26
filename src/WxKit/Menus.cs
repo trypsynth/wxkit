@@ -3,10 +3,11 @@ using WxKit.Interop;
 namespace WxKit;
 
 /// <summary>
-/// A menu, on a menu bar or inside another menu. Wraps wxMenu. Once appended to a menu bar, the
-/// menu bar owns it. A menu that is never appended is not freed yet.
+/// A menu, on a menu bar or inside another menu, or shown on its own by
+/// <see cref="Window.PopupMenu(Menu, Point?)"/>. Wraps wxMenu. A menu bar or a menu owns a menu
+/// appended to it, and destroys it. A menu on neither is the application's, to dispose.
 /// </summary>
-public sealed unsafe class Menu : EvtHandler {
+public sealed unsafe class Menu : EvtHandler, IDisposable {
 	public Menu() : base(Create()) {
 	}
 
@@ -41,6 +42,17 @@ public sealed unsafe class Menu : EvtHandler {
 		fixed (char* helpText = help) {
 			return MenuItem.Wrap(this, WxKitNative.MenuAppendSubMenu(Native, submenu.Native, itemText, NativeString.Length(text), helpText, NativeString.Length(help)));
 		}
+	}
+
+	/// <summary>
+	/// Frees the menu, if it is on no menu bar and in no menu, such as one made to pop up. A menu
+	/// that is on one stays, since its owner destroys it.
+	/// </summary>
+	public void Dispose() {
+		if (IsDisposed) return;
+		Application.VerifyAccess();
+		if (WxKitNative.MenuIsAttached(Native) != 0 || WxKitNative.MenuGetParent(Native) is not null) return;
+		WxKitNative.ObjectFree((WxkObject*)Native);
 	}
 
 	private static WxkEvtHandler* Create() {

@@ -34,7 +34,7 @@ public unsafe partial class Dialog : IDisposable {
 
 	/// <summary>Destroys the dialog, unless wxWidgets already has.</summary>
 	public void Dispose() {
-		if (!IsDestroyed) Destroy();
+		if (!IsDisposed) Destroy();
 		GC.SuppressFinalize(this);
 	}
 }

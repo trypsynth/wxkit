@@ -10,9 +10,9 @@ public class NotificationTests {
 		notification.SetMessage("Your tasks are backed up.");
 		notification.SetFlags(MessageIcon.Error);
 		notification.Click += (_, _) => { };
-		Assert.False(notification.IsDestroyed);
+		Assert.False(notification.IsDisposed);
 		notification.Dispose();
-		Assert.True(notification.IsDestroyed);
+		Assert.True(notification.IsDisposed);
 		notification.Dispose();
 	});
 }

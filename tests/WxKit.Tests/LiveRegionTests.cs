@@ -39,7 +39,7 @@ public class LiveRegionTests {
 		region.Prepare();
 		frame.Show();
 		frame.Close(force: true);
-		await Gui.WaitUntil(() => frame.IsDestroyed);
-		Assert.True(region.IsDestroyed);
+		await Gui.WaitUntil(() => frame.IsDisposed);
+		Assert.True(region.IsDisposed);
 	});
 }

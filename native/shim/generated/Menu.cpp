@@ -62,3 +62,11 @@ WXK_FUNCTION(void) wxk_Menu_SetLabel(wxk_Menu* self, int32_t id, const char16_t*
 	wxk::Guard([&] { static_cast<wxMenu*>(wxk::Unwrap(self))->SetLabel(static_cast<int>(id), wxk::FromUtf16(label, labelLength)); });
 }
 
+WXK_FUNCTION(wxk_Menu*) wxk_Menu_GetParent(wxk_Menu* self) noexcept {
+	return wxk::Guard<wxk_Menu*>(nullptr, [&]() -> wxk_Menu* { return wxk::Wrap(static_cast<wxMenu*>(static_cast<wxMenu*>(wxk::Unwrap(self))->GetParent())); });
+}
+
+WXK_FUNCTION(uint8_t) wxk_Menu_IsAttached(wxk_Menu* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMenu*>(wxk::Unwrap(self))->IsAttached()) ? 1 : 0; });
+}
+

@@ -7,7 +7,7 @@ namespace WxKit;
 /// <summary>
 /// Anything that receives events: windows, menus, and timers. Wraps wxEvtHandler. Every member
 /// must be used on the GUI thread, and throws <see cref="ObjectDisposedException"/> once wxWidgets
-/// has destroyed the object, except <see cref="IsDestroyed"/>.
+/// has destroyed the object, except <see cref="IsDisposed"/>.
 /// </summary>
 public abstract unsafe class EvtHandler {
 	private WxkEvtHandler* _native;
@@ -27,7 +27,7 @@ public abstract unsafe class EvtHandler {
 	}
 
 	/// <summary>Whether wxWidgets has destroyed the object, after which nothing else on it can be used.</summary>
-	public bool IsDestroyed => _native is null;
+	public bool IsDisposed => _native is null;
 
 	// The same handle, for code that passes another object's to the shim, which Handle cannot give.
 	internal WxkEvtHandler* NativeHandler => Handle;

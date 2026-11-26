@@ -27,7 +27,7 @@ public class GridBagSizerTests {
 		Assert.True(grid.Add(new StaticText(panel, "Taken"), new GridPosition(0, 0)));
 		BoxSizer row = new(Orientation.Horizontal);
 		Assert.False(grid.Add(row, new GridPosition(0, 0)));
-		Assert.False(row.IsDestroyed);
+		Assert.False(row.IsDisposed);
 		Assert.True(grid.Add(row, new GridPosition(1, 0)));
 		Assert.Throws<InvalidOperationException>(() => grid.Add(row, new GridPosition(2, 0)));
 		panel.Sizer = grid;

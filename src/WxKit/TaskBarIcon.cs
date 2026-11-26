@@ -32,7 +32,7 @@ public sealed unsafe partial class TaskBarIcon : IDisposable {
 
 	/// <summary>Removes the icon, and frees it once the event loop is idle.</summary>
 	public void Dispose() {
-		if (_disposed || IsDestroyed) return;
+		if (_disposed || IsDisposed) return;
 		_disposed = true;
 		WxKitNative.ManagedTaskBarIconDestroy(NativeHandler);
 		_menu = null;

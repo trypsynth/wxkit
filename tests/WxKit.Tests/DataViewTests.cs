@@ -55,20 +55,20 @@ public class DataViewTests {
 		DataViewColumn done = list.AppendToggleColumn("Done")!;
 		DataViewColumn notes = list.AppendTextColumn("Notes")!;
 		Assert.True(list.DeleteColumn(done));
-		Assert.True(done.IsDestroyed);
+		Assert.True(done.IsDisposed);
 		Assert.Throws<ObjectDisposedException>(() => done.Title);
 		Assert.Equal(2, list.ColumnCount);
 		Assert.Same(notes, list.GetColumn(1));
 		DataViewListCtrl other = new(frame);
 		DataViewColumn elsewhere = other.AppendTextColumn("Elsewhere")!;
 		Assert.False(list.DeleteColumn(elsewhere));
-		Assert.False(elsewhere.IsDestroyed);
+		Assert.False(elsewhere.IsDisposed);
 		Assert.True(list.ClearColumns());
-		Assert.True(task.IsDestroyed);
-		Assert.True(notes.IsDestroyed);
+		Assert.True(task.IsDisposed);
+		Assert.True(notes.IsDisposed);
 		Assert.Equal(0, list.ColumnCount);
 		other.Destroy();
-		Assert.True(elsewhere.IsDestroyed);
+		Assert.True(elsewhere.IsDisposed);
 	});
 
 	[Fact]

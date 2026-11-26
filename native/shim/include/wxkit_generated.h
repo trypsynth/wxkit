@@ -1575,6 +1575,8 @@ WXK_FUNCTION(wxk_String*) wxk_Menu_GetLabel(wxk_Menu* self, int32_t id) WXK_NOEX
 WXK_FUNCTION(uint8_t) wxk_Menu_IsChecked(wxk_Menu* self, int32_t id) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Menu_IsEnabled(wxk_Menu* self, int32_t id) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Menu_SetLabel(wxk_Menu* self, int32_t id, const char16_t* label, size_t labelLength) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Menu*) wxk_Menu_GetParent(wxk_Menu* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Menu_IsAttached(wxk_Menu* self) WXK_NOEXCEPT;
 
 // wxMenuBar
 

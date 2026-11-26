@@ -30,7 +30,7 @@ A `wxDateTime` is a `DateTime?` in local time, and null is `wxInvalidDateTime`. 
 
 wxWidgets owns windows. A child is destroyed with its parent, and a top-level window when it closes or when `Destroy` is called. So windows don't implement `IDisposable`. Call `Destroy`, or `Close` for a top-level window. `Dialog` is the exception: it implements `IDisposable` and calls `Destroy`, so `using MessageDialog dialog = new(...)` creates, shows, and destroys a modal dialog the way wxWidgets recommends.
 
-A window object is a proxy for the native window. Once the native window is destroyed, every member of its proxy throws `ObjectDisposedException`, except `IsDestroyed`, as [Native layer](native-layer.md#object-tracking) describes. A registry maps each native window to its one proxy, so `button.Parent` returns the same `Panel` object you created. It holds the proxy strongly until the window is destroyed, so a class derived from `Frame` keeps its fields exactly as long as the window lives. For a window WxKit didn't create, such as the result of `FindWindowById` or a dialog's own buttons, WxKit walks up the native object's `wxClassInfo` to the nearest class it binds, and creates that proxy from a generated table, without reflection.
+A window object is a proxy for the native window. Once the native window is destroyed, every member of its proxy throws `ObjectDisposedException`, except `IsDisposed`, as [Native layer](native-layer.md#object-tracking) describes. A registry maps each native window to its one proxy, so `button.Parent` returns the same `Panel` object you created. It holds the proxy strongly until the window is destroyed, so a class derived from `Frame` keeps its fields exactly as long as the window lives. For a window WxKit didn't create, such as the result of `FindWindowById` or a dialog's own buttons, WxKit walks up the native object's `wxClassInfo` to the nearest class it binds, and creates that proxy from a generated table, without reflection.
 
 ### Sizers
 
@@ -58,7 +58,7 @@ A list box, choice, combo box, tree, or data view tree can keep any object with 
 
 ## Menus
 
-`Menu.Append` returns a `MenuItem`, whose `Enabled`, `Checked`, and `Label` change the item through its menu. An item with a standard id, such as `StandardId.Exit`, and no text gets the platform's standard text, and on macOS goes where the platform puts it. A tab in the text starts the item's shortcut, as in `"&Open\tCtrl+O"`. `AppendSubMenu` adds a submenu, which the menu then owns. A menu bar owns the menus appended to it, and a menu that is never appended isn't freed yet.
+`Menu.Append` returns a `MenuItem`, whose `Enabled`, `Checked`, and `Label` change the item through its menu. An item with a standard id, such as `StandardId.Exit`, and no text gets the platform's standard text, and on macOS goes where the platform puts it. A menu bar owns the menus appended to it, and a menu its submenus, and destroys them. A menu on neither, such as one made for `PopupMenu`, is the application's, so `Menu` is `IDisposable`: `using Menu menu = new();` frees it, and disposing a menu that has an owner does nothing. A tab in the text starts the item's shortcut, as in `"&Open\tCtrl+O"`. `AppendSubMenu` adds a submenu, which the menu then owns. A menu bar owns the menus appended to it, and a menu that is never appended isn't freed yet.
 
 A menu item's `Click` is bound on its menu, with its id. wxWidgets sends a menu event to the menu first, so the handler runs whether or not the menu is on a menu bar, and the sender is the `MenuItem`.
 

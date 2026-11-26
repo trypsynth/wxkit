@@ -30,10 +30,10 @@ public class SizerTests {
 		BoxSizer second = new(Orientation.Horizontal);
 		frame.Sizer = first;
 		frame.Sizer = second;
-		Assert.True(first.IsDestroyed);
-		Assert.False(second.IsDestroyed);
+		Assert.True(first.IsDisposed);
+		Assert.False(second.IsDisposed);
 		frame.Sizer = null;
-		Assert.True(second.IsDestroyed);
+		Assert.True(second.IsDisposed);
 		Assert.Throws<ObjectDisposedException>(() => second.AddSpacer(1));
 	});
 
@@ -46,9 +46,9 @@ public class SizerTests {
 		outer.Add(inner, SizerFlags.Default.Right());
 		frame.Sizer = outer;
 		frame.Destroy();
-		await Gui.WaitUntil(() => frame.IsDestroyed);
-		Assert.True(outer.IsDestroyed);
-		Assert.True(inner.IsDestroyed);
+		await Gui.WaitUntil(() => frame.IsDisposed);
+		Assert.True(outer.IsDisposed);
+		Assert.True(inner.IsDisposed);
 	});
 
 	[Fact]

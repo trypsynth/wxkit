@@ -68,7 +68,7 @@ internal static class Gui {
 		try {
 			await body(frame);
 		} finally {
-			if (!frame.IsDestroyed) frame.Destroy();
+			if (!frame.IsDisposed) frame.Destroy();
 		}
 	});
 

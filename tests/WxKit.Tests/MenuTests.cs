@@ -19,7 +19,7 @@ public class MenuTests {
 		MenuBar next = new();
 		next.Append(new Menu(), "&Edit");
 		frame.MenuBar = next;
-		Assert.True(bar.IsDestroyed);
+		Assert.True(bar.IsDisposed);
 		Assert.Same(next, frame.MenuBar);
 	});
 
@@ -59,6 +59,27 @@ public class MenuTests {
 		Assert.Equal("&Word wrap", bar.GetLabel(wrap.Id));
 	});
 
+	// A menu on no menu bar and in no menu is the application's to dispose, and one that is on
+	// one is its owner's.
+	[Fact]
+	public Task FreesAMenuNothingOwns() => Gui.WithFrame(frame => {
+		Menu popup = new();
+		popup.Append(StandardId.Copy);
+		popup.Dispose();
+		Assert.True(popup.IsDisposed);
+		popup.Dispose();
+		Menu inner = new();
+		Menu file = new();
+		file.AppendSubMenu(inner, "&Recent");
+		MenuBar bar = new();
+		bar.Append(file, "&File");
+		frame.MenuBar = bar;
+		inner.Dispose();
+		file.Dispose();
+		Assert.False(inner.IsDisposed);
+		Assert.False(file.IsDisposed);
+	});
+
 	[Fact]
 	public Task ReachesItemsInASubmenu() => Gui.WithFrame(frame => {
 		Menu presets = new();
@@ -84,9 +105,9 @@ public class MenuTests {
 		Assert.Same(bar, frame.MenuBar);
 		Assert.Same(frame, bar.Parent);
 		frame.Destroy();
-		await Gui.WaitUntil(() => frame.IsDestroyed);
-		Assert.True(bar.IsDestroyed);
-		Assert.True(menu.IsDestroyed);
+		await Gui.WaitUntil(() => frame.IsDisposed);
+		Assert.True(bar.IsDisposed);
+		Assert.True(menu.IsDisposed);
 	});
 }
 
@@ -113,10 +134,10 @@ public class TimerTests {
 	});
 
 	[Fact]
-	public Task IsDestroyedOnceDisposed() => Gui.Run(() => {
+	public Task IsDisposedOnceDisposed() => Gui.Run(() => {
 		Timer timer = new();
 		timer.Dispose();
-		Assert.True(timer.IsDestroyed);
+		Assert.True(timer.IsDisposed);
 		Assert.Throws<ObjectDisposedException>(() => timer.Start(TimeSpan.FromSeconds(1)));
 		timer.Dispose();
 	});
@@ -148,9 +169,9 @@ public class DialogTests {
 	[Fact]
 	public Task CreatesAndDisposesAMessageDialog() => Gui.WithFrame(async frame => {
 		MessageDialog dialog = new(frame, "Never shown", "Caption", MessageDialogStyle.YesNo | MessageDialogStyle.IconQuestion);
-		Assert.False(dialog.IsDestroyed);
+		Assert.False(dialog.IsDisposed);
 		dialog.Dispose();
-		await Gui.WaitUntil(() => dialog.IsDestroyed);
+		await Gui.WaitUntil(() => dialog.IsDisposed);
 		dialog.Dispose();
 	});
 }

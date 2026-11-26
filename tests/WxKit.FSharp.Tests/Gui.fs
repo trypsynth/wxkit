@@ -48,5 +48,5 @@ let withFrame (body: Frame -> unit) : Task =
             with error ->
                 completion.SetException error
         finally
-            if not frame.IsDestroyed then frame.Destroy() |> ignore)
+            if not frame.IsDisposed then frame.Destroy() |> ignore)
     completion.Task

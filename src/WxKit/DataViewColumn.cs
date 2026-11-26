@@ -11,7 +11,7 @@ public sealed unsafe partial class DataViewColumn {
 	internal DataViewColumn(WxkDataViewColumn* native) => _native = native;
 
 	/// <summary>Whether wxWidgets has deleted the column, along with the data view or when the data view deleted it.</summary>
-	public bool IsDestroyed => _native is null;
+	public bool IsDisposed => _native is null;
 
 	internal WxkDataViewColumn* Native {
 		get {

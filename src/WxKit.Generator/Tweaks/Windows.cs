@@ -5,7 +5,7 @@ internal static class Windows {
 	public static void Apply(Binding.Tweaks tweaks) {
 		// Written by hand, because they track ownership or need the shim's own helpers.
 		tweaks.Class("wxEvtHandler").Handwritten();
-		tweaks.Class("wxMenu").Handwritten().Wrappable().Internal("wxMenu", "Append", "AppendSeparator", "AppendSubMenu", "Enable", "IsEnabled", "Check", "IsChecked", "SetLabel", "GetLabel");
+		tweaks.Class("wxMenu").Handwritten().Wrappable().Internal("wxMenu", "Append", "AppendSeparator", "AppendSubMenu", "Enable", "IsEnabled", "Check", "IsChecked", "SetLabel", "GetLabel", "GetParent", "IsAttached");
 		tweaks.Class("wxMenuItem").Handwritten().Internal("GetId");
 		tweaks.Class("wxWindow", window => window
 			.NoConstructors()

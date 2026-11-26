@@ -5098,6 +5098,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void MenuSetLabel(WxkMenu* self, int id, char* label, nuint labelLength);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Menu_GetParent")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkMenu* MenuGetParent(WxkMenu* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Menu_IsAttached")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte MenuIsAttached(WxkMenu* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_MenuBar_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* MenuBarNew(long style);

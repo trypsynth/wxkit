@@ -26,6 +26,6 @@ public sealed unsafe partial class NotificationMessage : IDisposable {
 
 	/// <summary>Deletes the notification, which hides it if it is showing.</summary>
 	public void Dispose() {
-		if (!IsDestroyed) WxKitNative.ObjectFree((WxkObject*)NativeHandler);
+		if (!IsDisposed) WxKitNative.ObjectFree((WxkObject*)NativeHandler);
 	}
 }

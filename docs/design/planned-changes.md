@@ -28,7 +28,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 
 ## The hand-written classes
 
-- One lifetime model: everything the application owns is `IDisposable`, says whether it's gone with `IsDisposed`, rather than some with `IsDestroyed`, and is freed when it's disposed. `Menu` gets `Dispose`.
 - `MenuItem` wraps the native item, as `ToolBarTool` does, rather than a menu and an id.
 
 ## What the F# samples found

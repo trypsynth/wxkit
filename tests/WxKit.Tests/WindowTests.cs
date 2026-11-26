@@ -76,10 +76,10 @@ public class WindowTests {
 		Button button = new(panel, "&Go");
 		TextCtrl text = new(panel);
 		frame.Destroy();
-		await Gui.WaitUntil(() => frame.IsDestroyed);
-		Assert.True(panel.IsDestroyed);
-		Assert.True(button.IsDestroyed);
-		Assert.True(text.IsDestroyed);
+		await Gui.WaitUntil(() => frame.IsDisposed);
+		Assert.True(panel.IsDisposed);
+		Assert.True(button.IsDisposed);
+		Assert.True(text.IsDisposed);
 	});
 
 	[Fact]
@@ -87,7 +87,7 @@ public class WindowTests {
 		Frame frame = new(null, "Destroyed");
 		Button button = new(frame, "&Go");
 		frame.Destroy();
-		await Gui.WaitUntil(() => frame.IsDestroyed);
+		await Gui.WaitUntil(() => frame.IsDisposed);
 		Assert.Throws<ObjectDisposedException>(() => button.Label);
 		Assert.Throws<ObjectDisposedException>(() => frame.Title);
 		Assert.Throws<ObjectDisposedException>(() => button.Click += (_, _) => { });
@@ -97,8 +97,8 @@ public class WindowTests {
 	public Task DestroysAChildAtOnce() => Gui.WithFrame(frame => {
 		Button button = new(frame, "&Go");
 		Assert.True(button.Destroy());
-		Assert.True(button.IsDestroyed);
-		Assert.False(frame.IsDestroyed);
+		Assert.True(button.IsDisposed);
+		Assert.False(frame.IsDisposed);
 	});
 
 	[Fact]
@@ -109,7 +109,7 @@ public class WindowTests {
 		Assert.True(weak.TryGetTarget(out LabeledFrame? frame));
 		Assert.Equal("kept", frame.Note);
 		frame.Destroy();
-		await Gui.WaitUntil(() => frame.IsDestroyed);
+		await Gui.WaitUntil(() => frame.IsDisposed);
 		static WeakReference<LabeledFrame> Create() => new(new LabeledFrame { Note = "kept" });
 	});
 

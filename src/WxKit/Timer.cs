@@ -27,7 +27,7 @@ public sealed unsafe class Timer : EvtHandler, IDisposable {
 	public void Stop() => WxKitNative.TimerStop(Handle);
 
 	public void Dispose() {
-		if (!IsDestroyed) WxKitNative.ObjectFree((WxkObject*)Handle);
+		if (!IsDisposed) WxKitNative.ObjectFree((WxkObject*)Handle);
 	}
 
 	private static WxkEvtHandler* Create() {

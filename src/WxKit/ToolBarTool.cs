@@ -16,7 +16,7 @@ public sealed unsafe partial class ToolBarTool {
 	}
 
 	/// <summary>Whether wxWidgets has deleted the tool, along with the toolbar or when the toolbar deleted it.</summary>
-	public bool IsDestroyed => _native is null;
+	public bool IsDisposed => _native is null;
 
 	internal WxkToolBarTool* Native {
 		get {

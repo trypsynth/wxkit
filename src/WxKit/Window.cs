@@ -101,7 +101,7 @@ public unsafe partial class Frame {
 			_menuBar = value;
 			// wxWidgets only detaches the menu bar it replaces, so the frame destroys it, as it would have
 			// with itself.
-			if (replaced is not null && !replaced.IsDestroyed) replaced.Destroy();
+			if (replaced is not null && !replaced.IsDisposed) replaced.Destroy();
 		}
 	}
 }

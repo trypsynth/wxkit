@@ -55,16 +55,16 @@ public class ToolBarTests {
 		ToolBarTool third = toolBar.AddTool(6202, "Third", open)!;
 		Assert.True(toolBar.Realize());
 		Assert.True(toolBar.DeleteTool(6201));
-		Assert.True(second.IsDestroyed);
+		Assert.True(second.IsDisposed);
 		Assert.Throws<ObjectDisposedException>(() => second.Label);
 		Assert.False(toolBar.DeleteTool(6201));
 		Assert.True(toolBar.DeleteToolByPosition(1));
-		Assert.True(third.IsDestroyed);
-		Assert.False(first.IsDestroyed);
+		Assert.True(third.IsDisposed);
+		Assert.False(first.IsDisposed);
 		toolBar.ClearTools();
-		Assert.True(first.IsDestroyed);
+		Assert.True(first.IsDisposed);
 		ToolBarTool last = toolBar.AddTool(6203, "Last", open)!;
 		toolBar.Destroy();
-		Assert.True(last.IsDestroyed);
+		Assert.True(last.IsDisposed);
 	});
 }

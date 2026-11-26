@@ -1029,7 +1029,7 @@ sealed class WxKit.DataViewColumn
     Bitmap? Bitmap { get; set; }
     DataViewColumnFlags Flags { get; set; }
     DataViewCtrl? Owner { get; }
-    bool IsDestroyed { get; }
+    bool IsDisposed { get; }
     bool IsHidden { get; set; }
     bool IsReorderable { get; set; }
     bool IsResizable { get; set; }
@@ -1753,7 +1753,7 @@ static class WxKit.EventType
 sealed class WxKit.EventType`1<TEvent>
     int Value { get; }
 abstract class WxKit.EvtHandler
-    bool IsDestroyed { get; }
+    bool IsDisposed { get; }
     void Bind<TEvent>(EventType<TEvent> type, EventHandler<TEvent> handler)
     void Bind<TEvent>(EventType<TEvent> type, int id, EventHandler<TEvent> handler)
     void Bind<TEvent>(EventType<TEvent> type, int id, int lastId, EventHandler<TEvent> handler)
@@ -2916,11 +2916,12 @@ class WxKit.MemoryDC : DC
     MemoryDC(Bitmap bitmap)
     MemoryDC(DC dc)
     void SelectObjectAsSource(Bitmap bitmap)
-sealed class WxKit.Menu : EvtHandler
+sealed class WxKit.Menu : EvtHandler, IDisposable
     Menu()
     MenuItem Append(int id, string text = "", string help = "", MenuItemKind kind = MenuItemKind.Normal)
     MenuItem AppendSeparator()
     MenuItem AppendSubMenu(Menu submenu, string text, string help = "")
+    void Dispose()
 class WxKit.MenuBar : Window
     Frame? Frame { get; }
     Menu? GetMenu(int menuIndex)
@@ -3868,7 +3869,7 @@ class WxKit.SizeEvent : Event
     NoAdjustments = 8
     UseExisting = 0
 abstract class WxKit.Sizer
-    bool IsDestroyed { get; }
+    bool IsDisposed { get; }
     protected override void Finalize()
     void Add(Sizer sizer, SizerFlags flags = null)
     void Add(Window window, SizerFlags flags = null)
@@ -8089,7 +8090,7 @@ sealed class WxKit.ToolBarTool
     bool CanBeToggled { get; }
     bool IsButton { get; }
     bool IsControl { get; }
-    bool IsDestroyed { get; }
+    bool IsDisposed { get; }
     bool IsEnabled { get; set; }
     bool IsSeparator { get; }
     bool IsStretchableSpace { get; }

@@ -167,7 +167,7 @@ public class CloseTests {
 		int closings = 0;
 		frame.Closing += (_, _) => closings++;
 		Assert.True(frame.Close());
-		await Gui.WaitUntil(() => frame.IsDestroyed);
+		await Gui.WaitUntil(() => frame.IsDisposed);
 		Assert.Equal(1, closings);
 	});
 
@@ -176,7 +176,7 @@ public class CloseTests {
 		frame.Closing += (_, e) => e.Veto();
 		Assert.False(frame.Close());
 		await Task.Delay(20);
-		Assert.False(frame.IsDestroyed);
+		Assert.False(frame.IsDisposed);
 	});
 
 	[Fact]
@@ -188,7 +188,7 @@ public class CloseTests {
 			Assert.Throws<InvalidOperationException>(() => e.Veto());
 		};
 		frame.Close(force: true);
-		await Gui.WaitUntil(() => frame.IsDestroyed);
+		await Gui.WaitUntil(() => frame.IsDisposed);
 		Assert.False(canVeto);
 	});
 
@@ -200,6 +200,6 @@ public class CloseTests {
 		Assert.False(frame.Close());
 		frame.Closing -= veto;
 		Assert.True(frame.Close());
-		await Gui.WaitUntil(() => frame.IsDestroyed);
+		await Gui.WaitUntil(() => frame.IsDisposed);
 	});
 }
