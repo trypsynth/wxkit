@@ -3157,6 +3157,7 @@ WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_IsEmpty(wxk_Window* self) WXK_NOEXCEPT;
 
 // wxStyledTextEvent
 
+WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetModifiers(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_StyledTextEvent_GetAlt(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetAnnotationsLinesAdded(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_StyledTextEvent_GetControl(wxk_Event* self) WXK_NOEXCEPT;
@@ -3176,7 +3177,6 @@ WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetLParam(wxk_Event* self) WXK_NOEXCEP
 WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetMargin(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetMessage(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetModificationType(wxk_Event* self) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetModifiers(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetPosition(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_StyledTextEvent_GetShift(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetToken(wxk_Event* self) WXK_NOEXCEPT;

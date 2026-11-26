@@ -69,9 +69,6 @@ public unsafe partial class StyledTextEvent : CommandEvent {
 	/// <summary>Returns the modification type for this event.</summary>
 	public int ModificationType => WxKitNative.StyledTextEventGetModificationType(Handle);
 
-	/// <summary>Returns the modifiers of the key press or mouse click for this event.</summary>
-	public int Modifiers => WxKitNative.StyledTextEventGetModifiers(Handle);
-
 	/// <summary>Returns the zero-based text position associated this event.</summary>
 	public int Position => WxKitNative.StyledTextEventGetPosition(Handle);
 

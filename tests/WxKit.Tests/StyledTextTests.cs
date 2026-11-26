@@ -42,4 +42,13 @@ public class StyledTextTests {
 		editor.AppendText(" world");
 		Assert.True(editor.IsModified);
 	});
+
+	// Scintilla numbers the modifier keys its own way, which an event gives as KeyModifiers.
+	[Fact]
+	public void ConvertsScintillasModifiers() {
+		Assert.Equal(KeyModifiers.None, StyledTextEvent.FromScintilla(0));
+		Assert.Equal(KeyModifiers.Shift, StyledTextEvent.FromScintilla(1));
+		Assert.Equal(KeyModifiers.Control | KeyModifiers.Alt, StyledTextEvent.FromScintilla(2 | 4));
+		Assert.Equal(KeyModifiers.Meta, StyledTextEvent.FromScintilla(8));
+	}
 }

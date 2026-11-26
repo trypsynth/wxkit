@@ -7706,6 +7706,7 @@ class WxKit.StyledTextCtrl : Control
 class WxKit.StyledTextEvent : CommandEvent
     DragFlags DragFlags { get; set; }
     DragResult DragResult { get; set; }
+    KeyModifiers Modifiers { get; }
     bool IsAltDown { get; }
     bool IsControlDown { get; }
     bool IsShiftDown { get; }
@@ -7722,7 +7723,6 @@ class WxKit.StyledTextEvent : CommandEvent
     int Margin { get; }
     int Message { get; }
     int ModificationType { get; }
-    int Modifiers { get; }
     int Position { get; }
     int Token { get; }
     int Updated { get; }

@@ -58,6 +58,8 @@ internal static class Libraries {
 			.Rename("GetAlt", "IsAltDown")
 			.Rename("GetControl", "IsControlDown")
 			.Rename("GetShift", "IsShiftDown")
+			// Scintilla numbers the modifier keys its own way, so Modifiers is written by hand, to convert them.
+			.Internal("GetModifiers")
 			.ParameterEnum("GetDragFlags", "return", "DragFlags")
 			.ParameterEnum("SetDragFlags", "flags", "DragFlags"));
 		// The web view, the system's browser engine. It is created in two steps, with a configuration

@@ -10658,6 +10658,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte StyledTextCtrlIsEmpty(WxkWindow* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetModifiers")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextEventGetModifiers(WxkEvent* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetAlt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte StyledTextEventGetAlt(WxkEvent* self);
@@ -10733,10 +10737,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetModificationType")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetModificationType(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetModifiers")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextEventGetModifiers(WxkEvent* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetPosition")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
