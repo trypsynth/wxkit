@@ -124,3 +124,23 @@ let ``takes items from loops and conditions`` () =
         Assert.True(right buttons[1] <= buttons[2].Position.X)
         // The button left out stays where it was made.
         Assert.Equal(before, extra.Position))
+
+// A change is inline, so that it takes a window, a sizer, or an item. Passed as a value, it takes
+// its type from what it is given.
+[<Fact>]
+let ``passes a change as a value`` () =
+    Gui.withFrame (fun frame ->
+        let panel = new Panel(frame)
+        let buttons = [ for label in [ "&One"; "&Two" ] -> new Button(panel, label) ]
+        let grown = buttons |> List.map grow
+        let wide: Window -> LayoutItem = grow >> noBorder
+        panel.Sizer <-
+            row {
+                for item in grown do
+                    item
+                wide (new Button(panel, "T&hree"))
+            }
+        laidOut frame panel
+        // The two grown share the width alike, and the one without a border reaches the edge.
+        Assert.Equal(buttons[0].Size.Width, buttons[1].Size.Width)
+        Assert.Equal(300, right panel.Children[2]))
