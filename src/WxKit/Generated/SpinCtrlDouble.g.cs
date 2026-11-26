@@ -7,7 +7,7 @@ namespace WxKit;
 /// <summary>wxSpinCtrlDouble combines wxTextCtrl and wxSpinButton in one control and displays a real number. Wraps wxSpinCtrlDouble.</summary>
 public unsafe partial class SpinCtrlDouble : Control {
 	/// <summary>Constructor, creating and showing a spin control.</summary>
-	public SpinCtrlDouble(Window parent, string value = "", int id = StandardId.Any, Point? position = null, Size? size = null, SpinCtrlDoubleStyle style = SpinCtrlDoubleStyle.ArrowKeys, double min = 0, double max = 100, double initial = 0, double inc = 1) : this(CreateNative(parent, value, id, position, size, style, min, max, initial, inc)) {
+	public SpinCtrlDouble(Window parent, string value = "", int id = StandardId.Any, Point? position = null, Size? size = null, SpinCtrlDoubleStyle style = SpinCtrlDoubleStyle.ArrowKeys, double min = 0, double max = 100, double initial = 0, double increment = 1) : this(CreateNative(parent, value, id, position, size, style, min, max, initial, increment)) {
 	}
 
 	internal SpinCtrlDouble(WxkWindow* native) : base(native) {
@@ -63,12 +63,12 @@ public unsafe partial class SpinCtrlDouble : Control {
 		}
 	}
 
-	private static WxkWindow* CreateNative(Window parent, string value, int id, Point? position, Size? size, SpinCtrlDoubleStyle style, double min, double max, double initial, double inc) {
+	private static WxkWindow* CreateNative(Window parent, string value, int id, Point? position, Size? size, SpinCtrlDoubleStyle style, double min, double max, double initial, double increment) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(parent);
 		ArgumentNullException.ThrowIfNull(value);
 		fixed (char* valueText = value) {
-			return WxKitNative.SpinCtrlDoubleNew((WxkWindow*)parent.Native, id, valueText, NativeString.Length(value), position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default, (long)style, min, max, initial, inc);
+			return WxKitNative.SpinCtrlDoubleNew((WxkWindow*)parent.Native, id, valueText, NativeString.Length(value), position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default, (long)style, min, max, initial, increment);
 		}
 	}
 }

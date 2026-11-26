@@ -127,8 +127,8 @@ public unsafe partial class TreeCtrl : Control {
 
 	/// <summary>The context menu for the selected item has been requested, either by a right click or by using the menu key. Notice that these events always carry a valid tree item and so are not generated when (right) clicking outside of the items area. If you need to handle such events, consider using wxEVT_CONTEXT_MENU instead. Processes a wxEVT_TREE_ITEM_MENU event type.</summary>
 	public event EventHandler<TreeEvent>? ItemContextMenu {
-		add => AddHandler(EventType.TreeItemMenu, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.TreeItemMenu, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.TreeItemContextMenu, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TreeItemContextMenu, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>An item was deleted. Processes a wxEVT_TREE_DELETE_ITEM event type.</summary>
@@ -234,14 +234,14 @@ public unsafe partial class TreeCtrl : Control {
 	/// <summary>Collapses the given item and removes all children.</summary>
 	public void CollapseAndReset(TreeItemId item) => WxKitNative.TreeCtrlCollapseAndReset(Native, item.Value);
 
-	/// <summary>Deletes the specified item.</summary>
-	public void Delete(TreeItemId item) => WxKitNative.TreeCtrlDelete(Native, item.Value);
-
 	/// <summary>Deletes all items in the control.</summary>
 	public void DeleteAllItems() => WxKitNative.TreeCtrlDeleteAllItems(Native);
 
 	/// <summary>Deletes all children of the given item (but not the item itself).</summary>
 	public void DeleteChildren(TreeItemId item) => WxKitNative.TreeCtrlDeleteChildren(Native, item.Value);
+
+	/// <summary>Deletes the specified item.</summary>
+	public void DeleteItem(TreeItemId item) => WxKitNative.TreeCtrlDelete(Native, item.Value);
 
 	/// <summary>Starts editing the label of the given item.</summary>
 	public TextCtrl? EditLabel(TreeItemId item) => ObjectRegistry.Wrap<TextCtrl>(WxKitNative.TreeCtrlEditLabel(Native, item.Value));

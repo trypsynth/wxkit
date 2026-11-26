@@ -69,7 +69,7 @@ public unsafe partial class Control : Window {
 	}
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Size GetSizeFromTextSize(Size tsize) => WxKitNative.ControlGetSizeFromTextSize(Native, tsize);
+	public Size GetSizeFromTextSize(Size textSize) => WxKitNative.ControlGetSizeFromTextSize(Native, textSize);
 
 	/// <summary>Returns the given str string without mnemonics ("&amp;" characters).</summary>
 	public static string RemoveMnemonics(string text) {

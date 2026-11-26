@@ -174,11 +174,11 @@ public unsafe partial class TreeListCtrl : Window {
 		}
 	}
 
-	/// <summary>Select the given item.</summary>
-	public void Select(TreeListItem item) => WxKitNative.TreeListCtrlSelect(Native, item.Value);
-
 	/// <summary>Select all the control items.</summary>
 	public void SelectAll() => WxKitNative.TreeListCtrlSelectAll(Native);
+
+	/// <summary>Select the given item.</summary>
+	public void SelectItem(TreeListItem item) => WxKitNative.TreeListCtrlSelect(Native, item.Value);
 
 	/// <summary>Change the width of the given column.</summary>
 	public void SetColumnWidth(int column, int width) => WxKitNative.TreeListCtrlSetColumnWidth(Native, checked((uint)column), width);
@@ -211,11 +211,11 @@ public unsafe partial class TreeListCtrl : Window {
 	/// <summary>Uncheck the given item.</summary>
 	public void UncheckItem(TreeListItem item) => WxKitNative.TreeListCtrlUncheckItem(Native, item.Value);
 
-	/// <summary>Deselect the given item.</summary>
-	public void Unselect(TreeListItem item) => WxKitNative.TreeListCtrlUnselect(Native, item.Value);
-
 	/// <summary>Deselect all the control items.</summary>
 	public void UnselectAll() => WxKitNative.TreeListCtrlUnselectAll(Native);
+
+	/// <summary>Deselect the given item.</summary>
+	public void UnselectItem(TreeListItem item) => WxKitNative.TreeListCtrlUnselect(Native, item.Value);
 
 	/// <summary>Update the state of the parent item to reflect the checked state of its children.</summary>
 	public void UpdateItemParentStateRecursively(TreeListItem item) => WxKitNative.TreeListCtrlUpdateItemParentStateRecursively(Native, item.Value);

@@ -52,8 +52,8 @@ WXK_FUNCTION(int32_t) wxk_SpinCtrl_GetIncrement(wxk_Window* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxSpinCtrl*>(wxk::Unwrap(self))->GetIncrement()); });
 }
 
-WXK_FUNCTION(void) wxk_SpinCtrl_SetIncrement(wxk_Window* self, int32_t inc) noexcept {
-	wxk::Guard([&] { static_cast<wxSpinCtrl*>(wxk::Unwrap(self))->SetIncrement(static_cast<int>(inc)); });
+WXK_FUNCTION(void) wxk_SpinCtrl_SetIncrement(wxk_Window* self, int32_t increment) noexcept {
+	wxk::Guard([&] { static_cast<wxSpinCtrl*>(wxk::Unwrap(self))->SetIncrement(static_cast<int>(increment)); });
 }
 
 WXK_FUNCTION(int32_t) wxk_EventType_SpinCtrl(void) noexcept {

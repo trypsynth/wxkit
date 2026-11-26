@@ -48,8 +48,8 @@ WXK_FUNCTION(void) wxk_ScrolledWindow_SetScrollRate(wxk_Window* self, int32_t xS
 	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->SetScrollRate(static_cast<int>(xStep), static_cast<int>(yStep)); });
 }
 
-WXK_FUNCTION(void) wxk_ScrolledWindow_SetScrollbars(wxk_Window* self, int32_t pixelsPerUnitX, int32_t pixelsPerUnitY, int32_t noUnitsX, int32_t noUnitsY, int32_t xPos, int32_t yPos, uint8_t noRefresh) noexcept {
-	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->SetScrollbars(static_cast<int>(pixelsPerUnitX), static_cast<int>(pixelsPerUnitY), static_cast<int>(noUnitsX), static_cast<int>(noUnitsY), static_cast<int>(xPos), static_cast<int>(yPos), noRefresh != 0); });
+WXK_FUNCTION(void) wxk_ScrolledWindow_SetScrollbars(wxk_Window* self, int32_t pixelsPerUnitX, int32_t pixelsPerUnitY, int32_t unitsX, int32_t unitsY, int32_t xPosition, int32_t yPosition, uint8_t noRefresh) noexcept {
+	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->SetScrollbars(static_cast<int>(pixelsPerUnitX), static_cast<int>(pixelsPerUnitY), static_cast<int>(unitsX), static_cast<int>(unitsY), static_cast<int>(xPosition), static_cast<int>(yPosition), noRefresh != 0); });
 }
 
 WXK_FUNCTION(int32_t) wxk_ScrolledWindow_GetScrollPageSize(wxk_Window* self, int32_t orientation) noexcept {
@@ -72,8 +72,8 @@ WXK_FUNCTION(void) wxk_ScrolledWindow_DisableAutoScrollOutside(wxk_Window* self)
 	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->DisableAutoScrollOutside(); });
 }
 
-WXK_FUNCTION(void) wxk_ScrolledWindow_SetScale(wxk_Window* self, double xs, double ys) noexcept {
-	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->SetScale(static_cast<double>(xs), static_cast<double>(ys)); });
+WXK_FUNCTION(void) wxk_ScrolledWindow_SetScale(wxk_Window* self, double xScale, double yScale) noexcept {
+	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->SetScale(static_cast<double>(xScale), static_cast<double>(yScale)); });
 }
 
 WXK_FUNCTION(void) wxk_ScrolledWindow_AdjustScrollbars(wxk_Window* self) noexcept {

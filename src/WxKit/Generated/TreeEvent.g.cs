@@ -25,7 +25,7 @@ public unsafe partial class TreeEvent : NotifyEvent {
 	public TreeItemId? OldItem => global::WxKit.TreeItemId.OrNull(WxKitNative.TreeEventGetOldItem(Handle));
 
 	/// <summary>Returns the position of the mouse pointer if the event is a drag or menu-context event.</summary>
-	public Point Point => WxKitNative.TreeEventGetPoint(Handle);
+	public Point Position => WxKitNative.TreeEventGetPoint(Handle);
 
 	/// <summary>Set the tooltip for the item (valid for EVT_TREE_ITEM_GETTOOLTIP events).</summary>
 	public void SetToolTip(string toolTip) {

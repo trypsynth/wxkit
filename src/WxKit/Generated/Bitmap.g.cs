@@ -117,10 +117,10 @@ public unsafe partial class Bitmap : NativeObject {
 	public void ResetAlpha() => WxKitNative.BitmapResetAlpha(Native);
 
 	/// <summary>Saves a bitmap in the named file.</summary>
-	public bool SaveFile(string name, BitmapType type) {
-		ArgumentNullException.ThrowIfNull(name);
-		fixed (char* nameText = name) {
-			return WxKitNative.BitmapSaveFile(Native, nameText, NativeString.Length(name), (int)type) != 0;
+	public bool SaveFile(string fileName, BitmapType type) {
+		ArgumentNullException.ThrowIfNull(fileName);
+		fixed (char* fileNameText = fileName) {
+			return WxKitNative.BitmapSaveFile(Native, fileNameText, NativeString.Length(fileName), (int)type) != 0;
 		}
 	}
 

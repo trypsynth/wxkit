@@ -89,8 +89,8 @@ WXK_FUNCTION(void) wxk_Bitmap_ResetAlpha(wxk_Object* self) noexcept {
 	wxk::Guard([&] { static_cast<wxBitmap*>(wxk::Unwrap(self))->ResetAlpha(); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_Bitmap_SaveFile(wxk_Object* self, const char16_t* name, size_t nameLength, int32_t type) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxBitmap*>(wxk::Unwrap(self))->SaveFile(wxk::FromUtf16(name, nameLength), static_cast<wxBitmapType>(type))) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_Bitmap_SaveFile(wxk_Object* self, const char16_t* fileName, size_t fileNameLength, int32_t type) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxBitmap*>(wxk::Unwrap(self))->SaveFile(wxk::FromUtf16(fileName, fileNameLength), static_cast<wxBitmapType>(type))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(void) wxk_Bitmap_Rescale(wxk_Object* bitmap, wxk_Size sizeNeeded) noexcept {

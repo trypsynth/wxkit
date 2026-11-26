@@ -13,10 +13,10 @@ public unsafe partial class FileCtrlEvent : CommandEvent {
 	public string Directory => NativeString.Take(WxKitNative.FileCtrlEventGetDirectory(Handle));
 
 	/// <summary>Returns the file selected (assuming it is only one file).</summary>
-	public string File => NativeString.Take(WxKitNative.FileCtrlEventGetFile(Handle));
+	public string FileName => NativeString.Take(WxKitNative.FileCtrlEventGetFile(Handle));
 
 	/// <summary>Returns the files selected.</summary>
-	public IReadOnlyList<string> Files => NativeStringArray.Take(WxKitNative.FileCtrlEventGetFiles(Handle));
+	public IReadOnlyList<string> FileNames => NativeStringArray.Take(WxKitNative.FileCtrlEventGetFiles(Handle));
 
 	/// <summary>Returns the current file filter index.</summary>
 	public int FilterIndex => WxKitNative.FileCtrlEventGetFilterIndex(Handle);

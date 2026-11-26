@@ -43,7 +43,7 @@ public unsafe partial class ListEvent : NotifyEvent {
 	public ListItemMask Mask => (ListItemMask)WxKitNative.ListEventGetMask(Handle);
 
 	/// <summary>The position of the mouse pointer if the event is a drag event.</summary>
-	public Point Point => WxKitNative.ListEventGetPoint(Handle);
+	public Point Position => WxKitNative.ListEventGetPoint(Handle);
 
 	/// <summary>The text.</summary>
 	public string Text => NativeString.Take(WxKitNative.ListEventGetText(Handle));

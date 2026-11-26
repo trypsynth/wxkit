@@ -169,7 +169,7 @@ type EditorFrame() as this =
 
     // Find and replace share one modeless dialog, which starts with the selected text, if any.
     let rec showFindDialog replace =
-        let selected = text.StringSelection
+        let selected = text.SelectedText
         if selected <> "" && not (selected.Contains '\n') then
             findData.FindString <- selected
         match findDialog with
@@ -231,7 +231,7 @@ type EditorFrame() as this =
 
     let goToLine () =
         let _, _, current = text.TryGetColumnAndLine text.InsertionPoint
-        let lines = text.NumberOfLines
+        let lines = text.LineCount
         let answer =
             use dialog = new TextEntryDialog(this, $"Line number, from 1 to {lines}:", "Go To Line", string (current + 1))
             if dialog.ShowModal() = StandardId.Ok then Some dialog.Value else None
@@ -388,7 +388,7 @@ type EditorFrame() as this =
         this.MenuBar <- bar
         this.CreateStatusBar() |> ignore
         this.Closing.Add onClosing
-        this.Bind(EventType.UpdateUi, fun _ e -> onUpdateUi e)
+        this.Bind(EventType.UpdateUI, fun _ e -> onUpdateUi e)
         dropped.Publish.Add(fun file -> start (fun () -> openDropped file))
         updateTitle ()
 

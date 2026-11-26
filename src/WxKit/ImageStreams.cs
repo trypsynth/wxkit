@@ -11,24 +11,24 @@ public unsafe partial class Image {
 	/// Loads an image from a file in a format whose handler was added, such as with
 	/// <see cref="AddPngHandler"/>, and returns null if it could not. BMP needs no handler.
 	/// </summary>
-	/// <param name="name">The file's path.</param>
+	/// <param name="fileName">The file's path.</param>
 	/// <param name="type">The format, or <see cref="BitmapType.Any"/> to find it from the file.</param>
 	/// <param name="index">For a format with several images in a file, such as ICO, the one to load, or -1 for the default.</param>
-	public static Image? FromFile(string name, BitmapType type = BitmapType.Any, int index = -1) {
-		ArgumentNullException.ThrowIfNull(name);
+	public static Image? FromFile(string fileName, BitmapType type = BitmapType.Any, int index = -1) {
+		ArgumentNullException.ThrowIfNull(fileName);
 		Application.VerifyAccess();
-		fixed (char* characters = name) return Loaded(new Image(WxKitNative.ImageNewStringBitmapTypeInt(characters, (nuint)name.Length, (int)type, index)));
+		fixed (char* characters = fileName) return Loaded(new Image(WxKitNative.ImageNewStringBitmapTypeInt(characters, (nuint)fileName.Length, (int)type, index)));
 	}
 
 	/// <summary>Loads an image from a file whose format is given as a MIME type, such as image/png, and returns null if it could not.</summary>
-	/// <param name="name">The file's path.</param>
+	/// <param name="fileName">The file's path.</param>
 	/// <param name="mimeType">The format's MIME type.</param>
 	/// <param name="index">For a format with several images in a file, such as ICO, the one to load, or -1 for the default.</param>
-	public static Image? FromFile(string name, string mimeType, int index = -1) {
-		ArgumentNullException.ThrowIfNull(name);
+	public static Image? FromFile(string fileName, string mimeType, int index = -1) {
+		ArgumentNullException.ThrowIfNull(fileName);
 		ArgumentNullException.ThrowIfNull(mimeType);
 		Application.VerifyAccess();
-		fixed (char* characters = name, mime = mimeType) return Loaded(new Image(WxKitNative.ImageNewStringStringInt(characters, (nuint)name.Length, mime, (nuint)mimeType.Length, index)));
+		fixed (char* characters = fileName, mime = mimeType) return Loaded(new Image(WxKitNative.ImageNewStringStringInt(characters, (nuint)fileName.Length, mime, (nuint)mimeType.Length, index)));
 	}
 
 	/// <summary>

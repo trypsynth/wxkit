@@ -1792,6 +1792,14 @@ WXK_FUNCTION(void) wxk_StyledTextCtrl_SetInsertionPointEnd(wxk_Window* self) noe
 	wxk::Guard([&] { static_cast<wxTextEntryBase*>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self)))->SetInsertionPointEnd(); });
 }
 
+WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetStringSelection(wxk_Window* self) noexcept {
+	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxTextEntryBase*>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self)))->GetStringSelection()); });
+}
+
+WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetNumberOfLines(wxk_Window* self) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->GetNumberOfLines()); });
+}
+
 WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_AutoCompGetAutoHide(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->AutoCompGetAutoHide()) ? 1 : 0; });
 }
@@ -2920,10 +2928,6 @@ WXK_FUNCTION(void) wxk_StyledTextCtrl_SetEditable(wxk_Window* self, uint8_t edit
 	wxk::Guard([&] { static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->SetEditable(editable != 0); });
 }
 
-WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetNumberOfLines(wxk_Window* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->GetNumberOfLines()); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_IsModified(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->IsModified()) ? 1 : 0; });
 }
@@ -2934,10 +2938,6 @@ WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_CanCopy(wxk_Window* self) noexcept {
 
 WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_CanCut(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTextEntryBase*>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self)))->CanCut()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetStringSelection(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxTextEntryBase*>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self)))->GetStringSelection()); });
 }
 
 WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetValue(wxk_Window* self) noexcept {
@@ -2990,10 +2990,6 @@ WXK_FUNCTION(int32_t) wxk_EventType_StyledTextClipboardCopy(void) noexcept {
 
 WXK_FUNCTION(int32_t) wxk_EventType_StyledTextClipboardPaste(void) noexcept {
 	return wxEVT_STC_CLIPBOARD_PASTE;
-}
-
-WXK_FUNCTION(int32_t) wxk_EventType_StyledTextDoDrop(void) noexcept {
-	return wxEVT_STC_DO_DROP;
 }
 
 WXK_FUNCTION(int32_t) wxk_EventType_StyledTextDoubleClick(void) noexcept {
@@ -3076,7 +3072,11 @@ WXK_FUNCTION(int32_t) wxk_EventType_StyledTextStyleNeeded(void) noexcept {
 	return wxEVT_STC_STYLENEEDED;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_StyledTextUpdateUi(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_StyledTextTextDropping(void) noexcept {
+	return wxEVT_STC_DO_DROP;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_StyledTextUpdateUI(void) noexcept {
 	return wxEVT_STC_UPDATEUI;
 }
 

@@ -7,9 +7,9 @@ public class StyledTextTests {
 		StyledTextCtrl editor = new(frame);
 		editor.Value = "first line\nsecond line";
 		Assert.Equal("first line\nsecond line", editor.Value);
-		Assert.Equal(2, editor.NumberOfLines);
+		Assert.Equal(2, editor.LineCount);
 		editor.AppendText("\nthird line");
-		Assert.Equal(3, editor.NumberOfLines);
+		Assert.Equal(3, editor.LineCount);
 		editor.GotoLine(2);
 		Assert.Equal(2, editor.CurrentLine);
 		Assert.Equal(editor.Value.Length, editor.LastPosition);

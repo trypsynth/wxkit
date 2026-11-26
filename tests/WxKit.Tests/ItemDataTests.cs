@@ -49,7 +49,7 @@ public class ItemDataTests {
 		Assert.False(replaced.IsAlive);
 		Assert.Equal("Library", tree.GetItemData(root));
 		WeakReference deleted = SetBook(tree, item);
-		tree.Delete(item);
+		tree.DeleteItem(item);
 		Collect();
 		Assert.False(deleted.IsAlive);
 	});

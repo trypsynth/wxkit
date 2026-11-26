@@ -15,28 +15,28 @@ public unsafe partial class FindReplaceDialog : Dialog {
 	}
 
 	public event EventHandler<FindDialogEvent>? FindClosed {
-		add => AddHandler(EventType.FindClose, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.FindClose, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.FindClosed, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.FindClosed, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<FindDialogEvent>? FindNextRequested {
-		add => AddHandler(EventType.FindNext, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.FindNext, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.FindNextRequested, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.FindNextRequested, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<FindDialogEvent>? FindRequested {
-		add => AddHandler(EventType.Find, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.Find, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.FindRequested, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.FindRequested, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<FindDialogEvent>? ReplaceAllRequested {
-		add => AddHandler(EventType.FindReplaceAll, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.FindReplaceAll, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.ReplaceAllRequested, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.ReplaceAllRequested, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<FindDialogEvent>? ReplaceRequested {
-		add => AddHandler(EventType.FindReplace, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.FindReplace, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.ReplaceRequested, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.ReplaceRequested, StandardId.Any, StandardId.Any, value);
 	}
 
 	private static WxkWindow* CreateNative(Window? parent, FindReplaceData data, string title, FindReplaceDialogStyle style) {

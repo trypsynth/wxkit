@@ -10,5 +10,5 @@ public unsafe partial class SpinEvent : NotifyEvent {
 	}
 
 	/// <summary>Retrieve the current spin button or control value.</summary>
-	public int Position => WxKitNative.SpinEventGetPosition(Handle);
+	public int Value => WxKitNative.SpinEventGetPosition(Handle);
 }

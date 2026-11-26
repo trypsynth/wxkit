@@ -169,8 +169,8 @@ public class ControlTests {
 		Assert.Equal(6, text.SelectionStart);
 		Assert.Equal(5, text.SelectionLength);
 		text.SelectionStart = 0;
-		Assert.Equal("hello", text.StringSelection);
+		Assert.Equal("hello", text.SelectedText);
 		text.SelectionLength = 4;
-		Assert.Equal("hell", text.StringSelection);
+		Assert.Equal("hell", text.SelectedText);
 	});
 }

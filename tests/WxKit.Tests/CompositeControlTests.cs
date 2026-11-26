@@ -65,7 +65,7 @@ public class CompositeControlTests {
 		TreeListItem file = tree.AppendItem(folder, "Notes.txt");
 		tree.SetItemText(file, 1, "2 KB");
 		tree.Expand(folder);
-		tree.Select(file);
+		tree.SelectItem(file);
 		tree.CheckItem(file, CheckBoxState.Checked);
 		// Where there is no item, the tree gives null.
 		Assert.Null(tree.GetNextSibling(folder));

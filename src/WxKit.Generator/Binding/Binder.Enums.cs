@@ -81,7 +81,7 @@ internal sealed partial class Binder {
 				_skipped.Add($"enum {owner}: the value of {value.Name} is unknown or depends on the platform");
 				continue;
 			}
-			string name = memberPrefix is not null && value.Name.StartsWith(memberPrefix, StringComparison.Ordinal) ? Naming.Words(value.Name[memberPrefix.Length..]) : MemberName(value.Name, shared);
+			string name = tweaks.EnumMemberNames.TryGetValue(value.Name, out string? given) ? given : memberPrefix is not null && value.Name.StartsWith(memberPrefix, StringComparison.Ordinal) ? Naming.Words(value.Name[memberPrefix.Length..]) : MemberName(value.Name, shared);
 			if (char.IsDigit(name[0])) name = "Value" + name;
 			if (members.All(existing => existing.Name != name)) members.Add(new BoundStyle(name, value.Name, number, value.Brief));
 		}

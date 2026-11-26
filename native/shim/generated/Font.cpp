@@ -63,8 +63,8 @@ WXK_FUNCTION(wxk_Object*) wxk_Font_Strikethrough(wxk_Object* self) noexcept {
 	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxFont>(static_cast<wxFont*>(wxk::Unwrap(self))->Strikethrough()); });
 }
 
-WXK_FUNCTION(wxk_Object*) wxk_Font_Scaled(wxk_Object* self, float x) noexcept {
-	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxFont>(static_cast<wxFont*>(wxk::Unwrap(self))->Scaled(static_cast<float>(x))); });
+WXK_FUNCTION(wxk_Object*) wxk_Font_Scaled(wxk_Object* self, float factor) noexcept {
+	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxFont>(static_cast<wxFont*>(wxk::Unwrap(self))->Scaled(static_cast<float>(factor))); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Font_SetNativeFontInfo(wxk_Object* self, const char16_t* info, size_t infoLength) noexcept {

@@ -30,7 +30,7 @@ internal sealed class EditorFrame : Frame {
 		CreateStatusBar();
 		Closing += OnClosing;
 		// The menu items, and the text control, ask whether they apply as the window goes idle.
-		Bind(EventType.UpdateUi, OnUpdateUi);
+		Bind(EventType.UpdateUI, OnUpdateUi);
 		UpdateTitle();
 	}
 
@@ -227,7 +227,7 @@ internal sealed class EditorFrame : Frame {
 
 	// Find and replace share one modeless dialog, which starts with the selected text, if any.
 	private void ShowFindDialog(bool replace) {
-		string selected = _text.StringSelection;
+		string selected = _text.SelectedText;
 		if (selected.Length > 0 && !selected.Contains('\n', StringComparison.Ordinal)) _findData.FindString = selected;
 		if (_findDialog is not null) {
 			if (_findDialogReplaces == replace) {
@@ -328,7 +328,7 @@ internal sealed class EditorFrame : Frame {
 
 	private void GoToLine() {
 		_text.TryGetColumnAndLine(_text.InsertionPoint, out _, out int current);
-		int lines = _text.NumberOfLines;
+		int lines = _text.LineCount;
 		using TextEntryDialog dialog = new(this, $"Line number, from 1 to {lines}:", "Go To Line", (current + 1).ToString(CultureInfo.CurrentCulture));
 		if (dialog.ShowModal() != StandardId.Ok) return;
 		if (!int.TryParse(dialog.Value, NumberStyles.Integer, CultureInfo.CurrentCulture, out int line) || line < 1 || line > lines) {

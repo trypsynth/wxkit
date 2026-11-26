@@ -12,20 +12,20 @@ WXK_FUNCTION(void) wxk_StatusBar_SetStatusStyles(wxk_Window* self, const int32_t
 	wxk::Guard([&] { static_cast<wxStatusBar*>(wxk::Unwrap(self))->SetStatusStyles(static_cast<int>(stylesCount), styles); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_StatusBar_GetFieldRect(wxk_Window* self, int32_t i, wxk_Rect* rect) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxStatusBar*>(wxk::Unwrap(self))->GetFieldRect(static_cast<int>(i), wxk::OutValue<wxRect, wxk_Rect, wxk::ToRect>{rect})) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_StatusBar_GetFieldRect(wxk_Window* self, int32_t field, wxk_Rect* rect) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxStatusBar*>(wxk::Unwrap(self))->GetFieldRect(static_cast<int>(field), wxk::OutValue<wxRect, wxk_Rect, wxk::ToRect>{rect})) ? 1 : 0; });
 }
 
-WXK_FUNCTION(wxk_String*) wxk_StatusBar_GetStatusText(wxk_Window* self, int32_t i) noexcept {
-	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxStatusBar*>(wxk::Unwrap(self))->GetStatusText(static_cast<int>(i))); });
+WXK_FUNCTION(wxk_String*) wxk_StatusBar_GetStatusText(wxk_Window* self, int32_t field) noexcept {
+	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxStatusBar*>(wxk::Unwrap(self))->GetStatusText(static_cast<int>(field))); });
 }
 
-WXK_FUNCTION(int32_t) wxk_StatusBar_GetStatusWidth(wxk_Window* self, int32_t index) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStatusBar*>(wxk::Unwrap(self))->GetStatusWidth(static_cast<int>(index))); });
+WXK_FUNCTION(int32_t) wxk_StatusBar_GetStatusWidth(wxk_Window* self, int32_t field) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStatusBar*>(wxk::Unwrap(self))->GetStatusWidth(static_cast<int>(field))); });
 }
 
-WXK_FUNCTION(int32_t) wxk_StatusBar_GetStatusStyle(wxk_Window* self, int32_t index) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStatusBar*>(wxk::Unwrap(self))->GetStatusStyle(static_cast<int>(index))); });
+WXK_FUNCTION(int32_t) wxk_StatusBar_GetStatusStyle(wxk_Window* self, int32_t field) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStatusBar*>(wxk::Unwrap(self))->GetStatusStyle(static_cast<int>(field))); });
 }
 
 WXK_FUNCTION(void) wxk_StatusBar_PopStatusText(wxk_Window* self, int32_t field) noexcept {
@@ -36,16 +36,16 @@ WXK_FUNCTION(void) wxk_StatusBar_PushStatusText(wxk_Window* self, const char16_t
 	wxk::Guard([&] { static_cast<wxStatusBar*>(wxk::Unwrap(self))->PushStatusText(wxk::FromUtf16(text, textLength), static_cast<int>(field)); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_StatusBar_AddFieldControl(wxk_Window* self, int32_t i, wxk_Window* window) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxStatusBar*>(wxk::Unwrap(self))->AddFieldControl(static_cast<int>(i), static_cast<wxWindow*>(wxk::Unwrap(window)))) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_StatusBar_AddFieldControl(wxk_Window* self, int32_t field, wxk_Window* window) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxStatusBar*>(wxk::Unwrap(self))->AddFieldControl(static_cast<int>(field), static_cast<wxWindow*>(wxk::Unwrap(window)))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(void) wxk_StatusBar_SetMinHeight(wxk_Window* self, int32_t height) noexcept {
 	wxk::Guard([&] { static_cast<wxStatusBar*>(wxk::Unwrap(self))->SetMinHeight(static_cast<int>(height)); });
 }
 
-WXK_FUNCTION(void) wxk_StatusBar_SetStatusText(wxk_Window* self, const char16_t* text, size_t textLength, int32_t i) noexcept {
-	wxk::Guard([&] { static_cast<wxStatusBar*>(wxk::Unwrap(self))->SetStatusText(wxk::FromUtf16(text, textLength), static_cast<int>(i)); });
+WXK_FUNCTION(void) wxk_StatusBar_SetStatusText(wxk_Window* self, const char16_t* text, size_t textLength, int32_t field) noexcept {
+	wxk::Guard([&] { static_cast<wxStatusBar*>(wxk::Unwrap(self))->SetStatusText(wxk::FromUtf16(text, textLength), static_cast<int>(field)); });
 }
 
 WXK_FUNCTION(void) wxk_StatusBar_SetStatusWidths(wxk_Window* self, const int32_t* widths, size_t widthsCount) noexcept {

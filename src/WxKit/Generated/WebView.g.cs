@@ -274,7 +274,7 @@ public unsafe partial class WebView : Control {
 	public void Redo() => WxKitNative.WebViewRedo(Native);
 
 	/// <summary>Reload the currently displayed URL.</summary>
-	public void Reload(WebViewReloadFlags flags = WebViewReloadFlags.Default) => WxKitNative.WebViewReload(Native, (int)flags);
+	public void Reload(WebViewReload flags = WebViewReload.Default) => WxKitNative.WebViewReload(Native, (int)flags);
 
 	/// <summary>Removes all user scripts from the web view.</summary>
 	public void RemoveAllUserScripts() => WxKitNative.WebViewRemoveAllUserScripts(Native);

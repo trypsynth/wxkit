@@ -253,9 +253,9 @@ public static partial class StandardId {
 	/// <summary>Wraps wxID_MDI_WINDOW_CASCADE.</summary>
 	public const int MdiWindowCascade = 5230;
 	/// <summary>Wraps wxID_MDI_WINDOW_TILE_HORZ.</summary>
-	public const int MdiWindowTileHorz = 5231;
+	public const int MdiWindowTileHorizontal = 5231;
 	/// <summary>Wraps wxID_MDI_WINDOW_TILE_VERT.</summary>
-	public const int MdiWindowTileVert = 5232;
+	public const int MdiWindowTileVertical = 5232;
 	/// <summary>Wraps wxID_MDI_WINDOW_ARRANGE_ICONS.</summary>
 	public const int MdiWindowArrangeIcons = 5233;
 	/// <summary>Wraps wxID_MDI_WINDOW_PREV.</summary>

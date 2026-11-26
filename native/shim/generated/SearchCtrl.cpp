@@ -100,6 +100,10 @@ WXK_FUNCTION(void) wxk_SearchCtrl_WriteText(wxk_Window* self, const char16_t* te
 	wxk::Guard([&] { static_cast<wxTextEntry*>(static_cast<wxSearchCtrl*>(wxk::Unwrap(self)))->WriteText(wxk::FromUtf16(text, textLength)); });
 }
 
+WXK_FUNCTION(wxk_String*) wxk_SearchCtrl_GetStringSelection(wxk_Window* self) noexcept {
+	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxTextEntry*>(static_cast<wxSearchCtrl*>(wxk::Unwrap(self)))->GetStringSelection()); });
+}
+
 WXK_FUNCTION(uint8_t) wxk_SearchCtrl_IsSearchButtonVisible(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxSearchCtrl*>(wxk::Unwrap(self))->IsSearchButtonVisible()) ? 1 : 0; });
 }
@@ -162,10 +166,6 @@ WXK_FUNCTION(void) wxk_SearchCtrl_SetInsertionPoint(wxk_Window* self, int32_t po
 
 WXK_FUNCTION(int32_t) wxk_SearchCtrl_GetLastPosition(wxk_Window* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxTextEntry*>(static_cast<wxSearchCtrl*>(wxk::Unwrap(self)))->GetLastPosition()); });
-}
-
-WXK_FUNCTION(wxk_String*) wxk_SearchCtrl_GetStringSelection(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxTextEntry*>(static_cast<wxSearchCtrl*>(wxk::Unwrap(self)))->GetStringSelection()); });
 }
 
 WXK_FUNCTION(wxk_String*) wxk_SearchCtrl_GetValue(wxk_Window* self) noexcept {

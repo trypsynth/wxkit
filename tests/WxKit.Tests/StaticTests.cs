@@ -5,7 +5,7 @@ public class StaticTests {
 	[Fact]
 	public Task ReadsSystemSettings() => Gui.Run(() => {
 		Assert.NotNull(SystemSettings.GetColor(SystemColor.Window));
-		using Font? font = SystemSettings.GetFont(SystemFont.DefaultGuiFont);
+		using Font? font = SystemSettings.GetFont(SystemFont.DefaultGui);
 		Assert.NotNull(font);
 		Assert.True(SystemSettings.GetMetric(SystemMetric.ScreenX) > 0);
 	});

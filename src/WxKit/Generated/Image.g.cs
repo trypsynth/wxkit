@@ -176,28 +176,28 @@ public unsafe partial class Image : NativeObject {
 	public void RotateHue(double angle) => WxKitNative.ImageRotateHue(Native, angle);
 
 	/// <summary>Saves an image in the named file.</summary>
-	public bool SaveFile(string name, BitmapType type) {
-		ArgumentNullException.ThrowIfNull(name);
-		fixed (char* nameText = name) {
-			return WxKitNative.ImageSaveFileStringBitmapType(Native, nameText, NativeString.Length(name), (int)type) != 0;
+	public bool SaveFile(string fileName, BitmapType type) {
+		ArgumentNullException.ThrowIfNull(fileName);
+		fixed (char* fileNameText = fileName) {
+			return WxKitNative.ImageSaveFileStringBitmapType(Native, fileNameText, NativeString.Length(fileName), (int)type) != 0;
 		}
 	}
 
 	/// <summary>Saves an image in the named file.</summary>
-	public bool SaveFile(string name, string mimeType) {
-		ArgumentNullException.ThrowIfNull(name);
+	public bool SaveFile(string fileName, string mimeType) {
+		ArgumentNullException.ThrowIfNull(fileName);
 		ArgumentNullException.ThrowIfNull(mimeType);
-		fixed (char* nameText = name)
+		fixed (char* fileNameText = fileName)
 		fixed (char* mimeTypeText = mimeType) {
-			return WxKitNative.ImageSaveFileStringString(Native, nameText, NativeString.Length(name), mimeTypeText, NativeString.Length(mimeType)) != 0;
+			return WxKitNative.ImageSaveFileStringString(Native, fileNameText, NativeString.Length(fileName), mimeTypeText, NativeString.Length(mimeType)) != 0;
 		}
 	}
 
 	/// <summary>Saves an image in the named file.</summary>
-	public bool SaveFile(string name) {
-		ArgumentNullException.ThrowIfNull(name);
-		fixed (char* nameText = name) {
-			return WxKitNative.ImageSaveFileString(Native, nameText, NativeString.Length(name)) != 0;
+	public bool SaveFile(string fileName) {
+		ArgumentNullException.ThrowIfNull(fileName);
+		fixed (char* fileNameText = fileName) {
+			return WxKitNative.ImageSaveFileString(Native, fileNameText, NativeString.Length(fileName)) != 0;
 		}
 	}
 

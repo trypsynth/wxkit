@@ -25,6 +25,9 @@ public unsafe partial class ToolBar : Control {
 		set => WxKitNative.ToolBarSetToolBitmapSize(Native, value);
 	}
 
+	/// <summary>Returns the number of tools in the toolbar.</summary>
+	public int ToolCount => checked((int)WxKitNative.ToolBarGetToolsCount(Native));
+
 	/// <summary>Returns the value used for packing tools.</summary>
 	public int ToolPacking {
 		get => WxKitNative.ToolBarGetToolPacking(Native);
@@ -39,9 +42,6 @@ public unsafe partial class ToolBar : Control {
 
 	/// <summary>Returns the size of a whole button, which is usually larger than a tool bitmap because of added 3D effects.</summary>
 	public Size ToolSize => WxKitNative.ToolBarGetToolSize(Native);
-
-	/// <summary>Returns the number of tools in the toolbar.</summary>
-	public int ToolsCount => checked((int)WxKitNative.ToolBarGetToolsCount(Native));
 
 	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
 	public new ToolBarStyle Style {
@@ -74,15 +74,15 @@ public unsafe partial class ToolBar : Control {
 	}
 
 	/// <summary>Adds a new check (or toggle) tool to the toolbar.</summary>
-	public ToolBarTool? AddCheckTool(int toolId, string label, Bitmap bitmap1, Bitmap? disabledBitmap = null, string shortHelp = "", string longHelp = "") {
+	public ToolBarTool? AddCheckTool(int toolId, string label, Bitmap bitmap, Bitmap? disabledBitmap = null, string shortHelp = "", string longHelp = "") {
 		ArgumentNullException.ThrowIfNull(label);
-		ArgumentNullException.ThrowIfNull(bitmap1);
+		ArgumentNullException.ThrowIfNull(bitmap);
 		ArgumentNullException.ThrowIfNull(shortHelp);
 		ArgumentNullException.ThrowIfNull(longHelp);
 		fixed (char* labelText = label)
 		fixed (char* shortHelpText = shortHelp)
 		fixed (char* longHelpText = longHelp) {
-			return ToolBarTool.Wrap(WxKitNative.ToolBarAddCheckTool(Native, toolId, labelText, NativeString.Length(label), bitmap1.Native, disabledBitmap is null ? null : disabledBitmap.Native, shortHelpText, NativeString.Length(shortHelp), longHelpText, NativeString.Length(longHelp)));
+			return ToolBarTool.Wrap(WxKitNative.ToolBarAddCheckTool(Native, toolId, labelText, NativeString.Length(label), bitmap.Native, disabledBitmap is null ? null : disabledBitmap.Native, shortHelpText, NativeString.Length(shortHelp), longHelpText, NativeString.Length(longHelp)));
 		}
 	}
 
@@ -96,15 +96,15 @@ public unsafe partial class ToolBar : Control {
 	}
 
 	/// <summary>Adds a new radio tool to the toolbar.</summary>
-	public ToolBarTool? AddRadioTool(int toolId, string label, Bitmap bitmap1, Bitmap? disabledBitmap = null, string shortHelp = "", string longHelp = "") {
+	public ToolBarTool? AddRadioTool(int toolId, string label, Bitmap bitmap, Bitmap? disabledBitmap = null, string shortHelp = "", string longHelp = "") {
 		ArgumentNullException.ThrowIfNull(label);
-		ArgumentNullException.ThrowIfNull(bitmap1);
+		ArgumentNullException.ThrowIfNull(bitmap);
 		ArgumentNullException.ThrowIfNull(shortHelp);
 		ArgumentNullException.ThrowIfNull(longHelp);
 		fixed (char* labelText = label)
 		fixed (char* shortHelpText = shortHelp)
 		fixed (char* longHelpText = longHelp) {
-			return ToolBarTool.Wrap(WxKitNative.ToolBarAddRadioTool(Native, toolId, labelText, NativeString.Length(label), bitmap1.Native, disabledBitmap is null ? null : disabledBitmap.Native, shortHelpText, NativeString.Length(shortHelp), longHelpText, NativeString.Length(longHelp)));
+			return ToolBarTool.Wrap(WxKitNative.ToolBarAddRadioTool(Native, toolId, labelText, NativeString.Length(label), bitmap.Native, disabledBitmap is null ? null : disabledBitmap.Native, shortHelpText, NativeString.Length(shortHelp), longHelpText, NativeString.Length(longHelp)));
 		}
 	}
 

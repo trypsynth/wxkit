@@ -988,9 +988,9 @@ public enum HitTestResult {
 	/// <summary>in the client area. Wraps wxHT_WINDOW_INSIDE.</summary>
 	WindowInside = 10,
 	/// <summary>on the vertical scrollbar. Wraps wxHT_WINDOW_VERT_SCROLLBAR.</summary>
-	WindowVertScrollBar = 11,
+	WindowVerticalScrollBar = 11,
 	/// <summary>on the horizontal scrollbar. Wraps wxHT_WINDOW_HORZ_SCROLLBAR.</summary>
-	WindowHorzScrollBar = 12,
+	WindowHorizontalScrollBar = 12,
 	/// <summary>on the corner between 2 scrollbars. Wraps wxHT_WINDOW_CORNER.</summary>
 	WindowCorner = 13,
 }
@@ -1997,7 +1997,7 @@ public enum PrintQuality {
 /// <summary>Wraps wxPrinterError.</summary>
 public enum PrinterError {
 	/// <summary>Wraps wxPRINTER_NO_ERROR.</summary>
-	NoError = 0,
+	None = 0,
 	/// <summary>Wraps wxPRINTER_CANCELLED.</summary>
 	Canceled = 1,
 	/// <summary>Wraps wxPRINTER_ERROR.</summary>
@@ -2339,17 +2339,17 @@ public enum SystemFeature {
 /// <summary>Wraps wxSystemFont.</summary>
 public enum SystemFont {
 	/// <summary>Original equipment manufacturer dependent fixed-pitch font. Wraps wxSYS_OEM_FIXED_FONT.</summary>
-	OemFixedFont = 10,
+	OemFixed = 10,
 	/// <summary>Windows fixed-pitch (monospaced) font. Wraps wxSYS_ANSI_FIXED_FONT.</summary>
-	AnsiFixedFont = 11,
+	AnsiFixed = 11,
 	/// <summary>Windows variable-pitch (proportional) font. Wraps wxSYS_ANSI_VAR_FONT.</summary>
-	AnsiVarFont = 12,
+	AnsiVariable = 12,
 	/// <summary>System font. Wraps wxSYS_SYSTEM_FONT.</summary>
-	SystemFont = 13,
+	System = 13,
 	/// <summary>Device-dependent font. Wraps wxSYS_DEVICE_DEFAULT_FONT.</summary>
-	DeviceDefaultFont = 14,
+	DeviceDefault = 14,
 	/// <summary>Default font for user interface objects such as menus and dialog boxes. Wraps wxSYS_DEFAULT_GUI_FONT.</summary>
-	DefaultGuiFont = 17,
+	DefaultGui = 17,
 }
 
 /// <summary>Wraps wxSystemMetric.</summary>
@@ -2604,7 +2604,7 @@ public enum WebViewFindFlags {
 }
 
 /// <summary>Wraps wxWebViewNavigationActionFlags.</summary>
-public enum WebViewNavigationActionFlags {
+public enum WebViewNavigationAction {
 	/// <summary>No navigation action. Wraps wxWEBVIEW_NAV_ACTION_NONE.</summary>
 	None = 0,
 	/// <summary>The navigation was started by the user. Wraps wxWEBVIEW_NAV_ACTION_USER.</summary>
@@ -2623,7 +2623,7 @@ public enum WebViewPrintFlags {
 }
 
 /// <summary>Wraps wxWebViewReloadFlags.</summary>
-public enum WebViewReloadFlags {
+public enum WebViewReload {
 	/// <summary>Default reload, will access cache. Wraps wxWEBVIEW_RELOAD_DEFAULT.</summary>
 	Default = 0,
 	/// <summary>Reload the current view without accessing the cache. Wraps wxWEBVIEW_RELOAD_NO_CACHE.</summary>
@@ -2707,17 +2707,17 @@ public enum WizardBitmapPlacement {
 	/// <summary>None of the flags. Wraps 0.</summary>
 	None = 0,
 	/// <summary>Wraps wxWIZARD_VALIGN_TOP.</summary>
-	ValignTop = 1,
+	VerticalAlignTop = 1,
 	/// <summary>Wraps wxWIZARD_VALIGN_CENTRE.</summary>
-	ValignCenter = 2,
+	VerticalAlignCenter = 2,
 	/// <summary>Wraps wxWIZARD_VALIGN_BOTTOM.</summary>
-	ValignBottom = 4,
+	VerticalAlignBottom = 4,
 	/// <summary>Wraps wxWIZARD_HALIGN_LEFT.</summary>
-	HalignLeft = 8,
+	HorizontalAlignLeft = 8,
 	/// <summary>Wraps wxWIZARD_HALIGN_CENTRE.</summary>
-	HalignCenter = 16,
+	HorizontalAlignCenter = 16,
 	/// <summary>Wraps wxWIZARD_HALIGN_RIGHT.</summary>
-	HalignRight = 32,
+	HorizontalAlignRight = 32,
 	/// <summary>Wraps wxWIZARD_TILE.</summary>
 	Tile = 64,
 }
@@ -2732,5 +2732,5 @@ public enum WrapSizerFlags {
 	/// <summary>Wraps wxREMOVE_LEADING_SPACES.</summary>
 	RemoveLeadingSpaces = 2,
 	/// <summary>Wraps wxWRAPSIZER_DEFAULT_FLAGS.</summary>
-	WrapSizerDefaultFlags = 3,
+	Default = 3,
 }

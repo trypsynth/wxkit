@@ -93,7 +93,7 @@ public unsafe partial class SearchCtrl : Control {
 	}
 
 	/// <summary>Gets the text currently selected in the control.</summary>
-	public string StringSelection => NativeString.Take(WxKitNative.SearchCtrlGetStringSelection(Native));
+	public string SelectedText => NativeString.Take(WxKitNative.SearchCtrlGetStringSelection(Native));
 
 	/// <summary>Gets the contents of the control.</summary>
 	public string Value {

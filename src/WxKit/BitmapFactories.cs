@@ -29,13 +29,13 @@ public unsafe partial class Bitmap {
 	/// Loads a bitmap from a file, and returns null if it could not, such as when the file is
 	/// missing, is not an image, or is in a format whose handler was not added.
 	/// </summary>
-	/// <param name="name">The file's path.</param>
+	/// <param name="fileName">The file's path.</param>
 	/// <param name="type">The format, or null for the platform's default, which finds most from the file.</param>
-	public static Bitmap? FromFile(string name, BitmapType? type = null) {
-		ArgumentNullException.ThrowIfNull(name);
+	public static Bitmap? FromFile(string fileName, BitmapType? type = null) {
+		ArgumentNullException.ThrowIfNull(fileName);
 		Application.VerifyAccess();
 		Bitmap bitmap;
-		fixed (char* characters = name) bitmap = new(WxKitNative.BitmapNewStringBitmapType(characters, (nuint)name.Length, (int)(type ?? default), (byte)(type is null ? 0 : 1)));
+		fixed (char* characters = fileName) bitmap = new(WxKitNative.BitmapNewStringBitmapType(characters, (nuint)fileName.Length, (int)(type ?? default), (byte)(type is null ? 0 : 1)));
 		if (bitmap.IsOk) return bitmap;
 		bitmap.Dispose();
 		return null;

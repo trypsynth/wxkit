@@ -12,7 +12,7 @@ public class ToolBarTests {
 		toolBar.AddSeparator();
 		toolBar.AddTool(StandardId.Save, "Save", open);
 		Assert.True(toolBar.Realize());
-		Assert.Equal(3, toolBar.ToolsCount);
+		Assert.Equal(3, toolBar.ToolCount);
 	});
 
 	[Fact]

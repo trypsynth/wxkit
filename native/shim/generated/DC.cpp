@@ -93,8 +93,8 @@ WXK_FUNCTION(void) wxk_DC_DrawEllipse_Rect(wxk_Object* self, wxk_Rect rect) noex
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawEllipse(wxk::FromRect(rect)); });
 }
 
-WXK_FUNCTION(void) wxk_DC_DrawEllipticArc(wxk_Object* self, wxk_Point point, wxk_Size size, double sa, double ea) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawEllipticArc(wxk::FromPoint(point), wxk::FromSize(size), static_cast<double>(sa), static_cast<double>(ea)); });
+WXK_FUNCTION(void) wxk_DC_DrawEllipticArc(wxk_Object* self, wxk_Point point, wxk_Size size, double startAngle, double endAngle) noexcept {
+	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawEllipticArc(wxk::FromPoint(point), wxk::FromSize(size), static_cast<double>(startAngle), static_cast<double>(endAngle)); });
 }
 
 WXK_FUNCTION(void) wxk_DC_DrawIcon(wxk_Object* self, const wxk_Object* icon, wxk_Point point) noexcept {
@@ -225,16 +225,16 @@ WXK_FUNCTION(wxk_Point) wxk_DC_DeviceToLogical(wxk_Object* self, wxk_Point point
 	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->DeviceToLogical(wxk::FromPoint(point))); });
 }
 
-WXK_FUNCTION(wxk_Size) wxk_DC_DeviceToLogicalRel(wxk_Object* self, wxk_Size dim) noexcept {
-	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->DeviceToLogicalRel(wxk::FromSize(dim))); });
+WXK_FUNCTION(wxk_Size) wxk_DC_DeviceToLogicalRel(wxk_Object* self, wxk_Size dimension) noexcept {
+	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->DeviceToLogicalRel(wxk::FromSize(dimension))); });
 }
 
 WXK_FUNCTION(wxk_Point) wxk_DC_LogicalToDevice(wxk_Object* self, wxk_Point point) noexcept {
 	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->LogicalToDevice(wxk::FromPoint(point))); });
 }
 
-WXK_FUNCTION(wxk_Size) wxk_DC_LogicalToDeviceRel(wxk_Object* self, wxk_Size dim) noexcept {
-	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->LogicalToDeviceRel(wxk::FromSize(dim))); });
+WXK_FUNCTION(wxk_Size) wxk_DC_LogicalToDeviceRel(wxk_Object* self, wxk_Size dimension) noexcept {
+	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->LogicalToDeviceRel(wxk::FromSize(dimension))); });
 }
 
 WXK_FUNCTION(void) wxk_DC_SetAxisOrientation(wxk_Object* self, uint8_t xLeftRight, uint8_t yBottomUp) noexcept {

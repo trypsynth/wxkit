@@ -42,6 +42,11 @@ internal sealed class Tweaks {
 		members.Add((name, value, description, wraps));
 	}
 
+	/// <summary>Names of enum members the naming rules get wrong, by their constant, such as one that repeats its enum's name.</summary>
+	public Dictionary<string, string> EnumMemberNames { get; } = new(StringComparer.Ordinal);
+
+	public void NameEnumMember(string constant, string name) => EnumMemberNames[constant] = name;
+
 	/// <summary>Members an enum leaves out, such as a second spelling or a bound, beside those its own tweak excludes.</summary>
 	public Dictionary<string, HashSet<string>> ExcludedEnumMembers { get; } = new(StringComparer.Ordinal);
 

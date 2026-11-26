@@ -26,8 +26,8 @@ public unsafe partial class CalendarCtrl : Control {
 	}
 
 	public event EventHandler<CalendarEvent>? DateActivated {
-		add => AddHandler(EventType.CalendarDoubleClicked, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.CalendarDoubleClicked, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.CalendarDateActivated, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.CalendarDateActivated, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>The selected month (and/or year) changed.</summary>
@@ -50,8 +50,8 @@ public unsafe partial class CalendarCtrl : Control {
 
 	/// <summary>User clicked on the week day header (only generic).</summary>
 	public event EventHandler<CalendarEvent>? WeekDayClicked {
-		add => AddHandler(EventType.CalendarWeekdayClicked, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.CalendarWeekdayClicked, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.CalendarWeekDayClicked, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.CalendarWeekDayClicked, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>This function should be used instead of changing wxCAL_SHOW_HOLIDAYS style bit directly.</summary>

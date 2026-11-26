@@ -470,6 +470,9 @@ public unsafe partial class StyledTextCtrl : Control {
 		}
 	}
 
+	/// <summary>Returns the number of lines in the text control buffer.</summary>
+	public int LineCount => WxKitNative.StyledTextCtrlGetNumberOfLines(Native);
+
 	/// <summary>Get the line end types currently recognised.</summary>
 	public int LineEndTypesActive => WxKitNative.StyledTextCtrlGetLineEndTypesActive(Native);
 
@@ -562,9 +565,6 @@ public unsafe partial class StyledTextCtrl : Control {
 
 	/// <summary>Retrieve the number of named styles for the lexer.</summary>
 	public int NamedStyles => WxKitNative.StyledTextCtrlGetNamedStyles(Native);
-
-	/// <summary>Returns the number of lines in the text control buffer.</summary>
-	public int NumberOfLines => WxKitNative.StyledTextCtrlGetNumberOfLines(Native);
 
 	/// <summary>Returns true if overtype mode is active otherwise false is returned.</summary>
 	public bool Overtype {
@@ -679,6 +679,9 @@ public unsafe partial class StyledTextCtrl : Control {
 		set => WxKitNative.StyledTextCtrlSetSelEOLFilled(Native, value ? (byte)1 : (byte)0);
 	}
 
+	/// <summary>Gets the text currently selected in the control.</summary>
+	public string SelectedText => NativeString.Take(WxKitNative.StyledTextCtrlGetStringSelection(Native));
+
 	/// <summary>Is every selected range empty?</summary>
 	public bool SelectionEmpty => WxKitNative.StyledTextCtrlGetSelectionEmpty(Native) != 0;
 
@@ -720,9 +723,6 @@ public unsafe partial class StyledTextCtrl : Control {
 		get => WxKitNative.StyledTextCtrlGetSTCFocus(Native) != 0;
 		set => WxKitNative.StyledTextCtrlSetSTCFocus(Native, value ? (byte)1 : (byte)0);
 	}
-
-	/// <summary>Gets the text currently selected in the control.</summary>
-	public string StringSelection => NativeString.Take(WxKitNative.StyledTextCtrlGetStringSelection(Native));
 
 	/// <summary>Get the set of base styles that can be extended with sub styles.</summary>
 	public string SubStyleBases => NativeString.Take(WxKitNative.StyledTextCtrlGetSubStyleBases(Native));
@@ -1064,13 +1064,13 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	public event EventHandler<StyledTextEvent>? TextDropping {
-		add => AddHandler(EventType.StyledTextDoDrop, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StyledTextDoDrop, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextTextDropping, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextTextDropping, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? UIUpdated {
-		add => AddHandler(EventType.StyledTextUpdateUi, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.StyledTextUpdateUi, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.StyledTextUpdateUI, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.StyledTextUpdateUI, StandardId.Any, StandardId.Any, value);
 	}
 
 	public event EventHandler<StyledTextEvent>? UserListSelected {

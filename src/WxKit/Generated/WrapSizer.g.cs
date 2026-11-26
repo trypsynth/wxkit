@@ -7,7 +7,7 @@ namespace WxKit;
 /// <summary>A wrap sizer lays out its items in a single line, like a box sizer as long as there is space available in that direction. Wraps wxWrapSizer.</summary>
 public unsafe partial class WrapSizer : BoxSizer {
 	/// <summary>Constructor for a wxWrapSizer.</summary>
-	public WrapSizer(Orientation orientation = Orientation.Horizontal, WrapSizerFlags flags = WrapSizerFlags.WrapSizerDefaultFlags) : this(CreateNative(orientation, flags)) {
+	public WrapSizer(Orientation orientation = Orientation.Horizontal, WrapSizerFlags flags = WrapSizerFlags.Default) : this(CreateNative(orientation, flags)) {
 	}
 
 	internal WrapSizer(WxkSizer* native) : base(native) {

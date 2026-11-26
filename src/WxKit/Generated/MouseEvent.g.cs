@@ -133,7 +133,7 @@ public unsafe partial class MouseEvent : Event {
 	public int WheelRotation => WxKitNative.MouseEventGetWheelRotation(Handle);
 
 	/// <summary>If the argument is omitted, this returns true if the event was a mouse double click event.</summary>
-	public bool ButtonDClick(MouseButton button = MouseButton.Any) => WxKitNative.MouseEventButtonDClick(Handle, (int)button) != 0;
+	public bool ButtonDoubleClick(MouseButton button = MouseButton.Any) => WxKitNative.MouseEventButtonDClick(Handle, (int)button) != 0;
 
 	/// <summary>If the argument is omitted, this returns true if the event was a mouse button down event.</summary>
 	public bool ButtonDown(MouseButton button = MouseButton.Any) => WxKitNative.MouseEventButtonDown(Handle, (int)button) != 0;

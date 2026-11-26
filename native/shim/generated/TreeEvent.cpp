@@ -5,6 +5,10 @@ WXK_FUNCTION(void) wxk_TreeEvent_SetToolTip(wxk_Event* self, const char16_t* too
 	wxk::Guard([&] { static_cast<wxTreeEvent*>(wxk::Unwrap(self))->SetToolTip(wxk::FromUtf16(toolTip, toolTipLength)); });
 }
 
+WXK_FUNCTION(wxk_Point) wxk_TreeEvent_GetPoint(wxk_Event* self) noexcept {
+	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxTreeEvent*>(wxk::Unwrap(self))->GetPoint()); });
+}
+
 WXK_FUNCTION(void*) wxk_TreeEvent_GetItem(wxk_Event* self) noexcept {
 	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeEvent*>(wxk::Unwrap(self))->GetItem()).GetID()); });
 }
@@ -19,10 +23,6 @@ WXK_FUNCTION(wxk_String*) wxk_TreeEvent_GetLabel(wxk_Event* self) noexcept {
 
 WXK_FUNCTION(void*) wxk_TreeEvent_GetOldItem(wxk_Event* self) noexcept {
 	return wxk::Guard<void*>(nullptr, [&]() -> void* { return static_cast<void*>((static_cast<wxTreeEvent*>(wxk::Unwrap(self))->GetOldItem()).GetID()); });
-}
-
-WXK_FUNCTION(wxk_Point) wxk_TreeEvent_GetPoint(wxk_Event* self) noexcept {
-	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxTreeEvent*>(wxk::Unwrap(self))->GetPoint()); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_TreeEvent_IsEditCancelled(wxk_Event* self) noexcept {

@@ -81,8 +81,8 @@ WXK_FUNCTION(int32_t) wxk_EventType_CommandEnter(void) noexcept {
 	return wxEVT_COMMAND_ENTER;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_CommandKillFocus(void) noexcept {
-	return wxEVT_COMMAND_KILL_FOCUS;
+WXK_FUNCTION(int32_t) wxk_EventType_CommandGotFocus(void) noexcept {
+	return wxEVT_COMMAND_SET_FOCUS;
 }
 
 WXK_FUNCTION(int32_t) wxk_EventType_CommandLeftClick(void) noexcept {
@@ -93,12 +93,12 @@ WXK_FUNCTION(int32_t) wxk_EventType_CommandLeftDoubleClick(void) noexcept {
 	return wxEVT_COMMAND_LEFT_DCLICK;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_CommandRightClick(void) noexcept {
-	return wxEVT_COMMAND_RIGHT_CLICK;
+WXK_FUNCTION(int32_t) wxk_EventType_CommandLostFocus(void) noexcept {
+	return wxEVT_COMMAND_KILL_FOCUS;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_CommandSetFocus(void) noexcept {
-	return wxEVT_COMMAND_SET_FOCUS;
+WXK_FUNCTION(int32_t) wxk_EventType_CommandRightClick(void) noexcept {
+	return wxEVT_COMMAND_RIGHT_CLICK;
 }
 
 WXK_FUNCTION(int32_t) wxk_EventType_ContextMenu(void) noexcept {
@@ -417,7 +417,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_ToolRightClicked(void) noexcept {
 	return wxEVT_TOOL_RCLICKED;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_UpdateUi(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_UpdateUI(void) noexcept {
 	return wxEVT_UPDATE_UI;
 }
 

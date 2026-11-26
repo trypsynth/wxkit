@@ -62,7 +62,7 @@ public unsafe partial class RadioBox : Control {
 	}
 
 	/// <summary>Enables or disables an individual button in the radiobox.</summary>
-	public bool Enable(int index, bool enable = true) => WxKitNative.RadioBoxEnable(Native, checked((uint)index), enable ? (byte)1 : (byte)0) != 0;
+	public bool EnableItem(int index, bool enable = true) => WxKitNative.RadioBoxEnable(Native, checked((uint)index), enable ? (byte)1 : (byte)0) != 0;
 
 	/// <summary>Finds a button matching the given string, returning the position if found, or wxNOT_FOUND if not found.</summary>
 	public int FindString(string text, bool caseSensitive = false) {
@@ -112,7 +112,7 @@ public unsafe partial class RadioBox : Control {
 	}
 
 	/// <summary>Shows or hides individual buttons.</summary>
-	public bool Show(int item, bool show = true) => WxKitNative.RadioBoxShow(Native, checked((uint)item), show ? (byte)1 : (byte)0) != 0;
+	public bool ShowItem(int item, bool show = true) => WxKitNative.RadioBoxShow(Native, checked((uint)item), show ? (byte)1 : (byte)0) != 0;
 
 	private static WxkWindow* CreateNative(Window parent, string label, int id, Point? position, Size? size) {
 		Application.VerifyAccess();

@@ -17,7 +17,7 @@ public unsafe partial class ListItem : NativeObject {
 	internal static ListItem? Take(WxkObject* native) => native is null ? null : new ListItem(native);
 
 	/// <summary>Returns the alignment for this item.</summary>
-	public ListColumnFormat Align {
+	public ListColumnFormat Alignment {
 		get => (ListColumnFormat)WxKitNative.ListItemGetAlign(Native);
 		set => WxKitNative.ListItemSetAlign(Native, (int)value);
 	}
@@ -46,16 +46,16 @@ public unsafe partial class ListItem : NativeObject {
 		set => WxKitNative.ListItemSetFont(Native, value is null ? null : value.Native);
 	}
 
-	/// <summary>Returns the zero-based item position.</summary>
-	public int Id {
-		get => WxKitNative.ListItemGetId(Native);
-		set => WxKitNative.ListItemSetId(Native, value);
-	}
-
 	/// <summary>Returns the zero-based index of the image associated with the item into the image list.</summary>
 	public int Image {
 		get => WxKitNative.ListItemGetImage(Native);
 		set => WxKitNative.ListItemSetImage(Native, value);
+	}
+
+	/// <summary>Returns the zero-based item position.</summary>
+	public int Index {
+		get => WxKitNative.ListItemGetId(Native);
+		set => WxKitNative.ListItemSetId(Native, value);
 	}
 
 	/// <summary>Returns a bit mask indicating which fields of the structure are valid.</summary>

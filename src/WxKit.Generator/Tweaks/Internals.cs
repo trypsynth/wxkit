@@ -167,6 +167,42 @@ internal static class Internals {
 		// Where a splitter's sash was dragged to is a Point, and a grid bag's gaps are a Size, as a grid's are, in Points.cs.
 		tweaks.Class("wxSplitterEvent").Internal("GetX", "GetY");
 		tweaks.Class("wxGridBagSizer").InternalOverload("wxGridBagSizer", "vgap", "int");
+		// Enum members that repeated their enum's name, and enums named flags that aren't.
+		tweaks.NameEnumMember("wxWRAPSIZER_DEFAULT_FLAGS", "Default");
+		tweaks.NameEnumMember("wxPRINTER_NO_ERROR", "None");
+		tweaks.NameEnumMember("wxSYS_OEM_FIXED_FONT", "OemFixed");
+		tweaks.NameEnumMember("wxSYS_ANSI_FIXED_FONT", "AnsiFixed");
+		tweaks.NameEnumMember("wxSYS_ANSI_VAR_FONT", "AnsiVariable");
+		tweaks.NameEnumMember("wxSYS_SYSTEM_FONT", "System");
+		tweaks.NameEnumMember("wxSYS_DEVICE_DEFAULT_FONT", "DeviceDefault");
+		tweaks.NameEnumMember("wxSYS_DEFAULT_GUI_FONT", "DefaultGui");
+		tweaks.NameEnumMember("wxSYS_SYSTEM_FIXED_FONT", "SystemFixed");
+		tweaks.Enum("wxWebViewNavigationActionFlags", "WebViewNavigationAction");
+		tweaks.Enum("wxWebViewReloadFlags", "WebViewReload");
+		// One name for one thing: the text selected, where something happened, a spin control's
+		// value, a list item's index, a file's name, a count, an item of a radio box, and what
+		// removes or selects a tree's item.
+		foreach (string text in (string[])["wxTextCtrl", "wxSearchCtrl", "wxStyledTextCtrl"]) tweaks.Class(text).Property("SelectedText", "GetStringSelection");
+		tweaks.Class("wxListEvent").Property("Position", "GetPoint");
+		tweaks.Class("wxTreeEvent").Property("Position", "GetPoint");
+		tweaks.Class("wxSpinEvent").Property("Value", "GetPosition");
+		tweaks.Class("wxListItem").Property("Index", "GetId", "SetId").Property("Alignment", "GetAlign", "SetAlign");
+		tweaks.Class("wxFileCtrlEvent").Property("FileName", "GetFile").Property("FileNames", "GetFiles");
+		tweaks.Class("wxStatusBar").Property("FieldCount", "GetFieldsCount", "SetFieldsCount");
+		tweaks.Class("wxToolBar").Property("ToolCount", "GetToolsCount");
+		tweaks.Class("wxTextCtrl").Property("LineCount", "GetNumberOfLines");
+		tweaks.Class("wxStyledTextCtrl").Property("LineCount", "GetNumberOfLines");
+		tweaks.Class("wxRadioBox").Rename("Enable", "EnableItem").Rename("Show", "ShowItem");
+		tweaks.Class("wxTreeCtrl").Rename("Delete", "DeleteItem");
+		tweaks.Class("wxTreeListCtrl").Rename("Select", "SelectItem").Rename("Unselect", "UnselectItem");
+		tweaks.Class("wxMouseEvent").Rename("ButtonDClick", "ButtonDoubleClick");
+		// A status bar's field has one name, and a file's name is fileName.
+		foreach (string member in (string[])["AddFieldControl", "GetFieldRect", "GetStatusText", "SetStatusText"]) tweaks.Class("wxStatusBar").ParameterName(member, "i", "field");
+		foreach (string member in (string[])["GetStatusStyle", "GetStatusWidth"]) tweaks.Class("wxStatusBar").ParameterName(member, "n", "field");
+		tweaks.Class("wxBitmap").ParameterName("SaveFile", "name", "fileName");
+		tweaks.Class("wxImage").ParameterName("SaveFile", "name", "fileName");
+		tweaks.Class("wxFont").ParameterName("Scaled", "x", "factor");
+		tweaks.Class("wxWindow").ParameterName("FromDIP", "d", "value").ParameterName("ToDIP", "d", "value").ParameterName("FromPhys", "d", "value").ParameterName("ToPhys", "d", "value");
 		tweaks.Class("wxCollapsiblePane").Property("IsCollapsed", "IsCollapsed", "Collapse");
 		tweaks.Class("wxListCtrl").Property("HasCheckBoxes", "HasCheckBoxes", "EnableCheckBoxes");
 		tweaks.Class("wxSearchCtrl").Property("IsSearchButtonVisible", "IsSearchButtonVisible", "ShowSearchButton").Property("IsCancelButtonVisible", "IsCancelButtonVisible", "ShowCancelButton");

@@ -108,7 +108,7 @@ type LibraryFrame() as this =
         markRead.Click.Add(fun _ -> toggleSelected ())
         // The buttons that act on a book only apply while one is selected.
         this.Bind(
-            EventType.UpdateUi,
+            EventType.UpdateUI,
             fun _ (e: UpdateUIEvent) ->
                 if e.Id = remove.Id || e.Id = markRead.Id then
                     e.IsEnabled <- selectedRow () |> Option.isSome

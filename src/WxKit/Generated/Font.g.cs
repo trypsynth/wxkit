@@ -173,7 +173,7 @@ public unsafe partial class Font : NativeObject {
 	public Font? WithLargerSize() => global::WxKit.Font.Take(WxKitNative.FontLarger(Native));
 
 	/// <summary>Returns a scaled version of this font.</summary>
-	public Font? WithScaledSize(float x) => global::WxKit.Font.Take(WxKitNative.FontScaled(Native, x));
+	public Font? WithScaledSize(float factor) => global::WxKit.Font.Take(WxKitNative.FontScaled(Native, factor));
 
 	/// <summary>Returns a smaller version of this font.</summary>
 	public Font? WithSmallerSize() => global::WxKit.Font.Take(WxKitNative.FontSmaller(Native));

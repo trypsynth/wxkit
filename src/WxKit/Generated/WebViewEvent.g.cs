@@ -19,7 +19,7 @@ public unsafe partial class WebViewEvent : NotifyEvent {
 	public string MessageHandler => NativeString.Take(WxKitNative.WebViewEventGetMessageHandler(Handle));
 
 	/// <summary>Get the type of navigation action.</summary>
-	public WebViewNavigationActionFlags NavigationAction => (WebViewNavigationActionFlags)WxKitNative.WebViewEventGetNavigationAction(Handle);
+	public WebViewNavigationAction NavigationAction => (WebViewNavigationAction)WxKitNative.WebViewEventGetNavigationAction(Handle);
 
 	/// <summary>Get the name of the target frame which the url of this event has been or will be loaded into.</summary>
 	public string Target => NativeString.Take(WxKitNative.WebViewEventGetTarget(Handle));

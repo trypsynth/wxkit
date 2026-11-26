@@ -127,7 +127,7 @@ public unsafe partial class DC : NativeObject {
 	public Point DeviceToLogical(Point point) => WxKitNative.DCDeviceToLogical(Native, point);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Size DeviceToLogicalRel(Size dim) => WxKitNative.DCDeviceToLogicalRel(Native, dim);
+	public Size DeviceToLogicalRel(Size dimension) => WxKitNative.DCDeviceToLogicalRel(Native, dimension);
 
 	/// <summary>Convert device X coordinate to logical coordinate, using the current mapping mode, user scale factor, device origin and axis orientation.</summary>
 	public int DeviceToLogicalX(int x) => WxKitNative.DCDeviceToLogicalX(Native, x);
@@ -166,7 +166,7 @@ public unsafe partial class DC : NativeObject {
 	public void DrawEllipse(Rect rect) => WxKitNative.DCDrawEllipseRect(Native, rect);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public void DrawEllipticArc(Point point, Size size, double sa, double ea) => WxKitNative.DCDrawEllipticArc(Native, point, size, sa, ea);
+	public void DrawEllipticArc(Point point, Size size, double startAngle, double endAngle) => WxKitNative.DCDrawEllipticArc(Native, point, size, startAngle, endAngle);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public void DrawIcon(Icon icon, Point point) {
@@ -274,7 +274,7 @@ public unsafe partial class DC : NativeObject {
 	public Point LogicalToDevice(Point point) => WxKitNative.DCLogicalToDevice(Native, point);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Size LogicalToDeviceRel(Size dim) => WxKitNative.DCLogicalToDeviceRel(Native, dim);
+	public Size LogicalToDeviceRel(Size dimension) => WxKitNative.DCLogicalToDeviceRel(Native, dimension);
 
 	/// <summary>Converts logical X coordinate to device coordinate, using the current mapping mode, user scale factor, device origin and axis orientation.</summary>
 	public int LogicalToDeviceX(int x) => WxKitNative.DCLogicalToDeviceX(Native, x);

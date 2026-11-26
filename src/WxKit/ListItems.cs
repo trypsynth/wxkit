@@ -15,7 +15,7 @@ public unsafe partial class ListCtrl {
 	public ListItem? GetItem(int item, int column = 0) {
 		// wxWidgets logs an error for an item the list doesn't have, which shows a dialog.
 		if (item < 0 || item >= ItemCount || column < 0 || column >= Math.Max(ColumnCount, 1)) return null;
-		ListItem info = new() { Id = item, Column = column, Mask = Everything };
+		ListItem info = new() { Index = item, Column = column, Mask = Everything };
 		info.SetStateMask(ListItemState.Selected | ListItemState.Focused | ListItemState.DropHighlighted | ListItemState.Cut);
 		if (WxKitNative.ListCtrlGetItem(Native, info.Native) != 0) return info;
 		info.Dispose();

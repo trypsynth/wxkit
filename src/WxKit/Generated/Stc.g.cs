@@ -1045,7 +1045,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_CP_UTF8.</summary>
 	public const int CpUtf8 = 65001;
 	/// <summary>Wraps wxSTC_CSOUND_ARATE_VAR.</summary>
-	public const int CsoundArateVar = 11;
+	public const int CsoundArateVariable = 11;
 	/// <summary>Wraps wxSTC_CSOUND_COMMENT.</summary>
 	public const int CsoundComment = 1;
 	/// <summary>Wraps wxSTC_CSOUND_COMMENTBLOCK.</summary>
@@ -1053,7 +1053,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_CSOUND_DEFAULT.</summary>
 	public const int CsoundDefault = 0;
 	/// <summary>Wraps wxSTC_CSOUND_GLOBAL_VAR.</summary>
-	public const int CsoundGlobalVar = 14;
+	public const int CsoundGlobalVariable = 14;
 	/// <summary>Wraps wxSTC_CSOUND_HEADERSTMT.</summary>
 	public const int CsoundHeaderstmt = 7;
 	/// <summary>Wraps wxSTC_CSOUND_IDENTIFIER.</summary>
@@ -1061,9 +1061,9 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_CSOUND_INSTR.</summary>
 	public const int CsoundInstr = 4;
 	/// <summary>Wraps wxSTC_CSOUND_IRATE_VAR.</summary>
-	public const int CsoundIrateVar = 13;
+	public const int CsoundIrateVariable = 13;
 	/// <summary>Wraps wxSTC_CSOUND_KRATE_VAR.</summary>
-	public const int CsoundKrateVar = 12;
+	public const int CsoundKrateVariable = 12;
 	/// <summary>Wraps wxSTC_CSOUND_NUMBER.</summary>
 	public const int CsoundNumber = 2;
 	/// <summary>Wraps wxSTC_CSOUND_OPCODE.</summary>
@@ -2889,7 +2889,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_KIX_STRING2.</summary>
 	public const int KixString2 = 3;
 	/// <summary>Wraps wxSTC_KIX_VAR.</summary>
-	public const int KixVar = 5;
+	public const int KixVariable = 5;
 	/// <summary>Wraps wxSTC_KVIRC_COMMENT.</summary>
 	public const int KvircComment = 1;
 	/// <summary>Wraps wxSTC_KVIRC_COMMENTBLOCK.</summary>
@@ -4041,7 +4041,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_PL_BACKTICKS.</summary>
 	public const int PlBackticks = 20;
 	/// <summary>Wraps wxSTC_PL_BACKTICKS_VAR.</summary>
-	public const int PlBackticksVar = 57;
+	public const int PlBackticksVariable = 57;
 	/// <summary>Wraps wxSTC_PL_CHARACTER.</summary>
 	public const int PlCharacter = 7;
 	/// <summary>Wraps wxSTC_PL_COMMENTLINE.</summary>
@@ -4065,11 +4065,11 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_PL_HERE_QQ.</summary>
 	public const int PlHereQq = 24;
 	/// <summary>Wraps wxSTC_PL_HERE_QQ_VAR.</summary>
-	public const int PlHereQqVar = 61;
+	public const int PlHereQqVariable = 61;
 	/// <summary>Wraps wxSTC_PL_HERE_QX.</summary>
 	public const int PlHereQx = 25;
 	/// <summary>Wraps wxSTC_PL_HERE_QX_VAR.</summary>
-	public const int PlHereQxVar = 62;
+	public const int PlHereQxVariable = 62;
 	/// <summary>Wraps wxSTC_PL_IDENTIFIER.</summary>
 	public const int PlIdentifier = 11;
 	/// <summary>Wraps wxSTC_PL_LONGQUOTE.</summary>
@@ -4089,11 +4089,11 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_PL_REGEX.</summary>
 	public const int PlRegex = 17;
 	/// <summary>Wraps wxSTC_PL_REGEX_VAR.</summary>
-	public const int PlRegexVar = 54;
+	public const int PlRegexVariable = 54;
 	/// <summary>Wraps wxSTC_PL_REGSUBST.</summary>
 	public const int PlRegsubst = 18;
 	/// <summary>Wraps wxSTC_PL_REGSUBST_VAR.</summary>
-	public const int PlRegsubstVar = 55;
+	public const int PlRegsubstVariable = 55;
 	/// <summary>Wraps wxSTC_PL_SCALAR.</summary>
 	public const int PlScalar = 12;
 	/// <summary>Wraps wxSTC_PL_STRING.</summary>
@@ -4103,19 +4103,19 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_PL_STRING_QQ.</summary>
 	public const int PlStringQq = 27;
 	/// <summary>Wraps wxSTC_PL_STRING_QQ_VAR.</summary>
-	public const int PlStringQqVar = 64;
+	public const int PlStringQqVariable = 64;
 	/// <summary>Wraps wxSTC_PL_STRING_QR.</summary>
 	public const int PlStringQr = 29;
 	/// <summary>Wraps wxSTC_PL_STRING_QR_VAR.</summary>
-	public const int PlStringQrVar = 66;
+	public const int PlStringQrVariable = 66;
 	/// <summary>Wraps wxSTC_PL_STRING_QW.</summary>
 	public const int PlStringQw = 30;
 	/// <summary>Wraps wxSTC_PL_STRING_QX.</summary>
 	public const int PlStringQx = 28;
 	/// <summary>Wraps wxSTC_PL_STRING_QX_VAR.</summary>
-	public const int PlStringQxVar = 65;
+	public const int PlStringQxVariable = 65;
 	/// <summary>Wraps wxSTC_PL_STRING_VAR.</summary>
-	public const int PlStringVar = 43;
+	public const int PlStringVariable = 43;
 	/// <summary>Wraps wxSTC_PL_SUB_PROTOTYPE.</summary>
 	public const int PlSubPrototype = 40;
 	/// <summary>Wraps wxSTC_PL_SYMBOLTABLE.</summary>
@@ -4407,7 +4407,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_RAKU_REGEX.</summary>
 	public const int RakuRegex = 13;
 	/// <summary>Wraps wxSTC_RAKU_REGEX_VAR.</summary>
-	public const int RakuRegexVar = 14;
+	public const int RakuRegexVariable = 14;
 	/// <summary>Wraps wxSTC_RAKU_STRING.</summary>
 	public const int RakuString = 8;
 	/// <summary>Wraps wxSTC_RAKU_STRING_Q.</summary>
@@ -4417,7 +4417,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_RAKU_STRING_Q_LANG.</summary>
 	public const int RakuStringQLang = 11;
 	/// <summary>Wraps wxSTC_RAKU_STRING_VAR.</summary>
-	public const int RakuStringVar = 12;
+	public const int RakuStringVariable = 12;
 	/// <summary>Wraps wxSTC_RAKU_TYPEDEF.</summary>
 	public const int RakuTypedef = 22;
 	/// <summary>Wraps wxSTC_RAKU_WORD.</summary>
@@ -4429,7 +4429,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_RB_CLASSNAME.</summary>
 	public const int RbClassname = 8;
 	/// <summary>Wraps wxSTC_RB_CLASS_VAR.</summary>
-	public const int RbClassVar = 17;
+	public const int RbClassVariable = 17;
 	/// <summary>Wraps wxSTC_RB_COMMENTLINE.</summary>
 	public const int RbCommentline = 2;
 	/// <summary>Wraps wxSTC_RB_DATASECTION.</summary>
@@ -4453,7 +4453,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_RB_IDENTIFIER.</summary>
 	public const int RbIdentifier = 11;
 	/// <summary>Wraps wxSTC_RB_INSTANCE_VAR.</summary>
-	public const int RbInstanceVar = 16;
+	public const int RbInstanceVariable = 16;
 	/// <summary>Wraps wxSTC_RB_MODULE_NAME.</summary>
 	public const int RbModuleName = 15;
 	/// <summary>Wraps wxSTC_RB_NUMBER.</summary>
@@ -4731,13 +4731,13 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_SCRIPTOL_WHITE.</summary>
 	public const int ScriptolWhite = 1;
 	/// <summary>Wraps wxSTC_SEL_LINES.</summary>
-	public const int SelLines = 2;
+	public const int SelectionLines = 2;
 	/// <summary>Wraps wxSTC_SEL_RECTANGLE.</summary>
-	public const int SelRectangle = 1;
+	public const int SelectionRectangle = 1;
 	/// <summary>Wraps wxSTC_SEL_STREAM.</summary>
-	public const int SelStream = 0;
+	public const int SelectionStream = 0;
 	/// <summary>Wraps wxSTC_SEL_THIN.</summary>
-	public const int SelThin = 3;
+	public const int SelectionThin = 3;
 	/// <summary>Wraps wxSTC_SH_BACKTICKS.</summary>
 	public const int ShBackticks = 11;
 	/// <summary>Wraps wxSTC_SH_CHARACTER.</summary>
@@ -5047,7 +5047,7 @@ public static partial class Stc {
 	/// <summary>Wraps wxSTC_ST_SPECIAL.</summary>
 	public const int StSpecial = 12;
 	/// <summary>Wraps wxSTC_ST_SPEC_SEL.</summary>
-	public const int StSpecSel = 16;
+	public const int StSpecSelection = 16;
 	/// <summary>Wraps wxSTC_ST_STRING.</summary>
 	public const int StString = 1;
 	/// <summary>Wraps wxSTC_ST_SUPER.</summary>

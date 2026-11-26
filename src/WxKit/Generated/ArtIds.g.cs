@@ -20,7 +20,7 @@ public static class ArtId {
 	/// <summary>Wraps wxART_DELETE.</summary>
 	public const string Delete = "wxART_DELETE";
 	/// <summary>Wraps wxART_DEL_BOOKMARK.</summary>
-	public const string DelBookmark = "wxART_DEL_BOOKMARK";
+	public const string DeleteBookmark = "wxART_DEL_BOOKMARK";
 	/// <summary>Wraps wxART_EDIT.</summary>
 	public const string Edit = "wxART_EDIT";
 	/// <summary>Wraps wxART_ERROR.</summary>
@@ -46,9 +46,9 @@ public static class ArtId {
 	/// <summary>Wraps wxART_FULL_SCREEN.</summary>
 	public const string FullScreen = "wxART_FULL_SCREEN";
 	/// <summary>Wraps wxART_GOTO_FIRST.</summary>
-	public const string GotoFirst = "wxART_GOTO_FIRST";
+	public const string GoToFirst = "wxART_GOTO_FIRST";
 	/// <summary>Wraps wxART_GOTO_LAST.</summary>
-	public const string GotoLast = "wxART_GOTO_LAST";
+	public const string GoToLast = "wxART_GOTO_LAST";
 	/// <summary>Wraps wxART_GO_BACK.</summary>
 	public const string GoBack = "wxART_GO_BACK";
 	/// <summary>Wraps wxART_GO_DIR_UP.</summary>
@@ -128,7 +128,7 @@ public static class ArtClient {
 	/// <summary>Wraps wxART_BUTTON.</summary>
 	public const string Button = "wxART_BUTTON_C";
 	/// <summary>Wraps wxART_CMN_DIALOG.</summary>
-	public const string CmnDialog = "wxART_CMN_DIALOG_C";
+	public const string CommonDialog = "wxART_CMN_DIALOG_C";
 	/// <summary>Wraps wxART_FRAME_ICON.</summary>
 	public const string FrameIcon = "wxART_FRAME_ICON_C";
 	/// <summary>Wraps wxART_HELP_BROWSER.</summary>

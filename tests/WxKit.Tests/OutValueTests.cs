@@ -9,7 +9,7 @@ public class OutValueTests {
 		frame.SetStatusWidths([-1, 120, 60]);
 		bar.SetStatusStyles([StatusBarFieldStyle.Normal, StatusBarFieldStyle.Flat, StatusBarFieldStyle.Sunken]);
 		Assert.Equal(StatusBarFieldStyle.Flat, bar.GetStatusStyle(1));
-		Assert.Equal(3, bar.FieldsCount);
+		Assert.Equal(3, bar.FieldCount);
 		Assert.True(bar.TryGetFieldRect(1, out Rect field));
 		Assert.True(field.Width >= 0);
 		Assert.Throws<ArgumentNullException>(() => frame.SetStatusWidths(null!));

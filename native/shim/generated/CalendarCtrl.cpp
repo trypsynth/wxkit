@@ -76,7 +76,7 @@ WXK_FUNCTION(uint8_t) wxk_CalendarCtrl_SetDate(wxk_Window* self, wxk_DateTime da
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxCalendarCtrl*>(wxk::Unwrap(self))->SetDate(wxk::FromDateTime(date))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_CalendarDoubleClicked(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_CalendarDateActivated(void) noexcept {
 	return wxEVT_CALENDAR_DOUBLECLICKED;
 }
 
@@ -92,7 +92,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_CalendarWeekClicked(void) noexcept {
 	return wxEVT_CALENDAR_WEEK_CLICKED;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_CalendarWeekdayClicked(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_CalendarWeekDayClicked(void) noexcept {
 	return wxEVT_CALENDAR_WEEKDAY_CLICKED;
 }
 

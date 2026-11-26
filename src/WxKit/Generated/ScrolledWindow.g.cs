@@ -134,10 +134,10 @@ public unsafe partial class ScrolledWindow : Panel {
 	public void Scroll(Point point) => WxKitNative.ScrolledWindowScroll(Native, point);
 
 	/// <summary>Set the scaling factor for the window.</summary>
-	public void SetScale(double xs, double ys) => WxKitNative.ScrolledWindowSetScale(Native, xs, ys);
+	public void SetScale(double xScale, double yScale) => WxKitNative.ScrolledWindowSetScale(Native, xScale, yScale);
 
 	/// <summary>Sets up vertical and/or horizontal scrollbars.</summary>
-	public void SetScrollBars(int pixelsPerUnitX, int pixelsPerUnitY, int noUnitsX, int noUnitsY, int xPos = 0, int yPos = 0, bool noRefresh = false) => WxKitNative.ScrolledWindowSetScrollbars(Native, pixelsPerUnitX, pixelsPerUnitY, noUnitsX, noUnitsY, xPos, yPos, noRefresh ? (byte)1 : (byte)0);
+	public void SetScrollBars(int pixelsPerUnitX, int pixelsPerUnitY, int unitsX, int unitsY, int xPosition = 0, int yPosition = 0, bool noRefresh = false) => WxKitNative.ScrolledWindowSetScrollbars(Native, pixelsPerUnitX, pixelsPerUnitY, unitsX, unitsY, xPosition, yPosition, noRefresh ? (byte)1 : (byte)0);
 
 	public void SetScrollPageSize(Orientation orientation, int pageSize) => WxKitNative.ScrolledWindowSetScrollPageSize(Native, (int)orientation, pageSize);
 

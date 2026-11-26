@@ -320,16 +320,16 @@ WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemEditingStarted(void) noexcept {
 	return wxEVT_DATAVIEW_ITEM_EDITING_STARTED;
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemEditingStarting(void) noexcept {
+	return wxEVT_DATAVIEW_ITEM_START_EDITING;
+}
+
 WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemExpanded(void) noexcept {
 	return wxEVT_DATAVIEW_ITEM_EXPANDED;
 }
 
 WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemExpanding(void) noexcept {
 	return wxEVT_DATAVIEW_ITEM_EXPANDING;
-}
-
-WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemStartEditing(void) noexcept {
-	return wxEVT_DATAVIEW_ITEM_START_EDITING;
 }
 
 WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemValueChanged(void) noexcept {

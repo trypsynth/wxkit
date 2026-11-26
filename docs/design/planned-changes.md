@@ -8,14 +8,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 
 A second review of the whole API on 2026-11-26, before the first preview, found these. The earlier review's changes are made, and listed in [the first preview's notes](../releases/0.2.0-preview.1.md).
 
-### Names
-
-- Abbreviations left: `AlwaysShowSb` in every style enum, and `ListBoxStyle.AlwaysSb` and `NoSb`, `DataViewCtrlStyle.HorizRules` and `VertRules`, `ListCtrlStyle.SingleSel`, `ToolBarStyle.HorzLayout` and `HorzText`, `HitTestResult.WindowHorzScrollBar` and `WindowVertScrollBar`, `StandardId.MdiWindowTileHorz` and `TileVert`, `WizardBitmapPlacement.HalignLeft` and the rest, `CollapsiblePaneStyle.NoTlwResize`, `ArtClient.CmnDialog`, `ArtId.DelBookmark`, `AboutDialogInfo.DocWriters`, `ListItem.Align`, `SystemFont.AnsiVarFont`, `NavigationFlags.WinChange`, and `MouseEvent.ButtonDClick`.
-- Redundant words: `WrapSizerFlags.WrapSizerDefaultFlags`, `SystemFont`'s `Font` suffix, `PrinterError.NoError`, and `WebViewNavigationActionFlags` and `WebViewReloadFlags`, which aren't flags.
-- One thing under two names: `StringSelection` in the text controls and `SelectedText` in the web view, `ListEvent.Point` and `TreeEvent.Point` where others have `Position`, `SpinEvent.Position` where the controls have `Value`, `ListItem.Id` where the event has `Index`, `FileCtrlEvent.File` where the control has `FileName`, `StatusBar.FieldsCount`, `ToolBar.ToolsCount`, and `TextCtrl.NumberOfLines` where others end in `Count`, `RadioBox.Enable(index)` and `Show(item)` beside `IsItemEnabled`, and `TreeCtrl.Delete` and `SelectItem` beside `TreeListCtrl.DeleteItem` and `Select`.
-- `EventType` members that didn't follow their events' new names, such as `DataViewItemStartEditing`, `TreeItemMenu`, `SplitterUnsplit`, `Find`, `FindNext`, and `UpdateUi`.
-- Parameters: one letter or an abbreviation, as in `DC.DrawEllipticArc(sa, ea)`, `FromDip(d)`, `SetScale(xs, ys)`, `SetScrollBars`' `noUnitsX` and `xPos`, `SpinCtrlDouble`'s `inc`, and `ToolBar`'s `bitmap1`. A status bar's field is `i`, `field`, and `index`, an image's index is `imageId`, `imageIndex`, and `image`, and a file's name is `name` and `fileName`.
-
 ### Constructors
 
 - The style comes before the id in `StatusBar` and `InfoBar`, and the name before the id in `Frame.CreateStatusBar` and `CreateToolBar`.

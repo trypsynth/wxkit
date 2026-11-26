@@ -66,7 +66,7 @@ type ScrapbookFrame() as this =
         // Copy and Remove only apply while a snippet is selected.
         let needsSelection = set [ copy.Id; remove.Id; StandardId.Copy; StandardId.Delete ]
         this.Bind(
-            EventType.UpdateUi,
+            EventType.UpdateUI,
             fun _ (e: UpdateUIEvent) ->
                 if needsSelection.Contains e.Id then
                     e.IsEnabled <- selected () |> Option.isSome

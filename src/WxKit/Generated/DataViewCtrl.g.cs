@@ -165,8 +165,8 @@ public unsafe partial class DataViewCtrl : Control {
 
 	/// <summary>Process a wxEVT_DATAVIEW_ITEM_START_EDITING event. This event can be vetoed in order to prevent editing on an item by item basis.</summary>
 	public event EventHandler<DataViewEvent>? ItemEditingStarting {
-		add => AddHandler(EventType.DataViewItemStartEditing, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.DataViewItemStartEditing, StandardId.Any, StandardId.Any, value);
+		add => AddHandler(EventType.DataViewItemEditingStarting, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.DataViewItemEditingStarting, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_DATAVIEW_ITEM_EXPANDED event.</summary>

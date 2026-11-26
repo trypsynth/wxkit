@@ -17,7 +17,7 @@ public unsafe partial class StatusBar : Control {
 	public Size Borders => WxKitNative.StatusBarGetBorders(Native);
 
 	/// <summary>Returns the number of fields in the status bar.</summary>
-	public int FieldsCount {
+	public int FieldCount {
 		get => WxKitNative.StatusBarGetFieldsCount(Native);
 		set => WxKitNative.StatusBarSetFieldsCount(Native, value);
 	}
@@ -29,19 +29,19 @@ public unsafe partial class StatusBar : Control {
 	}
 
 	/// <summary>Add a control (child of the wxStatusBar) to be shown at the specified field position in the status bar.</summary>
-	public bool AddFieldControl(int i, Window window) {
+	public bool AddFieldControl(int field, Window window) {
 		ArgumentNullException.ThrowIfNull(window);
-		return WxKitNative.StatusBarAddFieldControl(Native, i, (WxkWindow*)window.Native) != 0;
+		return WxKitNative.StatusBarAddFieldControl(Native, field, (WxkWindow*)window.Native) != 0;
 	}
 
 	/// <summary>Returns the style of the n-th field.</summary>
-	public StatusBarFieldStyle GetStatusStyle(int index) => (StatusBarFieldStyle)WxKitNative.StatusBarGetStatusStyle(Native, index);
+	public StatusBarFieldStyle GetStatusStyle(int field) => (StatusBarFieldStyle)WxKitNative.StatusBarGetStatusStyle(Native, field);
 
 	/// <summary>Returns the string associated with a status bar field.</summary>
-	public string GetStatusText(int i = 0) => NativeString.Take(WxKitNative.StatusBarGetStatusText(Native, i));
+	public string GetStatusText(int field = 0) => NativeString.Take(WxKitNative.StatusBarGetStatusText(Native, field));
 
 	/// <summary>Returns the width of the n-th field.</summary>
-	public int GetStatusWidth(int index) => WxKitNative.StatusBarGetStatusWidth(Native, index);
+	public int GetStatusWidth(int field) => WxKitNative.StatusBarGetStatusWidth(Native, field);
 
 	/// <summary>Restores the text to the value it had before the last call to PushStatusText().</summary>
 	public void PopStatusText(int field = 0) => WxKitNative.StatusBarPopStatusText(Native, field);
@@ -58,10 +58,10 @@ public unsafe partial class StatusBar : Control {
 	public void SetMinHeight(int height) => WxKitNative.StatusBarSetMinHeight(Native, height);
 
 	/// <summary>Sets the status text for the i-th field.</summary>
-	public void SetStatusText(string text, int i = 0) {
+	public void SetStatusText(string text, int field = 0) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			WxKitNative.StatusBarSetStatusText(Native, textText, NativeString.Length(text), i);
+			WxKitNative.StatusBarSetStatusText(Native, textText, NativeString.Length(text), field);
 		}
 	}
 
@@ -75,10 +75,10 @@ public unsafe partial class StatusBar : Control {
 	}
 
 	/// <summary>Returns the size and position of a field's internal bounding rectangle.</summary>
-	public bool TryGetFieldRect(int i, out Rect rect) {
+	public bool TryGetFieldRect(int field, out Rect rect) {
 		rect = default;
 		fixed (Rect* rectPointer = &rect) {
-			return WxKitNative.StatusBarGetFieldRect(Native, i, rectPointer) != 0;
+			return WxKitNative.StatusBarGetFieldRect(Native, field, rectPointer) != 0;
 		}
 	}
 

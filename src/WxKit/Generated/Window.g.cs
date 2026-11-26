@@ -623,7 +623,7 @@ public unsafe partial class Window : EvtHandler {
 	public Point FromDip(Point point) => WxKitNative.WindowFromDIPPoint(Native, point);
 
 	/// <summary>Convert DPI-independent distance in pixels to the value in pixels appropriate for the current toolkit.</summary>
-	public int FromDip(int d) => WxKitNative.WindowFromDIPInt(Native, d);
+	public int FromDip(int value) => WxKitNative.WindowFromDIPInt(Native, value);
 
 	/// <summary>Convert from physical pixels to logical pixels.</summary>
 	public Size FromPhysical(Size size) => WxKitNative.WindowFromPhysSize(Native, size);
@@ -632,7 +632,7 @@ public unsafe partial class Window : EvtHandler {
 	public Point FromPhysical(Point point) => WxKitNative.WindowFromPhysPoint(Native, point);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public int FromPhysical(int d) => WxKitNative.WindowFromPhysInt(Native, d);
+	public int FromPhysical(int value) => WxKitNative.WindowFromPhysInt(Native, value);
 
 	/// <summary>Returns the best height needed by this window if it had the given width.</summary>
 	public int GetBestHeight(int width) => WxKitNative.WindowGetBestHeight(Native, width);
@@ -850,7 +850,7 @@ public unsafe partial class Window : EvtHandler {
 	public Point ToDip(Point point) => WxKitNative.WindowToDIPPoint(Native, point);
 
 	/// <summary>Convert pixel values of the current toolkit to DPI-independent pixel values.</summary>
-	public int ToDip(int d) => WxKitNative.WindowToDIPInt(Native, d);
+	public int ToDip(int value) => WxKitNative.WindowToDIPInt(Native, value);
 
 	/// <summary>Convert from logical pixels to physical pixels.</summary>
 	public Size ToPhysical(Size size) => WxKitNative.WindowToPhysSize(Native, size);
@@ -859,7 +859,7 @@ public unsafe partial class Window : EvtHandler {
 	public Point ToPhysical(Point point) => WxKitNative.WindowToPhysPoint(Native, point);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public int ToPhysical(int d) => WxKitNative.WindowToPhysInt(Native, d);
+	public int ToPhysical(int value) => WxKitNative.WindowToPhysInt(Native, value);
 
 	/// <summary>Transfers values from child controls to data areas specified by their validators.</summary>
 	public bool TransferDataFromWindow() => WxKitNative.WindowTransferDataFromWindow(Native) != 0;

@@ -4,7 +4,7 @@ sealed class WxKit.AboutDialogInfo
     AboutDialogInfo()
     IList<string> Artists { get; }
     IList<string> Developers { get; }
-    IList<string> DocWriters { get; }
+    IList<string> DocumentationWriters { get; }
     IList<string> Translators { get; }
     Icon? Icon { get; set; }
     string? Copyright { get; set; }
@@ -295,7 +295,7 @@ sealed class WxKit.ApplicationExceptionEventArgs : EventArgs
     bool Handled { get; set; }
 static class WxKit.ArtClient
     const string Button = "wxART_BUTTON_C"
-    const string CmnDialog = "wxART_CMN_DIALOG_C"
+    const string CommonDialog = "wxART_CMN_DIALOG_C"
     const string FrameIcon = "wxART_FRAME_ICON_C"
     const string HelpBrowser = "wxART_HELP_BROWSER_C"
     const string List = "wxART_LIST_C"
@@ -310,8 +310,8 @@ static class WxKit.ArtId
     const string Copy = "wxART_COPY"
     const string CrossMark = "wxART_CROSS_MARK"
     const string Cut = "wxART_CUT"
-    const string DelBookmark = "wxART_DEL_BOOKMARK"
     const string Delete = "wxART_DELETE"
+    const string DeleteBookmark = "wxART_DEL_BOOKMARK"
     const string Edit = "wxART_EDIT"
     const string Error = "wxART_ERROR"
     const string ExecutableFile = "wxART_EXECUTABLE_FILE"
@@ -329,10 +329,10 @@ static class WxKit.ArtId
     const string GoDown = "wxART_GO_DOWN"
     const string GoForward = "wxART_GO_FORWARD"
     const string GoHome = "wxART_GO_HOME"
+    const string GoToFirst = "wxART_GOTO_FIRST"
+    const string GoToLast = "wxART_GOTO_LAST"
     const string GoToParent = "wxART_GO_TO_PARENT"
     const string GoUp = "wxART_GO_UP"
-    const string GotoFirst = "wxART_GOTO_FIRST"
-    const string GotoLast = "wxART_GOTO_LAST"
     const string HardDisk = "wxART_HARDDISK"
     const string Help = "wxART_HELP"
     const string HelpBook = "wxART_HELP_BOOK"
@@ -409,7 +409,7 @@ class WxKit.Bitmap : NativeObject
     bool CopyFromIcon(Icon icon)
     bool HasAlpha { get; set; }
     bool IsOk { get; }
-    bool SaveFile(string name, BitmapType type)
+    bool SaveFile(string fileName, BitmapType type)
     double LogicalHeight { get; }
     double LogicalWidth { get; }
     double ScaleFactor { get; set; }
@@ -420,7 +420,7 @@ class WxKit.Bitmap : NativeObject
     int Width { get; }
     static Bitmap FromDipSize(Size size, double scale, int depth = -1)
     static Bitmap FromLogicalSize(Size size, double scale, int depth = -1)
-    static Bitmap? FromFile(string name, BitmapType? type = null)
+    static Bitmap? FromFile(string fileName, BitmapType? type = null)
     static void MakeDisabled(Bitmap bitmap)
     static void Rescale(Bitmap bitmap, Size sizeNeeded)
     void ResetAlpha()
@@ -429,7 +429,7 @@ class WxKit.BitmapButton : Button
     BitmapButtonStyle Style { get; set; }
     static BitmapButton? NewCloseButton(Window parent, string name = "", int id = -1)
 [Flags] enum WxKit.BitmapButtonStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -459,7 +459,7 @@ class WxKit.BitmapComboBox : ComboBox
     int Insert(string item, Bitmap bitmap, int position, object? data)
     void SetItemBitmap(int index, Bitmap bitmap)
 [Flags] enum WxKit.BitmapComboBoxStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -583,7 +583,7 @@ class WxKit.Button : AnyButton
     event EventHandler<CommandEvent>? Click
     static Size GetDefaultSize(Window? window = null)
 [Flags] enum WxKit.ButtonStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -625,7 +625,7 @@ class WxKit.CalendarCtrl : Control
     void ResetAttributes(int day)
     void SetHoliday(int day)
 [Flags] enum WxKit.CalendarCtrlStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -671,8 +671,8 @@ enum WxKit.CheckBoxState : int
     Undetermined = 2
 [Flags] enum WxKit.CheckBoxStyle : long
     AlignRight = 512
-    Allow3rdStateForUser = 8192
-    AlwaysShowSb = 8388608
+    AllowThirdStateForUser = 8192
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -724,7 +724,7 @@ class WxKit.Choice : Control, IItemContainer
     void SetItemData(int index, object? data)
     void SetString(int index, string text)
 [Flags] enum WxKit.ChoiceStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -746,7 +746,7 @@ class WxKit.Choicebook : BookCtrlBase
     event EventHandler<BookCtrlEvent>? PageChanged
     event EventHandler<BookCtrlEvent>? PageChanging
 [Flags] enum WxKit.ChoicebookStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -810,7 +810,7 @@ class WxKit.CollapsiblePane : Control
 class WxKit.CollapsiblePaneEvent : CommandEvent
     bool IsCollapsed { get; }
 [Flags] enum WxKit.CollapsiblePaneStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -821,7 +821,7 @@ class WxKit.CollapsiblePaneEvent : CommandEvent
     Default = 2621440
     FullRepaintOnResize = 65536
     HorizontalScrollBar = 1073741824
-    NoTlwResize = 2
+    NoTopLevelWindowResize = 2
     None = 0
     TabTraversal = 524288
     VerticalScrollBar = -2147483648
@@ -860,7 +860,7 @@ class WxKit.ColorPickerCtrl : PickerBase
     event EventHandler<ColorPickerEvent>? CurrentColorChanged
     event EventHandler<ColorPickerEvent>? DialogCanceled
 [Flags] enum WxKit.ColorPickerCtrlStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -947,7 +947,7 @@ class WxKit.ComboBox : Control, IItemContainer
     void Undo()
     void WriteText(string text)
 [Flags] enum WxKit.ComboBoxStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -987,7 +987,7 @@ class WxKit.ContextMenuEvent : CommandEvent
 class WxKit.Control : Window
     Control(Window parent, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
     Size GetSizeFromText(string text)
-    Size GetSizeFromTextSize(Size tsize)
+    Size GetSizeFromTextSize(Size textSize)
     bool SetLabelMarkup(string markup)
     event EventHandler<CommandEvent>? TextCopy
     event EventHandler<CommandEvent>? TextCut
@@ -1028,7 +1028,7 @@ class WxKit.Cursor : NativeObject
     Cursor(StockCursor cursorId)
     Point HotSpot { get; }
     bool IsOk { get; }
-    static Cursor? FromFile(string name, BitmapType? type = null, Point hotSpot = null)
+    static Cursor? FromFile(string fileName, BitmapType? type = null, Point hotSpot = null)
 abstract class WxKit.CustomValidator : Validator
     protected CustomValidator()
     protected virtual bool OnTransferFromWindow(Window window)
@@ -1053,11 +1053,11 @@ class WxKit.DC : NativeObject
     Point ToDip(Point point)
     RasterOperationMode LogicalFunction { get; set; }
     Rect BoundingBox { get; }
-    Size DeviceToLogicalRel(Size dim)
+    Size DeviceToLogicalRel(Size dimension)
     Size FromDip(Size size)
     Size GetMultiLineTextExtent(string text)
     Size GetTextExtent(string text)
-    Size LogicalToDeviceRel(Size dim)
+    Size LogicalToDeviceRel(Size dimension)
     Size Ppi { get; }
     Size Size { get; }
     Size SizeInMillimeters { get; }
@@ -1100,7 +1100,7 @@ class WxKit.DC : NativeObject
     void DrawCircle(Point point, int radius)
     void DrawEllipse(Point point, Size size)
     void DrawEllipse(Rect rect)
-    void DrawEllipticArc(Point point, Size size, double sa, double ea)
+    void DrawEllipticArc(Point point, Size size, double startAngle, double endAngle)
     void DrawIcon(Icon icon, Point point)
     void DrawLabel(string text, Bitmap bitmap, Rect rect, Alignment alignment = Alignment.Left, int acceleratorIndex = -1)
     void DrawLabel(string text, Rect rect, Alignment alignment = Alignment.Left, int acceleratorIndex = -1)
@@ -1244,7 +1244,7 @@ class WxKit.DataViewCtrl : Control
     void Unselect(DataViewItem item)
     void UnselectAll()
 [Flags] enum WxKit.DataViewCtrlStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -1253,7 +1253,7 @@ class WxKit.DataViewCtrl : Control
     BorderTheme = 268435456
     ClipChildren = 4194304
     FullRepaintOnResize = 65536
-    HorizRules = 4
+    HorizontalRules = 4
     HorizontalScrollBar = 1073741824
     Multiple = 1
     NoHeader = 2
@@ -1261,7 +1261,7 @@ class WxKit.DataViewCtrl : Control
     RowLines = 16
     TabTraversal = 524288
     VariableLineHeight = 32
-    VertRules = 8
+    VerticalRules = 8
     VerticalScrollBar = -2147483648
     WantsChars = 262144
 class WxKit.DataViewEvent : NotifyEvent
@@ -1408,7 +1408,7 @@ class WxKit.DatePickerCtrl : Control
     void SetRange(DateTime? earliest, DateTime? latest)
 [Flags] enum WxKit.DatePickerCtrlStyle : long
     AllowNone = 8
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -1459,7 +1459,7 @@ class WxKit.Dialog : TopLevelWindow, IDisposable
     Ok = 4
     Yes = 2
 [Flags] enum WxKit.DialogStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -1489,7 +1489,7 @@ class WxKit.DirDialog : Dialog
     string Message { get; set; }
     string Path { get; set; }
 [Flags] enum WxKit.DirDialogStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -1515,7 +1515,7 @@ class WxKit.DirPickerCtrl : PickerBase
     string Path { get; set; }
     void SetInitialDirectory(string directory)
 [Flags] enum WxKit.DirPickerCtrlStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -1618,7 +1618,7 @@ class WxKit.EditableListBox : Panel
     AllowDelete = 1024
     AllowEdit = 512
     AllowNew = 256
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -1664,11 +1664,11 @@ static class WxKit.EventType
     static EventType<BookCtrlEvent> TreebookNodeExpanded { get; }
     static EventType<BookCtrlEvent> TreebookPageChanged { get; }
     static EventType<BookCtrlEvent> TreebookPageChanging { get; }
-    static EventType<CalendarEvent> CalendarDoubleClicked { get; }
+    static EventType<CalendarEvent> CalendarDateActivated { get; }
     static EventType<CalendarEvent> CalendarPageChanged { get; }
     static EventType<CalendarEvent> CalendarSelectionChanged { get; }
     static EventType<CalendarEvent> CalendarWeekClicked { get; }
-    static EventType<CalendarEvent> CalendarWeekdayClicked { get; }
+    static EventType<CalendarEvent> CalendarWeekDayClicked { get; }
     static EventType<ChildFocusEvent> ChildFocus { get; }
     static EventType<CloseEvent> CloseWindow { get; }
     static EventType<CloseEvent> EndSession { get; }
@@ -1686,11 +1686,11 @@ static class WxKit.EventType
     static EventType<CommandEvent> ComboBoxCloseUp { get; }
     static EventType<CommandEvent> ComboBoxDropDown { get; }
     static EventType<CommandEvent> CommandEnter { get; }
-    static EventType<CommandEvent> CommandKillFocus { get; }
+    static EventType<CommandEvent> CommandGotFocus { get; }
     static EventType<CommandEvent> CommandLeftClick { get; }
     static EventType<CommandEvent> CommandLeftDoubleClick { get; }
+    static EventType<CommandEvent> CommandLostFocus { get; }
     static EventType<CommandEvent> CommandRightClick { get; }
-    static EventType<CommandEvent> CommandSetFocus { get; }
     static EventType<CommandEvent> ListBox { get; }
     static EventType<CommandEvent> ListBoxDoubleClick { get; }
     static EventType<CommandEvent> Menu { get; }
@@ -1729,9 +1729,9 @@ static class WxKit.EventType
     static EventType<DataViewEvent> DataViewItemDropPossible { get; }
     static EventType<DataViewEvent> DataViewItemEditingDone { get; }
     static EventType<DataViewEvent> DataViewItemEditingStarted { get; }
+    static EventType<DataViewEvent> DataViewItemEditingStarting { get; }
     static EventType<DataViewEvent> DataViewItemExpanded { get; }
     static EventType<DataViewEvent> DataViewItemExpanding { get; }
-    static EventType<DataViewEvent> DataViewItemStartEditing { get; }
     static EventType<DataViewEvent> DataViewItemValueChanged { get; }
     static EventType<DataViewEvent> DataViewSelectionChanged { get; }
     static EventType<DateEvent> DateChanged { get; }
@@ -1747,11 +1747,11 @@ static class WxKit.EventType
     static EventType<FileCtrlEvent> FileCtrlSelectionChanged { get; }
     static EventType<FileDirPickerEvent> DirPickerChanged { get; }
     static EventType<FileDirPickerEvent> FilePickerChanged { get; }
-    static EventType<FindDialogEvent> Find { get; }
-    static EventType<FindDialogEvent> FindClose { get; }
-    static EventType<FindDialogEvent> FindNext { get; }
-    static EventType<FindDialogEvent> FindReplace { get; }
-    static EventType<FindDialogEvent> FindReplaceAll { get; }
+    static EventType<FindDialogEvent> FindClosed { get; }
+    static EventType<FindDialogEvent> FindNextRequested { get; }
+    static EventType<FindDialogEvent> FindRequested { get; }
+    static EventType<FindDialogEvent> ReplaceAllRequested { get; }
+    static EventType<FindDialogEvent> ReplaceRequested { get; }
     static EventType<FocusEvent> GotFocus { get; }
     static EventType<FocusEvent> LostFocus { get; }
     static EventType<FontPickerEvent> FontPickerChanged { get; }
@@ -1847,7 +1847,7 @@ static class WxKit.EventType
     static EventType<SplitterEvent> SplitterSashPositionChanged { get; }
     static EventType<SplitterEvent> SplitterSashPositionChanging { get; }
     static EventType<SplitterEvent> SplitterSashPositionResize { get; }
-    static EventType<SplitterEvent> SplitterUnsplit { get; }
+    static EventType<SplitterEvent> SplitterWindowRemoved { get; }
     static EventType<StyledTextEvent> StyledTextAutoCompCanceled { get; }
     static EventType<StyledTextEvent> StyledTextAutoCompCharDeleted { get; }
     static EventType<StyledTextEvent> StyledTextAutoCompCompleted { get; }
@@ -1858,7 +1858,6 @@ static class WxKit.EventType
     static EventType<StyledTextEvent> StyledTextCharAdded { get; }
     static EventType<StyledTextEvent> StyledTextClipboardCopy { get; }
     static EventType<StyledTextEvent> StyledTextClipboardPaste { get; }
-    static EventType<StyledTextEvent> StyledTextDoDrop { get; }
     static EventType<StyledTextEvent> StyledTextDoubleClick { get; }
     static EventType<StyledTextEvent> StyledTextDragOver { get; }
     static EventType<StyledTextEvent> StyledTextDwellEnd { get; }
@@ -1879,7 +1878,8 @@ static class WxKit.EventType
     static EventType<StyledTextEvent> StyledTextSavePointReached { get; }
     static EventType<StyledTextEvent> StyledTextStartDrag { get; }
     static EventType<StyledTextEvent> StyledTextStyleNeeded { get; }
-    static EventType<StyledTextEvent> StyledTextUpdateUi { get; }
+    static EventType<StyledTextEvent> StyledTextTextDropping { get; }
+    static EventType<StyledTextEvent> StyledTextUpdateUI { get; }
     static EventType<StyledTextEvent> StyledTextUserListSelection { get; }
     static EventType<StyledTextEvent> StyledTextZoom { get; }
     static EventType<SysColorChangedEvent> SysColorChanged { get; }
@@ -1904,10 +1904,10 @@ static class WxKit.EventType
     static EventType<TreeEvent> TreeItemActivated { get; }
     static EventType<TreeEvent> TreeItemCollapsed { get; }
     static EventType<TreeEvent> TreeItemCollapsing { get; }
+    static EventType<TreeEvent> TreeItemContextMenu { get; }
     static EventType<TreeEvent> TreeItemExpanded { get; }
     static EventType<TreeEvent> TreeItemExpanding { get; }
     static EventType<TreeEvent> TreeItemGetToolTip { get; }
-    static EventType<TreeEvent> TreeItemMenu { get; }
     static EventType<TreeEvent> TreeItemMiddleClick { get; }
     static EventType<TreeEvent> TreeItemRightClick { get; }
     static EventType<TreeEvent> TreeKeyDown { get; }
@@ -1922,7 +1922,7 @@ static class WxKit.EventType
     static EventType<TreeListEvent> TreeListItemExpanded { get; }
     static EventType<TreeListEvent> TreeListItemExpanding { get; }
     static EventType<TreeListEvent> TreeListSelectionChanged { get; }
-    static EventType<UpdateUIEvent> UpdateUi { get; }
+    static EventType<UpdateUIEvent> UpdateUI { get; }
     static EventType<WebViewEvent> WebViewBrowsingDataCleared { get; }
     static EventType<WebViewEvent> WebViewCreated { get; }
     static EventType<WebViewEvent> WebViewError { get; }
@@ -1971,12 +1971,12 @@ class WxKit.FileCtrl : Control
     string Wildcard { get; set; }
     void ShowHidden(bool show)
 class WxKit.FileCtrlEvent : CommandEvent
-    IReadOnlyList<string> Files { get; }
+    IReadOnlyList<string> FileNames { get; }
     int FilterIndex { get; }
     string Directory { get; }
-    string File { get; }
+    string FileName { get; }
 [Flags] enum WxKit.FileCtrlStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -2014,7 +2014,7 @@ enum WxKit.FileDialogShortcut : int
     Bottom = 2
     Top = 1
 [Flags] enum WxKit.FileDialogStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -2047,7 +2047,7 @@ class WxKit.FilePickerCtrl : PickerBase
     string Path { get; set; }
     void SetInitialDirectory(string directory)
 [Flags] enum WxKit.FilePickerCtrlStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -2126,7 +2126,7 @@ class WxKit.Font : NativeObject
     Font? WithBold()
     Font? WithItalic()
     Font? WithLargerSize()
-    Font? WithScaledSize(float x)
+    Font? WithScaledSize(float factor)
     Font? WithSmallerSize()
     Font? WithStrikethrough()
     Font? WithUnderline()
@@ -2279,7 +2279,7 @@ class WxKit.FontPickerCtrl : PickerBase
     int MaxPointSize { get; set; }
     int MinPointSize { get; set; }
 [Flags] enum WxKit.FontPickerCtrlStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -2346,7 +2346,7 @@ class WxKit.Frame : TopLevelWindow
     void SetStatusWidths(IEnumerable<int> widths)
     void SetWindowModality(WindowMode modality)
 [Flags] enum WxKit.FrameStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -2393,7 +2393,7 @@ class WxKit.Gauge : Control
     int Value { get; set; }
     void Pulse()
 [Flags] enum WxKit.GaugeStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -2436,7 +2436,7 @@ class WxKit.GenericDirCtrl : Control
     void ShowHidden(bool show)
     void UnselectAll()
 [Flags] enum WxKit.GenericDirCtrlStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -2533,10 +2533,10 @@ enum WxKit.HitTestResult : int
     ScrollBarBar2 = 7
     ScrollBarThumb = 5
     WindowCorner = 13
-    WindowHorzScrollBar = 12
+    WindowHorizontalScrollBar = 12
     WindowInside = 10
     WindowOutside = 9
-    WindowVertScrollBar = 11
+    WindowVerticalScrollBar = 11
 class WxKit.HyperlinkCtrl : Control
     Color? HoverColor { get; set; }
     Color? NormalColor { get; set; }
@@ -2550,7 +2550,7 @@ class WxKit.HyperlinkCtrl : Control
     AlignCenter = 8
     AlignLeft = 2
     AlignRight = 4
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -2598,7 +2598,7 @@ class WxKit.Icon : NativeObject
     int Height { get; }
     int Width { get; }
     static Icon FromBitmap(Bitmap bitmap)
-    static Icon? FromFile(string name, BitmapType? type = null, Size? desiredSize = null)
+    static Icon? FromFile(string fileName, BitmapType? type = null, Size? desiredSize = null)
 class WxKit.IconizeEvent : Event
     bool IsIconized { get; }
 class WxKit.IdleEvent : Event
@@ -2640,16 +2640,16 @@ class WxKit.Image : NativeObject
     bool IsOk { get; }
     bool IsTransparent(Point pixel)
     bool SaveFile(Stream stream, BitmapType type)
-    bool SaveFile(string name)
-    bool SaveFile(string name, BitmapType type)
-    bool SaveFile(string name, string mimeType)
+    bool SaveFile(string fileName)
+    bool SaveFile(string fileName, BitmapType type)
+    bool SaveFile(string fileName, string mimeType)
     bool SetMaskFromImage(Image mask, Color color)
     byte GetAlpha(Point pixel)
     int GetOptionInt(string name)
     int Height { get; }
     int Width { get; }
-    static Image? FromFile(string name, BitmapType type = BitmapType.Any, int index = -1)
-    static Image? FromFile(string name, string mimeType, int index = -1)
+    static Image? FromFile(string fileName, BitmapType type = BitmapType.Any, int index = -1)
+    static Image? FromFile(string fileName, string mimeType, int index = -1)
     static Image? FromStream(Stream stream, BitmapType type = BitmapType.Any, int index = -1)
     static ImageLoadFlags DefaultLoadFlags { get; set; }
     static bool CanRead(string fileName)
@@ -2991,8 +2991,8 @@ class WxKit.ListBox : Control, IItemContainer
     void SetItemData(int index, object? data)
     void SetString(int index, string text)
 [Flags] enum WxKit.ListBoxStyle : long
-    AlwaysSb = 512
-    AlwaysShowSb = 8388608
+    AlwaysScrollBar = 512
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -3004,7 +3004,7 @@ class WxKit.ListBox : Control, IItemContainer
     FullRepaintOnResize = 65536
     HorizontalScrollBar = 1073741824
     Multiple = 64
-    NoSb = 1024
+    NoScrollBar = 1024
     None = 0
     Single = 32
     Sort = 16
@@ -3125,7 +3125,7 @@ class WxKit.ListCtrl : Control
 [Flags] enum WxKit.ListCtrlStyle : long
     AlignLeft = 128
     AlignTop = 64
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     AutoArrange = 256
     BorderNone = 2097152
     BorderRaised = 67108864
@@ -3143,7 +3143,7 @@ class WxKit.ListCtrl : Control
     NoHeader = 2048
     None = 0
     Report = 32
-    SingleSel = 8192
+    SingleSelection = 8192
     SmallIcon = 8
     SortAscending = 16384
     SortDescending = 32768
@@ -3156,7 +3156,7 @@ class WxKit.ListEvent : NotifyEvent
     KeyCode KeyCode { get; }
     ListItem? Item { get; }
     ListItemMask Mask { get; }
-    Point Point { get; }
+    Point Position { get; }
     bool IsEditCanceled { get; }
     int CacheFrom { get; }
     int CacheTo { get; }
@@ -3175,13 +3175,13 @@ class WxKit.ListItem : NativeObject
     Color? BackgroundColor { get; set; }
     Color? TextColor { get; set; }
     Font? Font { get; set; }
-    ListColumnFormat Align { get; set; }
+    ListColumnFormat Alignment { get; set; }
     ListItem()
     ListItemMask Mask { get; set; }
     ListItemState State { get; set; }
     int Column { get; set; }
-    int Id { get; set; }
     int Image { get; set; }
+    int Index { get; set; }
     int Width { get; set; }
     long Data { get; set; }
     string Text { get; set; }
@@ -3228,7 +3228,7 @@ class WxKit.Listbook : BookCtrlBase
     event EventHandler<BookCtrlEvent>? PageChanged
     event EventHandler<BookCtrlEvent>? PageChanging
 [Flags] enum WxKit.ListbookStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -3337,7 +3337,7 @@ class WxKit.MessageDialog : Dialog
     CancelDefault = 2147483648
     Center = 1
     Help = 4096
-    IconAuthNeeded = 524288
+    IconAuthenticationNeeded = 524288
     IconError = 512
     IconInformation = 2048
     IconNone = 262144
@@ -3358,7 +3358,7 @@ class WxKit.MiniFrame : Frame
     MiniFrame(Window? parent, string title, int id = -1, Point? position = null, Size? size = null, MiniFrameStyle style = MiniFrameStyle.ResizeBorder | MiniFrameStyle.Caption)
     MiniFrameStyle Style { get; set; }
 [Flags] enum WxKit.MiniFrameStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -3398,7 +3398,7 @@ class WxKit.MouseEvent : Event
     MouseWheelAxis WheelAxis { get; }
     Point GetLogicalPosition(DC dc)
     Point Position { get; }
-    bool ButtonDClick(MouseButton button = MouseButton.Any)
+    bool ButtonDoubleClick(MouseButton button = MouseButton.Any)
     bool ButtonDown(MouseButton button = MouseButton.Any)
     bool ButtonUp(MouseButton button = MouseButton.Any)
     bool HasAnyModifiers { get; }
@@ -3450,7 +3450,7 @@ class WxKit.MultiChoiceDialog : Dialog
     MultiChoiceDialog(Window? parent, string message, string caption, IEnumerable<string> choices, MultiChoiceDialogStyle style = MultiChoiceDialogStyle.Default, Point? position = null)
     MultiChoiceDialogStyle Style { get; set; }
 [Flags] enum WxKit.MultiChoiceDialogStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -3505,7 +3505,7 @@ class WxKit.Notebook : BookCtrlBase
     int RowCount { get; }
     void SetPadding(Size padding)
 [Flags] enum WxKit.NotebookStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -3771,7 +3771,7 @@ class WxKit.PickerBase : Control
     void UpdatePickerFromTextCtrl()
     void UpdateTextCtrlFromPicker()
 [Flags] enum WxKit.PickerBaseStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -3883,7 +3883,7 @@ class WxKit.Printer : NativeObject
 enum WxKit.PrinterError : int
     Canceled = 1
     Error = 2
-    NoError = 0
+    None = 0
 abstract class WxKit.Printout : NativeObject
     Rect GetLogicalPageMarginsRect(PageSetupDialogData pageSetupData)
     Rect LogicalPageRect { get; }
@@ -3956,11 +3956,11 @@ class WxKit.RadioBox : Control
     RadioBox(Window parent, string label, IEnumerable<string> choices, int id = -1, Point? position = null, Size? size = null, int majorDimension = 0, RadioBoxStyle style = RadioBoxStyle.SpecifyColumns)
     RadioBox(Window parent, string label, int id = -1, Point? position = null, Size? size = null)
     RadioBoxStyle Style { get; set; }
-    bool Enable(int index, bool enable = true)
+    bool EnableItem(int index, bool enable = true)
     bool IsEmpty { get; }
     bool IsItemEnabled(int index)
     bool IsItemShown(int index)
-    bool Show(int item, bool show = true)
+    bool ShowItem(int item, bool show = true)
     event EventHandler<CommandEvent>? SelectionChanged
     int ColumnCount { get; }
     int Count { get; }
@@ -3975,7 +3975,7 @@ class WxKit.RadioBox : Control
     void SetItemToolTip(int item, string text)
     void SetString(int index, string text)
 [Flags] enum WxKit.RadioBoxStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -4001,7 +4001,7 @@ class WxKit.RadioButton : Control
     bool IsChecked { get; set; }
     event EventHandler<CommandEvent>? Selected
 [Flags] enum WxKit.RadioButtonStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -4115,7 +4115,7 @@ class WxKit.ScrollBar : Control
     int ThumbSize { get; }
     void SetScrollBar(int position, int thumbSize, int range, int pageSize, bool refresh = true)
 [Flags] enum WxKit.ScrollBarStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -4174,14 +4174,14 @@ class WxKit.ScrolledWindow : Panel
     void EnableAutoScrollWithoutCapture()
     void EnableScrolling(bool xScrolling, bool yScrolling)
     void Scroll(Point point)
-    void SetScale(double xs, double ys)
-    void SetScrollBars(int pixelsPerUnitX, int pixelsPerUnitY, int noUnitsX, int noUnitsY, int xPos = 0, int yPos = 0, bool noRefresh = false)
+    void SetScale(double xScale, double yScale)
+    void SetScrollBars(int pixelsPerUnitX, int pixelsPerUnitY, int unitsX, int unitsY, int xPosition = 0, int yPosition = 0, bool noRefresh = false)
     void SetScrollPageSize(Orientation orientation, int pageSize)
     void SetScrollRate(int xStep, int yStep)
     void ShowScrollBars(ScrollBarVisibility horizontal, ScrollBarVisibility vertical)
     void StopAutoScrolling()
 [Flags] enum WxKit.ScrolledWindowStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -4223,7 +4223,7 @@ class WxKit.SearchCtrl : Control
     string DescriptiveText { get; set; }
     string GetRange(int from, int to)
     string Hint { get; set; }
-    string StringSelection { get; }
+    string SelectedText { get; }
     string Value { get; set; }
     void AppendText(string text)
     void ChangeValue(string value)
@@ -4243,7 +4243,7 @@ class WxKit.SearchCtrl : Control
     void Undo()
     void WriteText(string text)
 [Flags] enum WxKit.SearchCtrlStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -4295,7 +4295,7 @@ class WxKit.SingleChoiceDialog : Dialog
     int Selection { get; set; }
     string StringSelection { get; }
 [Flags] enum WxKit.SingleChoiceDialogStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -4402,7 +4402,7 @@ class WxKit.Slider : Control
     void SetSelection(int startPosition, int endPosition)
     void SetTick(int tickPosition)
 [Flags] enum WxKit.SliderStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     AutoTicks = 16
     BorderNone = 2097152
     BorderRaised = 67108864
@@ -4441,7 +4441,7 @@ class WxKit.SpinButton : Control
     int Value { get; set; }
     void SetRange(int min, int max)
 [Flags] enum WxKit.SpinButtonStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     ArrowKeys = 16384
     BorderNone = 2097152
     BorderRaised = 67108864
@@ -4473,7 +4473,7 @@ class WxKit.SpinCtrl : Control
     void SetSelection(int from, int to)
     void SetValue(string text)
 class WxKit.SpinCtrlDouble : Control
-    SpinCtrlDouble(Window parent, string value = "", int id = -1, Point? position = null, Size? size = null, SpinCtrlDoubleStyle style = SpinCtrlDoubleStyle.ArrowKeys, double min = 0, double max = 100, double initial = 0, double inc = 1)
+    SpinCtrlDouble(Window parent, string value = "", int id = -1, Point? position = null, Size? size = null, SpinCtrlDoubleStyle style = SpinCtrlDoubleStyle.ArrowKeys, double min = 0, double max = 100, double initial = 0, double increment = 1)
     SpinCtrlDoubleStyle Style { get; set; }
     double Increment { get; set; }
     double Max { get; }
@@ -4487,7 +4487,7 @@ class WxKit.SpinCtrlDouble : Control
 [Flags] enum WxKit.SpinCtrlDoubleStyle : long
     AlignCenterHorizontal = 256
     AlignRight = 512
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     ArrowKeys = 16384
     BorderNone = 2097152
     BorderRaised = 67108864
@@ -4507,7 +4507,7 @@ class WxKit.SpinCtrlDouble : Control
 [Flags] enum WxKit.SpinCtrlStyle : long
     AlignCenterHorizontal = 256
     AlignRight = 512
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     ArrowKeys = 16384
     BorderNone = 2097152
     BorderRaised = 67108864
@@ -4527,7 +4527,7 @@ class WxKit.SpinCtrlDouble : Control
 class WxKit.SpinDoubleEvent : NotifyEvent
     double Value { get; }
 class WxKit.SpinEvent : NotifyEvent
-    int Position { get; }
+    int Value { get; }
 enum WxKit.SplitMode : int
     Horizontal = 1
     Vertical = 2
@@ -4563,7 +4563,7 @@ class WxKit.SplitterWindow : Window
     void Initialize(Window window)
     void UpdateSize()
 [Flags] enum WxKit.SplitterWindowStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     Border = 512
     BorderNone = 2097152
     BorderRaised = 67108864
@@ -4652,8 +4652,8 @@ static class WxKit.StandardId
     const int MdiWindowLast = 5235
     const int MdiWindowNext = 5235
     const int MdiWindowPrevious = 5234
-    const int MdiWindowTileHorz = 5231
-    const int MdiWindowTileVert = 5232
+    const int MdiWindowTileHorizontal = 5231
+    const int MdiWindowTileVertical = 5232
     const int More = 5109
     const int MoveFrame = 5202
     const int Network = 5152
@@ -4733,7 +4733,7 @@ class WxKit.StaticLine : Control
     bool IsVertical { get; }
     static int DefaultSize { get; }
 [Flags] enum WxKit.StaticLineStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -4757,7 +4757,7 @@ class WxKit.StaticText : Control
 [Flags] enum WxKit.StaticTextStyle : long
     AlignCenterHorizontal = 256
     AlignRight = 512
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -4779,18 +4779,18 @@ class WxKit.StaticText : Control
 class WxKit.StatusBar : Control
     Size Borders { get; }
     StatusBar(Window parent, StatusBarStyle style = StatusBarStyle.Default, int id = -1)
-    StatusBarFieldStyle GetStatusStyle(int index)
+    StatusBarFieldStyle GetStatusStyle(int field)
     StatusBarStyle Style { get; set; }
-    bool AddFieldControl(int i, Window window)
-    bool TryGetFieldRect(int i, out Rect rect)
-    int FieldsCount { get; set; }
-    int GetStatusWidth(int index)
-    string GetStatusText(int i = 0)
+    bool AddFieldControl(int field, Window window)
+    bool TryGetFieldRect(int field, out Rect rect)
+    int FieldCount { get; set; }
+    int GetStatusWidth(int field)
+    string GetStatusText(int field = 0)
     void PopStatusText(int field = 0)
     void PushStatusText(string text, int field = 0)
     void SetMinHeight(int height)
     void SetStatusStyles(IEnumerable<StatusBarFieldStyle> styles)
-    void SetStatusText(string text, int i = 0)
+    void SetStatusText(string text, int field = 0)
     void SetStatusWidths(IEnumerable<int> widths)
 enum WxKit.StatusBarFieldStyle : int
     Flat = 1
@@ -4798,7 +4798,7 @@ enum WxKit.StatusBarFieldStyle : int
     Raised = 2
     Sunken = 3
 [Flags] enum WxKit.StatusBarStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -5367,16 +5367,16 @@ static class WxKit.Stc
     const int ConfParameter = 5
     const int ConfString = 6
     const int CpUtf8 = 65001
-    const int CsoundArateVar = 11
+    const int CsoundArateVariable = 11
     const int CsoundComment = 1
     const int CsoundCommentblock = 9
     const int CsoundDefault = 0
-    const int CsoundGlobalVar = 14
+    const int CsoundGlobalVariable = 14
     const int CsoundHeaderstmt = 7
     const int CsoundIdentifier = 5
     const int CsoundInstr = 4
-    const int CsoundIrateVar = 13
-    const int CsoundKrateVar = 12
+    const int CsoundIrateVariable = 13
+    const int CsoundKrateVariable = 12
     const int CsoundNumber = 2
     const int CsoundOpcode = 6
     const int CsoundOperator = 3
@@ -6261,7 +6261,7 @@ static class WxKit.Stc
     const int KixOperator = 9
     const int KixString1 = 2
     const int KixString2 = 3
-    const int KixVar = 5
+    const int KixVariable = 5
     const int KvircComment = 1
     const int KvircCommentblock = 2
     const int KvircDefault = 0
@@ -6850,7 +6850,7 @@ static class WxKit.Stc
     const int PhasesTwo = 1
     const int PlArray = 13
     const int PlBackticks = 20
-    const int PlBackticksVar = 57
+    const int PlBackticksVariable = 57
     const int PlCharacter = 7
     const int PlCommentline = 2
     const int PlDatasection = 21
@@ -6862,9 +6862,9 @@ static class WxKit.Stc
     const int PlHereDelim = 22
     const int PlHereQ = 23
     const int PlHereQq = 24
-    const int PlHereQqVar = 61
+    const int PlHereQqVariable = 61
     const int PlHereQx = 25
-    const int PlHereQxVar = 62
+    const int PlHereQxVariable = 62
     const int PlIdentifier = 11
     const int PlLongquote = 19
     const int PlNumber = 4
@@ -6874,20 +6874,20 @@ static class WxKit.Stc
     const int PlPreprocessor = 9
     const int PlPunctuation = 8
     const int PlRegex = 17
-    const int PlRegexVar = 54
+    const int PlRegexVariable = 54
     const int PlRegsubst = 18
-    const int PlRegsubstVar = 55
+    const int PlRegsubstVariable = 55
     const int PlScalar = 12
     const int PlString = 6
     const int PlStringQ = 26
     const int PlStringQq = 27
-    const int PlStringQqVar = 64
+    const int PlStringQqVariable = 64
     const int PlStringQr = 29
-    const int PlStringQrVar = 66
+    const int PlStringQrVariable = 66
     const int PlStringQw = 30
     const int PlStringQx = 28
-    const int PlStringQxVar = 65
-    const int PlStringVar = 43
+    const int PlStringQxVariable = 65
+    const int PlStringVariable = 43
     const int PlSubPrototype = 40
     const int PlSymboltable = 15
     const int PlVariableIndexer = 16
@@ -7036,17 +7036,17 @@ static class WxKit.Stc
     const int RakuPositional = 24
     const int RakuPreprocessor = 17
     const int RakuRegex = 13
-    const int RakuRegexVar = 14
+    const int RakuRegexVariable = 14
     const int RakuString = 8
     const int RakuStringQ = 9
     const int RakuStringQLang = 11
     const int RakuStringQq = 10
-    const int RakuStringVar = 12
+    const int RakuStringVariable = 12
     const int RakuTypedef = 22
     const int RakuWord = 19
     const int RbBackticks = 18
     const int RbCharacter = 7
-    const int RbClassVar = 17
+    const int RbClassVariable = 17
     const int RbClassname = 8
     const int RbCommentline = 2
     const int RbDatasection = 19
@@ -7059,7 +7059,7 @@ static class WxKit.Stc
     const int RbHereQq = 22
     const int RbHereQx = 23
     const int RbIdentifier = 11
-    const int RbInstanceVar = 16
+    const int RbInstanceVariable = 16
     const int RbModuleName = 15
     const int RbNumber = 4
     const int RbOperator = 10
@@ -7182,10 +7182,10 @@ static class WxKit.Stc
     const int ScriptolStringeol = 9
     const int ScriptolTriple = 13
     const int ScriptolWhite = 1
-    const int SelLines = 2
-    const int SelRectangle = 1
-    const int SelStream = 0
-    const int SelThin = 3
+    const int SelectionLines = 2
+    const int SelectionRectangle = 1
+    const int SelectionStream = 0
+    const int SelectionThin = 3
     const int ShBackticks = 11
     const int ShCharacter = 6
     const int ShCommentline = 2
@@ -7291,7 +7291,7 @@ static class WxKit.Stc
     const int StNumber = 2
     const int StReturn = 11
     const int StSelf = 7
-    const int StSpecSel = 16
+    const int StSpecSelection = 16
     const int StSpecial = 12
     const int StString = 1
     const int StSuper = 8
@@ -7876,6 +7876,7 @@ class WxKit.StyledTextCtrl : Control
     int LayoutCache { get; set; }
     int Length { get; }
     int Lexer { get; set; }
+    int LineCount { get; }
     int LineEndTypesActive { get; }
     int LineEndTypesAllowed { get; set; }
     int LineEndTypesSupported { get; }
@@ -7900,7 +7901,6 @@ class WxKit.StyledTextCtrl : Control
     int MouseDwellTime { get; set; }
     int MultiPaste { get; set; }
     int NamedStyles { get; }
-    int NumberOfLines { get; }
     int PhasesDraw { get; set; }
     int PositionAfter(int position)
     int PositionBefore(int position)
@@ -7984,7 +7984,7 @@ class WxKit.StyledTextCtrl : Control
     string NameOfStyle(int style)
     string PropertyNames()
     string PunctuationChars { get; set; }
-    string StringSelection { get; }
+    string SelectedText { get; }
     string StyleGetFaceName(int style)
     string SubStyleBases { get; }
     string TagsOfStyle(int style)
@@ -8380,12 +8380,12 @@ enum WxKit.SystemFeature : int
     CanIconizeFrame = 2
     TabletPresent = 3
 enum WxKit.SystemFont : int
-    AnsiFixedFont = 11
-    AnsiVarFont = 12
-    DefaultGuiFont = 17
-    DeviceDefaultFont = 14
-    OemFixedFont = 10
-    SystemFont = 13
+    AnsiFixed = 11
+    AnsiVariable = 12
+    DefaultGui = 17
+    DeviceDefault = 14
+    OemFixed = 10
+    System = 13
 enum WxKit.SystemMetric : int
     BorderX = 2
     BorderY = 3
@@ -8499,7 +8499,7 @@ class WxKit.TextCtrl : Control
     int GetLineLength(int lineNumber)
     int InsertionPoint { get; set; }
     int LastPosition { get; }
-    int NumberOfLines { get; }
+    int LineCount { get; }
     int PositionFromColumnAndLine(int column, int line)
     int SelectionLength { get; set; }
     int SelectionStart { get; set; }
@@ -8507,7 +8507,7 @@ class WxKit.TextCtrl : Control
     string GetRange(int from, int to)
     string Hint { get; set; }
     string RtfValue { get; set; }
-    string StringSelection { get; }
+    string SelectedText { get; }
     string Value { get; set; }
     void AppendText(string text)
     void ChangeValue(string value)
@@ -8541,7 +8541,7 @@ enum WxKit.TextCtrlHitTestResult : int
     OnText = 0
     Unknown = -2
 [Flags] enum WxKit.TextCtrlStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     AutoUrl = 4096
     BorderNone = 2097152
     BorderRaised = 67108864
@@ -8637,9 +8637,9 @@ class WxKit.ToolBar : Control
     Size ToolSize { get; }
     ToolBar(Window parent, int id = -1, Point? position = null, Size? size = null, ToolBarStyle style = ToolBarStyle.Default)
     ToolBarStyle Style { get; set; }
-    ToolBarTool? AddCheckTool(int toolId, string label, Bitmap bitmap1, Bitmap? disabledBitmap = null, string shortHelp = "", string longHelp = "")
+    ToolBarTool? AddCheckTool(int toolId, string label, Bitmap bitmap, Bitmap? disabledBitmap = null, string shortHelp = "", string longHelp = "")
     ToolBarTool? AddControl(Control control, string label = "")
-    ToolBarTool? AddRadioTool(int toolId, string label, Bitmap bitmap1, Bitmap? disabledBitmap = null, string shortHelp = "", string longHelp = "")
+    ToolBarTool? AddRadioTool(int toolId, string label, Bitmap bitmap, Bitmap? disabledBitmap = null, string shortHelp = "", string longHelp = "")
     ToolBarTool? AddSeparator()
     ToolBarTool? AddStretchableSpace()
     ToolBarTool? AddTool(int toolId, string label, Bitmap bitmap, Bitmap disabledBitmap, MenuItemKind kind = MenuItemKind.Normal, string shortHelp = "", string longHelp = "")
@@ -8662,9 +8662,9 @@ class WxKit.ToolBar : Control
     event EventHandler<CommandEvent>? ToolHovered
     event EventHandler<CommandEvent>? ToolRightClicked
     int GetToolPosition(int toolId)
+    int ToolCount { get; }
     int ToolPacking { get; set; }
     int ToolSeparation { get; set; }
-    int ToolsCount { get; }
     string GetToolLongHelp(int toolId)
     string GetToolShortHelp(int toolId)
     void ClearTools()
@@ -8675,7 +8675,7 @@ class WxKit.ToolBar : Control
     void SetToolShortHelp(int toolId, string helpString)
     void ToggleTool(int toolId, bool toggle)
 [Flags] enum WxKit.ToolBarStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -8689,9 +8689,9 @@ class WxKit.ToolBar : Control
     Flat = 32
     FullRepaintOnResize = 65536
     Horizontal = 4
+    HorizontalLayout = 2048
     HorizontalScrollBar = 1073741824
-    HorzLayout = 2048
-    HorzText = 2304
+    HorizontalText = 2304
     NoAlign = 1024
     NoDivider = 512
     NoIcons = 128
@@ -8729,7 +8729,7 @@ class WxKit.Toolbook : BookCtrlBase
     event EventHandler<BookCtrlEvent>? PageChanged
     event EventHandler<BookCtrlEvent>? PageChanging
 [Flags] enum WxKit.ToolbookStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -8739,8 +8739,8 @@ class WxKit.Toolbook : BookCtrlBase
     ButtonBar = 256
     ClipChildren = 4194304
     FullRepaintOnResize = 65536
+    HorizontalLayout = 32768
     HorizontalScrollBar = 1073741824
-    HorzLayout = 32768
     None = 0
     TabTraversal = 524288
     VerticalScrollBar = -2147483648
@@ -8881,9 +8881,9 @@ class WxKit.TreeCtrl : Control
     void CollapseAll()
     void CollapseAllChildren(TreeItemId item)
     void CollapseAndReset(TreeItemId item)
-    void Delete(TreeItemId item)
     void DeleteAllItems()
     void DeleteChildren(TreeItemId item)
+    void DeleteItem(TreeItemId item)
     void EnableBellOnNoMatch(bool on = true)
     void EndEditLabel(TreeItemId item, bool discardChanges = false)
     void EnsureVisible(TreeItemId item)
@@ -8912,7 +8912,7 @@ class WxKit.TreeCtrl : Control
     void UnselectAll()
     void UnselectItem(TreeItemId item)
 [Flags] enum WxKit.TreeCtrlStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -8938,7 +8938,7 @@ class WxKit.TreeCtrl : Control
     WantsChars = 262144
 class WxKit.TreeEvent : NotifyEvent
     KeyCode KeyCode { get; }
-    Point Point { get; }
+    Point Position { get; }
     TreeItemId? Item { get; }
     TreeItemId? OldItem { get; }
     bool IsEditCanceled { get; }
@@ -8998,8 +8998,8 @@ class WxKit.TreeListCtrl : Window
     void DeleteItem(TreeListItem item)
     void EnsureVisible(TreeListItem item)
     void Expand(TreeListItem item)
-    void Select(TreeListItem item)
     void SelectAll()
+    void SelectItem(TreeListItem item)
     void SetColumnWidth(int column, int width)
     void SetItemData(TreeListItem item, object? data)
     void SetItemImage(TreeListItem item, int closed, int opened = -1)
@@ -9007,11 +9007,11 @@ class WxKit.TreeListCtrl : Window
     void SetItemText(TreeListItem item, string text)
     void SetSortColumn(int column, bool ascendingOrder = true)
     void UncheckItem(TreeListItem item)
-    void Unselect(TreeListItem item)
     void UnselectAll()
+    void UnselectItem(TreeListItem item)
     void UpdateItemParentStateRecursively(TreeListItem item)
 [Flags] enum WxKit.TreeListCtrlStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -9167,7 +9167,7 @@ class WxKit.WebView : Control
     void Print()
     void Print(PrintData printData, WebViewPrintFlags flags = WebViewPrintFlags.HideHeaderFooter)
     void Redo()
-    void Reload(WebViewReloadFlags flags = WebViewReloadFlags.Default)
+    void Reload(WebViewReload flags = WebViewReload.Default)
     void RemoveAllUserScripts()
     void SelectAll()
     void Stop()
@@ -9180,7 +9180,7 @@ class WxKit.WebView : Control
     None = 0
     Other = 8
 class WxKit.WebViewEvent : NotifyEvent
-    WebViewNavigationActionFlags NavigationAction { get; }
+    WebViewNavigationAction NavigationAction { get; }
     bool IsError { get; }
     bool IsTargetMainFrame { get; }
     string MessageHandler { get; }
@@ -9193,14 +9193,14 @@ class WxKit.WebViewEvent : NotifyEvent
     HighlightResult = 8
     MatchCase = 4
     Wrap = 1
-enum WxKit.WebViewNavigationActionFlags : int
+enum WxKit.WebViewNavigationAction : int
     None = 0
     Other = 2
     User = 1
 [Flags] enum WxKit.WebViewPrintFlags : int
     Default = 0
     HideHeaderFooter = 1
-enum WxKit.WebViewReloadFlags : int
+enum WxKit.WebViewReload : int
     Default = 0
     NoCache = 1
 enum WxKit.WebViewUserScriptInjectionTime : int
@@ -9367,8 +9367,8 @@ class WxKit.Window : EvtHandler
     event EventHandler<SysColorChangedEvent>? SystemColorsChanged
     int CharHeight { get; }
     int CharWidth { get; }
-    int FromDip(int d)
-    int FromPhysical(int d)
+    int FromDip(int value)
+    int FromPhysical(int value)
     int GetBestHeight(int width)
     int GetBestWidth(int height)
     int GetHelpIdAtPoint(Point point)
@@ -9381,8 +9381,8 @@ class WxKit.Window : EvtHandler
     int MaxWidth { get; }
     int MinHeight { get; }
     int MinWidth { get; }
-    int ToDip(int d)
-    int ToPhysical(int d)
+    int ToDip(int value)
+    int ToPhysical(int value)
     nint NativeHandle { get; }
     static Window? Capture { get; }
     static Window? FindFocus()
@@ -9466,7 +9466,7 @@ enum WxKit.WindowMode : int
     Normal = 0
     WindowModal = 1
 [Flags] enum WxKit.WindowStyle : long
-    AlwaysShowSb = 8388608
+    AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432
@@ -9505,14 +9505,14 @@ class WxKit.Wizard : Dialog
     void FitToPage(WizardPage firstPage)
     void SetBorder(int border)
 [Flags] enum WxKit.WizardBitmapPlacement : int
-    HalignCenter = 16
-    HalignLeft = 8
-    HalignRight = 32
+    HorizontalAlignCenter = 16
+    HorizontalAlignLeft = 8
+    HorizontalAlignRight = 32
     None = 0
     Tile = 64
-    ValignBottom = 4
-    ValignCenter = 2
-    ValignTop = 1
+    VerticalAlignBottom = 4
+    VerticalAlignCenter = 2
+    VerticalAlignTop = 1
 class WxKit.WizardEvent : NotifyEvent
     WizardPage? Page { get; }
     bool IsForward { get; }
@@ -9526,9 +9526,9 @@ class WxKit.WizardPageSimple : WizardPage
     void SetNext(WizardPage? next)
     void SetPrevious(WizardPage? previous)
 class WxKit.WrapSizer : BoxSizer
-    WrapSizer(Orientation orientation = Orientation.Horizontal, WrapSizerFlags flags = WrapSizerFlags.WrapSizerDefaultFlags)
+    WrapSizer(Orientation orientation = Orientation.Horizontal, WrapSizerFlags flags = WrapSizerFlags.Default)
 [Flags] enum WxKit.WrapSizerFlags : int
+    Default = 3
     ExtendLastOnEachLine = 1
     None = 0
     RemoveLeadingSpaces = 2
-    WrapSizerDefaultFlags = 3

@@ -8,8 +8,8 @@ WXK_FUNCTION(wxk_Window*) wxk_Control_new(wxk_Window* parent, int32_t id, wxk_Po
 	});
 }
 
-WXK_FUNCTION(wxk_Size) wxk_Control_GetSizeFromTextSize(wxk_Window* self, wxk_Size tsize) noexcept {
-	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxControl*>(wxk::Unwrap(self))->GetSizeFromTextSize(wxk::FromSize(tsize))); });
+WXK_FUNCTION(wxk_Size) wxk_Control_GetSizeFromTextSize(wxk_Window* self, wxk_Size textSize) noexcept {
+	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxControl*>(wxk::Unwrap(self))->GetSizeFromTextSize(wxk::FromSize(textSize))); });
 }
 
 WXK_FUNCTION(wxk_Size) wxk_Control_GetSizeFromText(wxk_Window* self, const char16_t* text, size_t textLength) noexcept {

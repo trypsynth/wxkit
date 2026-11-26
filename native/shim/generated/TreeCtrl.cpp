@@ -418,6 +418,10 @@ WXK_FUNCTION(int32_t) wxk_EventType_TreeItemCollapsing(void) noexcept {
 	return wxEVT_TREE_ITEM_COLLAPSING;
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_TreeItemContextMenu(void) noexcept {
+	return wxEVT_TREE_ITEM_MENU;
+}
+
 WXK_FUNCTION(int32_t) wxk_EventType_TreeItemExpanded(void) noexcept {
 	return wxEVT_TREE_ITEM_EXPANDED;
 }
@@ -428,10 +432,6 @@ WXK_FUNCTION(int32_t) wxk_EventType_TreeItemExpanding(void) noexcept {
 
 WXK_FUNCTION(int32_t) wxk_EventType_TreeItemGetToolTip(void) noexcept {
 	return wxEVT_TREE_ITEM_GETTOOLTIP;
-}
-
-WXK_FUNCTION(int32_t) wxk_EventType_TreeItemMenu(void) noexcept {
-	return wxEVT_TREE_ITEM_MENU;
 }
 
 WXK_FUNCTION(int32_t) wxk_EventType_TreeItemMiddleClick(void) noexcept {

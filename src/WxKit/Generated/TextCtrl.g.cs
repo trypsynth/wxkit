@@ -72,14 +72,14 @@ public unsafe partial class TextCtrl : Control {
 	/// <summary>Returns the zero based index of the last position in the text control, which is equal to the number of characters in the control.</summary>
 	public int LastPosition => WxKitNative.TextCtrlGetLastPosition(Native);
 
+	/// <summary>Returns the number of lines in the text control buffer.</summary>
+	public int LineCount => WxKitNative.TextCtrlGetNumberOfLines(Native);
+
 	/// <summary>Returns the margins used by the control.</summary>
 	public Point Margins {
 		get => WxKitNative.TextCtrlGetMargins(Native);
 		set => WxKitNative.TextCtrlSetMarginsPoint(Native, value);
 	}
-
-	/// <summary>Returns the number of lines in the text control buffer.</summary>
-	public int NumberOfLines => WxKitNative.TextCtrlGetNumberOfLines(Native);
 
 	/// <summary>Returns the content of a multiline text control as RTF (Rich Text Formatted) text.</summary>
 	public string RtfValue {
@@ -93,7 +93,7 @@ public unsafe partial class TextCtrl : Control {
 	}
 
 	/// <summary>Gets the text currently selected in the control.</summary>
-	public string StringSelection => NativeString.Take(WxKitNative.TextCtrlGetStringSelection(Native));
+	public string SelectedText => NativeString.Take(WxKitNative.TextCtrlGetStringSelection(Native));
 
 	/// <summary>Gets the contents of the control.</summary>
 	public string Value {

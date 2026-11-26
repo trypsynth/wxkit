@@ -37,7 +37,7 @@ public enum BitmapButtonStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -76,7 +76,7 @@ public enum BitmapComboBoxStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -121,7 +121,7 @@ public enum ButtonStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -170,7 +170,7 @@ public enum CalendarCtrlStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -187,7 +187,7 @@ public enum CheckBoxStyle : long {
 	/// <summary>Create a 3-state checkbox. Wraps wxCHK_3STATE.</summary>
 	ThreeState = 0x1000,
 	/// <summary>By default a user can't set a 3-state checkbox to the third state. It can only be done from code. Using this flags allows the user to set the checkbox to the third state by clicking. Wraps wxCHK_ALLOW_3RD_STATE_FOR_USER.</summary>
-	Allow3rdStateForUser = 0x2000,
+	AllowThirdStateForUser = 0x2000,
 	/// <summary>Makes the text appear on the left of the checkbox. Wraps wxALIGN_RIGHT.</summary>
 	AlignRight = 0x200,
 	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
@@ -211,7 +211,7 @@ public enum CheckBoxStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -246,7 +246,7 @@ public enum ChoiceStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -287,7 +287,7 @@ public enum ChoicebookStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -302,7 +302,7 @@ public enum CollapsiblePaneStyle : long {
 	/// <summary>The default style. It includes wxTAB_TRAVERSAL and wxBORDER_NONE. Wraps wxCP_DEFAULT_STYLE.</summary>
 	Default = 0x280000,
 	/// <summary>By default wxCollapsiblePane resizes the top level window containing it when its own size changes. This allows easily implementing dialogs containing an optionally shown part, for example, and so is the default behaviour but can be inconvenient in some specific cases use this flag to disable this automatic parent resizing then. Wraps wxCP_NO_TLW_RESIZE.</summary>
-	NoTlwResize = 0x2,
+	NoTopLevelWindowResize = 0x2,
 	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
 	BorderSimple = 0x2000000,
 	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
@@ -324,7 +324,7 @@ public enum CollapsiblePaneStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -363,7 +363,7 @@ public enum ColorPickerCtrlStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -406,7 +406,7 @@ public enum ComboBoxStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -423,9 +423,9 @@ public enum DataViewCtrlStyle : long {
 	/// <summary>Use alternating colours for odd and even rows. Wraps wxDV_ROW_LINES.</summary>
 	RowLines = 0x10,
 	/// <summary>Display the separator lines between rows. Wraps wxDV_HORIZ_RULES.</summary>
-	HorizRules = 0x4,
+	HorizontalRules = 0x4,
 	/// <summary>Display the separator lines between columns. Wraps wxDV_VERT_RULES.</summary>
-	VertRules = 0x8,
+	VerticalRules = 0x8,
 	/// <summary>Allow variable line heights. This can be inefficient when displaying large number of items. Wraps wxDV_VARIABLE_LINE_HEIGHT.</summary>
 	VariableLineHeight = 0x20,
 	/// <summary>Do not show column headers (which are shown by default). Wraps wxDV_NO_HEADER.</summary>
@@ -451,7 +451,7 @@ public enum DataViewCtrlStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -492,7 +492,7 @@ public enum DatePickerCtrlStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -543,7 +543,7 @@ public enum DialogStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -586,7 +586,7 @@ public enum DirDialogStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -627,7 +627,7 @@ public enum DirPickerCtrlStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -670,7 +670,7 @@ public enum EditableListBoxStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -713,7 +713,7 @@ public enum FileCtrlStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -766,7 +766,7 @@ public enum FileDialogStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -813,7 +813,7 @@ public enum FilePickerCtrlStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -854,7 +854,7 @@ public enum FontPickerCtrlStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -917,7 +917,7 @@ public enum FrameStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -960,7 +960,7 @@ public enum GaugeStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -1005,7 +1005,7 @@ public enum GenericDirCtrlStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -1048,7 +1048,7 @@ public enum HyperlinkCtrlStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -1069,9 +1069,9 @@ public enum ListBoxStyle : long {
 	/// <summary>Create horizontal scrollbar if contents are too wide (Windows only). Wraps wxLB_HSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>Always show a vertical scrollbar. Wraps wxLB_ALWAYS_SB.</summary>
-	AlwaysSb = 0x200,
+	AlwaysScrollBar = 0x200,
 	/// <summary>Don't create vertical scrollbar (wxMSW and wxGTK only). Wraps wxLB_NO_SB.</summary>
-	NoSb = 0x400,
+	NoScrollBar = 0x400,
 	/// <summary>The listbox contents are sorted in alphabetical order. Wraps wxLB_SORT.</summary>
 	Sort = 0x10,
 	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
@@ -1093,7 +1093,7 @@ public enum ListBoxStyle : long {
 	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
 	VerticalScrollBar = -2147483648,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -1126,7 +1126,7 @@ public enum ListCtrlStyle : long {
 	/// <summary>No header in report mode. Wraps wxLC_NO_HEADER.</summary>
 	NoHeader = 0x800,
 	/// <summary>Single selection (default is multiple). Wraps wxLC_SINGLE_SEL.</summary>
-	SingleSel = 0x2000,
+	SingleSelection = 0x2000,
 	/// <summary>Sort in ascending order. (You must still supply a comparison callback in wxListCtrl::SortItems.). Wraps wxLC_SORT_ASCENDING.</summary>
 	SortAscending = 0x4000,
 	/// <summary>Sort in descending order. (You must still supply a comparison callback in wxListCtrl::SortItems.). Wraps wxLC_SORT_DESCENDING.</summary>
@@ -1156,7 +1156,7 @@ public enum ListCtrlStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -1197,7 +1197,7 @@ public enum ListbookStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -1232,7 +1232,7 @@ public enum MessageDialogStyle : long {
 	/// <summary>Displays an information symbol. This icon is used by default if wxYES_NO is not given so it is usually unnecessary to specify it explicitly. Wraps wxICON_INFORMATION.</summary>
 	IconInformation = 0x800,
 	/// <summary>Displays an authentication needed symbol. This style is only supported for message dialogs under wxMSW. In other cases the default icon selection logic will be used. Note this can be combined with other styles to provide a fallback. For instance, using wxICON_AUTH_NEEDED | wxICON_QUESTION will show a shield symbol on Windows Vista or above and a question symbol on other platforms. Available since wxWidgets 2.9.5. Wraps wxICON_AUTH_NEEDED.</summary>
-	IconAuthNeeded = 0x80000,
+	IconAuthenticationNeeded = 0x80000,
 	/// <summary>Makes the message box stay on top of all other windows and not only just its parent (currently implemented only under MSW and GTK). Wraps wxSTAY_ON_TOP.</summary>
 	StayOnTop = 0x8000,
 	/// <summary>Centre the message box on its parent or on the screen if parent is not specified. Setting this style under MSW makes no differences as the dialog is always centered on the parent. Wraps wxCENTRE.</summary>
@@ -1285,7 +1285,7 @@ public enum MiniFrameStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -1334,7 +1334,7 @@ public enum MultiChoiceDialogStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -1381,7 +1381,7 @@ public enum NotebookStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -1416,7 +1416,7 @@ public enum PickerBaseStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -1453,7 +1453,7 @@ public enum RadioBoxStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -1490,7 +1490,7 @@ public enum RadioButtonStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -1527,7 +1527,7 @@ public enum ScrollBarStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -1544,7 +1544,7 @@ public enum ScrolledWindowStyle : long {
 	/// <summary>If this style is specified and wxHSCROLL isn't, the window will be scrollable only in vertical direction (by default, i.e. if neither this style nor wxHSCROLL is specified, it scrolls in both directions). Wraps wxVSCROLL.</summary>
 	VerticalScrollBar = -2147483648,
 	/// <summary>Since wxWidgets 2.9.5, specifying this style makes the window always show its scrollbars, even if they are not used. See ShowScrollbars(). Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
 	BorderSimple = 0x2000000,
 	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
@@ -1601,7 +1601,7 @@ public enum SearchCtrlStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -1650,7 +1650,7 @@ public enum SingleChoiceDialogStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -1709,7 +1709,7 @@ public enum SliderStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -1750,7 +1750,7 @@ public enum SpinButtonStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -1793,7 +1793,7 @@ public enum SpinCtrlStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -1836,7 +1836,7 @@ public enum SpinCtrlDoubleStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -1883,7 +1883,7 @@ public enum SplitterWindowStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -1920,7 +1920,7 @@ public enum StaticLineStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -1967,7 +1967,7 @@ public enum StaticTextStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -2012,7 +2012,7 @@ public enum StatusBarStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -2075,7 +2075,7 @@ public enum TextCtrlStyle : long {
 	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
 	VerticalScrollBar = -2147483648,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -2123,9 +2123,9 @@ public enum ToolBarStyle : long {
 	/// <summary>Specifies no alignment with the parent window (Windows only, not very useful). Wraps wxTB_NOALIGN.</summary>
 	NoAlign = 0x400,
 	/// <summary>Shows the text and the icons alongside, not vertically stacked (Windows and GTK 2 only). This style must be used with wxTB_TEXT. Wraps wxTB_HORZ_LAYOUT.</summary>
-	HorzLayout = 0x800,
+	HorizontalLayout = 0x800,
 	/// <summary>Combination of wxTB_HORZ_LAYOUT and wxTB_TEXT. Wraps wxTB_HORZ_TEXT.</summary>
-	HorzText = 0x900,
+	HorizontalText = 0x900,
 	/// <summary>Don't show the short help tooltips for the tools when the mouse hovers over them. Wraps wxTB_NO_TOOLTIPS.</summary>
 	NoToolTips = 0x1000,
 	/// <summary>Align the toolbar at the bottom of parent window. Wraps wxTB_BOTTOM.</summary>
@@ -2155,7 +2155,7 @@ public enum ToolBarStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -2170,7 +2170,7 @@ public enum ToolbookStyle : long {
 	/// <summary>Use wxButtonToolBar-based implementation under macOS (ignored under other platforms). Wraps wxTBK_BUTTONBAR.</summary>
 	ButtonBar = 0x100,
 	/// <summary>Shows the text and the icons alongside, not vertically stacked (only implement under Windows and GTK 2 platforms as it relies on wxTB_HORZ_LAYOUT flag support). Wraps wxTBK_HORZ_LAYOUT.</summary>
-	HorzLayout = 0x8000,
+	HorizontalLayout = 0x8000,
 	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
 	BorderSimple = 0x2000000,
 	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
@@ -2192,7 +2192,7 @@ public enum ToolbookStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -2245,7 +2245,7 @@ public enum TreeCtrlStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -2288,7 +2288,7 @@ public enum TreeListCtrlStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
@@ -2321,7 +2321,7 @@ public enum WindowStyle : long {
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
-	AlwaysShowSb = 0x800000,
+	AlwaysShowScrollBar = 0x800000,
 	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
 	ClipChildren = 0x400000,
 	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>

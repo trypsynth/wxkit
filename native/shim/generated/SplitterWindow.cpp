@@ -116,7 +116,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_SplitterSashPositionResize(void) noexcept {
 	return wxEVT_SPLITTER_SASH_POS_RESIZE;
 }
 
-WXK_FUNCTION(int32_t) wxk_EventType_SplitterUnsplit(void) noexcept {
+WXK_FUNCTION(int32_t) wxk_EventType_SplitterWindowRemoved(void) noexcept {
 	return wxEVT_SPLITTER_UNSPLIT;
 }
 

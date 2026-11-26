@@ -36,7 +36,7 @@ public sealed class AboutDialogInfo {
 
 	public IList<string> Developers { get; } = [];
 
-	public IList<string> DocWriters { get; } = [];
+	public IList<string> DocumentationWriters { get; } = [];
 
 	public IList<string> Artists { get; } = [];
 
@@ -54,7 +54,7 @@ public static unsafe class AboutBox {
 		ArgumentNullException.ThrowIfNull(info);
 		Application.VerifyAccess();
 		using NativeStringArray developers = new(info.Developers);
-		using NativeStringArray docWriters = new(info.DocWriters);
+		using NativeStringArray docWriters = new(info.DocumentationWriters);
 		using NativeStringArray artists = new(info.Artists);
 		using NativeStringArray translators = new(info.Translators);
 		WxkAboutInfo about = new() {
@@ -67,7 +67,7 @@ public static unsafe class AboutBox {
 			WebSite = NativeString.Create(info.WebSite),
 			WebSiteDescription = NativeString.Create(info.WebSiteDescription),
 			Developers = info.Developers.Count > 0 ? developers.Handle : null,
-			DocWriters = info.DocWriters.Count > 0 ? docWriters.Handle : null,
+			DocWriters = info.DocumentationWriters.Count > 0 ? docWriters.Handle : null,
 			Artists = info.Artists.Count > 0 ? artists.Handle : null,
 			Translators = info.Translators.Count > 0 ? translators.Handle : null,
 			Icon = info.Icon is null ? null : info.Icon.Native,
