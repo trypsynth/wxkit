@@ -59,10 +59,10 @@ public unsafe partial class RadioBox : Control {
 	public bool Enable(int index, bool enable = true) => WxKitNative.RadioBoxEnable(Native, checked((uint)index), enable ? (byte)1 : (byte)0) != 0;
 
 	/// <summary>Finds a button matching the given string, returning the position if found, or wxNOT_FOUND if not found.</summary>
-	public int FindString(string text, bool bCase = false) {
+	public int FindString(string text, bool caseSensitive = false) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return WxKitNative.RadioBoxFindString(Native, textText, NativeString.Length(text), bCase ? (byte)1 : (byte)0);
+			return WxKitNative.RadioBoxFindString(Native, textText, NativeString.Length(text), caseSensitive ? (byte)1 : (byte)0);
 		}
 	}
 
@@ -85,10 +85,10 @@ public unsafe partial class RadioBox : Control {
 	public void Select(int index) => WxKitNative.RadioBoxSelect(Native, index);
 
 	/// <summary>Sets the helptext for an item.</summary>
-	public void SetItemHelpText(int item, string helptext) {
-		ArgumentNullException.ThrowIfNull(helptext);
-		fixed (char* helptextText = helptext) {
-			WxKitNative.RadioBoxSetItemHelpText(Native, checked((uint)item), helptextText, NativeString.Length(helptext));
+	public void SetItemHelpText(int item, string helpText) {
+		ArgumentNullException.ThrowIfNull(helpText);
+		fixed (char* helpTextText = helpText) {
+			WxKitNative.RadioBoxSetItemHelpText(Native, checked((uint)item), helpTextText, NativeString.Length(helpText));
 		}
 	}
 

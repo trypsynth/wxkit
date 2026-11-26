@@ -181,10 +181,10 @@ public unsafe partial class TextCtrl : Control {
 	public void ForceUpper() => WxKitNative.TextCtrlForceUpper(Native);
 
 	/// <summary>Gets the length of the specified line, not including any trailing newline character(s).</summary>
-	public int GetLineLength(long lineNo) => WxKitNative.TextCtrlGetLineLength(Native, lineNo);
+	public int GetLineLength(long lineNumber) => WxKitNative.TextCtrlGetLineLength(Native, lineNumber);
 
 	/// <summary>Returns the contents of a given line in the text control, not including any trailing newline character(s).</summary>
-	public string GetLineText(long lineNo) => NativeString.Take(WxKitNative.TextCtrlGetLineText(Native, lineNo));
+	public string GetLineText(long lineNumber) => NativeString.Take(WxKitNative.TextCtrlGetLineText(Native, lineNumber));
 
 	/// <summary>Returns the string containing the text starting in the positions from and up to to in the control.</summary>
 	public string GetRange(long from, long to) => NativeString.Take(WxKitNative.TextCtrlGetRange(Native, from, to));
@@ -289,7 +289,7 @@ public unsafe partial class TextCtrl : Control {
 	public bool SetMargins(int left, int top = -1) => WxKitNative.TextCtrlSetMarginsIntInt(Native, left, top) != 0;
 
 	/// <summary>This function sets the maximum number of characters the user can enter into the control.</summary>
-	public void SetMaxLength(int len) => WxKitNative.TextCtrlSetMaxLength(Native, checked((nuint)len));
+	public void SetMaxLength(int length) => WxKitNative.TextCtrlSetMaxLength(Native, checked((nuint)length));
 
 	/// <summary>Selects the text starting at the first position up to (but not including) the character at the last position.</summary>
 	public void SetSelection(long from, long to) => WxKitNative.TextCtrlSetSelection(Native, from, to);

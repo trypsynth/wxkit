@@ -28,10 +28,10 @@ public unsafe partial class TreeEvent : NotifyEvent {
 	public Point Point => WxKitNative.TreeEventGetPoint(Handle);
 
 	/// <summary>Set the tooltip for the item (valid for EVT_TREE_ITEM_GETTOOLTIP events).</summary>
-	public void SetToolTip(string tooltip) {
-		ArgumentNullException.ThrowIfNull(tooltip);
-		fixed (char* tooltipText = tooltip) {
-			WxKitNative.TreeEventSetToolTip(Handle, tooltipText, NativeString.Length(tooltip));
+	public void SetToolTip(string toolTip) {
+		ArgumentNullException.ThrowIfNull(toolTip);
+		fixed (char* toolTipText = toolTip) {
+			WxKitNative.TreeEventSetToolTip(Handle, toolTipText, NativeString.Length(toolTip));
 		}
 	}
 }

@@ -8,8 +8,8 @@ WXK_FUNCTION(wxk_Window*) wxk_SpinCtrlDouble_new(wxk_Window* parent, int32_t id,
 	});
 }
 
-WXK_FUNCTION(void) wxk_SpinCtrlDouble_SetRange(wxk_Window* self, double minVal, double maxVal) noexcept {
-	wxk::Guard([&] { static_cast<wxSpinCtrlDouble*>(wxk::Unwrap(self))->SetRange(static_cast<double>(minVal), static_cast<double>(maxVal)); });
+WXK_FUNCTION(void) wxk_SpinCtrlDouble_SetRange(wxk_Window* self, double minValue, double maxValue) noexcept {
+	wxk::Guard([&] { static_cast<wxSpinCtrlDouble*>(wxk::Unwrap(self))->SetRange(static_cast<double>(minValue), static_cast<double>(maxValue)); });
 }
 
 WXK_FUNCTION(void) wxk_SpinCtrlDouble_SetValue_String(wxk_Window* self, const char16_t* text, size_t textLength) noexcept {

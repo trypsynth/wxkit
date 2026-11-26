@@ -103,10 +103,10 @@ public unsafe partial class MenuBar : Window {
 	}
 
 	/// <summary>Enables you to set the global menubar on Mac, that is, the menubar displayed when the app is running without any frames open.</summary>
-	public static void MacSetCommonMenuBar(MenuBar menubar) {
+	public static void MacSetCommonMenuBar(MenuBar menuBar) {
 		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(menubar);
-		WxKitNative.MenuBarMacSetCommonMenuBar((WxkWindow*)menubar.Native);
+		ArgumentNullException.ThrowIfNull(menuBar);
+		WxKitNative.MenuBarMacSetCommonMenuBar((WxkWindow*)menuBar.Native);
 	}
 
 	/// <summary>Returns the Apple menu.</summary>

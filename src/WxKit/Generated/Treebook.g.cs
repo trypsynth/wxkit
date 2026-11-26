@@ -56,11 +56,11 @@ public unsafe partial class Treebook : BookCtrlBase {
 	public int GetPageParent(int page) => WxKitNative.TreebookGetPageParent(Native, checked((nuint)page));
 
 	/// <summary>Inserts a sub page under the specified page.</summary>
-	public bool InsertSubPage(int pagePos, Window page, string text, bool select = false, int imageId = -1) {
+	public bool InsertSubPage(int pagePosition, Window page, string text, bool select = false, int imageId = -1) {
 		ArgumentNullException.ThrowIfNull(page);
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return WxKitNative.TreebookInsertSubPage(Native, checked((nuint)pagePos), (WxkWindow*)page.Native, textText, NativeString.Length(text), select ? (byte)1 : (byte)0, imageId) != 0;
+			return WxKitNative.TreebookInsertSubPage(Native, checked((nuint)pagePosition), (WxkWindow*)page.Native, textText, NativeString.Length(text), select ? (byte)1 : (byte)0, imageId) != 0;
 		}
 	}
 

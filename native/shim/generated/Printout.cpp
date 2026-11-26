@@ -117,8 +117,8 @@ WXK_FUNCTION(void) wxk_Printout_MapScreenSizeToPaper(wxk_Object* self) noexcept 
 	wxk::Guard([&] { static_cast<wxPrintout*>(wxk::Unwrap(self))->MapScreenSizeToPaper(); });
 }
 
-WXK_FUNCTION(void) wxk_Printout_OffsetLogicalOrigin(wxk_Object* self, int32_t xoff, int32_t yoff) noexcept {
-	wxk::Guard([&] { static_cast<wxPrintout*>(wxk::Unwrap(self))->OffsetLogicalOrigin(static_cast<int>(xoff), static_cast<int>(yoff)); });
+WXK_FUNCTION(void) wxk_Printout_OffsetLogicalOrigin(wxk_Object* self, int32_t xOffset, int32_t yOffset) noexcept {
+	wxk::Guard([&] { static_cast<wxPrintout*>(wxk::Unwrap(self))->OffsetLogicalOrigin(static_cast<int>(xOffset), static_cast<int>(yOffset)); });
 }
 
 WXK_FUNCTION(void) wxk_Printout_SetLogicalOrigin(wxk_Object* self, int32_t x, int32_t y) noexcept {

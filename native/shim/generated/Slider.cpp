@@ -28,22 +28,22 @@ WXK_FUNCTION(void) wxk_Slider_SetRange(wxk_Window* self, int32_t minValue, int32
 	wxk::Guard([&] { static_cast<wxSlider*>(wxk::Unwrap(self))->SetRange(static_cast<int>(minValue), static_cast<int>(maxValue)); });
 }
 
-WXK_FUNCTION(void) wxk_Slider_SetSelection(wxk_Window* self, int32_t startPos, int32_t endPos) noexcept {
+WXK_FUNCTION(void) wxk_Slider_SetSelection(wxk_Window* self, int32_t startPosition, int32_t endPosition) noexcept {
 	#if defined(__WXMSW__)
-	wxk::Guard([&] { static_cast<wxSlider*>(wxk::Unwrap(self))->SetSelection(static_cast<int>(startPos), static_cast<int>(endPos)); });
+	wxk::Guard([&] { static_cast<wxSlider*>(wxk::Unwrap(self))->SetSelection(static_cast<int>(startPosition), static_cast<int>(endPosition)); });
 	#else
 	(void)self;
-	(void)startPos;
-	(void)endPos;
+	(void)startPosition;
+	(void)endPosition;
 	#endif
 }
 
-WXK_FUNCTION(void) wxk_Slider_SetTick(wxk_Window* self, int32_t tickPos) noexcept {
+WXK_FUNCTION(void) wxk_Slider_SetTick(wxk_Window* self, int32_t tickPosition) noexcept {
 	#if defined(__WXMSW__) || defined(__WXGTK__)
-	wxk::Guard([&] { static_cast<wxSlider*>(wxk::Unwrap(self))->SetTick(static_cast<int>(tickPos)); });
+	wxk::Guard([&] { static_cast<wxSlider*>(wxk::Unwrap(self))->SetTick(static_cast<int>(tickPosition)); });
 	#else
 	(void)self;
-	(void)tickPos;
+	(void)tickPosition;
 	#endif
 }
 
@@ -106,12 +106,12 @@ WXK_FUNCTION(int32_t) wxk_Slider_GetThumbLength(wxk_Window* self) noexcept {
 	#endif
 }
 
-WXK_FUNCTION(void) wxk_Slider_SetThumbLength(wxk_Window* self, int32_t len) noexcept {
+WXK_FUNCTION(void) wxk_Slider_SetThumbLength(wxk_Window* self, int32_t length) noexcept {
 	#if defined(__WXMSW__)
-	wxk::Guard([&] { static_cast<wxSlider*>(wxk::Unwrap(self))->SetThumbLength(static_cast<int>(len)); });
+	wxk::Guard([&] { static_cast<wxSlider*>(wxk::Unwrap(self))->SetThumbLength(static_cast<int>(length)); });
 	#else
 	(void)self;
-	(void)len;
+	(void)length;
 	#endif
 }
 

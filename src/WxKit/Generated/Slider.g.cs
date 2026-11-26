@@ -185,10 +185,10 @@ public unsafe partial class Slider : Control {
 	public void SetRange(int minValue, int maxValue) => WxKitNative.SliderSetRange(Native, minValue, maxValue);
 
 	/// <summary>Sets the selection.</summary>
-	public void SetSelection(int startPos, int endPos) => WxKitNative.SliderSetSelection(Native, startPos, endPos);
+	public void SetSelection(int startPosition, int endPosition) => WxKitNative.SliderSetSelection(Native, startPosition, endPosition);
 
 	/// <summary>Sets a tick position.</summary>
-	public void SetTick(int tickPos) => WxKitNative.SliderSetTick(Native, tickPos);
+	public void SetTick(int tickPosition) => WxKitNative.SliderSetTick(Native, tickPosition);
 
 	private static WxkWindow* CreateNative(Window parent, int value, int minValue, int maxValue, int id, Point? position, Size? size, SliderStyle style) {
 		Application.VerifyAccess();

@@ -28,8 +28,8 @@ WXK_FUNCTION(void) wxk_ScrolledWindow_EnableScrolling(wxk_Window* self, uint8_t 
 	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->EnableScrolling(xScrolling != 0, yScrolling != 0); });
 }
 
-WXK_FUNCTION(void) wxk_ScrolledWindow_ShowScrollbars(wxk_Window* self, int32_t horz, int32_t vert) noexcept {
-	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->ShowScrollbars(static_cast<wxScrollbarVisibility>(horz), static_cast<wxScrollbarVisibility>(vert)); });
+WXK_FUNCTION(void) wxk_ScrolledWindow_ShowScrollbars(wxk_Window* self, int32_t horizontal, int32_t vertical) noexcept {
+	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->ShowScrollbars(static_cast<wxScrollbarVisibility>(horizontal), static_cast<wxScrollbarVisibility>(vertical)); });
 }
 
 WXK_FUNCTION(void) wxk_ScrolledWindow_GetVirtualSize(wxk_Window* self, int32_t* x, int32_t* y) noexcept {

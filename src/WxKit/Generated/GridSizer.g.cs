@@ -7,7 +7,7 @@ namespace WxKit;
 /// <summary>A grid sizer is a sizer which lays out its children in a two-dimensional table with all table fields having the same size, i.e. Wraps wxGridSizer.</summary>
 public unsafe partial class GridSizer : Sizer {
 	/// <summary>wxGridSizer constructors.</summary>
-	public GridSizer(int columns, int vgap, int hgap) : this(CreateNative(columns, vgap, hgap)) {
+	public GridSizer(int columns, int verticalGap, int horizontalGap) : this(CreateNative(columns, verticalGap, horizontalGap)) {
 	}
 
 	/// <summary>wxGridSizer constructors.</summary>
@@ -15,7 +15,7 @@ public unsafe partial class GridSizer : Sizer {
 	}
 
 	/// <summary>wxGridSizer constructors.</summary>
-	public GridSizer(int rows, int columns, int vgap, int hgap) : this(CreateNative(rows, columns, vgap, hgap)) {
+	public GridSizer(int rows, int columns, int verticalGap, int horizontalGap) : this(CreateNative(rows, columns, verticalGap, horizontalGap)) {
 	}
 
 	/// <summary>wxGridSizer constructors.</summary>
@@ -61,9 +61,9 @@ public unsafe partial class GridSizer : Sizer {
 	/// <summary>Method which must be overridden in the derived sizer classes.</summary>
 	public void RepositionChildren(Size minSize) => WxKitNative.GridSizerRepositionChildren(Native, minSize);
 
-	private static WxkSizer* CreateNative(int columns, int vgap, int hgap) {
+	private static WxkSizer* CreateNative(int columns, int verticalGap, int horizontalGap) {
 		Application.VerifyAccess();
-		return WxKitNative.GridSizerNewIntIntInt(columns, vgap, hgap);
+		return WxKitNative.GridSizerNewIntIntInt(columns, verticalGap, horizontalGap);
 	}
 
 	private static WxkSizer* CreateNative(int columns) {
@@ -71,9 +71,9 @@ public unsafe partial class GridSizer : Sizer {
 		return WxKitNative.GridSizerNewInt(columns);
 	}
 
-	private static WxkSizer* CreateNative(int rows, int columns, int vgap, int hgap) {
+	private static WxkSizer* CreateNative(int rows, int columns, int verticalGap, int horizontalGap) {
 		Application.VerifyAccess();
-		return WxKitNative.GridSizerNewIntIntIntInt(rows, columns, vgap, hgap);
+		return WxKitNative.GridSizerNewIntIntIntInt(rows, columns, verticalGap, horizontalGap);
 	}
 
 	private static WxkSizer* CreateNative(int rows, int columns, Size gap) {

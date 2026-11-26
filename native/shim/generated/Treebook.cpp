@@ -24,8 +24,8 @@ WXK_FUNCTION(int32_t) wxk_Treebook_GetPageParent(wxk_Window* self, size_t page) 
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxTreebook*>(wxk::Unwrap(self))->GetPageParent(page)); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_Treebook_InsertSubPage(wxk_Window* self, size_t pagePos, wxk_Window* page, const char16_t* text, size_t textLength, uint8_t select, int32_t imageId) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTreebook*>(wxk::Unwrap(self))->InsertSubPage(pagePos, static_cast<wxWindow*>(wxk::Unwrap(page)), wxk::FromUtf16(text, textLength), select != 0, static_cast<int>(imageId))) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_Treebook_InsertSubPage(wxk_Window* self, size_t pagePosition, wxk_Window* page, const char16_t* text, size_t textLength, uint8_t select, int32_t imageId) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTreebook*>(wxk::Unwrap(self))->InsertSubPage(pagePosition, static_cast<wxWindow*>(wxk::Unwrap(page)), wxk::FromUtf16(text, textLength), select != 0, static_cast<int>(imageId))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Treebook_IsNodeExpanded(wxk_Window* self, size_t pageId) noexcept {

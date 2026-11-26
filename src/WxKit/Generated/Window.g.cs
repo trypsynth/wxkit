@@ -528,7 +528,7 @@ public unsafe partial class Window : EvtHandler {
 	public int AdjustForLayoutDirection(int x, int width, int widthTotal) => WxKitNative.WindowAdjustForLayoutDirection(Native, x, width, widthTotal);
 
 	/// <summary>Call this function to force one or both scrollbars to be always shown, even if the window is big enough to show its entire contents without scrolling.</summary>
-	public void AlwaysShowScrollBars(bool hflag = true, bool vflag = true) => WxKitNative.WindowAlwaysShowScrollbars(Native, hflag ? (byte)1 : (byte)0, vflag ? (byte)1 : (byte)0);
+	public void AlwaysShowScrollBars(bool horizontal = true, bool vertical = true) => WxKitNative.WindowAlwaysShowScrollbars(Native, horizontal ? (byte)1 : (byte)0, vertical ? (byte)1 : (byte)0);
 
 	/// <summary>Prepare for changing positions of multiple child windows.</summary>
 	public bool BeginRepositioningChildren() => WxKitNative.WindowBeginRepositioningChildren(Native) != 0;
@@ -751,7 +751,7 @@ public unsafe partial class Window : EvtHandler {
 	}
 
 	/// <summary>Returns true if the window has the given exFlag bit set in its extra styles.</summary>
-	public bool HasExtraStyle(WindowExtraStyle exFlag) => WxKitNative.WindowHasExtraStyle(Native, (int)exFlag) != 0;
+	public bool HasExtraStyle(WindowExtraStyle extraFlag) => WxKitNative.WindowHasExtraStyle(Native, (int)extraFlag) != 0;
 
 	/// <summary>Returns true if the window has the given flag bit set.</summary>
 	public bool HasFlag(int flag) => WxKitNative.WindowHasFlag(Native, flag) != 0;
@@ -997,7 +997,7 @@ public unsafe partial class Window : EvtHandler {
 	public void SetSizeHints(Size minSize, Size? maxSize = null, Size? incSize = null) => WxKitNative.WindowSetSizeHintsSizeSizeSize(Native, minSize, maxSize ?? global::WxKit.Size.Default, incSize ?? global::WxKit.Size.Default);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public void SetSizeHints(int minW, int minH, int maxW = -1, int maxH = -1, int incW = -1, int incH = -1) => WxKitNative.WindowSetSizeHintsIntIntIntIntIntInt(Native, minW, minH, maxW, maxH, incW, incH);
+	public void SetSizeHints(int minWidth, int minHeight, int maxWidth = -1, int maxHeight = -1, int widthIncrement = -1, int heightIncrement = -1) => WxKitNative.WindowSetSizeHintsIntIntIntIntIntInt(Native, minWidth, minHeight, maxWidth, maxHeight, widthIncrement, heightIncrement);
 
 	/// <summary>Set the transparency of the window.</summary>
 	public bool SetTransparent(byte alpha) => WxKitNative.WindowSetTransparent(Native, alpha) != 0;

@@ -38,10 +38,10 @@ public unsafe partial class ColorPickerCtrl : PickerBase {
 	}
 
 	/// <summary>Sets the currently selected colour.</summary>
-	public void SetColor(string colname) {
-		ArgumentNullException.ThrowIfNull(colname);
-		fixed (char* colnameText = colname) {
-			WxKitNative.ColorPickerCtrlSetColourString(Native, colnameText, NativeString.Length(colname));
+	public void SetColor(string colorName) {
+		ArgumentNullException.ThrowIfNull(colorName);
+		fixed (char* colorNameText = colorName) {
+			WxKitNative.ColorPickerCtrlSetColourString(Native, colorNameText, NativeString.Length(colorName));
 		}
 	}
 

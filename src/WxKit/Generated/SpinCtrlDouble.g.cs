@@ -47,7 +47,7 @@ public unsafe partial class SpinCtrlDouble : Control {
 	}
 
 	/// <summary>Sets range of allowable values.</summary>
-	public void SetRange(double minVal, double maxVal) => WxKitNative.SpinCtrlDoubleSetRange(Native, minVal, maxVal);
+	public void SetRange(double minValue, double maxValue) => WxKitNative.SpinCtrlDoubleSetRange(Native, minValue, maxValue);
 
 	/// <summary>Sets the value of the spin control.</summary>
 	public void SetValue(string text) {

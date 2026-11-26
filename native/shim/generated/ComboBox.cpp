@@ -151,8 +151,8 @@ WXK_FUNCTION(void) wxk_ComboBox_SetInsertionPointEnd(wxk_Window* self) noexcept 
 	wxk::Guard([&] { static_cast<wxTextEntry*>(static_cast<wxComboBox*>(wxk::Unwrap(self)))->SetInsertionPointEnd(); });
 }
 
-WXK_FUNCTION(void) wxk_ComboBox_SetMaxLength(wxk_Window* self, size_t len) noexcept {
-	wxk::Guard([&] { static_cast<wxTextEntry*>(static_cast<wxComboBox*>(wxk::Unwrap(self)))->SetMaxLength(len); });
+WXK_FUNCTION(void) wxk_ComboBox_SetMaxLength(wxk_Window* self, size_t length) noexcept {
+	wxk::Guard([&] { static_cast<wxTextEntry*>(static_cast<wxComboBox*>(wxk::Unwrap(self)))->SetMaxLength(length); });
 }
 
 WXK_FUNCTION(void) wxk_ComboBox_SelectAll(wxk_Window* self) noexcept {

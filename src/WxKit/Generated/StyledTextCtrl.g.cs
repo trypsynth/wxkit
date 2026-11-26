@@ -1252,7 +1252,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public int BraceMatch(int position, int maxReStyle = 0) => WxKitNative.StyledTextCtrlBraceMatch(Native, position, maxReStyle);
 
 	/// <summary>Similar to BraceMatch, but matching starts at the explicit start position.</summary>
-	public int BraceMatchNext(int position, int startPos) => WxKitNative.StyledTextCtrlBraceMatchNext(Native, position, startPos);
+	public int BraceMatchNext(int position, int startPosition) => WxKitNative.StyledTextCtrlBraceMatchNext(Native, position, startPosition);
 
 	/// <summary>Is there an active call tip?</summary>
 	public bool CallTipActive() => WxKitNative.StyledTextCtrlCallTipActive(Native) != 0;
@@ -1276,7 +1276,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void CallTipSetHighlight(int highlightStart, int highlightEnd) => WxKitNative.StyledTextCtrlCallTipSetHighlight(Native, highlightStart, highlightEnd);
 
 	/// <summary>Set the start position in order to change when backspacing removes the calltip.</summary>
-	public void CallTipSetPosAtStart(int posStart) => WxKitNative.StyledTextCtrlCallTipSetPosAtStart(Native, posStart);
+	public void CallTipSetPosAtStart(int startPosition) => WxKitNative.StyledTextCtrlCallTipSetPosAtStart(Native, startPosition);
 
 	/// <summary>Set position of calltip, above or below text.</summary>
 	public void CallTipSetPosition(bool above) => WxKitNative.StyledTextCtrlCallTipSetPosition(Native, above ? (byte)1 : (byte)0);
@@ -1368,7 +1368,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void ClearTabStops(int line) => WxKitNative.StyledTextCtrlClearTabStops(Native, line);
 
 	/// <summary>When key+modifier combination keyDefinition is pressed perform sciCommand.</summary>
-	public void CmdKeyAssign(int key, int modifiers, int cmd) => WxKitNative.StyledTextCtrlCmdKeyAssign(Native, key, modifiers, cmd);
+	public void CmdKeyAssign(int key, int modifiers, int command) => WxKitNative.StyledTextCtrlCmdKeyAssign(Native, key, modifiers, command);
 
 	/// <summary>When key+modifier combination keyDefinition is pressed do nothing.</summary>
 	public void CmdKeyClear(int key, int modifiers) => WxKitNative.StyledTextCtrlCmdKeyClear(Native, key, modifiers);
@@ -1377,7 +1377,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void CmdKeyClearAll() => WxKitNative.StyledTextCtrlCmdKeyClearAll(Native);
 
 	/// <summary>Perform one of the operations defined by the wxSTC_CMD_* constants.</summary>
-	public void CmdKeyExecute(int cmd) => WxKitNative.StyledTextCtrlCmdKeyExecute(Native, cmd);
+	public void CmdKeyExecute(int command) => WxKitNative.StyledTextCtrlCmdKeyExecute(Native, command);
 
 	/// <summary>Colourise a segment of the document using the current lexing language.</summary>
 	public void Colorize(int start, int end) => WxKitNative.StyledTextCtrlColourise(Native, start, end);
@@ -1459,13 +1459,13 @@ public unsafe partial class StyledTextCtrl : Control {
 	public int DistanceToSecondaryStyles() => WxKitNative.StyledTextCtrlDistanceToSecondaryStyles(Native);
 
 	/// <summary>Allow for simulating a DnD DragEnter.</summary>
-	public DragResult DoDragEnter(int x, int y, DragResult defaultRes) => (DragResult)WxKitNative.StyledTextCtrlDoDragEnter(Native, x, y, (int)defaultRes);
+	public DragResult DoDragEnter(int x, int y, DragResult defaultResult) => (DragResult)WxKitNative.StyledTextCtrlDoDragEnter(Native, x, y, (int)defaultResult);
 
 	/// <summary>Allow for simulating a DnD DragLeave.</summary>
 	public void DoDragLeave() => WxKitNative.StyledTextCtrlDoDragLeave(Native);
 
 	/// <summary>Allow for simulating a DnD DragOver.</summary>
-	public DragResult DoDragOver(int x, int y, DragResult defaultRes) => (DragResult)WxKitNative.StyledTextCtrlDoDragOver(Native, x, y, (int)defaultRes);
+	public DragResult DoDragOver(int x, int y, DragResult defaultResult) => (DragResult)WxKitNative.StyledTextCtrlDoDragOver(Native, x, y, (int)defaultResult);
 
 	/// <summary>Allow for simulating a DnD DropText.</summary>
 	public bool DoDropText(long x, long y, string data) {
@@ -1550,10 +1550,10 @@ public unsafe partial class StyledTextCtrl : Control {
 	public int FindColumn(int line, int column) => WxKitNative.StyledTextCtrlFindColumn(Native, line, column);
 
 	/// <summary>Find some text in the document.</summary>
-	public int FindText(int minPos, int maxPos, string text, int flags = 0) {
+	public int FindText(int minPosition, int maxPosition, string text, int flags = 0) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return WxKitNative.StyledTextCtrlFindText(Native, minPos, maxPos, textText, NativeString.Length(text), flags);
+			return WxKitNative.StyledTextCtrlFindText(Native, minPosition, maxPosition, textText, NativeString.Length(text), flags);
 		}
 	}
 
@@ -1576,10 +1576,10 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void FormFeed() => WxKitNative.StyledTextCtrlFormFeed(Native);
 
 	/// <summary>On Windows, will draw the document into a display context such as a printer.</summary>
-	public int FormatRange(bool doDraw, int startPos, int endPos, DC draw, DC target, Rect renderRect, Rect pageRect) {
+	public int FormatRange(bool doDraw, int startPosition, int endPosition, DC draw, DC target, Rect renderRect, Rect pageRect) {
 		ArgumentNullException.ThrowIfNull(draw);
 		ArgumentNullException.ThrowIfNull(target);
-		return WxKitNative.StyledTextCtrlFormatRange(Native, doDraw ? (byte)1 : (byte)0, startPos, endPos, draw.Native, target.Native, renderRect, pageRect);
+		return WxKitNative.StyledTextCtrlFormatRange(Native, doDraw ? (byte)1 : (byte)0, startPosition, endPosition, draw.Native, target.Native, renderRect, pageRect);
 	}
 
 	/// <summary>Free allocated sub styles.</summary>
@@ -1616,7 +1616,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public int GetLineIndentation(int line) => WxKitNative.StyledTextCtrlGetLineIndentation(Native, line);
 
 	/// <summary>Gets the length of the specified line, not including any trailing newline character(s).</summary>
-	public int GetLineLength(long lineNo) => WxKitNative.StyledTextCtrlGetLineLength(Native, lineNo);
+	public int GetLineLength(long lineNumber) => WxKitNative.StyledTextCtrlGetLineLength(Native, lineNumber);
 
 	/// <summary>Retrieve the position of the end of the selection at the given line (wxSTC_INVALID_POSITION if no selection on this line).</summary>
 	public int GetLineSelEndPosition(int line) => WxKitNative.StyledTextCtrlGetLineSelEndPosition(Native, line);
@@ -1628,7 +1628,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public int GetLineState(int line) => WxKitNative.StyledTextCtrlGetLineState(Native, line);
 
 	/// <summary>Returns the contents of a given line in the text control, not including any trailing newline character(s).</summary>
-	public string GetLineText(long lineNo) => NativeString.Take(WxKitNative.StyledTextCtrlGetLineText(Native, lineNo));
+	public string GetLineText(long lineNumber) => NativeString.Take(WxKitNative.StyledTextCtrlGetLineText(Native, lineNumber));
 
 	/// <summary>Is a line visible?</summary>
 	public bool GetLineVisible(int line) => WxKitNative.StyledTextCtrlGetLineVisible(Native, line) != 0;
@@ -1748,7 +1748,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public string GetTag(int tagNumber) => NativeString.Take(WxKitNative.StyledTextCtrlGetTag(Native, tagNumber));
 
 	/// <summary>Retrieve a range of text.</summary>
-	public string GetTextRange(int startPos, int endPos) => NativeString.Take(WxKitNative.StyledTextCtrlGetTextRange(Native, startPos, endPos));
+	public string GetTextRange(int startPosition, int endPosition) => NativeString.Take(WxKitNative.StyledTextCtrlGetTextRange(Native, startPosition, endPosition));
 
 	/// <summary>Set caret to start of a line and ensure it is visible.</summary>
 	public void GotoLine(int line) => WxKitNative.StyledTextCtrlGotoLine(Native, line);
@@ -2333,10 +2333,10 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void SetInsertionPointEnd() => WxKitNative.StyledTextCtrlSetInsertionPointEnd(Native);
 
 	/// <summary>Set up the key words used by the lexer.</summary>
-	public void SetKeyWords(int keyWordSet, string keyWords) {
-		ArgumentNullException.ThrowIfNull(keyWords);
-		fixed (char* keyWordsText = keyWords) {
-			WxKitNative.StyledTextCtrlSetKeyWords(Native, keyWordSet, keyWordsText, NativeString.Length(keyWords));
+	public void SetKeyWords(int keywordSet, string keywords) {
+		ArgumentNullException.ThrowIfNull(keywords);
+		fixed (char* keywordsText = keywords) {
+			WxKitNative.StyledTextCtrlSetKeyWords(Native, keywordSet, keywordsText, NativeString.Length(keywords));
 		}
 	}
 
@@ -2558,16 +2558,16 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Set style size, face, bold, italic, and underline attributes from a wxFont's attributes.</summary>
-	public void StyleSetFont(int styleNum, Font font) {
+	public void StyleSetFont(int styleNumber, Font font) {
 		ArgumentNullException.ThrowIfNull(font);
-		WxKitNative.StyledTextCtrlStyleSetFont(Native, styleNum, font.Native);
+		WxKitNative.StyledTextCtrlStyleSetFont(Native, styleNumber, font.Native);
 	}
 
 	/// <summary>Set all font style attributes at once.</summary>
-	public void StyleSetFontAttr(int styleNum, int size, string faceName, bool bold, bool italic, bool underline, FontEncoding encoding = FontEncoding.Default) {
+	public void StyleSetFontAttr(int styleNumber, int size, string faceName, bool bold, bool italic, bool underline, FontEncoding encoding = FontEncoding.Default) {
 		ArgumentNullException.ThrowIfNull(faceName);
 		fixed (char* faceNameText = faceName) {
-			WxKitNative.StyledTextCtrlStyleSetFontAttr(Native, styleNum, size, faceNameText, NativeString.Length(faceName), bold ? (byte)1 : (byte)0, italic ? (byte)1 : (byte)0, underline ? (byte)1 : (byte)0, (int)encoding);
+			WxKitNative.StyledTextCtrlStyleSetFontAttr(Native, styleNumber, size, faceNameText, NativeString.Length(faceName), bold ? (byte)1 : (byte)0, italic ? (byte)1 : (byte)0, underline ? (byte)1 : (byte)0, (int)encoding);
 		}
 	}
 
@@ -2578,7 +2578,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void StyleSetForeground(int style, Color? fore) => WxKitNative.StyledTextCtrlStyleSetForeground(Native, style, global::WxKit.Color.ToNative(fore));
 
 	/// <summary>Set a style to be a hotspot or not.</summary>
-	public void StyleSetHotSpot(int style, bool hotspot) => WxKitNative.StyledTextCtrlStyleSetHotSpot(Native, style, hotspot ? (byte)1 : (byte)0);
+	public void StyleSetHotSpot(int style, bool hotSpot) => WxKitNative.StyledTextCtrlStyleSetHotSpot(Native, style, hotSpot ? (byte)1 : (byte)0);
 
 	/// <summary>Set a style to be italic or not.</summary>
 	public void StyleSetItalic(int style, bool italic) => WxKitNative.StyledTextCtrlStyleSetItalic(Native, style, italic ? (byte)1 : (byte)0);
@@ -2590,10 +2590,10 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void StyleSetSizeFractional(int style, int sizeHundredthPoints) => WxKitNative.StyledTextCtrlStyleSetSizeFractional(Native, style, sizeHundredthPoints);
 
 	/// <summary>Extract style settings from a spec-string which is composed of one or more of the following comma separated elements:</summary>
-	public void StyleSetSpec(int styleNum, string spec) {
+	public void StyleSetSpec(int styleNumber, string spec) {
 		ArgumentNullException.ThrowIfNull(spec);
 		fixed (char* specText = spec) {
-			WxKitNative.StyledTextCtrlStyleSetSpec(Native, styleNum, specText, NativeString.Length(spec));
+			WxKitNative.StyledTextCtrlStyleSetSpec(Native, styleNumber, specText, NativeString.Length(spec));
 		}
 	}
 

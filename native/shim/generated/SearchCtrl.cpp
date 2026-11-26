@@ -84,8 +84,8 @@ WXK_FUNCTION(void) wxk_SearchCtrl_SetInsertionPointEnd(wxk_Window* self) noexcep
 	wxk::Guard([&] { static_cast<wxTextEntry*>(static_cast<wxSearchCtrl*>(wxk::Unwrap(self)))->SetInsertionPointEnd(); });
 }
 
-WXK_FUNCTION(void) wxk_SearchCtrl_SetMaxLength(wxk_Window* self, size_t len) noexcept {
-	wxk::Guard([&] { static_cast<wxTextEntry*>(static_cast<wxSearchCtrl*>(wxk::Unwrap(self)))->SetMaxLength(len); });
+WXK_FUNCTION(void) wxk_SearchCtrl_SetMaxLength(wxk_Window* self, size_t length) noexcept {
+	wxk::Guard([&] { static_cast<wxTextEntry*>(static_cast<wxSearchCtrl*>(wxk::Unwrap(self)))->SetMaxLength(length); });
 }
 
 WXK_FUNCTION(void) wxk_SearchCtrl_SetSelection(wxk_Window* self, int64_t from, int64_t to) noexcept {

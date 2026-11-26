@@ -319,8 +319,8 @@ WXK_FUNCTION(void) wxk_ListCtrl_SetItemFont(wxk_Window* self, int64_t item, cons
 	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItemFont(static_cast<long>(item), wxk::ValueOf<wxFont>(font)); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItemImage(wxk_Window* self, int64_t item, int32_t image, int32_t selImage) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItemImage(static_cast<long>(item), static_cast<int>(image), static_cast<int>(selImage))) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItemImage(wxk_Window* self, int64_t item, int32_t image, int32_t selectedImage) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItemImage(static_cast<long>(item), static_cast<int>(image), static_cast<int>(selectedImage))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItemPosition(wxk_Window* self, int64_t item, wxk_Point position) noexcept {

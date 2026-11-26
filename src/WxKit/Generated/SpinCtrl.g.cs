@@ -47,7 +47,7 @@ public unsafe partial class SpinCtrl : Control {
 	}
 
 	/// <summary>Sets range of allowable values.</summary>
-	public void SetRange(int minVal, int maxVal) => WxKitNative.SpinCtrlSetRange(Native, minVal, maxVal);
+	public void SetRange(int minValue, int maxValue) => WxKitNative.SpinCtrlSetRange(Native, minValue, maxValue);
 
 	/// <summary>Select the text in the text part of the control between positions from (inclusive) and to (exclusive).</summary>
 	public void SetSelection(long from, long to) => WxKitNative.SpinCtrlSetSelection(Native, from, to);

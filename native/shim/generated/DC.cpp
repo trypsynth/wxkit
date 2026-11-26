@@ -9,8 +9,8 @@ WXK_FUNCTION(void) wxk_DC_DrawArc_IntIntIntIntIntInt(wxk_Object* self, int32_t x
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawArc(static_cast<int>(xStart), static_cast<int>(yStart), static_cast<int>(xEnd), static_cast<int>(yEnd), static_cast<int>(xc), static_cast<int>(yc)); });
 }
 
-WXK_FUNCTION(void) wxk_DC_DrawArc_PointPointPoint(wxk_Object* self, wxk_Point ptStart, wxk_Point ptEnd, wxk_Point center) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawArc(wxk::FromPoint(ptStart), wxk::FromPoint(ptEnd), wxk::FromPoint(center)); });
+WXK_FUNCTION(void) wxk_DC_DrawArc_PointPointPoint(wxk_Object* self, wxk_Point start, wxk_Point end, wxk_Point center) noexcept {
+	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawArc(wxk::FromPoint(start), wxk::FromPoint(end), wxk::FromPoint(center)); });
 }
 
 WXK_FUNCTION(void) wxk_DC_DrawBitmap_BitmapIntIntBool(wxk_Object* self, const wxk_Object* bitmap, int32_t x, int32_t y, uint8_t useMask) noexcept {
@@ -65,20 +65,20 @@ WXK_FUNCTION(void) wxk_DC_DrawIcon_IconPoint(wxk_Object* self, const wxk_Object*
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawIcon(wxk::ValueOf<wxIcon>(icon), wxk::FromPoint(point)); });
 }
 
-WXK_FUNCTION(void) wxk_DC_DrawLabel_StringBitmapRectIntInt(wxk_Object* self, const char16_t* text, size_t textLength, const wxk_Object* bitmap, wxk_Rect rect, int32_t alignment, int32_t indexAccel) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawLabel(wxk::FromUtf16(text, textLength), wxk::ValueOf<wxBitmap>(bitmap), wxk::FromRect(rect), static_cast<int>(alignment), static_cast<int>(indexAccel)); });
+WXK_FUNCTION(void) wxk_DC_DrawLabel_StringBitmapRectIntInt(wxk_Object* self, const char16_t* text, size_t textLength, const wxk_Object* bitmap, wxk_Rect rect, int32_t alignment, int32_t acceleratorIndex) noexcept {
+	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawLabel(wxk::FromUtf16(text, textLength), wxk::ValueOf<wxBitmap>(bitmap), wxk::FromRect(rect), static_cast<int>(alignment), static_cast<int>(acceleratorIndex)); });
 }
 
-WXK_FUNCTION(void) wxk_DC_DrawLabel_StringRectIntInt(wxk_Object* self, const char16_t* text, size_t textLength, wxk_Rect rect, int32_t alignment, int32_t indexAccel) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawLabel(wxk::FromUtf16(text, textLength), wxk::FromRect(rect), static_cast<int>(alignment), static_cast<int>(indexAccel)); });
+WXK_FUNCTION(void) wxk_DC_DrawLabel_StringRectIntInt(wxk_Object* self, const char16_t* text, size_t textLength, wxk_Rect rect, int32_t alignment, int32_t acceleratorIndex) noexcept {
+	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawLabel(wxk::FromUtf16(text, textLength), wxk::FromRect(rect), static_cast<int>(alignment), static_cast<int>(acceleratorIndex)); });
 }
 
 WXK_FUNCTION(void) wxk_DC_DrawLine_IntIntIntInt(wxk_Object* self, int32_t x1, int32_t y1, int32_t x2, int32_t y2) noexcept {
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawLine(static_cast<int>(x1), static_cast<int>(y1), static_cast<int>(x2), static_cast<int>(y2)); });
 }
 
-WXK_FUNCTION(void) wxk_DC_DrawLine_PointPoint(wxk_Object* self, wxk_Point pt1, wxk_Point pt2) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawLine(wxk::FromPoint(pt1), wxk::FromPoint(pt2)); });
+WXK_FUNCTION(void) wxk_DC_DrawLine_PointPoint(wxk_Object* self, wxk_Point point1, wxk_Point point2) noexcept {
+	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawLine(wxk::FromPoint(point1), wxk::FromPoint(point2)); });
 }
 
 WXK_FUNCTION(void) wxk_DC_DrawPoint_IntInt(wxk_Object* self, int32_t x, int32_t y) noexcept {
@@ -141,8 +141,8 @@ WXK_FUNCTION(void) wxk_DC_GradientFillConcentric_RectColorColorPoint(wxk_Object*
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->GradientFillConcentric(wxk::FromRect(rect), wxk::FromColour(initialColor), wxk::FromColour(destColor), wxk::FromPoint(circleCenter)); });
 }
 
-WXK_FUNCTION(void) wxk_DC_GradientFillLinear(wxk_Object* self, wxk_Rect rect, wxk_Colour initialColor, wxk_Colour destColor, int32_t nDirection) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->GradientFillLinear(wxk::FromRect(rect), wxk::FromColour(initialColor), wxk::FromColour(destColor), static_cast<wxDirection>(nDirection)); });
+WXK_FUNCTION(void) wxk_DC_GradientFillLinear(wxk_Object* self, wxk_Rect rect, wxk_Colour initialColor, wxk_Colour destColor, int32_t direction) noexcept {
+	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->GradientFillLinear(wxk::FromRect(rect), wxk::FromColour(initialColor), wxk::FromColour(destColor), static_cast<wxDirection>(direction)); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_DC_FloodFill_IntIntColorFloodFillStyle(wxk_Object* self, int32_t x, int32_t y, wxk_Colour color, int32_t style) noexcept {
@@ -225,12 +225,12 @@ WXK_FUNCTION(void) wxk_DC_EndPage(wxk_Object* self) noexcept {
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->EndPage(); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_DC_Blit(wxk_Object* self, int32_t xdest, int32_t ydest, int32_t width, int32_t height, wxk_Object* source, int32_t xsrc, int32_t ysrc, int32_t logicalFunc, uint8_t useMask, int32_t xsrcMask, int32_t ysrcMask) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDC*>(wxk::Unwrap(self))->Blit(static_cast<int>(xdest), static_cast<int>(ydest), static_cast<int>(width), static_cast<int>(height), static_cast<wxDC*>(wxk::Unwrap(source)), static_cast<int>(xsrc), static_cast<int>(ysrc), static_cast<wxRasterOperationMode>(logicalFunc), useMask != 0, static_cast<int>(xsrcMask), static_cast<int>(ysrcMask))) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_DC_Blit(wxk_Object* self, int32_t xDestination, int32_t yDestination, int32_t width, int32_t height, wxk_Object* source, int32_t xSource, int32_t ySource, int32_t logicalFunction, uint8_t useMask, int32_t xSourceMask, int32_t ySourceMask) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDC*>(wxk::Unwrap(self))->Blit(static_cast<int>(xDestination), static_cast<int>(yDestination), static_cast<int>(width), static_cast<int>(height), static_cast<wxDC*>(wxk::Unwrap(source)), static_cast<int>(xSource), static_cast<int>(ySource), static_cast<wxRasterOperationMode>(logicalFunction), useMask != 0, static_cast<int>(xSourceMask), static_cast<int>(ySourceMask))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_DC_StretchBlit(wxk_Object* self, int32_t xdest, int32_t ydest, int32_t dstWidth, int32_t dstHeight, wxk_Object* source, int32_t xsrc, int32_t ysrc, int32_t srcWidth, int32_t srcHeight, int32_t logicalFunc, uint8_t useMask, int32_t xsrcMask, int32_t ysrcMask) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDC*>(wxk::Unwrap(self))->StretchBlit(static_cast<int>(xdest), static_cast<int>(ydest), static_cast<int>(dstWidth), static_cast<int>(dstHeight), static_cast<wxDC*>(wxk::Unwrap(source)), static_cast<int>(xsrc), static_cast<int>(ysrc), static_cast<int>(srcWidth), static_cast<int>(srcHeight), static_cast<wxRasterOperationMode>(logicalFunc), useMask != 0, static_cast<int>(xsrcMask), static_cast<int>(ysrcMask))) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_DC_StretchBlit(wxk_Object* self, int32_t xDestination, int32_t yDestination, int32_t destinationWidth, int32_t destinationHeight, wxk_Object* source, int32_t xSource, int32_t ySource, int32_t sourceWidth, int32_t sourceHeight, int32_t logicalFunction, uint8_t useMask, int32_t xSourceMask, int32_t ySourceMask) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDC*>(wxk::Unwrap(self))->StretchBlit(static_cast<int>(xDestination), static_cast<int>(yDestination), static_cast<int>(destinationWidth), static_cast<int>(destinationHeight), static_cast<wxDC*>(wxk::Unwrap(source)), static_cast<int>(xSource), static_cast<int>(ySource), static_cast<int>(sourceWidth), static_cast<int>(sourceHeight), static_cast<wxRasterOperationMode>(logicalFunction), useMask != 0, static_cast<int>(xSourceMask), static_cast<int>(ySourceMask))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(void) wxk_DC_CopyAttributes(wxk_Object* self, wxk_Object* dc) noexcept {

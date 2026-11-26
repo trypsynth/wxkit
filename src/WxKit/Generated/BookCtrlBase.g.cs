@@ -55,10 +55,10 @@ public unsafe partial class BookCtrlBase : Control {
 	public Window? GetPage(int page) => ObjectRegistry.Wrap<Window>(WxKitNative.BookCtrlBaseGetPage(Native, checked((nuint)page)));
 
 	/// <summary>Returns the image index for the given page.</summary>
-	public int GetPageImage(int nPage) => WxKitNative.BookCtrlBaseGetPageImage(Native, checked((nuint)nPage));
+	public int GetPageImage(int page) => WxKitNative.BookCtrlBaseGetPageImage(Native, checked((nuint)page));
 
 	/// <summary>Returns the string for the given page.</summary>
-	public string GetPageText(int nPage) => NativeString.Take(WxKitNative.BookCtrlBaseGetPageText(Native, checked((nuint)nPage)));
+	public string GetPageText(int page) => NativeString.Take(WxKitNative.BookCtrlBaseGetPageText(Native, checked((nuint)page)));
 
 	/// <summary>Inserts a new page at the specified position.</summary>
 	public bool InsertPage(int index, Window page, string text, bool select = false, int imageId = -1) {

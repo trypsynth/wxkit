@@ -315,7 +315,7 @@ public unsafe partial class ComboBox : Control {
 	public bool SetMargins(int left, int top = -1) => WxKitNative.ComboBoxSetMarginsIntInt(Native, left, top) != 0;
 
 	/// <summary>This function sets the maximum number of characters the user can enter into the control.</summary>
-	public void SetMaxLength(int len) => WxKitNative.ComboBoxSetMaxLength(Native, checked((nuint)len));
+	public void SetMaxLength(int length) => WxKitNative.ComboBoxSetMaxLength(Native, checked((nuint)length));
 
 	/// <summary>Same as wxTextEntry::SetSelection().</summary>
 	public void SetSelection(long from, long to) => WxKitNative.ComboBoxSetSelectionLongLong(Native, from, to);

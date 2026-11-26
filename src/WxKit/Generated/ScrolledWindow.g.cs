@@ -158,7 +158,7 @@ public unsafe partial class ScrolledWindow : Panel {
 	public void SetScrollRate(int xStep, int yStep) => WxKitNative.ScrolledWindowSetScrollRate(Native, xStep, yStep);
 
 	/// <summary>Set the scrollbar visibility.</summary>
-	public void ShowScrollBars(ScrollBarVisibility horz, ScrollBarVisibility vert) => WxKitNative.ScrolledWindowShowScrollbars(Native, (int)horz, (int)vert);
+	public void ShowScrollBars(ScrollBarVisibility horizontal, ScrollBarVisibility vertical) => WxKitNative.ScrolledWindowShowScrollbars(Native, (int)horizontal, (int)vertical);
 
 	/// <summary>Stop generating the scroll events when mouse is held outside the window.</summary>
 	public void StopAutoScrolling() => WxKitNative.ScrolledWindowStopAutoScrolling(Native);

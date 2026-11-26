@@ -16,8 +16,8 @@ WXK_FUNCTION(uint8_t) wxk_Dialog_DoLayoutAdaptation(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDialog*>(wxk::Unwrap(self))->DoLayoutAdaptation()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_Dialog_EndModal(wxk_Window* self, int32_t retCode) noexcept {
-	wxk::Guard([&] { static_cast<wxDialog*>(wxk::Unwrap(self))->EndModal(static_cast<int>(retCode)); });
+WXK_FUNCTION(void) wxk_Dialog_EndModal(wxk_Window* self, int32_t returnCode) noexcept {
+	wxk::Guard([&] { static_cast<wxDialog*>(wxk::Unwrap(self))->EndModal(static_cast<int>(returnCode)); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Dialog_IsMainButtonId(wxk_Window* self, int32_t id) noexcept {
@@ -102,8 +102,8 @@ WXK_FUNCTION(int32_t) wxk_Dialog_GetReturnCode(wxk_Window* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxDialog*>(wxk::Unwrap(self))->GetReturnCode()); });
 }
 
-WXK_FUNCTION(void) wxk_Dialog_SetReturnCode(wxk_Window* self, int32_t retCode) noexcept {
-	wxk::Guard([&] { static_cast<wxDialog*>(wxk::Unwrap(self))->SetReturnCode(static_cast<int>(retCode)); });
+WXK_FUNCTION(void) wxk_Dialog_SetReturnCode(wxk_Window* self, int32_t returnCode) noexcept {
+	wxk::Guard([&] { static_cast<wxDialog*>(wxk::Unwrap(self))->SetReturnCode(static_cast<int>(returnCode)); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Dialog_IsModal(wxk_Window* self) noexcept {

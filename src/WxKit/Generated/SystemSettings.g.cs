@@ -45,8 +45,8 @@ public static unsafe partial class SystemSettings {
 	}
 
 	/// <summary>Select one of the two colours depending on whether light or dark mode is used.</summary>
-	public static Color? SelectLightDark(Color? colForLight, Color? colForDark) {
+	public static Color? SelectLightDark(Color? lightColor, Color? darkColor) {
 		Application.VerifyAccess();
-		return global::WxKit.Color.FromNative(WxKitNative.SystemSettingsSelectLightDark(global::WxKit.Color.ToNative(colForLight), global::WxKit.Color.ToNative(colForDark)));
+		return global::WxKit.Color.FromNative(WxKitNative.SystemSettingsSelectLightDark(global::WxKit.Color.ToNative(lightColor), global::WxKit.Color.ToNative(darkColor)));
 	}
 }

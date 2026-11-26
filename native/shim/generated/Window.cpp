@@ -77,8 +77,8 @@ WXK_FUNCTION(uint8_t) wxk_Window_Reparent(wxk_Window* self, wxk_Window* newParen
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->Reparent(static_cast<wxWindow*>(wxk::Unwrap(newParent)))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_Window_AlwaysShowScrollbars(wxk_Window* self, uint8_t hflag, uint8_t vflag) noexcept {
-	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->AlwaysShowScrollbars(hflag != 0, vflag != 0); });
+WXK_FUNCTION(void) wxk_Window_AlwaysShowScrollbars(wxk_Window* self, uint8_t horizontal, uint8_t vertical) noexcept {
+	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->AlwaysShowScrollbars(horizontal != 0, vertical != 0); });
 }
 
 WXK_FUNCTION(int32_t) wxk_Window_GetScrollPos(wxk_Window* self, int32_t orientation) noexcept {
@@ -289,8 +289,8 @@ WXK_FUNCTION(void) wxk_Window_SetSizeHints_SizeSizeSize(wxk_Window* self, wxk_Si
 	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->SetSizeHints(wxk::FromSize(minSize), wxk::FromSize(maxSize), wxk::FromSize(incSize)); });
 }
 
-WXK_FUNCTION(void) wxk_Window_SetSizeHints_IntIntIntIntIntInt(wxk_Window* self, int32_t minW, int32_t minH, int32_t maxW, int32_t maxH, int32_t incW, int32_t incH) noexcept {
-	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->SetSizeHints(static_cast<int>(minW), static_cast<int>(minH), static_cast<int>(maxW), static_cast<int>(maxH), static_cast<int>(incW), static_cast<int>(incH)); });
+WXK_FUNCTION(void) wxk_Window_SetSizeHints_IntIntIntIntIntInt(wxk_Window* self, int32_t minWidth, int32_t minHeight, int32_t maxWidth, int32_t maxHeight, int32_t widthIncrement, int32_t heightIncrement) noexcept {
+	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->SetSizeHints(static_cast<int>(minWidth), static_cast<int>(minHeight), static_cast<int>(maxWidth), static_cast<int>(maxHeight), static_cast<int>(widthIncrement), static_cast<int>(heightIncrement)); });
 }
 
 WXK_FUNCTION(void) wxk_Window_SetVirtualSize_IntInt(wxk_Window* self, int32_t width, int32_t height) noexcept {
@@ -465,8 +465,8 @@ WXK_FUNCTION(void) wxk_Window_SetPreviousHandler(wxk_Window* self, wxk_EvtHandle
 	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->SetPreviousHandler(static_cast<wxEvtHandler*>(wxk::Unwrap(handler))); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_Window_HasExtraStyle(wxk_Window* self, int32_t exFlag) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->HasExtraStyle(static_cast<int>(exFlag))) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_Window_HasExtraStyle(wxk_Window* self, int32_t extraFlag) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->HasExtraStyle(static_cast<int>(extraFlag))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Window_HasFlag(wxk_Window* self, int32_t flag) noexcept {

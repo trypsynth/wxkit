@@ -28,8 +28,8 @@ WXK_FUNCTION(void) wxk_TextValidator_AddCharIncludes(wxk_Object* self, const cha
 	wxk::Guard([&] { static_cast<wxTextValidator*>(wxk::Unwrap(self))->AddCharIncludes(wxk::FromUtf16(chars, charsLength)); });
 }
 
-WXK_FUNCTION(wxk_String*) wxk_TextValidator_IsValid(wxk_Object* self, const char16_t* val, size_t valLength) noexcept {
-	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxTextValidator*>(wxk::Unwrap(self))->IsValid(wxk::FromUtf16(val, valLength))); });
+WXK_FUNCTION(wxk_String*) wxk_TextValidator_IsValid(wxk_Object* self, const char16_t* value, size_t valueLength) noexcept {
+	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxTextValidator*>(wxk::Unwrap(self))->IsValid(wxk::FromUtf16(value, valueLength))); });
 }
 
 WXK_FUNCTION(wxk_String*) wxk_TextValidator_GetCharExcludes(wxk_Object* self) noexcept {

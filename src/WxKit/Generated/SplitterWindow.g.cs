@@ -110,10 +110,10 @@ public unsafe partial class SplitterWindow : Window {
 	}
 
 	/// <summary>This function replaces one of the windows managed by the wxSplitterWindow with another one.</summary>
-	public bool ReplaceWindow(Window winOld, Window winNew) {
-		ArgumentNullException.ThrowIfNull(winOld);
-		ArgumentNullException.ThrowIfNull(winNew);
-		return WxKitNative.SplitterWindowReplaceWindow(Native, (WxkWindow*)winOld.Native, (WxkWindow*)winNew.Native) != 0;
+	public bool ReplaceWindow(Window oldWindow, Window newWindow) {
+		ArgumentNullException.ThrowIfNull(oldWindow);
+		ArgumentNullException.ThrowIfNull(newWindow);
+		return WxKitNative.SplitterWindowReplaceWindow(Native, (WxkWindow*)oldWindow.Native, (WxkWindow*)newWindow.Native) != 0;
 	}
 
 	/// <summary>Sets the sash position.</summary>

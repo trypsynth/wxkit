@@ -19,8 +19,8 @@ WXK_FUNCTION(uint8_t) wxk_RadioBox_Enable(wxk_Window* self, uint32_t index, uint
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxRadioBox*>(wxk::Unwrap(self))->Enable(index, enable != 0)) ? 1 : 0; });
 }
 
-WXK_FUNCTION(int32_t) wxk_RadioBox_FindString(wxk_Window* self, const char16_t* text, size_t textLength, uint8_t bCase) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxRadioBox*>(wxk::Unwrap(self))->FindString(wxk::FromUtf16(text, textLength), bCase != 0)); });
+WXK_FUNCTION(int32_t) wxk_RadioBox_FindString(wxk_Window* self, const char16_t* text, size_t textLength, uint8_t caseSensitive) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxRadioBox*>(wxk::Unwrap(self))->FindString(wxk::FromUtf16(text, textLength), caseSensitive != 0)); });
 }
 
 WXK_FUNCTION(int32_t) wxk_RadioBox_GetItemFromPoint(wxk_Window* self, wxk_Point point) noexcept {
@@ -39,8 +39,8 @@ WXK_FUNCTION(uint8_t) wxk_RadioBox_IsItemShown(wxk_Window* self, uint32_t index)
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxRadioBox*>(wxk::Unwrap(self))->IsItemShown(index)) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_RadioBox_SetItemHelpText(wxk_Window* self, uint32_t item, const char16_t* helptext, size_t helptextLength) noexcept {
-	wxk::Guard([&] { static_cast<wxRadioBox*>(wxk::Unwrap(self))->SetItemHelpText(item, wxk::FromUtf16(helptext, helptextLength)); });
+WXK_FUNCTION(void) wxk_RadioBox_SetItemHelpText(wxk_Window* self, uint32_t item, const char16_t* helpText, size_t helpTextLength) noexcept {
+	wxk::Guard([&] { static_cast<wxRadioBox*>(wxk::Unwrap(self))->SetItemHelpText(item, wxk::FromUtf16(helpText, helpTextLength)); });
 }
 
 WXK_FUNCTION(void) wxk_RadioBox_SetItemToolTip(wxk_Window* self, uint32_t item, const char16_t* text, size_t textLength) noexcept {

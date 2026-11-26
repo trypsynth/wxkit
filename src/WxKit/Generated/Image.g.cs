@@ -23,7 +23,7 @@ public unsafe partial class Image : NativeObject {
 	}
 
 	/// <summary>Creates an image from a file using MIME-types to specify the type.</summary>
-	public Image(string name, string mimetype, int index = -1) : this(CreateNative(name, mimetype, index)) {
+	public Image(string name, string mimeType, int index = -1) : this(CreateNative(name, mimeType, index)) {
 	}
 
 	internal Image(WxkObject* native) : base(native) {
@@ -232,12 +232,12 @@ public unsafe partial class Image : NativeObject {
 	}
 
 	/// <summary>Loads an image from a file.</summary>
-	public bool LoadFile(string name, string mimetype, int index = -1) {
+	public bool LoadFile(string name, string mimeType, int index = -1) {
 		ArgumentNullException.ThrowIfNull(name);
-		ArgumentNullException.ThrowIfNull(mimetype);
+		ArgumentNullException.ThrowIfNull(mimeType);
 		fixed (char* nameText = name)
-		fixed (char* mimetypeText = mimetype) {
-			return WxKitNative.ImageLoadFileStringStringInt(Native, nameText, NativeString.Length(name), mimetypeText, NativeString.Length(mimetype), index) != 0;
+		fixed (char* mimeTypeText = mimeType) {
+			return WxKitNative.ImageLoadFileStringStringInt(Native, nameText, NativeString.Length(name), mimeTypeText, NativeString.Length(mimeType), index) != 0;
 		}
 	}
 
@@ -304,12 +304,12 @@ public unsafe partial class Image : NativeObject {
 	}
 
 	/// <summary>Saves an image in the named file.</summary>
-	public bool SaveFile(string name, string mimetype) {
+	public bool SaveFile(string name, string mimeType) {
 		ArgumentNullException.ThrowIfNull(name);
-		ArgumentNullException.ThrowIfNull(mimetype);
+		ArgumentNullException.ThrowIfNull(mimeType);
 		fixed (char* nameText = name)
-		fixed (char* mimetypeText = mimetype) {
-			return WxKitNative.ImageSaveFileStringString(Native, nameText, NativeString.Length(name), mimetypeText, NativeString.Length(mimetype)) != 0;
+		fixed (char* mimeTypeText = mimeType) {
+			return WxKitNative.ImageSaveFileStringString(Native, nameText, NativeString.Length(name), mimeTypeText, NativeString.Length(mimeType)) != 0;
 		}
 	}
 
@@ -389,13 +389,13 @@ public unsafe partial class Image : NativeObject {
 		}
 	}
 
-	private static WxkObject* CreateNative(string name, string mimetype, int index) {
+	private static WxkObject* CreateNative(string name, string mimeType, int index) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(name);
-		ArgumentNullException.ThrowIfNull(mimetype);
+		ArgumentNullException.ThrowIfNull(mimeType);
 		fixed (char* nameText = name)
-		fixed (char* mimetypeText = mimetype) {
-			return WxKitNative.ImageNewStringStringInt(nameText, NativeString.Length(name), mimetypeText, NativeString.Length(mimetype), index);
+		fixed (char* mimeTypeText = mimeType) {
+			return WxKitNative.ImageNewStringStringInt(nameText, NativeString.Length(name), mimeTypeText, NativeString.Length(mimeType), index);
 		}
 	}
 }

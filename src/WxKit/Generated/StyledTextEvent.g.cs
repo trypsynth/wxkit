@@ -148,5 +148,5 @@ public unsafe partial class StyledTextEvent : CommandEvent {
 	}
 
 	/// <summary>Sets the annotation lines added value for this event.</summary>
-	public void SetAnnotationLinesAdded(int val) => WxKitNative.StyledTextEventSetAnnotationLinesAdded(Handle, val);
+	public void SetAnnotationLinesAdded(int value) => WxKitNative.StyledTextEventSetAnnotationLinesAdded(Handle, value);
 }

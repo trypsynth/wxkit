@@ -29,9 +29,9 @@ WXK_FUNCTION(wxk_Object*) wxk_Image_new_StringBitmapTypeInt(const char16_t* name
 	});
 }
 
-WXK_FUNCTION(wxk_Object*) wxk_Image_new_StringStringInt(const char16_t* name, size_t nameLength, const char16_t* mimetype, size_t mimetypeLength, int32_t index) noexcept {
+WXK_FUNCTION(wxk_Object*) wxk_Image_new_StringStringInt(const char16_t* name, size_t nameLength, const char16_t* mimeType, size_t mimeTypeLength, int32_t index) noexcept {
 	return wxk::Guard<wxk_Object*>(nullptr, [&] {
-		wxObject* created = new wxImage(wxk::FromUtf16(name, nameLength), wxk::FromUtf16(mimetype, mimetypeLength), static_cast<int>(index));
+		wxObject* created = new wxImage(wxk::FromUtf16(name, nameLength), wxk::FromUtf16(mimeType, mimeTypeLength), static_cast<int>(index));
 		return wxk::Wrap(created);
 	});
 }
@@ -204,16 +204,16 @@ WXK_FUNCTION(uint8_t) wxk_Image_LoadFile_StringBitmapTypeInt(wxk_Object* self, c
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->LoadFile(wxk::FromUtf16(name, nameLength), static_cast<wxBitmapType>(type), static_cast<int>(index))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_Image_LoadFile_StringStringInt(wxk_Object* self, const char16_t* name, size_t nameLength, const char16_t* mimetype, size_t mimetypeLength, int32_t index) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->LoadFile(wxk::FromUtf16(name, nameLength), wxk::FromUtf16(mimetype, mimetypeLength), static_cast<int>(index))) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_Image_LoadFile_StringStringInt(wxk_Object* self, const char16_t* name, size_t nameLength, const char16_t* mimeType, size_t mimeTypeLength, int32_t index) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->LoadFile(wxk::FromUtf16(name, nameLength), wxk::FromUtf16(mimeType, mimeTypeLength), static_cast<int>(index))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Image_SaveFile_StringBitmapType(wxk_Object* self, const char16_t* name, size_t nameLength, int32_t type) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->SaveFile(wxk::FromUtf16(name, nameLength), static_cast<wxBitmapType>(type))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_Image_SaveFile_StringString(wxk_Object* self, const char16_t* name, size_t nameLength, const char16_t* mimetype, size_t mimetypeLength) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->SaveFile(wxk::FromUtf16(name, nameLength), wxk::FromUtf16(mimetype, mimetypeLength))) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_Image_SaveFile_StringString(wxk_Object* self, const char16_t* name, size_t nameLength, const char16_t* mimeType, size_t mimeTypeLength) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->SaveFile(wxk::FromUtf16(name, nameLength), wxk::FromUtf16(mimeType, mimeTypeLength))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Image_SaveFile_String(wxk_Object* self, const char16_t* name, size_t nameLength) noexcept {

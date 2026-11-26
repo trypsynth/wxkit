@@ -93,7 +93,7 @@ public unsafe partial class Dialog : TopLevelWindow {
 	}
 
 	/// <summary>Ends a modal dialog, passing a value to be returned from the ShowModal() invocation.</summary>
-	public void EndModal(int retCode) => WxKitNative.DialogEndModal(Native, retCode);
+	public void EndModal(int returnCode) => WxKitNative.DialogEndModal(Native, returnCode);
 
 	/// <summary>Returns true if id is in the array of identifiers to be regarded as the main buttons for the non-scrolling area of a dialog.</summary>
 	public bool IsMainButtonId(int id) => WxKitNative.DialogIsMainButtonId(Native, id) != 0;

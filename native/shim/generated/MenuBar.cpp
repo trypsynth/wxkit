@@ -105,11 +105,11 @@ WXK_FUNCTION(void) wxk_MenuBar_Detach(wxk_Window* self) noexcept {
 	wxk::Guard([&] { static_cast<wxMenuBar*>(wxk::Unwrap(self))->Detach(); });
 }
 
-WXK_FUNCTION(void) wxk_MenuBar_MacSetCommonMenuBar(wxk_Window* menubar) noexcept {
+WXK_FUNCTION(void) wxk_MenuBar_MacSetCommonMenuBar(wxk_Window* menuBar) noexcept {
 	#if defined(__WXOSX__)
-	wxk::Guard([&] { wxMenuBar::MacSetCommonMenuBar(static_cast<wxMenuBar*>(wxk::Unwrap(menubar))); });
+	wxk::Guard([&] { wxMenuBar::MacSetCommonMenuBar(static_cast<wxMenuBar*>(wxk::Unwrap(menuBar))); });
 	#else
-	(void)menubar;
+	(void)menuBar;
 	#endif
 }
 

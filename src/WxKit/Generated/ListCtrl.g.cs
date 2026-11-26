@@ -423,7 +423,7 @@ public unsafe partial class ListCtrl : Control {
 	}
 
 	/// <summary>Sets the unselected and selected images associated with the item.</summary>
-	public bool SetItemImage(long item, int image, int selImage = -1) => WxKitNative.ListCtrlSetItemImage(Native, item, image, selImage) != 0;
+	public bool SetItemImage(long item, int image, int selectedImage = -1) => WxKitNative.ListCtrlSetItemImage(Native, item, image, selectedImage) != 0;
 
 	/// <summary>Sets the position of the item, in icon or small icon view.</summary>
 	public bool SetItemPosition(long item, Point position) => WxKitNative.ListCtrlSetItemPosition(Native, item, position) != 0;

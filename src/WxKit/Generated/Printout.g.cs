@@ -70,7 +70,7 @@ public unsafe partial class Printout : NativeObject {
 	public void MapScreenSizeToPaper() => WxKitNative.PrintoutMapScreenSizeToPaper(Native);
 
 	/// <summary>Shift the device origin by an amount specified in logical coordinates.</summary>
-	public void OffsetLogicalOrigin(int xoff, int yoff) => WxKitNative.PrintoutOffsetLogicalOrigin(Native, xoff, yoff);
+	public void OffsetLogicalOrigin(int xOffset, int yOffset) => WxKitNative.PrintoutOffsetLogicalOrigin(Native, xOffset, yOffset);
 
 	/// <summary>Set the device origin of the associated wxDC so that the current logical point becomes the new logical origin.</summary>
 	public void SetLogicalOrigin(int x, int y) => WxKitNative.PrintoutSetLogicalOrigin(Native, x, y);

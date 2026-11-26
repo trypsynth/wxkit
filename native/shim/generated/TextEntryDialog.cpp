@@ -16,8 +16,8 @@ WXK_FUNCTION(void) wxk_TextEntryDialog_SetTextValidator_TextValidatorStyle(wxk_W
 	wxk::Guard([&] { static_cast<wxTextEntryDialog*>(wxk::Unwrap(self))->SetTextValidator(static_cast<wxTextValidatorStyle>(style)); });
 }
 
-WXK_FUNCTION(void) wxk_TextEntryDialog_SetMaxLength(wxk_Window* self, size_t len) noexcept {
-	wxk::Guard([&] { static_cast<wxTextEntryDialog*>(wxk::Unwrap(self))->SetMaxLength(len); });
+WXK_FUNCTION(void) wxk_TextEntryDialog_SetMaxLength(wxk_Window* self, size_t length) noexcept {
+	wxk::Guard([&] { static_cast<wxTextEntryDialog*>(wxk::Unwrap(self))->SetMaxLength(length); });
 }
 
 WXK_FUNCTION(void) wxk_TextEntryDialog_SetHint(wxk_Window* self, const char16_t* hint, size_t hintLength) noexcept {

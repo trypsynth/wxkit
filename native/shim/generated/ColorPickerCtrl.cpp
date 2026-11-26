@@ -8,8 +8,8 @@ WXK_FUNCTION(wxk_Window*) wxk_ColorPickerCtrl_new(wxk_Window* parent, int32_t id
 	});
 }
 
-WXK_FUNCTION(void) wxk_ColorPickerCtrl_SetColour_String(wxk_Window* self, const char16_t* colname, size_t colnameLength) noexcept {
-	wxk::Guard([&] { static_cast<wxColourPickerCtrl*>(wxk::Unwrap(self))->SetColour(wxk::FromUtf16(colname, colnameLength)); });
+WXK_FUNCTION(void) wxk_ColorPickerCtrl_SetColour_String(wxk_Window* self, const char16_t* colorName, size_t colorNameLength) noexcept {
+	wxk::Guard([&] { static_cast<wxColourPickerCtrl*>(wxk::Unwrap(self))->SetColour(wxk::FromUtf16(colorName, colorNameLength)); });
 }
 
 WXK_FUNCTION(wxk_Colour) wxk_ColorPickerCtrl_GetColour(wxk_Window* self) noexcept {

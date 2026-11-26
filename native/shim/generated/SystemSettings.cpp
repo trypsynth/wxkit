@@ -17,8 +17,8 @@ WXK_FUNCTION(uint8_t) wxk_SystemSettings_HasFeature(int32_t index) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (wxSystemSettings::HasFeature(static_cast<wxSystemFeature>(index))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(wxk_Colour) wxk_SystemSettings_SelectLightDark(wxk_Colour colForLight, wxk_Colour colForDark) noexcept {
-	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(wxSystemSettings::SelectLightDark(wxk::FromColour(colForLight), wxk::FromColour(colForDark))); });
+WXK_FUNCTION(wxk_Colour) wxk_SystemSettings_SelectLightDark(wxk_Colour lightColor, wxk_Colour darkColor) noexcept {
+	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(wxSystemSettings::SelectLightDark(wxk::FromColour(lightColor), wxk::FromColour(darkColor))); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_SystemSettings_ExceedsDragThreshold(wxk_Point origin, wxk_Point current, wxk_Window* window) noexcept {

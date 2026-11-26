@@ -201,7 +201,7 @@ public unsafe partial class SearchCtrl : Control {
 	public bool SetMargins(int left, int top = -1) => WxKitNative.SearchCtrlSetMarginsIntInt(Native, left, top) != 0;
 
 	/// <summary>This function sets the maximum number of characters the user can enter into the control.</summary>
-	public void SetMaxLength(int len) => WxKitNative.SearchCtrlSetMaxLength(Native, checked((nuint)len));
+	public void SetMaxLength(int length) => WxKitNative.SearchCtrlSetMaxLength(Native, checked((nuint)length));
 
 	/// <summary>Selects the text starting at the first position up to (but not including) the character at the last position.</summary>
 	public void SetSelection(long from, long to) => WxKitNative.SearchCtrlSetSelection(Native, from, to);

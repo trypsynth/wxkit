@@ -9,8 +9,8 @@ WXK_FUNCTION(uint8_t) wxk_TaskBarIcon_RemoveIcon(wxk_EvtHandler* self) noexcept 
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTaskBarIcon*>(wxk::Unwrap(self))->RemoveIcon()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_TaskBarIcon_SetIcon(wxk_EvtHandler* self, const wxk_Object* icon, const char16_t* tooltip, size_t tooltipLength) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTaskBarIcon*>(wxk::Unwrap(self))->SetIcon(wxBitmapBundle(wxk::ValueOf<wxBitmap>(icon)), wxk::FromUtf16(tooltip, tooltipLength))) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_TaskBarIcon_SetIcon(wxk_EvtHandler* self, const wxk_Object* icon, const char16_t* toolTip, size_t toolTipLength) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTaskBarIcon*>(wxk::Unwrap(self))->SetIcon(wxBitmapBundle(wxk::ValueOf<wxBitmap>(icon)), wxk::FromUtf16(toolTip, toolTipLength))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(uint8_t) wxk_TaskBarIcon_IsIconInstalled(wxk_EvtHandler* self) noexcept {

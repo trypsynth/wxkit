@@ -197,18 +197,18 @@ public unsafe partial class TreeCtrl : Control {
 	}
 
 	/// <summary>Adds the root node to the tree, returning the new item.</summary>
-	public TreeItemId AddRoot(string text, int image = -1, int selImage = -1, object? data = null) {
+	public TreeItemId AddRoot(string text, int image = -1, int selectedImage = -1, object? data = null) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return new global::WxKit.TreeItemId(WxKitNative.TreeCtrlAddRoot(Native, textText, NativeString.Length(text), image, selImage, ItemData.Alloc(data)));
+			return new global::WxKit.TreeItemId(WxKitNative.TreeCtrlAddRoot(Native, textText, NativeString.Length(text), image, selectedImage, ItemData.Alloc(data)));
 		}
 	}
 
 	/// <summary>Appends an item to the end of the branch identified by parent, return a new item id.</summary>
-	public TreeItemId AppendItem(TreeItemId parent, string text, int image = -1, int selImage = -1, object? data = null) {
+	public TreeItemId AppendItem(TreeItemId parent, string text, int image = -1, int selectedImage = -1, object? data = null) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return new global::WxKit.TreeItemId(WxKitNative.TreeCtrlAppendItem(Native, parent.Value, textText, NativeString.Length(text), image, selImage, ItemData.Alloc(data)));
+			return new global::WxKit.TreeItemId(WxKitNative.TreeCtrlAppendItem(Native, parent.Value, textText, NativeString.Length(text), image, selectedImage, ItemData.Alloc(data)));
 		}
 	}
 
@@ -300,18 +300,18 @@ public unsafe partial class TreeCtrl : Control {
 	public TreeItemId GetPreviousVisible(TreeItemId item) => new global::WxKit.TreeItemId(WxKitNative.TreeCtrlGetPrevVisible(Native, item.Value));
 
 	/// <summary>Inserts an item after a given one (previous).</summary>
-	public TreeItemId InsertItem(TreeItemId parent, TreeItemId previous, string text, int image = -1, int selImage = -1, object? data = null) {
+	public TreeItemId InsertItem(TreeItemId parent, TreeItemId previous, string text, int image = -1, int selectedImage = -1, object? data = null) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return new global::WxKit.TreeItemId(WxKitNative.TreeCtrlInsertItemTreeItemIdTreeItemIdStringIntIntData(Native, parent.Value, previous.Value, textText, NativeString.Length(text), image, selImage, ItemData.Alloc(data)));
+			return new global::WxKit.TreeItemId(WxKitNative.TreeCtrlInsertItemTreeItemIdTreeItemIdStringIntIntData(Native, parent.Value, previous.Value, textText, NativeString.Length(text), image, selectedImage, ItemData.Alloc(data)));
 		}
 	}
 
 	/// <summary>Inserts an item before one identified by its position (pos).</summary>
-	public TreeItemId InsertItem(TreeItemId parent, int position, string text, int image = -1, int selImage = -1, object? data = null) {
+	public TreeItemId InsertItem(TreeItemId parent, int position, string text, int image = -1, int selectedImage = -1, object? data = null) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return new global::WxKit.TreeItemId(WxKitNative.TreeCtrlInsertItemTreeItemIdSizeTStringIntIntData(Native, parent.Value, checked((nuint)position), textText, NativeString.Length(text), image, selImage, ItemData.Alloc(data)));
+			return new global::WxKit.TreeItemId(WxKitNative.TreeCtrlInsertItemTreeItemIdSizeTStringIntIntData(Native, parent.Value, checked((nuint)position), textText, NativeString.Length(text), image, selectedImage, ItemData.Alloc(data)));
 		}
 	}
 
@@ -334,10 +334,10 @@ public unsafe partial class TreeCtrl : Control {
 	public int OnCompareItems(TreeItemId item1, TreeItemId item2) => WxKitNative.TreeCtrlOnCompareItems(Native, item1.Value, item2.Value);
 
 	/// <summary>Appends an item as the first child of parent, return a new item id.</summary>
-	public TreeItemId PrependItem(TreeItemId parent, string text, int image = -1, int selImage = -1, object? data = null) {
+	public TreeItemId PrependItem(TreeItemId parent, string text, int image = -1, int selectedImage = -1, object? data = null) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return new global::WxKit.TreeItemId(WxKitNative.TreeCtrlPrependItem(Native, parent.Value, textText, NativeString.Length(text), image, selImage, ItemData.Alloc(data)));
+			return new global::WxKit.TreeItemId(WxKitNative.TreeCtrlPrependItem(Native, parent.Value, textText, NativeString.Length(text), image, selectedImage, ItemData.Alloc(data)));
 		}
 	}
 

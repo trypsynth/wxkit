@@ -8,8 +8,8 @@ WXK_FUNCTION(wxk_Window*) wxk_SpinCtrl_new(wxk_Window* parent, int32_t id, const
 	});
 }
 
-WXK_FUNCTION(void) wxk_SpinCtrl_SetRange(wxk_Window* self, int32_t minVal, int32_t maxVal) noexcept {
-	wxk::Guard([&] { static_cast<wxSpinCtrl*>(wxk::Unwrap(self))->SetRange(static_cast<int>(minVal), static_cast<int>(maxVal)); });
+WXK_FUNCTION(void) wxk_SpinCtrl_SetRange(wxk_Window* self, int32_t minValue, int32_t maxValue) noexcept {
+	wxk::Guard([&] { static_cast<wxSpinCtrl*>(wxk::Unwrap(self))->SetRange(static_cast<int>(minValue), static_cast<int>(maxValue)); });
 }
 
 WXK_FUNCTION(void) wxk_SpinCtrl_SetSelection(wxk_Window* self, int64_t from, int64_t to) noexcept {

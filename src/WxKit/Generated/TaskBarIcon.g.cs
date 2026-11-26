@@ -81,11 +81,11 @@ public unsafe partial class TaskBarIcon : EvtHandler {
 	public bool RemoveIcon() => WxKitNative.TaskBarIconRemoveIcon(NativeHandler) != 0;
 
 	/// <summary>Sets the icon, and optional tooltip text.</summary>
-	public bool SetIcon(Bitmap icon, string tooltip = "") {
+	public bool SetIcon(Bitmap icon, string toolTip = "") {
 		ArgumentNullException.ThrowIfNull(icon);
-		ArgumentNullException.ThrowIfNull(tooltip);
-		fixed (char* tooltipText = tooltip) {
-			return WxKitNative.TaskBarIconSetIcon(NativeHandler, icon.Native, tooltipText, NativeString.Length(tooltip)) != 0;
+		ArgumentNullException.ThrowIfNull(toolTip);
+		fixed (char* toolTipText = toolTip) {
+			return WxKitNative.TaskBarIconSetIcon(NativeHandler, icon.Native, toolTipText, NativeString.Length(toolTip)) != 0;
 		}
 	}
 }

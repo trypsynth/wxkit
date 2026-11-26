@@ -7,7 +7,7 @@ namespace WxKit;
 /// <summary>This class represents the file chooser dialog. Wraps wxFileDialog.</summary>
 public unsafe partial class FileDialog : Dialog {
 	/// <summary>Constructor.</summary>
-	public FileDialog(Window? parent, string? message = null, string defaultDir = "", string defaultFile = "", string? wildcard = null, FileDialogStyle style = FileDialogStyle.Default, Point? position = null, Size? size = null) : this(CreateNative(parent, message, defaultDir, defaultFile, wildcard, style, position, size)) {
+	public FileDialog(Window? parent, string? message = null, string defaultDirectory = "", string defaultFile = "", string? wildcard = null, FileDialogStyle style = FileDialogStyle.Default, Point? position = null, Size? size = null) : this(CreateNative(parent, message, defaultDirectory, defaultFile, wildcard, style, position, size)) {
 	}
 
 	internal FileDialog(WxkWindow* native) : base(native) {
@@ -97,15 +97,15 @@ public unsafe partial class FileDialog : Dialog {
 		}
 	}
 
-	private static WxkWindow* CreateNative(Window? parent, string? message, string defaultDir, string defaultFile, string? wildcard, FileDialogStyle style, Point? position, Size? size) {
+	private static WxkWindow* CreateNative(Window? parent, string? message, string defaultDirectory, string defaultFile, string? wildcard, FileDialogStyle style, Point? position, Size? size) {
 		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(defaultDir);
+		ArgumentNullException.ThrowIfNull(defaultDirectory);
 		ArgumentNullException.ThrowIfNull(defaultFile);
 		fixed (char* messageText = message)
-		fixed (char* defaultDirText = defaultDir)
+		fixed (char* defaultDirectoryText = defaultDirectory)
 		fixed (char* defaultFileText = defaultFile)
 		fixed (char* wildcardText = wildcard) {
-			return WxKitNative.FileDialogNew(parent is null ? null : (WxkWindow*)parent.Native, messageText, message is null ? 0 : NativeString.Length(message), defaultDirText, NativeString.Length(defaultDir), defaultFileText, NativeString.Length(defaultFile), wildcardText, wildcard is null ? 0 : NativeString.Length(wildcard), (long)style, position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default);
+			return WxKitNative.FileDialogNew(parent is null ? null : (WxkWindow*)parent.Native, messageText, message is null ? 0 : NativeString.Length(message), defaultDirectoryText, NativeString.Length(defaultDirectory), defaultFileText, NativeString.Length(defaultFile), wildcardText, wildcard is null ? 0 : NativeString.Length(wildcard), (long)style, position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default);
 		}
 	}
 }

@@ -25,20 +25,20 @@ WXK_FUNCTION(uint8_t) wxk_MouseEvent_Aux2Up(wxk_Event* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMouseEvent*>(wxk::Unwrap(self))->Aux2Up()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_MouseEvent_Button(wxk_Event* self, int32_t but) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMouseEvent*>(wxk::Unwrap(self))->Button(static_cast<wxMouseButton>(but))) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_MouseEvent_Button(wxk_Event* self, int32_t button) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMouseEvent*>(wxk::Unwrap(self))->Button(static_cast<wxMouseButton>(button))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_MouseEvent_ButtonDClick(wxk_Event* self, int32_t but) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMouseEvent*>(wxk::Unwrap(self))->ButtonDClick(static_cast<wxMouseButton>(but))) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_MouseEvent_ButtonDClick(wxk_Event* self, int32_t button) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMouseEvent*>(wxk::Unwrap(self))->ButtonDClick(static_cast<wxMouseButton>(button))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_MouseEvent_ButtonDown(wxk_Event* self, int32_t but) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMouseEvent*>(wxk::Unwrap(self))->ButtonDown(static_cast<wxMouseButton>(but))) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_MouseEvent_ButtonDown(wxk_Event* self, int32_t button) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMouseEvent*>(wxk::Unwrap(self))->ButtonDown(static_cast<wxMouseButton>(button))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_MouseEvent_ButtonUp(wxk_Event* self, int32_t but) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMouseEvent*>(wxk::Unwrap(self))->ButtonUp(static_cast<wxMouseButton>(but))) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_MouseEvent_ButtonUp(wxk_Event* self, int32_t button) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMouseEvent*>(wxk::Unwrap(self))->ButtonUp(static_cast<wxMouseButton>(button))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(uint8_t) wxk_MouseEvent_Dragging(wxk_Event* self) noexcept {

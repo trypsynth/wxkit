@@ -115,9 +115,9 @@ public unsafe partial class DC : NativeObject {
 	}
 
 	/// <summary>Copy from a source DC to this DC.</summary>
-	public bool Blit(int xdest, int ydest, int width, int height, DC source, int xsrc, int ysrc, RasterOperationMode logicalFunc = RasterOperationMode.Copy, bool useMask = false, int xsrcMask = -1, int ysrcMask = -1) {
+	public bool Blit(int xDestination, int yDestination, int width, int height, DC source, int xSource, int ySource, RasterOperationMode logicalFunction = RasterOperationMode.Copy, bool useMask = false, int xSourceMask = -1, int ySourceMask = -1) {
 		ArgumentNullException.ThrowIfNull(source);
-		return WxKitNative.DCBlit(Native, xdest, ydest, width, height, source.Native, xsrc, ysrc, (int)logicalFunc, useMask ? (byte)1 : (byte)0, xsrcMask, ysrcMask) != 0;
+		return WxKitNative.DCBlit(Native, xDestination, yDestination, width, height, source.Native, xSource, ySource, (int)logicalFunction, useMask ? (byte)1 : (byte)0, xSourceMask, ySourceMask) != 0;
 	}
 
 	/// <summary>Adds the specified point to the bounding box which can be retrieved with MinX(), MaxX() and MinY(), MaxY() functions.</summary>
@@ -172,7 +172,7 @@ public unsafe partial class DC : NativeObject {
 	public void DrawArc(int xStart, int yStart, int xEnd, int yEnd, int xc, int yc) => WxKitNative.DCDrawArcIntIntIntIntIntInt(Native, xStart, yStart, xEnd, yEnd, xc, yc);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public void DrawArc(Point ptStart, Point ptEnd, Point center) => WxKitNative.DCDrawArcPointPointPoint(Native, ptStart, ptEnd, center);
+	public void DrawArc(Point start, Point end, Point center) => WxKitNative.DCDrawArcPointPointPoint(Native, start, end, center);
 
 	/// <summary>Draw a bitmap on the device context at the specified point.</summary>
 	public void DrawBitmap(Bitmap bitmap, int x, int y, bool useMask = false) {
@@ -226,19 +226,19 @@ public unsafe partial class DC : NativeObject {
 	}
 
 	/// <summary>Draw optional bitmap and the text into the given rectangle and aligns it as specified by alignment parameter; it also will emphasize the character with the given index if it is != -1 and return the bounding rectangle if required.</summary>
-	public void DrawLabel(string text, Bitmap bitmap, Rect rect, int alignment = 0, int indexAccel = -1) {
+	public void DrawLabel(string text, Bitmap bitmap, Rect rect, int alignment = 0, int acceleratorIndex = -1) {
 		ArgumentNullException.ThrowIfNull(text);
 		ArgumentNullException.ThrowIfNull(bitmap);
 		fixed (char* textText = text) {
-			WxKitNative.DCDrawLabelStringBitmapRectIntInt(Native, textText, NativeString.Length(text), bitmap.Native, rect, alignment, indexAccel);
+			WxKitNative.DCDrawLabelStringBitmapRectIntInt(Native, textText, NativeString.Length(text), bitmap.Native, rect, alignment, acceleratorIndex);
 		}
 	}
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public void DrawLabel(string text, Rect rect, int alignment = 0, int indexAccel = -1) {
+	public void DrawLabel(string text, Rect rect, int alignment = 0, int acceleratorIndex = -1) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			WxKitNative.DCDrawLabelStringRectIntInt(Native, textText, NativeString.Length(text), rect, alignment, indexAccel);
+			WxKitNative.DCDrawLabelStringRectIntInt(Native, textText, NativeString.Length(text), rect, alignment, acceleratorIndex);
 		}
 	}
 
@@ -246,7 +246,7 @@ public unsafe partial class DC : NativeObject {
 	public void DrawLine(int x1, int y1, int x2, int y2) => WxKitNative.DCDrawLineIntIntIntInt(Native, x1, y1, x2, y2);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public void DrawLine(Point pt1, Point pt2) => WxKitNative.DCDrawLinePointPoint(Native, pt1, pt2);
+	public void DrawLine(Point point1, Point point2) => WxKitNative.DCDrawLinePointPoint(Native, point1, point2);
 
 	/// <summary>Draws a point using the color of the current pen.</summary>
 	public void DrawPoint(int x, int y) => WxKitNative.DCDrawPointIntInt(Native, x, y);
@@ -379,7 +379,7 @@ public unsafe partial class DC : NativeObject {
 	public void GradientFillConcentric(Rect rect, Color? initialColor, Color? destColor, Point circleCenter) => WxKitNative.DCGradientFillConcentricRectColorColorPoint(Native, rect, global::WxKit.Color.ToNative(initialColor), global::WxKit.Color.ToNative(destColor), circleCenter);
 
 	/// <summary>Fill the area specified by rect with a linear gradient, starting from initialColour and eventually fading to destColour.</summary>
-	public void GradientFillLinear(Rect rect, Color? initialColor, Color? destColor, Direction nDirection = Direction.Right) => WxKitNative.DCGradientFillLinear(Native, rect, global::WxKit.Color.ToNative(initialColor), global::WxKit.Color.ToNative(destColor), (int)nDirection);
+	public void GradientFillLinear(Rect rect, Color? initialColor, Color? destColor, Direction direction = Direction.Right) => WxKitNative.DCGradientFillLinear(Native, rect, global::WxKit.Color.ToNative(initialColor), global::WxKit.Color.ToNative(destColor), (int)direction);
 
 	/// <summary>Converts logical (x, y) coordinates to device coordinates taking into account all applied transformations like the current mapping mode, scale factors, device origin, axes orientation, affine transformation.</summary>
 	public Point LogicalToDevice(int x, int y) => WxKitNative.DCLogicalToDeviceIntInt(Native, x, y);
@@ -459,9 +459,9 @@ public unsafe partial class DC : NativeObject {
 	public void StartPage() => WxKitNative.DCStartPage(Native);
 
 	/// <summary>Copy from a source DC to this DC possibly changing the scale.</summary>
-	public bool StretchBlit(int xdest, int ydest, int dstWidth, int dstHeight, DC source, int xsrc, int ysrc, int srcWidth, int srcHeight, RasterOperationMode logicalFunc = RasterOperationMode.Copy, bool useMask = false, int xsrcMask = -1, int ysrcMask = -1) {
+	public bool StretchBlit(int xDestination, int yDestination, int destinationWidth, int destinationHeight, DC source, int xSource, int ySource, int sourceWidth, int sourceHeight, RasterOperationMode logicalFunction = RasterOperationMode.Copy, bool useMask = false, int xSourceMask = -1, int ySourceMask = -1) {
 		ArgumentNullException.ThrowIfNull(source);
-		return WxKitNative.DCStretchBlit(Native, xdest, ydest, dstWidth, dstHeight, source.Native, xsrc, ysrc, srcWidth, srcHeight, (int)logicalFunc, useMask ? (byte)1 : (byte)0, xsrcMask, ysrcMask) != 0;
+		return WxKitNative.DCStretchBlit(Native, xDestination, yDestination, destinationWidth, destinationHeight, source.Native, xSource, ySource, sourceWidth, sourceHeight, (int)logicalFunction, useMask ? (byte)1 : (byte)0, xSourceMask, ySourceMask) != 0;
 	}
 
 	/// <summary>Convert pixel values of the current DC to DPI-independent pixel values.</summary>

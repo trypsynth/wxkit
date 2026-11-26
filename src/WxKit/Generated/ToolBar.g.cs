@@ -80,7 +80,7 @@ public unsafe partial class ToolBar : Control {
 	}
 
 	/// <summary>Adds a new check (or toggle) tool to the toolbar.</summary>
-	public ToolBarTool? AddCheckTool(int toolId, string label, Bitmap bitmap1, Bitmap? bmpDisabled = null, string shortHelp = "", string longHelp = "") {
+	public ToolBarTool? AddCheckTool(int toolId, string label, Bitmap bitmap1, Bitmap? disabledBitmap = null, string shortHelp = "", string longHelp = "") {
 		ArgumentNullException.ThrowIfNull(label);
 		ArgumentNullException.ThrowIfNull(bitmap1);
 		ArgumentNullException.ThrowIfNull(shortHelp);
@@ -88,7 +88,7 @@ public unsafe partial class ToolBar : Control {
 		fixed (char* labelText = label)
 		fixed (char* shortHelpText = shortHelp)
 		fixed (char* longHelpText = longHelp) {
-			return ToolBarTool.Wrap(WxKitNative.ToolBarAddCheckTool(Native, toolId, labelText, NativeString.Length(label), bitmap1.Native, bmpDisabled is null ? null : bmpDisabled.Native, shortHelpText, NativeString.Length(shortHelp), longHelpText, NativeString.Length(longHelp)));
+			return ToolBarTool.Wrap(WxKitNative.ToolBarAddCheckTool(Native, toolId, labelText, NativeString.Length(label), bitmap1.Native, disabledBitmap is null ? null : disabledBitmap.Native, shortHelpText, NativeString.Length(shortHelp), longHelpText, NativeString.Length(longHelp)));
 		}
 	}
 
@@ -102,7 +102,7 @@ public unsafe partial class ToolBar : Control {
 	}
 
 	/// <summary>Adds a new radio tool to the toolbar.</summary>
-	public ToolBarTool? AddRadioTool(int toolId, string label, Bitmap bitmap1, Bitmap? bmpDisabled = null, string shortHelp = "", string longHelp = "") {
+	public ToolBarTool? AddRadioTool(int toolId, string label, Bitmap bitmap1, Bitmap? disabledBitmap = null, string shortHelp = "", string longHelp = "") {
 		ArgumentNullException.ThrowIfNull(label);
 		ArgumentNullException.ThrowIfNull(bitmap1);
 		ArgumentNullException.ThrowIfNull(shortHelp);
@@ -110,7 +110,7 @@ public unsafe partial class ToolBar : Control {
 		fixed (char* labelText = label)
 		fixed (char* shortHelpText = shortHelp)
 		fixed (char* longHelpText = longHelp) {
-			return ToolBarTool.Wrap(WxKitNative.ToolBarAddRadioTool(Native, toolId, labelText, NativeString.Length(label), bitmap1.Native, bmpDisabled is null ? null : bmpDisabled.Native, shortHelpText, NativeString.Length(shortHelp), longHelpText, NativeString.Length(longHelp)));
+			return ToolBarTool.Wrap(WxKitNative.ToolBarAddRadioTool(Native, toolId, labelText, NativeString.Length(label), bitmap1.Native, disabledBitmap is null ? null : disabledBitmap.Native, shortHelpText, NativeString.Length(shortHelp), longHelpText, NativeString.Length(longHelp)));
 		}
 	}
 
@@ -132,16 +132,16 @@ public unsafe partial class ToolBar : Control {
 	}
 
 	/// <summary>Adds a tool to the toolbar.</summary>
-	public ToolBarTool? AddTool(int toolId, string label, Bitmap bitmap, Bitmap bmpDisabled, MenuItemKind kind = MenuItemKind.Normal, string shortHelp = "", string longHelp = "") {
+	public ToolBarTool? AddTool(int toolId, string label, Bitmap bitmap, Bitmap disabledBitmap, MenuItemKind kind = MenuItemKind.Normal, string shortHelp = "", string longHelp = "") {
 		ArgumentNullException.ThrowIfNull(label);
 		ArgumentNullException.ThrowIfNull(bitmap);
-		ArgumentNullException.ThrowIfNull(bmpDisabled);
+		ArgumentNullException.ThrowIfNull(disabledBitmap);
 		ArgumentNullException.ThrowIfNull(shortHelp);
 		ArgumentNullException.ThrowIfNull(longHelp);
 		fixed (char* labelText = label)
 		fixed (char* shortHelpText = shortHelp)
 		fixed (char* longHelpText = longHelp) {
-			return ToolBarTool.Wrap(WxKitNative.ToolBarAddToolIntStringBitmapBitmapMenuItemKindStringString(Native, toolId, labelText, NativeString.Length(label), bitmap.Native, bmpDisabled.Native, (int)kind, shortHelpText, NativeString.Length(shortHelp), longHelpText, NativeString.Length(longHelp)));
+			return ToolBarTool.Wrap(WxKitNative.ToolBarAddToolIntStringBitmapBitmapMenuItemKindStringString(Native, toolId, labelText, NativeString.Length(label), bitmap.Native, disabledBitmap.Native, (int)kind, shortHelpText, NativeString.Length(shortHelp), longHelpText, NativeString.Length(longHelp)));
 		}
 	}
 
@@ -191,7 +191,7 @@ public unsafe partial class ToolBar : Control {
 	public ToolBarTool? InsertStretchableSpace(int position) => ToolBarTool.Wrap(WxKitNative.ToolBarInsertStretchableSpace(Native, checked((nuint)position)));
 
 	/// <summary>Inserts the tool with the specified attributes into the toolbar at the given position.</summary>
-	public ToolBarTool? InsertTool(int position, int toolId, string label, Bitmap bitmap, Bitmap? bmpDisabled = null, MenuItemKind kind = MenuItemKind.Normal, string shortHelp = "", string longHelp = "") {
+	public ToolBarTool? InsertTool(int position, int toolId, string label, Bitmap bitmap, Bitmap? disabledBitmap = null, MenuItemKind kind = MenuItemKind.Normal, string shortHelp = "", string longHelp = "") {
 		ArgumentNullException.ThrowIfNull(label);
 		ArgumentNullException.ThrowIfNull(bitmap);
 		ArgumentNullException.ThrowIfNull(shortHelp);
@@ -199,7 +199,7 @@ public unsafe partial class ToolBar : Control {
 		fixed (char* labelText = label)
 		fixed (char* shortHelpText = shortHelp)
 		fixed (char* longHelpText = longHelp) {
-			return ToolBarTool.Wrap(WxKitNative.ToolBarInsertTool(Native, checked((nuint)position), toolId, labelText, NativeString.Length(label), bitmap.Native, bmpDisabled is null ? null : bmpDisabled.Native, (int)kind, shortHelpText, NativeString.Length(shortHelp), longHelpText, NativeString.Length(longHelp)));
+			return ToolBarTool.Wrap(WxKitNative.ToolBarInsertTool(Native, checked((nuint)position), toolId, labelText, NativeString.Length(label), bitmap.Native, disabledBitmap is null ? null : disabledBitmap.Native, (int)kind, shortHelpText, NativeString.Length(shortHelp), longHelpText, NativeString.Length(longHelp)));
 		}
 	}
 
