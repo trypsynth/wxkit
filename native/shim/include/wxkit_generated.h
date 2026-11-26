@@ -1138,10 +1138,10 @@ WXK_FUNCTION(wxk_Window*) wxk_GenericDirCtrl_GetTreeCtrl(wxk_Window* self) WXK_N
 
 // wxGridBagSizer
 
-WXK_FUNCTION(wxk_Sizer*) wxk_GridBagSizer_new(int32_t verticalGap, int32_t horizontalGap) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_GridBagSizer_Add_WindowGridPositionGridSpanIntInt(wxk_Sizer* self, wxk_Window* window, wxk_GridPosition position, wxk_GridSpan span, int32_t flag, int32_t border) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_GridBagSizer_Add_SizerGridPositionGridSpanIntInt(wxk_Sizer* self, wxk_Sizer* sizer, wxk_GridPosition position, wxk_GridSpan span, int32_t flag, int32_t border) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_GridBagSizer_Add_IntIntGridPositionGridSpanIntInt(wxk_Sizer* self, int32_t width, int32_t height, wxk_GridPosition position, wxk_GridSpan span, int32_t flag, int32_t border) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Sizer*) wxk_GridBagSizer_new(int32_t verticalGap, int32_t horizontalGap) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_GridBagSizer_CheckForIntersection(wxk_Sizer* self, wxk_GridPosition position, wxk_GridSpan span) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_GridPosition) wxk_GridBagSizer_GetItemPosition_Window(wxk_Sizer* self, wxk_Window* window) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_GridPosition) wxk_GridBagSizer_GetItemPosition_Sizer(wxk_Sizer* self, wxk_Sizer* sizer) WXK_NOEXCEPT;
@@ -1601,12 +1601,12 @@ WXK_FUNCTION(wxk_Window*) wxk_MessageDialog_new(wxk_Window* parent, const char16
 WXK_FUNCTION(uint8_t) wxk_MessageDialog_SetOKCancelLabels(wxk_Window* self, const char16_t* ok, size_t okLength, const char16_t* cancel, size_t cancelLength) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_MessageDialog_SetYesNoCancelLabels(wxk_Window* self, const char16_t* yes, size_t yesLength, const char16_t* no, size_t noLength, const char16_t* cancel, size_t cancelLength) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_MessageDialog_SetYesNoLabels(wxk_Window* self, const char16_t* yes, size_t yesLength, const char16_t* no, size_t noLength) WXK_NOEXCEPT;
+WXK_FUNCTION(int64_t) wxk_MessageDialog_GetMessageDialogStyle(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_MessageDialog_GetCaption(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_MessageDialog_GetMessage(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_MessageDialog_SetMessage(wxk_Window* self, const char16_t* message, size_t messageLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_MessageDialog_GetExtendedMessage(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_MessageDialog_SetExtendedMessage(wxk_Window* self, const char16_t* extendedMessage, size_t extendedMessageLength) WXK_NOEXCEPT;
-WXK_FUNCTION(int64_t) wxk_MessageDialog_GetMessageDialogStyle(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_MessageDialog_HasCustomLabels(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_MessageDialog_GetYesLabel(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_MessageDialog_GetNoLabel(wxk_Window* self) WXK_NOEXCEPT;
@@ -2014,6 +2014,7 @@ WXK_FUNCTION(uint8_t) wxk_RichMessageDialog_SetYesNoCancelLabels(wxk_Window* sel
 WXK_FUNCTION(uint8_t) wxk_RichMessageDialog_SetYesNoLabels(wxk_Window* self, const char16_t* yes, size_t yesLength, const char16_t* no, size_t noLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_RichMessageDialog_GetDetailedText(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_RichMessageDialog_ShowDetailedText(wxk_Window* self, const char16_t* detailedText, size_t detailedTextLength) WXK_NOEXCEPT;
+WXK_FUNCTION(int64_t) wxk_RichMessageDialog_GetMessageDialogStyle(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_RichMessageDialog_GetCheckBoxText(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_RichMessageDialog_GetFooterText(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_RichMessageDialog_SetFooterText(wxk_Window* self, const char16_t* footerText, size_t footerTextLength) WXK_NOEXCEPT;
@@ -2025,7 +2026,6 @@ WXK_FUNCTION(wxk_String*) wxk_RichMessageDialog_GetMessage(wxk_Window* self) WXK
 WXK_FUNCTION(void) wxk_RichMessageDialog_SetMessage(wxk_Window* self, const char16_t* message, size_t messageLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_RichMessageDialog_GetExtendedMessage(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_RichMessageDialog_SetExtendedMessage(wxk_Window* self, const char16_t* extendedMessage, size_t extendedMessageLength) WXK_NOEXCEPT;
-WXK_FUNCTION(int64_t) wxk_RichMessageDialog_GetMessageDialogStyle(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_RichMessageDialog_HasCustomLabels(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_RichMessageDialog_GetYesLabel(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_RichMessageDialog_GetNoLabel(wxk_Window* self) WXK_NOEXCEPT;
@@ -2280,11 +2280,11 @@ WXK_FUNCTION(int32_t) wxk_SpinEvent_GetPosition(wxk_Event* self) WXK_NOEXCEPT;
 
 // wxSplitterEvent
 
+WXK_FUNCTION(int32_t) wxk_SplitterEvent_GetX(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_SplitterEvent_GetY(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_SplitterEvent_GetSashPosition(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_SplitterEvent_SetSashPosition(wxk_Event* self, int32_t position) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_SplitterEvent_GetWindowBeingRemoved(wxk_Event* self) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_SplitterEvent_GetX(wxk_Event* self) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_SplitterEvent_GetY(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_SplitterEvent_GetOldSize(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_SplitterEvent_GetNewSize(wxk_Event* self) WXK_NOEXCEPT;
 
@@ -3493,7 +3493,7 @@ WXK_FUNCTION(uint8_t) wxk_TreeEvent_IsEditCancelled(wxk_Event* self) WXK_NOEXCEP
 // wxTreeListCtrl
 
 WXK_FUNCTION(wxk_Window*) wxk_TreeListCtrl_new(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_TreeListCtrl_AppendColumn(wxk_Window* self, const char16_t* title, size_t titleLength, int32_t width, int32_t align, int32_t flags) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_TreeListCtrl_AppendColumn(wxk_Window* self, const char16_t* title, size_t titleLength, int32_t width, int32_t alignment, int32_t flags) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_TreeListCtrl_DeleteColumn(wxk_Window* self, uint32_t column) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_TreeListCtrl_ClearColumns(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_TreeListCtrl_SetColumnWidth(wxk_Window* self, uint32_t column, int32_t width) WXK_NOEXCEPT;
@@ -3623,7 +3623,7 @@ WXK_FUNCTION(void) wxk_WebView_DeleteSelection(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_WebView_SelectAll(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_WebView_Redo(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_WebView_Undo(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(int64_t) wxk_WebView_Find(wxk_Window* self, const char16_t* text, size_t textLength, int32_t flags) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_WebView_Find(wxk_Window* self, const char16_t* text, size_t textLength, int32_t flags) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_WebView_CanSetZoomType(wxk_Window* self, int32_t type) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_WebView_Print_Default(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_WebView_Print_PrintDataWebViewPrintFlags(wxk_Window* self, const wxk_Object* printData, int32_t flags) WXK_NOEXCEPT;

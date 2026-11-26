@@ -6,10 +6,6 @@ namespace WxKit;
 
 /// <summary>A wxSizer that can lay out items in a virtual grid like a wxFlexGridSizer but in this case explicit positioning of the items is allowed using wxGBPosition, and items can optionally span more than one row and/or column using wxGBSpan. Wraps wxGridBagSizer.</summary>
 public unsafe partial class GridBagSizer : FlexGridSizer {
-	/// <summary>Constructor, with optional parameters to specify the gap between the rows and columns.</summary>
-	public GridBagSizer(int verticalGap = 0, int horizontalGap = 0) : this(CreateNative(verticalGap, horizontalGap)) {
-	}
-
 	internal GridBagSizer(WxkSizer* native) : base(native) {
 	}
 
@@ -84,9 +80,4 @@ public unsafe partial class GridBagSizer : FlexGridSizer {
 
 	/// <summary>Set the row/col spanning of the specified item.</summary>
 	public bool SetItemSpan(int index, GridSpan span) => WxKitNative.GridBagSizerSetItemSpanSizeTGridSpan(Native, checked((nuint)index), span) != 0;
-
-	private static WxkSizer* CreateNative(int verticalGap, int horizontalGap) {
-		Application.VerifyAccess();
-		return WxKitNative.GridBagSizerNew(verticalGap, horizontalGap);
-	}
 }

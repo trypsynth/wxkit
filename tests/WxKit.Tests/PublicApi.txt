@@ -2101,9 +2101,9 @@ class WxKit.FlexGridSizer : GridSizer
     FlexSizerGrowMode NonFlexibleGrowMode { get; set; }
     IReadOnlyList<int> ColumnWidths { get; }
     IReadOnlyList<int> RowHeights { get; }
+    Orientation FlexibleDirection { get; set; }
     bool IsColumnGrowable(int index)
     bool IsRowGrowable(int index)
-    int FlexibleDirection { get; set; }
     void AddGrowableColumn(int index, int proportion = 0)
     void AddGrowableRow(int index, int proportion = 0)
     void RemoveGrowableColumn(int index)
@@ -2466,7 +2466,7 @@ static class WxKit.Gettext
     static string _pn(string context, string singular, string plural, long n)
     static string _pn(string context, string singular, string plural, long n, params object?[] args)
 class WxKit.GridBagSizer : FlexGridSizer
-    GridBagSizer(int verticalGap = 0, int horizontalGap = 0)
+    GridBagSizer(Size? gap = null)
     GridPosition GetItemPosition(Sizer sizer)
     GridPosition GetItemPosition(Window window)
     GridPosition GetItemPosition(int index)
@@ -2702,10 +2702,10 @@ class WxKit.InfoBar : Control
     InfoBar(Window parent, WindowStyle style = WindowStyle.None, int id = -1)
     ShowEffect HideEffect { get; }
     ShowEffect ShowEffect { get; }
+    TimeSpan EffectDuration { get; set; }
     bool HasButtonId(int buttonId)
     bool IsCheckBoxChecked { get; }
     int ButtonCount { get; }
-    int EffectDuration { get; set; }
     int GetButtonId(int index)
     void AddButton(int buttonId, string label = "")
     void Dismiss()
@@ -3318,7 +3318,7 @@ static class WxKit.MessageBox
     static int Show(string message, string caption = "Message", MessageDialogStyle style = MessageDialogStyle.Center | MessageDialogStyle.Ok, Window? parent = null)
 class WxKit.MessageDialog : Dialog
     MessageDialog(Window? parent, string message, string caption = "Message", MessageDialogStyle style = MessageDialogStyle.Center | MessageDialogStyle.Ok, Point? position = null)
-    MessageDialogStyle MessageDialogStyle { get; }
+    MessageDialogStyle Style { get; }
     MessageIcon EffectiveIcon { get; }
     bool HasCustomLabels { get; }
     bool SetOkCancelLabels(string ok, string cancel)
@@ -4065,9 +4065,9 @@ readonly record struct WxKit.Rect : IEquatable<Rect>
     static bool op_Inequality(Rect left, Rect right)
     void Deconstruct(out int X, out int Y, out int Width, out int Height)
 class WxKit.RichMessageDialog : Dialog
-    MessageDialogStyle FooterIcon { get; set; }
-    MessageDialogStyle MessageDialogStyle { get; }
+    MessageDialogStyle Style { get; }
     MessageIcon EffectiveIcon { get; }
+    MessageIcon FooterIcon { get; set; }
     RichMessageDialog(Window? parent, string message, string caption = "Message", MessageDialogStyle style = MessageDialogStyle.Center | MessageDialogStyle.Ok)
     bool HasCustomLabels { get; }
     bool IsCheckBoxChecked { get; }
@@ -4532,12 +4532,11 @@ enum WxKit.SplitMode : int
     Horizontal = 1
     Vertical = 2
 class WxKit.SplitterEvent : NotifyEvent
+    Point Position { get; }
     Window? WindowBeingRemoved { get; }
     int NewSize { get; }
     int OldSize { get; }
     int SashPosition { get; set; }
-    int X { get; }
-    int Y { get; }
 class WxKit.SplitterWindow : Window
     Point LastSplitPosition { get; set; }
     SplitMode SplitMode { get; set; }
@@ -8779,6 +8778,16 @@ class WxKit.TopLevelWindow : Window
     void SetIcons(Icon icons)
     void SetRepresentedFileName(string fileName)
     void ShowWithoutActivating()
+[Flags] enum WxKit.TouchEvents : int
+    AllGestures = 31
+    HorizontalPanGesture = 2
+    None = 0
+    PanGestures = 3
+    PressGestures = 16
+    RawEvents = 32
+    RotateGesture = 8
+    VerticalPanGesture = 1
+    ZoomGesture = 4
 sealed class WxKit.Translations : IDisposable
     IReadOnlyList<string> GetAvailableTranslations(string domain)
     Translations()
@@ -8975,7 +8984,7 @@ class WxKit.TreeListCtrl : Window
     event EventHandler<TreeListEvent>? ItemExpanded
     event EventHandler<TreeListEvent>? ItemExpanding
     event EventHandler<TreeListEvent>? SelectionChanged
-    int AppendColumn(string title, int width = -2, Alignment align = Alignment.Left, int flags = 1)
+    int AppendColumn(string title, int width = -2, Alignment alignment = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
     int ColumnCount { get; }
     int GetColumnWidth(int column)
     int WidthFor(string text)
@@ -9134,7 +9143,7 @@ class WxKit.WebView : Control
     event EventHandler<WebViewEvent>? TitleChanged
     event EventHandler<WebViewEvent>? WindowCloseRequested
     float ZoomFactor { get; set; }
-    long Find(string text, WebViewFindFlags flags = WebViewFindFlags.Default)
+    int Find(string text, WebViewFindFlags flags = WebViewFindFlags.Default)
     static bool IsAvailable { get; }
     static string? DataFolder { get; set; }
     string PageSource { get; }
@@ -9276,7 +9285,7 @@ class WxKit.Window : EvtHandler
     bool Destroy()
     bool DestroyChildren()
     bool Disable()
-    bool EnableTouchEvents(int eventsMask)
+    bool EnableTouchEvents(TouchEvents eventsMask)
     bool HasCapture { get; }
     bool HasExtraStyle(WindowExtraStyle extraFlag)
     bool HasFocus { get; }
@@ -9363,7 +9372,7 @@ class WxKit.Window : EvtHandler
     int GetBestHeight(int width)
     int GetBestWidth(int height)
     int GetHelpIdAtPoint(Point point)
-    int GetScrollBarSize(int orientation)
+    int GetScrollBarSize(Orientation orientation)
     int GetScrollPosition(Orientation orientation)
     int GetScrollRange(Orientation orientation)
     int GetScrollThumb(Orientation orientation)

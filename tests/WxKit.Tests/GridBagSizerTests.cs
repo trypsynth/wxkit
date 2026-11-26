@@ -5,7 +5,7 @@ public class GridBagSizerTests {
 	[Fact]
 	public Task PlacesItemsInCells() => Gui.WithFrame(frame => {
 		Panel panel = new(frame);
-		GridBagSizer grid = new(5, 5);
+		GridBagSizer grid = new(new Size(5, 5));
 		StaticText label = new(panel, "&Name:");
 		TextCtrl name = new(panel);
 		Button ok = new(panel, "OK");

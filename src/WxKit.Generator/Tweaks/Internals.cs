@@ -152,6 +152,21 @@ internal static class Internals {
 			.HidesInherited("IsChecked");
 		// What a DC drew within is one rectangle, in Points.cs.
 		tweaks.Class("wxDC").Internal("MinX", "MaxX", "MinY", "MaxY");
+		// Numbers that are an enum, flags, or a time.
+		tweaks.Class("wxFlexGridSizer").ParameterEnum("GetFlexibleDirection", "return", "Orientation").ParameterEnum("SetFlexibleDirection", "direction", "Orientation");
+		tweaks.Class("wxWindow").ParameterEnum("GetScrollbarSize", "orient", "Orientation").ParameterEnum("EnableTouchEvents", "eventsMask", "TouchEvents");
+		tweaks.ConstantEnum("TouchEvents", "wxTOUCH_", isFlags: true);
+		tweaks.Class("wxInfoBar").ParameterMilliseconds("GetEffectDuration", "return").ParameterMilliseconds("SetEffectDuration", "duration");
+		tweaks.Class("wxTreeListCtrl").ParameterEnum("AppendColumn", "flags", "wxDataViewColumnFlags").ParameterName("AppendColumn", "align", "alignment");
+		tweaks.Class("wxRichMessageDialog").ParameterEnum("GetFooterIcon", "return", "MessageIcon").ParameterEnum("SetFooterIcon", "icon", "MessageIcon");
+		// A web view's count of matches is an int, as other counts are.
+		tweaks.Class("wxWebView").IntIndexes();
+		// A message dialog's buttons and icon are its Style, which hides the window's, as each
+		// class's does, though it is kept apart.
+		foreach (string dialog in (string[])["wxMessageDialog", "wxRichMessageDialog"]) tweaks.Class(dialog).Property("Style", "GetMessageDialogStyle").HidesInherited("Style");
+		// Where a splitter's sash was dragged to is a Point, and a grid bag's gaps are a Size, as a grid's are, in Points.cs.
+		tweaks.Class("wxSplitterEvent").Internal("GetX", "GetY");
+		tweaks.Class("wxGridBagSizer").InternalOverload("wxGridBagSizer", "vgap", "int");
 		tweaks.Class("wxCollapsiblePane").Property("IsCollapsed", "IsCollapsed", "Collapse");
 		tweaks.Class("wxListCtrl").Property("HasCheckBoxes", "HasCheckBoxes", "EnableCheckBoxes");
 		tweaks.Class("wxSearchCtrl").Property("IsSearchButtonVisible", "IsSearchButtonVisible", "ShowSearchButton").Property("IsCancelButtonVisible", "IsCancelButtonVisible", "ShowCancelButton");

@@ -13,9 +13,9 @@ public unsafe partial class FlexGridSizer : GridSizer {
 	public IReadOnlyList<int> ColumnWidths => NativeNumbers.TakeInts(WxKitNative.FlexGridSizerGetColWidths(Native));
 
 	/// <summary>Returns a wxOrientation value that specifies whether the sizer flexibly resizes its columns, rows, or both (default).</summary>
-	public int FlexibleDirection {
-		get => WxKitNative.FlexGridSizerGetFlexibleDirection(Native);
-		set => WxKitNative.FlexGridSizerSetFlexibleDirection(Native, value);
+	public Orientation FlexibleDirection {
+		get => (Orientation)WxKitNative.FlexGridSizerGetFlexibleDirection(Native);
+		set => WxKitNative.FlexGridSizerSetFlexibleDirection(Native, (int)value);
 	}
 
 	/// <summary>Returns the value that specifies how the sizer grows in the "non-flexible" direction if there is one.</summary>

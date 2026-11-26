@@ -89,3 +89,14 @@ public unsafe partial class Window {
 	/// <summary>Moves the pointer to a point, in the window's client coordinates.</summary>
 	public void WarpPointer(Point point) => WxKitNative.WindowWarpPointer(Native, point.X, point.Y);
 }
+
+public unsafe partial class SplitterEvent {
+	/// <summary>Where the pointer was when the sash was double clicked, for the event that says it was.</summary>
+	public Point Position => new(WxKitNative.SplitterEventGetX(Handle), WxKitNative.SplitterEventGetY(Handle));
+}
+
+public unsafe partial class GridBagSizer {
+	/// <summary>Makes a sizer whose cells are a gap apart, across and down, as <see cref="GridSizer"/> takes it.</summary>
+	public GridBagSizer(Size? gap = null) : this(WxKitNative.GridBagSizerNew((gap ?? default).Height, (gap ?? default).Width)) {
+	}
+}

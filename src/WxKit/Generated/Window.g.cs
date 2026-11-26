@@ -558,7 +558,7 @@ public unsafe partial class Window : EvtHandler {
 	public void EnableInputMethod(bool enable = true) => WxKitNative.WindowEnableInputMethod(Native, enable ? (byte)1 : (byte)0);
 
 	/// <summary>Request generation of touch events for this window.</summary>
-	public bool EnableTouchEvents(int eventsMask) => WxKitNative.WindowEnableTouchEvents(Native, eventsMask) != 0;
+	public bool EnableTouchEvents(TouchEvents eventsMask) => WxKitNative.WindowEnableTouchEvents(Native, (int)eventsMask) != 0;
 
 	/// <summary>Enables or disables visible indication of keyboard focus.</summary>
 	public void EnableVisibleFocus(bool enable) => WxKitNative.WindowEnableVisibleFocus(Native, enable ? (byte)1 : (byte)0);
@@ -647,7 +647,7 @@ public unsafe partial class Window : EvtHandler {
 	public string GetHelpTextAtPoint(Point point, HelpOrigin origin) => NativeString.Take(WxKitNative.WindowGetHelpTextAtPoint(Native, point, (int)origin));
 
 	/// <summary>Returns the space taken by the scrollbar of the given orientation when it is shown in this window.</summary>
-	public int GetScrollBarSize(int orientation) => WxKitNative.WindowGetScrollbarSize(Native, orientation);
+	public int GetScrollBarSize(Orientation orientation) => WxKitNative.WindowGetScrollbarSize(Native, (int)orientation);
 
 	/// <summary>Returns the built-in scrollbar position.</summary>
 	public int GetScrollPosition(Orientation orientation) => WxKitNative.WindowGetScrollPos(Native, (int)orientation);
@@ -676,7 +676,7 @@ public unsafe partial class Window : EvtHandler {
 	public bool Hide() => WxKitNative.WindowHide(Native) != 0;
 
 	/// <summary>This function hides a window, like Hide(), but using a special visual effect if possible.</summary>
-	public bool HideWithEffect(ShowEffect effect, TimeSpan timeout = default) => WxKitNative.WindowHideWithEffect(Native, (int)effect, checked((uint)checked((long)timeout.TotalMilliseconds))) != 0;
+	public bool HideWithEffect(ShowEffect effect, TimeSpan timeout = default) => WxKitNative.WindowHideWithEffect(Native, (int)effect, checked((uint)checked((uint)timeout.TotalMilliseconds))) != 0;
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public HitTestResult HitTest(Point point) => (HitTestResult)WxKitNative.WindowHitTest(Native, point);
@@ -838,7 +838,7 @@ public unsafe partial class Window : EvtHandler {
 	public bool Show(bool show = true) => WxKitNative.WindowShow(Native, show ? (byte)1 : (byte)0) != 0;
 
 	/// <summary>This function shows a window, like Show(), but using a special visual effect if possible.</summary>
-	public bool ShowWithEffect(ShowEffect effect, TimeSpan timeout = default) => WxKitNative.WindowShowWithEffect(Native, (int)effect, checked((uint)checked((long)timeout.TotalMilliseconds))) != 0;
+	public bool ShowWithEffect(ShowEffect effect, TimeSpan timeout = default) => WxKitNative.WindowShowWithEffect(Native, (int)effect, checked((uint)checked((uint)timeout.TotalMilliseconds))) != 0;
 
 	/// <summary>Re-enables window updating after a previous call to Freeze().</summary>
 	public void Thaw() => WxKitNative.WindowThaw(Native);

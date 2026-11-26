@@ -24,7 +24,7 @@ internal sealed class SettingsDialog : Dialog {
 		// The general page is a form: a label in the first column and its field in the second,
 		// each label made just before its field, so a screen reader names the field after it.
 		Panel general = new(pages);
-		GridBagSizer form = new(5, 10);
+		GridBagSizer form = new(new Size(10, 5));
 		AddField(form, 0, new StaticText(general, _("&Name:")), _name = new TextCtrl(general, settings.Name));
 		_name.Validator = new NameRequired();
 		AddField(form, 1, new StaticText(general, _("&Theme:")), _theme = new Choice(general, AppSettings.Themes));

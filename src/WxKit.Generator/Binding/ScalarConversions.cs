@@ -168,7 +168,7 @@ internal sealed class MillisecondsConversion(Conversion number) : Conversion {
 
 	public override string ManagedType(bool nullable) => "TimeSpan";
 
-	public override IEnumerable<string> InteropArguments(string name, bool nullable) => number.InteropArguments($"checked((long){name}.TotalMilliseconds)", nullable);
+	public override IEnumerable<string> InteropArguments(string name, bool nullable) => number.InteropArguments($"checked(({number.InteropReturnType}){name}.TotalMilliseconds)", nullable);
 
 	public override string ManagedReturn(string expression) => $"TimeSpan.FromMilliseconds({number.ManagedReturn(expression)})";
 }

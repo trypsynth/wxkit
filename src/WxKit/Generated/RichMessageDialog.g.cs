@@ -44,8 +44,8 @@ public unsafe partial class RichMessageDialog : Dialog {
 	}
 
 	/// <summary>Retrieves the footer icon.</summary>
-	public MessageDialogStyle FooterIcon {
-		get => (MessageDialogStyle)WxKitNative.RichMessageDialogGetFooterIcon(Native);
+	public MessageIcon FooterIcon {
+		get => (MessageIcon)WxKitNative.RichMessageDialogGetFooterIcon(Native);
 		set => WxKitNative.RichMessageDialogSetFooterIcon(Native, (int)value);
 	}
 
@@ -85,8 +85,6 @@ public unsafe partial class RichMessageDialog : Dialog {
 		}
 	}
 
-	public MessageDialogStyle MessageDialogStyle => (MessageDialogStyle)WxKitNative.RichMessageDialogGetMessageDialogStyle(Native);
-
 	public string NoLabel => NativeString.Take(WxKitNative.RichMessageDialogGetNoLabel(Native));
 
 	public string OkLabel {
@@ -98,6 +96,8 @@ public unsafe partial class RichMessageDialog : Dialog {
 			}
 		}
 	}
+
+	public new MessageDialogStyle Style => (MessageDialogStyle)WxKitNative.RichMessageDialogGetMessageDialogStyle(Native);
 
 	public string YesLabel => NativeString.Take(WxKitNative.RichMessageDialogGetYesLabel(Native));
 

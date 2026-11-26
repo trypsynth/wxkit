@@ -228,7 +228,7 @@ public unsafe partial class WebView : Control {
 	public void EnableHistory(bool enable = true) => WxKitNative.WebViewEnableHistory(Native, enable ? (byte)1 : (byte)0);
 
 	/// <summary>Finds a phrase on the current page and if found, the control will scroll the phrase into view and select it.</summary>
-	public long Find(string text, WebViewFindFlags flags = WebViewFindFlags.Default) {
+	public int Find(string text, WebViewFindFlags flags = WebViewFindFlags.Default) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
 			return WxKitNative.WebViewFind(Native, textText, NativeString.Length(text), (int)flags);

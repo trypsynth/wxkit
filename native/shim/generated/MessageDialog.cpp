@@ -20,6 +20,10 @@ WXK_FUNCTION(uint8_t) wxk_MessageDialog_SetYesNoLabels(wxk_Window* self, const c
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMessageDialog*>(wxk::Unwrap(self))->SetYesNoLabels(wxk::FromUtf16(yes, yesLength), wxk::FromUtf16(no, noLength))) ? 1 : 0; });
 }
 
+WXK_FUNCTION(int64_t) wxk_MessageDialog_GetMessageDialogStyle(wxk_Window* self) noexcept {
+	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxMessageDialog*>(wxk::Unwrap(self))->GetMessageDialogStyle()); });
+}
+
 WXK_FUNCTION(wxk_String*) wxk_MessageDialog_GetCaption(wxk_Window* self) noexcept {
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxMessageDialog*>(wxk::Unwrap(self))->GetCaption()); });
 }
@@ -38,10 +42,6 @@ WXK_FUNCTION(wxk_String*) wxk_MessageDialog_GetExtendedMessage(wxk_Window* self)
 
 WXK_FUNCTION(void) wxk_MessageDialog_SetExtendedMessage(wxk_Window* self, const char16_t* extendedMessage, size_t extendedMessageLength) noexcept {
 	wxk::Guard([&] { static_cast<wxMessageDialog*>(wxk::Unwrap(self))->SetExtendedMessage(wxk::FromUtf16(extendedMessage, extendedMessageLength)); });
-}
-
-WXK_FUNCTION(int64_t) wxk_MessageDialog_GetMessageDialogStyle(wxk_Window* self) noexcept {
-	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxMessageDialog*>(wxk::Unwrap(self))->GetMessageDialogStyle()); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_MessageDialog_HasCustomLabels(wxk_Window* self) noexcept {

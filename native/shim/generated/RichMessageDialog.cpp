@@ -32,6 +32,10 @@ WXK_FUNCTION(void) wxk_RichMessageDialog_ShowDetailedText(wxk_Window* self, cons
 	wxk::Guard([&] { static_cast<wxRichMessageDialog*>(wxk::Unwrap(self))->ShowDetailedText(wxk::FromUtf16(detailedText, detailedTextLength)); });
 }
 
+WXK_FUNCTION(int64_t) wxk_RichMessageDialog_GetMessageDialogStyle(wxk_Window* self) noexcept {
+	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxMessageDialogBase*>(static_cast<wxRichMessageDialog*>(wxk::Unwrap(self)))->GetMessageDialogStyle()); });
+}
+
 WXK_FUNCTION(wxk_String*) wxk_RichMessageDialog_GetCheckBoxText(wxk_Window* self) noexcept {
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxRichMessageDialog*>(wxk::Unwrap(self))->GetCheckBoxText()); });
 }
@@ -74,10 +78,6 @@ WXK_FUNCTION(wxk_String*) wxk_RichMessageDialog_GetExtendedMessage(wxk_Window* s
 
 WXK_FUNCTION(void) wxk_RichMessageDialog_SetExtendedMessage(wxk_Window* self, const char16_t* extendedMessage, size_t extendedMessageLength) noexcept {
 	wxk::Guard([&] { static_cast<wxMessageDialogBase*>(static_cast<wxRichMessageDialog*>(wxk::Unwrap(self)))->SetExtendedMessage(wxk::FromUtf16(extendedMessage, extendedMessageLength)); });
-}
-
-WXK_FUNCTION(int64_t) wxk_RichMessageDialog_GetMessageDialogStyle(wxk_Window* self) noexcept {
-	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxMessageDialogBase*>(static_cast<wxRichMessageDialog*>(wxk::Unwrap(self)))->GetMessageDialogStyle()); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_RichMessageDialog_HasCustomLabels(wxk_Window* self) noexcept {

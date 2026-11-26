@@ -8,8 +8,8 @@ WXK_FUNCTION(wxk_Window*) wxk_TreeListCtrl_new(wxk_Window* parent, int32_t id, w
 	});
 }
 
-WXK_FUNCTION(int32_t) wxk_TreeListCtrl_AppendColumn(wxk_Window* self, const char16_t* title, size_t titleLength, int32_t width, int32_t align, int32_t flags) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxTreeListCtrl*>(wxk::Unwrap(self))->AppendColumn(wxk::FromUtf16(title, titleLength), static_cast<int>(width), static_cast<wxAlignment>(align), static_cast<int>(flags))); });
+WXK_FUNCTION(int32_t) wxk_TreeListCtrl_AppendColumn(wxk_Window* self, const char16_t* title, size_t titleLength, int32_t width, int32_t alignment, int32_t flags) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxTreeListCtrl*>(wxk::Unwrap(self))->AppendColumn(wxk::FromUtf16(title, titleLength), static_cast<int>(width), static_cast<wxAlignment>(alignment), static_cast<int>(flags))); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_TreeListCtrl_DeleteColumn(wxk_Window* self, uint32_t column) noexcept {

@@ -51,8 +51,6 @@ public unsafe partial class MessageDialog : Dialog {
 		}
 	}
 
-	public MessageDialogStyle MessageDialogStyle => (MessageDialogStyle)WxKitNative.MessageDialogGetMessageDialogStyle(Native);
-
 	public string NoLabel => NativeString.Take(WxKitNative.MessageDialogGetNoLabel(Native));
 
 	public string OkLabel {
@@ -64,6 +62,8 @@ public unsafe partial class MessageDialog : Dialog {
 			}
 		}
 	}
+
+	public new MessageDialogStyle Style => (MessageDialogStyle)WxKitNative.MessageDialogGetMessageDialogStyle(Native);
 
 	public string YesLabel => NativeString.Take(WxKitNative.MessageDialogGetYesLabel(Native));
 

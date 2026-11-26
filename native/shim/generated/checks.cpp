@@ -4057,6 +4057,15 @@ static_assert(static_cast<long>(wxTL_CHECKBOX) == static_cast<long>(2LL), "wxTL_
 static_assert(static_cast<long>(wxTL_MULTIPLE) == static_cast<long>(1LL), "wxTL_MULTIPLE is not 1");
 static_assert(static_cast<long>(wxTL_NO_HEADER) == static_cast<long>(16LL), "wxTL_NO_HEADER is not 16");
 static_assert(static_cast<long>(wxTL_USER_3STATE) == static_cast<long>(8LL), "wxTL_USER_3STATE is not 8");
+static_assert(static_cast<int32_t>(wxTOUCH_ALL_GESTURES) == static_cast<int32_t>(31LL), "wxTOUCH_ALL_GESTURES is not 31");
+static_assert(static_cast<int32_t>(wxTOUCH_HORIZONTAL_PAN_GESTURE) == static_cast<int32_t>(2LL), "wxTOUCH_HORIZONTAL_PAN_GESTURE is not 2");
+static_assert(static_cast<int32_t>(wxTOUCH_NONE) == static_cast<int32_t>(0LL), "wxTOUCH_NONE is not 0");
+static_assert(static_cast<int32_t>(wxTOUCH_PAN_GESTURES) == static_cast<int32_t>(3LL), "wxTOUCH_PAN_GESTURES is not 3");
+static_assert(static_cast<int32_t>(wxTOUCH_PRESS_GESTURES) == static_cast<int32_t>(16LL), "wxTOUCH_PRESS_GESTURES is not 16");
+static_assert(static_cast<int32_t>(wxTOUCH_RAW_EVENTS) == static_cast<int32_t>(32LL), "wxTOUCH_RAW_EVENTS is not 32");
+static_assert(static_cast<int32_t>(wxTOUCH_ROTATE_GESTURE) == static_cast<int32_t>(8LL), "wxTOUCH_ROTATE_GESTURE is not 8");
+static_assert(static_cast<int32_t>(wxTOUCH_VERTICAL_PAN_GESTURE) == static_cast<int32_t>(1LL), "wxTOUCH_VERTICAL_PAN_GESTURE is not 1");
+static_assert(static_cast<int32_t>(wxTOUCH_ZOOM_GESTURE) == static_cast<int32_t>(4LL), "wxTOUCH_ZOOM_GESTURE is not 4");
 static_assert(static_cast<long>(wxTR_EDIT_LABELS) == static_cast<long>(512LL), "wxTR_EDIT_LABELS is not 512");
 static_assert(static_cast<long>(wxTR_FULL_ROW_HIGHLIGHT) == static_cast<long>(8192LL), "wxTR_FULL_ROW_HIGHLIGHT is not 8192");
 static_assert(static_cast<long>(wxTR_HAS_BUTTONS) == static_cast<long>(1LL), "wxTR_HAS_BUTTONS is not 1");

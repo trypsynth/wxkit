@@ -3566,10 +3566,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* GenericDirCtrlGetTreeCtrl(WxkWindow* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_GridBagSizer_new")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkSizer* GridBagSizerNew(int verticalGap, int horizontalGap);
-
 	[LibraryImport(Library, EntryPoint = "wxk_GridBagSizer_Add_WindowGridPositionGridSpanIntInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void GridBagSizerAddWindowGridPositionGridSpanIntInt(WxkSizer* self, WxkWindow* window, GridPosition position, GridSpan span, int flag, int border);
@@ -3581,6 +3577,10 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_GridBagSizer_Add_IntIntGridPositionGridSpanIntInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void GridBagSizerAddIntIntGridPositionGridSpanIntInt(WxkSizer* self, int width, int height, GridPosition position, GridSpan span, int flag, int border);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GridBagSizer_new")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkSizer* GridBagSizerNew(int verticalGap, int horizontalGap);
 
 	[LibraryImport(Library, EntryPoint = "wxk_GridBagSizer_CheckForIntersection")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -5154,6 +5154,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte MessageDialogSetYesNoLabels(WxkWindow* self, char* yes, nuint yesLength, char* no, nuint noLength);
 
+	[LibraryImport(Library, EntryPoint = "wxk_MessageDialog_GetMessageDialogStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial long MessageDialogGetMessageDialogStyle(WxkWindow* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_MessageDialog_GetCaption")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkString* MessageDialogGetCaption(WxkWindow* self);
@@ -5173,10 +5177,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_MessageDialog_SetExtendedMessage")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void MessageDialogSetExtendedMessage(WxkWindow* self, char* extendedMessage, nuint extendedMessageLength);
-
-	[LibraryImport(Library, EntryPoint = "wxk_MessageDialog_GetMessageDialogStyle")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial long MessageDialogGetMessageDialogStyle(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_MessageDialog_HasCustomLabels")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -6458,6 +6458,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void RichMessageDialogShowDetailedText(WxkWindow* self, char* detailedText, nuint detailedTextLength);
 
+	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_GetMessageDialogStyle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial long RichMessageDialogGetMessageDialogStyle(WxkWindow* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_GetCheckBoxText")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkString* RichMessageDialogGetCheckBoxText(WxkWindow* self);
@@ -6501,10 +6505,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_SetExtendedMessage")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void RichMessageDialogSetExtendedMessage(WxkWindow* self, char* extendedMessage, nuint extendedMessageLength);
-
-	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_GetMessageDialogStyle")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial long RichMessageDialogGetMessageDialogStyle(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_HasCustomLabels")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -7270,6 +7270,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int SpinEventGetPosition(WxkEvent* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_SplitterEvent_GetX")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int SplitterEventGetX(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_SplitterEvent_GetY")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int SplitterEventGetY(WxkEvent* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_SplitterEvent_GetSashPosition")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int SplitterEventGetSashPosition(WxkEvent* self);
@@ -7281,14 +7289,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_SplitterEvent_GetWindowBeingRemoved")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* SplitterEventGetWindowBeingRemoved(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_SplitterEvent_GetX")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int SplitterEventGetX(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_SplitterEvent_GetY")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int SplitterEventGetY(WxkEvent* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_SplitterEvent_GetOldSize")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -11812,7 +11812,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_AppendColumn")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int TreeListCtrlAppendColumn(WxkWindow* self, char* title, nuint titleLength, int width, int align, int flags);
+	public static partial int TreeListCtrlAppendColumn(WxkWindow* self, char* title, nuint titleLength, int width, int alignment, int flags);
 
 	[LibraryImport(Library, EntryPoint = "wxk_TreeListCtrl_DeleteColumn")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -12260,7 +12260,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_WebView_Find")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial long WebViewFind(WxkWindow* self, char* text, nuint textLength, int flags);
+	public static partial int WebViewFind(WxkWindow* self, char* text, nuint textLength, int flags);
 
 	[LibraryImport(Library, EntryPoint = "wxk_WebView_CanSetZoomType")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

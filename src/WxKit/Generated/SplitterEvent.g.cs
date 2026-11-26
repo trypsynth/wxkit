@@ -23,10 +23,4 @@ public unsafe partial class SplitterEvent : NotifyEvent {
 
 	/// <summary>Returns a pointer to the window being removed when a splitter window is unsplit.</summary>
 	public Window? WindowBeingRemoved => ObjectRegistry.Wrap<Window>(WxKitNative.SplitterEventGetWindowBeingRemoved(Handle));
-
-	/// <summary>Returns the x coordinate of the double-click point.</summary>
-	public int X => WxKitNative.SplitterEventGetX(Handle);
-
-	/// <summary>Returns the y coordinate of the double-click point.</summary>
-	public int Y => WxKitNative.SplitterEventGetY(Handle);
 }

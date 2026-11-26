@@ -136,7 +136,7 @@ internal sealed partial class Binder {
 		bound.Properties.RemoveAll(property => !property.Getter.IsStatic && !bound.Tweak.HidingProperties.Contains(property.Name) && inherited.Contains(property.Name) || !seen.Add(property.Name));
 		bound.Methods.RemoveAll(method => !method.Function.IsStatic && inherited.Contains(Signature(method)) || !seen.Add(Signature(method)));
 		for (int index = 0; index < bound.Properties.Count; index++) {
-			if (inherited.Contains(bound.Properties[index].Name)) bound.Properties[index] = bound.Properties[index] with { Hides = true };
+			if (inherited.Contains(bound.Properties[index].Name) || bound.Tweak.HidingProperties.Contains(bound.Properties[index].Name)) bound.Properties[index] = bound.Properties[index] with { Hides = true };
 		}
 		for (int index = 0; index < bound.Methods.Count; index++) {
 			if (inherited.Contains(Signature(bound.Methods[index]))) bound.Methods[index] = bound.Methods[index] with { Hides = true };

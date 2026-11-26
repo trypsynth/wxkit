@@ -69,8 +69,8 @@ WXK_FUNCTION(void) wxk_WebView_Undo(wxk_Window* self) noexcept {
 	wxk::Guard([&] { static_cast<wxWebView*>(wxk::Unwrap(self))->Undo(); });
 }
 
-WXK_FUNCTION(int64_t) wxk_WebView_Find(wxk_Window* self, const char16_t* text, size_t textLength, int32_t flags) noexcept {
-	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxWebView*>(wxk::Unwrap(self))->Find(wxk::FromUtf16(text, textLength), static_cast<wxWebViewFindFlags>(flags))); });
+WXK_FUNCTION(int32_t) wxk_WebView_Find(wxk_Window* self, const char16_t* text, size_t textLength, int32_t flags) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxWebView*>(wxk::Unwrap(self))->Find(wxk::FromUtf16(text, textLength), static_cast<wxWebViewFindFlags>(flags))); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_WebView_CanSetZoomType(wxk_Window* self, int32_t type) noexcept {

@@ -17,9 +17,9 @@ public unsafe partial class InfoBar : Control {
 	public int ButtonCount => checked((int)WxKitNative.InfoBarGetButtonCount(Native));
 
 	/// <summary>Return the effect animation duration currently used.</summary>
-	public int EffectDuration {
-		get => WxKitNative.InfoBarGetEffectDuration(Native);
-		set => WxKitNative.InfoBarSetEffectDuration(Native, value);
+	public TimeSpan EffectDuration {
+		get => TimeSpan.FromMilliseconds(WxKitNative.InfoBarGetEffectDuration(Native));
+		set => WxKitNative.InfoBarSetEffectDuration(Native, checked((int)value.TotalMilliseconds));
 	}
 
 	/// <summary>Return the effect currently used for hiding the bar.</summary>

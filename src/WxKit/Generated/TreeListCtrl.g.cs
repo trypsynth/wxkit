@@ -83,10 +83,10 @@ public unsafe partial class TreeListCtrl : Window {
 	}
 
 	/// <summary>Add a column with the given title and attributes.</summary>
-	public int AppendColumn(string title, int width = -2, Alignment align = Alignment.Left, int flags = 1) {
+	public int AppendColumn(string title, int width = -2, Alignment alignment = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
 		ArgumentNullException.ThrowIfNull(title);
 		fixed (char* titleText = title) {
-			return WxKitNative.TreeListCtrlAppendColumn(Native, titleText, NativeString.Length(title), width, (int)align, flags);
+			return WxKitNative.TreeListCtrlAppendColumn(Native, titleText, NativeString.Length(title), width, (int)alignment, (int)flags);
 		}
 	}
 

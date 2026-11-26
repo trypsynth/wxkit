@@ -2507,6 +2507,29 @@ public enum TextValidatorStyle {
 	Space = 2048,
 }
 
+/// <summary>Wraps wxTOUCH_*.</summary>
+[Flags]
+public enum TouchEvents {
+	/// <summary>Wraps wxTOUCH_NONE.</summary>
+	None = 0,
+	/// <summary>Wraps wxTOUCH_VERTICAL_PAN_GESTURE.</summary>
+	VerticalPanGesture = 1,
+	/// <summary>Wraps wxTOUCH_HORIZONTAL_PAN_GESTURE.</summary>
+	HorizontalPanGesture = 2,
+	/// <summary>Wraps wxTOUCH_PAN_GESTURES.</summary>
+	PanGestures = 3,
+	/// <summary>Wraps wxTOUCH_ZOOM_GESTURE.</summary>
+	ZoomGesture = 4,
+	/// <summary>Wraps wxTOUCH_ROTATE_GESTURE.</summary>
+	RotateGesture = 8,
+	/// <summary>Wraps wxTOUCH_PRESS_GESTURES.</summary>
+	PressGestures = 16,
+	/// <summary>Wraps wxTOUCH_ALL_GESTURES.</summary>
+	AllGestures = 31,
+	/// <summary>Wraps wxTOUCH_RAW_EVENTS.</summary>
+	RawEvents = 32,
+}
+
 /// <summary>Wraps wxTreeItemIcon.</summary>
 public enum TreeItemIcon {
 	/// <summary>To get/set the item image for when the item is not selected and not expanded. Wraps wxTreeItemIcon_Normal.</summary>

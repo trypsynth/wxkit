@@ -8,12 +8,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 
 A second review of the whole API on 2026-11-26, before the first preview, found these. The earlier review's changes are made, and listed in [the first preview's notes](../releases/0.2.0-preview.1.md).
 
-### Numbers that are another type
-
-- `FlexGridSizer.FlexibleDirection` and `Window.GetScrollBarSize`'s parameter are an `Orientation`, `InfoBar.EffectDuration` is a `TimeSpan`, `Window.EnableTouchEvents` takes flags, `RegisterHotKey`'s key is a `KeyCode`, `TreeListCtrl.AppendColumn`'s flags are `DataViewColumnFlags`, `WebView.Find` returns a count as a `long`, and `TextCtrl.LoadFile` and `SaveFile` take a `fileType` that means nothing.
-- `SplitterEvent.X` and `Y` are a `Point`, and `GridBagSizer`'s two gaps a `Size`, as `GridSizer`'s are.
-- `MessageDialog.MessageDialogStyle` is the dialog's `Style`. `RichMessageDialog.FooterIcon` and `NotificationMessage.SetFlags` take a `MessageIcon`.
-
 ### Names
 
 - Abbreviations left: `AlwaysShowSb` in every style enum, and `ListBoxStyle.AlwaysSb` and `NoSb`, `DataViewCtrlStyle.HorizRules` and `VertRules`, `ListCtrlStyle.SingleSel`, `ToolBarStyle.HorzLayout` and `HorzText`, `HitTestResult.WindowHorzScrollBar` and `WindowVertScrollBar`, `StandardId.MdiWindowTileHorz` and `TileVert`, `WizardBitmapPlacement.HalignLeft` and the rest, `CollapsiblePaneStyle.NoTlwResize`, `ArtClient.CmnDialog`, `ArtId.DelBookmark`, `AboutDialogInfo.DocWriters`, `ListItem.Align`, `SystemFont.AnsiVarFont`, `NavigationFlags.WinChange`, and `MouseEvent.ButtonDClick`.
