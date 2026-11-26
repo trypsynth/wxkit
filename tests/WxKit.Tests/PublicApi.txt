@@ -1024,15 +1024,12 @@ class WxKit.CredentialEntryDialog : Dialog
     string Password { get; set; }
     string UserName { get; set; }
 class WxKit.Cursor : NativeObject
-    Cursor()
     Cursor(Bitmap bitmap, Point hotSpot)
-    Cursor(Bitmap bitmap, int hotSpotX = 0, int hotSpotY = 0)
     Cursor(Image image)
     Cursor(StockCursor cursorId)
-    Cursor(string cursorName, BitmapType? type = null, int hotSpotX = 0, int hotSpotY = 0)
-    Cursor(string name, BitmapType type, Point hotSpot)
     Point HotSpot { get; }
     bool IsOk { get; }
+    static Cursor? FromFile(string name, BitmapType? type = null, Point hotSpot = null)
 abstract class WxKit.CustomValidator : Validator
     protected CustomValidator()
     protected virtual bool OnTransferFromWindow(Window window)
@@ -2597,19 +2594,17 @@ interface WxKit.IItemContainer
     abstract void SetItemData(int index, object? data)
     abstract void SetString(int index, string text)
 class WxKit.Icon : NativeObject
-    Icon()
-    Icon(string name, BitmapType? type = null, int desiredWidth = -1, int desiredHeight = -1)
     Size LogicalSize { get; }
     Size Size { get; }
     bool IsOk { get; }
-    bool LoadFile(string name, BitmapType? type = null, int desiredWidth = -1, int desiredHeight = -1)
     double LogicalHeight { get; }
     double LogicalWidth { get; }
     double ScaleFactor { get; }
     int Depth { get; }
     int Height { get; }
     int Width { get; }
-    void CopyFromBitmap(Bitmap bitmap)
+    static Icon FromBitmap(Bitmap bitmap)
+    static Icon? FromFile(string name, BitmapType? type = null, Size? desiredSize = null)
 class WxKit.IconizeEvent : Event
     bool IsIconized { get; }
 class WxKit.IdleEvent : Event

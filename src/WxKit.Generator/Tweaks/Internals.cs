@@ -201,6 +201,9 @@ internal static class Internals {
 		// not be read was an object that was not usable. FromFile and FromStream give null instead.
 		tweaks.Class("wxBitmap").InternalEmptyConstructor().InternalOverload("wxBitmap", "name", "const wxString &").Internal("LoadFile");
 		tweaks.Class("wxImage").InternalEmptyConstructor().InternalOverload("wxImage", "name", "const wxString &").Internal("LoadFile");
+		tweaks.Class("wxIcon").InternalEmptyConstructor().InternalOverload("wxIcon", "name", "const wxString &").Internal("LoadFile", "CopyFromBitmap");
+		// A cursor from a bitmap takes its hot spot as a Point, so the overload with two numbers goes too.
+		tweaks.Class("wxCursor").InternalEmptyConstructor().InternalOverload("wxCursor", "hotSpotX", "int").InternalOverload("wxCursor", "name", "const wxString &");
 		tweaks.Class("wxPrintout").Internal("SetLogicalOrigin", "OffsetLogicalOrigin");
 		tweaks.Class("wxStyledTextCtrl").Internal("CharPositionFromPoint", "CharPositionFromPointClose", "PositionFromPointClose");
 		tweaks.Class("wxToolBar").Internal("FindToolForPosition");

@@ -6,24 +6,8 @@ namespace WxKit;
 
 /// <summary>A cursor is a small bitmap used for denoting where the mouse pointer is, with a picture that indicates the point of a mouse click. Wraps wxCursor.</summary>
 public unsafe partial class Cursor : NativeObject {
-	/// <summary>Default constructor.</summary>
-	public Cursor() : this(CreateNative()) {
-	}
-
-	/// <summary>Constructs a cursor from the provided bitmap and hotspot position.</summary>
-	public Cursor(Bitmap bitmap, int hotSpotX = 0, int hotSpotY = 0) : this(CreateNative(bitmap, hotSpotX, hotSpotY)) {
-	}
-
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public Cursor(Bitmap bitmap, Point hotSpot) : this(CreateNative(bitmap, hotSpot)) {
-	}
-
-	/// <summary>Constructs a cursor by passing a string resource name or filename.</summary>
-	public Cursor(string cursorName, BitmapType? type = null, int hotSpotX = 0, int hotSpotY = 0) : this(CreateNative(cursorName, type, hotSpotX, hotSpotY)) {
-	}
-
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Cursor(string name, BitmapType type, Point hotSpot) : this(CreateNative(name, type, hotSpot)) {
 	}
 
 	/// <summary>Constructs a cursor using a cursor identifier.</summary>
@@ -46,37 +30,10 @@ public unsafe partial class Cursor : NativeObject {
 	/// <summary>Returns true if cursor data is present.</summary>
 	public bool IsOk => WxKitNative.CursorIsOk(Native) != 0;
 
-	private static WxkObject* CreateNative() {
-		Application.VerifyAccess();
-		return WxKitNative.CursorNewDefault();
-	}
-
-	private static WxkObject* CreateNative(Bitmap bitmap, int hotSpotX, int hotSpotY) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(bitmap);
-		return WxKitNative.CursorNewBitmapIntInt(bitmap.Native, hotSpotX, hotSpotY);
-	}
-
 	private static WxkObject* CreateNative(Bitmap bitmap, Point hotSpot) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(bitmap);
 		return WxKitNative.CursorNewBitmapPoint(bitmap.Native, hotSpot);
-	}
-
-	private static WxkObject* CreateNative(string cursorName, BitmapType? type, int hotSpotX, int hotSpotY) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(cursorName);
-		fixed (char* cursorNameText = cursorName) {
-			return WxKitNative.CursorNewStringBitmapTypeIntInt(cursorNameText, NativeString.Length(cursorName), (int)type.GetValueOrDefault(), type.HasValue ? (byte)1 : (byte)0, hotSpotX, hotSpotY);
-		}
-	}
-
-	private static WxkObject* CreateNative(string name, BitmapType type, Point hotSpot) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(name);
-		fixed (char* nameText = name) {
-			return WxKitNative.CursorNewStringBitmapTypePoint(nameText, NativeString.Length(name), (int)type, hotSpot);
-		}
 	}
 
 	private static WxkObject* CreateNative(StockCursor cursorId) {

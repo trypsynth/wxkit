@@ -88,6 +88,20 @@ public class DrawingTests {
 		Assert.Equal(new Color(0, 0, 255), image.GetRgb(new Point(2, 2)));
 	});
 
+	// An icon or a cursor that can't be loaded is null, not an object that isn't usable.
+	[Fact]
+	public Task MakesIconsAndCursorsThatAreUsableOrNull() => Gui.Run(() => {
+		using Bitmap bitmap = new(16, 16);
+		using Icon icon = Icon.FromBitmap(bitmap);
+		Assert.True(icon.IsOk);
+		Assert.Equal(new Size(16, 16), icon.Size);
+		string missing = Path.Combine(Path.GetTempPath(), $"wxkit-{Guid.NewGuid():N}.ico");
+		Assert.Null(Icon.FromFile(missing));
+		Assert.Null(Cursor.FromFile(missing));
+		using Cursor arrow = new(StockCursor.Arrow);
+		Assert.True(arrow.IsOk);
+	});
+
 	[Fact]
 	public Task MeasuresText() => Gui.Run(() => {
 		using Bitmap bitmap = new(100, 40);

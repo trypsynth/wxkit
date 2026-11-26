@@ -1358,25 +1358,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* CredentialEntryDialogNew(WxkWindow* parent, char* message, nuint messageLength, char* title, nuint titleLength);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Cursor_new_Default")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkObject* CursorNewDefault();
-
-	[LibraryImport(Library, EntryPoint = "wxk_Cursor_new_BitmapIntInt")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkObject* CursorNewBitmapIntInt(WxkObject* bitmap, int hotSpotX, int hotSpotY);
-
 	[LibraryImport(Library, EntryPoint = "wxk_Cursor_new_BitmapPoint")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* CursorNewBitmapPoint(WxkObject* bitmap, Point hotSpot);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Cursor_new_StringBitmapTypeIntInt")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkObject* CursorNewStringBitmapTypeIntInt(char* cursorName, nuint cursorNameLength, int type, byte typeGiven, int hotSpotX, int hotSpotY);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Cursor_new_StringBitmapTypePoint")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkObject* CursorNewStringBitmapTypePoint(char* name, nuint nameLength, int type, Point hotSpot);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Cursor_new_StockCursor")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -1385,6 +1369,22 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Cursor_new_Image")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* CursorNewImage(WxkObject* image);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Cursor_new_Default")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* CursorNewDefault();
+
+	[LibraryImport(Library, EntryPoint = "wxk_Cursor_new_BitmapIntInt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* CursorNewBitmapIntInt(WxkObject* bitmap, int hotSpotX, int hotSpotY);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Cursor_new_StringBitmapTypeIntInt")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* CursorNewStringBitmapTypeIntInt(char* cursorName, nuint cursorNameLength, int type, byte typeGiven, int hotSpotX, int hotSpotY);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Cursor_new_StringBitmapTypePoint")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* CursorNewStringBitmapTypePoint(char* name, nuint nameLength, int type, Point hotSpot);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Cursor_IsOk")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

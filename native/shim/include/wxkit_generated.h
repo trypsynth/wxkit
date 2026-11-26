@@ -469,13 +469,13 @@ WXK_FUNCTION(wxk_Window*) wxk_CredentialEntryDialog_new(wxk_Window* parent, cons
 
 // wxCursor
 
-WXK_FUNCTION(wxk_Object*) wxk_Cursor_new_Default(void) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Object*) wxk_Cursor_new_BitmapIntInt(const wxk_Object* bitmap, int32_t hotSpotX, int32_t hotSpotY) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Cursor_new_BitmapPoint(const wxk_Object* bitmap, wxk_Point hotSpot) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Object*) wxk_Cursor_new_StringBitmapTypeIntInt(const char16_t* cursorName, size_t cursorNameLength, int32_t type, uint8_t typeGiven, int32_t hotSpotX, int32_t hotSpotY) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Object*) wxk_Cursor_new_StringBitmapTypePoint(const char16_t* name, size_t nameLength, int32_t type, wxk_Point hotSpot) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Cursor_new_StockCursor(int32_t cursorId) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Cursor_new_Image(const wxk_Object* image) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Object*) wxk_Cursor_new_Default(void) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Object*) wxk_Cursor_new_BitmapIntInt(const wxk_Object* bitmap, int32_t hotSpotX, int32_t hotSpotY) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Object*) wxk_Cursor_new_StringBitmapTypeIntInt(const char16_t* cursorName, size_t cursorNameLength, int32_t type, uint8_t typeGiven, int32_t hotSpotX, int32_t hotSpotY) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Object*) wxk_Cursor_new_StringBitmapTypePoint(const char16_t* name, size_t nameLength, int32_t type, wxk_Point hotSpot) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Cursor_IsOk(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Point) wxk_Cursor_GetHotSpot(wxk_Object* self) WXK_NOEXCEPT;
 
