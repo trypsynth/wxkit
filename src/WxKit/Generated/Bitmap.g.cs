@@ -101,18 +101,6 @@ public unsafe partial class Bitmap : NativeObject {
 		return WxKitNative.BitmapCopyFromIcon(Native, icon.Native) != 0;
 	}
 
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public bool Create(Size size, int depth = -1) => WxKitNative.BitmapCreate(Native, size, depth) != 0;
-
-	/// <summary>Create a bitmap with a scale factor.</summary>
-	public bool CreateScaled(int width, int height, int depth, double logicalScale) => WxKitNative.BitmapCreateScaled(Native, width, height, depth, logicalScale) != 0;
-
-	/// <summary>Create a bitmap specifying its size in DPI-independent pixels and the scale factor to use.</summary>
-	public bool CreateWithDipSize(Size size, double scale, int depth = -1) => WxKitNative.BitmapCreateWithDIPSize(Native, size, scale, depth) != 0;
-
-	/// <summary>Create a bitmap specifying its size in logical pixels and the scale factor to use.</summary>
-	public bool CreateWithLogicalSize(Size size, double scale, int depth = -1) => WxKitNative.BitmapCreateWithLogicalSize(Native, size, scale, depth) != 0;
-
 	/// <summary>Returns a sub bitmap of the current one as long as the rect belongs entirely to the bitmap.</summary>
 	public Bitmap? GetSubBitmap(Rect rect) => global::WxKit.Bitmap.Take(WxKitNative.BitmapGetSubBitmap(Native, rect));
 

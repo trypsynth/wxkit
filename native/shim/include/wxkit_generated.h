@@ -92,13 +92,11 @@ WXK_FUNCTION(wxk_Object*) wxk_Bitmap_new_StringBitmapType(const char16_t* name, 
 WXK_FUNCTION(wxk_Object*) wxk_Bitmap_new_ImageInt(const wxk_Object* image, int32_t depth) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Bitmap_new_ImageDC(const wxk_Object* image, wxk_Object* dc) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Bitmap_new_Cursor(const wxk_Object* cursor) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Bitmap_CreateWithDIPSize(wxk_Object* self, wxk_Size size, double scale, int32_t depth) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Bitmap_CreateWithLogicalSize(wxk_Object* self, wxk_Size size, double scale, int32_t depth) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Bitmap_ConvertToDisabled(wxk_Object* self, uint8_t brightness) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Bitmap_ConvertToImage(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Bitmap_CopyFromIcon(wxk_Object* self, const wxk_Object* icon) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Bitmap_Create(wxk_Object* self, wxk_Size size, int32_t depth) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Bitmap_CreateWithDIPSize(wxk_Object* self, wxk_Size size, double scale, int32_t depth) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Bitmap_CreateWithLogicalSize(wxk_Object* self, wxk_Size size, double scale, int32_t depth) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Bitmap_CreateScaled(wxk_Object* self, int32_t width, int32_t height, int32_t depth, double logicalScale) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Bitmap_GetSubBitmap(wxk_Object* self, wxk_Rect rect) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Bitmap_LoadFile(wxk_Object* self, const char16_t* name, size_t nameLength, int32_t type, uint8_t typeGiven) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Bitmap_ResetAlpha(wxk_Object* self) WXK_NOEXCEPT;
@@ -1275,7 +1273,6 @@ WXK_FUNCTION(uint8_t) wxk_Image_SetMaskFromImage(wxk_Object* self, const wxk_Obj
 WXK_FUNCTION(void) wxk_Image_SetRGB_IntIntByteByteByte(wxk_Object* self, int32_t x, int32_t y, uint8_t r, uint8_t g, uint8_t b) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_SetRGB_RectByteByteByte(wxk_Object* self, wxk_Rect rect, uint8_t red, uint8_t green, uint8_t blue) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Image_Copy(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Image_Create(wxk_Object* self, wxk_Size size, uint8_t clear) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_Clear(wxk_Object* self, uint8_t value) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_Destroy(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_InitAlpha(wxk_Object* self) WXK_NOEXCEPT;

@@ -120,10 +120,6 @@ WXK_FUNCTION(wxk_Object*) wxk_Image_Copy(wxk_Object* self) noexcept {
 	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxImage>(static_cast<wxImage*>(wxk::Unwrap(self))->Copy()); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_Image_Create(wxk_Object* self, wxk_Size size, uint8_t clear) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->Create(wxk::FromSize(size), clear != 0)) ? 1 : 0; });
-}
-
 WXK_FUNCTION(void) wxk_Image_Clear(wxk_Object* self, uint8_t value) noexcept {
 	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->Clear(static_cast<unsigned char>(value)); });
 }

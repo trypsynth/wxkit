@@ -234,6 +234,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* BitmapNewCursor(WxkObject* cursor);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_CreateWithDIPSize")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte BitmapCreateWithDIPSize(WxkObject* self, Size size, double scale, int depth);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_CreateWithLogicalSize")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte BitmapCreateWithLogicalSize(WxkObject* self, Size size, double scale, int depth);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_ConvertToDisabled")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* BitmapConvertToDisabled(WxkObject* self, byte brightness);
@@ -245,22 +253,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_CopyFromIcon")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte BitmapCopyFromIcon(WxkObject* self, WxkObject* icon);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_Create")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte BitmapCreate(WxkObject* self, Size size, int depth);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_CreateWithDIPSize")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte BitmapCreateWithDIPSize(WxkObject* self, Size size, double scale, int depth);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_CreateWithLogicalSize")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte BitmapCreateWithLogicalSize(WxkObject* self, Size size, double scale, int depth);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_CreateScaled")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte BitmapCreateScaled(WxkObject* self, int width, int height, int depth, double logicalScale);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_GetSubBitmap")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4017,10 +4009,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Image_Copy")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* ImageCopy(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_Create")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ImageCreate(WxkObject* self, Size size, byte clear);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Image_Clear")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

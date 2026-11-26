@@ -78,6 +78,11 @@ internal static class Internals {
 		// by hand, in ImageColors.cs, to take a Color and a Point.
 		tweaks.Class("wxImage").Internal("GetRed", "GetGreen", "GetBlue", "GetAlpha", "SetAlpha", "SetRGB", "IsTransparent", "Replace", "ConvertToMono", "SetMaskFromImage", "Resize", "Size")
 			.InternalOverload("ConvertAlphaToMask", "mr", "unsigned char");
+		// A constructor makes a bitmap or an image of a size, so the Create that makes an empty one
+		// over is left out. Bitmap.FromDipSize and FromLogicalSize, written by hand, are the two
+		// that have no constructor.
+		tweaks.Class("wxBitmap").Ignore("Create", "CreateScaled").Internal("CreateWithDIPSize", "CreateWithLogicalSize");
+		tweaks.Class("wxImage").Ignore("Create");
 		// GetItem and GetColumn, written by hand, return the item they fill.
 		tweaks.Class("wxListCtrl").Internal("GetItem", "GetColumn");
 		// ShowWindowModalAsync, written by hand, gives what the dialog returned as a task's result.

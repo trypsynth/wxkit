@@ -51,6 +51,15 @@ public class DrawingTests {
 	});
 
 	[Fact]
+	public Task MakesABitmapForADisplaysScale() => Gui.Run(() => {
+		using Bitmap bitmap = Bitmap.FromDipSize(new Size(10, 20), 2);
+		Assert.True(bitmap.IsOk);
+		Assert.Equal(2, bitmap.ScaleFactor);
+		Assert.Equal(new Size(10, 20), bitmap.DipSize);
+		Assert.Throws<ArgumentOutOfRangeException>(() => Bitmap.FromLogicalSize(new Size(0, 5), 1));
+	});
+
+	[Fact]
 	public Task MeasuresText() => Gui.Run(() => {
 		using Bitmap bitmap = new(100, 40);
 		using MemoryDC dc = new(bitmap);

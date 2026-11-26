@@ -130,9 +130,6 @@ public unsafe partial class Image : NativeObject {
 	/// <summary>Returns an identical copy of this image.</summary>
 	public Image? Copy() => global::WxKit.Image.Take(WxKitNative.ImageCopy(Native));
 
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public bool Create(Size size, bool clear = true) => WxKitNative.ImageCreate(Native, size, clear ? (byte)1 : (byte)0) != 0;
-
 	/// <summary>Destroys the image data.</summary>
 	public void Destroy() => WxKitNative.ImageDestroy(Native);
 

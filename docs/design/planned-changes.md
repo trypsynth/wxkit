@@ -18,7 +18,7 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 ## Members that go
 
 - `TreeCtrl.OnCompareItems` becomes an override, as `ListCtrl.OnGetItemText` is.
-- Two-step creation: `Bitmap()` and its `Create` members become static factories, such as `Bitmap.FromDipSize`, and `Image.Create` goes.
+- `Bitmap()` and `Image()`, which make an empty one, if `LoadFile` should become a static factory too, such as `Bitmap.FromFile`.
 - Members that only repeat another:
   - Members that take x and y alone, which would take a `Point`, such as `DC.Blit`, `Image.Paste`, `Window.WarpPointer`, and `ToolBar.SetMargins`, about 12.
   - `KeyEvent.RawControlDown()` and `MouseEvent`'s, once `KeyModifiers` has a member for the Control key of a Mac, where `Control` is Command.

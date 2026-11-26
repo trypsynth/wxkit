@@ -410,10 +410,6 @@ class WxKit.Bitmap : NativeObject
     Size ScaledSize { get; }
     Size Size { get; }
     bool CopyFromIcon(Icon icon)
-    bool Create(Size size, int depth = -1)
-    bool CreateScaled(int width, int height, int depth, double logicalScale)
-    bool CreateWithDipSize(Size size, double scale, int depth = -1)
-    bool CreateWithLogicalSize(Size size, double scale, int depth = -1)
     bool HasAlpha { get; }
     bool IsOk { get; }
     bool LoadFile(string name, BitmapType? type = null)
@@ -427,6 +423,8 @@ class WxKit.Bitmap : NativeObject
     int Depth { get; }
     int Height { get; }
     int Width { get; }
+    static Bitmap FromDipSize(Size size, double scale, int depth = -1)
+    static Bitmap FromLogicalSize(Size size, double scale, int depth = -1)
     static bool RemoveHandler(string name)
     static void MakeDisabled(Bitmap bitmap)
     static void Rescale(Bitmap bitmap, Size sizeNeeded)
@@ -2322,7 +2320,6 @@ class WxKit.Image : NativeObject
     Size Size { get; }
     bool ConvertAlphaToMask()
     bool ConvertAlphaToMask(Color mask)
-    bool Create(Size size, bool clear = true)
     bool HasAlpha { get; }
     bool HasMask { get; }
     bool HasOption(string name)
