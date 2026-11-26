@@ -139,6 +139,9 @@ public unsafe partial class ScrollBar : Control {
 		remove => RemoveHandler(EventType.ScrollTop, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Sets the scrollbar properties.</summary>
+	public void SetScrollBar(int position, int thumbSize, int range, int pageSize, bool refresh = true) => WxKitNative.ScrollBarSetScrollbar(Native, position, thumbSize, range, pageSize, refresh ? (byte)1 : (byte)0);
+
 	private static WxkWindow* CreateNative(Window parent, int id, Point? position, Size? size, ScrollBarStyle style) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(parent);

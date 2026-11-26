@@ -7226,6 +7226,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* ScrollBarNew(WxkWindow* parent, int id, Point position, Size size, long style);
 
+	[LibraryImport(Library, EntryPoint = "wxk_ScrollBar_SetScrollbar")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void ScrollBarSetScrollbar(WxkWindow* self, int position, int thumbSize, int range, int pageSize, byte refresh);
+
 	[LibraryImport(Library, EntryPoint = "wxk_ScrollBar_GetPageSize")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int ScrollBarGetPageSize(WxkWindow* self);

@@ -2212,6 +2212,7 @@ WXK_FUNCTION(uint8_t) wxk_ScreenDC_StartDrawingOnTop_Default(void) WXK_NOEXCEPT;
 // wxScrollBar
 
 WXK_FUNCTION(wxk_Window*) wxk_ScrollBar_new(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_ScrollBar_SetScrollbar(wxk_Window* self, int32_t position, int32_t thumbSize, int32_t range, int32_t pageSize, uint8_t refresh) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ScrollBar_GetPageSize(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ScrollBar_GetRange(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ScrollBar_GetThumbPosition(wxk_Window* self) WXK_NOEXCEPT;

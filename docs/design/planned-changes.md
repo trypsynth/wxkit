@@ -11,7 +11,7 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 ## Types
 
 - Numbers where an enum exists or should:
-  - `MouseEvent.Button`, which becomes `MouseButton`, `KeyCode` on list and tree events, `Orientation` on the scroll events and on `Window`'s scroll bar members, `StyledTextEvent.Modifiers` and `RegisterHotKey`'s modifiers, which become `KeyModifiers`, and `DC.DrawLabel`'s alignment.
+  - `StyledTextEvent.Modifiers`, whose values are Scintilla's, not `KeyModifiers`', so it needs converting, or an enum of its own, and `DC.DrawLabel`'s alignment, which waits for `Alignment` to be flags, since its default is none of the members that will stay.
   - `Image.LoadFlags` and `DefaultLoadFlags`, which become an `ImageLoadFlags` enum. wxWidgets defines its one flag in an enum without a name.
   - `KeyEvent.IsKeyInCategory`, the effective icons of the message dialogs, which become `MessageIcon`, `StatusBar.SetStatusStyles`, `FontData.RestrictSelection`, and `FileDialog.AddShortcut`.
 - `Alignment` is `[Flags]`, and loses `Not`, `Mask`, and `Invalid`. Columns default to `Alignment.Left`.

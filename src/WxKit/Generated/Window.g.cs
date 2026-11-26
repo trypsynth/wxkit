@@ -537,7 +537,7 @@ public unsafe partial class Window : EvtHandler {
 	public void CacheBestSize(Size size) => WxKitNative.WindowCacheBestSize(Native, size);
 
 	/// <summary>Returns true if this window can have a scroll bar in this orientation.</summary>
-	public bool CanScroll(int orientation) => WxKitNative.WindowCanScroll(Native, orientation) != 0;
+	public bool CanScroll(Orientation orientation) => WxKitNative.WindowCanScroll(Native, (int)orientation) != 0;
 
 	/// <summary>Directs all mouse input to this window.</summary>
 	public void CaptureMouse() => WxKitNative.WindowCaptureMouse(Native);
@@ -734,13 +734,13 @@ public unsafe partial class Window : EvtHandler {
 	public int GetScrollBarSize(int orientation) => WxKitNative.WindowGetScrollbarSize(Native, orientation);
 
 	/// <summary>Returns the built-in scrollbar position.</summary>
-	public int GetScrollPosition(int orientation) => WxKitNative.WindowGetScrollPos(Native, orientation);
+	public int GetScrollPosition(Orientation orientation) => WxKitNative.WindowGetScrollPos(Native, (int)orientation);
 
 	/// <summary>Returns the built-in scrollbar range.</summary>
-	public int GetScrollRange(int orientation) => WxKitNative.WindowGetScrollRange(Native, orientation);
+	public int GetScrollRange(Orientation orientation) => WxKitNative.WindowGetScrollRange(Native, (int)orientation);
 
 	/// <summary>Returns the built-in scrollbar thumb size.</summary>
-	public int GetScrollThumb(int orientation) => WxKitNative.WindowGetScrollThumb(Native, orientation);
+	public int GetScrollThumb(Orientation orientation) => WxKitNative.WindowGetScrollThumb(Native, (int)orientation);
 
 	/// <summary>Gets the dimensions of the string as it would be drawn on the window with the currently selected font.</summary>
 	public Size GetTextExtent(string text) {
@@ -757,7 +757,7 @@ public unsafe partial class Window : EvtHandler {
 	public bool HasFlag(int flag) => WxKitNative.WindowHasFlag(Native, flag) != 0;
 
 	/// <summary>Returns true if this window currently has a scroll bar for this orientation.</summary>
-	public bool HasScrollBar(int orientation) => WxKitNative.WindowHasScrollbar(Native, orientation) != 0;
+	public bool HasScrollBar(Orientation orientation) => WxKitNative.WindowHasScrollbar(Native, (int)orientation) != 0;
 
 	/// <summary>Equivalent to calling wxWindow::Show(false).</summary>
 	public bool Hide() => WxKitNative.WindowHide(Native) != 0;
@@ -799,7 +799,7 @@ public unsafe partial class Window : EvtHandler {
 	public bool IsExposed(int x, int y, int w, int h) => WxKitNative.WindowIsExposedIntIntIntInt(Native, x, y, w, h) != 0;
 
 	/// <summary>Return whether a scrollbar is always shown.</summary>
-	public bool IsScrollBarAlwaysShown(int orientation) => WxKitNative.WindowIsScrollbarAlwaysShown(Native, orientation) != 0;
+	public bool IsScrollBarAlwaysShown(Orientation orientation) => WxKitNative.WindowIsScrollbarAlwaysShown(Native, (int)orientation) != 0;
 
 	/// <summary>Lays out the children of this window using the associated sizer.</summary>
 	public bool Layout() => WxKitNative.WindowLayout(Native) != 0;
@@ -889,7 +889,7 @@ public unsafe partial class Window : EvtHandler {
 	public void RefreshRect(Rect rect, bool eraseBackground = true) => WxKitNative.WindowRefreshRect(Native, rect, eraseBackground ? (byte)1 : (byte)0);
 
 	/// <summary>Registers a system wide hotkey.</summary>
-	public bool RegisterHotKey(int hotkeyId, int modifiers, int virtualKeyCode) => WxKitNative.WindowRegisterHotKey(Native, hotkeyId, modifiers, virtualKeyCode) != 0;
+	public bool RegisterHotKey(int hotkeyId, KeyModifiers modifiers, int virtualKeyCode) => WxKitNative.WindowRegisterHotKey(Native, hotkeyId, (int)modifiers, virtualKeyCode) != 0;
 
 	/// <summary>Releases mouse input captured with CaptureMouse().</summary>
 	public void ReleaseMouse() => WxKitNative.WindowReleaseMouse(Native);
@@ -979,10 +979,10 @@ public unsafe partial class Window : EvtHandler {
 	}
 
 	/// <summary>Sets the scrollbar properties of a built-in scrollbar.</summary>
-	public void SetScrollBar(int orientation, int position, int thumbSize, int range, bool refresh = true) => WxKitNative.WindowSetScrollbar(Native, orientation, position, thumbSize, range, refresh ? (byte)1 : (byte)0);
+	public void SetScrollBar(Orientation orientation, int position, int thumbSize, int range, bool refresh = true) => WxKitNative.WindowSetScrollbar(Native, (int)orientation, position, thumbSize, range, refresh ? (byte)1 : (byte)0);
 
 	/// <summary>Sets the position of one of the built-in scrollbars.</summary>
-	public void SetScrollPosition(int orientation, int position, bool refresh = true) => WxKitNative.WindowSetScrollPos(Native, orientation, position, refresh ? (byte)1 : (byte)0);
+	public void SetScrollPosition(Orientation orientation, int position, bool refresh = true) => WxKitNative.WindowSetScrollPos(Native, (int)orientation, position, refresh ? (byte)1 : (byte)0);
 
 	/// <summary>Sets the size of the window in pixels.</summary>
 	public void SetSize(int x, int y, int width, int height, SizeFlags sizeFlags = SizeFlags.Auto) => WxKitNative.WindowSetSizeIntIntIntIntSizeFlags(Native, x, y, width, height, (int)sizeFlags);

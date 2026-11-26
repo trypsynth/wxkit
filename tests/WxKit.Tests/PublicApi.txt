@@ -2940,13 +2940,13 @@ class WxKit.ListCtrl : Control
     VerticalRules = 1
     Virtual = 512
 class WxKit.ListEvent : NotifyEvent
+    KeyCode KeyCode { get; set; }
     ListItem? Item { get; set; }
     ListItemMask Mask { get; }
     Point Point { get; set; }
     bool IsEditCanceled { get; }
     int Column { get; set; }
     int Image { get; }
-    int KeyCode { get; set; }
     long CacheFrom { get; set; }
     long CacheTo { get; set; }
     long Data { get; }
@@ -3160,6 +3160,7 @@ enum WxKit.MouseButton : int
     Right = 3
 class WxKit.MouseEvent : Event
     KeyModifiers Modifiers { get; }
+    MouseButton Button { get; }
     MouseWheelAxis WheelAxis { get; }
     Point GetLogicalPosition(DC dc)
     Point Position { get; set; }
@@ -3205,7 +3206,6 @@ class WxKit.MouseEvent : Event
     bool RightUp()
     bool ShiftDown()
     float Magnification { get; }
-    int Button { get; }
     int ClickCount { get; }
     int ColumnsPerAction { get; }
     int LinesPerAction { get; }
@@ -3841,6 +3841,7 @@ class WxKit.ScrollBar : Control
     int Range { get; }
     int ThumbPosition { get; set; }
     int ThumbSize { get; }
+    void SetScrollBar(int position, int thumbSize, int range, int pageSize, bool refresh = true)
 [Flags] enum WxKit.ScrollBarStyle : long
     Horizontal = 4
     None = 0
@@ -3850,10 +3851,10 @@ enum WxKit.ScrollBarVisibility : int
     Default = 0
     Never = -1
 class WxKit.ScrollEvent : CommandEvent
-    int Orientation { get; set; }
+    Orientation Orientation { get; set; }
     int Position { get; set; }
 class WxKit.ScrollWinEvent : Event
-    int Orientation { get; set; }
+    Orientation Orientation { get; set; }
     int PixelOffset { get; }
     int Position { get; set; }
 class WxKit.ScrolledWindow : Panel
@@ -8500,11 +8501,11 @@ class WxKit.TreeCtrl : Control
     Single = 0
     TwistButtons = 16
 class WxKit.TreeEvent : NotifyEvent
+    KeyCode KeyCode { get; }
     Point Point { get; }
     TreeItemId Item { get; }
     TreeItemId OldItem { get; }
     bool IsEditCanceled { get; }
-    int KeyCode { get; }
     string Label { get; }
     void SetToolTip(string toolTip)
 enum WxKit.TreeItemIcon : int
@@ -8858,7 +8859,7 @@ class WxKit.Window : EvtHandler
     bool BeginRepositioningChildren()
     bool CanAcceptFocus { get; }
     bool CanAcceptFocusFromKeyboard { get; }
-    bool CanScroll(int orientation)
+    bool CanScroll(Orientation orientation)
     bool CanSetTransparent { get; }
     bool Close(bool force = false)
     bool Destroy()
@@ -8870,7 +8871,7 @@ class WxKit.Window : EvtHandler
     bool HasFlag(int flag)
     bool HasFocus { get; }
     bool HasMultiplePages { get; }
-    bool HasScrollBar(int orientation)
+    bool HasScrollBar(Orientation orientation)
     bool HasTransparentBackground { get; }
     bool Hide()
     bool HideWithEffect(ShowEffect effect, int timeout = 0)
@@ -8887,7 +8888,7 @@ class WxKit.Window : EvtHandler
     bool IsFrozen { get; }
     bool IsInputMethodEnabled { get; }
     bool IsRetained { get; }
-    bool IsScrollBarAlwaysShown(int orientation)
+    bool IsScrollBarAlwaysShown(Orientation orientation)
     bool IsShown { get; }
     bool IsShownOnScreen { get; }
     bool IsThisEnabled { get; }
@@ -8902,7 +8903,7 @@ class WxKit.Window : EvtHandler
     bool PageUp()
     bool PopupMenu(Menu menu, Point? position = null)
     bool PopupMenu(Menu menu, int x, int y)
-    bool RegisterHotKey(int hotkeyId, int modifiers, int virtualKeyCode)
+    bool RegisterHotKey(int hotkeyId, KeyModifiers modifiers, int virtualKeyCode)
     bool RemoveEventHandler(EvtHandler handler)
     bool Reparent(Window newParent)
     bool ScrollLines(int lines)
@@ -8963,9 +8964,9 @@ class WxKit.Window : EvtHandler
     int GetBestWidth(int height)
     int GetHelpIdAtPoint(Point point)
     int GetScrollBarSize(int orientation)
-    int GetScrollPosition(int orientation)
-    int GetScrollRange(int orientation)
-    int GetScrollThumb(int orientation)
+    int GetScrollPosition(Orientation orientation)
+    int GetScrollRange(Orientation orientation)
+    int GetScrollThumb(Orientation orientation)
     int Id { get; set; }
     int MaxHeight { get; }
     int MaxWidth { get; }
@@ -9049,8 +9050,8 @@ class WxKit.Window : EvtHandler
     void SetOwnFont(Font font)
     void SetOwnForegroundColor(Color? color)
     void SetPreviousHandler(EvtHandler handler)
-    void SetScrollBar(int orientation, int position, int thumbSize, int range, bool refresh = true)
-    void SetScrollPosition(int orientation, int position, bool refresh = true)
+    void SetScrollBar(Orientation orientation, int position, int thumbSize, int range, bool refresh = true)
+    void SetScrollPosition(Orientation orientation, int position, bool refresh = true)
     void SetSize(Rect rect)
     void SetSize(int width, int height)
     void SetSize(int x, int y, int width, int height, SizeFlags sizeFlags = SizeFlags.Auto)

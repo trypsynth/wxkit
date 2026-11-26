@@ -16,7 +16,7 @@ public unsafe partial class TreeEvent : NotifyEvent {
 	public TreeItemId Item => new global::WxKit.TreeItemId(WxKitNative.TreeEventGetItem(Handle));
 
 	/// <summary>Returns the key code if the event is a key event.</summary>
-	public int KeyCode => WxKitNative.TreeEventGetKeyCode(Handle);
+	public KeyCode KeyCode => (KeyCode)WxKitNative.TreeEventGetKeyCode(Handle);
 
 	/// <summary>Returns the label if the event is a begin or end edit label event.</summary>
 	public string Label => NativeString.Take(WxKitNative.TreeEventGetLabel(Handle));

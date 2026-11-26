@@ -8,6 +8,10 @@ WXK_FUNCTION(wxk_Window*) wxk_ScrollBar_new(wxk_Window* parent, int32_t id, wxk_
 	});
 }
 
+WXK_FUNCTION(void) wxk_ScrollBar_SetScrollbar(wxk_Window* self, int32_t position, int32_t thumbSize, int32_t range, int32_t pageSize, uint8_t refresh) noexcept {
+	wxk::Guard([&] { static_cast<wxScrollBar*>(wxk::Unwrap(self))->SetScrollbar(static_cast<int>(position), static_cast<int>(thumbSize), static_cast<int>(range), static_cast<int>(pageSize), refresh != 0); });
+}
+
 WXK_FUNCTION(int32_t) wxk_ScrollBar_GetPageSize(wxk_Window* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxScrollBar*>(wxk::Unwrap(self))->GetPageSize()); });
 }

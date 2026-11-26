@@ -10,9 +10,9 @@ public unsafe partial class ScrollWinEvent : Event {
 	}
 
 	/// <summary>Returns wxHORIZONTAL or wxVERTICAL, depending on the orientation of the scrollbar.</summary>
-	public int Orientation {
-		get => WxKitNative.ScrollWinEventGetOrientation(Handle);
-		set => WxKitNative.ScrollWinEventSetOrientation(Handle, value);
+	public Orientation Orientation {
+		get => (Orientation)WxKitNative.ScrollWinEventGetOrientation(Handle);
+		set => WxKitNative.ScrollWinEventSetOrientation(Handle, (int)value);
 	}
 
 	/// <summary>Offset of the scroll position from the nearest position expressed in scroll units.</summary>

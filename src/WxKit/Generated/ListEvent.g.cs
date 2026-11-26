@@ -49,9 +49,9 @@ public unsafe partial class ListEvent : NotifyEvent {
 	}
 
 	/// <summary>Key code if the event is a keypress event.</summary>
-	public int KeyCode {
-		get => WxKitNative.ListEventGetKeyCode(Handle);
-		set => WxKitNative.ListEventSetKeyCode(Handle, value);
+	public KeyCode KeyCode {
+		get => (KeyCode)WxKitNative.ListEventGetKeyCode(Handle);
+		set => WxKitNative.ListEventSetKeyCode(Handle, (int)value);
 	}
 
 	/// <summary>The (new) item label for EVT_LIST_END_LABEL_EDIT event.</summary>

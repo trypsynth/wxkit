@@ -10,7 +10,7 @@ public unsafe partial class MouseEvent : Event {
 	}
 
 	/// <summary>Returns the mouse button which generated this event or wxMOUSE_BTN_NONE if no button is involved (for mouse move, enter or leave event, for example).</summary>
-	public int Button => WxKitNative.MouseEventGetButton(Handle);
+	public MouseButton Button => (MouseButton)WxKitNative.MouseEventGetButton(Handle);
 
 	/// <summary>Returns the number of mouse clicks for this event: 1 for a simple click, 2 for a double-click, 3 for a triple-click and so on.</summary>
 	public int ClickCount => WxKitNative.MouseEventGetClickCount(Handle);

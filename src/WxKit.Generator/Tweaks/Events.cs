@@ -37,7 +37,16 @@ internal static class Events {
 		tweaks.Class("wxKeyEvent", e => e.ParameterEnum("GetKeyCode", "return", "wxKeyCode").ParameterEnum("GetModifiers", "return", "wxKeyModifier"));
 		// Button(button) asks whether the event came from that button. GetButton is the Button
 		// property, and IsButton is taken too.
-		tweaks.Class("wxMouseEvent", e => e.ParameterEnum("GetModifiers", "return", "wxKeyModifier").Rename("Button", "IsFromButton"));
+		tweaks.Class("wxMouseEvent", e => e.ParameterEnum("GetModifiers", "return", "wxKeyModifier").ParameterEnum("GetButton", "return", "wxMouseButton").Rename("Button", "IsFromButton"));
+		// Numbers wxWidgets documents as one of an enum's values are that enum.
+		foreach (string scroll in (string[])["wxScrollEvent", "wxScrollWinEvent"]) tweaks.Class(scroll, e => e.ParameterEnum("GetOrientation", "return", "Orientation").ParameterEnum("SetOrientation", "orient", "Orientation"));
+		tweaks.Class("wxListEvent", e => e.ParameterEnum("GetKeyCode", "return", "wxKeyCode").ParameterEnum("SetKeyCode", "code", "wxKeyCode"));
+		tweaks.Class("wxTreeEvent", e => e.ParameterEnum("GetKeyCode", "return", "wxKeyCode"));
+		tweaks.Class("wxWindow", window => {
+			foreach (string member in (string[])["CanScroll", "HasScrollbar", "IsScrollbarAlwaysShown"]) window.ParameterEnum(member, "orient", "Orientation");
+			foreach (string member in (string[])["GetScrollPos", "GetScrollRange", "GetScrollThumb", "SetScrollPos", "SetScrollbar"]) window.ParameterEnum(member, "orientation", "Orientation");
+			window.ParameterEnum("RegisterHotKey", "modifiers", "wxKeyModifier");
+		});
 		foreach (string eventClass in (string[])[
 			"wxNotifyEvent", "wxKeyEvent", "wxSizeEvent", "wxMoveEvent", "wxFocusEvent",
 			"wxChildFocusEvent", "wxPaintEvent", "wxShowEvent", "wxIconizeEvent", "wxMaximizeEvent",
