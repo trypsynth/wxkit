@@ -29,7 +29,7 @@ public unsafe partial class EditableListBox : Panel {
 	public BitmapButton? NewButton => ObjectRegistry.Wrap<BitmapButton>(WxKitNative.EditableListBoxGetNewButton(Native));
 
 	/// <summary>Returns in the given array the current contents of the control (the array will be erased before control's contents are appended).</summary>
-	public string[] Strings {
+	public IReadOnlyList<string> Strings {
 		get => NativeStringArray.Take(WxKitNative.EditableListBoxGetStrings(Native));
 		set {
 			ArgumentNullException.ThrowIfNull(value);

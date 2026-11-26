@@ -106,7 +106,7 @@ public unsafe partial class ComboBox : Control {
 	}
 
 	/// <summary>Returns the array of the labels of all items in the control.</summary>
-	public string[] Strings => NativeStringArray.Take(WxKitNative.ComboBoxGetStrings(Native));
+	public IReadOnlyList<string> Strings => NativeStringArray.Take(WxKitNative.ComboBoxGetStrings(Native));
 
 	/// <summary>Gets the contents of the control.</summary>
 	public string Value {

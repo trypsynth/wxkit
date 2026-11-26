@@ -41,7 +41,7 @@ type EditorFrame() as this =
         // Windows and macOS check spelling as you type. Linux, without gspell, does not.
         text.EnableProofCheck() |> ignore
         text.DragAcceptFiles true
-        text.DropFiles.Add(fun e -> e.Files |> Array.tryHead |> Option.iter dropped.Trigger)
+        text.DropFiles.Add(fun e -> e.Files |> Seq.tryHead |> Option.iter dropped.Trigger)
         text
 
     let mutable text = createText ""

@@ -45,7 +45,7 @@ public unsafe partial class ControlWithItems : Control {
 	}
 
 	/// <summary>Returns the array of the labels of all items in the control.</summary>
-	public string[] Strings => NativeStringArray.Take(WxKitNative.ControlWithItemsGetStrings(Native));
+	public IReadOnlyList<string> Strings => NativeStringArray.Take(WxKitNative.ControlWithItemsGetStrings(Native));
 
 	/// <summary>Appends item into the control.</summary>
 	public int Append(string item) {

@@ -61,7 +61,7 @@ public unsafe partial class Choice : Control {
 	}
 
 	/// <summary>Returns the array of the labels of all items in the control.</summary>
-	public string[] Strings => NativeStringArray.Take(WxKitNative.ChoiceGetStrings(Native));
+	public IReadOnlyList<string> Strings => NativeStringArray.Take(WxKitNative.ChoiceGetStrings(Native));
 
 	/// <summary>Process a wxEVT_CHOICE event, when an item on the list is selected.</summary>
 	public event EventHandler<CommandEvent>? SelectionChanged {

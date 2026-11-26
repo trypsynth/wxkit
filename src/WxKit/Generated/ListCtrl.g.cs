@@ -24,7 +24,7 @@ public unsafe partial class ListCtrl : Control {
 	public int ColumnCount => WxKitNative.ListCtrlGetColumnCount(Native);
 
 	/// <summary>Returns the array containing the orders of all columns.</summary>
-	public int[] ColumnsOrder {
+	public IReadOnlyList<int> ColumnsOrder {
 		get => NativeNumbers.TakeInts(WxKitNative.ListCtrlGetColumnsOrder(Native));
 		set {
 			ArgumentNullException.ThrowIfNull(value);

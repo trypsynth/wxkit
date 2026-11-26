@@ -14,7 +14,7 @@ public unsafe partial class MultiChoiceDialog : Dialog {
 	}
 
 	/// <summary>Returns array with indexes of selected items.</summary>
-	public int[] Selections {
+	public IReadOnlyList<int> Selections {
 		get => NativeNumbers.TakeInts(WxKitNative.MultiChoiceDialogGetSelections(Native));
 		set {
 			ArgumentNullException.ThrowIfNull(value);

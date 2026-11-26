@@ -20,7 +20,7 @@ public unsafe partial class RearrangeList : CheckListBox {
 	public bool CanMoveCurrentUp => WxKitNative.RearrangeListCanMoveCurrentUp(Native) != 0;
 
 	/// <summary>Return the current order of the items.</summary>
-	public int[] CurrentOrder => NativeNumbers.TakeInts(WxKitNative.RearrangeListGetCurrentOrder(Native));
+	public IReadOnlyList<int> CurrentOrder => NativeNumbers.TakeInts(WxKitNative.RearrangeListGetCurrentOrder(Native));
 
 	/// <summary>Move the currently selected item one position below.</summary>
 	public bool MoveCurrentDown() => WxKitNative.RearrangeListMoveCurrentDown(Native) != 0;

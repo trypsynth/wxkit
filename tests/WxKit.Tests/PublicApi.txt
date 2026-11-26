@@ -653,15 +653,16 @@ enum WxKit.CheckBoxState : int
 class WxKit.CheckListBox : ListBox
     CheckListBox(Window parent, IEnumerable<string> choices, int id = -1, Point? position = null, Size? size = null, ListBoxStyle style = ListBoxStyle.None)
     CheckListBox(Window parent, int id = -1, Point? position = null, Size? size = null)
+    IReadOnlyList<int> CheckedItems { get; }
     bool IsChecked(int item)
     event EventHandler<CommandEvent>? ItemCheckedChanged
-    int[] CheckedItems { get; }
     void Check(int item, bool check = true)
 class WxKit.ChildFocusEvent : CommandEvent
     Window? Window { get; }
 class WxKit.Choice : Control
     Choice(Window parent, IEnumerable<string> choices, int id = -1, Point? position = null, Size? size = null, ChoiceStyle style = ChoiceStyle.None)
     Choice(Window parent, int id = -1, Point? position = null, Size? size = null)
+    IReadOnlyList<string> Strings { get; }
     bool HasClientData { get; }
     bool HasClientObjectData { get; }
     bool HasClientUntypedData { get; }
@@ -682,7 +683,6 @@ class WxKit.Choice : Control
     object? GetClientObject(int index)
     string GetString(int index)
     string StringSelection { get; set; }
-    string[] Strings { get; }
     void Clear()
     void Delete(int index)
     void Select(int index)
@@ -798,6 +798,7 @@ class WxKit.ColorPickerEvent : CommandEvent
 class WxKit.ComboBox : Control
     ComboBox(Window parent, string value = "", int id = -1, Point? position = null, Size? size = null)
     ComboBox(Window parent, string value, IEnumerable<string> choices, int id = -1, Point? position = null, Size? size = null, ComboBoxStyle style = ComboBoxStyle.None)
+    IReadOnlyList<string> Strings { get; }
     Point Margins { get; set; }
     bool AutoComplete(IEnumerable<string> choices)
     bool AutoCompleteDirectories()
@@ -840,7 +841,6 @@ class WxKit.ComboBox : Control
     string Hint { get; set; }
     string StringSelection { get; set; }
     string Value { get; set; }
-    string[] Strings { get; }
     void AppendText(string text)
     void ChangeValue(string value)
     void Clear()
@@ -905,6 +905,7 @@ class WxKit.Control : Window
     static string RemoveMnemonics(string text)
     string LabelText { get; set; }
 class WxKit.ControlWithItems : Control
+    IReadOnlyList<string> Strings { get; }
     bool HasClientData { get; }
     bool HasClientObjectData { get; }
     bool HasClientUntypedData { get; }
@@ -922,7 +923,6 @@ class WxKit.ControlWithItems : Control
     object? GetClientObject(int index)
     string GetString(int index)
     string StringSelection { get; set; }
-    string[] Strings { get; }
     void Clear()
     void Delete(int index)
     void Select(int index)
@@ -1139,8 +1139,8 @@ class WxKit.DataViewCtrl : Control
     DataViewItem CurrentItem { get; set; }
     DataViewItem Selection { get; }
     DataViewItem TopItem { get; }
-    DataViewItem[] Selections { get; set; }
     DataViewModel? Model { get; set; }
+    IReadOnlyList<DataViewItem> Selections { get; set; }
     Rect GetItemRect(DataViewItem item, DataViewColumn? column = null)
     Window? MainWindow { get; }
     bool AllowMultiColumnSort(bool allow)
@@ -1354,6 +1354,7 @@ static class WxKit.Desktop
 class WxKit.Dialog : TopLevelWindow, IDisposable
     Dialog(Window? parent, string title, int id = -1, Point? position = null, Size? size = null, DialogStyle style = DialogStyle.Default)
     DialogLayoutAdaptationMode LayoutAdaptationMode { get; set; }
+    IReadOnlyList<int> MainButtonIds { get; }
     Window? ContentWindow { get; }
     bool CanDoLayoutAdaptation { get; }
     bool DoLayoutAdaptation()
@@ -1367,7 +1368,6 @@ class WxKit.Dialog : TopLevelWindow, IDisposable
     int LayoutAdaptationLevel { get; set; }
     int ReturnCode { get; set; }
     int ShowModal()
-    int[] MainButtonIds { get; }
     static bool IsLayoutAdaptationEnabled { get; }
     static void EnableLayoutAdaptation(bool enable)
     void AddMainButtonId(int id)
@@ -1402,9 +1402,9 @@ enum WxKit.DialogLayoutAdaptationMode : int
     SystemMenu = 2048
 class WxKit.DirDialog : Dialog
     DirDialog(Window? parent, string? message = null, string defaultPath = "", DirDialogStyle style = DirDialogStyle.Default, Point? position = null, Size? size = null)
+    IReadOnlyList<string> Paths { get; }
     string Message { get; set; }
     string Path { get; set; }
-    string[] Paths { get; }
 [Flags] enum WxKit.DirDialogStyle : long
     ChangeDirectory = 256
     Default = 536877120
@@ -1480,9 +1480,9 @@ sealed class WxKit.DropEventArgs : DragEventArgs
     string? Text { get; }
     string[]? Files { get; }
 class WxKit.DropFilesEvent : Event
+    IReadOnlyList<string> Files { get; }
     Point Position { get; }
     int NumberOfFiles { get; }
-    string[] Files { get; }
 sealed class WxKit.DropTarget
     DropTarget(Window window, params DataFormat[] formats)
     IReadOnlyList<DataFormat> Formats { get; }
@@ -1503,8 +1503,8 @@ class WxKit.EditableListBox : Panel
     BitmapButton? NewButton { get; }
     BitmapButton? UpButton { get; }
     EditableListBox(Window parent, string label, int id = -1, Point? position = null, Size? size = null, EditableListBoxStyle style = EditableListBoxStyle.Default)
+    IReadOnlyList<string> Strings { get; set; }
     ListCtrl? ListCtrl { get; }
-    string[] Strings { get; set; }
 [Flags] enum WxKit.EditableListBoxStyle : long
     AllowDelete = 1024
     AllowEdit = 512
@@ -1845,6 +1845,8 @@ abstract class WxKit.EvtHandler
     void Unbind<TEvent>(EventType<TEvent> type, int id, int lastId, EventHandler<TEvent> handler)
 class WxKit.FileCtrl : Control
     FileCtrl(Window parent, string defaultDirectory = "", string defaultFileName = "", string? wildcard = null, FileCtrlStyle style = FileCtrlStyle.Open, int id = -1, Point? position = null, Size? size = null)
+    IReadOnlyList<string> FileNames { get; }
+    IReadOnlyList<string> Paths { get; }
     event EventHandler<FileCtrlEvent>? FileActivated
     event EventHandler<FileCtrlEvent>? FilterChanged
     event EventHandler<FileCtrlEvent>? FolderChanged
@@ -1854,14 +1856,12 @@ class WxKit.FileCtrl : Control
     string FileName { get; set; }
     string Path { get; set; }
     string Wildcard { get; set; }
-    string[] FileNames { get; }
-    string[] Paths { get; }
     void ShowHidden(bool show)
 class WxKit.FileCtrlEvent : CommandEvent
+    IReadOnlyList<string> Files { get; set; }
     int FilterIndex { get; set; }
     string Directory { get; set; }
     string File { get; }
-    string[] Files { get; set; }
 [Flags] enum WxKit.FileCtrlStyle : long
     Default = 1
     Multiple = 4
@@ -1871,6 +1871,8 @@ class WxKit.FileCtrlEvent : CommandEvent
     Save = 2
 class WxKit.FileDialog : Dialog
     FileDialog(Window? parent, string? message = null, string defaultDirectory = "", string defaultFile = "", string? wildcard = null, FileDialogStyle style = FileDialogStyle.Open, Point? position = null, Size? size = null)
+    IReadOnlyList<string> FileNames { get; }
+    IReadOnlyList<string> Paths { get; }
     Window? ExtraControl { get; }
     bool AddShortcut(string directory, FileDialogShortcut flags = FileDialogShortcut.0)
     int CurrentlySelectedFilterIndex { get; }
@@ -1881,8 +1883,6 @@ class WxKit.FileDialog : Dialog
     string Message { get; set; }
     string Path { get; set; }
     string Wildcard { get; set; }
-    string[] FileNames { get; }
-    string[] Paths { get; }
 enum WxKit.FileDialogShortcut : int
     Bottom = 2
     Top = 1
@@ -1946,11 +1946,11 @@ class WxKit.FlexGridSizer : GridSizer
     FlexGridSizer(int rows, int columns, Size gap)
     FlexGridSizer(int rows, int columns, int verticalGap, int horizontalGap)
     FlexSizerGrowMode NonFlexibleGrowMode { get; set; }
+    IReadOnlyList<int> ColumnWidths { get; }
+    IReadOnlyList<int> RowHeights { get; }
     bool IsColumnGrowable(int index)
     bool IsRowGrowable(int index)
     int FlexibleDirection { get; set; }
-    int[] ColumnWidths { get; }
-    int[] RowHeights { get; }
     void AddGrowableColumn(int index, int proportion = 0)
     void AddGrowableRow(int index, int proportion = 0)
     void RemoveGrowableColumn(int index)
@@ -2235,6 +2235,8 @@ class WxKit.Gauge : Control
     Vertical = 8
 class WxKit.GenericDirCtrl : Control
     GenericDirCtrl(Window parent, string? directory = null, int id = -1, Point? position = null, Size? size = null, GenericDirCtrlStyle style = GenericDirCtrlStyle.ThreeDInternal, string filter = "", int defaultFilter = 0)
+    IReadOnlyList<string> FilePaths { get; }
+    IReadOnlyList<string> Paths { get; }
     TreeCtrl? TreeCtrl { get; }
     TreeItemId RootId { get; }
     bool CollapsePath(string path)
@@ -2247,8 +2249,6 @@ class WxKit.GenericDirCtrl : Control
     string Filter { get; set; }
     string GetPath(TreeItemId itemId)
     string Path { get; set; }
-    string[] FilePaths { get; }
-    string[] Paths { get; }
     void CollapseTree()
     void ReCreateTree()
     void SelectPath(string path, bool select = true)
@@ -2771,6 +2771,8 @@ enum WxKit.ListArrangement : int
     SnapToGrid = 3
     Top = 2
 class WxKit.ListBox : Control
+    IReadOnlyList<int> Selections { get; }
+    IReadOnlyList<string> Strings { get; }
     ListBox(Window parent, IEnumerable<string> choices, int id = -1, Point? position = null, Size? size = null, ListBoxStyle style = ListBoxStyle.None)
     ListBox(Window parent, int id = -1, Point? position = null, Size? size = null)
     bool HasClientData { get; }
@@ -2794,11 +2796,9 @@ class WxKit.ListBox : Control
     int Insert(string item, int position, object? clientData)
     int Selection { get; set; }
     int TopItem { get; }
-    int[] Selections { get; }
     object? GetClientObject(int index)
     string GetString(int index)
     string StringSelection { get; set; }
-    string[] Strings { get; }
     void Clear()
     void Delete(int index)
     void Deselect(int index)
@@ -2830,6 +2830,7 @@ class WxKit.ListCtrl : Control
     Color? GetItemTextColor(long item)
     Color? TextColor { get; set; }
     Font? GetItemFont(long item)
+    IReadOnlyList<int> ColumnsOrder { get; set; }
     ListCtrl(Window parent, int id = -1, Point? position = null, Size? size = null, ListCtrlStyle style = ListCtrlStyle.Icon)
     ListItemState GetItemState(long item, ListItemState stateMask)
     Rect ViewRect { get; }
@@ -2897,7 +2898,6 @@ class WxKit.ListCtrl : Control
     int ItemCount { get; }
     int SelectedItemCount { get; }
     int SortIndicator { get; }
-    int[] ColumnsOrder { get; set; }
     long AppendColumn(string heading, ListColumnFormat format = ListColumnFormat.Left, int width = -1)
     long FindItem(long start, Point point, ListFindDirection direction)
     long FindItem(long start, long data)
@@ -3242,8 +3242,8 @@ class WxKit.MoveEvent : Event
     Point Position { get; set; }
     Rect Rect { get; set; }
 class WxKit.MultiChoiceDialog : Dialog
+    IReadOnlyList<int> Selections { get; set; }
     MultiChoiceDialog(Window? parent, string message, string caption, IEnumerable<string> choices, MultiChoiceDialogStyle style = MultiChoiceDialogStyle.536877141, Point? position = null)
-    int[] Selections { get; set; }
 [Flags] enum WxKit.MultiChoiceDialogStyle : long
     Cancel = 16
     Center = 1
@@ -3708,6 +3708,7 @@ class WxKit.PropertySheetDialog : Dialog
     Toolbook = 4
     Treebook = 64
 class WxKit.RadioBox : Control
+    IReadOnlyList<string> Strings { get; }
     RadioBox(Window parent, string label, IEnumerable<string> choices, int id = -1, Point? position = null, Size? size = null, int majorDimension = 0, RadioBoxStyle style = RadioBoxStyle.SpecifyColumns)
     RadioBox(Window parent, string label, int id = -1, Point? position = null, Size? size = null)
     bool Enable(int index, bool enable = true)
@@ -3725,7 +3726,6 @@ class WxKit.RadioBox : Control
     string GetItemHelpText(int item)
     string GetString(int index)
     string StringSelection { get; set; }
-    string[] Strings { get; }
     void Select(int index)
     void SetItemHelpText(int item, string helpText)
     void SetItemToolTip(int item, string text)
@@ -3767,17 +3767,17 @@ class WxKit.RearrangeCtrl : Panel
     RearrangeCtrl(Window parent, IEnumerable<int> order, IEnumerable<string> items, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
     RearrangeList? List { get; }
 class WxKit.RearrangeDialog : Dialog
+    IReadOnlyList<int> Order { get; }
     RearrangeDialog(Window? parent, string message, string title, IEnumerable<int> order, IEnumerable<string> items, Point? position = null)
     RearrangeList? List { get; }
-    int[] Order { get; }
     void AddExtraControls(Window window)
 class WxKit.RearrangeList : CheckListBox
+    IReadOnlyList<int> CurrentOrder { get; }
     RearrangeList(Window parent, IEnumerable<int> order, IEnumerable<string> items, int id = -1, Point? position = null, Size? size = null, ListBoxStyle style = ListBoxStyle.None)
     bool CanMoveCurrentDown { get; }
     bool CanMoveCurrentUp { get; }
     bool MoveCurrentDown()
     bool MoveCurrentUp()
-    int[] CurrentOrder { get; }
 readonly record struct WxKit.Rect : IEquatable<Rect>
     Point Position { get; }
     Rect(int X, int Y, int Width, int Height)
@@ -8202,14 +8202,14 @@ class WxKit.TextEntryDialog : Dialog
     void SetTextValidator(TextValidator validator)
     void SetTextValidator(TextValidatorStyle style = TextValidatorStyle.None)
 class WxKit.TextValidator : Validator
+    IReadOnlyList<string> Excludes { get; set; }
+    IReadOnlyList<string> Includes { get; set; }
     TextValidator(TextValidatorStyle style = TextValidatorStyle.None)
     TextValidatorStyle Style { get; set; }
     bool HasFlag(TextValidatorStyle style)
     string CharExcludes { get; set; }
     string CharIncludes { get; set; }
     string GetError(string value)
-    string[] Excludes { get; set; }
-    string[] Includes { get; set; }
     void AddCharExcludes(string chars)
     void AddCharIncludes(string chars)
     void AddExclude(string exclude)
@@ -8400,6 +8400,7 @@ class WxKit.TreeCtrl : Control
     Color? GetItemBackgroundColor(TreeItemId item)
     Color? GetItemTextColor(TreeItemId item)
     Font? GetItemFont(TreeItemId item)
+    IReadOnlyList<TreeItemId> Selections { get; }
     TextCtrl? EditControl { get; }
     TextCtrl? EditLabel(TreeItemId item)
     TreeCtrl(Window parent, int id = -1, Point? position = null, Size? size = null, TreeCtrlStyle? style = null)
@@ -8418,7 +8419,6 @@ class WxKit.TreeCtrl : Control
     TreeItemId PrependItem(TreeItemId parent, string text, int image = -1, int selectedImage = -1, object? data = null)
     TreeItemId RootItem { get; }
     TreeItemId Selection { get; }
-    TreeItemId[] Selections { get; }
     bool HasImages { get; }
     bool HasStateImages { get; }
     bool IsBold(TreeItemId item)
@@ -8538,6 +8538,7 @@ readonly record struct WxKit.TreeItemId : IEquatable<TreeItemId>
 class WxKit.TreeListCtrl : Window
     CheckBoxState GetCheckedState(TreeListItem item)
     DataViewCtrl? DataView { get; }
+    IReadOnlyList<TreeListItem> Selections { get; }
     TreeListCtrl(Window parent, int id = -1, Point? position = null, Size? size = null, TreeListCtrlStyle style = TreeListCtrlStyle.None)
     TreeListItem AppendItem(TreeListItem parent, string text, int imageClosed = -1, int imageOpened = -1, object? data = null)
     TreeListItem FirstItem { get; }
@@ -8549,7 +8550,6 @@ class WxKit.TreeListCtrl : Window
     TreeListItem PrependItem(TreeListItem parent, string text, int imageClosed = -1, int imageOpened = -1, object? data = null)
     TreeListItem RootItem { get; }
     TreeListItem Selection { get; }
-    TreeListItem[] Selections { get; }
     Window? View { get; }
     bool AreAllChildrenInState(TreeListItem item, CheckBoxState state)
     bool DeleteColumn(int column)
@@ -8802,6 +8802,7 @@ class WxKit.Window : EvtHandler
     Font? Font { get; set; }
     HitTestResult HitTest(Point point)
     HitTestResult HitTest(int x, int y)
+    IReadOnlyList<Window> Children { get; }
     LayoutDirection LayoutDirection { get; set; }
     Point ClientAreaOrigin { get; }
     Point ClientToScreen(Point point)
@@ -8852,7 +8853,6 @@ class WxKit.Window : EvtHandler
     WindowExtraStyle ExtraStyle { get; set; }
     WindowStyle WindowStyle { get; }
     WindowVariant WindowVariant { get; set; }
-    Window[] Children { get; }
     bool AcceptsFocus()
     bool AcceptsFocusFromKeyboard()
     bool AcceptsFocusRecursively()

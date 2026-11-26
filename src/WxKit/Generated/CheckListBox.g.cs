@@ -18,7 +18,7 @@ public unsafe partial class CheckListBox : ListBox {
 	}
 
 	/// <summary>Return the indices of the checked items.</summary>
-	public int[] CheckedItems => NativeNumbers.TakeInts(WxKitNative.CheckListBoxGetCheckedItems(Native));
+	public IReadOnlyList<int> CheckedItems => NativeNumbers.TakeInts(WxKitNative.CheckListBoxGetCheckedItems(Native));
 
 	/// <summary>Process a wxEVT_CHECKLISTBOX event, when an item in the check list box is checked or unchecked. wxCommandEvent::GetInt() will contain the index of the item that was checked or unchecked. wxCommandEvent::IsChecked() is not valid! Use wxCheckListBox::IsChecked() instead.</summary>
 	public event EventHandler<CommandEvent>? ItemCheckedChanged {

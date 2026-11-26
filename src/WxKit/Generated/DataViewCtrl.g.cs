@@ -59,7 +59,7 @@ public unsafe partial class DataViewCtrl : Control {
 	public DataViewItem Selection => new global::WxKit.DataViewItem(WxKitNative.DataViewCtrlGetSelection(Native));
 
 	/// <summary>Fills sel with currently selected items and returns their number.</summary>
-	public DataViewItem[] Selections {
+	public IReadOnlyList<DataViewItem> Selections {
 		get => NativeNumbers.TakeDataViewItems(WxKitNative.DataViewCtrlGetSelections(Native));
 		set {
 			ArgumentNullException.ThrowIfNull(value);

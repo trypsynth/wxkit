@@ -60,7 +60,7 @@ public unsafe partial class Window : EvtHandler {
 	public int CharWidth => WxKitNative.WindowGetCharWidth(Native);
 
 	/// <summary>Returns a reference to the list of the window's children.</summary>
-	public Window[] Children => global::WxKit.NativeWindowList.Take(WxKitNative.WindowGetChildren(Native));
+	public IReadOnlyList<Window> Children => global::WxKit.NativeWindowList.Take(WxKitNative.WindowGetChildren(Native));
 
 	/// <summary>Get the origin of the client area of the window relative to the window top left corner (the client area may be shifted because of the borders, scrollbars, other decorations...).</summary>
 	public Point ClientAreaOrigin => WxKitNative.WindowGetClientAreaOrigin(Native);

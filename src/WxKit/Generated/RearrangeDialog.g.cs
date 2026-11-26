@@ -17,7 +17,7 @@ public unsafe partial class RearrangeDialog : Dialog {
 	public RearrangeList? List => ObjectRegistry.Wrap<RearrangeList>(WxKitNative.RearrangeDialogGetList(Native));
 
 	/// <summary>Return the array describing the order of items after it was modified by the user.</summary>
-	public int[] Order => NativeNumbers.TakeInts(WxKitNative.RearrangeDialogGetOrder(Native));
+	public IReadOnlyList<int> Order => NativeNumbers.TakeInts(WxKitNative.RearrangeDialogGetOrder(Native));
 
 	/// <summary>Customize the dialog by adding extra controls to it.</summary>
 	public void AddExtraControls(Window window) {

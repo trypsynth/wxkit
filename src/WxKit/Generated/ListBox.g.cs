@@ -48,7 +48,7 @@ public unsafe partial class ListBox : Control {
 	}
 
 	/// <summary>Fill an array of ints with the positions of the currently selected items.</summary>
-	public int[] Selections => NativeNumbers.TakeInts(WxKitNative.ListBoxGetSelections(Native));
+	public IReadOnlyList<int> Selections => NativeNumbers.TakeInts(WxKitNative.ListBoxGetSelections(Native));
 
 	/// <summary>Returns the label of the selected item or an empty string if no item is selected.</summary>
 	public string StringSelection {
@@ -62,7 +62,7 @@ public unsafe partial class ListBox : Control {
 	}
 
 	/// <summary>Returns the array of the labels of all items in the control.</summary>
-	public string[] Strings => NativeStringArray.Take(WxKitNative.ListBoxGetStrings(Native));
+	public IReadOnlyList<string> Strings => NativeStringArray.Take(WxKitNative.ListBoxGetStrings(Native));
 
 	/// <summary>Return the index of the topmost visible item.</summary>
 	public int TopItem => WxKitNative.ListBoxGetTopItem(Native);

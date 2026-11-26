@@ -36,7 +36,7 @@ public unsafe partial class DirDialog : Dialog {
 	}
 
 	/// <summary>Fills the array paths with the full paths of the chosen directories.</summary>
-	public string[] Paths => NativeStringArray.Take(WxKitNative.DirDialogGetPaths(Native));
+	public IReadOnlyList<string> Paths => NativeStringArray.Take(WxKitNative.DirDialogGetPaths(Native));
 
 	private static WxkWindow* CreateNative(Window? parent, string? message, string defaultPath, DirDialogStyle style, Point? position, Size? size) {
 		Application.VerifyAccess();

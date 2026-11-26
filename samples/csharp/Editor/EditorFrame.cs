@@ -63,8 +63,8 @@ internal sealed class EditorFrame : Frame {
 		// A file dropped on the text opens, as File > Open does, rather than being inserted.
 		text.DragAcceptFiles(true);
 		text.DropFiles += async (_, e) => {
-			string[] files = e.Files;
-			if (files.Length > 0) await DropAndOpenAsync(files[0]);
+			IReadOnlyList<string> files = e.Files;
+			if (files.Count > 0) await DropAndOpenAsync(files[0]);
 		};
 		return text;
 	}

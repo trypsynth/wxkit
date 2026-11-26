@@ -28,7 +28,7 @@ public unsafe partial class GenericDirCtrl : Control {
 	public string FilePath => NativeString.Take(WxKitNative.GenericDirCtrlGetFilePath(Native));
 
 	/// <summary>Fills the array paths with the currently selected filepaths.</summary>
-	public string[] FilePaths => NativeStringArray.Take(WxKitNative.GenericDirCtrlGetFilePaths(Native));
+	public IReadOnlyList<string> FilePaths => NativeStringArray.Take(WxKitNative.GenericDirCtrlGetFilePaths(Native));
 
 	/// <summary>Returns the filter string.</summary>
 	public string Filter {
@@ -59,7 +59,7 @@ public unsafe partial class GenericDirCtrl : Control {
 	}
 
 	/// <summary>Fills the array paths with the selected directories and filenames.</summary>
-	public string[] Paths => NativeStringArray.Take(WxKitNative.GenericDirCtrlGetPaths(Native));
+	public IReadOnlyList<string> Paths => NativeStringArray.Take(WxKitNative.GenericDirCtrlGetPaths(Native));
 
 	/// <summary>Returns the root id for the tree control.</summary>
 	public TreeItemId RootId => new global::WxKit.TreeItemId(WxKitNative.GenericDirCtrlGetRootId(Native));

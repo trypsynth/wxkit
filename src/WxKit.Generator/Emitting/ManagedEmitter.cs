@@ -105,6 +105,9 @@ internal static class ManagedEmitter {
 	private static void WriteProperty(CodeWriter writer, BoundClass bound, BoundProperty property) {
 		Summary(writer, property.Getter.Source.Brief);
 		string type = property.Getter.Returns.ManagedReturnType(nullable: property.Getter.ReturnsNullable);
+		// A property gives a list as a read-only one, as .NET's do, rather than an array, which says it
+		// can be changed in place. A method that returns one still returns an array.
+		if (type.EndsWith("[]", StringComparison.Ordinal)) type = $"IReadOnlyList<{type[..^2]}>";
 		string modifiers = Modifiers(property.Getter, property.Hides);
 		if (property.Setter is null && IsSimple(property.Getter)) {
 			writer.Line($"{modifiers} {type} {property.Name} => {Call(bound, property.Getter, property.Getter.ManagedReturn)};");

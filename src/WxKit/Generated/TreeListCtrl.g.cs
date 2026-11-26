@@ -29,7 +29,7 @@ public unsafe partial class TreeListCtrl : Window {
 	public TreeListItem Selection => new global::WxKit.TreeListItem(WxKitNative.TreeListCtrlGetSelection(Native));
 
 	/// <summary>Fill in the provided array with all the selected items.</summary>
-	public TreeListItem[] Selections => NativeNumbers.TakeTreeListItems(WxKitNative.TreeListCtrlGetSelections(Native));
+	public IReadOnlyList<TreeListItem> Selections => NativeNumbers.TakeTreeListItems(WxKitNative.TreeListCtrlGetSelections(Native));
 
 	/// <summary>Return the view part of this control as a wxWindow.</summary>
 	public Window? View => ObjectRegistry.Wrap<Window>(WxKitNative.TreeListCtrlGetView(Native));

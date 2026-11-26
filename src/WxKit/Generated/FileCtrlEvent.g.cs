@@ -24,7 +24,7 @@ public unsafe partial class FileCtrlEvent : CommandEvent {
 	public string File => NativeString.Take(WxKitNative.FileCtrlEventGetFile(Handle));
 
 	/// <summary>Returns the files selected.</summary>
-	public string[] Files {
+	public IReadOnlyList<string> Files {
 		get => NativeStringArray.Take(WxKitNative.FileCtrlEventGetFiles(Handle));
 		set {
 			ArgumentNullException.ThrowIfNull(value);

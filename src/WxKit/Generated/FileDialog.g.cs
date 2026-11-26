@@ -45,7 +45,7 @@ public unsafe partial class FileDialog : Dialog {
 	}
 
 	/// <summary>Fills the array filenames with the names of the files chosen.</summary>
-	public string[] FileNames => NativeStringArray.Take(WxKitNative.FileDialogGetFilenames(Native));
+	public IReadOnlyList<string> FileNames => NativeStringArray.Take(WxKitNative.FileDialogGetFilenames(Native));
 
 	/// <summary>Returns the index into the list of filters supplied, optionally, in the wildcard parameter.</summary>
 	public int FilterIndex {
@@ -76,7 +76,7 @@ public unsafe partial class FileDialog : Dialog {
 	}
 
 	/// <summary>Fills the array paths with the full paths of the files chosen.</summary>
-	public string[] Paths => NativeStringArray.Take(WxKitNative.FileDialogGetPaths(Native));
+	public IReadOnlyList<string> Paths => NativeStringArray.Take(WxKitNative.FileDialogGetPaths(Native));
 
 	/// <summary>Returns the file dialog wildcard.</summary>
 	public string Wildcard {

@@ -47,7 +47,7 @@ public unsafe partial class RadioBox : Control {
 	}
 
 	/// <summary>Returns the array of the labels of all items in the control.</summary>
-	public string[] Strings => NativeStringArray.Take(WxKitNative.RadioBoxGetStrings(Native));
+	public IReadOnlyList<string> Strings => NativeStringArray.Take(WxKitNative.RadioBoxGetStrings(Native));
 
 	/// <summary>Process a wxEVT_RADIOBOX event, when a radiobutton is clicked.</summary>
 	public event EventHandler<CommandEvent>? SelectionChanged {

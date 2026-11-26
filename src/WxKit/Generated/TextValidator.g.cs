@@ -36,7 +36,7 @@ public unsafe partial class TextValidator : Validator {
 	}
 
 	/// <summary>Returns a const reference to the exclude list (the list of invalid values).</summary>
-	public string[] Excludes {
+	public IReadOnlyList<string> Excludes {
 		get => NativeStringArray.Take(WxKitNative.TextValidatorGetExcludes(Native));
 		set {
 			ArgumentNullException.ThrowIfNull(value);
@@ -46,7 +46,7 @@ public unsafe partial class TextValidator : Validator {
 	}
 
 	/// <summary>Returns a const reference to the include list (the list of valid values).</summary>
-	public string[] Includes {
+	public IReadOnlyList<string> Includes {
 		get => NativeStringArray.Take(WxKitNative.TextValidatorGetIncludes(Native));
 		set {
 			ArgumentNullException.ThrowIfNull(value);

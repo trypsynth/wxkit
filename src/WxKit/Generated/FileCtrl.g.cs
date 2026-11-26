@@ -36,7 +36,7 @@ public unsafe partial class FileCtrl : Control {
 	}
 
 	/// <summary>Fills the array filenames with the filenames only of selected items.</summary>
-	public string[] FileNames => NativeStringArray.Take(WxKitNative.FileCtrlGetFilenames(Native));
+	public IReadOnlyList<string> FileNames => NativeStringArray.Take(WxKitNative.FileCtrlGetFilenames(Native));
 
 	/// <summary>Returns the zero-based index of the currently selected filter.</summary>
 	public int FilterIndex {
@@ -56,7 +56,7 @@ public unsafe partial class FileCtrl : Control {
 	}
 
 	/// <summary>Fills the array paths with the full paths of the files chosen.</summary>
-	public string[] Paths => NativeStringArray.Take(WxKitNative.FileCtrlGetPaths(Native));
+	public IReadOnlyList<string> Paths => NativeStringArray.Take(WxKitNative.FileCtrlGetPaths(Native));
 
 	/// <summary>Returns the current wildcard.</summary>
 	public string Wildcard {

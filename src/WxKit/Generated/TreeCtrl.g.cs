@@ -59,7 +59,7 @@ public unsafe partial class TreeCtrl : Control {
 	public TreeItemId Selection => new global::WxKit.TreeItemId(WxKitNative.TreeCtrlGetSelection(Native));
 
 	/// <summary>Fills the array of tree items passed in with the currently selected items.</summary>
-	public TreeItemId[] Selections => NativeNumbers.TakeTreeItems(WxKitNative.TreeCtrlGetSelections(Native));
+	public IReadOnlyList<TreeItemId> Selections => NativeNumbers.TakeTreeItems(WxKitNative.TreeCtrlGetSelections(Native));
 
 	/// <summary>Returns the current tree control spacing.</summary>
 	public int Spacing {

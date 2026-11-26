@@ -27,10 +27,10 @@ public class OutValueTests {
 	[Fact]
 	public Task GivesAFileDialogsPaths() => Gui.WithFrame(frame => {
 		using FileDialog dialog = new(frame, style: FileDialogStyle.Open | FileDialogStyle.Multiple);
-		string[] paths = dialog.Paths;
-		string[] filenames = dialog.FileNames;
+		IReadOnlyList<string> paths = dialog.Paths;
+		IReadOnlyList<string> filenames = dialog.FileNames;
 		Assert.NotNull(paths);
-		Assert.Equal(paths.Length, filenames.Length);
+		Assert.Equal(paths.Count, filenames.Count);
 	});
 
 	[Fact]
