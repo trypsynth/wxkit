@@ -29,15 +29,8 @@ public unsafe partial class MenuBar : Window {
 		}
 	}
 
-	public void Attach(Frame frame) {
-		ArgumentNullException.ThrowIfNull(frame);
-		WxKitNative.MenuBarAttach(Native, (WxkWindow*)frame.Native);
-	}
-
 	/// <summary>Checks or unchecks a menu item.</summary>
 	public void Check(int id, bool check) => WxKitNative.MenuBarCheck(Native, id, check ? (byte)1 : (byte)0);
-
-	public void Detach() => WxKitNative.MenuBarDetach(Native);
 
 	/// <summary>Enables or disables (greys out) a menu item.</summary>
 	public void EnableItem(int id, bool enable) => WxKitNative.MenuBarEnable(Native, id, enable ? (byte)1 : (byte)0);

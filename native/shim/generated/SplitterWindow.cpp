@@ -12,18 +12,6 @@ WXK_FUNCTION(void) wxk_SplitterWindow_Initialize(wxk_Window* self, wxk_Window* w
 	wxk::Guard([&] { static_cast<wxSplitterWindow*>(wxk::Unwrap(self))->Initialize(static_cast<wxWindow*>(wxk::Unwrap(window))); });
 }
 
-WXK_FUNCTION(void) wxk_SplitterWindow_OnDoubleClickSash(wxk_Window* self, int32_t x, int32_t y) noexcept {
-	wxk::Guard([&] { static_cast<wxSplitterWindow*>(wxk::Unwrap(self))->OnDoubleClickSash(static_cast<int>(x), static_cast<int>(y)); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_SplitterWindow_OnSashPositionChange(wxk_Window* self, int32_t newSashPosition) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxSplitterWindow*>(wxk::Unwrap(self))->OnSashPositionChange(static_cast<int>(newSashPosition))) ? 1 : 0; });
-}
-
-WXK_FUNCTION(void) wxk_SplitterWindow_OnUnsplit(wxk_Window* self, wxk_Window* removed) noexcept {
-	wxk::Guard([&] { static_cast<wxSplitterWindow*>(wxk::Unwrap(self))->OnUnsplit(static_cast<wxWindow*>(wxk::Unwrap(removed))); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_SplitterWindow_ReplaceWindow(wxk_Window* self, wxk_Window* oldWindow, wxk_Window* newWindow) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxSplitterWindow*>(wxk::Unwrap(self))->ReplaceWindow(static_cast<wxWindow*>(wxk::Unwrap(oldWindow)), static_cast<wxWindow*>(wxk::Unwrap(newWindow)))) ? 1 : 0; });
 }

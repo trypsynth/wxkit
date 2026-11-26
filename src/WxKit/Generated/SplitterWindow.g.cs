@@ -97,18 +97,6 @@ public unsafe partial class SplitterWindow : Window {
 		WxKitNative.SplitterWindowInitialize(Native, (WxkWindow*)window.Native);
 	}
 
-	/// <summary>Application-overridable function called when the sash is double-clicked with the left mouse button.</summary>
-	public void OnDoubleClickSash(int x, int y) => WxKitNative.SplitterWindowOnDoubleClickSash(Native, x, y);
-
-	/// <summary>Application-overridable function called when the sash position is changed by user.</summary>
-	public bool OnSashPositionChange(int newSashPosition) => WxKitNative.SplitterWindowOnSashPositionChange(Native, newSashPosition) != 0;
-
-	/// <summary>Application-overridable function called when the window is unsplit, either programmatically or using the wxSplitterWindow user interface.</summary>
-	public void OnUnsplit(Window removed) {
-		ArgumentNullException.ThrowIfNull(removed);
-		WxKitNative.SplitterWindowOnUnsplit(Native, (WxkWindow*)removed.Native);
-	}
-
 	/// <summary>This function replaces one of the windows managed by the wxSplitterWindow with another one.</summary>
 	public bool ReplaceWindow(Window oldWindow, Window newWindow) {
 		ArgumentNullException.ThrowIfNull(oldWindow);

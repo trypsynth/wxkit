@@ -6,20 +6,11 @@ namespace WxKit;
 
 /// <summary>An event is a structure holding information about an event passed to a callback or member function. Wraps wxEvent.</summary>
 public unsafe partial class Event {
-	/// <summary>Returns a generic category for this event.</summary>
-	public EventCategory EventCategory => (EventCategory)WxKitNative.EventGetEventCategory(Handle);
-
 	/// <summary>Returns the object (usually a window) associated with the event, if any.</summary>
 	public EvtHandler? EventObject => ObjectRegistry.Wrap<EvtHandler>(WxKitNative.EventGetEventObject(Handle));
 
-	/// <summary>Return the user data associated with a dynamically connected event handler.</summary>
-	public EvtHandler? EventUserData => ObjectRegistry.Wrap<EvtHandler>(WxKitNative.EventGetEventUserData(Handle));
-
 	/// <summary>Returns the identifier associated with this event, such as a button command id.</summary>
 	public int Id => WxKitNative.EventGetId(Handle);
-
-	/// <summary>Returns true if the event is or is derived from wxCommandEvent else it returns false.</summary>
-	public bool IsCommandEvent => WxKitNative.EventIsCommandEvent(Handle) != 0;
 
 	/// <summary>Returns true if the event handler should be skipped, false otherwise.</summary>
 	public bool IsSkipped => WxKitNative.EventGetSkipped(Handle) != 0;

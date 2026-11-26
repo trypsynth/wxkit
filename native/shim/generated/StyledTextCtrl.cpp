@@ -1840,22 +1840,6 @@ WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_LoadFile(wxk_Window* self, const char16
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->LoadFile(wxk::FromUtf16(fileName, fileNameLength))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_DoDragEnter(wxk_Window* self, int32_t x, int32_t y, int32_t defaultResult) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->DoDragEnter(static_cast<int>(x), static_cast<int>(y), static_cast<wxDragResult>(defaultResult))); });
-}
-
-WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_DoDragOver(wxk_Window* self, int32_t x, int32_t y, int32_t defaultResult) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->DoDragOver(static_cast<int>(x), static_cast<int>(y), static_cast<wxDragResult>(defaultResult))); });
-}
-
-WXK_FUNCTION(void) wxk_StyledTextCtrl_DoDragLeave(wxk_Window* self) noexcept {
-	wxk::Guard([&] { static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->DoDragLeave(); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_DoDropText(wxk_Window* self, int32_t x, int32_t y, const char16_t* data, size_t dataLength) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->DoDropText(static_cast<long>(x), static_cast<long>(y), wxk::FromUtf16(data, dataLength))) ? 1 : 0; });
-}
-
 WXK_FUNCTION(void) wxk_StyledTextCtrl_AnnotationClearLine(wxk_Window* self, int32_t line) noexcept {
 	wxk::Guard([&] { static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->AnnotationClearLine(static_cast<int>(line)); });
 }

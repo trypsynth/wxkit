@@ -16,5 +16,6 @@ internal static class Core {
 		Printing.Apply(tweaks);
 		Desktop.Apply(tweaks);
 		Libraries.Apply(tweaks);
+		Internals.Apply(tweaks);
 	}
 }

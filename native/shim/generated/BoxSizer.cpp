@@ -8,18 +8,6 @@ WXK_FUNCTION(wxk_Sizer*) wxk_BoxSizer_new(int32_t orientation) noexcept {
 	});
 }
 
-WXK_FUNCTION(wxk_Size) wxk_BoxSizer_CalcMin(wxk_Sizer* self) noexcept {
-	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxBoxSizer*>(wxk::Unwrap(self))->CalcMin()); });
-}
-
-WXK_FUNCTION(void) wxk_BoxSizer_RepositionChildren(wxk_Sizer* self, wxk_Size minSize) noexcept {
-	wxk::Guard([&] { static_cast<wxBoxSizer*>(wxk::Unwrap(self))->RepositionChildren(wxk::FromSize(minSize)); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_BoxSizer_InformFirstDirection(wxk_Sizer* self, int32_t direction, int32_t size, int32_t availableOtherDir) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxBoxSizer*>(wxk::Unwrap(self))->InformFirstDirection(static_cast<int>(direction), static_cast<int>(size), static_cast<int>(availableOtherDir))) ? 1 : 0; });
-}
-
 WXK_FUNCTION(int32_t) wxk_BoxSizer_GetOrientation(wxk_Sizer* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxBoxSizer*>(wxk::Unwrap(self))->GetOrientation()); });
 }

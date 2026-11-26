@@ -225,22 +225,6 @@ WXK_FUNCTION(void) wxk_DC_ResetBoundingBox(wxk_Object* self) noexcept {
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->ResetBoundingBox(); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_DC_StartDoc(wxk_Object* self, const char16_t* message, size_t messageLength) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDC*>(wxk::Unwrap(self))->StartDoc(wxk::FromUtf16(message, messageLength))) ? 1 : 0; });
-}
-
-WXK_FUNCTION(void) wxk_DC_StartPage(wxk_Object* self) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->StartPage(); });
-}
-
-WXK_FUNCTION(void) wxk_DC_EndDoc(wxk_Object* self) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->EndDoc(); });
-}
-
-WXK_FUNCTION(void) wxk_DC_EndPage(wxk_Object* self) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->EndPage(); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_DC_Blit(wxk_Object* self, int32_t xDestination, int32_t yDestination, int32_t width, int32_t height, wxk_Object* source, int32_t xSource, int32_t ySource, int32_t logicalFunction, uint8_t useMask, int32_t xSourceMask, int32_t ySourceMask) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDC*>(wxk::Unwrap(self))->Blit(static_cast<int>(xDestination), static_cast<int>(yDestination), static_cast<int>(width), static_cast<int>(height), static_cast<wxDC*>(wxk::Unwrap(source)), static_cast<int>(xSource), static_cast<int>(ySource), static_cast<wxRasterOperationMode>(logicalFunction), useMask != 0, static_cast<int>(xSourceMask), static_cast<int>(ySourceMask))) ? 1 : 0; });
 }

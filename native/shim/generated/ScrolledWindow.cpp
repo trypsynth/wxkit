@@ -36,10 +36,6 @@ WXK_FUNCTION(void) wxk_ScrolledWindow_GetVirtualSize(wxk_Window* self, int32_t* 
 	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->GetVirtualSize(x, y); });
 }
 
-WXK_FUNCTION(void) wxk_ScrolledWindow_PrepareDC(wxk_Window* self, wxk_Object* dc) noexcept {
-	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->PrepareDC(*static_cast<wxDC*>(wxk::Unwrap(dc))); });
-}
-
 WXK_FUNCTION(void) wxk_ScrolledWindow_Scroll_IntInt(wxk_Window* self, int32_t x, int32_t y) noexcept {
 	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->Scroll(static_cast<int>(x), static_cast<int>(y)); });
 }

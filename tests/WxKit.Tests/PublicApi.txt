@@ -432,8 +432,6 @@ class WxKit.Bitmap : NativeObject
     int Height { get; }
     int Width { get; }
     static bool RemoveHandler(string name)
-    static void CleanUpHandlers()
-    static void InitStandardHandlers()
     static void MakeDisabled(Bitmap bitmap)
     static void Rescale(Bitmap bitmap, Size sizeNeeded)
     void ResetAlpha()
@@ -540,9 +538,6 @@ enum WxKit.Border : int
 class WxKit.BoxSizer : Sizer
     BoxSizer(Orientation orientation)
     Orientation Orientation { get; set; }
-    Size CalcMin()
-    bool InformFirstDirection(int direction, int size, int availableOtherDir)
-    void RepositionChildren(Size minSize)
 class WxKit.Brush : NativeObject
     Brush()
     Brush(Bitmap stippleBitmap)
@@ -987,7 +982,6 @@ class WxKit.DC : NativeObject
     bool FloodFill(Point point, Color? color, FloodFillStyle style = FloodFillStyle.Surface)
     bool FloodFill(int x, int y, Color? color, FloodFillStyle style = FloodFillStyle.Surface)
     bool IsOk { get; }
-    bool StartDoc(string message)
     bool StretchBlit(int xDestination, int yDestination, int destinationWidth, int destinationHeight, DC source, int xSource, int ySource, int sourceWidth, int sourceHeight, RasterOperationMode logicalFunction = RasterOperationMode.Copy, bool useMask = false, int xSourceMask = -1, int ySourceMask = -1)
     bool TryGetClippingBox(out Rect rect)
     double ContentScaleFactor { get; }
@@ -1048,8 +1042,6 @@ class WxKit.DC : NativeObject
     void DrawSpline(int x1, int y1, int x2, int y2, int x3, int y3)
     void DrawText(string text, Point point)
     void DrawText(string text, int x, int y)
-    void EndDoc()
-    void EndPage()
     void GradientFillConcentric(Rect rect, Color? initialColor, Color? destColor)
     void GradientFillConcentric(Rect rect, Color? initialColor, Color? destColor, Point circleCenter)
     void GradientFillLinear(Rect rect, Color? initialColor, Color? destColor, Direction direction = Direction.Right)
@@ -1061,7 +1053,6 @@ class WxKit.DC : NativeObject
     void SetClippingRegion(int x, int y, int width, int height)
     void SetDeviceOrigin(int x, int y)
     void SetLogicalOrigin(int x, int y)
-    void StartPage()
 readonly record struct WxKit.DataFormat : IEquatable<DataFormat>
     bool Equals(DataFormat other)
     override bool Equals(object obj)
@@ -1349,23 +1340,16 @@ static class WxKit.Desktop
     static void Bell()
 class WxKit.Dialog : TopLevelWindow, IDisposable
     Dialog(Window? parent, string title, int id = -1, Point? position = null, Size? size = null, DialogStyle style = DialogStyle.Default)
-    DialogLayoutAdaptationMode LayoutAdaptationMode { get; set; }
     IReadOnlyList<int> MainButtonIds { get; }
     Window? ContentWindow { get; }
-    bool CanDoLayoutAdaptation { get; }
-    bool DoLayoutAdaptation()
     bool IsMainButtonId(int id)
     bool IsModal { get; }
-    bool LayoutAdaptationDone { get; set; }
     event EventHandler<InitDialogEvent>? Initializing
     event EventHandler<WindowModalDialogEvent>? WindowModalClosed
     int AffirmativeId { get; set; }
     int EscapeId { get; set; }
-    int LayoutAdaptationLevel { get; set; }
     int ReturnCode { get; set; }
     int ShowModal()
-    static bool IsLayoutAdaptationEnabled { get; }
-    static void EnableLayoutAdaptation(bool enable)
     void AddMainButtonId(int id)
     void Dispose()
     void EndModal(int returnCode)
@@ -1381,10 +1365,6 @@ class WxKit.Dialog : TopLevelWindow, IDisposable
     None = 0
     Ok = 4
     Yes = 2
-enum WxKit.DialogLayoutAdaptationMode : int
-    Default = 0
-    Disabled = 2
-    Enabled = 1
 [Flags] enum WxKit.DialogStyle : long
     Caption = 536870912
     CloseBox = 4096
@@ -1515,10 +1495,7 @@ sealed class WxKit.EmbeddedTranslationsLoader : TranslationsLoader
     override byte[]? LoadCatalog(string domain, string language)
 class WxKit.EraseEvent : Event
 class WxKit.Event : EventArgs
-    EventCategory EventCategory { get; }
     EvtHandler? EventObject { get; }
-    EvtHandler? EventUserData { get; }
-    bool IsCommandEvent { get; }
     bool IsSkipped { get; }
     bool ShouldPropagate()
     int Id { get; }
@@ -1526,13 +1503,6 @@ class WxKit.Event : EventArgs
     long Timestamp { get; }
     void ResumePropagation(int propagationLevel)
     void Skip(bool skip = true)
-enum WxKit.EventCategory : int
-    All = 127
-    Socket = 4
-    Thread = 16
-    Timer = 8
-    Ui = 1
-    UserInput = 2
 static class WxKit.EventType
     static EventType<ActivateEvent> Activate { get; }
     static EventType<ActivateEvent> ActivateApp { get; }
@@ -2304,14 +2274,12 @@ class WxKit.GridSizer : Sizer
     GridSizer(int columns, int verticalGap, int horizontalGap)
     GridSizer(int rows, int columns, Size gap)
     GridSizer(int rows, int columns, int verticalGap, int horizontalGap)
-    Size CalcMin()
     int Columns { get; set; }
     int EffectiveColumnsCount { get; }
     int EffectiveRowsCount { get; }
     int HorizontalGap { get; set; }
     int Rows { get; set; }
     int VerticalGap { get; set; }
-    void RepositionChildren(Size minSize)
 readonly record struct WxKit.GridSpan : IEquatable<GridSpan>
     GridSpan(int Rows, int Columns)
     bool Equals(GridSpan other)
@@ -2461,8 +2429,6 @@ class WxKit.Image : NativeObject
     static void AddTiffHandler()
     static void AddWebpHandler()
     static void AddXpmHandler()
-    static void CleanUpHandlers()
-    static void InitStandardHandlers()
     string GetOption(string name)
     void ChangeBrightness(double factor)
     void ChangeHsv(double angleH, double factorS, double factorV)
@@ -3068,9 +3034,7 @@ class WxKit.MenuBar : Window
     string GetLabel(int id)
     string GetMenuLabel(int position)
     string GetMenuLabelText(int position)
-    void Attach(Frame frame)
     void Check(int id, bool check)
-    void Detach()
     void EnableItem(int id, bool enable)
     void EnableTop(int position, bool enable)
     void SetHelpString(int id, string helpString)
@@ -3868,7 +3832,6 @@ class WxKit.ScrolledWindow : Panel
     void EnableAutoScrollWithoutCapture()
     void EnableScrolling(bool xScrolling, bool yScrolling)
     void GetVirtualSize(out int x, out int y)
-    void PrepareDC(DC dc)
     void Scroll(Point point)
     void Scroll(int x, int y)
     void SetScale(double xs, double ys)
@@ -4153,7 +4116,6 @@ class WxKit.SplitterWindow : Window
     Window? Window2 { get; }
     bool IsSashInvisible { get; set; }
     bool IsSplit { get; }
-    bool OnSashPositionChange(int newSashPosition)
     bool ReplaceWindow(Window oldWindow, Window newWindow)
     bool SplitHorizontally(Window window1, Window window2, int sashPosition = 0)
     bool SplitVertically(Window window1, Window window2, int sashPosition = 0)
@@ -4169,8 +4131,6 @@ class WxKit.SplitterWindow : Window
     int SashPosition { get; }
     int SashSize { get; }
     void Initialize(Window window)
-    void OnDoubleClickSash(int x, int y)
-    void OnUnsplit(Window removed)
     void SetSashPosition(int position, bool redraw = true)
     void UpdateSize()
 [Flags] enum WxKit.SplitterWindowStyle : long
@@ -7224,8 +7184,6 @@ class WxKit.StyledTextCtrl : Control
     Color? IndicatorGetHoverForeground(int indicator)
     Color? StyleGetBackground(int style)
     Color? StyleGetForeground(int style)
-    DragResult DoDragEnter(int x, int y, DragResult defaultResult)
-    DragResult DoDragOver(int x, int y, DragResult defaultResult)
     Font? StyleGetFont(int style)
     Point PointFromPosition(int position)
     StyledTextCtrl(Window parent, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
@@ -7251,7 +7209,6 @@ class WxKit.StyledTextCtrl : Control
     bool CaretLineVisible { get; set; }
     bool CaretLineVisibleAlways { get; set; }
     bool CommandEvents { get; set; }
-    bool DoDropText(int x, int y, string data)
     bool EndAtLastLine { get; set; }
     bool GetFoldExpanded(int line)
     bool GetLineVisible(int line)
@@ -7649,7 +7606,6 @@ class WxKit.StyledTextCtrl : Control
     void DeleteBackNotLine()
     void DeleteRange(int start, int lengthDelete)
     void DiscardEdits()
-    void DoDragLeave()
     void DocumentEnd()
     void DocumentEndExtend()
     void DocumentStart()
@@ -8754,7 +8710,6 @@ class WxKit.Window : EvtHandler
     Color? ForegroundColor { get; set; }
     Cursor? Cursor { get; set; }
     EvtHandler? EventHandler { get; set; }
-    EvtHandler? PopEventHandler(bool deleteHandler = false)
     Font? Font { get; set; }
     HitTestResult HitTest(Point point)
     HitTestResult HitTest(int x, int y)
@@ -8809,9 +8764,6 @@ class WxKit.Window : EvtHandler
     WindowExtraStyle ExtraStyle { get; set; }
     WindowStyle WindowStyle { get; }
     WindowVariant WindowVariant { get; set; }
-    bool AcceptsFocus()
-    bool AcceptsFocusFromKeyboard()
-    bool AcceptsFocusRecursively()
     bool AutoLayout { get; set; }
     bool BeginRepositioningChildren()
     bool CanAcceptFocus { get; }
@@ -8832,7 +8784,6 @@ class WxKit.Window : EvtHandler
     bool HasTransparentBackground { get; }
     bool Hide()
     bool HideWithEffect(ShowEffect effect, TimeSpan timeout = null)
-    bool InformFirstDirection(int direction, int size, int availableOtherDir)
     bool InheritsBackgroundColor()
     bool InheritsForegroundColor()
     bool IsBeingDeleted { get; }
@@ -8861,7 +8812,6 @@ class WxKit.Window : EvtHandler
     bool PopupMenu(Menu menu, Point? position = null)
     bool PopupMenu(Menu menu, int x, int y)
     bool RegisterHotKey(int hotkeyId, KeyModifiers modifiers, int virtualKeyCode)
-    bool RemoveEventHandler(EvtHandler handler)
     bool Reparent(Window newParent)
     bool ScrollLines(int lines)
     bool ScrollPages(int pages)
@@ -8956,9 +8906,7 @@ class WxKit.Window : EvtHandler
     string Label { get; set; }
     string Name { get; set; }
     string ToolTipText { get; }
-    void AddChild(Window child)
     void AlwaysShowScrollBars(bool horizontal = true, bool vertical = true)
-    void CacheBestSize(Size size)
     void CaptureMouse()
     void Center(Orientation direction = Orientation.Both)
     void CenterOnParent(Orientation direction = Orientation.Both)
@@ -8979,15 +8927,12 @@ class WxKit.Window : EvtHandler
     void Move(int x, int y, SizeFlags flags = SizeFlags.UseExisting)
     void MoveAfterInTabOrder(Window window)
     void MoveBeforeInTabOrder(Window window)
-    void OnInternalIdle()
     void PostSizeEvent()
     void PostSizeEventToParent()
-    void PushEventHandler(EvtHandler handler)
     void Raise()
     void Refresh(bool eraseBackground = true)
     void RefreshRect(Rect rect, bool eraseBackground = true)
     void ReleaseMouse()
-    void RemoveChild(Window child)
     void ScrollWindow(int dx, int dy)
     void SendSizeEvent(SendSizeEventFlags flags = SendSizeEventFlags.None)
     void SendSizeEventToParent(SendSizeEventFlags flags = SendSizeEventFlags.None)
@@ -8998,14 +8943,11 @@ class WxKit.Window : EvtHandler
     void SetCanFocus(bool canFocus)
     void SetClientSize(Rect rect)
     void SetClientSize(int width, int height)
-    void SetContainingSizer(Sizer sizer)
     void SetFocus()
     void SetFocusFromKbd()
-    void SetNextHandler(EvtHandler handler)
     void SetOwnBackgroundColor(Color? color)
     void SetOwnFont(Font font)
     void SetOwnForegroundColor(Color? color)
-    void SetPreviousHandler(EvtHandler handler)
     void SetScrollBar(Orientation orientation, int position, int thumbSize, int range, bool refresh = true)
     void SetScrollPosition(Orientation orientation, int position, bool refresh = true)
     void SetSize(Rect rect)

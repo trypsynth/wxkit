@@ -19,15 +19,6 @@ public unsafe partial class BoxSizer : Sizer {
 		set => WxKitNative.BoxSizerSetOrientation(Native, (int)value);
 	}
 
-	/// <summary>Implements the calculation of a box sizer's minimal.</summary>
-	public Size CalcMin() => WxKitNative.BoxSizerCalcMin(Native);
-
-	/// <summary>Inform sizer about the first direction that has been decided (by parent item).</summary>
-	public bool InformFirstDirection(int direction, int size, int availableOtherDir) => WxKitNative.BoxSizerInformFirstDirection(Native, direction, size, availableOtherDir) != 0;
-
-	/// <summary>Method which must be overridden in the derived sizer classes.</summary>
-	public void RepositionChildren(Size minSize) => WxKitNative.BoxSizerRepositionChildren(Native, minSize);
-
 	private static WxkSizer* CreateNative(Orientation orientation) {
 		Application.VerifyAccess();
 		return WxKitNative.BoxSizerNew((int)orientation);

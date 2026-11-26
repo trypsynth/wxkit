@@ -18,11 +18,7 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 
 ## Members that go
 
-- wxWidgets internals, and members meant to be overridden rather than called:
-  - `Window.AddChild`, `RemoveChild`, `SetContainingSizer`, `PushEventHandler`, `PopEventHandler`, `SetNextHandler`, `SetPreviousHandler`, `OnInternalIdle`, `InformFirstDirection`, `CacheBestSize`, and the `AcceptsFocus` family.
-  - The sizers' `CalcMin` and `RepositionChildren`, the splitter's `OnSashPositionChange`, `OnDoubleClickSash`, and `OnUnsplit`, the property sheet's `CreateBookCtrl`, `AddBookCtrl`, and `SetInnerSizer`, and `ScrolledWindow.PrepareDC`.
-  - `Image` and `Bitmap`'s `CleanUpHandlers` and `InitStandardHandlers`, `Dialog`'s layout adaptation, `DC.StartDoc` and its page members, `MenuBar.Attach` and `Detach`, `Event.EventUserData`, `EventCategory`, and `IsCommandEvent`, and the styled text control's `DoDragEnter` family.
-  - `TreeCtrl.OnCompareItems` becomes an override, as `ListCtrl.OnGetItemText` is.
+- `TreeCtrl.OnCompareItems` becomes an override, as `ListCtrl.OnGetItemText` is.
 - Two-step creation: `Bitmap()` and its `Create` members become static factories, such as `Bitmap.FromDipSize`, and `Image.Create` goes.
 - Members that only repeat another:
   - Subclasses' copies of `Window`'s properties, such as `ListCtrl.SetBackgroundColor`, `InfoBar.SetFont`, and `StaticText.SetLabel`, which the generator misses because the base's became a property.

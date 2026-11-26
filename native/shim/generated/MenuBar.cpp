@@ -97,14 +97,6 @@ WXK_FUNCTION(wxk_Menu*) wxk_MenuBar_OSXGetAppleMenu(wxk_Window* self) noexcept {
 	#endif
 }
 
-WXK_FUNCTION(void) wxk_MenuBar_Attach(wxk_Window* self, wxk_Window* frame) noexcept {
-	wxk::Guard([&] { static_cast<wxMenuBar*>(wxk::Unwrap(self))->Attach(static_cast<wxFrame*>(wxk::Unwrap(frame))); });
-}
-
-WXK_FUNCTION(void) wxk_MenuBar_Detach(wxk_Window* self) noexcept {
-	wxk::Guard([&] { static_cast<wxMenuBar*>(wxk::Unwrap(self))->Detach(); });
-}
-
 WXK_FUNCTION(void) wxk_MenuBar_MacSetCommonMenuBar(wxk_Window* menuBar) noexcept {
 	#if defined(__WXOSX__)
 	wxk::Guard([&] { wxMenuBar::MacSetCommonMenuBar(static_cast<wxMenuBar*>(wxk::Unwrap(menuBar))); });

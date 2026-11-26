@@ -307,12 +307,6 @@ public unsafe partial class DC : NativeObject {
 		}
 	}
 
-	/// <summary>Ends a document (only relevant when outputting to a printer).</summary>
-	public void EndDoc() => WxKitNative.DCEndDoc(Native);
-
-	/// <summary>Ends a document page (only relevant when outputting to a printer).</summary>
-	public void EndPage() => WxKitNative.DCEndPage(Native);
-
 	/// <summary>Flood fills the device context starting from the given point, using the current brush colour, and using a style:</summary>
 	public bool FloodFill(int x, int y, Color? color, FloodFillStyle style = FloodFillStyle.Surface) => WxKitNative.DCFloodFillIntIntColorFloodFillStyle(Native, x, y, global::WxKit.Color.ToNative(color), (int)style) != 0;
 
@@ -420,17 +414,6 @@ public unsafe partial class DC : NativeObject {
 
 	/// <summary>Change the offset used for translating wxDC coordinates.</summary>
 	public void SetLogicalOrigin(int x, int y) => WxKitNative.DCSetLogicalOrigin(Native, x, y);
-
-	/// <summary>Starts a document (only relevant when outputting to a printer).</summary>
-	public bool StartDoc(string message) {
-		ArgumentNullException.ThrowIfNull(message);
-		fixed (char* messageText = message) {
-			return WxKitNative.DCStartDoc(Native, messageText, NativeString.Length(message)) != 0;
-		}
-	}
-
-	/// <summary>Starts a document page (only relevant when outputting to a printer).</summary>
-	public void StartPage() => WxKitNative.DCStartPage(Native);
 
 	/// <summary>Copy from a source DC to this DC possibly changing the scale.</summary>
 	public bool StretchBlit(int xDestination, int yDestination, int destinationWidth, int destinationHeight, DC source, int xSource, int ySource, int sourceWidth, int sourceHeight, RasterOperationMode logicalFunction = RasterOperationMode.Copy, bool useMask = false, int xSourceMask = -1, int ySourceMask = -1) {

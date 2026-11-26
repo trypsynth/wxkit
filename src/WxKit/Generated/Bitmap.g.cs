@@ -89,12 +89,6 @@ public unsafe partial class Bitmap : NativeObject {
 	/// <summary>Returns the width of the bitmap in physical pixels.</summary>
 	public int Width => WxKitNative.BitmapGetWidth(Native);
 
-	/// <summary>Deletes all bitmap handlers.</summary>
-	public static void CleanUpHandlers() {
-		Application.VerifyAccess();
-		WxKitNative.BitmapCleanUpHandlers();
-	}
-
 	/// <summary>Returns disabled (dimmed) version of the bitmap.</summary>
 	public Bitmap? ConvertToDisabled(byte brightness = 255) => global::WxKit.Bitmap.Take(WxKitNative.BitmapConvertToDisabled(Native, brightness));
 
@@ -136,12 +130,6 @@ public unsafe partial class Bitmap : NativeObject {
 
 	/// <summary>Returns a sub bitmap of the current one as long as the rect belongs entirely to the bitmap.</summary>
 	public Bitmap? GetSubBitmap(Rect rect) => global::WxKit.Bitmap.Take(WxKitNative.BitmapGetSubBitmap(Native, rect));
-
-	/// <summary>Adds the standard bitmap format handlers, which, depending on wxWidgets configuration, can be handlers for Windows bitmap, Windows bitmap resource, and XPM.</summary>
-	public static void InitStandardHandlers() {
-		Application.VerifyAccess();
-		WxKitNative.BitmapInitStandardHandlers();
-	}
 
 	/// <summary>Loads a bitmap from a file or resource.</summary>
 	public bool LoadFile(string name, BitmapType? type = null) {

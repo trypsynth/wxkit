@@ -55,12 +55,6 @@ public unsafe partial class GridSizer : Sizer {
 		set => WxKitNative.GridSizerSetVGap(Native, value);
 	}
 
-	/// <summary>This method is abstract and has to be overwritten by any derived class.</summary>
-	public Size CalcMin() => WxKitNative.GridSizerCalcMin(Native);
-
-	/// <summary>Method which must be overridden in the derived sizer classes.</summary>
-	public void RepositionChildren(Size minSize) => WxKitNative.GridSizerRepositionChildren(Native, minSize);
-
 	private static WxkSizer* CreateNative(int columns, int verticalGap, int horizontalGap) {
 		Application.VerifyAccess();
 		return WxKitNative.GridSizerNewIntIntInt(columns, verticalGap, horizontalGap);

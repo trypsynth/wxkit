@@ -19,9 +19,6 @@ public unsafe partial class Dialog : TopLevelWindow {
 		set => WxKitNative.DialogSetAffirmativeId(Native, value);
 	}
 
-	/// <summary>Returns true if this dialog can and should perform layout adaptation using DoLayoutAdaptation(), usually if the dialog is too large to fit on the display.</summary>
-	public bool CanDoLayoutAdaptation => WxKitNative.DialogCanDoLayoutAdaptation(Native) != 0;
-
 	/// <summary>Override this to return a window containing the main content of the dialog.</summary>
 	public Window? ContentWindow => ObjectRegistry.Wrap<Window>(WxKitNative.DialogGetContentWindow(Native));
 
@@ -31,34 +28,8 @@ public unsafe partial class Dialog : TopLevelWindow {
 		set => WxKitNative.DialogSetEscapeId(Native, value);
 	}
 
-	/// <summary>A static function returning true if layout adaptation is enabled for all dialogs.</summary>
-	public static bool IsLayoutAdaptationEnabled {
-		get {
-			Application.VerifyAccess();
-			return WxKitNative.DialogIsLayoutAdaptationEnabled() != 0;
-		}
-	}
-
 	/// <summary>Returns true if the dialog box is modal, false otherwise.</summary>
 	public bool IsModal => WxKitNative.DialogIsModal(Native) != 0;
-
-	/// <summary>Returns true if the dialog has been adapted, usually by making it scrollable to work with a small display.</summary>
-	public bool LayoutAdaptationDone {
-		get => WxKitNative.DialogGetLayoutAdaptationDone(Native) != 0;
-		set => WxKitNative.DialogSetLayoutAdaptationDone(Native, value ? (byte)1 : (byte)0);
-	}
-
-	/// <summary>Gets a value representing the aggressiveness of search for buttons and sizers to be in the non-scrolling part of a layout-adapted dialog.</summary>
-	public int LayoutAdaptationLevel {
-		get => WxKitNative.DialogGetLayoutAdaptationLevel(Native);
-		set => WxKitNative.DialogSetLayoutAdaptationLevel(Native, value);
-	}
-
-	/// <summary>Gets the adaptation mode, overriding the global adaptation flag.</summary>
-	public DialogLayoutAdaptationMode LayoutAdaptationMode {
-		get => (DialogLayoutAdaptationMode)WxKitNative.DialogGetLayoutAdaptationMode(Native);
-		set => WxKitNative.DialogSetLayoutAdaptationMode(Native, (int)value);
-	}
 
 	/// <summary>Returns an array of identifiers to be regarded as the main buttons for the non-scrolling area of a dialog.</summary>
 	public IReadOnlyList<int> MainButtonIds => NativeNumbers.TakeInts(WxKitNative.DialogGetMainButtonIds(Native));
@@ -82,15 +53,6 @@ public unsafe partial class Dialog : TopLevelWindow {
 
 	/// <summary>Adds an identifier to be regarded as a main button for the non-scrolling area of a dialog.</summary>
 	public void AddMainButtonId(int id) => WxKitNative.DialogAddMainButtonId(Native, id);
-
-	/// <summary>Performs layout adaptation, usually if the dialog is too large to fit on the display.</summary>
-	public bool DoLayoutAdaptation() => WxKitNative.DialogDoLayoutAdaptation(Native) != 0;
-
-	/// <summary>A static function enabling or disabling layout adaptation for all dialogs.</summary>
-	public static void EnableLayoutAdaptation(bool enable) {
-		Application.VerifyAccess();
-		WxKitNative.DialogEnableLayoutAdaptation(enable ? (byte)1 : (byte)0);
-	}
 
 	/// <summary>Ends a modal dialog, passing a value to be returned from the ShowModal() invocation.</summary>
 	public void EndModal(int returnCode) => WxKitNative.DialogEndModal(Native, returnCode);

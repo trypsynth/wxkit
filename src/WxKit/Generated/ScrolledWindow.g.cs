@@ -134,12 +134,6 @@ public unsafe partial class ScrolledWindow : Panel {
 		}
 	}
 
-	/// <summary>This function is overridden to call DoPrepareDC().</summary>
-	public void PrepareDC(DC dc) {
-		ArgumentNullException.ThrowIfNull(dc);
-		WxKitNative.ScrolledWindowPrepareDC(Native, dc.Native);
-	}
-
 	/// <summary>Scrolls a window so the view start is at the given point.</summary>
 	public void Scroll(int x, int y) => WxKitNative.ScrolledWindowScrollIntInt(Native, x, y);
 

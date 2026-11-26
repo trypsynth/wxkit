@@ -121,14 +121,6 @@ WXK_FUNCTION(uint8_t) wxk_Bitmap_UseAlpha(wxk_Object* self, uint8_t use) noexcep
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxBitmap*>(wxk::Unwrap(self))->UseAlpha(use != 0)) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_Bitmap_CleanUpHandlers(void) noexcept {
-	wxk::Guard([&] { wxBitmap::CleanUpHandlers(); });
-}
-
-WXK_FUNCTION(void) wxk_Bitmap_InitStandardHandlers(void) noexcept {
-	wxk::Guard([&] { wxBitmap::InitStandardHandlers(); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_Bitmap_RemoveHandler(const char16_t* name, size_t nameLength) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (wxBitmap::RemoveHandler(wxk::FromUtf16(name, nameLength))) ? 1 : 0; });
 }

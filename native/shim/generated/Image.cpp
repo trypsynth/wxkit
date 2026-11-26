@@ -256,14 +256,6 @@ WXK_FUNCTION(void) wxk_Image_SetRGB_RectByteByteByte(wxk_Object* self, wxk_Rect 
 	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->SetRGB(wxk::FromRect(rect), static_cast<unsigned char>(red), static_cast<unsigned char>(green), static_cast<unsigned char>(blue)); });
 }
 
-WXK_FUNCTION(void) wxk_Image_CleanUpHandlers(void) noexcept {
-	wxk::Guard([&] { wxImage::CleanUpHandlers(); });
-}
-
-WXK_FUNCTION(void) wxk_Image_InitStandardHandlers(void) noexcept {
-	wxk::Guard([&] { wxImage::InitStandardHandlers(); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_Image_RemoveHandler(const char16_t* name, size_t nameLength) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (wxImage::RemoveHandler(wxk::FromUtf16(name, nameLength))) ? 1 : 0; });
 }

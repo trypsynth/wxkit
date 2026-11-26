@@ -121,12 +121,6 @@ public unsafe partial class Image : NativeObject {
 	/// <summary>Changes the saturation of each pixel in the image.</summary>
 	public void ChangeSaturation(double factor) => WxKitNative.ImageChangeSaturation(Native, factor);
 
-	/// <summary>Deletes all image handlers.</summary>
-	public static void CleanUpHandlers() {
-		Application.VerifyAccess();
-		WxKitNative.ImageCleanUpHandlers();
-	}
-
 	/// <summary>Initialize the image data with zeroes (the default) or with the byte value given as value.</summary>
 	public void Clear(byte value = 0) => WxKitNative.ImageClear(Native, value);
 
@@ -213,12 +207,6 @@ public unsafe partial class Image : NativeObject {
 
 	/// <summary>Initializes the image alpha channel data.</summary>
 	public void InitAlpha() => WxKitNative.ImageInitAlpha(Native);
-
-	/// <summary>Internal use only.</summary>
-	public static void InitStandardHandlers() {
-		Application.VerifyAccess();
-		WxKitNative.ImageInitStandardHandlers();
-	}
 
 	/// <summary>Returns true if the given pixel is transparent, i.e. either has the mask colour if this image has a mask or if this image has alpha channel and alpha value of this pixel is strictly less than threshold.</summary>
 	public bool IsTransparent(int x, int y) => WxKitNative.ImageIsTransparent(Native, x, y) != 0;

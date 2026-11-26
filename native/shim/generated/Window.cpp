@@ -5,18 +5,6 @@ WXK_FUNCTION(void) wxk_Window_SetSizer(wxk_Window* self, wxk_Sizer* sizer, uint8
 	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->SetSizer(static_cast<wxSizer*>(wxk::Unwrap(sizer)), deleteOld != 0); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_Window_AcceptsFocus(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->AcceptsFocus()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Window_AcceptsFocusFromKeyboard(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->AcceptsFocusFromKeyboard()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Window_AcceptsFocusRecursively(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->AcceptsFocusRecursively()) ? 1 : 0; });
-}
-
 WXK_FUNCTION(void) wxk_Window_DisableFocusFromKeyboard(wxk_Window* self) noexcept {
 	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->DisableFocusFromKeyboard(); });
 }
@@ -49,10 +37,6 @@ WXK_FUNCTION(void) wxk_Window_UpdateInputMethodCursorRect(wxk_Window* self, wxk_
 	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->UpdateInputMethodCursorRect(wxk::FromRect(rect)); });
 }
 
-WXK_FUNCTION(void) wxk_Window_AddChild(wxk_Window* self, wxk_Window* child) noexcept {
-	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->AddChild(static_cast<wxWindow*>(wxk::Unwrap(child))); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_Window_DestroyChildren(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->DestroyChildren()) ? 1 : 0; });
 }
@@ -63,10 +47,6 @@ WXK_FUNCTION(wxk_Window*) wxk_Window_FindWindow_Long(wxk_Window* self, int64_t i
 
 WXK_FUNCTION(wxk_Window*) wxk_Window_FindWindow_String(wxk_Window* self, const char16_t* name, size_t nameLength) noexcept {
 	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(static_cast<wxWindow*>(wxk::Unwrap(self))->FindWindow(wxk::FromUtf16(name, nameLength)))); });
-}
-
-WXK_FUNCTION(void) wxk_Window_RemoveChild(wxk_Window* self, wxk_Window* child) noexcept {
-	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->RemoveChild(static_cast<wxWindow*>(wxk::Unwrap(child))); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Window_IsDescendant(wxk_Window* self, wxk_Window* window) noexcept {
@@ -153,10 +133,6 @@ WXK_FUNCTION(void) wxk_Window_EndRepositioningChildren(wxk_Window* self) noexcep
 	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->EndRepositioningChildren(); });
 }
 
-WXK_FUNCTION(void) wxk_Window_CacheBestSize(wxk_Window* self, wxk_Size size) noexcept {
-	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->CacheBestSize(wxk::FromSize(size)); });
-}
-
 WXK_FUNCTION(wxk_Size) wxk_Window_ClientToWindowSize(wxk_Window* self, wxk_Size size) noexcept {
 	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxWindow*>(wxk::Unwrap(self))->ClientToWindowSize(wxk::FromSize(size))); });
 }
@@ -233,10 +209,6 @@ WXK_FUNCTION(wxk_Size) wxk_Window_GetMinSizeFromKnownDirection(wxk_Window* self,
 	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxWindow*>(wxk::Unwrap(self))->GetMinSizeFromKnownDirection(static_cast<int>(direction), static_cast<int>(size), static_cast<int>(availableOtherDir))); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_Window_InformFirstDirection(wxk_Window* self, int32_t direction, int32_t size, int32_t availableOtherDir) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->InformFirstDirection(static_cast<int>(direction), static_cast<int>(size), static_cast<int>(availableOtherDir))) ? 1 : 0; });
-}
-
 WXK_FUNCTION(void) wxk_Window_InvalidateBestSize(wxk_Window* self) noexcept {
 	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->InvalidateBestSize(); });
 }
@@ -263,10 +235,6 @@ WXK_FUNCTION(void) wxk_Window_SetClientSize_IntInt(wxk_Window* self, int32_t wid
 
 WXK_FUNCTION(void) wxk_Window_SetClientSize_Rect(wxk_Window* self, wxk_Rect rect) noexcept {
 	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->SetClientSize(wxk::FromRect(rect)); });
-}
-
-WXK_FUNCTION(void) wxk_Window_SetContainingSizer(wxk_Window* self, wxk_Sizer* sizer) noexcept {
-	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->SetContainingSizer(static_cast<wxSizer*>(wxk::Unwrap(sizer))); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Window_SetInitialSize(wxk_Window* self, wxk_Size size) noexcept {
@@ -445,26 +413,6 @@ WXK_FUNCTION(uint8_t) wxk_Window_SetTransparent(wxk_Window* self, uint8_t alpha)
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->SetTransparent(static_cast<unsigned char>(alpha))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(wxk_EvtHandler*) wxk_Window_PopEventHandler(wxk_Window* self, uint8_t deleteHandler) noexcept {
-	return wxk::Guard<wxk_EvtHandler*>(nullptr, [&]() -> wxk_EvtHandler* { return wxk::Wrap(static_cast<wxEvtHandler*>(static_cast<wxWindow*>(wxk::Unwrap(self))->PopEventHandler(deleteHandler != 0))); });
-}
-
-WXK_FUNCTION(void) wxk_Window_PushEventHandler(wxk_Window* self, wxk_EvtHandler* handler) noexcept {
-	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->PushEventHandler(static_cast<wxEvtHandler*>(wxk::Unwrap(handler))); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Window_RemoveEventHandler(wxk_Window* self, wxk_EvtHandler* handler) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->RemoveEventHandler(static_cast<wxEvtHandler*>(wxk::Unwrap(handler)))) ? 1 : 0; });
-}
-
-WXK_FUNCTION(void) wxk_Window_SetNextHandler(wxk_Window* self, wxk_EvtHandler* handler) noexcept {
-	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->SetNextHandler(static_cast<wxEvtHandler*>(wxk::Unwrap(handler))); });
-}
-
-WXK_FUNCTION(void) wxk_Window_SetPreviousHandler(wxk_Window* self, wxk_EvtHandler* handler) noexcept {
-	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->SetPreviousHandler(static_cast<wxEvtHandler*>(wxk::Unwrap(handler))); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_Window_HasExtraStyle(wxk_Window* self, int32_t extraFlag) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->HasExtraStyle(static_cast<int>(extraFlag))) ? 1 : 0; });
 }
@@ -615,10 +563,6 @@ WXK_FUNCTION(int32_t) wxk_Window_GetBorder_Long(wxk_Window* self, int64_t flags)
 
 WXK_FUNCTION(void) wxk_Window_InitDialog(wxk_Window* self) noexcept {
 	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->InitDialog(); });
-}
-
-WXK_FUNCTION(void) wxk_Window_OnInternalIdle(wxk_Window* self) noexcept {
-	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->OnInternalIdle(); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Window_RegisterHotKey(wxk_Window* self, int32_t hotkeyId, int32_t modifiers, int32_t virtualKeyCode) noexcept {

@@ -367,9 +367,6 @@ static_assert(static_cast<long>(wxDD_MULTIPLE) == static_cast<long>(1024LL), "wx
 static_assert(static_cast<long>(wxDD_SHOW_HIDDEN) == static_cast<long>(1LL), "wxDD_SHOW_HIDDEN is not 1");
 static_assert(static_cast<long>(wxDEFAULT_DIALOG_STYLE) == static_cast<long>(536877056LL), "wxDEFAULT_DIALOG_STYLE is not 536877056");
 static_assert(static_cast<long>(wxDEFAULT_FRAME_STYLE) == static_cast<long>(541072960LL), "wxDEFAULT_FRAME_STYLE is not 541072960");
-static_assert(static_cast<int32_t>(wxDIALOG_ADAPTATION_MODE_DEFAULT) == static_cast<int32_t>(0LL), "wxDIALOG_ADAPTATION_MODE_DEFAULT is not 0");
-static_assert(static_cast<int32_t>(wxDIALOG_ADAPTATION_MODE_DISABLED) == static_cast<int32_t>(2LL), "wxDIALOG_ADAPTATION_MODE_DISABLED is not 2");
-static_assert(static_cast<int32_t>(wxDIALOG_ADAPTATION_MODE_ENABLED) == static_cast<int32_t>(1LL), "wxDIALOG_ADAPTATION_MODE_ENABLED is not 1");
 static_assert(static_cast<long>(wxDIALOG_NO_PARENT) == static_cast<long>(32LL), "wxDIALOG_NO_PARENT is not 32");
 static_assert(static_cast<long>(wxDIRCTRL_3D_INTERNAL) == static_cast<long>(128LL), "wxDIRCTRL_3D_INTERNAL is not 128");
 static_assert(static_cast<long>(wxDIRCTRL_DIR_ONLY) == static_cast<long>(16LL), "wxDIRCTRL_DIR_ONLY is not 16");
@@ -411,12 +408,6 @@ static_assert(static_cast<long>(wxEL_ALLOW_NEW) == static_cast<long>(256LL), "wx
 static_assert(static_cast<long>(wxEL_DEFAULT_STYLE) == static_cast<long>(1792LL), "wxEL_DEFAULT_STYLE is not 1792");
 static_assert(static_cast<long>(wxEL_NO_REORDER) == static_cast<long>(2048LL), "wxEL_NO_REORDER is not 2048");
 static_assert(static_cast<int32_t>(wxEQUIV) == static_cast<int32_t>(10LL), "wxEQUIV is not 10");
-static_assert(static_cast<int32_t>(wxEVT_CATEGORY_ALL) == static_cast<int32_t>(127LL), "wxEVT_CATEGORY_ALL is not 127");
-static_assert(static_cast<int32_t>(wxEVT_CATEGORY_SOCKET) == static_cast<int32_t>(4LL), "wxEVT_CATEGORY_SOCKET is not 4");
-static_assert(static_cast<int32_t>(wxEVT_CATEGORY_THREAD) == static_cast<int32_t>(16LL), "wxEVT_CATEGORY_THREAD is not 16");
-static_assert(static_cast<int32_t>(wxEVT_CATEGORY_TIMER) == static_cast<int32_t>(8LL), "wxEVT_CATEGORY_TIMER is not 8");
-static_assert(static_cast<int32_t>(wxEVT_CATEGORY_UI) == static_cast<int32_t>(1LL), "wxEVT_CATEGORY_UI is not 1");
-static_assert(static_cast<int32_t>(wxEVT_CATEGORY_USER_INPUT) == static_cast<int32_t>(2LL), "wxEVT_CATEGORY_USER_INPUT is not 2");
 static_assert(static_cast<int32_t>(wxEXTEND_LAST_ON_EACH_LINE) == static_cast<int32_t>(1LL), "wxEXTEND_LAST_ON_EACH_LINE is not 1");
 static_assert(static_cast<long>(wxFC_DEFAULT_STYLE) == static_cast<long>(1LL), "wxFC_DEFAULT_STYLE is not 1");
 static_assert(static_cast<long>(wxFC_MULTIPLE) == static_cast<long>(4LL), "wxFC_MULTIPLE is not 4");

@@ -503,21 +503,6 @@ public unsafe partial class Window : EvtHandler {
 		remove => RemoveHandler(EventType.SysColorChanged, StandardId.Any, StandardId.Any, value);
 	}
 
-	/// <summary>This method may be overridden in the derived classes to return false to indicate that this control doesn't accept input at all (i.e. behaves like e.g. wxStaticText) and so doesn't need focus.</summary>
-	public bool AcceptsFocus() => WxKitNative.WindowAcceptsFocus(Native) != 0;
-
-	/// <summary>This method may be overridden in the derived classes to return false to indicate that while this control can, in principle, have focus if the user clicks it with the mouse, it shouldn't be included in the TAB traversal chain when using the keyboard.</summary>
-	public bool AcceptsFocusFromKeyboard() => WxKitNative.WindowAcceptsFocusFromKeyboard(Native) != 0;
-
-	/// <summary>Overridden to indicate whether this window or one of its children accepts focus.</summary>
-	public bool AcceptsFocusRecursively() => WxKitNative.WindowAcceptsFocusRecursively(Native) != 0;
-
-	/// <summary>Adds a child window.</summary>
-	public void AddChild(Window child) {
-		ArgumentNullException.ThrowIfNull(child);
-		WxKitNative.WindowAddChild(Native, (WxkWindow*)child.Native);
-	}
-
 	/// <summary>Mirror coordinates for RTL layout if this window uses it and if the mirroring is not done automatically like Win32.</summary>
 	public int AdjustForLayoutDirection(int x, int width, int widthTotal) => WxKitNative.WindowAdjustForLayoutDirection(Native, x, width, widthTotal);
 
@@ -526,9 +511,6 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>Prepare for changing positions of multiple child windows.</summary>
 	public bool BeginRepositioningChildren() => WxKitNative.WindowBeginRepositioningChildren(Native) != 0;
-
-	/// <summary>Sets the cached best size value.</summary>
-	public void CacheBestSize(Size size) => WxKitNative.WindowCacheBestSize(Native, size);
 
 	/// <summary>Returns true if this window can have a scroll bar in this orientation.</summary>
 	public bool CanScroll(Orientation orientation) => WxKitNative.WindowCanScroll(Native, (int)orientation) != 0;
@@ -765,9 +747,6 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public HitTestResult HitTest(Point point) => (HitTestResult)WxKitNative.WindowHitTestPoint(Native, point);
 
-	/// <summary>Compatibility function called by GetMinSizeFromKnownDirection().</summary>
-	public bool InformFirstDirection(int direction, int size, int availableOtherDir) => WxKitNative.WindowInformFirstDirection(Native, direction, size, availableOtherDir) != 0;
-
 	/// <summary>Return true if this window inherits the background colour from its parent.</summary>
 	public bool InheritsBackgroundColor() => WxKitNative.WindowInheritsBackgroundColour(Native) != 0;
 
@@ -837,17 +816,11 @@ public unsafe partial class Window : EvtHandler {
 		return WxKitNative.WindowNewControlId(count);
 	}
 
-	/// <summary>This virtual function is normally only used internally, but sometimes an application may need it to implement functionality that should not be disabled by an application defining an OnIdle handler in a derived class.</summary>
-	public void OnInternalIdle() => WxKitNative.WindowOnInternalIdle(Native);
-
 	/// <summary>Same as ScrollPages (1).</summary>
 	public bool PageDown() => WxKitNative.WindowPageDown(Native) != 0;
 
 	/// <summary>Same as ScrollPages (-1).</summary>
 	public bool PageUp() => WxKitNative.WindowPageUp(Native) != 0;
-
-	/// <summary>Removes and returns the top-most event handler on the event handler stack.</summary>
-	public EvtHandler? PopEventHandler(bool deleteHandler = false) => ObjectRegistry.Wrap<EvtHandler>(WxKitNative.WindowPopEventHandler(Native, deleteHandler ? (byte)1 : (byte)0));
 
 	/// <summary>Pops up the given menu at the specified coordinates, relative to this window, and returns control when the user has dismissed the menu.</summary>
 	public bool PopupMenu(Menu menu, Point? position = null) {
@@ -867,12 +840,6 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>Posts a size event to the parent of this window.</summary>
 	public void PostSizeEventToParent() => WxKitNative.WindowPostSizeEventToParent(Native);
 
-	/// <summary>Pushes this event handler onto the event stack for the window.</summary>
-	public void PushEventHandler(EvtHandler handler) {
-		ArgumentNullException.ThrowIfNull(handler);
-		WxKitNative.WindowPushEventHandler(Native, (WxkEvtHandler*)handler.NativeHandler);
-	}
-
 	/// <summary>Raises the window to the top of the window hierarchy (Z-order).</summary>
 	public void Raise() => WxKitNative.WindowRaise(Native);
 
@@ -887,18 +854,6 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>Releases mouse input captured with CaptureMouse().</summary>
 	public void ReleaseMouse() => WxKitNative.WindowReleaseMouse(Native);
-
-	/// <summary>Removes a child window.</summary>
-	public void RemoveChild(Window child) {
-		ArgumentNullException.ThrowIfNull(child);
-		WxKitNative.WindowRemoveChild(Native, (WxkWindow*)child.Native);
-	}
-
-	/// <summary>Find the given handler in the windows event handler stack and removes (but does not delete) it from the stack.</summary>
-	public bool RemoveEventHandler(EvtHandler handler) {
-		ArgumentNullException.ThrowIfNull(handler);
-		return WxKitNative.WindowRemoveEventHandler(Native, (WxkEvtHandler*)handler.NativeHandler) != 0;
-	}
 
 	/// <summary>Reparents the window, i.e. the window will be removed from its current parent window (e.g.</summary>
 	public bool Reparent(Window newParent) {
@@ -933,12 +888,6 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public void SetClientSize(Rect rect) => WxKitNative.WindowSetClientSizeRect(Native, rect);
 
-	/// <summary>Used by wxSizer internally to notify the window about being managed by the given sizer.</summary>
-	public void SetContainingSizer(Sizer sizer) {
-		ArgumentNullException.ThrowIfNull(sizer);
-		WxKitNative.WindowSetContainingSizer(Native, (WxkSizer*)sizer.Native);
-	}
-
 	/// <summary>This sets the window to receive keyboard input.</summary>
 	public void SetFocus() => WxKitNative.WindowSetFocus(Native);
 
@@ -947,12 +896,6 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>A smart SetSize that will fill in default size components with the window's best size values.</summary>
 	public bool SetInitialSize(Size? size = null) => WxKitNative.WindowSetInitialSize(Native, size ?? global::WxKit.Size.Default) != 0;
-
-	/// <summary>wxWindows cannot be used to form event handler chains; this function thus will assert when called.</summary>
-	public void SetNextHandler(EvtHandler handler) {
-		ArgumentNullException.ThrowIfNull(handler);
-		WxKitNative.WindowSetNextHandler(Native, (WxkEvtHandler*)handler.NativeHandler);
-	}
 
 	/// <summary>Sets the background colour of the window but prevents it from being inherited by the children of this window.</summary>
 	public void SetOwnBackgroundColor(Color? color) => WxKitNative.WindowSetOwnBackgroundColour(Native, global::WxKit.Color.ToNative(color));
@@ -965,12 +908,6 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>Sets the foreground colour of the window but prevents it from being inherited by the children of this window.</summary>
 	public void SetOwnForegroundColor(Color? color) => WxKitNative.WindowSetOwnForegroundColour(Native, global::WxKit.Color.ToNative(color));
-
-	/// <summary>wxWindows cannot be used to form event handler chains; this function thus will assert when called.</summary>
-	public void SetPreviousHandler(EvtHandler handler) {
-		ArgumentNullException.ThrowIfNull(handler);
-		WxKitNative.WindowSetPreviousHandler(Native, (WxkEvtHandler*)handler.NativeHandler);
-	}
 
 	/// <summary>Sets the scrollbar properties of a built-in scrollbar.</summary>
 	public void SetScrollBar(Orientation orientation, int position, int thumbSize, int range, bool refresh = true) => WxKitNative.WindowSetScrollbar(Native, (int)orientation, position, thumbSize, range, refresh ? (byte)1 : (byte)0);

@@ -21,16 +21,8 @@ WXK_FUNCTION(wxk_Object*) wxk_Event_GetEventObject(wxk_Event* self) noexcept {
 	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::Wrap(static_cast<wxEvent*>(wxk::Unwrap(self))->GetEventObject()); });
 }
 
-WXK_FUNCTION(int32_t) wxk_Event_GetEventCategory(wxk_Event* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxEvent*>(wxk::Unwrap(self))->GetEventCategory()); });
-}
-
 WXK_FUNCTION(int32_t) wxk_Event_GetId(wxk_Event* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxEvent*>(wxk::Unwrap(self))->GetId()); });
-}
-
-WXK_FUNCTION(wxk_Object*) wxk_Event_GetEventUserData(wxk_Event* self) noexcept {
-	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::Wrap(static_cast<wxEvent*>(wxk::Unwrap(self))->GetEventUserData()); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Event_GetSkipped(wxk_Event* self) noexcept {
@@ -39,9 +31,5 @@ WXK_FUNCTION(uint8_t) wxk_Event_GetSkipped(wxk_Event* self) noexcept {
 
 WXK_FUNCTION(int64_t) wxk_Event_GetTimestamp(wxk_Event* self) noexcept {
 	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxEvent*>(wxk::Unwrap(self))->GetTimestamp()); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Event_IsCommandEvent(wxk_Event* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxEvent*>(wxk::Unwrap(self))->IsCommandEvent()) ? 1 : 0; });
 }
 

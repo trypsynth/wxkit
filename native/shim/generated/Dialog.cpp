@@ -12,10 +12,6 @@ WXK_FUNCTION(void) wxk_Dialog_AddMainButtonId(wxk_Window* self, int32_t id) noex
 	wxk::Guard([&] { static_cast<wxDialog*>(wxk::Unwrap(self))->AddMainButtonId(static_cast<int>(id)); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_Dialog_DoLayoutAdaptation(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDialog*>(wxk::Unwrap(self))->DoLayoutAdaptation()) ? 1 : 0; });
-}
-
 WXK_FUNCTION(void) wxk_Dialog_EndModal(wxk_Window* self, int32_t returnCode) noexcept {
 	wxk::Guard([&] { static_cast<wxDialog*>(wxk::Unwrap(self))->EndModal(static_cast<int>(returnCode)); });
 }
@@ -42,14 +38,6 @@ WXK_FUNCTION(void) wxk_Dialog_ShowWindowModal(wxk_Window* self) noexcept {
 	wxk::Guard([&] { static_cast<wxDialog*>(wxk::Unwrap(self))->ShowWindowModal(); });
 }
 
-WXK_FUNCTION(void) wxk_Dialog_EnableLayoutAdaptation(uint8_t enable) noexcept {
-	wxk::Guard([&] { wxDialog::EnableLayoutAdaptation(enable != 0); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Dialog_CanDoLayoutAdaptation(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDialog*>(wxk::Unwrap(self))->CanDoLayoutAdaptation()) ? 1 : 0; });
-}
-
 WXK_FUNCTION(int32_t) wxk_Dialog_GetAffirmativeId(wxk_Window* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxDialog*>(wxk::Unwrap(self))->GetAffirmativeId()); });
 }
@@ -70,30 +58,6 @@ WXK_FUNCTION(void) wxk_Dialog_SetEscapeId(wxk_Window* self, int32_t id) noexcept
 	wxk::Guard([&] { static_cast<wxDialog*>(wxk::Unwrap(self))->SetEscapeId(static_cast<int>(id)); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_Dialog_GetLayoutAdaptationDone(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDialog*>(wxk::Unwrap(self))->GetLayoutAdaptationDone()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(void) wxk_Dialog_SetLayoutAdaptationDone(wxk_Window* self, uint8_t done) noexcept {
-	wxk::Guard([&] { static_cast<wxDialog*>(wxk::Unwrap(self))->SetLayoutAdaptationDone(done != 0); });
-}
-
-WXK_FUNCTION(int32_t) wxk_Dialog_GetLayoutAdaptationLevel(wxk_Window* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxDialog*>(wxk::Unwrap(self))->GetLayoutAdaptationLevel()); });
-}
-
-WXK_FUNCTION(void) wxk_Dialog_SetLayoutAdaptationLevel(wxk_Window* self, int32_t level) noexcept {
-	wxk::Guard([&] { static_cast<wxDialog*>(wxk::Unwrap(self))->SetLayoutAdaptationLevel(static_cast<int>(level)); });
-}
-
-WXK_FUNCTION(int32_t) wxk_Dialog_GetLayoutAdaptationMode(wxk_Window* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxDialog*>(wxk::Unwrap(self))->GetLayoutAdaptationMode()); });
-}
-
-WXK_FUNCTION(void) wxk_Dialog_SetLayoutAdaptationMode(wxk_Window* self, int32_t mode) noexcept {
-	wxk::Guard([&] { static_cast<wxDialog*>(wxk::Unwrap(self))->SetLayoutAdaptationMode(static_cast<wxDialogLayoutAdaptationMode>(mode)); });
-}
-
 WXK_FUNCTION(wxk_Numbers*) wxk_Dialog_GetMainButtonIds(wxk_Window* self) noexcept {
 	return wxk::Guard<wxk_Numbers*>(nullptr, [&]() -> wxk_Numbers* { return wxk::ToNumbers(static_cast<wxDialog*>(wxk::Unwrap(self))->GetMainButtonIds()); });
 }
@@ -108,9 +72,5 @@ WXK_FUNCTION(void) wxk_Dialog_SetReturnCode(wxk_Window* self, int32_t returnCode
 
 WXK_FUNCTION(uint8_t) wxk_Dialog_IsModal(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDialog*>(wxk::Unwrap(self))->IsModal()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Dialog_IsLayoutAdaptationEnabled(void) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (wxDialog::IsLayoutAdaptationEnabled()) ? 1 : 0; });
 }
 

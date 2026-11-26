@@ -580,16 +580,6 @@ public enum DialogButtons {
 	Help = 4096,
 }
 
-/// <summary>Wraps wxDialogLayoutAdaptationMode.</summary>
-public enum DialogLayoutAdaptationMode {
-	/// <summary>Use global adaptation enabled status. Wraps wxDIALOG_ADAPTATION_MODE_DEFAULT.</summary>
-	Default = 0,
-	/// <summary>Enable this dialog overriding global status. Wraps wxDIALOG_ADAPTATION_MODE_ENABLED.</summary>
-	Enabled = 1,
-	/// <summary>Disable this dialog overriding global status. Wraps wxDIALOG_ADAPTATION_MODE_DISABLED.</summary>
-	Disabled = 2,
-}
-
 /// <summary>Wraps *.</summary>
 [Flags]
 public enum DragFlags {
@@ -625,22 +615,6 @@ public enum DuplexMode {
 	Horizontal = 1,
 	/// <summary>Wraps wxDUPLEX_VERTICAL.</summary>
 	Vertical = 2,
-}
-
-/// <summary>Wraps wxEventCategory.</summary>
-public enum EventCategory {
-	/// <summary>This is the category for those events which are generated to update the appearance of the GUI but which (usually) do not comport data processing, i.e. Wraps wxEVT_CATEGORY_UI.</summary>
-	Ui = 1,
-	/// <summary>This category groups those events which are generated directly from the user through input devices like mouse and keyboard and usually result in data to be processed from the application (e.g. Wraps wxEVT_CATEGORY_USER_INPUT.</summary>
-	UserInput = 2,
-	/// <summary>This category is for wxSocketEvent. Wraps wxEVT_CATEGORY_SOCKET.</summary>
-	Socket = 4,
-	/// <summary>This category is for wxTimerEvent. Wraps wxEVT_CATEGORY_TIMER.</summary>
-	Timer = 8,
-	/// <summary>This category is for any event used to send notifications from the secondary threads to the main one or in general for notifications among different threads (which may or may not be user-generated). Wraps wxEVT_CATEGORY_THREAD.</summary>
-	Thread = 16,
-	/// <summary>This mask is used in wxEventLoopBase::YieldFor to specify that all event categories should be processed. Wraps wxEVT_CATEGORY_ALL.</summary>
-	All = 127,
 }
 
 /// <summary>Wraps wxFD_SHORTCUT_*.</summary>

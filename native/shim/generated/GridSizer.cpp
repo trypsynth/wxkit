@@ -29,14 +29,6 @@ WXK_FUNCTION(wxk_Sizer*) wxk_GridSizer_new_IntIntSize(int32_t rows, int32_t colu
 	});
 }
 
-WXK_FUNCTION(wxk_Size) wxk_GridSizer_CalcMin(wxk_Sizer* self) noexcept {
-	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxGridSizer*>(wxk::Unwrap(self))->CalcMin()); });
-}
-
-WXK_FUNCTION(void) wxk_GridSizer_RepositionChildren(wxk_Sizer* self, wxk_Size minSize) noexcept {
-	wxk::Guard([&] { static_cast<wxGridSizer*>(wxk::Unwrap(self))->RepositionChildren(wxk::FromSize(minSize)); });
-}
-
 WXK_FUNCTION(int32_t) wxk_GridSizer_GetHGap(wxk_Sizer* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxGridSizer*>(wxk::Unwrap(self))->GetHGap()); });
 }

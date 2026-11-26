@@ -1458,23 +1458,6 @@ public unsafe partial class StyledTextCtrl : Control {
 	/// <summary>Where styles are duplicated by a feature such as active/inactive code return the distance between the two types.</summary>
 	public int DistanceToSecondaryStyles() => WxKitNative.StyledTextCtrlDistanceToSecondaryStyles(Native);
 
-	/// <summary>Allow for simulating a DnD DragEnter.</summary>
-	public DragResult DoDragEnter(int x, int y, DragResult defaultResult) => (DragResult)WxKitNative.StyledTextCtrlDoDragEnter(Native, x, y, (int)defaultResult);
-
-	/// <summary>Allow for simulating a DnD DragLeave.</summary>
-	public void DoDragLeave() => WxKitNative.StyledTextCtrlDoDragLeave(Native);
-
-	/// <summary>Allow for simulating a DnD DragOver.</summary>
-	public DragResult DoDragOver(int x, int y, DragResult defaultResult) => (DragResult)WxKitNative.StyledTextCtrlDoDragOver(Native, x, y, (int)defaultResult);
-
-	/// <summary>Allow for simulating a DnD DropText.</summary>
-	public bool DoDropText(int x, int y, string data) {
-		ArgumentNullException.ThrowIfNull(data);
-		fixed (char* dataText = data) {
-			return WxKitNative.StyledTextCtrlDoDropText(Native, x, y, dataText, NativeString.Length(data)) != 0;
-		}
-	}
-
 	/// <summary>Find the document line of a display line taking hidden lines into account.</summary>
 	public int DocLineFromVisible(int displayLine) => WxKitNative.StyledTextCtrlDocLineFromVisible(Native, displayLine);
 
