@@ -58,6 +58,84 @@ public unsafe partial class StyledTextCtrl : Control {
 		set => WxKitNative.StyledTextCtrlSetAnchor(Native, value);
 	}
 
+	/// <summary>Retrieve whether or not autocompletion is hidden automatically when nothing matches.</summary>
+	public bool AutoCompAutoHide {
+		get => WxKitNative.StyledTextCtrlAutoCompGetAutoHide(Native) != 0;
+		set => WxKitNative.StyledTextCtrlAutoCompSetAutoHide(Native, value ? (byte)1 : (byte)0);
+	}
+
+	/// <summary>Retrieve whether auto-completion cancelled by backspacing before start.</summary>
+	public bool AutoCompCancelAtStart {
+		get => WxKitNative.StyledTextCtrlAutoCompGetCancelAtStart(Native) != 0;
+		set => WxKitNative.StyledTextCtrlAutoCompSetCancelAtStart(Native, value ? (byte)1 : (byte)0);
+	}
+
+	/// <summary>Get auto-completion case insensitive behaviour.</summary>
+	public int AutoCompCaseInsensitiveBehavior {
+		get => WxKitNative.StyledTextCtrlAutoCompGetCaseInsensitiveBehaviour(Native);
+		set => WxKitNative.StyledTextCtrlAutoCompSetCaseInsensitiveBehaviour(Native, value);
+	}
+
+	/// <summary>Retrieve whether a single item auto-completion list automatically choose the item.</summary>
+	public bool AutoCompChooseSingle {
+		get => WxKitNative.StyledTextCtrlAutoCompGetChooseSingle(Native) != 0;
+		set => WxKitNative.StyledTextCtrlAutoCompSetChooseSingle(Native, value ? (byte)1 : (byte)0);
+	}
+
+	/// <summary>Get currently selected item position in the auto-completion list.</summary>
+	public int AutoCompCurrent => WxKitNative.StyledTextCtrlAutoCompGetCurrent(Native);
+
+	/// <summary>Get currently selected item text in the auto-completion list.</summary>
+	public string AutoCompCurrentText => NativeString.Take(WxKitNative.StyledTextCtrlAutoCompGetCurrentText(Native));
+
+	/// <summary>Retrieve whether or not autocompletion deletes any word characters after the inserted text upon completion.</summary>
+	public bool AutoCompDropRestOfWord {
+		get => WxKitNative.StyledTextCtrlAutoCompGetDropRestOfWord(Native) != 0;
+		set => WxKitNative.StyledTextCtrlAutoCompSetDropRestOfWord(Native, value ? (byte)1 : (byte)0);
+	}
+
+	/// <summary>Retrieve state of ignore case flag.</summary>
+	public bool AutoCompIgnoreCase {
+		get => WxKitNative.StyledTextCtrlAutoCompGetIgnoreCase(Native) != 0;
+		set => WxKitNative.StyledTextCtrlAutoCompSetIgnoreCase(Native, value ? (byte)1 : (byte)0);
+	}
+
+	/// <summary>Set the maximum height, in rows, of auto-completion and user lists.</summary>
+	public int AutoCompMaxHeight {
+		get => WxKitNative.StyledTextCtrlAutoCompGetMaxHeight(Native);
+		set => WxKitNative.StyledTextCtrlAutoCompSetMaxHeight(Native, value);
+	}
+
+	/// <summary>Get the maximum width, in characters, of auto-completion and user lists.</summary>
+	public int AutoCompMaxWidth {
+		get => WxKitNative.StyledTextCtrlAutoCompGetMaxWidth(Native);
+		set => WxKitNative.StyledTextCtrlAutoCompSetMaxWidth(Native, value);
+	}
+
+	/// <summary>Retrieve the effect of autocompleting when there are multiple selections.</summary>
+	public int AutoCompMulti {
+		get => WxKitNative.StyledTextCtrlAutoCompGetMulti(Native);
+		set => WxKitNative.StyledTextCtrlAutoCompSetMulti(Native, value);
+	}
+
+	/// <summary>Get the way autocompletion lists are ordered.</summary>
+	public int AutoCompOrder {
+		get => WxKitNative.StyledTextCtrlAutoCompGetOrder(Native);
+		set => WxKitNative.StyledTextCtrlAutoCompSetOrder(Native, value);
+	}
+
+	/// <summary>Retrieve the auto-completion list separator character.</summary>
+	public int AutoCompSeparator {
+		get => WxKitNative.StyledTextCtrlAutoCompGetSeparator(Native);
+		set => WxKitNative.StyledTextCtrlAutoCompSetSeparator(Native, value);
+	}
+
+	/// <summary>Retrieve the auto-completion list type-separator character.</summary>
+	public int AutoCompTypeSeparator {
+		get => WxKitNative.StyledTextCtrlAutoCompGetTypeSeparator(Native);
+		set => WxKitNative.StyledTextCtrlAutoCompSetTypeSeparator(Native, value);
+	}
+
 	/// <summary>Get automatic folding behaviours.</summary>
 	public int AutomaticFold {
 		get => WxKitNative.StyledTextCtrlGetAutomaticFold(Native);
@@ -74,6 +152,12 @@ public unsafe partial class StyledTextCtrl : Control {
 	public bool BufferedDraw {
 		get => WxKitNative.StyledTextCtrlGetBufferedDraw(Native) != 0;
 		set => WxKitNative.StyledTextCtrlSetBufferedDraw(Native, value ? (byte)1 : (byte)0);
+	}
+
+	/// <summary>Retrieve the position where the caret was before displaying the call tip.</summary>
+	public int CallTipPosAtStart {
+		get => WxKitNative.StyledTextCtrlCallTipPosAtStart(Native);
+		set => WxKitNative.StyledTextCtrlCallTipSetPosAtStart(Native, value);
 	}
 
 	/// <summary>Returns true if the selection can be copied to the clipboard.</summary>
@@ -336,6 +420,12 @@ public unsafe partial class StyledTextCtrl : Control {
 		set => WxKitNative.StyledTextCtrlSetInsertionPoint(Native, value);
 	}
 
+	/// <summary>Is there an auto-completion list visible?</summary>
+	public bool IsAutoCompActive => WxKitNative.StyledTextCtrlAutoCompActive(Native) != 0;
+
+	/// <summary>Is there an active call tip?</summary>
+	public bool IsCallTipActive => WxKitNative.StyledTextCtrlCallTipActive(Native) != 0;
+
 	/// <summary>Returns true if the controls contents may be edited by user (note that it always can be changed by the program).</summary>
 	public bool IsEditable {
 		get => WxKitNative.StyledTextCtrlIsEditable(Native) != 0;
@@ -347,6 +437,9 @@ public unsafe partial class StyledTextCtrl : Control {
 
 	/// <summary>Returns true if the text has been modified by user.</summary>
 	public bool IsModified => WxKitNative.StyledTextCtrlIsModified(Native) != 0;
+
+	/// <summary>Is the selection rectangular?</summary>
+	public bool IsSelectionRectangle => WxKitNative.StyledTextCtrlSelectionIsRectangle(Native) != 0;
 
 	/// <summary>Can be used to prevent the EVT_CHAR handler from adding the char.</summary>
 	public bool LastKeydownProcessed {
@@ -1096,56 +1189,11 @@ public unsafe partial class StyledTextCtrl : Control {
 		}
 	}
 
-	/// <summary>Is there an auto-completion list visible?</summary>
-	public bool AutoCompActive() => WxKitNative.StyledTextCtrlAutoCompActive(Native) != 0;
-
 	/// <summary>Remove the auto-completion list from the screen.</summary>
 	public void AutoCompCancel() => WxKitNative.StyledTextCtrlAutoCompCancel(Native);
 
 	/// <summary>User has selected an item so remove the list and insert the selection.</summary>
 	public void AutoCompComplete() => WxKitNative.StyledTextCtrlAutoCompComplete(Native);
-
-	/// <summary>Retrieve whether or not autocompletion is hidden automatically when nothing matches.</summary>
-	public bool AutoCompGetAutoHide() => WxKitNative.StyledTextCtrlAutoCompGetAutoHide(Native) != 0;
-
-	/// <summary>Retrieve whether auto-completion cancelled by backspacing before start.</summary>
-	public bool AutoCompGetCancelAtStart() => WxKitNative.StyledTextCtrlAutoCompGetCancelAtStart(Native) != 0;
-
-	/// <summary>Get auto-completion case insensitive behaviour.</summary>
-	public int AutoCompGetCaseInsensitiveBehavior() => WxKitNative.StyledTextCtrlAutoCompGetCaseInsensitiveBehaviour(Native);
-
-	/// <summary>Retrieve whether a single item auto-completion list automatically choose the item.</summary>
-	public bool AutoCompGetChooseSingle() => WxKitNative.StyledTextCtrlAutoCompGetChooseSingle(Native) != 0;
-
-	/// <summary>Get currently selected item position in the auto-completion list.</summary>
-	public int AutoCompGetCurrent() => WxKitNative.StyledTextCtrlAutoCompGetCurrent(Native);
-
-	/// <summary>Get currently selected item text in the auto-completion list.</summary>
-	public string AutoCompGetCurrentText() => NativeString.Take(WxKitNative.StyledTextCtrlAutoCompGetCurrentText(Native));
-
-	/// <summary>Retrieve whether or not autocompletion deletes any word characters after the inserted text upon completion.</summary>
-	public bool AutoCompGetDropRestOfWord() => WxKitNative.StyledTextCtrlAutoCompGetDropRestOfWord(Native) != 0;
-
-	/// <summary>Retrieve state of ignore case flag.</summary>
-	public bool AutoCompGetIgnoreCase() => WxKitNative.StyledTextCtrlAutoCompGetIgnoreCase(Native) != 0;
-
-	/// <summary>Set the maximum height, in rows, of auto-completion and user lists.</summary>
-	public int AutoCompGetMaxHeight() => WxKitNative.StyledTextCtrlAutoCompGetMaxHeight(Native);
-
-	/// <summary>Get the maximum width, in characters, of auto-completion and user lists.</summary>
-	public int AutoCompGetMaxWidth() => WxKitNative.StyledTextCtrlAutoCompGetMaxWidth(Native);
-
-	/// <summary>Retrieve the effect of autocompleting when there are multiple selections.</summary>
-	public int AutoCompGetMulti() => WxKitNative.StyledTextCtrlAutoCompGetMulti(Native);
-
-	/// <summary>Get the way autocompletion lists are ordered.</summary>
-	public int AutoCompGetOrder() => WxKitNative.StyledTextCtrlAutoCompGetOrder(Native);
-
-	/// <summary>Retrieve the auto-completion list separator character.</summary>
-	public int AutoCompGetSeparator() => WxKitNative.StyledTextCtrlAutoCompGetSeparator(Native);
-
-	/// <summary>Retrieve the auto-completion list type-separator character.</summary>
-	public int AutoCompGetTypeSeparator() => WxKitNative.StyledTextCtrlAutoCompGetTypeSeparator(Native);
 
 	/// <summary>Retrieve the position of the caret when the auto-completion list was displayed.</summary>
 	public int AutoCompPosStart() => WxKitNative.StyledTextCtrlAutoCompPosStart(Native);
@@ -1158,21 +1206,6 @@ public unsafe partial class StyledTextCtrl : Control {
 		}
 	}
 
-	/// <summary>Set whether or not autocompletion is hidden automatically when nothing matches.</summary>
-	public void AutoCompSetAutoHide(bool autoHide) => WxKitNative.StyledTextCtrlAutoCompSetAutoHide(Native, autoHide ? (byte)1 : (byte)0);
-
-	/// <summary>Should the auto-completion list be cancelled if the user backspaces to a position before where the box was created.</summary>
-	public void AutoCompSetCancelAtStart(bool cancel) => WxKitNative.StyledTextCtrlAutoCompSetCancelAtStart(Native, cancel ? (byte)1 : (byte)0);
-
-	/// <summary>Set auto-completion case insensitive behaviour to either prefer case-sensitive matches or have no preference.</summary>
-	public void AutoCompSetCaseInsensitiveBehavior(int behavior) => WxKitNative.StyledTextCtrlAutoCompSetCaseInsensitiveBehaviour(Native, behavior);
-
-	/// <summary>Should a single item auto-completion list automatically choose the item.</summary>
-	public void AutoCompSetChooseSingle(bool chooseSingle) => WxKitNative.StyledTextCtrlAutoCompSetChooseSingle(Native, chooseSingle ? (byte)1 : (byte)0);
-
-	/// <summary>Set whether or not autocompletion deletes any word characters after the inserted text upon completion.</summary>
-	public void AutoCompSetDropRestOfWord(bool dropRestOfWord) => WxKitNative.StyledTextCtrlAutoCompSetDropRestOfWord(Native, dropRestOfWord ? (byte)1 : (byte)0);
-
 	/// <summary>Define a set of characters that when typed will cause the autocompletion to choose the selected item.</summary>
 	public void AutoCompSetFillUps(string characterSet) {
 		ArgumentNullException.ThrowIfNull(characterSet);
@@ -1180,27 +1213,6 @@ public unsafe partial class StyledTextCtrl : Control {
 			WxKitNative.StyledTextCtrlAutoCompSetFillUps(Native, characterSetText, NativeString.Length(characterSet));
 		}
 	}
-
-	/// <summary>Set whether case is significant when performing auto-completion searches.</summary>
-	public void AutoCompSetIgnoreCase(bool ignoreCase) => WxKitNative.StyledTextCtrlAutoCompSetIgnoreCase(Native, ignoreCase ? (byte)1 : (byte)0);
-
-	/// <summary>Set the maximum height, in rows, of auto-completion and user lists.</summary>
-	public void AutoCompSetMaxHeight(int rowCount) => WxKitNative.StyledTextCtrlAutoCompSetMaxHeight(Native, rowCount);
-
-	/// <summary>Set the maximum width, in characters, of auto-completion and user lists.</summary>
-	public void AutoCompSetMaxWidth(int characterCount) => WxKitNative.StyledTextCtrlAutoCompSetMaxWidth(Native, characterCount);
-
-	/// <summary>Change the effect of autocompleting when there are multiple selections.</summary>
-	public void AutoCompSetMulti(int multi) => WxKitNative.StyledTextCtrlAutoCompSetMulti(Native, multi);
-
-	/// <summary>Set the way autocompletion lists are ordered.</summary>
-	public void AutoCompSetOrder(int order) => WxKitNative.StyledTextCtrlAutoCompSetOrder(Native, order);
-
-	/// <summary>Change the separator character in the string setting up an auto-completion list.</summary>
-	public void AutoCompSetSeparator(int separatorCharacter) => WxKitNative.StyledTextCtrlAutoCompSetSeparator(Native, separatorCharacter);
-
-	/// <summary>Change the type-separator character in the string setting up an auto-completion list.</summary>
-	public void AutoCompSetTypeSeparator(int separatorCharacter) => WxKitNative.StyledTextCtrlAutoCompSetTypeSeparator(Native, separatorCharacter);
 
 	/// <summary>Display a auto-completion list.</summary>
 	public void AutoCompShow(int lengthEntered, string itemList) {
@@ -1242,14 +1254,8 @@ public unsafe partial class StyledTextCtrl : Control {
 	/// <summary>Similar to BraceMatch, but matching starts at the explicit start position.</summary>
 	public int BraceMatchNext(int position, int startPosition) => WxKitNative.StyledTextCtrlBraceMatchNext(Native, position, startPosition);
 
-	/// <summary>Is there an active call tip?</summary>
-	public bool CallTipActive() => WxKitNative.StyledTextCtrlCallTipActive(Native) != 0;
-
 	/// <summary>Remove the call tip from the screen.</summary>
 	public void CallTipCancel() => WxKitNative.StyledTextCtrlCallTipCancel(Native);
-
-	/// <summary>Retrieve the position where the caret was before displaying the call tip.</summary>
-	public int CallTipPosAtStart() => WxKitNative.StyledTextCtrlCallTipPosAtStart(Native);
 
 	/// <summary>Set the background colour for the call tip.</summary>
 	public void CallTipSetBackground(Color? back) => WxKitNative.StyledTextCtrlCallTipSetBackground(Native, global::WxKit.Color.ToNative(back));
@@ -1262,9 +1268,6 @@ public unsafe partial class StyledTextCtrl : Control {
 
 	/// <summary>Highlight a segment of the definition.</summary>
 	public void CallTipSetHighlight(int highlightStart, int highlightEnd) => WxKitNative.StyledTextCtrlCallTipSetHighlight(Native, highlightStart, highlightEnd);
-
-	/// <summary>Set the start position in order to change when backspacing removes the calltip.</summary>
-	public void CallTipSetPosAtStart(int startPosition) => WxKitNative.StyledTextCtrlCallTipSetPosAtStart(Native, startPosition);
 
 	/// <summary>Set position of calltip, above or below text.</summary>
 	public void CallTipSetPosition(bool above) => WxKitNative.StyledTextCtrlCallTipSetPosition(Native, above ? (byte)1 : (byte)0);
@@ -2211,9 +2214,6 @@ public unsafe partial class StyledTextCtrl : Control {
 
 	/// <summary>Duplicate the selection.</summary>
 	public void SelectionDuplicate() => WxKitNative.StyledTextCtrlSelectionDuplicate(Native);
-
-	/// <summary>Is the selection rectangular?</summary>
-	public bool SelectionIsRectangle() => WxKitNative.StyledTextCtrlSelectionIsRectangle(Native) != 0;
 
 	/// <summary>Set the background colour of additional selections.</summary>
 	public void SetAdditionalSelBackground(Color? back) => WxKitNative.StyledTextCtrlSetAdditionalSelBackground(Native, global::WxKit.Color.ToNative(back));

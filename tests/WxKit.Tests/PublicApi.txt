@@ -7076,15 +7076,13 @@ class WxKit.StyledTextCtrl : Control
     bool AdditionalCaretsVisible { get; set; }
     bool AdditionalSelectionTyping { get; set; }
     bool AllLinesVisible { get; }
-    bool AutoCompActive()
-    bool AutoCompGetAutoHide()
-    bool AutoCompGetCancelAtStart()
-    bool AutoCompGetChooseSingle()
-    bool AutoCompGetDropRestOfWord()
-    bool AutoCompGetIgnoreCase()
+    bool AutoCompAutoHide { get; set; }
+    bool AutoCompCancelAtStart { get; set; }
+    bool AutoCompChooseSingle { get; set; }
+    bool AutoCompDropRestOfWord { get; set; }
+    bool AutoCompIgnoreCase { get; set; }
     bool BackSpaceUnIndents { get; set; }
     bool BufferedDraw { get; set; }
-    bool CallTipActive()
     bool CanCopy { get; }
     bool CanCut { get; }
     bool CanPaste { get; }
@@ -7100,10 +7098,13 @@ class WxKit.StyledTextCtrl : Control
     bool HotspotActiveUnderline { get; set; }
     bool HotspotSingleLine { get; set; }
     bool IndicatorGetUnder(int indicator)
+    bool IsAutoCompActive { get; }
+    bool IsCallTipActive { get; }
     bool IsEditable { get; set; }
     bool IsEmpty { get; }
     bool IsModified { get; }
     bool IsRangeWord(int start, int end)
+    bool IsSelectionRectangle { get; }
     bool LastKeydownProcessed { get; set; }
     bool LoadFile(string fileName)
     bool MouseDownCaptures { get; set; }
@@ -7117,7 +7118,6 @@ class WxKit.StyledTextCtrl : Control
     bool ScrollWidthTracking { get; set; }
     bool SelEolFilled { get; set; }
     bool SelectionEmpty { get; }
-    bool SelectionIsRectangle()
     bool StcFocus { get; set; }
     bool StyleGetBold(int style)
     bool StyleGetChangeable(int style)
@@ -7177,19 +7177,19 @@ class WxKit.StyledTextCtrl : Control
     int AnnotationGetStyle(int line)
     int AnnotationGetStyleOffset()
     int AnnotationGetVisible()
-    int AutoCompGetCaseInsensitiveBehavior()
-    int AutoCompGetCurrent()
-    int AutoCompGetMaxHeight()
-    int AutoCompGetMaxWidth()
-    int AutoCompGetMulti()
-    int AutoCompGetOrder()
-    int AutoCompGetSeparator()
-    int AutoCompGetTypeSeparator()
+    int AutoCompCaseInsensitiveBehavior { get; set; }
+    int AutoCompCurrent { get; }
+    int AutoCompMaxHeight { get; set; }
+    int AutoCompMaxWidth { get; set; }
+    int AutoCompMulti { get; set; }
+    int AutoCompOrder { get; set; }
     int AutoCompPosStart()
+    int AutoCompSeparator { get; set; }
+    int AutoCompTypeSeparator { get; set; }
     int AutomaticFold { get; set; }
     int BraceMatch(int position, int maxReStyle = 0)
     int BraceMatchNext(int position, int startPosition)
-    int CallTipPosAtStart()
+    int CallTipPosAtStart { get; set; }
     int CaretLineBackAlpha { get; set; }
     int CaretLineFrame { get; set; }
     int CaretPeriod { get; set; }
@@ -7372,7 +7372,7 @@ class WxKit.StyledTextCtrl : Control
     int Zoom { get; set; }
     string AnnotationGetStyles(int line)
     string AnnotationGetText(int line)
-    string AutoCompGetCurrentText()
+    string AutoCompCurrentText { get; }
     string CurLine { get; }
     string DefaultFoldDisplayText { get; set; }
     string DescribeKeyWordSets()
@@ -7417,19 +7417,7 @@ class WxKit.StyledTextCtrl : Control
     void AutoCompCancel()
     void AutoCompComplete()
     void AutoCompSelect(string select)
-    void AutoCompSetAutoHide(bool autoHide)
-    void AutoCompSetCancelAtStart(bool cancel)
-    void AutoCompSetCaseInsensitiveBehavior(int behavior)
-    void AutoCompSetChooseSingle(bool chooseSingle)
-    void AutoCompSetDropRestOfWord(bool dropRestOfWord)
     void AutoCompSetFillUps(string characterSet)
-    void AutoCompSetIgnoreCase(bool ignoreCase)
-    void AutoCompSetMaxHeight(int rowCount)
-    void AutoCompSetMaxWidth(int characterCount)
-    void AutoCompSetMulti(int multi)
-    void AutoCompSetOrder(int order)
-    void AutoCompSetSeparator(int separatorCharacter)
-    void AutoCompSetTypeSeparator(int separatorCharacter)
     void AutoCompShow(int lengthEntered, string itemList)
     void AutoCompStops(string characterSet)
     void BackTab()
@@ -7443,7 +7431,6 @@ class WxKit.StyledTextCtrl : Control
     void CallTipSetForeground(Color? fore)
     void CallTipSetForegroundHighlight(Color? fore)
     void CallTipSetHighlight(int highlightStart, int highlightEnd)
-    void CallTipSetPosAtStart(int startPosition)
     void CallTipSetPosition(bool above)
     void CallTipShow(int position, string definition)
     void CallTipUseStyle(int tabSize)

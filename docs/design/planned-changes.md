@@ -27,7 +27,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 ## Members that have a better form now
 
 - Getter and setter pairs become properties:
-  - The styled text control's, which Scintilla names `AutoCompGetAutoHide` and `AutoCompSetAutoHide`, 18 pairs, and its queries such as `CallTipActive()`.
   - The print dialog's `Enable` members, which have no getters bound.
 - A window's style is one property of the class's own style enum, rather than `WindowStyle`, `WindowStyleFlag`, `SetWindowStyle`, and `HasFlag` taking three types.
 - The item controls, `Choice`, `ComboBox`, `ListBox`, and `CheckListBox`, have one constructor each, with optional items and a style, and share an `IItemContainer` interface rather than repeating its members. Their item data has one name.

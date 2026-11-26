@@ -7922,10 +7922,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextCtrlLinesOnScreen(WxkWindow* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SelectionIsRectangle")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte StyledTextCtrlSelectionIsRectangle(WxkWindow* self);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ChooseCaretX")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlChooseCaretX(WxkWindow* self);
@@ -8718,10 +8714,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlAutoCompCancel(WxkWindow* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompActive")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte StyledTextCtrlAutoCompActive(WxkWindow* self);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompPosStart")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextCtrlAutoCompPosStart(WxkWindow* self);
@@ -8734,121 +8726,17 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlAutoCompStops(WxkWindow* self, char* characterSet, nuint characterSetLength);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetSeparator")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlAutoCompSetSeparator(WxkWindow* self, int separatorCharacter);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetSeparator")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlAutoCompGetSeparator(WxkWindow* self);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSelect")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlAutoCompSelect(WxkWindow* self, char* select, nuint selectLength);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetCancelAtStart")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlAutoCompSetCancelAtStart(WxkWindow* self, byte cancel);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetCancelAtStart")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte StyledTextCtrlAutoCompGetCancelAtStart(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetFillUps")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlAutoCompSetFillUps(WxkWindow* self, char* characterSet, nuint characterSetLength);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetChooseSingle")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlAutoCompSetChooseSingle(WxkWindow* self, byte chooseSingle);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetChooseSingle")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte StyledTextCtrlAutoCompGetChooseSingle(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetIgnoreCase")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlAutoCompSetIgnoreCase(WxkWindow* self, byte ignoreCase);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetIgnoreCase")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte StyledTextCtrlAutoCompGetIgnoreCase(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetAutoHide")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlAutoCompSetAutoHide(WxkWindow* self, byte autoHide);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetAutoHide")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte StyledTextCtrlAutoCompGetAutoHide(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetDropRestOfWord")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlAutoCompSetDropRestOfWord(WxkWindow* self, byte dropRestOfWord);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetDropRestOfWord")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte StyledTextCtrlAutoCompGetDropRestOfWord(WxkWindow* self);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ClearRegisteredImages")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlClearRegisteredImages(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetTypeSeparator")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlAutoCompGetTypeSeparator(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetTypeSeparator")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlAutoCompSetTypeSeparator(WxkWindow* self, int separatorCharacter);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetMaxWidth")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlAutoCompSetMaxWidth(WxkWindow* self, int characterCount);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetMaxWidth")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlAutoCompGetMaxWidth(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetMaxHeight")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlAutoCompSetMaxHeight(WxkWindow* self, int rowCount);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetMaxHeight")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlAutoCompGetMaxHeight(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetCurrent")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlAutoCompGetCurrent(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetCurrentText")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkString* StyledTextCtrlAutoCompGetCurrentText(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetCaseInsensitiveBehaviour")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlAutoCompSetCaseInsensitiveBehaviour(WxkWindow* self, int behavior);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetCaseInsensitiveBehaviour")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlAutoCompGetCaseInsensitiveBehaviour(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetMulti")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlAutoCompSetMulti(WxkWindow* self, int multi);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetMulti")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlAutoCompGetMulti(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetOrder")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlAutoCompSetOrder(WxkWindow* self, int order);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetOrder")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlAutoCompGetOrder(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_UserListShow")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -8861,18 +8749,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CallTipCancel")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlCallTipCancel(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CallTipActive")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte StyledTextCtrlCallTipActive(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CallTipPosAtStart")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlCallTipPosAtStart(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CallTipSetPosAtStart")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlCallTipSetPosAtStart(WxkWindow* self, int startPosition);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CallTipSetHighlight")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -9597,6 +9473,130 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetInsertionPointEnd")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlSetInsertionPointEnd(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetAutoHide")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlAutoCompGetAutoHide(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetAutoHide")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetAutoHide(WxkWindow* self, byte autoHide);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetCancelAtStart")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlAutoCompGetCancelAtStart(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetCancelAtStart")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetCancelAtStart(WxkWindow* self, byte cancel);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetChooseSingle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlAutoCompGetChooseSingle(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetChooseSingle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetChooseSingle(WxkWindow* self, byte chooseSingle);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetDropRestOfWord")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlAutoCompGetDropRestOfWord(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetDropRestOfWord")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetDropRestOfWord(WxkWindow* self, byte dropRestOfWord);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetIgnoreCase")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlAutoCompGetIgnoreCase(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetIgnoreCase")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetIgnoreCase(WxkWindow* self, byte ignoreCase);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetMaxHeight")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAutoCompGetMaxHeight(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetMaxHeight")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetMaxHeight(WxkWindow* self, int rowCount);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetMaxWidth")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAutoCompGetMaxWidth(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetMaxWidth")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetMaxWidth(WxkWindow* self, int characterCount);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetMulti")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAutoCompGetMulti(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetMulti")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetMulti(WxkWindow* self, int multi);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetOrder")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAutoCompGetOrder(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetOrder")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetOrder(WxkWindow* self, int order);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetSeparator")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAutoCompGetSeparator(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetSeparator")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetSeparator(WxkWindow* self, int separatorCharacter);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetTypeSeparator")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAutoCompGetTypeSeparator(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetTypeSeparator")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetTypeSeparator(WxkWindow* self, int separatorCharacter);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetCaseInsensitiveBehaviour")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAutoCompGetCaseInsensitiveBehaviour(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompSetCaseInsensitiveBehaviour")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlAutoCompSetCaseInsensitiveBehaviour(WxkWindow* self, int behavior);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetCurrent")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlAutoCompGetCurrent(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompGetCurrentText")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* StyledTextCtrlAutoCompGetCurrentText(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CallTipPosAtStart")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlCallTipPosAtStart(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CallTipSetPosAtStart")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void StyledTextCtrlCallTipSetPosAtStart(WxkWindow* self, int startPosition);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_AutoCompActive")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlAutoCompActive(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CallTipActive")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlCallTipActive(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SelectionIsRectangle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte StyledTextCtrlSelectionIsRectangle(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetText")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

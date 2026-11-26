@@ -68,6 +68,19 @@ internal static class Internals {
 		tweaks.Class("wxCollapsiblePane").Property("IsCollapsed", "IsCollapsed", "Collapse");
 		tweaks.Class("wxListCtrl").Property("HasCheckBoxes", "HasCheckBoxes", "EnableCheckBoxes");
 		tweaks.Class("wxSearchCtrl").Property("IsSearchButtonVisible", "IsSearchButtonVisible", "ShowSearchButton").Property("IsCancelButtonVisible", "IsCancelButtonVisible", "ShowCancelButton");
+		// Scintilla puts Get and Set after a setting's subject, as in AutoCompGetAutoHide, where the
+		// generator looks for them first.
+		foreach (string setting in (string[])["AutoHide", "CancelAtStart", "ChooseSingle", "DropRestOfWord", "IgnoreCase", "MaxHeight", "MaxWidth", "Multi", "Order", "Separator", "TypeSeparator"]) {
+			tweaks.Class("wxStyledTextCtrl").Property($"AutoComp{setting}", $"AutoCompGet{setting}", $"AutoCompSet{setting}");
+		}
+		tweaks.Class("wxStyledTextCtrl")
+			.Property("AutoCompCaseInsensitiveBehavior", "AutoCompGetCaseInsensitiveBehaviour", "AutoCompSetCaseInsensitiveBehaviour")
+			.Property("AutoCompCurrent", "AutoCompGetCurrent")
+			.Property("AutoCompCurrentText", "AutoCompGetCurrentText")
+			.Property("CallTipPosAtStart", "CallTipPosAtStart", "CallTipSetPosAtStart")
+			.Property("IsAutoCompActive", "AutoCompActive")
+			.Property("IsCallTipActive", "CallTipActive")
+			.Property("IsSelectionRectangle", "SelectionIsRectangle");
 		// These are written by hand, in PairedProperties.cs, since a setter takes two values, or
 		// returns one, or there are two to choose between.
 		tweaks.Class("wxSplitterWindow").Internal("GetSashPosition", "SetSashPosition");
