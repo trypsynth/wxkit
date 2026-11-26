@@ -407,10 +407,9 @@ class WxKit.Bitmap : NativeObject
     Size ScaledSize { get; }
     Size Size { get; }
     bool CopyFromIcon(Icon icon)
-    bool HasAlpha { get; }
+    bool HasAlpha { get; set; }
     bool IsOk { get; }
     bool SaveFile(string name, BitmapType type)
-    bool UseAlpha(bool use = true)
     double LogicalHeight { get; }
     double LogicalWidth { get; }
     double ScaleFactor { get; set; }
@@ -580,7 +579,7 @@ class WxKit.Button : AnyButton
     Button(Window parent, string label = "", int id = -1, Point? position = null, Size? size = null, ButtonStyle style = ButtonStyle.None)
     ButtonStyle Style { get; set; }
     Window? SetDefault()
-    bool AuthNeeded { get; set; }
+    bool IsAuthenticationNeeded { get; set; }
     event EventHandler<CommandEvent>? Click
     static Size GetDefaultSize(Window? window = null)
 [Flags] enum WxKit.ButtonStyle : long
@@ -662,9 +661,9 @@ class WxKit.CheckBox : Control
     CheckBox(Window parent, string label, int id = -1, Point? position = null, Size? size = null, CheckBoxStyle style = CheckBoxStyle.None)
     CheckBoxState ThreeStateValue { get; set; }
     CheckBoxStyle Style { get; set; }
-    bool Is3State()
-    bool Is3rdStateAllowedForUser()
     bool IsChecked { get; set; }
+    bool IsThirdStateAllowedForUser { get; }
+    bool IsThreeState { get; }
     event EventHandler<CommandEvent>? CheckedChanged
 enum WxKit.CheckBoxState : int
     Checked = 1
@@ -809,7 +808,7 @@ class WxKit.CollapsiblePane : Control
     event EventHandler<NavigationKeyEvent>? NavigationKey
     void Expand()
 class WxKit.CollapsiblePaneEvent : CommandEvent
-    bool Collapsed { get; }
+    bool IsCollapsed { get; }
 [Flags] enum WxKit.CollapsiblePaneStyle : long
     AlwaysShowSb = 8388608
     BorderNone = 2097152
@@ -1053,6 +1052,7 @@ class WxKit.DC : NativeObject
     Point LogicalToDevice(Point point)
     Point ToDip(Point point)
     RasterOperationMode LogicalFunction { get; set; }
+    Rect BoundingBox { get; }
     Size DeviceToLogicalRel(Size dim)
     Size FromDip(Size size)
     Size GetMultiLineTextExtent(string text)
@@ -1086,10 +1086,6 @@ class WxKit.DC : NativeObject
     int LogicalToDeviceXRel(int x)
     int LogicalToDeviceY(int y)
     int LogicalToDeviceYRel(int y)
-    int MaxX()
-    int MaxY()
-    int MinX()
-    int MinY()
     int ToDip(int d)
     int[] GetPartialTextExtents(string text)
     void CalcBoundingBox(Point point)
@@ -1153,13 +1149,12 @@ sealed class WxKit.DataViewColumn
     bool IsResizable { get; set; }
     bool IsShown { get; }
     bool IsSortKey { get; }
-    bool IsSortOrderAscending { get; }
+    bool IsSortOrderAscending { get; set; }
     bool IsSortable { get; set; }
     int MinWidth { get; set; }
     int ModelColumn { get; }
     int Width { get; set; }
     string Title { get; set; }
-    void SetSortOrder(bool ascending)
     void ToggleSortOrder()
     void UnsetAsSortKey()
 [Flags] enum WxKit.DataViewColumnFlags : int
@@ -1206,12 +1201,11 @@ class WxKit.DataViewCtrl : Control
     IReadOnlyList<DataViewItem> Selections { get; set; }
     Rect GetItemRect(DataViewItem item, DataViewColumn? column = null)
     Window? MainWindow { get; }
-    bool AllowMultiColumnSort(bool allow)
     bool ClearColumns()
     bool DeleteColumn(DataViewColumn column)
     bool HasSelection { get; }
     bool IsExpanded(DataViewItem item)
-    bool IsMultiColumnSortAllowed { get; }
+    bool IsMultiColumnSortAllowed { get; set; }
     bool IsSelected(DataViewItem item)
     bool SetAlternateRowColor(Color? color)
     bool SetRowHeight(int rowHeight)
@@ -2143,9 +2137,9 @@ class WxKit.Font : NativeObject
     Size PixelSize { get; set; }
     bool IsFixedWidth { get; }
     bool IsOk { get; }
+    bool IsStrikethrough { get; set; }
     bool IsUnderlined { get; set; }
     bool SetNativeFontInfo(string info)
-    bool Strikethrough { get; set; }
     double FractionalPointSize { get; set; }
     int NumericWeight { get; set; }
     int PointSize { get; set; }
@@ -2608,7 +2602,7 @@ class WxKit.Icon : NativeObject
 class WxKit.IconizeEvent : Event
     bool IsIconized { get; }
 class WxKit.IdleEvent : Event
-    bool MoreRequested()
+    bool IsMoreRequested { get; }
     static IdleMode Mode { get; set; }
     void RequestMore(bool needMore = true)
 enum WxKit.IdleMode : int
@@ -3046,9 +3040,9 @@ class WxKit.ListCtrl : Control
     bool EnsureVisible(int item)
     bool GetUpdatedAscendingSortIndicator(int column)
     bool HasCheckBoxes { get; set; }
-    bool InReportView()
     bool IsAscendingSortIndicator { get; }
     bool IsEmpty { get; }
+    bool IsInReportView { get; }
     bool IsItemChecked(int item)
     bool IsVirtual { get; }
     bool IsVisible(int item)
@@ -3278,7 +3272,7 @@ sealed class WxKit.Menu : EvtHandler, IDisposable
 class WxKit.MenuBar : Window
     Frame? Frame { get; }
     Menu? GetMenu(int menuIndex)
-    Menu? OsxGetAppleMenu()
+    Menu? OsxAppleMenu { get; }
     Menu? Remove(int position)
     Menu? Replace(int position, Menu menu, string title)
     MenuBar(WindowStyle style = WindowStyle.None)
@@ -3291,8 +3285,7 @@ class WxKit.MenuBar : Window
     int FindMenu(string title)
     int FindMenuItem(string menuString, string itemString)
     int MenuCount { get; }
-    static MenuBar? MacGetCommonMenuBar()
-    static void MacSetCommonMenuBar(MenuBar menuBar)
+    static MenuBar? MacCommonMenuBar { get; set; }
     string GetHelpString(int id)
     string GetLabel(int id)
     string GetMenuLabel(int position)
@@ -4084,7 +4077,7 @@ class WxKit.RichMessageDialog : Dialog
     string CancelLabel { get; }
     string Caption { get; }
     string CheckBoxText { get; }
-    string DetailedText { get; }
+    string DetailedText { get; set; }
     string ExtendedMessage { get; set; }
     string FooterText { get; set; }
     string HelpLabel { get; set; }
@@ -4093,7 +4086,6 @@ class WxKit.RichMessageDialog : Dialog
     string OkLabel { get; set; }
     string YesLabel { get; }
     void ShowCheckBox(string checkBoxText, bool checked = false)
-    void ShowDetailedText(string detailedText)
 enum WxKit.ScaleMode : int
     AspectFill = 3
     AspectFit = 2
@@ -8768,7 +8760,7 @@ class WxKit.TopLevelWindow : Window
     bool IsFullScreen { get; }
     bool IsIconized { get; }
     bool IsMaximized { get; }
-    bool OsxIsModified()
+    bool OsxIsModified { get; set; }
     bool ShowFullScreen(bool show, FullScreenStyle style = FullScreenStyle.All)
     event EventHandler<CloseEvent>? Closing
     event EventHandler<FullScreenEvent>? FullScreenChanged
@@ -8782,7 +8774,6 @@ class WxKit.TopLevelWindow : Window
     void CenterOnScreen(Orientation direction = Orientation.Both)
     void Iconize(bool iconize = true)
     void Maximize(bool maximize = true)
-    void OsxSetModified(bool modified)
     void RequestUserAttention(UserAttention flags = UserAttention.Info)
     void Restore()
     void SetIcons(Icon icons)
@@ -9070,23 +9061,20 @@ static class WxKit.UILocale
     static string CurrentName { get; }
 class WxKit.UpdateUIEvent : CommandEvent
     CheckBoxState ThreeStateValue { get; set; }
-    bool Checked { get; }
-    bool Is3State()
     bool IsCheckable { get; }
+    bool IsChecked { get; set; }
     bool IsCheckedSet { get; }
-    bool IsEnabled { get; }
+    bool IsEnabled { get; set; }
     bool IsEnabledSet { get; }
-    bool IsShown { get; }
+    bool IsShown { get; set; }
     bool IsShownSet { get; }
     bool IsTextSet { get; }
+    bool IsThreeState { get; }
     static TimeSpan UpdateInterval { get; set; }
     static UpdateUIMode Mode { get; set; }
     static bool CanUpdate(Window window)
     static void ResetUpdateTime()
     string Text { get; set; }
-    void Check(bool check)
-    void Enable(bool enable)
-    void Show(bool show)
 [Flags] enum WxKit.UpdateUIFlags : int
     FromIdle = 2
     None = 0
@@ -9102,8 +9090,7 @@ class WxKit.Validator : NativeObject
     bool TransferFromWindow()
     bool TransferToWindow()
     bool Validate(Window parent)
-    static bool IsSilent { get; }
-    static void SuppressBellOnError(bool suppress = true)
+    static bool IsSilent { get; set; }
 class WxKit.WebView : Control
     Task<string> ExecuteScriptAsync(string script)
     Uri? Source { get; set; }
@@ -9298,8 +9285,8 @@ class WxKit.Window : EvtHandler
     bool HasTransparentBackground { get; }
     bool Hide()
     bool HideWithEffect(ShowEffect effect, TimeSpan timeout = null)
-    bool InheritsBackgroundColor()
-    bool InheritsForegroundColor()
+    bool InheritsBackgroundColor { get; }
+    bool InheritsForegroundColor { get; }
     bool IsBeingDeleted { get; }
     bool IsDescendant(Window window)
     bool IsDoubleBuffered { get; set; }
@@ -9311,6 +9298,7 @@ class WxKit.Window : EvtHandler
     bool IsScrollBarAlwaysShown(Orientation orientation)
     bool IsShown { get; }
     bool IsShownOnScreen { get; }
+    bool IsThemeEnabled { get; set; }
     bool IsThisEnabled { get; }
     bool IsTopLevel { get; }
     bool IsTransparentBackgroundSupported { get; }
@@ -9330,7 +9318,6 @@ class WxKit.Window : EvtHandler
     bool SetTransparent(byte alpha)
     bool Show(bool show = true)
     bool ShowWithEffect(ShowEffect effect, TimeSpan timeout = null)
-    bool ThemeEnabled { get; set; }
     bool TransferDataFromWindow()
     bool TransferDataToWindow()
     bool UnregisterHotKey(int hotkeyId)

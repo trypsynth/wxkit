@@ -69,7 +69,7 @@ type ScrapbookFrame() as this =
             EventType.UpdateUi,
             fun _ (e: UpdateUIEvent) ->
                 if needsSelection.Contains e.Id then
-                    e.Enable(selected () |> Option.isSome)
+                    e.IsEnabled <- selected () |> Option.isSome
         )
         // The list takes files and text dropped on it, and copies them, rather than moving them.
         let target = DropTarget(DataFormat.Files, DataFormat.Text)

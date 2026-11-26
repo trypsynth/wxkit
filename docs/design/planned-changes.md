@@ -8,13 +8,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 
 A second review of the whole API on 2026-11-26, before the first preview, found these. The earlier review's changes are made, and listed in [the first preview's notes](../releases/0.2.0-preview.1.md).
 
-### Getters and setters that aren't properties, and booleans without Is
-
-- Methods that take nothing and return a boolean: `CheckBox.Is3State` and `Is3rdStateAllowedForUser`, `UpdateUIEvent.Is3State`, `ListCtrl.InReportView`, `IdleEvent.MoreRequested`, `Window.InheritsBackgroundColor` and `InheritsForegroundColor`, and `TopLevelWindow.OsxIsModified`. `3State` is `ThreeState`, as the style is.
-- A getter with a setter under another name: `DataViewCtrl.AllowMultiColumnSort` with `IsMultiColumnSortAllowed`, `DataViewColumn.SetSortOrder` with `IsSortOrderAscending`, `Bitmap.UseAlpha` with `HasAlpha`, `ListBox.SetFirstItem` with `TopItem`, `Validator.SuppressBellOnError` with `IsSilent`, `SpinCtrl.TextValue` with `SetValue(string)`, `RichMessageDialog.ShowDetailedText` with `DetailedText`, `WizardPageSimple.SetNext` and `SetPrevious`, `PrintData.SetPaperSize`, `MenuBar.MacGetCommonMenuBar` and `MacSetCommonMenuBar`, and `UpdateUIEvent.Check`, `Enable`, and `Show` with `Checked`, `IsEnabled`, and `IsShown`.
-- Booleans without `Is`, `Has`, or `Can`: `CollapsiblePaneEvent.Collapsed`, `Button.AuthNeeded`, `Font.Strikethrough`, `ColorData.ChooseFull` and `ChooseAlpha`, `FontData.AllowSymbols`, `EnableEffects`, and `ShowHelp`, `Window.ThemeEnabled` and `AutoLayout`, `TreeCtrl.QuickBestSize`, and `PrintDialogData.AllPages`, `Collate`, `CurrentPage`, `PrintToFile`, `Selection`, and `SpecifiedPages`.
-- `DC.MinX`, `MaxX`, `MinY`, and `MaxY` are one `Rect`, and `ListCtrl.TryGetItemRect`, `TryGetSubItemRect`, and `DC.TryGetClippingBox` could return a `Rect?`.
-
 ### Numbers that are another type
 
 - `FlexGridSizer.FlexibleDirection` and `Window.GetScrollBarSize`'s parameter are an `Orientation`, `InfoBar.EffectDuration` is a `TimeSpan`, `Window.EnableTouchEvents` takes flags, `RegisterHotKey`'s key is a `KeyCode`, `TreeListCtrl.AppendColumn`'s flags are `DataViewColumnFlags`, `WebView.Find` returns a count as a `long`, and `TextCtrl.LoadFile` and `SaveFile` take a `fileType` that means nothing.
@@ -51,6 +44,5 @@ A second review of the whole API on 2026-11-26, before the first preview, found 
 - Naming the controls as .NET does, such as `TextBox` for `TextCtrl`. WxKit keeps wxWidgets' class names, so its documentation, and code written for wxWidgets in other languages, map to WxKit by dropping the `wx` prefix.
 - Renaming `ClipboardContent` now that drag and drop carries it too. It's content the clipboard and a drag share, and its name says where it came from rather than everything it's for, which is less harm than a rename.
 - Taking the zero members out of flags enums that aren't a class's styles, such as `Alignment.Left` and `Top`, `DragFlags.CopyOnly`, `NavigationFlags.Backward`, `SizeFlags.UseExisting`, and `Default` of `WebViewFindFlags` and `WebViewPrintFlags`. Each names the choice a parameter defaults to, which `None` wouldn't say. [The managed API](managed-api.md) says how to test for them.
-- Renaming `UpdateUIEvent.Checked`. `IsChecked` is its base's, and means something else.
 - Removing a text control's `SetMargins(left, top)`, which returns whether the margins were set, and `ScrolledWindow.SetScrollRate` and `SetScale`, whose two numbers aren't a place or a size.
 - Fluent for translations. wxWidgets' own strings stay in gettext's catalogs either way, .NET has no Fluent implementation that's known to work with Native AOT, and gettext's tools and WxKit's extractor already work.

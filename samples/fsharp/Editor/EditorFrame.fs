@@ -327,13 +327,13 @@ type EditorFrame() as this =
     // The menu items, and the text control, ask whether they apply as the window goes idle.
     let onUpdateUi (e: UpdateUIEvent) =
         match e.Id with
-        | StandardId.Undo -> e.Enable text.CanUndo
-        | StandardId.Redo -> e.Enable text.CanRedo
+        | StandardId.Undo -> e.IsEnabled <- text.CanUndo
+        | StandardId.Redo -> e.IsEnabled <- text.CanRedo
         | StandardId.Cut
-        | StandardId.Delete -> e.Enable text.CanCut
-        | StandardId.Copy -> e.Enable text.CanCopy
-        | StandardId.Paste -> e.Enable text.CanPaste
-        | WordWrap -> e.Check wordWrap
+        | StandardId.Delete -> e.IsEnabled <- text.CanCut
+        | StandardId.Copy -> e.IsEnabled <- text.CanCopy
+        | StandardId.Paste -> e.IsEnabled <- text.CanPaste
+        | WordWrap -> e.IsChecked <- wordWrap
         | id when id = text.Id -> updateStatus ()
         | _ -> ()
 

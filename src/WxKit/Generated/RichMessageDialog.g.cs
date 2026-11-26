@@ -21,7 +21,15 @@ public unsafe partial class RichMessageDialog : Dialog {
 	public string CheckBoxText => NativeString.Take(WxKitNative.RichMessageDialogGetCheckBoxText(Native));
 
 	/// <summary>Retrieves the detailed text.</summary>
-	public string DetailedText => NativeString.Take(WxKitNative.RichMessageDialogGetDetailedText(Native));
+	public string DetailedText {
+		get => NativeString.Take(WxKitNative.RichMessageDialogGetDetailedText(Native));
+		set {
+			ArgumentNullException.ThrowIfNull(value);
+			fixed (char* valueText = value) {
+				WxKitNative.RichMessageDialogShowDetailedText(Native, valueText, NativeString.Length(value));
+			}
+		}
+	}
 
 	public MessageIcon EffectiveIcon => (MessageIcon)WxKitNative.RichMessageDialogGetEffectiveIcon(Native);
 
@@ -130,14 +138,6 @@ public unsafe partial class RichMessageDialog : Dialog {
 		ArgumentNullException.ThrowIfNull(checkBoxText);
 		fixed (char* checkBoxTextText = checkBoxText) {
 			WxKitNative.RichMessageDialogShowCheckBox(Native, checkBoxTextText, NativeString.Length(checkBoxText), @checked ? (byte)1 : (byte)0);
-		}
-	}
-
-	/// <summary>Shows or hides a detailed text and an expander that is used to show or hide the detailed text.</summary>
-	public void ShowDetailedText(string detailedText) {
-		ArgumentNullException.ThrowIfNull(detailedText);
-		fixed (char* detailedTextText = detailedText) {
-			WxKitNative.RichMessageDialogShowDetailedText(Native, detailedTextText, NativeString.Length(detailedText));
 		}
 	}
 

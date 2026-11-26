@@ -14,7 +14,7 @@ public unsafe partial class Button : AnyButton {
 	}
 
 	/// <summary>Returns true if an authentication needed symbol is displayed on the button.</summary>
-	public bool AuthNeeded {
+	public bool IsAuthenticationNeeded {
 		get => WxKitNative.ButtonGetAuthNeeded(Native) != 0;
 		set => WxKitNative.ButtonSetAuthNeeded(Native, value ? (byte)1 : (byte)0);
 	}

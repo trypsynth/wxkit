@@ -78,6 +78,12 @@ public unsafe partial class Font : NativeObject {
 	/// <summary>Returns true if this object is a valid font, false otherwise.</summary>
 	public bool IsOk => WxKitNative.FontIsOk(Native) != 0;
 
+	/// <summary>Returns true if the font is stricken-through, false otherwise.</summary>
+	public bool IsStrikethrough {
+		get => WxKitNative.FontGetStrikethrough(Native) != 0;
+		set => WxKitNative.FontSetStrikethrough(Native, value ? (byte)1 : (byte)0);
+	}
+
 	/// <summary>Returns true if the font is underlined, false otherwise.</summary>
 	public bool IsUnderlined {
 		get => WxKitNative.FontGetUnderlined(Native) != 0;
@@ -114,12 +120,6 @@ public unsafe partial class Font : NativeObject {
 	public int PointSize {
 		get => WxKitNative.FontGetPointSize(Native);
 		set => WxKitNative.FontSetPointSize(Native, value);
-	}
-
-	/// <summary>Returns true if the font is stricken-through, false otherwise.</summary>
-	public bool Strikethrough {
-		get => WxKitNative.FontGetStrikethrough(Native) != 0;
-		set => WxKitNative.FontSetStrikethrough(Native, value ? (byte)1 : (byte)0);
 	}
 
 	/// <summary>Gets the font style.</summary>

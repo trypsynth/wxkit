@@ -15,16 +15,14 @@ public unsafe partial class Validator : NativeObject {
 			Application.VerifyAccess();
 			return WxKitNative.ValidatorIsSilent() != 0;
 		}
+		set {
+			Application.VerifyAccess();
+			WxKitNative.ValidatorSuppressBellOnError(value ? (byte)1 : (byte)0);
+		}
 	}
 
 	/// <summary>Returns the window associated with the validator.</summary>
 	public Window? Window => ObjectRegistry.Wrap<Window>(WxKitNative.ValidatorGetWindow(Native));
-
-	/// <summary>This functions switches on or turns off the error sound produced by the validators if an invalid key is pressed.</summary>
-	public static void SuppressBellOnError(bool suppress = true) {
-		Application.VerifyAccess();
-		WxKitNative.ValidatorSuppressBellOnError(suppress ? (byte)1 : (byte)0);
-	}
 
 	/// <summary>This overridable function is called when the value in the window must be transferred to the validator.</summary>
 	public bool TransferFromWindow() => WxKitNative.ValidatorTransferFromWindow(Native) != 0;

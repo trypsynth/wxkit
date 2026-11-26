@@ -22,7 +22,7 @@ public class CompositeControlTests {
 	public Task ShowsARichMessage() => Gui.WithFrame(frame => {
 		using RichMessageDialog dialog = new(frame, "Delete the file?", "Delete", MessageDialogStyle.YesNo | MessageDialogStyle.IconWarning);
 		dialog.ShowCheckBox("&Don't ask again", true);
-		dialog.ShowDetailedText("The file goes to the recycle bin.");
+		dialog.DetailedText = "The file goes to the recycle bin.";
 		dialog.FooterText = "You can undo this.";
 		Assert.Equal("&Don't ask again", dialog.CheckBoxText);
 		Assert.True(dialog.IsCheckBoxChecked);

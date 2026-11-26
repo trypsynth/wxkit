@@ -116,10 +116,6 @@ WXK_FUNCTION(wxk_DataViewColumn*) wxk_DataViewCtrl_PrependToggleColumn_BitmapUIn
 	return wxk::Guard<wxk_DataViewColumn*>(nullptr, [&]() -> wxk_DataViewColumn* { return wxk::Wrap(static_cast<wxDataViewColumn*>(static_cast<wxDataViewCtrl*>(wxk::Unwrap(self))->PrependToggleColumn(wxk::ValueOf<wxBitmap>(label), modelColumn, static_cast<wxDataViewCellMode>(mode), static_cast<int>(width), static_cast<wxAlignment>(align), static_cast<int>(flags)))); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_AllowMultiColumnSort(wxk_Window* self, uint8_t allow) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDataViewCtrl*>(wxk::Unwrap(self))->AllowMultiColumnSort(allow != 0)) ? 1 : 0; });
-}
-
 WXK_FUNCTION(void) wxk_DataViewCtrl_Collapse(wxk_Window* self, void* item) noexcept {
 	wxk::Guard([&] { static_cast<wxDataViewCtrl*>(wxk::Unwrap(self))->Collapse(wxDataViewItem(item)); });
 }
@@ -192,6 +188,14 @@ WXK_FUNCTION(void) wxk_DataViewCtrl_ToggleSortByColumn(wxk_Window* self, int32_t
 	wxk::Guard([&] { static_cast<wxDataViewCtrl*>(wxk::Unwrap(self))->ToggleSortByColumn(static_cast<int>(column)); });
 }
 
+WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_IsMultiColumnSortAllowed(wxk_Window* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDataViewCtrl*>(wxk::Unwrap(self))->IsMultiColumnSortAllowed()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_AllowMultiColumnSort(wxk_Window* self, uint8_t allow) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDataViewCtrl*>(wxk::Unwrap(self))->AllowMultiColumnSort(allow != 0)) ? 1 : 0; });
+}
+
 WXK_FUNCTION(uint32_t) wxk_DataViewCtrl_GetColumnCount(wxk_Window* self) noexcept {
 	return wxk::Guard<uint32_t>(0, [&]() -> uint32_t { return static_cast<uint32_t>(static_cast<wxDataViewCtrl*>(wxk::Unwrap(self))->GetColumnCount()); });
 }
@@ -250,10 +254,6 @@ WXK_FUNCTION(wxk_DataViewColumn*) wxk_DataViewCtrl_GetSortingColumn(wxk_Window* 
 
 WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_HasSelection(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDataViewCtrl*>(wxk::Unwrap(self))->HasSelection()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_IsMultiColumnSortAllowed(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDataViewCtrl*>(wxk::Unwrap(self))->IsMultiColumnSortAllowed()) ? 1 : 0; });
 }
 
 WXK_FUNCTION(int32_t) wxk_DataViewCtrl_GetCountPerPage(wxk_Window* self) noexcept {

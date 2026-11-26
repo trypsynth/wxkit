@@ -13,15 +13,15 @@ WXK_FUNCTION(uint8_t) wxk_Validator_Validate(wxk_Object* self, wxk_Window* paren
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxValidator*>(wxk::Unwrap(self))->Validate(static_cast<wxWindow*>(wxk::Unwrap(parent)))) ? 1 : 0; });
 }
 
+WXK_FUNCTION(uint8_t) wxk_Validator_IsSilent(void) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (wxValidator::IsSilent()) ? 1 : 0; });
+}
+
 WXK_FUNCTION(void) wxk_Validator_SuppressBellOnError(uint8_t suppress) noexcept {
 	wxk::Guard([&] { wxValidator::SuppressBellOnError(suppress != 0); });
 }
 
 WXK_FUNCTION(wxk_Window*) wxk_Validator_GetWindow(wxk_Object* self) noexcept {
 	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(static_cast<wxValidator*>(wxk::Unwrap(self))->GetWindow())); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Validator_IsSilent(void) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (wxValidator::IsSilent()) ? 1 : 0; });
 }
 

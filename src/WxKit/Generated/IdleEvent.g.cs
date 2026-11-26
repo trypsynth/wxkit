@@ -9,6 +9,9 @@ public unsafe partial class IdleEvent : Event {
 	internal IdleEvent(WxkEvent* native) : base(native) {
 	}
 
+	/// <summary>Returns true if the OnIdle function processing this event requested more processing time.</summary>
+	public bool IsMoreRequested => WxKitNative.IdleEventMoreRequested(Handle) != 0;
+
 	/// <summary>Static function returning a value specifying how wxWidgets will send idle events: to all windows, or only to those which specify that they will process the events.</summary>
 	public static IdleMode Mode {
 		get {
@@ -20,9 +23,6 @@ public unsafe partial class IdleEvent : Event {
 			WxKitNative.IdleEventSetMode((int)value);
 		}
 	}
-
-	/// <summary>Returns true if the OnIdle function processing this event requested more processing time.</summary>
-	public bool MoreRequested() => WxKitNative.IdleEventMoreRequested(Handle) != 0;
 
 	/// <summary>Tells wxWidgets that more processing is required.</summary>
 	public void RequestMore(bool needMore = true) => WxKitNative.IdleEventRequestMore(Handle, needMore ? (byte)1 : (byte)0);

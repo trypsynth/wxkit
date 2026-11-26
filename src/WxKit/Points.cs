@@ -6,6 +6,19 @@ namespace WxKit;
 // no overload that takes one value.
 
 public unsafe partial class DC {
+	/// <summary>
+	/// The rectangle that holds everything drawn so far, in logical coordinates, which
+	/// <see cref="ResetBoundingBox"/> empties and <see cref="CalcBoundingBox(Point)"/> adds a
+	/// point to.
+	/// </summary>
+	public Rect BoundingBox {
+		get {
+			int left = WxKitNative.DCMinX(Native);
+			int top = WxKitNative.DCMinY(Native);
+			return new Rect(left, top, WxKitNative.DCMaxX(Native) - left, WxKitNative.DCMaxY(Native) - top);
+		}
+	}
+
 	/// <summary>Copies part of another DC onto this one. Returns whether it could.</summary>
 	/// <param name="destination">Where the copy's top left corner goes.</param>
 	/// <param name="size">How much to copy.</param>

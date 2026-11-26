@@ -288,18 +288,6 @@ public unsafe partial class DC : NativeObject {
 	/// <summary>Converts logical Y coordinate to relative device coordinate, using the current mapping mode and user scale factor but ignoring the axis orientation.</summary>
 	public int LogicalToDeviceYRel(int y) => WxKitNative.DCLogicalToDeviceYRel(Native, y);
 
-	/// <summary>Gets the maximum horizontal extent used in drawing commands so far.</summary>
-	public int MaxX() => WxKitNative.DCMaxX(Native);
-
-	/// <summary>Gets the maximum vertical extent used in drawing commands so far.</summary>
-	public int MaxY() => WxKitNative.DCMaxY(Native);
-
-	/// <summary>Gets the minimum horizontal extent used in drawing commands so far.</summary>
-	public int MinX() => WxKitNative.DCMinX(Native);
-
-	/// <summary>Gets the minimum vertical extent used in drawing commands so far.</summary>
-	public int MinY() => WxKitNative.DCMinY(Native);
-
 	/// <summary>Resets the bounding box: after a call to this function, the bounding box doesn't contain anything.</summary>
 	public void ResetBoundingBox() => WxKitNative.DCResetBoundingBox(Native);
 

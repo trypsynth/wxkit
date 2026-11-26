@@ -93,16 +93,20 @@ WXK_FUNCTION(uint8_t) wxk_Bitmap_SaveFile(wxk_Object* self, const char16_t* name
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxBitmap*>(wxk::Unwrap(self))->SaveFile(wxk::FromUtf16(name, nameLength), static_cast<wxBitmapType>(type))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_Bitmap_UseAlpha(wxk_Object* self, uint8_t use) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxBitmap*>(wxk::Unwrap(self))->UseAlpha(use != 0)) ? 1 : 0; });
-}
-
 WXK_FUNCTION(void) wxk_Bitmap_Rescale(wxk_Object* bitmap, wxk_Size sizeNeeded) noexcept {
 	wxk::Guard([&] { wxBitmap::Rescale(wxk::ValueRef<wxBitmap>(bitmap), wxk::FromSize(sizeNeeded)); });
 }
 
 WXK_FUNCTION(void) wxk_Bitmap_MakeDisabled(wxk_Object* bitmap) noexcept {
 	wxk::Guard([&] { wxBitmap::MakeDisabled(wxk::ValueRef<wxBitmap>(bitmap)); });
+}
+
+WXK_FUNCTION(uint8_t) wxk_Bitmap_HasAlpha(wxk_Object* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxBitmap*>(wxk::Unwrap(self))->HasAlpha()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(uint8_t) wxk_Bitmap_UseAlpha(wxk_Object* self, uint8_t use) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxBitmap*>(wxk::Unwrap(self))->UseAlpha(use != 0)) ? 1 : 0; });
 }
 
 WXK_FUNCTION(int32_t) wxk_Bitmap_GetDepth(wxk_Object* self) noexcept {
@@ -155,10 +159,6 @@ WXK_FUNCTION(wxk_Size) wxk_Bitmap_GetSize(wxk_Object* self) noexcept {
 
 WXK_FUNCTION(int32_t) wxk_Bitmap_GetWidth(wxk_Object* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxBitmap*>(wxk::Unwrap(self))->GetWidth()); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Bitmap_HasAlpha(wxk_Object* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxBitmap*>(wxk::Unwrap(self))->HasAlpha()) ? 1 : 0; });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Bitmap_IsOk(wxk_Object* self) noexcept {

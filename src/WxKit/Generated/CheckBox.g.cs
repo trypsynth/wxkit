@@ -19,6 +19,12 @@ public unsafe partial class CheckBox : Control {
 		set => WxKitNative.CheckBoxSetValue(Native, value ? (byte)1 : (byte)0);
 	}
 
+	/// <summary>Returns whether or not the user can set the checkbox to the third state.</summary>
+	public bool IsThirdStateAllowedForUser => WxKitNative.CheckBoxIs3rdStateAllowedForUser(Native) != 0;
+
+	/// <summary>Returns whether or not the checkbox is a 3-state checkbox.</summary>
+	public bool IsThreeState => WxKitNative.CheckBoxIs3State(Native) != 0;
+
 	/// <summary>Gets the state of a 3-state checkbox.</summary>
 	public CheckBoxState ThreeStateValue {
 		get => (CheckBoxState)WxKitNative.CheckBoxGet3StateValue(Native);
@@ -36,12 +42,6 @@ public unsafe partial class CheckBox : Control {
 		add => AddHandler(EventType.CheckBox, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.CheckBox, StandardId.Any, StandardId.Any, value);
 	}
-
-	/// <summary>Returns whether or not the checkbox is a 3-state checkbox.</summary>
-	public bool Is3State() => WxKitNative.CheckBoxIs3State(Native) != 0;
-
-	/// <summary>Returns whether or not the user can set the checkbox to the third state.</summary>
-	public bool Is3rdStateAllowedForUser() => WxKitNative.CheckBoxIs3rdStateAllowedForUser(Native) != 0;
 
 	private static WxkWindow* CreateNative(Window parent, string label, int id, Point? position, Size? size, CheckBoxStyle style) {
 		Application.VerifyAccess();

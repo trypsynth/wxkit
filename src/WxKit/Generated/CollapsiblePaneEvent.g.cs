@@ -10,5 +10,5 @@ public unsafe partial class CollapsiblePaneEvent : CommandEvent {
 	}
 
 	/// <summary>Returns true if the pane has been collapsed.</summary>
-	public bool Collapsed => WxKitNative.CollapsiblePaneEventGetCollapsed(Handle) != 0;
+	public bool IsCollapsed => WxKitNative.CollapsiblePaneEventGetCollapsed(Handle) != 0;
 }

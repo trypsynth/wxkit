@@ -9,29 +9,41 @@ public unsafe partial class UpdateUIEvent : CommandEvent {
 	internal UpdateUIEvent(WxkEvent* native) : base(native) {
 	}
 
-	/// <summary>Returns true if the UI element should be checked.</summary>
-	public bool Checked => WxKitNative.UpdateUIEventGetChecked(Handle) != 0;
-
 	/// <summary>Returns true if the UI element can be checked.</summary>
 	public bool IsCheckable => WxKitNative.UpdateUIEventIsCheckable(Handle) != 0;
+
+	/// <summary>Returns true if the UI element should be checked.</summary>
+	public new bool IsChecked {
+		get => WxKitNative.UpdateUIEventGetChecked(Handle) != 0;
+		set => WxKitNative.UpdateUIEventCheck(Handle, value ? (byte)1 : (byte)0);
+	}
 
 	/// <summary>Returns true if the application has called Check() or SetSet3StateValue().</summary>
 	public bool IsCheckedSet => WxKitNative.UpdateUIEventGetSetChecked(Handle) != 0;
 
 	/// <summary>Returns true if the UI element should be enabled.</summary>
-	public bool IsEnabled => WxKitNative.UpdateUIEventGetEnabled(Handle) != 0;
+	public bool IsEnabled {
+		get => WxKitNative.UpdateUIEventGetEnabled(Handle) != 0;
+		set => WxKitNative.UpdateUIEventEnable(Handle, value ? (byte)1 : (byte)0);
+	}
 
 	/// <summary>Returns true if the application has called Enable().</summary>
 	public bool IsEnabledSet => WxKitNative.UpdateUIEventGetSetEnabled(Handle) != 0;
 
 	/// <summary>Returns true if the UI element should be shown.</summary>
-	public bool IsShown => WxKitNative.UpdateUIEventGetShown(Handle) != 0;
+	public bool IsShown {
+		get => WxKitNative.UpdateUIEventGetShown(Handle) != 0;
+		set => WxKitNative.UpdateUIEventShow(Handle, value ? (byte)1 : (byte)0);
+	}
 
 	/// <summary>Returns true if the application has called Show().</summary>
 	public bool IsShownSet => WxKitNative.UpdateUIEventGetSetShown(Handle) != 0;
 
 	/// <summary>Returns true if the application has called SetText().</summary>
 	public bool IsTextSet => WxKitNative.UpdateUIEventGetSetText(Handle) != 0;
+
+	/// <summary>Returns true if the UI element supports wxCheckboxState.</summary>
+	public bool IsThreeState => WxKitNative.UpdateUIEventIs3State(Handle) != 0;
 
 	/// <summary>Static function returning a value specifying how wxWidgets will send update events: to all windows, or only to those which specify that they will process the events.</summary>
 	public static UpdateUIMode Mode {
@@ -81,21 +93,9 @@ public unsafe partial class UpdateUIEvent : CommandEvent {
 		return WxKitNative.UpdateUIEventCanUpdate((WxkWindow*)window.Native) != 0;
 	}
 
-	/// <summary>Check or uncheck the UI element.</summary>
-	public void Check(bool check) => WxKitNative.UpdateUIEventCheck(Handle, check ? (byte)1 : (byte)0);
-
-	/// <summary>Enable or disable the UI element.</summary>
-	public void Enable(bool enable) => WxKitNative.UpdateUIEventEnable(Handle, enable ? (byte)1 : (byte)0);
-
-	/// <summary>Returns true if the UI element supports wxCheckboxState.</summary>
-	public bool Is3State() => WxKitNative.UpdateUIEventIs3State(Handle) != 0;
-
 	/// <summary>Used internally to reset the last-updated time to the current time.</summary>
 	public static void ResetUpdateTime() {
 		Application.VerifyAccess();
 		WxKitNative.UpdateUIEventResetUpdateTime();
 	}
-
-	/// <summary>Show or hide the UI element.</summary>
-	public void Show(bool show) => WxKitNative.UpdateUIEventShow(Handle, show ? (byte)1 : (byte)0);
 }

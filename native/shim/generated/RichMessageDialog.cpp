@@ -12,10 +12,6 @@ WXK_FUNCTION(void) wxk_RichMessageDialog_ShowCheckBox(wxk_Window* self, const ch
 	wxk::Guard([&] { static_cast<wxRichMessageDialog*>(wxk::Unwrap(self))->ShowCheckBox(wxk::FromUtf16(checkBoxText, checkBoxTextLength), checked != 0); });
 }
 
-WXK_FUNCTION(void) wxk_RichMessageDialog_ShowDetailedText(wxk_Window* self, const char16_t* detailedText, size_t detailedTextLength) noexcept {
-	wxk::Guard([&] { static_cast<wxRichMessageDialog*>(wxk::Unwrap(self))->ShowDetailedText(wxk::FromUtf16(detailedText, detailedTextLength)); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_RichMessageDialog_SetOKCancelLabels(wxk_Window* self, const char16_t* ok, size_t okLength, const char16_t* cancel, size_t cancelLength) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMessageDialogBase*>(static_cast<wxRichMessageDialog*>(wxk::Unwrap(self)))->SetOKCancelLabels(wxk::FromUtf16(ok, okLength), wxk::FromUtf16(cancel, cancelLength))) ? 1 : 0; });
 }
@@ -28,12 +24,16 @@ WXK_FUNCTION(uint8_t) wxk_RichMessageDialog_SetYesNoLabels(wxk_Window* self, con
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMessageDialogBase*>(static_cast<wxRichMessageDialog*>(wxk::Unwrap(self)))->SetYesNoLabels(wxk::FromUtf16(yes, yesLength), wxk::FromUtf16(no, noLength))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(wxk_String*) wxk_RichMessageDialog_GetCheckBoxText(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxRichMessageDialog*>(wxk::Unwrap(self))->GetCheckBoxText()); });
-}
-
 WXK_FUNCTION(wxk_String*) wxk_RichMessageDialog_GetDetailedText(wxk_Window* self) noexcept {
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxRichMessageDialog*>(wxk::Unwrap(self))->GetDetailedText()); });
+}
+
+WXK_FUNCTION(void) wxk_RichMessageDialog_ShowDetailedText(wxk_Window* self, const char16_t* detailedText, size_t detailedTextLength) noexcept {
+	wxk::Guard([&] { static_cast<wxRichMessageDialog*>(wxk::Unwrap(self))->ShowDetailedText(wxk::FromUtf16(detailedText, detailedTextLength)); });
+}
+
+WXK_FUNCTION(wxk_String*) wxk_RichMessageDialog_GetCheckBoxText(wxk_Window* self) noexcept {
+	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxRichMessageDialog*>(wxk::Unwrap(self))->GetCheckBoxText()); });
 }
 
 WXK_FUNCTION(wxk_String*) wxk_RichMessageDialog_GetFooterText(wxk_Window* self) noexcept {

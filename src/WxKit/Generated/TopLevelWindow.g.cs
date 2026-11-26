@@ -50,6 +50,12 @@ public unsafe partial class TopLevelWindow : Window {
 	/// <summary>Returns true if the window is maximized.</summary>
 	public bool IsMaximized => WxKitNative.TopLevelWindowIsMaximized(Native) != 0;
 
+	/// <summary>Returns the current modified state of the wxTopLevelWindow on macOS.</summary>
+	public bool OsxIsModified {
+		get => WxKitNative.TopLevelWindowOSXIsModified(Native) != 0;
+		set => WxKitNative.TopLevelWindowOSXSetModified(Native, value ? (byte)1 : (byte)0);
+	}
+
 	/// <summary>Gets a string containing the window title.</summary>
 	public string Title {
 		get => NativeString.Take(WxKitNative.TopLevelWindowGetTitle(Native));
@@ -125,12 +131,6 @@ public unsafe partial class TopLevelWindow : Window {
 
 	/// <summary>MSW-specific function for accessing the system menu.</summary>
 	public Menu? MswGetSystemMenu() => ObjectRegistry.Wrap<Menu>(WxKitNative.TopLevelWindowMSWGetSystemMenu(Native));
-
-	/// <summary>Returns the current modified state of the wxTopLevelWindow on macOS.</summary>
-	public bool OsxIsModified() => WxKitNative.TopLevelWindowOSXIsModified(Native) != 0;
-
-	/// <summary>This function sets the wxTopLevelWindow's modified state on macOS, which currently draws a black dot in the wxTopLevelWindow's close button.</summary>
-	public void OsxSetModified(bool modified) => WxKitNative.TopLevelWindowOSXSetModified(Native, modified ? (byte)1 : (byte)0);
 
 	/// <summary>Use a system-dependent way to attract users attention to the window when it is in background.</summary>
 	public void RequestUserAttention(UserAttention flags = UserAttention.Info) => WxKitNative.TopLevelWindowRequestUserAttention(Native, (int)flags);

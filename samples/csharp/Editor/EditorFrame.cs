@@ -117,22 +117,22 @@ internal sealed class EditorFrame : Frame {
 	private void OnUpdateUi(object? sender, UpdateUIEvent e) {
 		switch (e.Id) {
 			case StandardId.Undo:
-				e.Enable(_text.CanUndo);
+				e.IsEnabled = _text.CanUndo;
 				break;
 			case StandardId.Redo:
-				e.Enable(_text.CanRedo);
+				e.IsEnabled = _text.CanRedo;
 				break;
 			case StandardId.Cut or StandardId.Delete:
-				e.Enable(_text.CanCut);
+				e.IsEnabled = _text.CanCut;
 				break;
 			case StandardId.Copy:
-				e.Enable(_text.CanCopy);
+				e.IsEnabled = _text.CanCopy;
 				break;
 			case StandardId.Paste:
-				e.Enable(_text.CanPaste);
+				e.IsEnabled = _text.CanPaste;
 				break;
 			case WordWrapId:
-				e.Check(_wordWrap);
+				e.IsChecked = _wordWrap;
 				break;
 			default:
 				if (e.Id == _text.Id) UpdateStatus();

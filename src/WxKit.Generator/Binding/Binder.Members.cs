@@ -133,7 +133,7 @@ internal sealed partial class Binder {
 			inherited.UnionWith(ancestor.Methods.Select(Signature));
 		}
 		HashSet<string> seen = [];
-		bound.Properties.RemoveAll(property => !property.Getter.IsStatic && inherited.Contains(property.Name) || !seen.Add(property.Name));
+		bound.Properties.RemoveAll(property => !property.Getter.IsStatic && !bound.Tweak.HidingProperties.Contains(property.Name) && inherited.Contains(property.Name) || !seen.Add(property.Name));
 		bound.Methods.RemoveAll(method => !method.Function.IsStatic && inherited.Contains(Signature(method)) || !seen.Add(Signature(method)));
 		for (int index = 0; index < bound.Properties.Count; index++) {
 			if (inherited.Contains(bound.Properties[index].Name)) bound.Properties[index] = bound.Properties[index] with { Hides = true };

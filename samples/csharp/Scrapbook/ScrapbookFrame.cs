@@ -30,7 +30,7 @@ internal sealed class ScrapbookFrame : Frame {
 		remove.Click += (_, _) => RemoveSelected();
 		// Copy and Remove only apply while a snippet is selected.
 		Bind(EventType.UpdateUi, (_, e) => {
-			if (e.Id == copy.Id || e.Id == remove.Id || e.Id == StandardId.Copy || e.Id == StandardId.Delete) e.Enable(_list.Selection >= 0);
+			if (e.Id == copy.Id || e.Id == remove.Id || e.Id == StandardId.Copy || e.Id == StandardId.Delete) e.IsEnabled = _list.Selection >= 0;
 		});
 		// The list takes files and text dropped on it, and copies them, rather than moving them.
 		DropTarget target = new(DataFormat.Files, DataFormat.Text);

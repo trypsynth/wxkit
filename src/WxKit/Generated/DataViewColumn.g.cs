@@ -49,7 +49,10 @@ public unsafe partial class DataViewColumn {
 	public bool IsSortKey => WxKitNative.DataViewColumnIsSortKey(Native) != 0;
 
 	/// <summary>Returns true, if the sort order is ascending.</summary>
-	public bool IsSortOrderAscending => WxKitNative.DataViewColumnIsSortOrderAscending(Native) != 0;
+	public bool IsSortOrderAscending {
+		get => WxKitNative.DataViewColumnIsSortOrderAscending(Native) != 0;
+		set => WxKitNative.DataViewColumnSetSortOrder(Native, value ? (byte)1 : (byte)0);
+	}
 
 	/// <summary>Returns true if the column can be clicked by user to sort the control contents by the field in this column.</summary>
 	public bool IsSortable {
@@ -85,9 +88,6 @@ public unsafe partial class DataViewColumn {
 		get => WxKitNative.DataViewColumnGetWidth(Native);
 		set => WxKitNative.DataViewColumnSetWidth(Native, value);
 	}
-
-	/// <summary>Sets this column as the sort key for the associated control.</summary>
-	public void SetSortOrder(bool ascending) => WxKitNative.DataViewColumnSetSortOrder(Native, ascending ? (byte)1 : (byte)0);
 
 	/// <summary>Inverses the sort order.</summary>
 	public void ToggleSortOrder() => WxKitNative.DataViewColumnToggleSortOrder(Native);

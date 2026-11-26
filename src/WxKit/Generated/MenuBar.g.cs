@@ -17,8 +17,24 @@ public unsafe partial class MenuBar : Window {
 
 	public bool IsAttached => WxKitNative.MenuBarIsAttached(Native) != 0;
 
+	/// <summary>Enables you to get the global menubar on Mac, that is, the menubar displayed when the app is running without any frames open.</summary>
+	public static MenuBar? MacCommonMenuBar {
+		get {
+			Application.VerifyAccess();
+			return ObjectRegistry.Wrap<MenuBar>(WxKitNative.MenuBarMacGetCommonMenuBar());
+		}
+		set {
+			Application.VerifyAccess();
+			ArgumentNullException.ThrowIfNull(value);
+			WxKitNative.MenuBarMacSetCommonMenuBar((WxkWindow*)value.Native);
+		}
+	}
+
 	/// <summary>Returns the number of menus in this menubar.</summary>
 	public int MenuCount => checked((int)WxKitNative.MenuBarGetMenuCount(Native));
+
+	/// <summary>Returns the Apple menu.</summary>
+	public Menu? OsxAppleMenu => ObjectRegistry.Wrap<Menu>(WxKitNative.MenuBarOSXGetAppleMenu(Native));
 
 	/// <summary>Adds the item to the end of the menu bar.</summary>
 	public bool Append(Menu menu, string title) {
@@ -88,22 +104,6 @@ public unsafe partial class MenuBar : Window {
 
 	/// <summary>Determines whether an item is enabled.</summary>
 	public bool IsItemEnabled(int id) => WxKitNative.MenuBarIsEnabled(Native, id) != 0;
-
-	/// <summary>Enables you to get the global menubar on Mac, that is, the menubar displayed when the app is running without any frames open.</summary>
-	public static MenuBar? MacGetCommonMenuBar() {
-		Application.VerifyAccess();
-		return ObjectRegistry.Wrap<MenuBar>(WxKitNative.MenuBarMacGetCommonMenuBar());
-	}
-
-	/// <summary>Enables you to set the global menubar on Mac, that is, the menubar displayed when the app is running without any frames open.</summary>
-	public static void MacSetCommonMenuBar(MenuBar menuBar) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(menuBar);
-		WxKitNative.MenuBarMacSetCommonMenuBar((WxkWindow*)menuBar.Native);
-	}
-
-	/// <summary>Returns the Apple menu.</summary>
-	public Menu? OsxGetAppleMenu() => ObjectRegistry.Wrap<Menu>(WxKitNative.MenuBarOSXGetAppleMenu(Native));
 
 	/// <summary>Removes the menu from the menu bar and returns the menu object - the caller is responsible for deleting it.</summary>
 	public Menu? Remove(int position) => ObjectRegistry.Wrap<Menu>(WxKitNative.MenuBarRemove(Native, checked((nuint)position)));

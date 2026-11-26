@@ -111,7 +111,7 @@ type LibraryFrame() as this =
             EventType.UpdateUi,
             fun _ (e: UpdateUIEvent) ->
                 if e.Id = remove.Id || e.Id = markRead.Id then
-                    e.Enable(selectedRow () |> Option.isSome)
+                    e.IsEnabled <- selectedRow () |> Option.isSome
         )
         panel.Sizer <-
             column {

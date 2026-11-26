@@ -227,10 +227,6 @@ WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetSubItemRect(wxk_Window* self, int32_t item
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetSubItemRect(static_cast<long>(item), static_cast<long>(subItem), wxk::OutValue<wxRect, wxk_Rect, wxk::ToRect>{rect}, static_cast<int>(code))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_InReportView(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->InReportView()) ? 1 : 0; });
-}
-
 WXK_FUNCTION(int32_t) wxk_ListCtrl_InsertColumn_IntListItem(wxk_Window* self, int32_t column, const wxk_Object* info) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->InsertColumn(static_cast<long>(column), wxk::ValueOf<wxListItem>(info))); });
 }
@@ -357,6 +353,10 @@ WXK_FUNCTION(void) wxk_ListCtrl_RemoveSortIndicator(wxk_Window* self) noexcept {
 
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetUpdatedAscendingSortIndicator(wxk_Window* self, int32_t column) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetUpdatedAscendingSortIndicator(static_cast<int>(column))) ? 1 : 0; });
+}
+
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_InReportView(wxk_Window* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->InReportView()) ? 1 : 0; });
 }
 
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_HasCheckBoxes(wxk_Window* self) noexcept {

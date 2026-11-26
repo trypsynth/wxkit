@@ -9,6 +9,22 @@ WXK_FUNCTION(void) wxk_DC_CalcBoundingBox(wxk_Object* self, int32_t x, int32_t y
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->CalcBoundingBox(static_cast<int>(x), static_cast<int>(y)); });
 }
 
+WXK_FUNCTION(int32_t) wxk_DC_MaxX(wxk_Object* self) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxDC*>(wxk::Unwrap(self))->MaxX()); });
+}
+
+WXK_FUNCTION(int32_t) wxk_DC_MaxY(wxk_Object* self) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxDC*>(wxk::Unwrap(self))->MaxY()); });
+}
+
+WXK_FUNCTION(int32_t) wxk_DC_MinX(wxk_Object* self) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxDC*>(wxk::Unwrap(self))->MinX()); });
+}
+
+WXK_FUNCTION(int32_t) wxk_DC_MinY(wxk_Object* self) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxDC*>(wxk::Unwrap(self))->MinY()); });
+}
+
 WXK_FUNCTION(uint8_t) wxk_DC_Blit(wxk_Object* self, int32_t xDestination, int32_t yDestination, int32_t width, int32_t height, wxk_Object* source, int32_t xSource, int32_t ySource, int32_t logicalFunction, uint8_t useMask, int32_t xSourceMask, int32_t ySourceMask) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDC*>(wxk::Unwrap(self))->Blit(static_cast<int>(xDestination), static_cast<int>(yDestination), static_cast<int>(width), static_cast<int>(height), static_cast<wxDC*>(wxk::Unwrap(source)), static_cast<int>(xSource), static_cast<int>(ySource), static_cast<wxRasterOperationMode>(logicalFunction), useMask != 0, static_cast<int>(xSourceMask), static_cast<int>(ySourceMask))) ? 1 : 0; });
 }
@@ -163,22 +179,6 @@ WXK_FUNCTION(void) wxk_DC_SetClippingRegion_Rect(wxk_Object* self, wxk_Rect rect
 
 WXK_FUNCTION(void) wxk_DC_DisableAutomaticBoundingBoxUpdates(wxk_Object* self) noexcept {
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DisableAutomaticBoundingBoxUpdates(); });
-}
-
-WXK_FUNCTION(int32_t) wxk_DC_MaxX(wxk_Object* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxDC*>(wxk::Unwrap(self))->MaxX()); });
-}
-
-WXK_FUNCTION(int32_t) wxk_DC_MaxY(wxk_Object* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxDC*>(wxk::Unwrap(self))->MaxY()); });
-}
-
-WXK_FUNCTION(int32_t) wxk_DC_MinX(wxk_Object* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxDC*>(wxk::Unwrap(self))->MinX()); });
-}
-
-WXK_FUNCTION(int32_t) wxk_DC_MinY(wxk_Object* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxDC*>(wxk::Unwrap(self))->MinY()); });
 }
 
 WXK_FUNCTION(void) wxk_DC_ResetBoundingBox(wxk_Object* self) noexcept {

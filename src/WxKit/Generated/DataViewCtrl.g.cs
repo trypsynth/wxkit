@@ -47,7 +47,10 @@ public unsafe partial class DataViewCtrl : Control {
 	}
 
 	/// <summary>Return true if using more than one column for sorting is allowed.</summary>
-	public bool IsMultiColumnSortAllowed => WxKitNative.DataViewCtrlIsMultiColumnSortAllowed(Native) != 0;
+	public bool IsMultiColumnSortAllowed {
+		get => WxKitNative.DataViewCtrlIsMultiColumnSortAllowed(Native) != 0;
+		set => WxKitNative.DataViewCtrlAllowMultiColumnSort(Native, value ? (byte)1 : (byte)0);
+	}
 
 	/// <summary>Returns the window corresponding to the main area of the control.</summary>
 	public Window? MainWindow => ObjectRegistry.Wrap<Window>(WxKitNative.DataViewCtrlGetMainWindow(Native));
@@ -189,9 +192,6 @@ public unsafe partial class DataViewCtrl : Control {
 		add => AddHandler(EventType.DataViewSelectionChanged, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.DataViewSelectionChanged, StandardId.Any, StandardId.Any, value);
 	}
-
-	/// <summary>Call to allow using multiple columns for sorting.</summary>
-	public bool AllowMultiColumnSort(bool allow) => WxKitNative.DataViewCtrlAllowMultiColumnSort(Native, allow ? (byte)1 : (byte)0) != 0;
 
 	/// <summary>Appends a column for rendering a bitmap.</summary>
 	public DataViewColumn? AppendBitmapColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Center, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {

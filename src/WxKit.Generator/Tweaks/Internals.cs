@@ -131,6 +131,27 @@ internal static class Internals {
 		tweaks.ExcludeEnumMembers("wxFontEncoding", "wxFONTENCODING_MACMIN", "wxFONTENCODING_MACMAX");
 		tweaks.Class("wxWindow").IgnoreStyle("wxBORDER_DOUBLE");
 		tweaks.Class("wxMessageDialog").IgnoreStyle("wxICON_HAND", "wxICON_EXCLAMATION");
+		// Booleans a method gave, which are properties named as IsChecked is.
+		tweaks.Class("wxCheckBox").Property("IsThreeState", "Is3State").Property("IsThirdStateAllowedForUser", "Is3rdStateAllowedForUser");
+		tweaks.Class("wxListCtrl").Property("IsInReportView", "InReportView");
+		tweaks.Class("wxIdleEvent").Property("IsMoreRequested", "MoreRequested");
+		tweaks.Class("wxWindow").Property("InheritsBackgroundColor", "InheritsBackgroundColour").Property("InheritsForegroundColor", "InheritsForegroundColour").Property("IsThemeEnabled", "GetThemeEnabled", "SetThemeEnabled");
+		tweaks.Class("wxCollapsiblePaneEvent").Property("IsCollapsed", "GetCollapsed");
+		tweaks.Class("wxButton").Property("IsAuthenticationNeeded", "GetAuthNeeded", "SetAuthNeeded");
+		tweaks.Class("wxFont").Property("IsStrikethrough", "GetStrikethrough", "SetStrikethrough");
+		// A getter whose setter has another name.
+		tweaks.Class("wxTopLevelWindow").Property("OsxIsModified", "OSXIsModified", "OSXSetModified");
+		tweaks.Class("wxDataViewCtrl").Property("IsMultiColumnSortAllowed", "IsMultiColumnSortAllowed", "AllowMultiColumnSort");
+		tweaks.Class("wxDataViewColumn").Property("IsSortOrderAscending", "IsSortOrderAscending", "SetSortOrder");
+		tweaks.Class("wxBitmap").Property("HasAlpha", "HasAlpha", "UseAlpha");
+		tweaks.Class("wxValidator").Property("IsSilent", "IsSilent", "SuppressBellOnError");
+		tweaks.Class("wxRichMessageDialog").Property("DetailedText", "GetDetailedText", "ShowDetailedText");
+		tweaks.Class("wxMenuBar").Property("MacCommonMenuBar", "MacGetCommonMenuBar", "MacSetCommonMenuBar").Property("OsxAppleMenu", "OSXGetAppleMenu");
+		tweaks.Class("wxUpdateUIEvent").Property("IsThreeState", "Is3State").Property("IsChecked", "GetChecked", "Check").Property("IsEnabled", "GetEnabled", "Enable").Property("IsShown", "GetShown", "Show")
+			// Whether the item is to be checked, which a command event's IsChecked, whether it was, says nothing of here.
+			.HidesInherited("IsChecked");
+		// What a DC drew within is one rectangle, in Points.cs.
+		tweaks.Class("wxDC").Internal("MinX", "MaxX", "MinY", "MaxY");
 		tweaks.Class("wxCollapsiblePane").Property("IsCollapsed", "IsCollapsed", "Collapse");
 		tweaks.Class("wxListCtrl").Property("HasCheckBoxes", "HasCheckBoxes", "EnableCheckBoxes");
 		tweaks.Class("wxSearchCtrl").Property("IsSearchButtonVisible", "IsSearchButtonVisible", "ShowSearchButton").Property("IsCancelButtonVisible", "IsCancelButtonVisible", "ShowCancelButton");

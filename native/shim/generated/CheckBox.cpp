@@ -8,20 +8,20 @@ WXK_FUNCTION(wxk_Window*) wxk_CheckBox_new(wxk_Window* parent, int32_t id, const
 	});
 }
 
-WXK_FUNCTION(uint8_t) wxk_CheckBox_Is3State(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxCheckBox*>(wxk::Unwrap(self))->Is3State()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_CheckBox_Is3rdStateAllowedForUser(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxCheckBox*>(wxk::Unwrap(self))->Is3rdStateAllowedForUser()) ? 1 : 0; });
-}
-
 WXK_FUNCTION(uint8_t) wxk_CheckBox_GetValue(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxCheckBox*>(wxk::Unwrap(self))->GetValue()) ? 1 : 0; });
 }
 
 WXK_FUNCTION(void) wxk_CheckBox_SetValue(wxk_Window* self, uint8_t state) noexcept {
 	wxk::Guard([&] { static_cast<wxCheckBox*>(wxk::Unwrap(self))->SetValue(state != 0); });
+}
+
+WXK_FUNCTION(uint8_t) wxk_CheckBox_Is3State(wxk_Window* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxCheckBox*>(wxk::Unwrap(self))->Is3State()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(uint8_t) wxk_CheckBox_Is3rdStateAllowedForUser(wxk_Window* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxCheckBox*>(wxk::Unwrap(self))->Is3rdStateAllowedForUser()) ? 1 : 0; });
 }
 
 WXK_FUNCTION(int32_t) wxk_CheckBox_Get3StateValue(wxk_Window* self) noexcept {

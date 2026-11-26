@@ -53,6 +53,9 @@ public unsafe partial class ListCtrl : Control {
 	/// <summary>Returns true if the control doesn't currently contain any items.</summary>
 	public bool IsEmpty => WxKitNative.ListCtrlIsEmpty(Native) != 0;
 
+	/// <summary>Returns true if the control is currently using wxLC_REPORT style.</summary>
+	public bool IsInReportView => WxKitNative.ListCtrlInReportView(Native) != 0;
+
 	/// <summary>Returns true if the control is currently in virtual report view.</summary>
 	public bool IsVirtual => WxKitNative.ListCtrlIsVirtual(Native) != 0;
 
@@ -314,9 +317,6 @@ public unsafe partial class ListCtrl : Control {
 
 	/// <summary>Returns the new value to use for sort indicator after clicking a column.</summary>
 	public bool GetUpdatedAscendingSortIndicator(int column) => WxKitNative.ListCtrlGetUpdatedAscendingSortIndicator(Native, column) != 0;
-
-	/// <summary>Returns true if the control is currently using wxLC_REPORT style.</summary>
-	public bool InReportView() => WxKitNative.ListCtrlInReportView(Native) != 0;
 
 	/// <summary>For report view mode (only), inserts a column.</summary>
 	public int InsertColumn(int column, ListItem info) {

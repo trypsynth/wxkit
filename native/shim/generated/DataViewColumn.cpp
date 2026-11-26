@@ -5,12 +5,16 @@ WXK_FUNCTION(void) wxk_DataViewColumn_UnsetAsSortKey(wxk_DataViewColumn* self) n
 	wxk::Guard([&] { static_cast<wxSettableHeaderColumn*>(static_cast<wxDataViewColumn*>(wxk::Unwrap(self)))->UnsetAsSortKey(); });
 }
 
-WXK_FUNCTION(void) wxk_DataViewColumn_SetSortOrder(wxk_DataViewColumn* self, uint8_t ascending) noexcept {
-	wxk::Guard([&] { static_cast<wxSettableHeaderColumn*>(static_cast<wxDataViewColumn*>(wxk::Unwrap(self)))->SetSortOrder(ascending != 0); });
-}
-
 WXK_FUNCTION(void) wxk_DataViewColumn_ToggleSortOrder(wxk_DataViewColumn* self) noexcept {
 	wxk::Guard([&] { static_cast<wxSettableHeaderColumn*>(static_cast<wxDataViewColumn*>(wxk::Unwrap(self)))->ToggleSortOrder(); });
+}
+
+WXK_FUNCTION(uint8_t) wxk_DataViewColumn_IsSortOrderAscending(wxk_DataViewColumn* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxHeaderColumn*>(static_cast<wxDataViewColumn*>(wxk::Unwrap(self)))->IsSortOrderAscending()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(void) wxk_DataViewColumn_SetSortOrder(wxk_DataViewColumn* self, uint8_t ascending) noexcept {
+	wxk::Guard([&] { static_cast<wxSettableHeaderColumn*>(static_cast<wxDataViewColumn*>(wxk::Unwrap(self)))->SetSortOrder(ascending != 0); });
 }
 
 WXK_FUNCTION(uint32_t) wxk_DataViewColumn_GetModelColumn(wxk_DataViewColumn* self) noexcept {
@@ -107,9 +111,5 @@ WXK_FUNCTION(uint8_t) wxk_DataViewColumn_IsShown(wxk_DataViewColumn* self) noexc
 
 WXK_FUNCTION(uint8_t) wxk_DataViewColumn_IsSortKey(wxk_DataViewColumn* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxHeaderColumn*>(static_cast<wxDataViewColumn*>(wxk::Unwrap(self)))->IsSortKey()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_DataViewColumn_IsSortOrderAscending(wxk_DataViewColumn* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxHeaderColumn*>(static_cast<wxDataViewColumn*>(wxk::Unwrap(self)))->IsSortOrderAscending()) ? 1 : 0; });
 }
 

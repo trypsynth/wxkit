@@ -100,9 +100,10 @@ WXK_FUNCTION(uint8_t) wxk_Bitmap_CopyFromIcon(wxk_Object* self, const wxk_Object
 WXK_FUNCTION(wxk_Object*) wxk_Bitmap_GetSubBitmap(wxk_Object* self, wxk_Rect rect) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Bitmap_ResetAlpha(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Bitmap_SaveFile(wxk_Object* self, const char16_t* name, size_t nameLength, int32_t type) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Bitmap_UseAlpha(wxk_Object* self, uint8_t use) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Bitmap_Rescale(wxk_Object* bitmap, wxk_Size sizeNeeded) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Bitmap_MakeDisabled(wxk_Object* bitmap) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Bitmap_HasAlpha(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Bitmap_UseAlpha(wxk_Object* self, uint8_t use) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Bitmap_GetDepth(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_Bitmap_GetDIPSize(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Bitmap_GetHeight(wxk_Object* self) WXK_NOEXCEPT;
@@ -116,7 +117,6 @@ WXK_FUNCTION(wxk_Size) wxk_Bitmap_GetScaledSize(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(double) wxk_Bitmap_GetScaledWidth(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_Bitmap_GetSize(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Bitmap_GetWidth(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Bitmap_HasAlpha(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Bitmap_IsOk(wxk_Object* self) WXK_NOEXCEPT;
 
 // wxBitmapButton
@@ -225,10 +225,10 @@ WXK_FUNCTION(int32_t) wxk_CalendarEvent_GetWeekDay(wxk_Event* self) WXK_NOEXCEPT
 // wxCheckBox
 
 WXK_FUNCTION(wxk_Window*) wxk_CheckBox_new(wxk_Window* parent, int32_t id, const char16_t* label, size_t labelLength, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_CheckBox_Is3State(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_CheckBox_Is3rdStateAllowedForUser(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_CheckBox_GetValue(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_CheckBox_SetValue(wxk_Window* self, uint8_t state) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_CheckBox_Is3State(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_CheckBox_Is3rdStateAllowedForUser(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_CheckBox_Get3StateValue(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_CheckBox_Set3StateValue(wxk_Window* self, int32_t state) WXK_NOEXCEPT;
 
@@ -483,6 +483,10 @@ WXK_FUNCTION(wxk_Point) wxk_Cursor_GetHotSpot(wxk_Object* self) WXK_NOEXCEPT;
 
 WXK_FUNCTION(void) wxk_DC_DrawSpline(wxk_Object* self, int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_CalcBoundingBox(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_DC_MaxX(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_DC_MaxY(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_DC_MinX(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_DC_MinY(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_DC_Blit(wxk_Object* self, int32_t xDestination, int32_t yDestination, int32_t width, int32_t height, wxk_Object* source, int32_t xSource, int32_t ySource, int32_t logicalFunction, uint8_t useMask, int32_t xSourceMask, int32_t ySourceMask) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_DC_StretchBlit(wxk_Object* self, int32_t xDestination, int32_t yDestination, int32_t destinationWidth, int32_t destinationHeight, wxk_Object* source, int32_t xSource, int32_t ySource, int32_t sourceWidth, int32_t sourceHeight, int32_t logicalFunction, uint8_t useMask, int32_t xSourceMask, int32_t ySourceMask) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_SetDeviceOrigin(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;
@@ -522,10 +526,6 @@ WXK_FUNCTION(uint8_t) wxk_DC_GetClippingBox(wxk_Object* self, wxk_Rect* rect) WX
 WXK_FUNCTION(void) wxk_DC_SetClippingRegion_PointSize(wxk_Object* self, wxk_Point point, wxk_Size size) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_SetClippingRegion_Rect(wxk_Object* self, wxk_Rect rect) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_DisableAutomaticBoundingBoxUpdates(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_DC_MaxX(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_DC_MaxY(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_DC_MinX(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_DC_MinY(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_ResetBoundingBox(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_CopyAttributes(wxk_Object* self, wxk_Object* dc) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_DC_DeviceToLogicalX(wxk_Object* self, int32_t x) WXK_NOEXCEPT;
@@ -598,8 +598,9 @@ WXK_FUNCTION(wxk_Size) wxk_DpiChangedEvent_GetNewDPI(wxk_Event* self) WXK_NOEXCE
 // wxDataViewColumn
 
 WXK_FUNCTION(void) wxk_DataViewColumn_UnsetAsSortKey(wxk_DataViewColumn* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_DataViewColumn_SetSortOrder(wxk_DataViewColumn* self, uint8_t ascending) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DataViewColumn_ToggleSortOrder(wxk_DataViewColumn* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_DataViewColumn_IsSortOrderAscending(wxk_DataViewColumn* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DataViewColumn_SetSortOrder(wxk_DataViewColumn* self, uint8_t ascending) WXK_NOEXCEPT;
 WXK_FUNCTION(uint32_t) wxk_DataViewColumn_GetModelColumn(wxk_DataViewColumn* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_DataViewColumn_GetOwner(wxk_DataViewColumn* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_DataViewColumn_GetTitle(wxk_DataViewColumn* self) WXK_NOEXCEPT;
@@ -624,7 +625,6 @@ WXK_FUNCTION(uint8_t) wxk_DataViewColumn_IsHidden(wxk_DataViewColumn* self) WXK_
 WXK_FUNCTION(void) wxk_DataViewColumn_SetHidden(wxk_DataViewColumn* self, uint8_t hidden) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_DataViewColumn_IsShown(wxk_DataViewColumn* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_DataViewColumn_IsSortKey(wxk_DataViewColumn* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_DataViewColumn_IsSortOrderAscending(wxk_DataViewColumn* self) WXK_NOEXCEPT;
 
 // wxDataViewCtrl
 
@@ -656,7 +656,6 @@ WXK_FUNCTION(wxk_DataViewColumn*) wxk_DataViewCtrl_AppendToggleColumn_StringUInt
 WXK_FUNCTION(wxk_DataViewColumn*) wxk_DataViewCtrl_AppendToggleColumn_BitmapUIntDataViewCellModeIntAlignmentDataViewColumnFlags(wxk_Window* self, const wxk_Object* label, uint32_t modelColumn, int32_t mode, int32_t width, int32_t align, int32_t flags) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_DataViewColumn*) wxk_DataViewCtrl_PrependToggleColumn_StringUIntDataViewCellModeIntAlignmentDataViewColumnFlags(wxk_Window* self, const char16_t* label, size_t labelLength, uint32_t modelColumn, int32_t mode, int32_t width, int32_t align, int32_t flags) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_DataViewColumn*) wxk_DataViewCtrl_PrependToggleColumn_BitmapUIntDataViewCellModeIntAlignmentDataViewColumnFlags(wxk_Window* self, const wxk_Object* label, uint32_t modelColumn, int32_t mode, int32_t width, int32_t align, int32_t flags) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_AllowMultiColumnSort(wxk_Window* self, uint8_t allow) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DataViewCtrl_Collapse(wxk_Window* self, void* item) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DataViewCtrl_EditItem(wxk_Window* self, void* item, wxk_DataViewColumn* column) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DataViewCtrl_EnsureVisible(wxk_Window* self, void* item, wxk_DataViewColumn* column) WXK_NOEXCEPT;
@@ -675,6 +674,8 @@ WXK_FUNCTION(void) wxk_DataViewCtrl_Unselect(wxk_Window* self, void* item) WXK_N
 WXK_FUNCTION(void) wxk_DataViewCtrl_UnselectAll(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_SetRowHeight(wxk_Window* self, int32_t rowHeight) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DataViewCtrl_ToggleSortByColumn(wxk_Window* self, int32_t column) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_IsMultiColumnSortAllowed(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_AllowMultiColumnSort(wxk_Window* self, uint8_t allow) WXK_NOEXCEPT;
 WXK_FUNCTION(uint32_t) wxk_DataViewCtrl_GetColumnCount(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_DataViewColumn*) wxk_DataViewCtrl_GetExpanderColumn(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DataViewCtrl_SetExpanderColumn(wxk_Window* self, wxk_DataViewColumn* column) WXK_NOEXCEPT;
@@ -690,7 +691,6 @@ WXK_FUNCTION(wxk_Numbers*) wxk_DataViewCtrl_GetSelections(wxk_Window* self) WXK_
 WXK_FUNCTION(void) wxk_DataViewCtrl_SetSelections(wxk_Window* self, const int64_t* selections, size_t selectionsCount) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_DataViewColumn*) wxk_DataViewCtrl_GetSortingColumn(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_HasSelection(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_DataViewCtrl_IsMultiColumnSortAllowed(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_DataViewCtrl_GetCountPerPage(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void*) wxk_DataViewCtrl_GetTopItem(wxk_Window* self) WXK_NOEXCEPT;
 
@@ -1009,6 +1009,8 @@ WXK_FUNCTION(uint8_t) wxk_Font_GetUnderlined(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Font_SetUnderlined(wxk_Object* self, uint8_t underlined) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_Font_GetNativeFontInfoUserDesc(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Font_SetNativeFontInfoUserDesc(wxk_Object* self, const char16_t* info, size_t infoLength) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Font_GetStrikethrough(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Font_SetStrikethrough(wxk_Object* self, uint8_t strikethrough) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Font_GetBaseFont(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Font_GetEncoding(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Font_SetEncoding(wxk_Object* self, int32_t encoding) WXK_NOEXCEPT;
@@ -1025,8 +1027,6 @@ WXK_FUNCTION(wxk_Size) wxk_Font_GetPixelSize(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Font_SetPixelSize(wxk_Object* self, wxk_Size pixelSize) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Font_GetStyle(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Font_SetStyle(wxk_Object* self, int32_t style) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Font_GetStrikethrough(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Font_SetStrikethrough(wxk_Object* self, uint8_t strikethrough) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Font_GetWeight(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Font_SetWeight(wxk_Object* self, int32_t weight) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Font_GetNumericWeight(wxk_Object* self) WXK_NOEXCEPT;
@@ -1219,8 +1219,8 @@ WXK_FUNCTION(uint8_t) wxk_IconizeEvent_IsIconized(wxk_Event* self) WXK_NOEXCEPT;
 
 // wxIdleEvent
 
-WXK_FUNCTION(uint8_t) wxk_IdleEvent_MoreRequested(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_IdleEvent_RequestMore(wxk_Event* self, uint8_t needMore) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_IdleEvent_MoreRequested(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_IdleEvent_GetMode(void) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_IdleEvent_SetMode(int32_t mode) WXK_NOEXCEPT;
 
@@ -1405,7 +1405,6 @@ WXK_FUNCTION(wxk_String*) wxk_ListCtrl_GetItemText(wxk_Window* self, int32_t ite
 WXK_FUNCTION(wxk_Colour) wxk_ListCtrl_GetItemTextColour(wxk_Window* self, int32_t item) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListCtrl_GetNextItem(wxk_Window* self, int32_t item, int32_t geometry, int32_t state) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetSubItemRect(wxk_Window* self, int32_t item, int32_t subItem, wxk_Rect* rect, int32_t code) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_InReportView(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListCtrl_InsertColumn_IntListItem(wxk_Window* self, int32_t column, const wxk_Object* info) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListCtrl_InsertColumn_IntStringListColumnFormatInt(wxk_Window* self, int32_t column, const char16_t* heading, size_t headingLength, int32_t format, int32_t width) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListCtrl_InsertItem_ListItem(wxk_Window* self, wxk_Object* info) WXK_NOEXCEPT;
@@ -1438,6 +1437,7 @@ WXK_FUNCTION(void) wxk_ListCtrl_ExtendRulesAndAlternateColour(wxk_Window* self, 
 WXK_FUNCTION(void) wxk_ListCtrl_ShowSortIndicator(wxk_Window* self, int32_t column, uint8_t ascending) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListCtrl_RemoveSortIndicator(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetUpdatedAscendingSortIndicator(wxk_Window* self, int32_t column) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_InReportView(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_HasCheckBoxes(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_EnableCheckBoxes(wxk_Window* self, uint8_t enable) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListCtrl_GetColumnCount(wxk_Window* self) WXK_NOEXCEPT;
@@ -1568,9 +1568,9 @@ WXK_FUNCTION(wxk_Menu*) wxk_MenuBar_Replace(wxk_Window* self, size_t position, w
 WXK_FUNCTION(void) wxk_MenuBar_SetHelpString(wxk_Window* self, int32_t id, const char16_t* helpString, size_t helpStringLength) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_MenuBar_SetLabel(wxk_Window* self, int32_t id, const char16_t* label, size_t labelLength) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_MenuBar_SetMenuLabel(wxk_Window* self, size_t position, const char16_t* label, size_t labelLength) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Menu*) wxk_MenuBar_OSXGetAppleMenu(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_MenuBar_MacSetCommonMenuBar(wxk_Window* menuBar) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_MenuBar_MacGetCommonMenuBar(void) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_MenuBar_MacSetCommonMenuBar(wxk_Window* menuBar) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Menu*) wxk_MenuBar_OSXGetAppleMenu(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(size_t) wxk_MenuBar_GetMenuCount(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_MenuBar_GetFrame(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_MenuBar_IsAttached(wxk_Window* self) WXK_NOEXCEPT;
@@ -2009,12 +2009,12 @@ WXK_FUNCTION(uint8_t) wxk_RearrangeList_CanMoveCurrentDown(wxk_Window* self) WXK
 
 WXK_FUNCTION(wxk_Window*) wxk_RichMessageDialog_new(wxk_Window* parent, const char16_t* message, size_t messageLength, const char16_t* caption, size_t captionLength, int64_t style) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_RichMessageDialog_ShowCheckBox(wxk_Window* self, const char16_t* checkBoxText, size_t checkBoxTextLength, uint8_t checked) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_RichMessageDialog_ShowDetailedText(wxk_Window* self, const char16_t* detailedText, size_t detailedTextLength) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_RichMessageDialog_SetOKCancelLabels(wxk_Window* self, const char16_t* ok, size_t okLength, const char16_t* cancel, size_t cancelLength) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_RichMessageDialog_SetYesNoCancelLabels(wxk_Window* self, const char16_t* yes, size_t yesLength, const char16_t* no, size_t noLength, const char16_t* cancel, size_t cancelLength) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_RichMessageDialog_SetYesNoLabels(wxk_Window* self, const char16_t* yes, size_t yesLength, const char16_t* no, size_t noLength) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_String*) wxk_RichMessageDialog_GetCheckBoxText(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_RichMessageDialog_GetDetailedText(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_RichMessageDialog_ShowDetailedText(wxk_Window* self, const char16_t* detailedText, size_t detailedTextLength) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_String*) wxk_RichMessageDialog_GetCheckBoxText(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_RichMessageDialog_GetFooterText(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_RichMessageDialog_SetFooterText(wxk_Window* self, const char16_t* footerText, size_t footerTextLength) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_RichMessageDialog_GetFooterIcon(wxk_Window* self) WXK_NOEXCEPT;
@@ -3374,12 +3374,12 @@ WXK_FUNCTION(wxk_Menu*) wxk_TopLevelWindow_MSWGetSystemMenu(wxk_Window* self) WX
 WXK_FUNCTION(void) wxk_TopLevelWindow_RequestUserAttention(wxk_Window* self, int32_t flags) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_TopLevelWindow_Restore(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_TopLevelWindow_SetIcons(wxk_Window* self, const wxk_Object* icons) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_TopLevelWindow_OSXSetModified(wxk_Window* self, uint8_t modified) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_TopLevelWindow_OSXIsModified(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_TopLevelWindow_SetRepresentedFilename(wxk_Window* self, const char16_t* fileName, size_t fileNameLength) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_TopLevelWindow_ShowWithoutActivating(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_TopLevelWindow_EnableFullScreenView(wxk_Window* self, uint8_t enable, int64_t style) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_TopLevelWindow_ShowFullScreen(wxk_Window* self, uint8_t show, int64_t style) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_TopLevelWindow_OSXIsModified(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_TopLevelWindow_OSXSetModified(wxk_Window* self, uint8_t modified) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_TopLevelWindow_GetDefaultItem(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_TopLevelWindow_SetDefaultItem(wxk_Window* self, wxk_Window* window) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_TopLevelWindow_GetIcon(wxk_Window* self) WXK_NOEXCEPT;
@@ -3572,19 +3572,19 @@ WXK_FUNCTION(void) wxk_UIActionSimulator_delete(wxk_UIActionSimulator* self) WXK
 
 // wxUpdateUIEvent
 
-WXK_FUNCTION(void) wxk_UpdateUIEvent_Check(wxk_Event* self, uint8_t check) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_UpdateUIEvent_Enable(wxk_Event* self, uint8_t enable) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_Is3State(wxk_Event* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_UpdateUIEvent_Show(wxk_Event* self, uint8_t show) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_CanUpdate(wxk_Window* window) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_UpdateUIEvent_ResetUpdateTime(void) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetEnabled(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_UpdateUIEvent_Enable(wxk_Event* self, uint8_t enable) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetShown(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_UpdateUIEvent_Show(wxk_Event* self, uint8_t show) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetSetChecked(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetSetEnabled(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetSetShown(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetSetText(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_Is3State(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_GetChecked(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_UpdateUIEvent_Check(wxk_Event* self, uint8_t check) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_UpdateUIEvent_Get3StateValue(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_UpdateUIEvent_Set3StateValue(wxk_Event* self, int32_t check) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_UpdateUIEvent_IsCheckable(wxk_Event* self) WXK_NOEXCEPT;
@@ -3600,9 +3600,9 @@ WXK_FUNCTION(void) wxk_UpdateUIEvent_SetUpdateInterval(int64_t updateInterval) W
 WXK_FUNCTION(uint8_t) wxk_Validator_TransferFromWindow(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Validator_TransferToWindow(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Validator_Validate(wxk_Object* self, wxk_Window* parent) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Validator_IsSilent(void) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Validator_SuppressBellOnError(uint8_t suppress) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_Validator_GetWindow(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Validator_IsSilent(void) WXK_NOEXCEPT;
 
 // wxWebView
 
@@ -3757,10 +3757,8 @@ WXK_FUNCTION(void) wxk_Window_Refresh(wxk_Window* self, uint8_t eraseBackground)
 WXK_FUNCTION(void) wxk_Window_RefreshRect(wxk_Window* self, wxk_Rect rect, uint8_t eraseBackground) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_Update(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_SetOwnBackgroundColour(wxk_Window* self, wxk_Colour color) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Window_InheritsBackgroundColour(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_SetOwnFont(wxk_Window* self, const wxk_Object* font) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_SetOwnForegroundColour(wxk_Window* self, wxk_Colour color) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Window_InheritsForegroundColour(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_SetTransparent(wxk_Window* self, uint8_t alpha) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_HasExtraStyle(wxk_Window* self, int32_t extraFlag) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_MoveAfterInTabOrder(wxk_Window* self, wxk_Window* window) WXK_NOEXCEPT;
@@ -3801,6 +3799,10 @@ WXK_FUNCTION(void) wxk_Window_UnreserveControlId(int32_t id, int32_t count) WXK_
 WXK_FUNCTION(uint8_t) wxk_Window_IsEnabled(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_Enable(wxk_Window* self, uint8_t enable) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_UseBgCol(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Window_InheritsBackgroundColour(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Window_InheritsForegroundColour(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Window_GetThemeEnabled(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Window_SetThemeEnabled(wxk_Window* self, uint8_t enable) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_IsFocusable(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_CanAcceptFocus(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_CanAcceptFocusFromKeyboard(wxk_Window* self) WXK_NOEXCEPT;
@@ -3858,8 +3860,6 @@ WXK_FUNCTION(uint8_t) wxk_Window_SetForegroundColour(wxk_Window* self, wxk_Colou
 WXK_FUNCTION(wxk_Rect) wxk_Window_GetUpdateClientRect(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_HasTransparentBackground(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_IsTransparentBackgroundSupported(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Window_GetThemeEnabled(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Window_SetThemeEnabled(wxk_Window* self, uint8_t enable) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_CanSetTransparent(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int64_t) wxk_Window_GetExtraStyle(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_SetExtraStyle(wxk_Window* self, int64_t exStyle) WXK_NOEXCEPT;

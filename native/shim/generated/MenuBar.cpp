@@ -88,11 +88,10 @@ WXK_FUNCTION(void) wxk_MenuBar_SetMenuLabel(wxk_Window* self, size_t position, c
 	wxk::Guard([&] { static_cast<wxMenuBar*>(wxk::Unwrap(self))->SetMenuLabel(position, wxk::FromUtf16(label, labelLength)); });
 }
 
-WXK_FUNCTION(wxk_Menu*) wxk_MenuBar_OSXGetAppleMenu(wxk_Window* self) noexcept {
+WXK_FUNCTION(wxk_Window*) wxk_MenuBar_MacGetCommonMenuBar(void) noexcept {
 	#if defined(__WXOSX__)
-	return wxk::Guard<wxk_Menu*>(nullptr, [&]() -> wxk_Menu* { return wxk::Wrap(static_cast<wxMenu*>(static_cast<wxMenuBar*>(wxk::Unwrap(self))->OSXGetAppleMenu())); });
+	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(wxMenuBar::MacGetCommonMenuBar())); });
 	#else
-	(void)self;
 	return nullptr;
 	#endif
 }
@@ -105,10 +104,11 @@ WXK_FUNCTION(void) wxk_MenuBar_MacSetCommonMenuBar(wxk_Window* menuBar) noexcept
 	#endif
 }
 
-WXK_FUNCTION(wxk_Window*) wxk_MenuBar_MacGetCommonMenuBar(void) noexcept {
+WXK_FUNCTION(wxk_Menu*) wxk_MenuBar_OSXGetAppleMenu(wxk_Window* self) noexcept {
 	#if defined(__WXOSX__)
-	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(wxMenuBar::MacGetCommonMenuBar())); });
+	return wxk::Guard<wxk_Menu*>(nullptr, [&]() -> wxk_Menu* { return wxk::Wrap(static_cast<wxMenu*>(static_cast<wxMenuBar*>(wxk::Unwrap(self))->OSXGetAppleMenu())); });
 	#else
+	(void)self;
 	return nullptr;
 	#endif
 }

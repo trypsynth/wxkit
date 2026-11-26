@@ -43,7 +43,10 @@ public unsafe partial class Bitmap : NativeObject {
 	public Size DipSize => WxKitNative.BitmapGetDIPSize(Native);
 
 	/// <summary>Returns true if the bitmap has an alpha channel.</summary>
-	public bool HasAlpha => WxKitNative.BitmapHasAlpha(Native) != 0;
+	public bool HasAlpha {
+		get => WxKitNative.BitmapHasAlpha(Native) != 0;
+		set => WxKitNative.BitmapUseAlpha(Native, value ? (byte)1 : (byte)0);
+	}
 
 	/// <summary>Returns the height of the bitmap in physical pixels.</summary>
 	public int Height => WxKitNative.BitmapGetHeight(Native);
@@ -120,9 +123,6 @@ public unsafe partial class Bitmap : NativeObject {
 			return WxKitNative.BitmapSaveFile(Native, nameText, NativeString.Length(name), (int)type) != 0;
 		}
 	}
-
-	/// <summary>Enable or disable use of alpha channel in this bitmap.</summary>
-	public bool UseAlpha(bool use = true) => WxKitNative.BitmapUseAlpha(Native, use ? (byte)1 : (byte)0) != 0;
 
 	private static WxkObject* CreateNative(int width, int height, int depth) {
 		Application.VerifyAccess();

@@ -329,20 +329,12 @@ WXK_FUNCTION(void) wxk_Window_SetOwnBackgroundColour(wxk_Window* self, wxk_Colou
 	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->SetOwnBackgroundColour(wxk::FromColour(color)); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_Window_InheritsBackgroundColour(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->InheritsBackgroundColour()) ? 1 : 0; });
-}
-
 WXK_FUNCTION(void) wxk_Window_SetOwnFont(wxk_Window* self, const wxk_Object* font) noexcept {
 	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->SetOwnFont(wxk::ValueOf<wxFont>(font)); });
 }
 
 WXK_FUNCTION(void) wxk_Window_SetOwnForegroundColour(wxk_Window* self, wxk_Colour color) noexcept {
 	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->SetOwnForegroundColour(wxk::FromColour(color)); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Window_InheritsForegroundColour(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->InheritsForegroundColour()) ? 1 : 0; });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Window_SetTransparent(wxk_Window* self, uint8_t alpha) noexcept {
@@ -517,6 +509,22 @@ WXK_FUNCTION(uint8_t) wxk_Window_Enable(wxk_Window* self, uint8_t enable) noexce
 
 WXK_FUNCTION(uint8_t) wxk_Window_UseBgCol(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->UseBgCol()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(uint8_t) wxk_Window_InheritsBackgroundColour(wxk_Window* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->InheritsBackgroundColour()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(uint8_t) wxk_Window_InheritsForegroundColour(wxk_Window* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->InheritsForegroundColour()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(uint8_t) wxk_Window_GetThemeEnabled(wxk_Window* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->GetThemeEnabled()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(void) wxk_Window_SetThemeEnabled(wxk_Window* self, uint8_t enable) noexcept {
+	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->SetThemeEnabled(enable != 0); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Window_IsFocusable(wxk_Window* self) noexcept {
@@ -745,14 +753,6 @@ WXK_FUNCTION(uint8_t) wxk_Window_HasTransparentBackground(wxk_Window* self) noex
 
 WXK_FUNCTION(uint8_t) wxk_Window_IsTransparentBackgroundSupported(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->IsTransparentBackgroundSupported()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Window_GetThemeEnabled(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->GetThemeEnabled()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(void) wxk_Window_SetThemeEnabled(wxk_Window* self, uint8_t enable) noexcept {
-	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->SetThemeEnabled(enable != 0); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Window_CanSetTransparent(wxk_Window* self) noexcept {

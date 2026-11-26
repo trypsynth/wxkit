@@ -142,6 +142,12 @@ public unsafe partial class Window : EvtHandler {
 		set => WxKitNative.WindowSetId(Native, value);
 	}
 
+	/// <summary>Return true if this window inherits the background colour from its parent.</summary>
+	public bool InheritsBackgroundColor => WxKitNative.WindowInheritsBackgroundColour(Native) != 0;
+
+	/// <summary>Return true if this window inherits the foreground colour from its parent.</summary>
+	public bool InheritsForegroundColor => WxKitNative.WindowInheritsForegroundColour(Native) != 0;
+
 	/// <summary>Return the area where the text is being entered.</summary>
 	public Rect InputMethodCursorRect => WxKitNative.WindowGetInputMethodCursorRect(Native);
 
@@ -177,6 +183,12 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>Returns true if the window is physically visible on the screen, i.e. it is shown and all its parents up to the toplevel window are shown as well.</summary>
 	public bool IsShownOnScreen => WxKitNative.WindowIsShownOnScreen(Native) != 0;
+
+	/// <summary>Returns true if the window uses the system theme for drawing its background.</summary>
+	public bool IsThemeEnabled {
+		get => WxKitNative.WindowGetThemeEnabled(Native) != 0;
+		set => WxKitNative.WindowSetThemeEnabled(Native, value ? (byte)1 : (byte)0);
+	}
 
 	/// <summary>Returns true if this window is intrinsically enabled, false otherwise, i.e. if Enable() Enable(false) had been called.</summary>
 	public bool IsThisEnabled => WxKitNative.WindowIsThisEnabled(Native) != 0;
@@ -279,12 +291,6 @@ public unsafe partial class Window : EvtHandler {
 	public Size Size {
 		get => WxKitNative.WindowGetSizeDefault(Native);
 		set => WxKitNative.WindowSetSizeSize(Native, value);
-	}
-
-	/// <summary>Returns true if the window uses the system theme for drawing its background.</summary>
-	public bool ThemeEnabled {
-		get => WxKitNative.WindowGetThemeEnabled(Native) != 0;
-		set => WxKitNative.WindowSetThemeEnabled(Native, value ? (byte)1 : (byte)0);
 	}
 
 	/// <summary>Get the update rectangle bounding box in client coords.</summary>
@@ -674,12 +680,6 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public HitTestResult HitTest(Point point) => (HitTestResult)WxKitNative.WindowHitTest(Native, point);
-
-	/// <summary>Return true if this window inherits the background colour from its parent.</summary>
-	public bool InheritsBackgroundColor() => WxKitNative.WindowInheritsBackgroundColour(Native) != 0;
-
-	/// <summary>Return true if this window inherits the foreground colour from its parent.</summary>
-	public bool InheritsForegroundColor() => WxKitNative.WindowInheritsForegroundColour(Native) != 0;
 
 	/// <summary>Sends an wxEVT_INIT_DIALOG event, whose handler usually transfers data to the dialog via validators.</summary>
 	public void InitDialog() => WxKitNative.WindowInitDialog(Native);

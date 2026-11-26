@@ -551,6 +551,14 @@ internal sealed class ClassTweak(string name) {
 		return this;
 	}
 
+	/// <summary>Properties that hide a base's of the same name, which says something else of this class, rather than being left out as a repeat.</summary>
+	public HashSet<string> HidingProperties { get; } = new(StringComparer.Ordinal);
+
+	public ClassTweak HidesInherited(params string[] properties) {
+		HidingProperties.UnionWith(properties);
+		return this;
+	}
+
 	public ClassTweak StylesPrefixed(string prefix) {
 		StylePrefix = prefix;
 		return this;

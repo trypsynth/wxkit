@@ -48,7 +48,7 @@ internal sealed class LibraryFrame : Frame {
 		markRead.Click += (_, _) => ToggleSelected();
 		// The buttons that act on a book only apply while one is selected.
 		Bind(EventType.UpdateUi, (_, e) => {
-			if (e.Id == remove.Id || e.Id == markRead.Id) e.Enable(SelectedRow >= 0);
+			if (e.Id == remove.Id || e.Id == markRead.Id) e.IsEnabled = SelectedRow >= 0;
 		});
 		BoxSizer filters = new(Orientation.Horizontal);
 		filters.Add(searchLabel, SizerFlags.Default.CenterVertical().Border());

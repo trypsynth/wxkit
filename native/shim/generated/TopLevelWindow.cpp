@@ -46,14 +46,6 @@ WXK_FUNCTION(void) wxk_TopLevelWindow_SetIcons(wxk_Window* self, const wxk_Objec
 	wxk::Guard([&] { static_cast<wxTopLevelWindow*>(wxk::Unwrap(self))->SetIcons(wxIconBundle(wxk::ValueOf<wxIcon>(icons))); });
 }
 
-WXK_FUNCTION(void) wxk_TopLevelWindow_OSXSetModified(wxk_Window* self, uint8_t modified) noexcept {
-	wxk::Guard([&] { static_cast<wxTopLevelWindow*>(wxk::Unwrap(self))->OSXSetModified(modified != 0); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_TopLevelWindow_OSXIsModified(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTopLevelWindow*>(wxk::Unwrap(self))->OSXIsModified()) ? 1 : 0; });
-}
-
 WXK_FUNCTION(void) wxk_TopLevelWindow_SetRepresentedFilename(wxk_Window* self, const char16_t* fileName, size_t fileNameLength) noexcept {
 	wxk::Guard([&] { static_cast<wxTopLevelWindow*>(wxk::Unwrap(self))->SetRepresentedFilename(wxk::FromUtf16(fileName, fileNameLength)); });
 }
@@ -68,6 +60,14 @@ WXK_FUNCTION(uint8_t) wxk_TopLevelWindow_EnableFullScreenView(wxk_Window* self, 
 
 WXK_FUNCTION(uint8_t) wxk_TopLevelWindow_ShowFullScreen(wxk_Window* self, uint8_t show, int64_t style) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTopLevelWindow*>(wxk::Unwrap(self))->ShowFullScreen(show != 0, static_cast<long>(style))) ? 1 : 0; });
+}
+
+WXK_FUNCTION(uint8_t) wxk_TopLevelWindow_OSXIsModified(wxk_Window* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTopLevelWindow*>(wxk::Unwrap(self))->OSXIsModified()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(void) wxk_TopLevelWindow_OSXSetModified(wxk_Window* self, uint8_t modified) noexcept {
+	wxk::Guard([&] { static_cast<wxTopLevelWindow*>(wxk::Unwrap(self))->OSXSetModified(modified != 0); });
 }
 
 WXK_FUNCTION(wxk_Window*) wxk_TopLevelWindow_GetDefaultItem(wxk_Window* self) noexcept {

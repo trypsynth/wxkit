@@ -99,6 +99,14 @@ WXK_FUNCTION(uint8_t) wxk_Font_SetNativeFontInfoUserDesc(wxk_Object* self, const
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxFont*>(wxk::Unwrap(self))->SetNativeFontInfoUserDesc(wxk::FromUtf16(info, infoLength))) ? 1 : 0; });
 }
 
+WXK_FUNCTION(uint8_t) wxk_Font_GetStrikethrough(wxk_Object* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxFont*>(wxk::Unwrap(self))->GetStrikethrough()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(void) wxk_Font_SetStrikethrough(wxk_Object* self, uint8_t strikethrough) noexcept {
+	wxk::Guard([&] { static_cast<wxFont*>(wxk::Unwrap(self))->SetStrikethrough(strikethrough != 0); });
+}
+
 WXK_FUNCTION(wxk_Object*) wxk_Font_GetBaseFont(wxk_Object* self) noexcept {
 	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxFont>(static_cast<wxFont*>(wxk::Unwrap(self))->GetBaseFont()); });
 }
@@ -161,14 +169,6 @@ WXK_FUNCTION(int32_t) wxk_Font_GetStyle(wxk_Object* self) noexcept {
 
 WXK_FUNCTION(void) wxk_Font_SetStyle(wxk_Object* self, int32_t style) noexcept {
 	wxk::Guard([&] { static_cast<wxFont*>(wxk::Unwrap(self))->SetStyle(static_cast<wxFontStyle>(style)); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Font_GetStrikethrough(wxk_Object* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxFont*>(wxk::Unwrap(self))->GetStrikethrough()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(void) wxk_Font_SetStrikethrough(wxk_Object* self, uint8_t strikethrough) noexcept {
-	wxk::Guard([&] { static_cast<wxFont*>(wxk::Unwrap(self))->SetStrikethrough(strikethrough != 0); });
 }
 
 WXK_FUNCTION(int32_t) wxk_Font_GetWeight(wxk_Object* self) noexcept {
