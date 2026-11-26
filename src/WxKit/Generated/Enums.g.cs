@@ -366,8 +366,6 @@ public enum BackgroundStyle {
 
 /// <summary>Wraps wxBitmapType.</summary>
 public enum BitmapType {
-	/// <summary>Wraps wxBITMAP_TYPE_INVALID.</summary>
-	Invalid = 0,
 	/// <summary>Wraps wxBITMAP_TYPE_BMP.</summary>
 	Bmp = 1,
 	/// <summary>Wraps wxBITMAP_TYPE_BMP_RESOURCE.</summary>
@@ -392,12 +390,8 @@ public enum BitmapType {
 	XpmData = 10,
 	/// <summary>Wraps wxBITMAP_TYPE_TIFF.</summary>
 	Tiff = 11,
-	/// <summary>Wraps wxBITMAP_TYPE_TIF.</summary>
-	Tif = 11,
 	/// <summary>Wraps wxBITMAP_TYPE_TIFF_RESOURCE.</summary>
 	TiffResource = 12,
-	/// <summary>Wraps wxBITMAP_TYPE_TIF_RESOURCE.</summary>
-	TifResource = 12,
 	/// <summary>Wraps wxBITMAP_TYPE_GIF.</summary>
 	Gif = 13,
 	/// <summary>Wraps wxBITMAP_TYPE_GIF_RESOURCE.</summary>
@@ -462,14 +456,10 @@ public enum Border {
 	Double = 268435456,
 	/// <summary>Wraps wxBORDER_THEME.</summary>
 	Theme = 268435456,
-	/// <summary>Wraps wxBORDER_MASK.</summary>
-	Mask = 522190848,
 }
 
 /// <summary>Wraps wxBrushStyle.</summary>
 public enum BrushStyle {
-	/// <summary>Wraps wxBRUSHSTYLE_INVALID.</summary>
-	Invalid = -1,
 	/// <summary>Solid. Wraps wxBRUSHSTYLE_SOLID.</summary>
 	Solid = 100,
 	/// <summary>Transparent (no fill). Wraps wxBRUSHSTYLE_TRANSPARENT.</summary>
@@ -547,6 +537,8 @@ public enum DataViewCellMode {
 /// <summary>Wraps wxDataViewColumnFlags.</summary>
 [Flags]
 public enum DataViewColumnFlags {
+	/// <summary>None of the flags. Wraps 0.</summary>
+	None = 0,
 	/// <summary>Wraps wxDATAVIEW_COL_RESIZABLE.</summary>
 	Resizable = 1,
 	/// <summary>Wraps wxDATAVIEW_COL_SORTABLE.</summary>
@@ -628,6 +620,8 @@ public enum FileDialogShortcut {
 /// <summary>Wraps wxFindReplaceDialogStyles.</summary>
 [Flags]
 public enum FindReplaceDialogStyle {
+	/// <summary>None of the flags. Wraps 0.</summary>
+	None = 0,
 	/// <summary>replace dialog (otherwise find dialog). Wraps wxFR_REPLACEDIALOG.</summary>
 	ReplaceDialog = 1,
 	/// <summary>don't allow changing the search direction. Wraps wxFR_NOUPDOWN.</summary>
@@ -641,6 +635,8 @@ public enum FindReplaceDialogStyle {
 /// <summary>Wraps wxFindReplaceFlags.</summary>
 [Flags]
 public enum FindReplaceFlags {
+	/// <summary>None of the flags. Wraps 0.</summary>
+	None = 0,
 	/// <summary>downward search/replace selected (otherwise - upwards). Wraps wxFR_DOWN.</summary>
 	Down = 1,
 	/// <summary>whole word search/replace selected. Wraps wxFR_WHOLEWORD.</summary>
@@ -703,8 +699,6 @@ public enum FontEncoding {
 	Iso8859_14 = 14,
 	/// <summary>Latin 9 (a.k.a. Latin 0, includes Euro symbol). Wraps wxFONTENCODING_ISO8859_15.</summary>
 	Iso8859_15 = 15,
-	/// <summary>Wraps wxFONTENCODING_ISO8859_MAX.</summary>
-	Iso8859Max = 16,
 	/// <summary>KOI8 Russian. Wraps wxFONTENCODING_KOI8.</summary>
 	Koi8 = 17,
 	/// <summary>KOI8 Ukrainian. Wraps wxFONTENCODING_KOI8_U.</summary>
@@ -753,8 +747,6 @@ public enum FontEncoding {
 	Cp1258 = 39,
 	/// <summary>Korean (Johab) (since 2.9.4). Wraps wxFONTENCODING_CP1361.</summary>
 	Cp1361 = 40,
-	/// <summary>Wraps wxFONTENCODING_CP12_MAX.</summary>
-	Cp12Max = 41,
 	/// <summary>UTF-7 Unicode encoding. Wraps wxFONTENCODING_UTF7.</summary>
 	Utf7 = 42,
 	/// <summary>UTF-8 Unicode encoding. Wraps wxFONTENCODING_UTF8.</summary>
@@ -851,12 +843,8 @@ public enum FontEncoding {
 	MacKeyboard = 88,
 	/// <summary>ISO-2022-JP JIS encoding. Wraps wxFONTENCODING_ISO2022_JP.</summary>
 	Iso2022Jp = 89,
-	/// <summary>Highest enumerated encoding value. Wraps wxFONTENCODING_MAX.</summary>
-	Max = 90,
 	/// <summary>Wraps wxFONTENCODING_MACMIN.</summary>
 	MacMin = 49,
-	/// <summary>Wraps wxFONTENCODING_MACMAX.</summary>
-	MacMax = 88,
 	/// <summary>Simplified Chinese. Wraps wxFONTENCODING_GB2312.</summary>
 	Gb2312 = 28,
 	/// <summary>Traditional Chinese. Wraps wxFONTENCODING_BIG5.</summary>
@@ -887,8 +875,6 @@ public enum FontFamily {
 	Modern = 75,
 	/// <summary>A teletype (i.e. monospaced) font. Wraps wxFONTFAMILY_TELETYPE.</summary>
 	Teletype = 76,
-	/// <summary>Wraps wxFONTFAMILY_MAX.</summary>
-	Max = 77,
 	/// <summary>Invalid font family value, returned by wxFont::GetFamily() when the font is invalid for example. Wraps wxFONTFAMILY_UNKNOWN.</summary>
 	Unknown = 77,
 }
@@ -912,8 +898,6 @@ public enum FontStyle {
 	Italic = 93,
 	/// <summary>The font is slanted, but in a roman style. Wraps wxFONTSTYLE_SLANT.</summary>
 	Slant = 94,
-	/// <summary>Wraps wxFONTSTYLE_MAX.</summary>
-	Max = 95,
 }
 
 /// <summary>Wraps wxFontSymbolicSize.</summary>
@@ -936,8 +920,6 @@ public enum FontSymbolicSize {
 
 /// <summary>Wraps wxFontWeight.</summary>
 public enum FontWeight {
-	/// <summary>Invalid font weight. Wraps wxFONTWEIGHT_INVALID.</summary>
-	Invalid = 0,
 	/// <summary>Thin font (weight = 100). Wraps wxFONTWEIGHT_THIN.</summary>
 	Thin = 100,
 	/// <summary>Extra Light (Ultra Light) font (weight = 200). Wraps wxFONTWEIGHT_EXTRALIGHT.</summary>
@@ -958,8 +940,6 @@ public enum FontWeight {
 	Heavy = 900,
 	/// <summary>Extra Heavy font (weight = 1000). Wraps wxFONTWEIGHT_EXTRAHEAVY.</summary>
 	ExtraHeavy = 1000,
-	/// <summary>Wraps wxFONTWEIGHT_MAX.</summary>
-	Max = 1000,
 }
 
 /// <summary>Wraps wxFULLSCREEN_*.</summary>
@@ -995,8 +975,6 @@ public enum HelpOrigin {
 public enum HitTestResult {
 	/// <summary>Wraps wxHT_NOWHERE.</summary>
 	Nowhere = 0,
-	/// <summary>Wraps wxHT_SCROLLBAR_FIRST.</summary>
-	ScrollBarFirst = 0,
 	/// <summary>left or upper arrow to scroll by line. Wraps wxHT_SCROLLBAR_ARROW_LINE_1.</summary>
 	ScrollBarArrowLine1 = 1,
 	/// <summary>right or down. Wraps wxHT_SCROLLBAR_ARROW_LINE_2.</summary>
@@ -1011,8 +989,6 @@ public enum HitTestResult {
 	ScrollBarBar1 = 6,
 	/// <summary>bar to the right/below the thumb. Wraps wxHT_SCROLLBAR_BAR_2.</summary>
 	ScrollBarBar2 = 7,
-	/// <summary>Wraps wxHT_SCROLLBAR_LAST.</summary>
-	ScrollBarLast = 8,
 	/// <summary>not in this window at all. Wraps wxHT_WINDOW_OUTSIDE.</summary>
 	WindowOutside = 9,
 	/// <summary>in the client area. Wraps wxHT_WINDOW_INSIDE.</summary>
@@ -1023,8 +999,6 @@ public enum HitTestResult {
 	WindowHorzScrollBar = 12,
 	/// <summary>on the corner between 2 scrollbars. Wraps wxHT_WINDOW_CORNER.</summary>
 	WindowCorner = 13,
-	/// <summary>Wraps wxHT_MAX.</summary>
-	Max = 14,
 }
 
 /// <summary>Wraps wxIdleMode.</summary>
@@ -1064,6 +1038,8 @@ public enum ImageResizeQuality {
 /// <summary>Wraps wxKeyCategoryFlags.</summary>
 [Flags]
 public enum KeyCategory {
+	/// <summary>None of the flags. Wraps 0.</summary>
+	None = 0,
 	/// <summary>arrow keys, on and off numeric keypads. Wraps WXK_CATEGORY_ARROW.</summary>
 	Arrow = 1,
 	/// <summary>page up and page down keys, on and off numeric keypads. Wraps WXK_CATEGORY_PAGING.</summary>
@@ -1617,8 +1593,6 @@ public enum MouseButton {
 	Aux1 = 4,
 	/// <summary>Second additional mouse button. Wraps wxMOUSE_BTN_AUX2.</summary>
 	Aux2 = 5,
-	/// <summary>Wraps wxMOUSE_BTN_MAX.</summary>
-	Max = 6,
 }
 
 /// <summary>Wraps wxMouseWheelAxis.</summary>
@@ -1902,8 +1876,6 @@ public enum PaperKind {
 
 /// <summary>Wraps wxPenCap.</summary>
 public enum PenCap {
-	/// <summary>Wraps wxCAP_INVALID.</summary>
-	Invalid = -1,
 	/// <summary>The pen will have a rounded edge and will extend beyond the start and end of a line. Wraps wxCAP_ROUND.</summary>
 	Round = 130,
 	/// <summary>The pen's edge will be square and will extend beyond the start and end of a line. Wraps wxCAP_PROJECTING.</summary>
@@ -1914,8 +1886,6 @@ public enum PenCap {
 
 /// <summary>Wraps wxPenJoin.</summary>
 public enum PenJoin {
-	/// <summary>Wraps wxJOIN_INVALID.</summary>
-	Invalid = -1,
 	/// <summary>The intersection of two lines will have a diagonal edge "cut" into it. Wraps wxJOIN_BEVEL.</summary>
 	Bevel = 120,
 	/// <summary>The intersection of two lines will have a sharp corner. Wraps wxJOIN_MITER.</summary>
@@ -1936,8 +1906,6 @@ public enum PenQuality {
 
 /// <summary>Wraps wxPenStyle.</summary>
 public enum PenStyle {
-	/// <summary>Wraps wxPENSTYLE_INVALID.</summary>
-	Invalid = -1,
 	/// <summary>Solid style. Wraps wxPENSTYLE_SOLID.</summary>
 	Solid = 100,
 	/// <summary>Dotted style. Wraps wxPENSTYLE_DOT.</summary>
@@ -2187,8 +2155,6 @@ public enum ShowEffect {
 	Blend = 9,
 	/// <summary>Expanding or collapsing effect. Wraps wxSHOW_EFFECT_EXPAND.</summary>
 	Expand = 10,
-	/// <summary>Wraps wxSHOW_EFFECT_MAX.</summary>
-	Max = 11,
 }
 
 /// <summary>Wraps wxSIZE_*.</summary>
@@ -2568,8 +2534,6 @@ public enum TreeItemIcon {
 	Expanded = 2,
 	/// <summary>To get/set the item image for when the item is selected and expanded. Wraps wxTreeItemIcon_SelectedExpanded.</summary>
 	SelectedExpanded = 3,
-	/// <summary>Wraps wxTreeItemIcon_Max.</summary>
-	Max = 4,
 }
 
 /// <summary>Wraps wxUpdateUI.</summary>
@@ -2602,6 +2566,8 @@ public enum UserAttention {
 /// <summary>Wraps wxWebViewBrowsingDataTypes.</summary>
 [Flags]
 public enum WebViewBrowsingDataTypes {
+	/// <summary>None of the flags. Wraps 0.</summary>
+	None = 0,
 	/// <summary>All stored and session cookies. Wraps wxWEBVIEW_BROWSING_DATA_COOKIES.</summary>
 	Cookies = 1,
 	/// <summary>Cached data from disk and memory. Wraps wxWEBVIEW_BROWSING_DATA_CACHE.</summary>
@@ -2727,8 +2693,6 @@ public enum WindowVariant {
 	Mini = 2,
 	/// <summary>Large size (about 25 % larger than normal). Wraps wxWINDOW_VARIANT_LARGE.</summary>
 	Large = 3,
-	/// <summary>Wraps wxWINDOW_VARIANT_MAX.</summary>
-	Max = 4,
 }
 
 /// <summary>Wraps *.</summary>

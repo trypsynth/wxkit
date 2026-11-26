@@ -7,7 +7,7 @@ namespace WxKit;
 /// <summary>A control combining wxTreeCtrl and wxListCtrl features. Wraps wxTreeListCtrl.</summary>
 public unsafe partial class TreeListCtrl : Window {
 	/// <summary>Full constructing, creating the object and its window.</summary>
-	public TreeListCtrl(Window parent, int id = StandardId.Any, Point? position = null, Size? size = null, TreeListCtrlStyle style = TreeListCtrlStyle.Default) : this(CreateNative(parent, id, position, size, style)) {
+	public TreeListCtrl(Window parent, int id = StandardId.Any, Point? position = null, Size? size = null, TreeListCtrlStyle style = TreeListCtrlStyle.None) : this(CreateNative(parent, id, position, size, style)) {
 	}
 
 	internal TreeListCtrl(WxkWindow* native) : base(native) {

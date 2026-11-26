@@ -25,7 +25,7 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
   - `KeyEvent.RawControlDown()` and `MouseEvent`'s, once `KeyModifiers` has a member for the Control key of a Mac, where `Control` is Command.
   - The styled text control's `Text` beside `Value`, `TextLength` beside `LastPosition`, and `CurrentPos` beside `InsertionPoint`, if one of each should go. Its `ClearAll` could be `Clear`, as `TextCtrl`'s is.
   - `Font`'s `MakeBold` family, which change a font in place, beside `Bold` and the others that return a changed copy, which are named one way, such as `WithBold`.
-- Enum members that are sentinels or aliases, such as `Max`, `First`, `Last`, and `Invalid`, `BitmapType.Tif` beside `Tiff`, and zero members of flags enums, such as `ListBoxStyle.NeededSb`, which make `HasFlag` always true. Flags enums without a `None` get one.
+- Zero members of flags enums that aren't a class's styles, which make `HasFlag` always true, if they should go as the styles' did: `Alignment.Left` and `Top`, `DragFlags.CopyOnly`, `NavigationFlags.Backward`, `SizeFlags.UseExisting`, and `Default` of `WebViewFindFlags` and `WebViewPrintFlags`. `Direction` and `Orientation` have no `None`.
 
 ## Members that have a better form now
 

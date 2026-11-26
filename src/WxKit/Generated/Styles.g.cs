@@ -104,8 +104,6 @@ public enum ChoiceStyle : long {
 public enum ChoicebookStyle : long {
 	/// <summary>No styles. Wraps 0.</summary>
 	None = 0x0,
-	/// <summary>Choose the default location for the labels depending on the current platform (but currently it's the same everywhere, namely wxCHB_TOP). Wraps wxCHB_DEFAULT.</summary>
-	Default = 0x0,
 	/// <summary>Place labels above the page area. Wraps wxCHB_TOP.</summary>
 	Top = 0x10,
 	/// <summary>Place labels on the left side. Wraps wxCHB_LEFT.</summary>
@@ -132,8 +130,6 @@ public enum CollapsiblePaneStyle : long {
 public enum ColorPickerCtrlStyle : long {
 	/// <summary>No styles. Wraps 0.</summary>
 	None = 0x0,
-	/// <summary>The default style: 0. Wraps wxCLRP_DEFAULT_STYLE.</summary>
-	Default = 0x0,
 	/// <summary>Creates a text control to the left of the picker button which is completely managed by the wxColourPickerCtrl and which can be used by the user to specify a colour (see SetColour). The text control is automatically synchronized with button's value. Use functions defined in wxPickerBase to modify the text control. Wraps wxCLRP_USE_TEXTCTRL.</summary>
 	UseTextCtrl = 0x2,
 	/// <summary>Shows the colour in HTML form (AABBCC) as colour button label (instead of no label at all). Wraps wxCLRP_SHOW_LABEL.</summary>
@@ -164,8 +160,6 @@ public enum ComboBoxStyle : long {
 public enum DataViewCtrlStyle : long {
 	/// <summary>No styles. Wraps 0.</summary>
 	None = 0x0,
-	/// <summary>Single selection mode. This is the default. Wraps wxDV_SINGLE.</summary>
-	Single = 0x0,
 	/// <summary>Multiple selection mode. Wraps wxDV_MULTIPLE.</summary>
 	Multiple = 0x1,
 	/// <summary>Use alternating colours for odd and even rows. Wraps wxDV_ROW_LINES.</summary>
@@ -189,8 +183,6 @@ public enum DatePickerCtrlStyle : long {
 	Spin = 0x1,
 	/// <summary>Creates a control with a month calendar drop-down part from which the user can select a date. In OSX/Cocoa native version this style is supported on macOS 10.15.4 and later. Wraps wxDP_DROPDOWN.</summary>
 	DropDown = 0x2,
-	/// <summary>Creates a control with the style that is best supported for the current platform (currently wxDP_SPIN under Windows and OSX/Cocoa and wxDP_DROPDOWN elsewhere). Wraps wxDP_DEFAULT.</summary>
-	Default = 0x0,
 	/// <summary>With this style, the control allows the user to not enter any valid date at all. Without it - the default - the control always has some valid date. This style is not supported in OSX/Cocoa native version. Wraps wxDP_ALLOWNONE.</summary>
 	AllowNone = 0x8,
 	/// <summary>Forces display of the century in the default date format. Without this style the century could be displayed, or not, depending on the default date representation in the system. This style is not supported in OSX/Cocoa native version currently. Wraps wxDP_SHOWCENTURY.</summary>
@@ -456,8 +448,6 @@ public enum ListBoxStyle : long {
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>Always show a vertical scrollbar. Wraps wxLB_ALWAYS_SB.</summary>
 	AlwaysSb = 0x200,
-	/// <summary>Only create a vertical scrollbar if needed. Wraps wxLB_NEEDED_SB.</summary>
-	NeededSb = 0x0,
 	/// <summary>Don't create vertical scrollbar (wxMSW and wxGTK only). Wraps wxLB_NO_SB.</summary>
 	NoSb = 0x400,
 	/// <summary>The listbox contents are sorted in alphabetical order. Wraps wxLB_SORT.</summary>
@@ -506,8 +496,6 @@ public enum ListCtrlStyle : long {
 public enum ListbookStyle : long {
 	/// <summary>No styles. Wraps 0.</summary>
 	None = 0x0,
-	/// <summary>Choose the default location for the labels depending on the current platform (left everywhere except Mac where it is top). Wraps wxLB_DEFAULT.</summary>
-	Default = 0x0,
 	/// <summary>Place labels above the page area. Wraps wxLB_TOP.</summary>
 	Top = 0x10,
 	/// <summary>Place labels on the left side. Wraps wxLB_LEFT.</summary>
@@ -535,10 +523,6 @@ public enum MessageDialogStyle : long {
 	NoDefault = 0x80,
 	/// <summary>Makes the "Cancel" button default, can only be used with wxCANCEL. This style is currently not supported (and ignored) in wxOSX. Wraps wxCANCEL_DEFAULT.</summary>
 	CancelDefault = 0x80000000,
-	/// <summary>Makes the "Yes" button default, this is the default behaviour and this flag exists solely for symmetry with wxNO_DEFAULT. Wraps wxYES_DEFAULT.</summary>
-	YesDefault = 0x0,
-	/// <summary>Makes the "OK" button default, this is the default behaviour and this flag exists solely for symmetry with wxCANCEL_DEFAULT. Wraps wxOK_DEFAULT.</summary>
-	OkDefault = 0x0,
 	/// <summary>Displays no icon in the dialog if possible (an icon might still be displayed if the current platform mandates its use). This style may be used to prevent the dialog from using the default icon based on wxYES_NO presence as explained in wxICON_QUESTION and wxICON_INFORMATION documentation below. Wraps wxICON_NONE.</summary>
 	IconNone = 0x40000,
 	/// <summary>Displays an error icon in the dialog. Wraps wxICON_ERROR.</summary>
@@ -686,8 +670,6 @@ public enum SearchCtrlStyle : long {
 	ProcessTab = 0x40,
 	/// <summary>By default, the Windows text control doesn't show the selection when it doesn't have focus - use this style to force it to always show it. It doesn't do anything under other platforms. Wraps wxTE_NOHIDESEL.</summary>
 	NoHideSelection = 0x2000,
-	/// <summary>The text in the control will be left-justified (default). Wraps wxTE_LEFT.</summary>
-	Left = 0x0,
 	/// <summary>The text in the control will be centered (currently wxMSW and wxGTK2 only). Wraps wxTE_CENTRE.</summary>
 	Center = 0x100,
 	/// <summary>The text in the control will be right-justified (currently wxMSW and wxGTK2 only). Wraps wxTE_RIGHT.</summary>
@@ -766,8 +748,6 @@ public enum SpinCtrlStyle : long {
 	Wrap = 0x8000,
 	/// <summary>Indicates that the control should generate wxEVT_TEXT_ENTER events. Using this style will prevent the user from using the Enter key for dialog navigation (e.g. activating the default button in the dialog) under MSW. Wraps wxTE_PROCESS_ENTER.</summary>
 	ProcessEnter = 0x400,
-	/// <summary>Same as wxTE_LEFT for wxTextCtrl: the text is left aligned (this is the default). Wraps wxALIGN_LEFT.</summary>
-	AlignLeft = 0x0,
 	/// <summary>Same as wxTE_CENTRE for wxTextCtrl: the text is centered. Wraps wxALIGN_CENTRE_HORIZONTAL.</summary>
 	AlignCenterHorizontal = 0x100,
 	/// <summary>Same as wxTE_RIGHT for wxTextCtrl: the text is right aligned. Wraps wxALIGN_RIGHT.</summary>
@@ -785,8 +765,6 @@ public enum SpinCtrlDoubleStyle : long {
 	Wrap = 0x8000,
 	/// <summary>Indicates that the control should generate wxEVT_TEXT_ENTER events. Using this style will prevent the user from using the Enter key for dialog navigation (e.g. activating the default button in the dialog) under MSW. Wraps wxTE_PROCESS_ENTER.</summary>
 	ProcessEnter = 0x400,
-	/// <summary>Same as wxTE_LEFT for wxTextCtrl: the text is left aligned (this is the default). Wraps wxALIGN_LEFT.</summary>
-	AlignLeft = 0x0,
 	/// <summary>Same as wxTE_CENTRE for wxTextCtrl: the text is centered. Wraps wxALIGN_CENTRE_HORIZONTAL.</summary>
 	AlignCenterHorizontal = 0x100,
 	/// <summary>Same as wxTE_RIGHT for wxTextCtrl: the text is right aligned. Wraps wxALIGN_RIGHT.</summary>
@@ -800,16 +778,12 @@ public enum SplitterWindowStyle : long {
 	None = 0x0,
 	/// <summary>Draws a 3D effect border and sash. Wraps wxSP_3D.</summary>
 	ThreeD = 0x300,
-	/// <summary>Draws a thin sash. Wraps wxSP_THIN_SASH.</summary>
-	ThinSash = 0x0,
 	/// <summary>Draws a 3D effect sash (part of default style). Wraps wxSP_3DSASH.</summary>
 	ThreeDSash = 0x100,
 	/// <summary>Synonym for wxSP_BORDER. Wraps wxSP_3DBORDER.</summary>
 	ThreeDBorder = 0x200,
 	/// <summary>Draws a standard border. Wraps wxSP_BORDER.</summary>
 	Border = 0x200,
-	/// <summary>No border (default). Wraps wxSP_NOBORDER.</summary>
-	NoBorder = 0x0,
 	/// <summary>Under Windows, switches off the attempt to draw the splitter using Windows theming, so the borders and sash will take on the pre-XP look. Wraps wxSP_NO_XP_THEME.</summary>
 	NoXpTheme = 0x400,
 	/// <summary>Always allow to unsplit, even with the minimum pane size other than zero. Wraps wxSP_PERMIT_UNSPLIT.</summary>
@@ -834,8 +808,6 @@ public enum StaticLineStyle : long {
 public enum StaticTextStyle : long {
 	/// <summary>No styles. Wraps 0.</summary>
 	None = 0x0,
-	/// <summary>Align the text to the left. Wraps wxALIGN_LEFT.</summary>
-	AlignLeft = 0x0,
 	/// <summary>Align the text to the right. Wraps wxALIGN_RIGHT.</summary>
 	AlignRight = 0x200,
 	/// <summary>Center the text (horizontally). Wraps wxALIGN_CENTRE_HORIZONTAL.</summary>
@@ -898,8 +870,6 @@ public enum TextCtrlStyle : long {
 	HorizontalScrollBar = 0x40000000,
 	/// <summary>For multiline controls only: vertical scrollbar will never be created. This limits the amount of text which can be entered into the control to what can be displayed in it under wxMSW but not under wxGTK or wxOSX. Currently not implemented for the other platforms. Wraps wxTE_NO_VSCROLL.</summary>
 	NoVerticalScrollBar = 0x2,
-	/// <summary>The text in the control will be left-justified (default). Wraps wxTE_LEFT.</summary>
-	Left = 0x0,
 	/// <summary>The text in the control will be centered (wxMSW, wxGTK, wxOSX). Wraps wxTE_CENTRE.</summary>
 	Center = 0x100,
 	/// <summary>The text in the control will be right-justified (wxMSW, wxGTK, wxOSX). Wraps wxTE_RIGHT.</summary>
@@ -910,8 +880,6 @@ public enum TextCtrlStyle : long {
 	CharWrap = 0x4000,
 	/// <summary>For multiline controls only: wrap the lines too long to be shown entirely at word boundaries (wxUniv, wxMSW, wxGTK, wxOSX). Wraps wxTE_WORDWRAP.</summary>
 	WordWrap = 0x1,
-	/// <summary>For multiline controls only: wrap the lines at word boundaries or at any other character if there are words longer than the window width (this is the default). Wraps wxTE_BESTWRAP.</summary>
-	BestWrap = 0x0,
 }
 
 /// <summary>Styles for <see cref="ToolBar"/>.</summary>
@@ -967,8 +935,6 @@ public enum TreeCtrlStyle : long {
 	None = 0x0,
 	/// <summary>Use this style if you wish the user to be able to edit labels in the tree control. Wraps wxTR_EDIT_LABELS.</summary>
 	EditLabels = 0x200,
-	/// <summary>For convenience to document that no buttons are to be drawn. Wraps wxTR_NO_BUTTONS.</summary>
-	NoButtons = 0x0,
 	/// <summary>Use this style to show + and - buttons to the left of parent items. Wraps wxTR_HAS_BUTTONS.</summary>
 	HasButtons = 0x1,
 	/// <summary>Selects alternative style of +/- buttons and shows rotating ("twisting") arrows instead. Currently this style is only implemented in wxMSW and is ignored under the other platforms as enabling it is equivalent to using wxSystemThemedControl::EnableSystemTheme(). Wraps wxTR_TWIST_BUTTONS.</summary>
@@ -985,8 +951,6 @@ public enum TreeCtrlStyle : long {
 	RowLines = 0x400,
 	/// <summary>Use this style to cause row heights to be just big enough to fit the content. If not set, all rows use the largest row height. The default is that this flag is unset. Generic only. Wraps wxTR_HAS_VARIABLE_ROW_HEIGHT.</summary>
 	HasVariableRowHeight = 0x80,
-	/// <summary>For convenience to document that only one item may be selected at a time. Selecting another item causes the current selection, if any, to be deselected. This is the default. Wraps wxTR_SINGLE.</summary>
-	Single = 0x0,
 	/// <summary>Use this style to allow a range of items to be selected. If a second range is selected, the current range, if any, is deselected. Wraps wxTR_MULTIPLE.</summary>
 	Multiple = 0x20,
 }
@@ -996,8 +960,6 @@ public enum TreeCtrlStyle : long {
 public enum TreeListCtrlStyle : long {
 	/// <summary>No styles. Wraps 0.</summary>
 	None = 0x0,
-	/// <summary>Single selection, this is the default. Wraps wxTL_SINGLE.</summary>
-	Single = 0x0,
 	/// <summary>Allow multiple selection, see GetSelections(). Wraps wxTL_MULTIPLE.</summary>
 	Multiple = 0x1,
 	/// <summary>Show the usual, 2 state, checkboxes for the items in the first column. Wraps wxTL_CHECKBOX.</summary>
@@ -1008,8 +970,6 @@ public enum TreeListCtrlStyle : long {
 	UserThreeState = 0x8,
 	/// <summary>Don't show the column headers, that are shown by default. Notice that this style is only available since wxWidgets 2.9.5. Wraps wxTL_NO_HEADER.</summary>
 	NoHeader = 0x10,
-	/// <summary>Style used by the control by default, just wxTL_SINGLE currently. Wraps wxTL_DEFAULT_STYLE.</summary>
-	Default = 0x0,
 }
 
 /// <summary>Styles for <see cref="Window"/>.</summary>
@@ -1017,8 +977,6 @@ public enum TreeListCtrlStyle : long {
 public enum WindowStyle : long {
 	/// <summary>No styles. Wraps 0.</summary>
 	None = 0x0,
-	/// <summary>The window class will decide the kind of border to show, if any. Wraps wxBORDER_DEFAULT.</summary>
-	BorderDefault = 0x0,
 	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
 	BorderSimple = 0x2000000,
 	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
@@ -1033,14 +991,10 @@ public enum WindowStyle : long {
 	BorderNone = 0x200000,
 	/// <summary>This style is obsolete and should not be used. Wraps wxBORDER_DOUBLE.</summary>
 	BorderDouble = 0x10000000,
-	/// <summary>This style is obsolete and doesn't do anything. See wxWindow::SetTransparent(). Wraps wxTRANSPARENT_WINDOW.</summary>
-	TransparentWindow = 0x0,
 	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
 	TabTraversal = 0x80000,
 	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
 	WantsChars = 0x40000,
-	/// <summary>On Windows, this style used to disable repainting the window completely when its size is changed. Since this behaviour is now the default, the style is now obsolete and no longer has an effect. Wraps wxNO_FULL_REPAINT_ON_RESIZE.</summary>
-	NoFullRepaintOnResize = 0x0,
 	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
 	VerticalScrollBar = -2147483648,
 	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>

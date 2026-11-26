@@ -86,12 +86,12 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 			List<string> names = [.. api.Constants.Keys.Where(name => name.StartsWith(prefix, StringComparison.Ordinal) && api.HeaderDefines.TryGetValue(name, out string? defined) && !defined.Contains("DEPRECATED", StringComparison.Ordinal)).Order(StringComparer.Ordinal)];
 			if (names.Count == 0) throw new InvalidOperationException($"A tweak binds the constants named {prefix}*, which the headers do not define.");
 			DoxygenEnum source = new($"{prefix}*", [.. names.Select(static name => new DoxygenEnumValue(name, string.Empty))]);
-			_enums[$"{prefix}* constants"] = new BoundEnum(managedName, source.Name, EnumMembers(source.Name, source, memberPrefix: null)) { IsConstantClass = true };
+			_enums[$"{prefix}* constants"] = new BoundEnum(managedName, source.Name, EnumMembers(source.Name, source, memberPrefix: null, sentinels: true)) { IsConstantClass = true };
 		}
 		foreach ((string cppName, ConstantClassTweak constants) in tweaks.ConstantClasses) {
 			if (!api.Enums.TryGetValue(cppName, out DoxygenEnum? source)) throw new InvalidOperationException($"A tweak binds the enum {cppName} as constants, which the interface headers do not have.");
 			DoxygenEnum kept = source with { Values = [.. source.Values.Where(value => !constants.Exclude.Contains(value.Name)).DistinctBy(static value => value.Name)] };
-			_enums[$"{cppName} constants"] = new BoundEnum(constants.Name, cppName, EnumMembers(cppName, kept, memberPrefix: null)) { IsConstantClass = true };
+			_enums[$"{cppName} constants"] = new BoundEnum(constants.Name, cppName, EnumMembers(cppName, kept, memberPrefix: null, sentinels: true)) { IsConstantClass = true };
 		}
 		// Bases are bound before the classes derived from them, so a class can leave out the
 		// members its bases already bind.
@@ -774,6 +774,12 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 				_skipped.Add($"{bound.CppName} style {style.Name}: its value is unknown");
 				continue;
 			}
+			// A style that is 0 is the absence of the others, which None says. Under a name of its
+			// own, HasFlag would find it in every value.
+			if (value == 0) {
+				_skipped.Add($"{bound.CppName} style {style.Name}: it is 0, which None is");
+				continue;
+			}
 			string name = Naming.Style(style.Name, prefix, bound.CppName);
 			if (members.Any(existing => existing.Name == name)) continue;
 			members.Add(new BoundStyle(name, style.Name, value, style.Description));
@@ -792,17 +798,22 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		if (!api.Enums.TryGetValue(cppName, out DoxygenEnum? source) || source.Values.Count == 0) return null;
 		EnumTweak? tweak = tweaks.Enums.GetValueOrDefault(cppName);
 		string managed = tweak?.Name ?? Naming.Type(cppName.Contains("::", StringComparison.Ordinal) ? cppName[(cppName.LastIndexOf(':') + 1)..] : cppName);
-		BoundEnum bound = new(managed, cppName, EnumMembers(cppName, source, tweak?.MemberPrefix, tweak?.Exclude)) { IsFlags = tweak?.IsFlags ?? false, Guard = tweak?.Guard };
+		List<BoundStyle> members = EnumMembers(cppName, source, tweak?.MemberPrefix, tweak?.Exclude);
+		if (tweak?.IsFlags == true && members.All(static member => member.Value != 0)) members.Insert(0, new BoundStyle("None", "0", 0, "None of the flags."));
+		BoundEnum bound = new(managed, cppName, members) { IsFlags = tweak?.IsFlags ?? false, Guard = tweak?.Guard };
 		_enums[cppName] = bound;
 		return bound;
 	}
 
-	private List<BoundStyle> EnumMembers(string owner, DoxygenEnum source, string? memberPrefix, string[]? exclude = null) {
+	private List<BoundStyle> EnumMembers(string owner, DoxygenEnum source, string? memberPrefix, string[]? exclude = null, bool sentinels = false) {
 		int shared = SharedWords(source);
 		List<BoundStyle> members = [];
 		foreach (DoxygenEnumValue value in source.Values) {
 			// A tweak leaves out a sentinel, or an alias, such as wxALIGN_MASK.
 			if (exclude?.Contains(value.Name) == true) continue;
+			// A bound of the enum's values, or a value for none of them, is for wxWidgets' own checks.
+			// A class of constants keeps its bounds, such as the styled text control's last style.
+			if (!sentinels && IsSentinel(value.Name)) continue;
 			// A value that is unknown, or depends on the platform, such as wxCURSOR_ARROWWAIT, is left out.
 			if (_constants.Value(value.Name) is not long number) {
 				_skipped.Add($"enum {owner}: the value of {value.Name} is unknown or depends on the platform");
@@ -814,6 +825,9 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		}
 		return members;
 	}
+
+	// The last four are a mask, a bound without the underscore, and second spellings of Tiff.
+	private static bool IsSentinel(string constant) => constant.EndsWith("_MAX", StringComparison.OrdinalIgnoreCase) || constant.EndsWith("_INVALID", StringComparison.Ordinal) || constant.EndsWith("_FIRST", StringComparison.Ordinal) || constant.EndsWith("_LAST", StringComparison.Ordinal) || constant is "wxBORDER_MASK" or "wxFONTENCODING_MACMAX" or "wxBITMAP_TYPE_TIF" or "wxBITMAP_TYPE_TIF_RESOURCE";
 
 	// Constants wxWidgets defines one by one, such as wxACC_STATE_SYSTEM_FOCUSED, as one enum in
 	// the order of their values. Flags get None, for none of them.

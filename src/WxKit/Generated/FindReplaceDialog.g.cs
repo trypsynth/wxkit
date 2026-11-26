@@ -7,7 +7,7 @@ namespace WxKit;
 /// <summary>wxFindReplaceDialog is a standard modeless dialog which is used to allow the user to search for some text (and possibly replace it with something else). Wraps wxFindReplaceDialog.</summary>
 public unsafe partial class FindReplaceDialog : Dialog {
 	/// <summary>After using default constructor Create() must be called.</summary>
-	public FindReplaceDialog(Window? parent, FindReplaceData data, string title, FindReplaceDialogStyle style = 0) : this(CreateNative(parent, data, title, style)) {
+	public FindReplaceDialog(Window? parent, FindReplaceData data, string title, FindReplaceDialogStyle style = FindReplaceDialogStyle.None) : this(CreateNative(parent, data, title, style)) {
 		KeepAlive(data);
 	}
 

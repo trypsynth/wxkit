@@ -7,7 +7,7 @@ namespace WxKit;
 /// <summary>This control allows the user to select a colour. Wraps wxColourPickerCtrl.</summary>
 public unsafe partial class ColorPickerCtrl : PickerBase {
 	/// <summary>Initializes the object and calls Create() with all the parameters.</summary>
-	public ColorPickerCtrl(Window parent, Color? color = null, int id = StandardId.Any, Point? position = null, Size? size = null, ColorPickerCtrlStyle style = ColorPickerCtrlStyle.Default) : this(CreateNative(parent, color, id, position, size, style)) {
+	public ColorPickerCtrl(Window parent, Color? color = null, int id = StandardId.Any, Point? position = null, Size? size = null, ColorPickerCtrlStyle style = ColorPickerCtrlStyle.None) : this(CreateNative(parent, color, id, position, size, style)) {
 	}
 
 	internal ColorPickerCtrl(WxkWindow* native) : base(native) {

@@ -476,7 +476,6 @@ enum WxKit.BitmapType : int
     Icon = 25
     IconResource = 26
     Iff = 28
-    Invalid = 0
     Jpeg = 17
     JpegResource = 18
     MacCursor = 30
@@ -491,8 +490,6 @@ enum WxKit.BitmapType : int
     PnmResource = 20
     Resource = 2
     Tga = 29
-    Tif = 11
-    TifResource = 12
     Tiff = 11
     TiffResource = 12
     Webp = 32
@@ -528,7 +525,6 @@ class WxKit.BookCtrlEvent : NotifyEvent
 enum WxKit.Border : int
     Default = 0
     Double = 268435456
-    Mask = 522190848
     None = 2097152
     Raised = 67108864
     Simple = 33554432
@@ -556,7 +552,6 @@ enum WxKit.BrushStyle : int
     FirstHatch = 111
     ForwardDiagonalHatch = 113
     HorizontalHatch = 115
-    Invalid = -1
     LastHatch = 116
     Solid = 100
     Stipple = 110
@@ -692,7 +687,6 @@ class WxKit.Choicebook : BookCtrlBase
     event EventHandler<BookCtrlEvent>? PageChanging
 [Flags] enum WxKit.ChoicebookStyle : long
     Bottom = 32
-    Default = 0
     Left = 64
     None = 0
     Right = 128
@@ -779,7 +773,6 @@ class WxKit.ColorPickerCtrl : PickerBase
     event EventHandler<ColorPickerEvent>? CurrentColorChanged
     event EventHandler<ColorPickerEvent>? DialogCanceled
 [Flags] enum WxKit.ColorPickerCtrlStyle : long
-    Default = 0
     None = 0
     ShowAlpha = 16
     ShowLabel = 8
@@ -1089,6 +1082,7 @@ sealed class WxKit.DataViewColumn
     void UnsetAsSortKey()
 [Flags] enum WxKit.DataViewColumnFlags : int
     Hidden = 8
+    None = 0
     Reorderable = 4
     Resizable = 1
     Sortable = 2
@@ -1178,7 +1172,6 @@ class WxKit.DataViewCtrl : Control
     NoHeader = 2
     None = 0
     RowLines = 16
-    Single = 0
     VariableLineHeight = 32
     VertRules = 8
 class WxKit.DataViewEvent : NotifyEvent
@@ -1325,7 +1318,6 @@ class WxKit.DatePickerCtrl : Control
     void SetRange(DateTime? earliest, DateTime? latest)
 [Flags] enum WxKit.DatePickerCtrlStyle : long
     AllowNone = 8
-    Default = 0
     DropDown = 2
     None = 0
     ShowCentury = 4
@@ -1882,12 +1874,12 @@ class WxKit.FindDialogEvent : CommandEvent
     string FindString { get; }
     string ReplaceString { get; }
 class WxKit.FindReplaceData : NativeObject
-    FindReplaceData(FindReplaceFlags flags = FindReplaceFlags.0)
+    FindReplaceData(FindReplaceFlags flags = FindReplaceFlags.None)
     FindReplaceFlags Flags { get; set; }
     string FindString { get; set; }
     string ReplaceString { get; set; }
 class WxKit.FindReplaceDialog : Dialog
-    FindReplaceDialog(Window? parent, FindReplaceData data, string title, FindReplaceDialogStyle style = FindReplaceDialogStyle.0)
+    FindReplaceDialog(Window? parent, FindReplaceData data, string title, FindReplaceDialogStyle style = FindReplaceDialogStyle.None)
     event EventHandler<FindDialogEvent>? FindClosed
     event EventHandler<FindDialogEvent>? FindNextRequested
     event EventHandler<FindDialogEvent>? FindRequested
@@ -1897,10 +1889,12 @@ class WxKit.FindReplaceDialog : Dialog
     NoMatchCase = 4
     NoUpDown = 2
     NoWholeWord = 8
+    None = 0
     ReplaceDialog = 1
 [Flags] enum WxKit.FindReplaceFlags : int
     Down = 1
     MatchCase = 4
+    None = 0
     WholeWord = 2
 class WxKit.FlexGridSizer : GridSizer
     FlexGridSizer(int columns)
@@ -1994,7 +1988,6 @@ enum WxKit.FontEncoding : int
     Cp1256 = 37
     Cp1257 = 38
     Cp1258 = 39
-    Cp12Max = 41
     Cp1361 = 40
     Cp437 = 21
     Cp850 = 22
@@ -2011,7 +2004,6 @@ enum WxKit.FontEncoding : int
     EucKr = 29
     Gb2312 = 28
     Iso2022Jp = 89
-    Iso8859Max = 16
     Iso8859_1 = 1
     Iso8859_10 = 10
     Iso8859_11 = 11
@@ -2058,7 +2050,6 @@ enum WxKit.FontEncoding : int
     MacKorean = 52
     MacLaotian = 70
     MacMalayalam = 65
-    MacMax = 88
     MacMin = 49
     MacMongolian = 75
     MacOriya = 60
@@ -2072,7 +2063,6 @@ enum WxKit.FontEncoding : int
     MacTibetan = 74
     MacTurkish = 82
     MacVietnamese = 78
-    Max = 90
     ShiftJis = 27
     System = -1
     Utf16be = 45
@@ -2085,7 +2075,6 @@ enum WxKit.FontEncoding : int
 enum WxKit.FontFamily : int
     Decorative = 71
     Default = 70
-    Max = 77
     Modern = 75
     Roman = 72
     Script = 73
@@ -2113,7 +2102,6 @@ class WxKit.FontPickerEvent : CommandEvent
     Scalable = 1
 enum WxKit.FontStyle : int
     Italic = 93
-    Max = 95
     Normal = 90
     Slant = 94
 enum WxKit.FontSymbolicSize : int
@@ -2130,9 +2118,7 @@ enum WxKit.FontWeight : int
     ExtraHeavy = 1000
     ExtraLight = 200
     Heavy = 900
-    Invalid = 0
     Light = 300
-    Max = 1000
     Medium = 500
     Normal = 400
     SemiBold = 600
@@ -2296,7 +2282,6 @@ enum WxKit.HelpOrigin : int
     Keyboard = 1
     Unknown = 0
 enum WxKit.HitTestResult : int
-    Max = 14
     Nowhere = 0
     ScrollBarArrowLine1 = 1
     ScrollBarArrowLine2 = 2
@@ -2304,8 +2289,6 @@ enum WxKit.HitTestResult : int
     ScrollBarArrowPage2 = 4
     ScrollBarBar1 = 6
     ScrollBarBar2 = 7
-    ScrollBarFirst = 0
-    ScrollBarLast = 8
     ScrollBarThumb = 5
     WindowCorner = 13
     WindowHorzScrollBar = 12
@@ -2478,6 +2461,7 @@ class WxKit.InitDialogEvent : Event
     Cut = 16
     Jump = 4
     Navigation = 7
+    None = 0
     Paging = 2
     Tab = 8
 enum WxKit.KeyCode : int
@@ -2762,7 +2746,6 @@ class WxKit.ListBox : Control
     Extended = 128
     HorizontalScrollBar = 1073741824
     Multiple = 64
-    NeededSb = 0
     NoSb = 1024
     None = 0
     Single = 32
@@ -2973,7 +2956,6 @@ class WxKit.Listbook : BookCtrlBase
     event EventHandler<BookCtrlEvent>? PageChanging
 [Flags] enum WxKit.ListbookStyle : long
     Bottom = 32
-    Default = 0
     Left = 64
     None = 0
     Right = 128
@@ -3078,9 +3060,7 @@ class WxKit.MessageDialog : Dialog
     NoDefault = 128
     None = 0
     Ok = 4
-    OkDefault = 0
     StayOnTop = 32768
-    YesDefault = 0
     YesNo = 10
 enum WxKit.MessageIcon : int
     Error = 512
@@ -3109,7 +3089,6 @@ enum WxKit.MouseButton : int
     Aux1 = 4
     Aux2 = 5
     Left = 1
-    Max = 6
     Middle = 2
     None = 0
     Right = 3
@@ -3424,12 +3403,10 @@ class WxKit.Pen : NativeObject
     void SetStipple(Bitmap stipple)
 enum WxKit.PenCap : int
     Butt = 132
-    Invalid = -1
     Projecting = 131
     Round = 130
 enum WxKit.PenJoin : int
     Bevel = 120
-    Invalid = -1
     Miter = 121
     Round = 122
 enum WxKit.PenQuality : int
@@ -3445,7 +3422,6 @@ enum WxKit.PenStyle : int
     FirstHatch = 111
     ForwardDiagonalHatch = 113
     HorizontalHatch = 115
-    Invalid = -1
     LastHatch = 116
     LongDash = 102
     ShortDash = 103
@@ -3878,7 +3854,6 @@ class WxKit.SearchCtrl : Control
     void WriteText(string text)
 [Flags] enum WxKit.SearchCtrlStyle : long
     Center = 256
-    Left = 0
     NoHideSelection = 8192
     None = 0
     ProcessTab = 64
@@ -3895,7 +3870,6 @@ class WxKit.SetCursorEvent : Event
 enum WxKit.ShowEffect : int
     Blend = 9
     Expand = 10
-    Max = 11
     None = 0
     RollToBottom = 4
     RollToLeft = 1
@@ -4062,7 +4036,6 @@ class WxKit.SpinCtrlDouble : Control
     void SetValue(string text)
 [Flags] enum WxKit.SpinCtrlDoubleStyle : long
     AlignCenterHorizontal = 256
-    AlignLeft = 0
     AlignRight = 512
     ArrowKeys = 16384
     None = 0
@@ -4070,7 +4043,6 @@ class WxKit.SpinCtrlDouble : Control
     Wrap = 32768
 [Flags] enum WxKit.SpinCtrlStyle : long
     AlignCenterHorizontal = 256
-    AlignLeft = 0
     AlignRight = 512
     ArrowKeys = 16384
     None = 0
@@ -4118,11 +4090,9 @@ class WxKit.SplitterWindow : Window
 [Flags] enum WxKit.SplitterWindowStyle : long
     Border = 512
     LiveUpdate = 128
-    NoBorder = 0
     NoXpTheme = 1024
     None = 0
     PermitUnsplit = 64
-    ThinSash = 0
     ThreeD = 768
     ThreeDBorder = 512
     ThreeDSash = 256
@@ -4284,7 +4254,6 @@ class WxKit.StaticText : Control
     void Wrap(int width)
 [Flags] enum WxKit.StaticTextStyle : long
     AlignCenterHorizontal = 256
-    AlignLeft = 0
     AlignRight = 512
     EllipsizeEnd = 16
     EllipsizeMiddle = 8
@@ -8062,12 +8031,10 @@ enum WxKit.TextCtrlHitTestResult : int
     Unknown = -2
 [Flags] enum WxKit.TextCtrlStyle : long
     AutoUrl = 4096
-    BestWrap = 0
     Center = 256
     CharWrap = 16384
     DontWrap = 1073741824
     HorizontalScrollBar = 1073741824
-    Left = 0
     MultiLine = 32
     NoHideSelection = 8192
     NoVerticalScrollBar = 2
@@ -8387,11 +8354,9 @@ class WxKit.TreeCtrl : Control
     HideRoot = 2048
     LinesAtRoot = 8
     Multiple = 32
-    NoButtons = 0
     NoLines = 4
     None = 0
     RowLines = 1024
-    Single = 0
     TwistButtons = 16
 class WxKit.TreeEvent : NotifyEvent
     KeyCode KeyCode { get; }
@@ -8403,7 +8368,6 @@ class WxKit.TreeEvent : NotifyEvent
     void SetToolTip(string toolTip)
 enum WxKit.TreeItemIcon : int
     Expanded = 2
-    Max = 4
     Normal = 0
     Selected = 1
     SelectedExpanded = 3
@@ -8473,11 +8437,9 @@ class WxKit.TreeListCtrl : Window
     void UpdateItemParentStateRecursively(TreeListItem item)
 [Flags] enum WxKit.TreeListCtrlStyle : long
     CheckBox = 2
-    Default = 0
     Multiple = 1
     NoHeader = 16
     None = 0
-    Single = 0
     ThreeState = 4
     UserThreeState = 8
 class WxKit.TreeListEvent : NotifyEvent
@@ -8635,6 +8597,7 @@ class WxKit.WebView : Control
     Cache = 2
     Cookies = 1
     DomStorage = 4
+    None = 0
     Other = 8
 class WxKit.WebViewEvent : NotifyEvent
     WebViewNavigationActionFlags NavigationAction { get; }
@@ -8945,7 +8908,6 @@ enum WxKit.WindowMode : int
     WindowModal = 1
 [Flags] enum WxKit.WindowStyle : long
     AlwaysShowSb = 8388608
-    BorderDefault = 0
     BorderDouble = 268435456
     BorderNone = 2097152
     BorderRaised = 67108864
@@ -8956,15 +8918,12 @@ enum WxKit.WindowMode : int
     ClipChildren = 4194304
     FullRepaintOnResize = 65536
     HorizontalScrollBar = 1073741824
-    NoFullRepaintOnResize = 0
     None = 0
     TabTraversal = 524288
-    TransparentWindow = 0
     VerticalScrollBar = -2147483648
     WantsChars = 262144
 enum WxKit.WindowVariant : int
     Large = 3
-    Max = 4
     Mini = 2
     Normal = 0
     Small = 1

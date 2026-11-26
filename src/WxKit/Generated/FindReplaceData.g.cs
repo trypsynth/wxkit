@@ -7,7 +7,7 @@ namespace WxKit;
 /// <summary>wxFindReplaceData holds the data for wxFindReplaceDialog. Wraps wxFindReplaceData.</summary>
 public unsafe partial class FindReplaceData : NativeObject {
 	/// <summary>Constructor initializes the flags to default value (0).</summary>
-	public FindReplaceData(FindReplaceFlags flags = 0) : this(CreateNative(flags)) {
+	public FindReplaceData(FindReplaceFlags flags = FindReplaceFlags.None) : this(CreateNative(flags)) {
 	}
 
 	internal FindReplaceData(WxkObject* native) : base(native) {
