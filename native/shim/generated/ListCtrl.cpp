@@ -339,10 +339,6 @@ WXK_FUNCTION(void) wxk_ListCtrl_SetWindowStyleFlag(wxk_Window* self, int64_t sty
 	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetWindowStyleFlag(static_cast<long>(style)); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_EnableCheckBoxes(wxk_Window* self, uint8_t enable) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->EnableCheckBoxes(enable != 0)) ? 1 : 0; });
-}
-
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_IsItemChecked(wxk_Window* self, int32_t item) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->IsItemChecked(static_cast<long>(item))) ? 1 : 0; });
 }
@@ -365,6 +361,14 @@ WXK_FUNCTION(void) wxk_ListCtrl_RemoveSortIndicator(wxk_Window* self) noexcept {
 
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetUpdatedAscendingSortIndicator(wxk_Window* self, int32_t column) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetUpdatedAscendingSortIndicator(static_cast<int>(column))) ? 1 : 0; });
+}
+
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_HasCheckBoxes(wxk_Window* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->HasCheckBoxes()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_EnableCheckBoxes(wxk_Window* self, uint8_t enable) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->EnableCheckBoxes(enable != 0)) ? 1 : 0; });
 }
 
 WXK_FUNCTION(int32_t) wxk_ListCtrl_GetColumnCount(wxk_Window* self) noexcept {
@@ -433,10 +437,6 @@ WXK_FUNCTION(uint8_t) wxk_ListCtrl_IsEmpty(wxk_Window* self) noexcept {
 
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_IsVirtual(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->IsVirtual()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_HasCheckBoxes(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->HasCheckBoxes()) ? 1 : 0; });
 }
 
 WXK_FUNCTION(int32_t) wxk_ListCtrl_GetSortIndicator(wxk_Window* self) noexcept {

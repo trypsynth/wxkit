@@ -22,12 +22,12 @@ public unsafe partial class MemoryDC : DC {
 	}
 
 	/// <summary>Get the selected bitmap.</summary>
-	public Bitmap? SelectedBitmap => global::WxKit.Bitmap.Take(WxKitNative.MemoryDCGetSelectedBitmap(Native));
-
-	/// <summary>Allow using this device context object to modify the given bitmap contents.</summary>
-	public void SelectObject(Bitmap bitmap) {
-		ArgumentNullException.ThrowIfNull(bitmap);
-		WxKitNative.MemoryDCSelectObject(Native, bitmap.Native);
+	public Bitmap? SelectedBitmap {
+		get => global::WxKit.Bitmap.Take(WxKitNative.MemoryDCGetSelectedBitmap(Native));
+		set {
+			ArgumentNullException.ThrowIfNull(value);
+			WxKitNative.MemoryDCSelectObject(Native, value.Native);
+		}
 	}
 
 	/// <summary>Selects the given bitmap into the device context, to use as the memory bitmap.</summary>

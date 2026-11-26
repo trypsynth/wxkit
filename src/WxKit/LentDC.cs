@@ -10,6 +10,18 @@ public unsafe partial class DC {
 	// Disposing it, when the call returns, only stops it being used.
 	internal static DC Lend(WxkObject* native) => new(native, owns: false);
 
+	/// <summary>Where the device's origin is, in device units, which is its top left corner to begin with.</summary>
+	public Point DeviceOrigin {
+		get => WxKitNative.DCGetDeviceOrigin(Native);
+		set => WxKitNative.DCSetDeviceOrigin(Native, value.X, value.Y);
+	}
+
+	/// <summary>Where the logical origin is, in logical units.</summary>
+	public Point LogicalOrigin {
+		get => WxKitNative.DCGetLogicalOrigin(Native);
+		set => WxKitNative.DCSetLogicalOrigin(Native, value.X, value.Y);
+	}
+
 	/// <summary>How much the application scales what it draws, across and down, which is 1 and 1 to begin with.</summary>
 	public (double X, double Y) UserScale {
 		get {

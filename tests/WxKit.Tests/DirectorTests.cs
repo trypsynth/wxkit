@@ -15,7 +15,8 @@ public class DirectorTests {
 	[Fact]
 	public Task AsksAVirtualListWhetherARowIsChecked() => Gui.WithFrame(frame => {
 		Numbers list = new(frame);
-		Assert.True(list.EnableCheckBoxes());
+		list.HasCheckBoxes = true;
+		Assert.True(list.HasCheckBoxes);
 		list.ItemCount = 10;
 		Assert.True(list.IsItemChecked(4));
 		Assert.False(list.IsItemChecked(5));

@@ -728,11 +728,10 @@ class WxKit.CloseEvent : Event
 class WxKit.CollapsiblePane : Control
     CollapsiblePane(Window parent, string label, int id = -1, Point? position = null, Size? size = null, CollapsiblePaneStyle style = CollapsiblePaneStyle.Default)
     Window? Pane { get; }
-    bool IsCollapsed { get; }
+    bool IsCollapsed { get; set; }
     bool IsExpanded { get; }
     event EventHandler<CollapsiblePaneEvent>? CollapsedChanged
     event EventHandler<NavigationKeyEvent>? NavigationKey
-    void Collapse(bool collapse = true)
     void Expand()
 class WxKit.CollapsiblePaneEvent : CommandEvent
     bool Collapsed { get; }
@@ -942,11 +941,11 @@ class WxKit.DC : NativeObject
     LayoutDirection LayoutDirection { get; set; }
     MappingMode MappingMode { get; set; }
     Pen? Pen { get; set; }
-    Point DeviceOrigin { get; }
+    Point DeviceOrigin { get; set; }
     Point DeviceToLogical(Point point)
     Point DeviceToLogical(int x, int y)
     Point FromDip(Point point)
-    Point LogicalOrigin { get; }
+    Point LogicalOrigin { get; set; }
     Point LogicalToDevice(Point point)
     Point LogicalToDevice(int x, int y)
     Point ToDip(Point point)
@@ -1041,8 +1040,6 @@ class WxKit.DC : NativeObject
     void SetClippingRegion(Point point, Size size)
     void SetClippingRegion(Rect rect)
     void SetClippingRegion(int x, int y, int width, int height)
-    void SetDeviceOrigin(int x, int y)
-    void SetLogicalOrigin(int x, int y)
 readonly record struct WxKit.DataFormat : IEquatable<DataFormat>
     bool Equals(DataFormat other)
     override bool Equals(object obj)
@@ -2765,13 +2762,12 @@ class WxKit.ListCtrl : Control
     bool DeleteAllItems()
     bool DeleteColumn(int column)
     bool DeleteItem(int item)
-    bool EnableCheckBoxes(bool enable = true)
     bool EndEditLabel(bool cancel)
     bool EnsureVisible(int item)
     bool GetColumn(int column, ListItem item)
     bool GetItem(ListItem info)
     bool GetUpdatedAscendingSortIndicator(int column)
-    bool HasCheckBoxes { get; }
+    bool HasCheckBoxes { get; set; }
     bool InReportView()
     bool IsAscendingSortIndicator { get; }
     bool IsEmpty { get; }
@@ -2965,11 +2961,10 @@ enum WxKit.MappingMode : int
     Twips = 4
 class WxKit.MaximizeEvent : Event
 class WxKit.MemoryDC : DC
-    Bitmap? SelectedBitmap { get; }
+    Bitmap? SelectedBitmap { get; set; }
     MemoryDC()
     MemoryDC(Bitmap bitmap)
     MemoryDC(DC dc)
-    void SelectObject(Bitmap bitmap)
     void SelectObjectAsSource(Bitmap bitmap)
 sealed class WxKit.Menu : EvtHandler
     Menu()
@@ -3809,10 +3804,10 @@ class WxKit.SearchCtrl : Control
     bool CanPaste { get; }
     bool CanRedo { get; }
     bool CanUndo { get; }
-    bool IsCancelButtonVisible { get; }
+    bool IsCancelButtonVisible { get; set; }
     bool IsEditable { get; set; }
     bool IsEmpty { get; }
-    bool IsSearchButtonVisible { get; }
+    bool IsSearchButtonVisible { get; set; }
     bool SetMargins(int left, int top = -1)
     event EventHandler<CommandEvent>? SearchCanceled
     event EventHandler<CommandEvent>? SearchRequested
@@ -3841,8 +3836,6 @@ class WxKit.SearchCtrl : Control
     void SetInsertionPointEnd()
     void SetMaxLength(int length)
     void SetSelection(int from, int to)
-    void ShowCancelButton(bool show)
-    void ShowSearchButton(bool show)
     void Undo()
     void WriteText(string text)
 [Flags] enum WxKit.SearchCtrlStyle : long

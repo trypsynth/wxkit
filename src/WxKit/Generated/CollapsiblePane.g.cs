@@ -14,7 +14,10 @@ public unsafe partial class CollapsiblePane : Control {
 	}
 
 	/// <summary>Returns true if the pane window is currently hidden.</summary>
-	public bool IsCollapsed => WxKitNative.CollapsiblePaneIsCollapsed(Native) != 0;
+	public bool IsCollapsed {
+		get => WxKitNative.CollapsiblePaneIsCollapsed(Native) != 0;
+		set => WxKitNative.CollapsiblePaneCollapse(Native, value ? (byte)1 : (byte)0);
+	}
 
 	/// <summary>Returns true if the pane window is currently shown.</summary>
 	public bool IsExpanded => WxKitNative.CollapsiblePaneIsExpanded(Native) != 0;
@@ -33,9 +36,6 @@ public unsafe partial class CollapsiblePane : Control {
 		add => AddHandler(EventType.NavigationKey, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.NavigationKey, StandardId.Any, StandardId.Any, value);
 	}
-
-	/// <summary>Collapses or expands the pane window.</summary>
-	public void Collapse(bool collapse = true) => WxKitNative.CollapsiblePaneCollapse(Native, collapse ? (byte)1 : (byte)0);
 
 	/// <summary>Same as calling Collapse(false).</summary>
 	public void Expand() => WxKitNative.CollapsiblePaneExpand(Native);

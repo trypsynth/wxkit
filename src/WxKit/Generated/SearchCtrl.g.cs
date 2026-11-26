@@ -57,7 +57,10 @@ public unsafe partial class SearchCtrl : Control {
 	}
 
 	/// <summary>Returns the cancel button's visibility state.</summary>
-	public bool IsCancelButtonVisible => WxKitNative.SearchCtrlIsCancelButtonVisible(Native) != 0;
+	public bool IsCancelButtonVisible {
+		get => WxKitNative.SearchCtrlIsCancelButtonVisible(Native) != 0;
+		set => WxKitNative.SearchCtrlShowCancelButton(Native, value ? (byte)1 : (byte)0);
+	}
 
 	/// <summary>Returns true if the controls contents may be edited by user (note that it always can be changed by the program).</summary>
 	public bool IsEditable {
@@ -69,7 +72,10 @@ public unsafe partial class SearchCtrl : Control {
 	public bool IsEmpty => WxKitNative.SearchCtrlIsEmpty(Native) != 0;
 
 	/// <summary>Returns the search button visibility value.</summary>
-	public bool IsSearchButtonVisible => WxKitNative.SearchCtrlIsSearchButtonVisible(Native) != 0;
+	public bool IsSearchButtonVisible {
+		get => WxKitNative.SearchCtrlIsSearchButtonVisible(Native) != 0;
+		set => WxKitNative.SearchCtrlShowSearchButton(Native, value ? (byte)1 : (byte)0);
+	}
 
 	/// <summary>Returns the zero based index of the last position in the text control, which is equal to the number of characters in the control.</summary>
 	public int LastPosition => WxKitNative.SearchCtrlGetLastPosition(Native);
@@ -195,12 +201,6 @@ public unsafe partial class SearchCtrl : Control {
 
 	/// <summary>Selects the text starting at the first position up to (but not including) the character at the last position.</summary>
 	public void SetSelection(int from, int to) => WxKitNative.SearchCtrlSetSelection(Native, from, to);
-
-	/// <summary>Shows or hides the cancel button.</summary>
-	public void ShowCancelButton(bool show) => WxKitNative.SearchCtrlShowCancelButton(Native, show ? (byte)1 : (byte)0);
-
-	/// <summary>Sets the search button visibility value on the search control.</summary>
-	public void ShowSearchButton(bool show) => WxKitNative.SearchCtrlShowSearchButton(Native, show ? (byte)1 : (byte)0);
 
 	/// <summary>If there is an undo facility and the last operation can be undone, undoes the last operation.</summary>
 	public void Undo() => WxKitNative.SearchCtrlUndo(Native);

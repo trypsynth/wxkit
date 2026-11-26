@@ -12,14 +12,6 @@ WXK_FUNCTION(void) wxk_SearchCtrl_GetSelection(wxk_Window* self, int64_t* from, 
 	wxk::Guard([&] { static_cast<wxTextEntry*>(static_cast<wxSearchCtrl*>(wxk::Unwrap(self)))->GetSelection(wxk::OutLong{from}, wxk::OutLong{to}); });
 }
 
-WXK_FUNCTION(void) wxk_SearchCtrl_ShowCancelButton(wxk_Window* self, uint8_t show) noexcept {
-	wxk::Guard([&] { static_cast<wxSearchCtrl*>(wxk::Unwrap(self))->ShowCancelButton(show != 0); });
-}
-
-WXK_FUNCTION(void) wxk_SearchCtrl_ShowSearchButton(wxk_Window* self, uint8_t show) noexcept {
-	wxk::Guard([&] { static_cast<wxSearchCtrl*>(wxk::Unwrap(self))->ShowSearchButton(show != 0); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_SearchCtrl_SetMargins_IntInt(wxk_Window* self, int32_t left, int32_t top) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTextEntry*>(static_cast<wxSearchCtrl*>(wxk::Unwrap(self)))->SetMargins(static_cast<int>(left), static_cast<int>(top))) ? 1 : 0; });
 }
@@ -108,20 +100,28 @@ WXK_FUNCTION(void) wxk_SearchCtrl_WriteText(wxk_Window* self, const char16_t* te
 	wxk::Guard([&] { static_cast<wxTextEntry*>(static_cast<wxSearchCtrl*>(wxk::Unwrap(self)))->WriteText(wxk::FromUtf16(text, textLength)); });
 }
 
+WXK_FUNCTION(uint8_t) wxk_SearchCtrl_IsSearchButtonVisible(wxk_Window* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxSearchCtrl*>(wxk::Unwrap(self))->IsSearchButtonVisible()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(void) wxk_SearchCtrl_ShowSearchButton(wxk_Window* self, uint8_t show) noexcept {
+	wxk::Guard([&] { static_cast<wxSearchCtrl*>(wxk::Unwrap(self))->ShowSearchButton(show != 0); });
+}
+
+WXK_FUNCTION(uint8_t) wxk_SearchCtrl_IsCancelButtonVisible(wxk_Window* self) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxSearchCtrl*>(wxk::Unwrap(self))->IsCancelButtonVisible()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(void) wxk_SearchCtrl_ShowCancelButton(wxk_Window* self, uint8_t show) noexcept {
+	wxk::Guard([&] { static_cast<wxSearchCtrl*>(wxk::Unwrap(self))->ShowCancelButton(show != 0); });
+}
+
 WXK_FUNCTION(wxk_Menu*) wxk_SearchCtrl_GetMenu(wxk_Window* self) noexcept {
 	return wxk::Guard<wxk_Menu*>(nullptr, [&]() -> wxk_Menu* { return wxk::Wrap(static_cast<wxMenu*>(static_cast<wxSearchCtrl*>(wxk::Unwrap(self))->GetMenu())); });
 }
 
 WXK_FUNCTION(void) wxk_SearchCtrl_SetMenu(wxk_Window* self, wxk_Menu* menu) noexcept {
 	wxk::Guard([&] { static_cast<wxSearchCtrl*>(wxk::Unwrap(self))->SetMenu(static_cast<wxMenu*>(wxk::Unwrap(menu))); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_SearchCtrl_IsSearchButtonVisible(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxSearchCtrl*>(wxk::Unwrap(self))->IsSearchButtonVisible()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_SearchCtrl_IsCancelButtonVisible(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxSearchCtrl*>(wxk::Unwrap(self))->IsCancelButtonVisible()) ? 1 : 0; });
 }
 
 WXK_FUNCTION(wxk_String*) wxk_SearchCtrl_GetDescriptiveText(wxk_Window* self) noexcept {

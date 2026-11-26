@@ -54,9 +54,6 @@ public unsafe partial class DC : NativeObject {
 	/// <summary>Returns the depth (number of bits/pixel) of this DC.</summary>
 	public int Depth => WxKitNative.DCGetDepth(Native);
 
-	/// <summary>Returns the current device origin.</summary>
-	public Point DeviceOrigin => WxKitNative.DCGetDeviceOrigin(Native);
-
 	/// <summary>Gets the current font.</summary>
 	public Font? Font {
 		get => global::WxKit.Font.Take(WxKitNative.DCGetFont(Native));
@@ -77,9 +74,6 @@ public unsafe partial class DC : NativeObject {
 		get => (RasterOperationMode)WxKitNative.DCGetLogicalFunction(Native);
 		set => WxKitNative.DCSetLogicalFunction(Native, (int)value);
 	}
-
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Point LogicalOrigin => WxKitNative.DCGetLogicalOrigin(Native);
 
 	/// <summary>Gets the current mapping mode for the device context.</summary>
 	public MappingMode MappingMode {
@@ -408,12 +402,6 @@ public unsafe partial class DC : NativeObject {
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public void SetClippingRegion(Rect rect) => WxKitNative.DCSetClippingRegionRect(Native, rect);
-
-	/// <summary>Sets the device origin (i.e. the origin in pixels after scaling has been applied).</summary>
-	public void SetDeviceOrigin(int x, int y) => WxKitNative.DCSetDeviceOrigin(Native, x, y);
-
-	/// <summary>Change the offset used for translating wxDC coordinates.</summary>
-	public void SetLogicalOrigin(int x, int y) => WxKitNative.DCSetLogicalOrigin(Native, x, y);
 
 	/// <summary>Copy from a source DC to this DC possibly changing the scale.</summary>
 	public bool StretchBlit(int xDestination, int yDestination, int destinationWidth, int destinationHeight, DC source, int xSource, int ySource, int sourceWidth, int sourceHeight, RasterOperationMode logicalFunction = RasterOperationMode.Copy, bool useMask = false, int xSourceMask = -1, int ySourceMask = -1) {

@@ -42,7 +42,10 @@ public unsafe partial class ListCtrl : Control {
 	public TextCtrl? EditControl => ObjectRegistry.Wrap<TextCtrl>(WxKitNative.ListCtrlGetEditControl(Native));
 
 	/// <summary>Returns true if checkboxes are enabled for list items.</summary>
-	public bool HasCheckBoxes => WxKitNative.ListCtrlHasCheckBoxes(Native) != 0;
+	public bool HasCheckBoxes {
+		get => WxKitNative.ListCtrlHasCheckBoxes(Native) != 0;
+		set => WxKitNative.ListCtrlEnableCheckBoxes(Native, value ? (byte)1 : (byte)0);
+	}
 
 	/// <summary>Returns true if the sort indicator direction is ascending, false when the direction is descending.</summary>
 	public bool IsAscendingSortIndicator => WxKitNative.ListCtrlIsAscendingSortIndicator(Native) != 0;
@@ -249,9 +252,6 @@ public unsafe partial class ListCtrl : Control {
 
 	/// <summary>Enable or disable a beep if there is no match for the currently entered text when searching for the item from keyboard.</summary>
 	public void EnableBellOnNoMatch(bool on = true) => WxKitNative.ListCtrlEnableBellOnNoMatch(Native, on ? (byte)1 : (byte)0);
-
-	/// <summary>Enable or disable checkboxes for list items.</summary>
-	public bool EnableCheckBoxes(bool enable = true) => WxKitNative.ListCtrlEnableCheckBoxes(Native, enable ? (byte)1 : (byte)0) != 0;
 
 	/// <summary>Finish editing the label.</summary>
 	public bool EndEditLabel(bool cancel) => WxKitNative.ListCtrlEndEditLabel(Native, cancel ? (byte)1 : (byte)0) != 0;

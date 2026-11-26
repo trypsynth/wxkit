@@ -307,10 +307,10 @@ WXK_FUNCTION(uint8_t) wxk_CloseEvent_GetVeto(wxk_Event* self) WXK_NOEXCEPT;
 // wxCollapsiblePane
 
 WXK_FUNCTION(wxk_Window*) wxk_CollapsiblePane_new(wxk_Window* parent, int32_t id, const char16_t* label, size_t labelLength, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_CollapsiblePane_Collapse(wxk_Window* self, uint8_t collapse) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_CollapsiblePane_Expand(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Window*) wxk_CollapsiblePane_GetPane(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_CollapsiblePane_IsCollapsed(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_CollapsiblePane_Collapse(wxk_Window* self, uint8_t collapse) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Window*) wxk_CollapsiblePane_GetPane(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_CollapsiblePane_IsExpanded(wxk_Window* self) WXK_NOEXCEPT;
 
 // wxCollapsiblePaneEvent
@@ -504,9 +504,13 @@ WXK_FUNCTION(wxk_Point) wxk_Cursor_GetHotSpot(wxk_Object* self) WXK_NOEXCEPT;
 
 // wxDC
 
+WXK_FUNCTION(void) wxk_DC_SetDeviceOrigin(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_SetUserScale(wxk_Object* self, double xScale, double yScale) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_SetLogicalScale(wxk_Object* self, double x, double y) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_GetLogicalScale(wxk_Object* self, double* x, double* y) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DC_SetLogicalOrigin(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Point) wxk_DC_GetLogicalOrigin(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Point) wxk_DC_GetDeviceOrigin(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_GetUserScale(wxk_Object* self, double* x, double* y) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_Clear(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_DrawArc_IntIntIntIntIntInt(wxk_Object* self, int32_t xStart, int32_t yStart, int32_t xEnd, int32_t yEnd, int32_t xc, int32_t yc) WXK_NOEXCEPT;
@@ -580,8 +584,6 @@ WXK_FUNCTION(wxk_Point) wxk_DC_LogicalToDevice_Point(wxk_Object* self, wxk_Point
 WXK_FUNCTION(wxk_Size) wxk_DC_LogicalToDeviceRel_IntInt(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_DC_LogicalToDeviceRel_Size(wxk_Object* self, wxk_Size dim) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_SetAxisOrientation(wxk_Object* self, uint8_t xLeftRight, uint8_t yBottomUp) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_DC_SetDeviceOrigin(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_DC_SetLogicalOrigin(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_ResetTransformMatrix(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_DC_GetMultiLineTextExtent(wxk_Object* self, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Numbers*) wxk_DC_GetPartialTextExtents(wxk_Object* self, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
@@ -612,14 +614,12 @@ WXK_FUNCTION(void) wxk_DC_SetLogicalFunction(wxk_Object* self, int32_t function)
 WXK_FUNCTION(wxk_Object*) wxk_DC_GetAsBitmap(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_DC_CanDrawBitmap(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_DC_CanGetTextExtent(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Point) wxk_DC_GetLogicalOrigin(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_DC_CanUseTransformMatrix(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_DC_GetCharHeight(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_DC_GetCharWidth(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_DC_IsOk(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(double) wxk_DC_GetContentScaleFactor(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_DC_GetDepth(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Point) wxk_DC_GetDeviceOrigin(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_DC_GetPPI(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_DC_GetSize_Default(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_DC_GetSizeMM_Default(wxk_Object* self) WXK_NOEXCEPT;
@@ -1495,13 +1495,14 @@ WXK_FUNCTION(void) wxk_ListCtrl_SetItemText(wxk_Window* self, int32_t item, cons
 WXK_FUNCTION(void) wxk_ListCtrl_SetItemTextColour(wxk_Window* self, int32_t item, wxk_Colour color) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListCtrl_SetSingleStyle(wxk_Window* self, int64_t style, uint8_t add) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListCtrl_SetWindowStyleFlag(wxk_Window* self, int64_t style) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_EnableCheckBoxes(wxk_Window* self, uint8_t enable) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_IsItemChecked(wxk_Window* self, int32_t item) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListCtrl_CheckItem(wxk_Window* self, int32_t item, uint8_t check) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListCtrl_ExtendRulesAndAlternateColour(wxk_Window* self, uint8_t extend) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListCtrl_ShowSortIndicator(wxk_Window* self, int32_t column, uint8_t ascending) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListCtrl_RemoveSortIndicator(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetUpdatedAscendingSortIndicator(wxk_Window* self, int32_t column) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_HasCheckBoxes(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_EnableCheckBoxes(wxk_Window* self, uint8_t enable) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListCtrl_GetColumnCount(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Numbers*) wxk_ListCtrl_GetColumnsOrder(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetColumnsOrder(wxk_Window* self, const int64_t* orders, size_t ordersCount) WXK_NOEXCEPT;
@@ -1519,7 +1520,6 @@ WXK_FUNCTION(wxk_Colour) wxk_ListCtrl_GetAlternateRowColour(wxk_Window* self) WX
 WXK_FUNCTION(void) wxk_ListCtrl_SetAlternateRowColour(wxk_Window* self, wxk_Colour color) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_IsEmpty(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_IsVirtual(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_HasCheckBoxes(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListCtrl_GetSortIndicator(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_IsAscendingSortIndicator(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListCtrl_SetDirectors(wxk_String* (*onGetItemText)(wxk_Window* self, void* userdata, int32_t item, int32_t column), int32_t (*onGetItemImage)(wxk_Window* self, void* userdata, int32_t item), int32_t (*onGetItemColumnImage)(wxk_Window* self, void* userdata, int32_t item, int32_t column), uint8_t (*onGetItemIsChecked)(wxk_Window* self, void* userdata, int32_t item)) WXK_NOEXCEPT;
@@ -1592,9 +1592,9 @@ WXK_FUNCTION(wxk_Window*) wxk_Listbook_GetListView(wxk_Window* self) WXK_NOEXCEP
 WXK_FUNCTION(wxk_Object*) wxk_MemoryDC_new_Default(void) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_MemoryDC_new_DC(wxk_Object* dc) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_MemoryDC_new_Bitmap(wxk_Object* bitmap) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_MemoryDC_SelectObject(wxk_Object* self, wxk_Object* bitmap) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_MemoryDC_SelectObjectAsSource(wxk_Object* self, const wxk_Object* bitmap) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_MemoryDC_GetSelectedBitmap(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_MemoryDC_SelectObject(wxk_Object* self, wxk_Object* bitmap) WXK_NOEXCEPT;
 
 // wxMenu
 
@@ -2165,8 +2165,6 @@ WXK_FUNCTION(uint8_t) wxk_ScrolledWindow_IsAutoScrolling(wxk_Window* self) WXK_N
 
 WXK_FUNCTION(wxk_Window*) wxk_SearchCtrl_new(wxk_Window* parent, int32_t id, const char16_t* value, size_t valueLength, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_SearchCtrl_GetSelection(wxk_Window* self, int64_t* from, int64_t* to) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_SearchCtrl_ShowCancelButton(wxk_Window* self, uint8_t show) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_SearchCtrl_ShowSearchButton(wxk_Window* self, uint8_t show) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_SearchCtrl_SetMargins_IntInt(wxk_Window* self, int32_t left, int32_t top) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_SearchCtrl_AppendText(wxk_Window* self, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_SearchCtrl_AutoComplete(wxk_Window* self, const wxk_StringArray* choices) WXK_NOEXCEPT;
@@ -2189,10 +2187,12 @@ WXK_FUNCTION(void) wxk_SearchCtrl_SelectAll(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_SearchCtrl_SelectNone(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_SearchCtrl_Undo(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_SearchCtrl_WriteText(wxk_Window* self, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_SearchCtrl_IsSearchButtonVisible(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_SearchCtrl_ShowSearchButton(wxk_Window* self, uint8_t show) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_SearchCtrl_IsCancelButtonVisible(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_SearchCtrl_ShowCancelButton(wxk_Window* self, uint8_t show) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Menu*) wxk_SearchCtrl_GetMenu(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_SearchCtrl_SetMenu(wxk_Window* self, wxk_Menu* menu) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_SearchCtrl_IsSearchButtonVisible(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_SearchCtrl_IsCancelButtonVisible(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_SearchCtrl_GetDescriptiveText(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_SearchCtrl_SetDescriptiveText(wxk_Window* self, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_SearchCtrl_CanCopy(wxk_Window* self) WXK_NOEXCEPT;

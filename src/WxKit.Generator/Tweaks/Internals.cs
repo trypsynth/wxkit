@@ -29,6 +29,7 @@ internal static class Internals {
 		tweaks.Class("wxScrolledWindow").Ignore("PrepareDC");
 		Repeats(tweaks);
 		Forms(tweaks);
+		Properties(tweaks);
 	}
 
 	// Members that say better what they are under another name or as a property.
@@ -46,6 +47,16 @@ internal static class Internals {
 				e.Property($"Is{button}Down", button + "Down").Property($"Is{button}Up", button + "Up").Property($"Is{button}DoubleClick", button + "DClick").Property($"Is{button}ButtonPressed", button + "IsDown");
 			}
 		});
+	}
+
+	// A getter with a setter under another name is one property.
+	private static void Properties(Binding.Tweaks tweaks) {
+		tweaks.Class("wxCollapsiblePane").Property("IsCollapsed", "IsCollapsed", "Collapse");
+		tweaks.Class("wxListCtrl").Property("HasCheckBoxes", "HasCheckBoxes", "EnableCheckBoxes");
+		tweaks.Class("wxSearchCtrl").Property("IsSearchButtonVisible", "IsSearchButtonVisible", "ShowSearchButton").Property("IsCancelButtonVisible", "IsCancelButtonVisible", "ShowCancelButton");
+		// The origins are written by hand, since the setters take x and y.
+		tweaks.Class("wxDC").Internal("GetDeviceOrigin", "SetDeviceOrigin", "GetLogicalOrigin", "SetLogicalOrigin");
+		tweaks.Class("wxMemoryDC").Property("SelectedBitmap", "GetSelectedBitmap", "SelectObject");
 	}
 
 	// Members that only repeat another, which is the one to use.

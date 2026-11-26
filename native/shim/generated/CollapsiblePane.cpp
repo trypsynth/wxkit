@@ -8,20 +8,20 @@ WXK_FUNCTION(wxk_Window*) wxk_CollapsiblePane_new(wxk_Window* parent, int32_t id
 	});
 }
 
-WXK_FUNCTION(void) wxk_CollapsiblePane_Collapse(wxk_Window* self, uint8_t collapse) noexcept {
-	wxk::Guard([&] { static_cast<wxCollapsiblePane*>(wxk::Unwrap(self))->Collapse(collapse != 0); });
-}
-
 WXK_FUNCTION(void) wxk_CollapsiblePane_Expand(wxk_Window* self) noexcept {
 	wxk::Guard([&] { static_cast<wxCollapsiblePane*>(wxk::Unwrap(self))->Expand(); });
 }
 
-WXK_FUNCTION(wxk_Window*) wxk_CollapsiblePane_GetPane(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(static_cast<wxCollapsiblePane*>(wxk::Unwrap(self))->GetPane())); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_CollapsiblePane_IsCollapsed(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxCollapsiblePane*>(wxk::Unwrap(self))->IsCollapsed()) ? 1 : 0; });
+}
+
+WXK_FUNCTION(void) wxk_CollapsiblePane_Collapse(wxk_Window* self, uint8_t collapse) noexcept {
+	wxk::Guard([&] { static_cast<wxCollapsiblePane*>(wxk::Unwrap(self))->Collapse(collapse != 0); });
+}
+
+WXK_FUNCTION(wxk_Window*) wxk_CollapsiblePane_GetPane(wxk_Window* self) noexcept {
+	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(static_cast<wxCollapsiblePane*>(wxk::Unwrap(self))->GetPane())); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_CollapsiblePane_IsExpanded(wxk_Window* self) noexcept {

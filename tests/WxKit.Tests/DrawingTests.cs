@@ -46,6 +46,8 @@ public class DrawingTests {
 		dc.UserScale = (2, 3);
 		Assert.Equal((2, 3), dc.UserScale);
 		Assert.Equal(new Point(4, 6), dc.LogicalToDevice(new Point(2, 2)));
+		dc.DeviceOrigin = new Point(5, 7);
+		Assert.Equal(new Point(5, 7), dc.DeviceOrigin);
 	});
 
 	[Fact]

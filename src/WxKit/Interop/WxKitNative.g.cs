@@ -878,21 +878,21 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* CollapsiblePaneNew(WxkWindow* parent, int id, char* label, nuint labelLength, Point position, Size size, long style);
 
-	[LibraryImport(Library, EntryPoint = "wxk_CollapsiblePane_Collapse")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void CollapsiblePaneCollapse(WxkWindow* self, byte collapse);
-
 	[LibraryImport(Library, EntryPoint = "wxk_CollapsiblePane_Expand")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void CollapsiblePaneExpand(WxkWindow* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_CollapsiblePane_GetPane")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkWindow* CollapsiblePaneGetPane(WxkWindow* self);
-
 	[LibraryImport(Library, EntryPoint = "wxk_CollapsiblePane_IsCollapsed")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte CollapsiblePaneIsCollapsed(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CollapsiblePane_Collapse")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void CollapsiblePaneCollapse(WxkWindow* self, byte collapse);
+
+	[LibraryImport(Library, EntryPoint = "wxk_CollapsiblePane_GetPane")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkWindow* CollapsiblePaneGetPane(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_CollapsiblePane_IsExpanded")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -1486,6 +1486,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Point CursorGetHotSpot(WxkObject* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_DC_SetDeviceOrigin")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DCSetDeviceOrigin(WxkObject* self, int x, int y);
+
 	[LibraryImport(Library, EntryPoint = "wxk_DC_SetUserScale")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DCSetUserScale(WxkObject* self, double xScale, double yScale);
@@ -1497,6 +1501,18 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_DC_GetLogicalScale")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DCGetLogicalScale(WxkObject* self, double* x, double* y);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DC_SetLogicalOrigin")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DCSetLogicalOrigin(WxkObject* self, int x, int y);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DC_GetLogicalOrigin")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial Point DCGetLogicalOrigin(WxkObject* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DC_GetDeviceOrigin")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial Point DCGetDeviceOrigin(WxkObject* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_DC_GetUserScale")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -1790,14 +1806,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DCSetAxisOrientation(WxkObject* self, byte xLeftRight, byte yBottomUp);
 
-	[LibraryImport(Library, EntryPoint = "wxk_DC_SetDeviceOrigin")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DCSetDeviceOrigin(WxkObject* self, int x, int y);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DC_SetLogicalOrigin")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DCSetLogicalOrigin(WxkObject* self, int x, int y);
-
 	[LibraryImport(Library, EntryPoint = "wxk_DC_ResetTransformMatrix")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DCResetTransformMatrix(WxkObject* self);
@@ -1918,10 +1926,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte DCCanGetTextExtent(WxkObject* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_DC_GetLogicalOrigin")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial Point DCGetLogicalOrigin(WxkObject* self);
-
 	[LibraryImport(Library, EntryPoint = "wxk_DC_CanUseTransformMatrix")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte DCCanUseTransformMatrix(WxkObject* self);
@@ -1945,10 +1949,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_DC_GetDepth")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int DCGetDepth(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DC_GetDeviceOrigin")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial Point DCGetDeviceOrigin(WxkObject* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_DC_GetPPI")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4850,10 +4850,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void ListCtrlSetWindowStyleFlag(WxkWindow* self, long style);
 
-	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_EnableCheckBoxes")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ListCtrlEnableCheckBoxes(WxkWindow* self, byte enable);
-
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_IsItemChecked")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ListCtrlIsItemChecked(WxkWindow* self, int item);
@@ -4877,6 +4873,14 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_GetUpdatedAscendingSortIndicator")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ListCtrlGetUpdatedAscendingSortIndicator(WxkWindow* self, int column);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_HasCheckBoxes")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ListCtrlHasCheckBoxes(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_EnableCheckBoxes")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ListCtrlEnableCheckBoxes(WxkWindow* self, byte enable);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_GetColumnCount")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4945,10 +4949,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_IsVirtual")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ListCtrlIsVirtual(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_HasCheckBoxes")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ListCtrlHasCheckBoxes(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_GetSortIndicator")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -5178,10 +5178,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* MemoryDCNewBitmap(WxkObject* bitmap);
 
-	[LibraryImport(Library, EntryPoint = "wxk_MemoryDC_SelectObject")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MemoryDCSelectObject(WxkObject* self, WxkObject* bitmap);
-
 	[LibraryImport(Library, EntryPoint = "wxk_MemoryDC_SelectObjectAsSource")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void MemoryDCSelectObjectAsSource(WxkObject* self, WxkObject* bitmap);
@@ -5189,6 +5185,10 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_MemoryDC_GetSelectedBitmap")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* MemoryDCGetSelectedBitmap(WxkObject* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_MemoryDC_SelectObject")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void MemoryDCSelectObject(WxkObject* self, WxkObject* bitmap);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Menu_new_Default")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -6990,14 +6990,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void SearchCtrlGetSelection(WxkWindow* self, long* from, long* to);
 
-	[LibraryImport(Library, EntryPoint = "wxk_SearchCtrl_ShowCancelButton")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void SearchCtrlShowCancelButton(WxkWindow* self, byte show);
-
-	[LibraryImport(Library, EntryPoint = "wxk_SearchCtrl_ShowSearchButton")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void SearchCtrlShowSearchButton(WxkWindow* self, byte show);
-
 	[LibraryImport(Library, EntryPoint = "wxk_SearchCtrl_SetMargins_IntInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte SearchCtrlSetMarginsIntInt(WxkWindow* self, int left, int top);
@@ -7086,6 +7078,22 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void SearchCtrlWriteText(WxkWindow* self, char* text, nuint textLength);
 
+	[LibraryImport(Library, EntryPoint = "wxk_SearchCtrl_IsSearchButtonVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte SearchCtrlIsSearchButtonVisible(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_SearchCtrl_ShowSearchButton")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void SearchCtrlShowSearchButton(WxkWindow* self, byte show);
+
+	[LibraryImport(Library, EntryPoint = "wxk_SearchCtrl_IsCancelButtonVisible")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte SearchCtrlIsCancelButtonVisible(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_SearchCtrl_ShowCancelButton")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void SearchCtrlShowCancelButton(WxkWindow* self, byte show);
+
 	[LibraryImport(Library, EntryPoint = "wxk_SearchCtrl_GetMenu")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkMenu* SearchCtrlGetMenu(WxkWindow* self);
@@ -7093,14 +7101,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_SearchCtrl_SetMenu")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void SearchCtrlSetMenu(WxkWindow* self, WxkMenu* menu);
-
-	[LibraryImport(Library, EntryPoint = "wxk_SearchCtrl_IsSearchButtonVisible")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte SearchCtrlIsSearchButtonVisible(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_SearchCtrl_IsCancelButtonVisible")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte SearchCtrlIsCancelButtonVisible(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_SearchCtrl_GetDescriptiveText")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

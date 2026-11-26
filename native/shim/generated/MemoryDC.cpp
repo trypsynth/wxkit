@@ -22,15 +22,15 @@ WXK_FUNCTION(wxk_Object*) wxk_MemoryDC_new_Bitmap(wxk_Object* bitmap) noexcept {
 	});
 }
 
-WXK_FUNCTION(void) wxk_MemoryDC_SelectObject(wxk_Object* self, wxk_Object* bitmap) noexcept {
-	wxk::Guard([&] { static_cast<wxMemoryDC*>(wxk::Unwrap(self))->SelectObject(wxk::ValueRef<wxBitmap>(bitmap)); });
-}
-
 WXK_FUNCTION(void) wxk_MemoryDC_SelectObjectAsSource(wxk_Object* self, const wxk_Object* bitmap) noexcept {
 	wxk::Guard([&] { static_cast<wxMemoryDC*>(wxk::Unwrap(self))->SelectObjectAsSource(wxk::ValueOf<wxBitmap>(bitmap)); });
 }
 
 WXK_FUNCTION(wxk_Object*) wxk_MemoryDC_GetSelectedBitmap(wxk_Object* self) noexcept {
 	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxBitmap>(static_cast<wxMemoryDC*>(wxk::Unwrap(self))->GetSelectedBitmap()); });
+}
+
+WXK_FUNCTION(void) wxk_MemoryDC_SelectObject(wxk_Object* self, wxk_Object* bitmap) noexcept {
+	wxk::Guard([&] { static_cast<wxMemoryDC*>(wxk::Unwrap(self))->SelectObject(wxk::ValueRef<wxBitmap>(bitmap)); });
 }
 
