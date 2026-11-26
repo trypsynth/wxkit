@@ -43,6 +43,12 @@ public unsafe partial class ToolBar : Control {
 	/// <summary>Returns the number of tools in the toolbar.</summary>
 	public int ToolsCount => checked((int)WxKitNative.ToolBarGetToolsCount(Native));
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new ToolBarStyle Style {
+		get => (ToolBarStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Process a wxEVT_TOOL event (a synonym for wxEVT_MENU). Pass the id of the tool.</summary>
 	public event EventHandler<CommandEvent>? ToolClicked {
 		add => AddHandler(EventType.Tool, StandardId.Any, StandardId.Any, value, this);

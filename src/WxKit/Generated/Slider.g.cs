@@ -61,6 +61,12 @@ public unsafe partial class Slider : Control {
 		set => WxKitNative.SliderSetValue(Native, value);
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new SliderStyle Style {
+		get => (SliderStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Process wxEVT_SCROLL_BOTTOM scroll-to-bottom events (maximum position).</summary>
 	public event EventHandler<ScrollEvent>? ScrollBottom {
 		add => AddHandler(EventType.ScrollBottom, StandardId.Any, StandardId.Any, value, this);

@@ -335,10 +335,6 @@ WXK_FUNCTION(void) wxk_ListCtrl_SetSingleStyle(wxk_Window* self, int64_t style, 
 	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetSingleStyle(static_cast<long>(style), add != 0); });
 }
 
-WXK_FUNCTION(void) wxk_ListCtrl_SetWindowStyleFlag(wxk_Window* self, int64_t style) noexcept {
-	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetWindowStyleFlag(static_cast<long>(style)); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_IsItemChecked(wxk_Window* self, int32_t item) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->IsItemChecked(static_cast<long>(item))) ? 1 : 0; });
 }

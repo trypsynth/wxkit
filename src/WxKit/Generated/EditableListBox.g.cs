@@ -41,6 +41,12 @@ public unsafe partial class EditableListBox : Panel {
 	/// <summary>Returns the button used to move the selected item up in the list.</summary>
 	public BitmapButton? UpButton => ObjectRegistry.Wrap<BitmapButton>(WxKitNative.EditableListBoxGetUpButton(Native));
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new EditableListBoxStyle Style {
+		get => (EditableListBoxStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	private static WxkWindow* CreateNative(Window parent, string label, int id, Point? position, Size? size, EditableListBoxStyle style) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(parent);

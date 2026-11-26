@@ -50,6 +50,12 @@ public unsafe partial class Choice : Control {
 	/// <summary>Returns the array of the labels of all items in the control.</summary>
 	public IReadOnlyList<string> Strings => NativeStringArray.Take(WxKitNative.ChoiceGetStrings(Native));
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new ChoiceStyle Style {
+		get => (ChoiceStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Process a wxEVT_CHOICE event, when an item on the list is selected.</summary>
 	public event EventHandler<CommandEvent>? SelectionChanged {
 		add => AddHandler(EventType.Choice, StandardId.Any, StandardId.Any, value, this);

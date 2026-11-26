@@ -89,6 +89,12 @@ public unsafe partial class FileDialog : Dialog {
 		}
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new FileDialogStyle Style {
+		get => (FileDialogStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Add a directory to the list of shortcuts shown in the dialog.</summary>
 	public bool AddShortcut(string directory, FileDialogShortcut flags = 0) {
 		ArgumentNullException.ThrowIfNull(directory);

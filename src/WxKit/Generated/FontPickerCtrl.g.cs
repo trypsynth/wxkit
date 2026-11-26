@@ -37,6 +37,12 @@ public unsafe partial class FontPickerCtrl : PickerBase {
 		set => WxKitNative.FontPickerCtrlSetSelectedFont(Native, value is null ? null : value.Native);
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new FontPickerCtrlStyle Style {
+		get => (FontPickerCtrlStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>The user changed the font selected in the control either using the button or using text control (see wxFNTP_USE_TEXTCTRL; note that in this case the event is fired only if the user's input is valid, i.e. recognizable).</summary>
 	public event EventHandler<FontPickerEvent>? FontChanged {
 		add => AddHandler(EventType.FontPickerChanged, StandardId.Any, StandardId.Any, value, this);

@@ -25,6 +25,12 @@ public unsafe partial class CollapsiblePane : Control {
 	/// <summary>Returns a pointer to the pane window.</summary>
 	public Window? Pane => ObjectRegistry.Wrap<Window>(WxKitNative.CollapsiblePaneGetPane(Native));
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new CollapsiblePaneStyle Style {
+		get => (CollapsiblePaneStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>The user expanded or collapsed the collapsible pane.</summary>
 	public event EventHandler<CollapsiblePaneEvent>? CollapsedChanged {
 		add => AddHandler(EventType.CollapsiblePaneChanged, StandardId.Any, StandardId.Any, value, this);

@@ -22,6 +22,12 @@ public unsafe partial class StatusBar : Control {
 		set => WxKitNative.StatusBarSetFieldsCount(Native, value);
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new StatusBarStyle Style {
+		get => (StatusBarStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Add a control (child of the wxStatusBar) to be shown at the specified field position in the status bar.</summary>
 	public bool AddFieldControl(int i, Window window) {
 		ArgumentNullException.ThrowIfNull(window);

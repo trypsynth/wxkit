@@ -19,6 +19,12 @@ public unsafe partial class Button : AnyButton {
 		set => WxKitNative.ButtonSetAuthNeeded(Native, value ? (byte)1 : (byte)0);
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new ButtonStyle Style {
+		get => (ButtonStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Process a wxEVT_BUTTON event, when the button is clicked.</summary>
 	public event EventHandler<CommandEvent>? Click {
 		add => AddHandler(EventType.Button, StandardId.Any, StandardId.Any, value, this);

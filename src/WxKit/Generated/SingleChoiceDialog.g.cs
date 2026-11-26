@@ -22,6 +22,12 @@ public unsafe partial class SingleChoiceDialog : Dialog {
 	/// <summary>Returns the selected string.</summary>
 	public string StringSelection => NativeString.Take(WxKitNative.SingleChoiceDialogGetStringSelection(Native));
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new SingleChoiceDialogStyle Style {
+		get => (SingleChoiceDialogStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	private static WxkWindow* CreateNative(Window? parent, string message, string caption, IEnumerable<string> choices) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(message);

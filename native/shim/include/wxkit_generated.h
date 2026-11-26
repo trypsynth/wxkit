@@ -1442,7 +1442,6 @@ WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItemState(wxk_Window* self, int32_t item, 
 WXK_FUNCTION(void) wxk_ListCtrl_SetItemText(wxk_Window* self, int32_t item, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListCtrl_SetItemTextColour(wxk_Window* self, int32_t item, wxk_Colour color) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListCtrl_SetSingleStyle(wxk_Window* self, int64_t style, uint8_t add) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_ListCtrl_SetWindowStyleFlag(wxk_Window* self, int64_t style) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_IsItemChecked(wxk_Window* self, int32_t item) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListCtrl_CheckItem(wxk_Window* self, int32_t item, uint8_t check) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListCtrl_ExtendRulesAndAlternateColour(wxk_Window* self, uint8_t extend) WXK_NOEXCEPT;
@@ -3704,6 +3703,8 @@ WXK_FUNCTION(uint8_t) wxk_WebViewEvent_IsTargetMainFrame(wxk_Event* self) WXK_NO
 
 // wxWindow
 
+WXK_FUNCTION(int64_t) wxk_Window_GetWindowStyleFlag(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Window_SetWindowStyleFlag(wxk_Window* self, int64_t style) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_Window_GetToolTipText(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_UnsetToolTip(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_SetSizer(wxk_Window* self, wxk_Sizer* sizer, uint8_t deleteOld) WXK_NOEXCEPT;
@@ -3794,9 +3795,6 @@ WXK_FUNCTION(uint8_t) wxk_Window_UseForegroundColour(wxk_Window* self) WXK_NOEXC
 WXK_FUNCTION(uint8_t) wxk_Window_InheritsForegroundColour(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_SetTransparent(wxk_Window* self, uint8_t alpha) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_HasExtraStyle(wxk_Window* self, int32_t extraFlag) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Window_HasFlag(wxk_Window* self, int32_t flag) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Window_SetWindowStyle(wxk_Window* self, int64_t style) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Window_ToggleWindowStyle(wxk_Window* self, int32_t flag) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_MoveAfterInTabOrder(wxk_Window* self, wxk_Window* window) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_MoveBeforeInTabOrder(wxk_Window* self, wxk_Window* window) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_Navigate(wxk_Window* self, int32_t flags) WXK_NOEXCEPT;
@@ -3901,9 +3899,6 @@ WXK_FUNCTION(wxk_EvtHandler*) wxk_Window_GetEventHandler(wxk_Window* self) WXK_N
 WXK_FUNCTION(void) wxk_Window_SetEventHandler(wxk_Window* self, wxk_EvtHandler* handler) WXK_NOEXCEPT;
 WXK_FUNCTION(int64_t) wxk_Window_GetExtraStyle(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_SetExtraStyle(wxk_Window* self, int64_t exStyle) WXK_NOEXCEPT;
-WXK_FUNCTION(int64_t) wxk_Window_GetWindowStyleFlag(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Window_SetWindowStyleFlag(wxk_Window* self, int64_t style) WXK_NOEXCEPT;
-WXK_FUNCTION(int64_t) wxk_Window_GetWindowStyle(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_IsShown(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_IsShownOnScreen(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_Window_GetHelpText(wxk_Window* self) WXK_NOEXCEPT;

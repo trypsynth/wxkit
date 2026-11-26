@@ -19,6 +19,12 @@ public unsafe partial class ColorPickerCtrl : PickerBase {
 		set => WxKitNative.ColorPickerCtrlSetColour(Native, global::WxKit.Color.ToNative(value));
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new ColorPickerCtrlStyle Style {
+		get => (ColorPickerCtrlStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>The user changed the colour selected in the control either using the button or using text control (see wxCLRP_USE_TEXTCTRL; note that in this case the event is fired only if the user's input is valid, i.e. recognizable). When using a popup dialog for changing the colour, this event is sent only when the changes in the dialog are accepted by the user, unlike EVT_COLOURPICKER_CURRENT_CHANGED.</summary>
 	public event EventHandler<ColorPickerEvent>? ColorChanged {
 		add => AddHandler(EventType.ColorPickerChanged, StandardId.Any, StandardId.Any, value, this);

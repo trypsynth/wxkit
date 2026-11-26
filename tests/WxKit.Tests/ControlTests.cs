@@ -139,6 +139,21 @@ public class ControlTests {
 		text.DragAcceptFiles(false);
 	});
 
+	// A window's styles are one property, of its class's own style enum.
+	[Fact]
+	public Task GivesAWindowsStylesAsItsOwnEnum() => Gui.WithFrame(frame => {
+		ListBox list = new(frame, style: ListBoxStyle.Multiple);
+		Assert.True(list.Style.HasFlag(ListBoxStyle.Multiple));
+		Assert.False(list.Style.HasFlag(ListBoxStyle.Sort));
+		Panel panel = new(frame, style: WindowStyle.WantsChars);
+		Assert.True(panel.Style.HasFlag(WindowStyle.WantsChars));
+		panel.Style &= ~WindowStyle.WantsChars;
+		Assert.False(panel.Style.HasFlag(WindowStyle.WantsChars));
+		// A window seen as its base has the same styles, as the base's enum.
+		Window seen = list;
+		Assert.Equal((long)list.Style, (long)seen.Style);
+	});
+
 	[Fact]
 	public Task SelectsTextByStartAndLength() => Gui.WithFrame(frame => {
 		TextCtrl text = new(frame, "hello world");

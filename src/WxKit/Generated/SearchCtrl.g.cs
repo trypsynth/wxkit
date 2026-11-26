@@ -106,6 +106,12 @@ public unsafe partial class SearchCtrl : Control {
 		}
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new SearchCtrlStyle Style {
+		get => (SearchCtrlStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Respond to a wxEVT_SEARCH_CANCEL event, generated when the cancel button is clicked.</summary>
 	public event EventHandler<CommandEvent>? SearchCanceled {
 		add => AddHandler(EventType.SearchCancel, StandardId.Any, StandardId.Any, value, this);

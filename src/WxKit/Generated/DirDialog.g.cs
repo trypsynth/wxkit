@@ -38,6 +38,12 @@ public unsafe partial class DirDialog : Dialog {
 	/// <summary>Fills the array paths with the full paths of the chosen directories.</summary>
 	public IReadOnlyList<string> Paths => NativeStringArray.Take(WxKitNative.DirDialogGetPaths(Native));
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new DirDialogStyle Style {
+		get => (DirDialogStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	private static WxkWindow* CreateNative(Window? parent, string? message, string defaultPath, DirDialogStyle style, Point? position, Size? size) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(defaultPath);

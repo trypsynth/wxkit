@@ -311,19 +311,16 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>Returns the size of the left/right and top/bottom borders of this window in x and y components of the result respectively.</summary>
 	public Size WindowBorderSize => WxKitNative.WindowGetWindowBorderSize(Native);
 
-	/// <summary>See GetWindowStyleFlag() for more info.</summary>
-	public WindowStyle WindowStyle => (WindowStyle)WxKitNative.WindowGetWindowStyle(Native);
-
-	/// <summary>Gets the window style that was passed to the constructor or Create() method.</summary>
-	public long WindowStyleFlag {
-		get => WxKitNative.WindowGetWindowStyleFlag(Native);
-		set => WxKitNative.WindowSetWindowStyleFlag(Native, value);
-	}
-
 	/// <summary>Returns the value previously passed to SetWindowVariant().</summary>
 	public WindowVariant WindowVariant {
 		get => (WindowVariant)WxKitNative.WindowGetWindowVariant(Native);
 		set => WxKitNative.WindowSetWindowVariant(Native, (int)value);
+	}
+
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public WindowStyle Style {
+		get => (WindowStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
 	}
 
 	/// <summary>Process a wxEVT_ACTIVATE event. See wxActivateEvent.</summary>
@@ -684,9 +681,6 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>Returns true if the window has the given exFlag bit set in its extra styles.</summary>
 	public bool HasExtraStyle(WindowExtraStyle extraFlag) => WxKitNative.WindowHasExtraStyle(Native, (int)extraFlag) != 0;
 
-	/// <summary>Returns true if the window has the given flag bit set.</summary>
-	public bool HasFlag(int flag) => WxKitNative.WindowHasFlag(Native, flag) != 0;
-
 	/// <summary>Returns true if this window currently has a scroll bar for this orientation.</summary>
 	public bool HasScrollBar(Orientation orientation) => WxKitNative.WindowHasScrollbar(Native, (int)orientation) != 0;
 
@@ -861,9 +855,6 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>Set the transparency of the window.</summary>
 	public bool SetTransparent(byte alpha) => WxKitNative.WindowSetTransparent(Native, alpha) != 0;
 
-	/// <summary>See SetWindowStyleFlag() for more info.</summary>
-	public void SetWindowStyle(long style) => WxKitNative.WindowSetWindowStyle(Native, style);
-
 	/// <summary>Shows or hides the window.</summary>
 	public bool Show(bool show = true) => WxKitNative.WindowShow(Native, show ? (byte)1 : (byte)0) != 0;
 
@@ -890,9 +881,6 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public int ToPhysical(int d) => WxKitNative.WindowToPhysInt(Native, d);
-
-	/// <summary>Turns the given flag on if it's currently turned off and vice versa.</summary>
-	public bool ToggleWindowStyle(int flag) => WxKitNative.WindowToggleWindowStyle(Native, flag) != 0;
 
 	/// <summary>Transfers values from child controls to data areas specified by their validators.</summary>
 	public bool TransferDataFromWindow() => WxKitNative.WindowTransferDataFromWindow(Native) != 0;

@@ -48,6 +48,12 @@ public unsafe partial class HyperlinkCtrl : Control {
 		set => WxKitNative.HyperlinkCtrlSetVisitedColour(Native, global::WxKit.Color.ToNative(value));
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new HyperlinkCtrlStyle Style {
+		get => (HyperlinkCtrlStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>The hyperlink was (left) clicked. If this event is not handled in user's code (or it's skipped; see wxEvent::Skip), then a call to wxLaunchDefaultBrowser is done with the hyperlink's URL.</summary>
 	public event EventHandler<HyperlinkEvent>? Click {
 		add => AddHandler(EventType.Hyperlink, StandardId.Any, StandardId.Any, value, this);

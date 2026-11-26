@@ -24,6 +24,12 @@ public unsafe partial class StaticLine : Control {
 	/// <summary>Returns true if the line is vertical, false if horizontal.</summary>
 	public bool IsVertical => WxKitNative.StaticLineIsVertical(Native) != 0;
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new StaticLineStyle Style {
+		get => (StaticLineStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	private static WxkWindow* CreateNative(Window parent, int id, Point? position, Size? size, StaticLineStyle style) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(parent);

@@ -61,6 +61,18 @@ internal static class ManagedEmitter {
 			Gap();
 			WriteProperty(writer, bound, property);
 		}
+		// A window's styles, as its class's own enum. A class derived from one that has styles
+		// hides its base's property with one of its own enum, over the same number.
+		if (bound.Handle == HandleKind.Window && bound.Styles is BoundStyles styles && !bound.Tweak.KeepsStylesApart) {
+			Gap();
+			bool hides = false;
+			for (BoundClass? ancestor = bound.Base; ancestor is not null && !hides; ancestor = ancestor.Base) hides = ancestor.Styles is not null;
+			writer.Line("/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref=\"Window.Refresh\"/> to show.</summary>");
+			writer.Open($"public {(hides ? "new " : string.Empty)}{styles.Name} Style");
+			writer.Line($"get => ({styles.Name})WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);");
+			writer.Line("set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);");
+			writer.Close();
+		}
 		foreach (BoundEvent boundEvent in bound.Events.OrderBy(static boundEvent => boundEvent.Name, StringComparer.Ordinal)) {
 			Gap();
 			Summary(writer, boundEvent.Description);

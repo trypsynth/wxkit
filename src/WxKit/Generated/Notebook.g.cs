@@ -22,6 +22,12 @@ public unsafe partial class Notebook : BookCtrlBase {
 	/// <summary>If running under Windows and themes are enabled for the application, this function returns a suitable colour for painting the background of a notebook page, and can be passed to SetBackgroundColour().</summary>
 	public Color? ThemeBackgroundColor => global::WxKit.Color.FromNative(WxKitNative.NotebookGetThemeBackgroundColour(Native));
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new NotebookStyle Style {
+		get => (NotebookStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>The page selection was changed. Processes a wxEVT_NOTEBOOK_PAGE_CHANGED event.</summary>
 	public event EventHandler<BookCtrlEvent>? PageChanged {
 		add => AddHandler(EventType.NotebookPageChanged, StandardId.Any, StandardId.Any, value, this);

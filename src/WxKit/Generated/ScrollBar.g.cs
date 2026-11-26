@@ -31,6 +31,12 @@ public unsafe partial class ScrollBar : Control {
 	/// <summary>Returns the thumb or 'view' size.</summary>
 	public int ThumbSize => WxKitNative.ScrollBarGetThumbSize(Native);
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new ScrollBarStyle Style {
+		get => (ScrollBarStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Process wxEVT_SCROLL_BOTTOM scroll to bottom or rightmost (maximum) position events.</summary>
 	public event EventHandler<ScrollEvent>? ScrollBottom {
 		add => AddHandler(EventType.ScrollBottom, StandardId.Any, StandardId.Any, value, this);

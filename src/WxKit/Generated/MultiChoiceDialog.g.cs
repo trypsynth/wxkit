@@ -25,6 +25,12 @@ public unsafe partial class MultiChoiceDialog : Dialog {
 		}
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new MultiChoiceDialogStyle Style {
+		get => (MultiChoiceDialogStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	private static WxkWindow* CreateNative(Window? parent, string message, string caption, IEnumerable<string> choices, MultiChoiceDialogStyle style, Point? position) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(message);

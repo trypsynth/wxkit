@@ -54,6 +54,12 @@ public unsafe partial class ListBox : Control {
 	/// <summary>Return the index of the topmost visible item.</summary>
 	public int TopItem => WxKitNative.ListBoxGetTopItem(Native);
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new ListBoxStyle Style {
+		get => (ListBoxStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Process a wxEVT_LISTBOX_DCLICK event, when the listbox is double-clicked. On some platforms (notably wxGTK2) pressing the enter key is handled as an equivalent of a double-click.</summary>
 	public event EventHandler<CommandEvent>? ItemDoubleClicked {
 		add => AddHandler(EventType.ListBoxDoubleClick, StandardId.Any, StandardId.Any, value, this);

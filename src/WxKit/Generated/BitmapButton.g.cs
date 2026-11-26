@@ -13,6 +13,12 @@ public unsafe partial class BitmapButton : Button {
 	internal BitmapButton(WxkWindow* native) : base(native) {
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new BitmapButtonStyle Style {
+		get => (BitmapButtonStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Helper function creating a standard-looking "Close" button.</summary>
 	public static BitmapButton? NewCloseButton(Window parent, string name = "", int id = StandardId.Any) {
 		Application.VerifyAccess();

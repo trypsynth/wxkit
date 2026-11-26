@@ -24,6 +24,12 @@ public unsafe partial class FilePickerCtrl : PickerBase {
 		}
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new FilePickerCtrlStyle Style {
+		get => (FilePickerCtrlStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>The user changed the file selected in the control either using the button or using text control (see wxFLP_USE_TEXTCTRL; note that in this case the event is fired only if the user's input is valid, e.g. an existing file path if wxFLP_FILE_MUST_EXIST was given).</summary>
 	public event EventHandler<FileDirPickerEvent>? PathChanged {
 		add => AddHandler(EventType.FilePickerChanged, StandardId.Any, StandardId.Any, value, this);

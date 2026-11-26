@@ -16,6 +16,12 @@ public unsafe partial class Choicebook : BookCtrlBase {
 	/// <summary>Returns the wxChoice associated with the control.</summary>
 	public Choice? ChoiceCtrl => ObjectRegistry.Wrap<Choice>(WxKitNative.ChoicebookGetChoiceCtrl(Native));
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new ChoicebookStyle Style {
+		get => (ChoicebookStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>The page selection was changed. Processes a wxEVT_CHOICEBOOK_PAGE_CHANGED event.</summary>
 	public event EventHandler<BookCtrlEvent>? PageChanged {
 		add => AddHandler(EventType.ChoicebookPageChanged, StandardId.Any, StandardId.Any, value, this);

@@ -493,6 +493,14 @@ internal sealed class ClassTweak(string name) {
 		return this;
 	}
 
+	/// <summary>Whether the class keeps the styles its constructor takes apart from its window's, as a message dialog does its buttons and icon, so they aren't its Style.</summary>
+	public bool KeepsStylesApart { get; private set; }
+
+	public ClassTweak StylesKeptApart() {
+		KeepsStylesApart = true;
+		return this;
+	}
+
 	public ClassTweak StylesPrefixed(string prefix) {
 		StylePrefix = prefix;
 		return this;

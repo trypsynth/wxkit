@@ -25,6 +25,12 @@ public unsafe partial class CheckBox : Control {
 		set => WxKitNative.CheckBoxSet3StateValue(Native, (int)value);
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new CheckBoxStyle Style {
+		get => (CheckBoxStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Process a wxEVT_CHECKBOX event, when the checkbox is clicked.</summary>
 	public event EventHandler<CommandEvent>? CheckedChanged {
 		add => AddHandler(EventType.CheckBox, StandardId.Any, StandardId.Any, value, this);

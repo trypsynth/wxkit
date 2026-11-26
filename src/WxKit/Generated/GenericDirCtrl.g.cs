@@ -67,6 +67,12 @@ public unsafe partial class GenericDirCtrl : Control {
 	/// <summary>Returns a pointer to the tree control.</summary>
 	public TreeCtrl? TreeCtrl => ObjectRegistry.Wrap<TreeCtrl>(WxKitNative.GenericDirCtrlGetTreeCtrl(Native));
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new GenericDirCtrlStyle Style {
+		get => (GenericDirCtrlStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>The user activated a file by double-clicking or pressing Enter. Available since wxWidgets 2.9.5.</summary>
 	public event EventHandler<TreeEvent>? FileActivated {
 		add => AddHandler(EventType.GenericDirCtrlFileActivated, StandardId.Any, StandardId.Any, value, this);

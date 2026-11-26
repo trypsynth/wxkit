@@ -23,7 +23,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 
 ## Members that have a better form now
 
-- A window's style is one property of the class's own style enum, rather than `WindowStyle`, `WindowStyleFlag`, `SetWindowStyle`, and `HasFlag` taking three types.
 
 ## The hand-written classes
 

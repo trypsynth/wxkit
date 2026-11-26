@@ -34,6 +34,12 @@ public unsafe partial class TreeListCtrl : Window {
 	/// <summary>Return the view part of this control as a wxWindow.</summary>
 	public Window? View => ObjectRegistry.Wrap<Window>(WxKitNative.TreeListCtrlGetView(Native));
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new TreeListCtrlStyle Style {
+		get => (TreeListCtrlStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Process wxEVT_TREELIST_COLUMN_SORTED event indicating that the control contents has just been resorted using the specified column. The event doesn't carry the sort direction, use GetSortColumn() method if you need to know it.</summary>
 	public event EventHandler<TreeListEvent>? ColumnSorted {
 		add => AddHandler(EventType.TreeListColumnSorted, StandardId.Any, StandardId.Any, value, this);

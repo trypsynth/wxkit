@@ -40,6 +40,12 @@ public unsafe partial class Dialog : TopLevelWindow {
 		set => WxKitNative.DialogSetReturnCode(Native, value);
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new DialogStyle Style {
+		get => (DialogStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Process a wxEVT_INIT_DIALOG event. See wxInitDialogEvent.</summary>
 	public event EventHandler<InitDialogEvent>? Initializing {
 		add => AddHandler(EventType.InitDialog, StandardId.Any, StandardId.Any, value, this);

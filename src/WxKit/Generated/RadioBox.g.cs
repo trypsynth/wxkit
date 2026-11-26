@@ -49,6 +49,12 @@ public unsafe partial class RadioBox : Control {
 	/// <summary>Returns the array of the labels of all items in the control.</summary>
 	public IReadOnlyList<string> Strings => NativeStringArray.Take(WxKitNative.RadioBoxGetStrings(Native));
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new RadioBoxStyle Style {
+		get => (RadioBoxStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Process a wxEVT_RADIOBOX event, when a radiobutton is clicked.</summary>
 	public event EventHandler<CommandEvent>? SelectionChanged {
 		add => AddHandler(EventType.RadioBox, StandardId.Any, StandardId.Any, value, this);

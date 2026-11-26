@@ -13,6 +13,12 @@ public unsafe partial class MiniFrame : Frame {
 	internal MiniFrame(WxkWindow* native) : base(native) {
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new MiniFrameStyle Style {
+		get => (MiniFrameStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	private static WxkWindow* CreateNative(Window? parent, string title, int id, Point? position, Size? size, MiniFrameStyle style) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(title);

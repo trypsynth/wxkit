@@ -106,6 +106,12 @@ public unsafe partial class TextCtrl : Control {
 		}
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new TextCtrlStyle Style {
+		get => (TextCtrlStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>This event is generated when the user tries to enter more text into the control than the limit set by wxTextCtrl::SetMaxLength(), see its description.</summary>
 	public event EventHandler<CommandEvent>? MaxLengthReached {
 		add => AddHandler(EventType.TextMaxLength, StandardId.Any, StandardId.Any, value, this);

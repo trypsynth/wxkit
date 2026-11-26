@@ -13,6 +13,12 @@ public unsafe partial class Toolbook : BookCtrlBase {
 	internal Toolbook(WxkWindow* native) : base(native) {
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new ToolbookStyle Style {
+		get => (ToolbookStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>The page selection was changed. Processes a wxEVT_TOOLBOOK_PAGE_CHANGED event.</summary>
 	public event EventHandler<BookCtrlEvent>? PageChanged {
 		add => AddHandler(EventType.ToolbookPageChanged, StandardId.Any, StandardId.Any, value, this);

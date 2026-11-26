@@ -4638,10 +4638,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void ListCtrlSetSingleStyle(WxkWindow* self, long style, byte add);
 
-	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_SetWindowStyleFlag")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ListCtrlSetWindowStyleFlag(WxkWindow* self, long style);
-
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_IsItemChecked")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ListCtrlIsItemChecked(WxkWindow* self, int item);
@@ -12558,6 +12554,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte WebViewEventIsTargetMainFrame(WxkEvent* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Window_GetWindowStyleFlag")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial long WindowGetWindowStyleFlag(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Window_SetWindowStyleFlag")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WindowSetWindowStyleFlag(WxkWindow* self, long style);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Window_GetToolTipText")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkString* WindowGetToolTipText(WxkWindow* self);
@@ -12917,18 +12921,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Window_HasExtraStyle")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte WindowHasExtraStyle(WxkWindow* self, int extraFlag);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_HasFlag")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte WindowHasFlag(WxkWindow* self, int flag);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_SetWindowStyle")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void WindowSetWindowStyle(WxkWindow* self, long style);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_ToggleWindowStyle")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte WindowToggleWindowStyle(WxkWindow* self, int flag);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Window_MoveAfterInTabOrder")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -13345,18 +13337,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Window_SetExtraStyle")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void WindowSetExtraStyle(WxkWindow* self, long exStyle);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_GetWindowStyleFlag")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial long WindowGetWindowStyleFlag(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_SetWindowStyleFlag")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void WindowSetWindowStyleFlag(WxkWindow* self, long style);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_GetWindowStyle")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial long WindowGetWindowStyle(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Window_IsShown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

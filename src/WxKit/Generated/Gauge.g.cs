@@ -28,6 +28,12 @@ public unsafe partial class Gauge : Control {
 		set => WxKitNative.GaugeSetValue(Native, value);
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new GaugeStyle Style {
+		get => (GaugeStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Switch the gauge to indeterminate mode (if required) and makes the gauge move a bit to indicate the user that some progress has been made.</summary>
 	public void Pulse() => WxKitNative.GaugePulse(Native);
 

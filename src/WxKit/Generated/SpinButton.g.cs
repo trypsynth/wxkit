@@ -31,6 +31,12 @@ public unsafe partial class SpinButton : Control {
 		set => WxKitNative.SpinButtonSetValue(Native, value);
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new SpinButtonStyle Style {
+		get => (SpinButtonStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Generated whenever pressing an arrow changed the spin button value.</summary>
 	public event EventHandler<SpinEvent>? Spin {
 		add => AddHandler(EventType.Spin, StandardId.Any, StandardId.Any, value, this);

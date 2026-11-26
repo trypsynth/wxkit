@@ -16,6 +16,12 @@ public unsafe partial class Listbook : BookCtrlBase {
 	/// <summary>Returns the wxListView associated with the control.</summary>
 	public ListView? ListView => ObjectRegistry.Wrap<ListView>(WxKitNative.ListbookGetListView(Native));
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new ListbookStyle Style {
+		get => (ListbookStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>The page selection was changed. Processes a wxEVT_LISTBOOK_PAGE_CHANGED event.</summary>
 	public event EventHandler<BookCtrlEvent>? PageChanged {
 		add => AddHandler(EventType.ListbookPageChanged, StandardId.Any, StandardId.Any, value, this);

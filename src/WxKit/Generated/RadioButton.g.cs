@@ -31,6 +31,12 @@ public unsafe partial class RadioButton : Control {
 	/// <summary>Returns the previous radio button in the same group.</summary>
 	public RadioButton? PreviousInGroup => ObjectRegistry.Wrap<RadioButton>(WxKitNative.RadioButtonGetPreviousInGroup(Native));
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new RadioButtonStyle Style {
+		get => (RadioButtonStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Process a wxEVT_RADIOBUTTON event, when the radiobutton is clicked.</summary>
 	public event EventHandler<CommandEvent>? Selected {
 		add => AddHandler(EventType.RadioButton, StandardId.Any, StandardId.Any, value, this);

@@ -20,6 +20,12 @@ public unsafe partial class BitmapComboBox : ComboBox {
 	/// <summary>Returns the size of the bitmaps used in the combo box.</summary>
 	public Size BitmapSize => WxKitNative.BitmapComboBoxGetBitmapSize(Native);
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new BitmapComboBoxStyle Style {
+		get => (BitmapComboBoxStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Adds the item to the end of the combo box.</summary>
 	public int Append(string item, Bitmap? bitmap = null) {
 		ArgumentNullException.ThrowIfNull(item);

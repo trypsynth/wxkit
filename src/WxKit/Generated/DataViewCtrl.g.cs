@@ -76,6 +76,12 @@ public unsafe partial class DataViewCtrl : Control {
 	/// <summary>Return the topmost visible item.</summary>
 	public DataViewItem TopItem => new global::WxKit.DataViewItem(WxKitNative.DataViewCtrlGetTopItem(Native));
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new DataViewCtrlStyle Style {
+		get => (DataViewCtrlStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Process a wxEVT_DATAVIEW_COLUMN_HEADER_CLICK event.</summary>
 	public event EventHandler<DataViewEvent>? ColumnHeaderClick {
 		add => AddHandler(EventType.DataViewColumnHeaderClick, StandardId.Any, StandardId.Any, value, this);

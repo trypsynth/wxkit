@@ -19,6 +19,12 @@ public unsafe partial class CalendarCtrl : Control {
 		set => WxKitNative.CalendarCtrlSetDate(Native, global::WxKit.NativeDateTime.ToNative(value));
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new CalendarCtrlStyle Style {
+		get => (CalendarCtrlStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	public event EventHandler<CalendarEvent>? DateActivated {
 		add => AddHandler(EventType.CalendarDoubleClicked, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.CalendarDoubleClicked, StandardId.Any, StandardId.Any, value);

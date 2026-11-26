@@ -106,6 +106,12 @@ public unsafe partial class ComboBox : Control {
 		}
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new ComboBoxStyle Style {
+		get => (ComboBoxStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Process a wxEVT_COMBOBOX_CLOSEUP event, which is generated when the list box of the combo box disappears (closes up). This event is only generated for the same platforms as wxEVT_COMBOBOX_DROPDOWN above.</summary>
 	public event EventHandler<CommandEvent>? DropDownClosed {
 		add => AddHandler(EventType.ComboBoxCloseUp, StandardId.Any, StandardId.Any, value, this);

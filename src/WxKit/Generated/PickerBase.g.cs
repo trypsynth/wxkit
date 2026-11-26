@@ -48,6 +48,12 @@ public unsafe partial class PickerBase : Control {
 		set => WxKitNative.PickerBaseSetTextCtrlProportion(Native, value);
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new PickerBaseStyle Style {
+		get => (PickerBaseStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	public void UpdatePickerFromTextCtrl() => WxKitNative.PickerBaseUpdatePickerFromTextCtrl(Native);
 
 	public void UpdateTextCtrlFromPicker() => WxKitNative.PickerBaseUpdateTextCtrlFromPicker(Native);

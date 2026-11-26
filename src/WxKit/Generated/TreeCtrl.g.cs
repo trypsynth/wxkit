@@ -71,6 +71,12 @@ public unsafe partial class TreeCtrl : Control {
 	/// <summary>Returns the number of state images used by the control.</summary>
 	public int StateImageCount => WxKitNative.TreeCtrlGetStateImageCount(Native);
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new TreeCtrlStyle Style {
+		get => (TreeCtrlStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Begin dragging with the left mouse button. If you want to enable left-dragging you need to intercept this event and explicitly call wxTreeEvent::Allow(), as it's vetoed by default. Processes a wxEVT_TREE_BEGIN_DRAG event type.</summary>
 	public event EventHandler<TreeEvent>? BeginDrag {
 		add => AddHandler(EventType.TreeBeginDrag, StandardId.Any, StandardId.Any, value, this);

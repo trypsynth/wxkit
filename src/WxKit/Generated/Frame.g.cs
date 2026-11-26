@@ -31,6 +31,12 @@ public unsafe partial class Frame : TopLevelWindow {
 		set => WxKitNative.FrameSetToolBar(Native, value is null ? null : (WxkWindow*)value.Native);
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new FrameStyle Style {
+		get => (FrameStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Process a wxEVT_ICONIZE event. See wxIconizeEvent.</summary>
 	public event EventHandler<IconizeEvent>? Iconized {
 		add => AddHandler(EventType.Iconize, StandardId.Any, StandardId.Any, value, this);

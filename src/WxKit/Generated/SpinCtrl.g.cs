@@ -40,6 +40,12 @@ public unsafe partial class SpinCtrl : Control {
 		set => WxKitNative.SpinCtrlSetValueInt(Native, value);
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new SpinCtrlStyle Style {
+		get => (SpinCtrlStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Process a wxEVT_SPINCTRL event, which is generated whenever the numeric value of the spin control is updated.</summary>
 	public event EventHandler<SpinEvent>? ValueChanged {
 		add => AddHandler(EventType.SpinCtrl, StandardId.Any, StandardId.Any, value, this);

@@ -65,6 +65,14 @@ internal static class Internals {
 
 	// A getter with a setter under another name is one property.
 	private static void Properties(Binding.Tweaks tweaks) {
+		// A window's styles are its Style property, of its class's own style enum, which the
+		// generator writes for each class that has one. wxWidgets has them as a long, with a getter
+		// under two names, a setter under two, and HasFlag and ToggleWindowStyle that take a number.
+		tweaks.Class("wxWindow").Internal("GetWindowStyleFlag", "SetWindowStyleFlag").Ignore("GetWindowStyle", "SetWindowStyle", "HasFlag", "ToggleWindowStyle");
+		tweaks.Class("wxListCtrl").Ignore("SetWindowStyleFlag");
+		// A message dialog's buttons and icon aren't its window's styles, and MessageDialogStyle gives them.
+		tweaks.Class("wxMessageDialog").StylesKeptApart();
+		tweaks.Class("wxTreeCtrl").Ignore("SetWindowStyle");
 		tweaks.Class("wxCollapsiblePane").Property("IsCollapsed", "IsCollapsed", "Collapse");
 		tweaks.Class("wxListCtrl").Property("HasCheckBoxes", "HasCheckBoxes", "EnableCheckBoxes");
 		tweaks.Class("wxSearchCtrl").Property("IsSearchButtonVisible", "IsSearchButtonVisible", "ShowSearchButton").Property("IsCancelButtonVisible", "IsCancelButtonVisible", "ShowCancelButton");

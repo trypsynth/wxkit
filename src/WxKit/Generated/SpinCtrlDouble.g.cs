@@ -40,6 +40,12 @@ public unsafe partial class SpinCtrlDouble : Control {
 		set => WxKitNative.SpinCtrlDoubleSetValueDouble(Native, value);
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new SpinCtrlDoubleStyle Style {
+		get => (SpinCtrlDoubleStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Generated whenever the numeric value of the spin control is changed, that is, when the up/down spin button is clicked, when ENTER is pressed, or the control loses focus and the new value is different from the last. See wxSpinDoubleEvent.</summary>
 	public event EventHandler<SpinDoubleEvent>? ValueChanged {
 		add => AddHandler(EventType.SpinCtrlDouble, StandardId.Any, StandardId.Any, value, this);

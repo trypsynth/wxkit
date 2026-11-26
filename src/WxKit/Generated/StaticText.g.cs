@@ -16,6 +16,12 @@ public unsafe partial class StaticText : Control {
 	/// <summary>Returns true if the window styles for this control contains one of the wxST_ELLIPSIZE_START, wxST_ELLIPSIZE_MIDDLE or wxST_ELLIPSIZE_END styles.</summary>
 	public bool IsEllipsized => WxKitNative.StaticTextIsEllipsized(Native) != 0;
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new StaticTextStyle Style {
+		get => (StaticTextStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>This functions wraps the controls label so that each of its lines becomes at most width pixels wide if possible (the lines are broken at words boundaries so it might not be the case if words are too long).</summary>
 	public void Wrap(int width) => WxKitNative.StaticTextWrap(Native, width);
 

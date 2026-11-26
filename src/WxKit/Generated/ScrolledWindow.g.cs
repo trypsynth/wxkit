@@ -42,6 +42,12 @@ public unsafe partial class ScrolledWindow : Panel {
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public Point ViewStartPixels => WxKitNative.ScrolledWindowGetViewStartPixels(Native);
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new ScrolledWindowStyle Style {
+		get => (ScrolledWindowStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Process wxEVT_SCROLLWIN_BOTTOM scroll-to-bottom events.</summary>
 	public event EventHandler<ScrollWinEvent>? ScrollWinBottom {
 		add => AddHandler(EventType.ScrollWinBottom, StandardId.Any, StandardId.Any, value, this);

@@ -69,6 +69,12 @@ public unsafe partial class FileCtrl : Control {
 		}
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new FileCtrlStyle Style {
+		get => (FileCtrlStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>The user activated a file(by double-clicking or pressing Enter)</summary>
 	public event EventHandler<FileCtrlEvent>? FileActivated {
 		add => AddHandler(EventType.FileCtrlFileActivated, StandardId.Any, StandardId.Any, value, this);

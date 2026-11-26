@@ -28,7 +28,6 @@ internal static class Lists {
 			.ParameterEnum("FindItem", "direction", "ListFindDirection")
 			.ParameterEnum("InsertColumn", "format", "wxListColumnFormat")
 			.ParameterEnum("SetSingleStyle", "style", "ListCtrlStyle")
-			.ParameterEnum("SetWindowStyleFlag", "style", "ListCtrlStyle")
 			.Director("OnGetItemText", "OnGetItemImage", "OnGetItemColumnImage", "OnGetItemIsChecked")
 			// SetItemData takes the same data.
 			.Ignore("SetItemPtrData")

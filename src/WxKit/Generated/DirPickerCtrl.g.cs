@@ -24,6 +24,12 @@ public unsafe partial class DirPickerCtrl : PickerBase {
 		}
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new DirPickerCtrlStyle Style {
+		get => (DirPickerCtrlStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>The user changed the directory selected in the control either using the button or using text control (see wxDIRP_USE_TEXTCTRL; note that in this case the event is fired only if the user's input is valid, e.g. an existing directory path).</summary>
 	public event EventHandler<FileDirPickerEvent>? PathChanged {
 		add => AddHandler(EventType.DirPickerChanged, StandardId.Any, StandardId.Any, value, this);

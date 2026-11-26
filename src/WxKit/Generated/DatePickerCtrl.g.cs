@@ -19,6 +19,12 @@ public unsafe partial class DatePickerCtrl : Control {
 		set => WxKitNative.DatePickerCtrlSetValue(Native, global::WxKit.NativeDateTime.ToNative(value));
 	}
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new DatePickerCtrlStyle Style {
+		get => (DatePickerCtrlStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>Process a wxEVT_DATE_CHANGED event, which fires when the user changes the current selection in the control.</summary>
 	public event EventHandler<DateEvent>? DateChanged {
 		add => AddHandler(EventType.DateChanged, StandardId.Any, StandardId.Any, value, this);

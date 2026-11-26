@@ -83,6 +83,12 @@ public unsafe partial class ListCtrl : Control {
 	/// <summary>Returns the rectangle taken by all items in the control.</summary>
 	public Rect ViewRect => WxKitNative.ListCtrlGetViewRect(Native);
 
+	/// <summary>The window's styles. Some only take effect when the window is made, and some need <see cref="Window.Refresh"/> to show.</summary>
+	public new ListCtrlStyle Style {
+		get => (ListCtrlStyle)WxKitNative.WindowGetWindowStyleFlag((WxkWindow*)Native);
+		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
+	}
+
 	/// <summary>All items were deleted. Processes a wxEVT_LIST_DELETE_ALL_ITEMS event type.</summary>
 	public event EventHandler<ListEvent>? AllItemsDeleted {
 		add => AddHandler(EventType.ListDeleteAllItems, StandardId.Any, StandardId.Any, value, this);
@@ -447,9 +453,6 @@ public unsafe partial class ListCtrl : Control {
 			WxKitNative.ListCtrlSetSmallImages(Native, (WxkObject**)imagesPointer, (nuint)imagesNative.Handles.Length);
 		}
 	}
-
-	/// <summary>Sets the whole window style, deleting all items.</summary>
-	public void SetWindowStyleFlag(ListCtrlStyle style) => WxKitNative.ListCtrlSetWindowStyleFlag(Native, (long)style);
 
 	/// <summary>Show the sort indicator of a specific column in a specific direction.</summary>
 	public void ShowSortIndicator(int column, bool ascending = true) => WxKitNative.ListCtrlShowSortIndicator(Native, column, ascending ? (byte)1 : (byte)0);
