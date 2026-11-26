@@ -144,13 +144,6 @@ public unsafe partial class ListBox : Control {
 		return WxKitNative.ListBoxInsertStringsUInt(Native, itemsNative.Handle, checked((uint)position));
 	}
 
-	/// <summary>Insert the given number of strings before the specified position.</summary>
-	public void InsertItems(IEnumerable<string> items, int position) {
-		ArgumentNullException.ThrowIfNull(items);
-		using NativeStringArray itemsNative = new(items);
-		WxKitNative.ListBoxInsertItems(Native, itemsNative.Handle, checked((uint)position));
-	}
-
 	/// <summary>Determines whether an item is selected.</summary>
 	public bool IsSelected(int index) => WxKitNative.ListBoxIsSelected(Native, index) != 0;
 

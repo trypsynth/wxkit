@@ -118,9 +118,6 @@ public unsafe partial class Image : NativeObject {
 	/// <summary>Returns an identical copy of this image.</summary>
 	public Image? Copy() => global::WxKit.Image.Take(WxKitNative.ImageCopy(Native));
 
-	/// <summary>Destroys the image data.</summary>
-	public void Destroy() => WxKitNative.ImageDestroy(Native);
-
 	/// <summary>If the image file contains more than one image and the image handler is capable of retrieving these individually, this function will return the number of available images.</summary>
 	public static int GetImageCount(string fileName, BitmapType type = BitmapType.Any) {
 		Application.VerifyAccess();
@@ -162,15 +159,6 @@ public unsafe partial class Image : NativeObject {
 
 	/// <summary>Returns a mirrored copy of the image.</summary>
 	public Image? Mirror(bool horizontally = true) => global::WxKit.Image.Take(WxKitNative.ImageMirror(Native, horizontally ? (byte)1 : (byte)0));
-
-	/// <summary>Finds the handler with the given name, and removes it.</summary>
-	public static bool RemoveHandler(string name) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(name);
-		fixed (char* nameText = name) {
-			return WxKitNative.ImageRemoveHandler(nameText, NativeString.Length(name)) != 0;
-		}
-	}
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public void Rescale(Size size, ImageResizeQuality quality = ImageResizeQuality.Normal) => WxKitNative.ImageRescale(Native, size, (int)quality);

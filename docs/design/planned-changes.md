@@ -8,13 +8,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 
 A second review of the whole API on 2026-11-26, before the first preview, found these. The earlier review's changes are made, and listed in [the first preview's notes](../releases/0.2.0-preview.1.md).
 
-### Members only wxWidgets calls, or that repeat another
-
-- `Window.SetFocusFromKbd`, `GetMinSizeFromKnownDirection`, `AdjustForLayoutDirection`, `UseBackgroundColor`, `UseForegroundColor`, and `GetBorder(long)`, and `TopLevelWindow.ShouldPreventAppExit` and `TmpDefaultItem`.
-- `Event.StopPropagation`, `ResumePropagation`, and `ShouldPropagate`, `Image.Destroy`, `Bitmap.RemoveHandler` and `Image.RemoveHandler`, and `EventType<T>.Value`.
-- Repeats: `BitmapToggleButton.Value` beside `IsChecked`, `MouseEvent`'s, `KeyEvent`'s, and `SetCursorEvent`'s `X` and `Y` beside `Position`, `ScrolledWindow.GetVirtualSize`, `DropFilesEvent.NumberOfFiles`, `ListBox.InsertItems`, `RadioBox.Select`, `StaticBox.Enable`, `StyledTextCtrl.SelectedText` beside `StringSelection`, `SearchCtrl.DescriptiveText` beside `Hint`, `TextCtrl.MarkDirty` and `DiscardEdits` beside `IsModified`, and `ToolBar`'s `GetToolEnabled`, `EnableTool`, `GetToolState`, `ToggleTool`, and the help getters and setters beside `ToolBarTool`'s properties.
-- Enum members that are bounds or second spellings: `SystemColor.ButtonHilight` and `ThreeDhilight`, `KeyModifiers.Cmd`, `Win`, and `All`, `WindowStyle.BorderDouble`, `MessageDialogStyle.IconHand` and `IconExclamation`, `BrushStyle.FirstHatch` and `LastHatch`, `FontEncoding.MacMin`, and `StandardId.MdiWindowFirst` and `MdiWindowLast`. `CalendarHitTestResult` is used by nothing.
-
 ### Loading that can fail
 
 - `Icon` and `Cursor` still load from a file through a constructor, or `Icon()` and `LoadFile`, which give an object that isn't usable when loading fails. They get `FromFile`, as `Bitmap` and `Image` have.

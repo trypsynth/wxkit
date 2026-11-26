@@ -59,10 +59,6 @@ WXK_FUNCTION(void) wxk_RadioBox_SetString(wxk_Window* self, uint32_t index, cons
 	wxk::Guard([&] { static_cast<wxRadioBox*>(wxk::Unwrap(self))->SetString(index, wxk::FromUtf16(text, textLength)); });
 }
 
-WXK_FUNCTION(void) wxk_RadioBox_Select(wxk_Window* self, int32_t index) noexcept {
-	wxk::Guard([&] { static_cast<wxItemContainerImmutable*>(static_cast<wxRadioBox*>(wxk::Unwrap(self)))->Select(static_cast<int>(index)); });
-}
-
 WXK_FUNCTION(uint32_t) wxk_RadioBox_GetColumnCount(wxk_Window* self) noexcept {
 	return wxk::Guard<uint32_t>(0, [&]() -> uint32_t { return static_cast<uint32_t>(static_cast<wxRadioBox*>(wxk::Unwrap(self))->GetColumnCount()); });
 }

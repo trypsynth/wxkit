@@ -103,15 +103,6 @@ public unsafe partial class Bitmap : NativeObject {
 		WxKitNative.BitmapMakeDisabled(bitmap.Native);
 	}
 
-	/// <summary>Finds the handler with the given name, and removes it.</summary>
-	public static bool RemoveHandler(string name) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(name);
-		fixed (char* nameText = name) {
-			return WxKitNative.BitmapRemoveHandler(nameText, NativeString.Length(name)) != 0;
-		}
-	}
-
 	/// <summary>Rescale the given bitmap to the requested size.</summary>
 	public static void Rescale(Bitmap bitmap, Size sizeNeeded) {
 		Application.VerifyAccess();

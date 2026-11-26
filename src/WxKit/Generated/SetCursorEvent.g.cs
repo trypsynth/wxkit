@@ -20,10 +20,4 @@ public unsafe partial class SetCursorEvent : Event {
 
 	/// <summary>Returns the mouse position for which the cursor is requested.</summary>
 	public Point Position => WxKitNative.SetCursorEventGetPosition(Handle);
-
-	/// <summary>Returns the X coordinate of the mouse in client coordinates.</summary>
-	public int X => WxKitNative.SetCursorEventGetX(Handle);
-
-	/// <summary>Returns the Y coordinate of the mouse in client coordinates.</summary>
-	public int Y => WxKitNative.SetCursorEventGetY(Handle);
 }

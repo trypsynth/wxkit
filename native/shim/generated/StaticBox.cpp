@@ -25,7 +25,3 @@ WXK_FUNCTION(wxk_Window*) wxk_StaticBox_new_WindowIntWindowPointSizeWindowStyle(
 	#endif
 }
 
-WXK_FUNCTION(uint8_t) wxk_StaticBox_Enable(wxk_Window* self, uint8_t enable) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxStaticBox*>(wxk::Unwrap(self))->Enable(enable != 0)) ? 1 : 0; });
-}
-

@@ -679,9 +679,6 @@ public unsafe partial class StyledTextCtrl : Control {
 		set => WxKitNative.StyledTextCtrlSetSelEOLFilled(Native, value ? (byte)1 : (byte)0);
 	}
 
-	/// <summary>Retrieve the selected text.</summary>
-	public string SelectedText => NativeString.Take(WxKitNative.StyledTextCtrlGetSelectedText(Native));
-
 	/// <summary>Is every selected range empty?</summary>
 	public bool SelectionEmpty => WxKitNative.StyledTextCtrlGetSelectionEmpty(Native) != 0;
 

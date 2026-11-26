@@ -42,6 +42,14 @@ internal sealed class Tweaks {
 		members.Add((name, value, description, wraps));
 	}
 
+	/// <summary>Members an enum leaves out, such as a second spelling or a bound, beside those its own tweak excludes.</summary>
+	public Dictionary<string, HashSet<string>> ExcludedEnumMembers { get; } = new(StringComparer.Ordinal);
+
+	public void ExcludeEnumMembers(string cppName, params string[] members) {
+		if (!ExcludedEnumMembers.TryGetValue(cppName, out HashSet<string>? excluded)) ExcludedEnumMembers[cppName] = excluded = new(StringComparer.Ordinal);
+		excluded.UnionWith(members);
+	}
+
 	/// <param name="excludePrefixes">Prefixes of constants that share the prefix but belong to something else, such as wxSIZE_CONV_ under wxSIZE_.</param>
 	public void ConstantEnum(string managedName, string prefix, bool isFlags = false, string? guard = null, string[]? excludePrefixes = null) => ConstantEnums.Add(new ConstantEnumTweak(managedName, prefix, isFlags, guard, excludePrefixes ?? []));
 
@@ -532,6 +540,14 @@ internal sealed class ClassTweak(string name) {
 
 	public ClassTweak Style(string constant, string name, string description) {
 		AddedStyles.Add((constant, name, description));
+		return this;
+	}
+
+	/// <summary>Styles the class's table lists that its enum leaves out, such as a second name for another.</summary>
+	public HashSet<string> IgnoredStyles { get; } = new(StringComparer.Ordinal);
+
+	public ClassTweak IgnoreStyle(params string[] styles) {
+		IgnoredStyles.UnionWith(styles);
 		return this;
 	}
 

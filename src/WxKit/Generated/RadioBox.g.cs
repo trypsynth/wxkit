@@ -87,9 +87,6 @@ public unsafe partial class RadioBox : Control {
 	/// <summary>Returns true if the item is currently shown or false if it was hidden using Show(n, false).</summary>
 	public bool IsItemShown(int index) => WxKitNative.RadioBoxIsItemShown(Native, checked((uint)index)) != 0;
 
-	/// <summary>This is the same as SetSelection() and exists only because it is slightly more natural for controls which support multiple selection.</summary>
-	public void Select(int index) => WxKitNative.RadioBoxSelect(Native, index);
-
 	/// <summary>Sets the helptext for an item.</summary>
 	public void SetItemHelpText(int item, string helpText) {
 		ArgumentNullException.ThrowIfNull(helpText);

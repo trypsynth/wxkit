@@ -17,9 +17,6 @@ public unsafe partial class StaticBox : Control {
 	internal StaticBox(WxkWindow* native) : base(native) {
 	}
 
-	/// <summary>Enables or disables the box without affecting its label window, if any.</summary>
-	public bool Enable(bool enable = true) => WxKitNative.StaticBoxEnable(Native, enable ? (byte)1 : (byte)0) != 0;
-
 	private static WxkWindow* CreateNative(Window parent, string label, int id, Point? position, Size? size, WindowStyle style) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(parent);

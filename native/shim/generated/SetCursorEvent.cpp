@@ -13,14 +13,6 @@ WXK_FUNCTION(wxk_Point) wxk_SetCursorEvent_GetPosition(wxk_Event* self) noexcept
 	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxSetCursorEvent*>(wxk::Unwrap(self))->GetPosition()); });
 }
 
-WXK_FUNCTION(int32_t) wxk_SetCursorEvent_GetX(wxk_Event* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxSetCursorEvent*>(wxk::Unwrap(self))->GetX()); });
-}
-
-WXK_FUNCTION(int32_t) wxk_SetCursorEvent_GetY(wxk_Event* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxSetCursorEvent*>(wxk::Unwrap(self))->GetY()); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_SetCursorEvent_HasCursor(wxk_Event* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxSetCursorEvent*>(wxk::Unwrap(self))->HasCursor()) ? 1 : 0; });
 }

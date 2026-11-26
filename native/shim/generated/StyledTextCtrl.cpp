@@ -2020,10 +2020,6 @@ WXK_FUNCTION(void) wxk_StyledTextCtrl_SetSelectionEnd(wxk_Window* self, int32_t 
 	wxk::Guard([&] { static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->SetSelectionEnd(static_cast<int>(caret)); });
 }
 
-WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetSelectedText(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->GetSelectedText()); });
-}
-
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetSelectionMode(wxk_Window* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->GetSelectionMode()); });
 }

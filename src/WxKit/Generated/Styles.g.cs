@@ -1231,10 +1231,6 @@ public enum MessageDialogStyle : long {
 	IconQuestion = 0x400,
 	/// <summary>Displays an information symbol. This icon is used by default if wxYES_NO is not given so it is usually unnecessary to specify it explicitly. Wraps wxICON_INFORMATION.</summary>
 	IconInformation = 0x800,
-	/// <summary>Alias for wxICON_WARNING. Wraps wxICON_EXCLAMATION.</summary>
-	IconExclamation = 0x100,
-	/// <summary>Alias for wxICON_ERROR. Wraps wxICON_HAND.</summary>
-	IconHand = 0x200,
 	/// <summary>Displays an authentication needed symbol. This style is only supported for message dialogs under wxMSW. In other cases the default icon selection logic will be used. Note this can be combined with other styles to provide a fallback. For instance, using wxICON_AUTH_NEEDED | wxICON_QUESTION will show a shield symbol on Windows Vista or above and a question symbol on other platforms. Available since wxWidgets 2.9.5. Wraps wxICON_AUTH_NEEDED.</summary>
 	IconAuthNeeded = 0x80000,
 	/// <summary>Makes the message box stay on top of all other windows and not only just its parent (currently implemented only under MSW and GTK). Wraps wxSTAY_ON_TOP.</summary>
@@ -2316,8 +2312,6 @@ public enum WindowStyle : long {
 	BorderTheme = 0x10000000,
 	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
 	BorderNone = 0x200000,
-	/// <summary>This style is obsolete and should not be used. Wraps wxBORDER_DOUBLE.</summary>
-	BorderDouble = 0x10000000,
 	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
 	TabTraversal = 0x80000,
 	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>

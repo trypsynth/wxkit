@@ -132,12 +132,6 @@ public unsafe partial class MouseEvent : Event {
 	/// <summary>Get wheel rotation, positive or negative indicates direction of rotation.</summary>
 	public int WheelRotation => WxKitNative.MouseEventGetWheelRotation(Handle);
 
-	/// <summary>Returns X coordinate of the physical mouse event position.</summary>
-	public int X => WxKitNative.MouseEventGetX(Handle);
-
-	/// <summary>Returns Y coordinate of the physical mouse event position.</summary>
-	public int Y => WxKitNative.MouseEventGetY(Handle);
-
 	/// <summary>If the argument is omitted, this returns true if the event was a mouse double click event.</summary>
 	public bool ButtonDClick(MouseButton button = MouseButton.Any) => WxKitNative.MouseEventButtonDClick(Handle, (int)button) != 0;
 

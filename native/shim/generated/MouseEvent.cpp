@@ -173,14 +173,6 @@ WXK_FUNCTION(wxk_Point) wxk_MouseEvent_GetPosition(wxk_Event* self) noexcept {
 	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxMouseState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->GetPosition()); });
 }
 
-WXK_FUNCTION(int32_t) wxk_MouseEvent_GetX(wxk_Event* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxMouseState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->GetX()); });
-}
-
-WXK_FUNCTION(int32_t) wxk_MouseEvent_GetY(wxk_Event* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxMouseState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->GetY()); });
-}
-
 WXK_FUNCTION(int32_t) wxk_MouseEvent_GetModifiers(wxk_Event* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxKeyboardState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->GetModifiers()); });
 }

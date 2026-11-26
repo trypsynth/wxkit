@@ -61,11 +61,6 @@ public unsafe partial class TopLevelWindow : Window {
 		}
 	}
 
-	public Window? TmpDefaultItem {
-		get => ObjectRegistry.Wrap<Window>(WxKitNative.TopLevelWindowGetTmpDefaultItem(Native));
-		set => WxKitNative.TopLevelWindowSetTmpDefaultItem(Native, value is null ? null : (WxkWindow*)value.Native);
-	}
-
 	public event EventHandler<CloseEvent>? Closing {
 		add => AddHandler(EventType.CloseWindow, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.CloseWindow, StandardId.Any, StandardId.Any, value);
@@ -156,9 +151,6 @@ public unsafe partial class TopLevelWindow : Window {
 			WxKitNative.TopLevelWindowSetRepresentedFilename(Native, fileNameText, NativeString.Length(fileName));
 		}
 	}
-
-	/// <summary>This virtual function is not meant to be called directly but can be overridden to return false (it returns true by default) to allow the application to close even if this, presumably not very important, window is still opened.</summary>
-	public bool ShouldPreventAppExit() => WxKitNative.TopLevelWindowShouldPreventAppExit(Native) != 0;
 
 	/// <summary>Depending on the value of show parameter the window is either shown full screen or restored to its normal state.</summary>
 	public bool ShowFullScreen(bool show, FullScreenStyle style = FullScreenStyle.All) => WxKitNative.TopLevelWindowShowFullScreen(Native, show ? (byte)1 : (byte)0, (long)style) != 0;

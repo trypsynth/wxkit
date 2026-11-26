@@ -36,12 +36,6 @@ public unsafe partial class KeyEvent : Event {
 	/// <summary>Returns the low level key flags for this event.</summary>
 	public int RawKeyFlags => checked((int)WxKitNative.KeyEventGetRawKeyFlags(Handle));
 
-	/// <summary>Returns the X position (in client coordinates) of the event.</summary>
-	public int X => WxKitNative.KeyEventGetX(Handle);
-
-	/// <summary>Returns the Y position (in client coordinates) of the event.</summary>
-	public int Y => WxKitNative.KeyEventGetY(Handle);
-
 	/// <summary>Allow normal key events generation.</summary>
 	public void DoAllowNextEvent() => WxKitNative.KeyEventDoAllowNextEvent(Handle);
 

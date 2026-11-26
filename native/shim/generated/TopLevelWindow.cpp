@@ -46,10 +46,6 @@ WXK_FUNCTION(void) wxk_TopLevelWindow_SetIcons(wxk_Window* self, const wxk_Objec
 	wxk::Guard([&] { static_cast<wxTopLevelWindow*>(wxk::Unwrap(self))->SetIcons(wxIconBundle(wxk::ValueOf<wxIcon>(icons))); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_TopLevelWindow_ShouldPreventAppExit(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTopLevelWindow*>(wxk::Unwrap(self))->ShouldPreventAppExit()) ? 1 : 0; });
-}
-
 WXK_FUNCTION(void) wxk_TopLevelWindow_OSXSetModified(wxk_Window* self, uint8_t modified) noexcept {
 	wxk::Guard([&] { static_cast<wxTopLevelWindow*>(wxk::Unwrap(self))->OSXSetModified(modified != 0); });
 }
@@ -116,14 +112,6 @@ WXK_FUNCTION(uint8_t) wxk_TopLevelWindow_IsIconized(wxk_Window* self) noexcept {
 
 WXK_FUNCTION(uint8_t) wxk_TopLevelWindow_IsMaximized(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTopLevelWindow*>(wxk::Unwrap(self))->IsMaximized()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(wxk_Window*) wxk_TopLevelWindow_GetTmpDefaultItem(wxk_Window* self) noexcept {
-	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(static_cast<wxTopLevelWindow*>(wxk::Unwrap(self))->GetTmpDefaultItem())); });
-}
-
-WXK_FUNCTION(wxk_Window*) wxk_TopLevelWindow_SetTmpDefaultItem(wxk_Window* self, wxk_Window* window) noexcept {
-	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(static_cast<wxTopLevelWindow*>(wxk::Unwrap(self))->SetTmpDefaultItem(static_cast<wxWindow*>(wxk::Unwrap(window))))); });
 }
 
 WXK_FUNCTION(int32_t) wxk_TopLevelWindow_GetContentProtection(wxk_Window* self) noexcept {

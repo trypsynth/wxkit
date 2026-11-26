@@ -130,16 +130,6 @@ public unsafe partial class ScrolledWindow : Panel {
 
 	public int GetScrollPageSize(Orientation orientation) => WxKitNative.ScrolledWindowGetScrollPageSize(Native, (int)orientation);
 
-	/// <summary>Gets the size in device units of the scrollable window area (as opposed to the client size, which is the area of the window currently visible).</summary>
-	public void GetVirtualSize(out int x, out int y) {
-		x = 0;
-		y = 0;
-		fixed (int* xPointer = &x)
-		fixed (int* yPointer = &y) {
-			WxKitNative.ScrolledWindowGetVirtualSize(Native, xPointer, yPointer);
-		}
-	}
-
 	/// <summary>This is an overload of Scroll(int,int); see that function for more info.</summary>
 	public void Scroll(Point point) => WxKitNative.ScrolledWindowScroll(Native, point);
 

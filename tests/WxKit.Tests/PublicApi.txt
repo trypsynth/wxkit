@@ -422,7 +422,6 @@ class WxKit.Bitmap : NativeObject
     static Bitmap FromDipSize(Size size, double scale, int depth = -1)
     static Bitmap FromLogicalSize(Size size, double scale, int depth = -1)
     static Bitmap? FromFile(string name, BitmapType? type = null)
-    static bool RemoveHandler(string name)
     static void MakeDisabled(Bitmap bitmap)
     static void Rescale(Bitmap bitmap, Size sizeNeeded)
     void ResetAlpha()
@@ -480,7 +479,6 @@ class WxKit.BitmapComboBox : ComboBox
     WantsChars = 262144
 class WxKit.BitmapToggleButton : ToggleButton
     BitmapToggleButton(Window parent, Bitmap label, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
-    bool Value { get; set; }
 enum WxKit.BitmapType : int
     Ani = 27
     Any = 50
@@ -566,10 +564,8 @@ enum WxKit.BrushStyle : int
     BackwardDiagonalHatch = 111
     CrossDiagonalHatch = 112
     CrossHatch = 114
-    FirstHatch = 111
     ForwardDiagonalHatch = 113
     HorizontalHatch = 115
-    LastHatch = 116
     Solid = 100
     Stipple = 110
     StippleMask = 108
@@ -1605,7 +1601,6 @@ sealed class WxKit.DropEventArgs : DragEventArgs
 class WxKit.DropFilesEvent : Event
     IReadOnlyList<string> Files { get; }
     Point Position { get; }
-    int NumberOfFiles { get; }
 sealed class WxKit.DropTarget
     DropTarget(params DataFormat[] formats)
     IReadOnlyList<DataFormat> Formats { get; }
@@ -2254,7 +2249,6 @@ enum WxKit.FontEncoding : int
     MacKorean = 52
     MacLaotian = 70
     MacMalayalam = 65
-    MacMin = 49
     MacMongolian = 75
     MacOriya = 60
     MacRoman = 49
@@ -2670,7 +2664,6 @@ class WxKit.Image : NativeObject
     static Image? FromStream(Stream stream, BitmapType type = BitmapType.Any, int index = -1)
     static ImageLoadFlags DefaultLoadFlags { get; set; }
     static bool CanRead(string fileName)
-    static bool RemoveHandler(string name)
     static int GetImageCount(string fileName, BitmapType type = BitmapType.Any)
     static string ImageExtensionWildcard { get; }
     static void AddAllHandlers()
@@ -2691,7 +2684,6 @@ class WxKit.Image : NativeObject
     void ChangeSaturation(double factor)
     void Clear(byte value = 0)
     void ClearAlpha()
-    void Destroy()
     void InitAlpha()
     void Paste(Image image, Point position, ImageAlphaBlendMode alphaBlend = ImageAlphaBlendMode.Over)
     void Replace(Color from, Color to)
@@ -2936,20 +2928,15 @@ class WxKit.KeyEvent : Event
     bool IsNextEventAllowed { get; }
     int RawKeyCode { get; }
     int RawKeyFlags { get; }
-    int X { get; }
-    int Y { get; }
     void DoAllowNextEvent()
 [Flags] enum WxKit.KeyModifiers : int
-    All = 65535
     Alt = 1
     AltGr = 3
-    Cmd = 2
     Control = 2
     Meta = 8
     None = 0
     RawControl = 16
     Shift = 4
-    Win = 8
 static class WxKit.Keyboard
     static bool IsCapsLockOn { get; }
     static bool IsKeyDown(KeyCode key)
@@ -3008,7 +2995,6 @@ class WxKit.ListBox : Control, IItemContainer
     void Delete(int index)
     void Deselect(int index)
     void EnsureVisible(int index)
-    void InsertItems(IEnumerable<string> items, int position)
     void Select(int index)
     void Set(IEnumerable<string> items)
     void SetFirstItem(int index)
@@ -3365,8 +3351,6 @@ class WxKit.MessageDialog : Dialog
     Help = 4096
     IconAuthNeeded = 524288
     IconError = 512
-    IconExclamation = 256
-    IconHand = 512
     IconInformation = 2048
     IconNone = 262144
     IconQuestion = 1024
@@ -3467,8 +3451,6 @@ class WxKit.MouseEvent : Event
     int LinesPerAction { get; }
     int WheelDelta { get; }
     int WheelRotation { get; }
-    int X { get; }
-    int Y { get; }
 enum WxKit.MouseWheelAxis : int
     Horizontal = 1
     Vertical = 0
@@ -3779,10 +3761,8 @@ enum WxKit.PenStyle : int
     CrossHatch = 114
     Dot = 101
     DotDash = 104
-    FirstHatch = 111
     ForwardDiagonalHatch = 113
     HorizontalHatch = 115
-    LastHatch = 116
     LongDash = 102
     ShortDash = 103
     Solid = 100
@@ -4003,7 +3983,6 @@ class WxKit.RadioBox : Control
     string GetItemHelpText(int item)
     string GetString(int index)
     string StringSelection { get; set; }
-    void Select(int index)
     void SetItemHelpText(int item, string helpText)
     void SetItemToolTip(int item, string text)
     void SetString(int index, string text)
@@ -4207,7 +4186,6 @@ class WxKit.ScrolledWindow : Panel
     void EnableAutoScrollInside(int insideWidth)
     void EnableAutoScrollWithoutCapture()
     void EnableScrolling(bool xScrolling, bool yScrolling)
-    void GetVirtualSize(out int x, out int y)
     void Scroll(Point point)
     void SetScale(double xs, double ys)
     void SetScrollBars(int pixelsPerUnitX, int pixelsPerUnitY, int noUnitsX, int noUnitsY, int xPos = 0, int yPos = 0, bool noRefresh = false)
@@ -4303,8 +4281,6 @@ class WxKit.SetCursorEvent : Event
     Cursor? Cursor { get; set; }
     Point Position { get; }
     bool HasCursor { get; }
-    int X { get; }
-    int Y { get; }
 enum WxKit.ShowEffect : int
     Blend = 9
     Expand = 10
@@ -4761,7 +4737,6 @@ class WxKit.StaticBitmap : Control
 class WxKit.StaticBox : Control
     StaticBox(Window parent, Window label, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
     StaticBox(Window parent, string label, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
-    bool Enable(bool enable = true)
 class WxKit.StaticBoxSizer : BoxSizer
     StaticBox StaticBox { get; }
     StaticBoxSizer(Orientation orientation, Window parent, string label = "")
@@ -8023,7 +7998,6 @@ class WxKit.StyledTextCtrl : Control
     string NameOfStyle(int style)
     string PropertyNames()
     string PunctuationChars { get; set; }
-    string SelectedText { get; }
     string StringSelection { get; }
     string StyleGetFaceName(int style)
     string SubStyleBases { get; }
@@ -8381,7 +8355,6 @@ enum WxKit.SystemColor : int
     Background = 1
     ButtonFace = 15
     ButtonHighlight = 20
-    ButtonHilight = 20
     ButtonShadow = 16
     ButtonText = 18
     CaptionText = 9
@@ -8413,7 +8386,6 @@ enum WxKit.SystemColor : int
     ThreeDHighlight = 20
     ThreeDLight = 22
     ThreeDShadow = 16
-    ThreeDhilight = 20
     Window = 5
     WindowFrame = 6
     WindowText = 8
@@ -8792,7 +8764,6 @@ class WxKit.TopLevelWindow : Window
     Icon? Icon { get; set; }
     Menu? MswGetSystemMenu()
     Window? DefaultItem { get; set; }
-    Window? TmpDefaultItem { get; set; }
     bool EnableCloseButton(bool enable = true)
     bool EnableFullScreenView(bool enable = true, FullScreenStyle style = FullScreenStyle.All)
     bool EnableMaximizeButton(bool enable = true)
@@ -8803,7 +8774,6 @@ class WxKit.TopLevelWindow : Window
     bool IsIconized { get; }
     bool IsMaximized { get; }
     bool OsxIsModified()
-    bool ShouldPreventAppExit()
     bool ShowFullScreen(bool show, FullScreenStyle style = FullScreenStyle.All)
     event EventHandler<CloseEvent>? Closing
     event EventHandler<FullScreenEvent>? FullScreenChanged
@@ -9260,7 +9230,6 @@ class WxKit.Window : EvtHandler
     Accessible? Accessible { get; set; }
     BackgroundStyle BackgroundStyle { get; set; }
     Border Border { get; }
-    Border GetBorder(long flags)
     Color? BackgroundColor { get; set; }
     Color? ForegroundColor { get; set; }
     Cursor? Cursor { get; set; }
@@ -9295,7 +9264,6 @@ class WxKit.Window : EvtHandler
     Size EffectiveMinSize { get; }
     Size FromDip(Size size)
     Size FromPhysical(Size size)
-    Size GetMinSizeFromKnownDirection(int direction, int size, int availableOtherDir)
     Size GetTextExtent(string text)
     Size MaxClientSize { get; set; }
     Size MaxSize { get; set; }
@@ -9373,8 +9341,6 @@ class WxKit.Window : EvtHandler
     bool TransferDataFromWindow()
     bool TransferDataToWindow()
     bool UnregisterHotKey(int hotkeyId)
-    bool UseBackgroundColor()
-    bool UseForegroundColor()
     bool UsesBackgroundColor { get; }
     bool Validate()
     double ContentScaleFactor { get; }
@@ -9410,7 +9376,6 @@ class WxKit.Window : EvtHandler
     event EventHandler<SetCursorEvent>? CursorRequested
     event EventHandler<SizeEvent>? SizeChanged
     event EventHandler<SysColorChangedEvent>? SystemColorsChanged
-    int AdjustForLayoutDirection(int x, int width, int widthTotal)
     int CharHeight { get; }
     int CharWidth { get; }
     int FromDip(int d)
@@ -9478,7 +9443,6 @@ class WxKit.Window : EvtHandler
     void SetCanFocus(bool canFocus)
     void SetClientSize(Rect rect)
     void SetFocus()
-    void SetFocusFromKbd()
     void SetOwnBackgroundColor(Color? color)
     void SetOwnFont(Font font)
     void SetOwnForegroundColor(Color? color)
@@ -9514,7 +9478,6 @@ enum WxKit.WindowMode : int
     WindowModal = 1
 [Flags] enum WxKit.WindowStyle : long
     AlwaysShowSb = 8388608
-    BorderDouble = 268435456
     BorderNone = 2097152
     BorderRaised = 67108864
     BorderSimple = 33554432

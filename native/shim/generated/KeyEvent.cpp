@@ -34,14 +34,6 @@ WXK_FUNCTION(uint32_t) wxk_KeyEvent_GetRawKeyFlags(wxk_Event* self) noexcept {
 	return wxk::Guard<uint32_t>(0, [&]() -> uint32_t { return static_cast<uint32_t>(static_cast<wxKeyEvent*>(wxk::Unwrap(self))->GetRawKeyFlags()); });
 }
 
-WXK_FUNCTION(int32_t) wxk_KeyEvent_GetX(wxk_Event* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxKeyEvent*>(wxk::Unwrap(self))->GetX()); });
-}
-
-WXK_FUNCTION(int32_t) wxk_KeyEvent_GetY(wxk_Event* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxKeyEvent*>(wxk::Unwrap(self))->GetY()); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_KeyEvent_IsNextEventAllowed(wxk_Event* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxKeyEvent*>(wxk::Unwrap(self))->IsNextEventAllowed()) ? 1 : 0; });
 }

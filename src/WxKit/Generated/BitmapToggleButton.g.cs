@@ -13,12 +13,6 @@ public unsafe partial class BitmapToggleButton : ToggleButton {
 	internal BitmapToggleButton(WxkWindow* native) : base(native) {
 	}
 
-	/// <summary>Gets the state of the toggle button.</summary>
-	public bool Value {
-		get => WxKitNative.BitmapToggleButtonGetValue(Native) != 0;
-		set => WxKitNative.BitmapToggleButtonSetValue(Native, value ? (byte)1 : (byte)0);
-	}
-
 	private static WxkWindow* CreateNative(Window parent, Bitmap label, int id, Point? position, Size? size, WindowStyle style) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(parent);

@@ -9,9 +9,6 @@ public unsafe partial class DropFilesEvent : Event {
 	internal DropFilesEvent(WxkEvent* native) : base(native) {
 	}
 
-	/// <summary>Returns the number of files dropped.</summary>
-	public int NumberOfFiles => WxKitNative.DropFilesEventGetNumberOfFiles(Handle);
-
 	/// <summary>Returns the position at which the files were dropped.</summary>
 	public Point Position => WxKitNative.DropFilesEventGetPosition(Handle);
 }

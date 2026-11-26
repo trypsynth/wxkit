@@ -10,7 +10,7 @@ internal sealed partial class Binder {
 		if (bound.Source.Styles.Count == 0 && bound.Tweak.AddedStyles.Count == 0) return null;
 		string? prefix = bound.Tweak.StylePrefix ?? Naming.SharedStylePrefix(bound.Source.Styles.Select(static style => style.Name), api.Constants.ContainsKey);
 		List<BoundStyle> members = [];
-		foreach (DoxygenStyle style in bound.Source.Styles) {
+		foreach (DoxygenStyle style in bound.Source.Styles.Where(style => !bound.Tweak.IgnoredStyles.Contains(style.Name))) {
 			// Extra styles, such as wxDIALOG_EX_CONTEXTHELP, are set with SetExtraStyle rather than
 			// passed with the others, though some classes list them in the same table.
 			if (style.Name.Contains("_EX_", StringComparison.Ordinal)) {
@@ -58,7 +58,8 @@ internal sealed partial class Binder {
 		if (!api.Enums.TryGetValue(cppName, out DoxygenEnum? source) || source.Values.Count == 0) return null;
 		EnumTweak? tweak = tweaks.Enums.GetValueOrDefault(cppName);
 		string managed = tweak?.Name ?? Naming.Type(cppName.Contains("::", StringComparison.Ordinal) ? cppName[(cppName.LastIndexOf(':') + 1)..] : cppName);
-		List<BoundStyle> members = EnumMembers(cppName, source, tweak?.MemberPrefix, tweak?.Exclude);
+		string[] excluded = [.. tweak?.Exclude ?? [], .. tweaks.ExcludedEnumMembers.GetValueOrDefault(cppName) ?? []];
+		List<BoundStyle> members = EnumMembers(cppName, source, tweak?.MemberPrefix, excluded);
 		if (tweaks.AddedEnumMembers.TryGetValue(cppName, out List<(string Name, long Value, string Description, string Wraps)>? added)) members.AddRange(added.Select(static member => new BoundStyle(member.Name, member.Wraps, member.Value, member.Description)));
 		if (tweak?.IsFlags == true && members.All(static member => member.Value != 0)) members.Insert(0, new BoundStyle("None", "0", 0, "None of the flags."));
 		BoundEnum bound = new(managed, cppName, members) { IsFlags = tweak?.IsFlags ?? false, Guard = tweak?.Guard };

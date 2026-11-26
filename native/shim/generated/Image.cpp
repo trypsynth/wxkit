@@ -136,10 +136,6 @@ WXK_FUNCTION(void) wxk_Image_Clear(wxk_Object* self, uint8_t value) noexcept {
 	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->Clear(static_cast<unsigned char>(value)); });
 }
 
-WXK_FUNCTION(void) wxk_Image_Destroy(wxk_Object* self) noexcept {
-	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->Destroy(); });
-}
-
 WXK_FUNCTION(void) wxk_Image_InitAlpha(wxk_Object* self) noexcept {
 	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->InitAlpha(); });
 }
@@ -254,10 +250,6 @@ WXK_FUNCTION(void) wxk_Image_SetOption_StringString(wxk_Object* self, const char
 
 WXK_FUNCTION(void) wxk_Image_SetOption_StringInt(wxk_Object* self, const char16_t* name, size_t nameLength, int32_t value) noexcept {
 	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->SetOption(wxk::FromUtf16(name, nameLength), static_cast<int>(value)); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Image_RemoveHandler(const char16_t* name, size_t nameLength) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (wxImage::RemoveHandler(wxk::FromUtf16(name, nameLength))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(int32_t) wxk_Image_GetImageCount(const char16_t* fileName, size_t fileNameLength, int32_t type) noexcept {

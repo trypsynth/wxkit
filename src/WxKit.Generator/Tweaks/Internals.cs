@@ -106,6 +106,31 @@ internal static class Internals {
 		// Names that are C# keywords, which a call that names them would have to escape.
 		tweaks.Class("wxFont").ParameterName("SetSymbolicSizeRelativeTo", "base", "baseSize");
 		tweaks.Class("wxInfoBar").ParameterName("ShowCheckBox", "checked", "isChecked");
+		// What only wxWidgets calls, or a class overrides in C++.
+		tweaks.Class("wxWindow").Ignore("SetFocusFromKbd", "GetMinSizeFromKnownDirection", "AdjustForLayoutDirection", "UseBackgroundColour", "UseForegroundColour").IgnoreOverload("GetBorder", "flags", "long");
+		tweaks.Class("wxTopLevelWindow").Ignore("ShouldPreventAppExit", "GetTmpDefaultItem", "SetTmpDefaultItem");
+		// Dispose frees an image, and nothing gives the name a handler is removed by.
+		tweaks.Class("wxImage").Ignore("Destroy", "RemoveHandler");
+		tweaks.Class("wxBitmap").Ignore("RemoveHandler");
+		// Members that say again what another says: a toggle button's IsChecked, an event's
+		// Position, a window's VirtualSize, the count of Files, Insert, Selection, a window's
+		// Enable, and StringSelection.
+		tweaks.Class("wxBitmapToggleButton").Ignore("GetValue", "SetValue");
+		foreach (string positioned in (string[])["wxMouseEvent", "wxKeyEvent", "wxSetCursorEvent"]) tweaks.Class(positioned).Ignore("GetX", "GetY");
+		tweaks.Class("wxScrolledWindow").Ignore("GetVirtualSize");
+		tweaks.Class("wxDropFilesEvent").Ignore("GetNumberOfFiles");
+		tweaks.Class("wxListBox").Ignore("InsertItems");
+		tweaks.Class("wxRadioBox").Ignore("Select");
+		tweaks.Class("wxStaticBox").Ignore("Enable");
+		tweaks.Class("wxStyledTextCtrl").Ignore("GetSelectedText");
+		// Second spellings, masks, and bounds among an enum's members.
+		tweaks.ExcludeEnumMembers("wxSystemColour", "wxSYS_COLOUR_BTNHILIGHT", "wxSYS_COLOUR_3DHILIGHT");
+		tweaks.ExcludeEnumMembers("wxKeyModifier", "wxMOD_CMD", "wxMOD_WIN", "wxMOD_ALL");
+		tweaks.ExcludeEnumMembers("wxBrushStyle", "wxBRUSHSTYLE_FIRST_HATCH", "wxBRUSHSTYLE_LAST_HATCH");
+		tweaks.ExcludeEnumMembers("wxPenStyle", "wxPENSTYLE_FIRST_HATCH", "wxPENSTYLE_LAST_HATCH");
+		tweaks.ExcludeEnumMembers("wxFontEncoding", "wxFONTENCODING_MACMIN", "wxFONTENCODING_MACMAX");
+		tweaks.Class("wxWindow").IgnoreStyle("wxBORDER_DOUBLE");
+		tweaks.Class("wxMessageDialog").IgnoreStyle("wxICON_HAND", "wxICON_EXCLAMATION");
 		tweaks.Class("wxCollapsiblePane").Property("IsCollapsed", "IsCollapsed", "Collapse");
 		tweaks.Class("wxListCtrl").Property("HasCheckBoxes", "HasCheckBoxes", "EnableCheckBoxes");
 		tweaks.Class("wxSearchCtrl").Property("IsSearchButtonVisible", "IsSearchButtonVisible", "ShowSearchButton").Property("IsCancelButtonVisible", "IsCancelButtonVisible", "ShowCancelButton");

@@ -34,7 +34,7 @@ public unsafe partial class Window : EvtHandler {
 	public Size BestVirtualSize => WxKitNative.WindowGetBestVirtualSize(Native);
 
 	/// <summary>Get border for the flags of this window.</summary>
-	public Border Border => (Border)WxKitNative.WindowGetBorderDefault(Native);
+	public Border Border => (Border)WxKitNative.WindowGetBorder(Native);
 
 	/// <summary>Can this window have focus right now?</summary>
 	public bool CanAcceptFocus => WxKitNative.WindowCanAcceptFocus(Native) != 0;
@@ -488,9 +488,6 @@ public unsafe partial class Window : EvtHandler {
 		remove => RemoveHandler(EventType.SysColorChanged, StandardId.Any, StandardId.Any, value);
 	}
 
-	/// <summary>Mirror coordinates for RTL layout if this window uses it and if the mirroring is not done automatically like Win32.</summary>
-	public int AdjustForLayoutDirection(int x, int width, int widthTotal) => WxKitNative.WindowAdjustForLayoutDirection(Native, x, width, widthTotal);
-
 	/// <summary>Call this function to force one or both scrollbars to be always shown, even if the window is big enough to show its entire contents without scrolling.</summary>
 	public void AlwaysShowScrollBars(bool horizontal = true, bool vertical = true) => WxKitNative.WindowAlwaysShowScrollbars(Native, horizontal ? (byte)1 : (byte)0, vertical ? (byte)1 : (byte)0);
 
@@ -637,17 +634,11 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>Returns the best width needed by this window if it had the given height.</summary>
 	public int GetBestWidth(int height) => WxKitNative.WindowGetBestWidth(Native, height);
 
-	/// <summary>Get the window border style from the given flags: this is different from simply doing flags &amp; wxBORDER_MASK because it uses GetDefaultBorder() to translate wxBORDER_DEFAULT to something reasonable.</summary>
-	public Border GetBorder(long flags) => (Border)WxKitNative.WindowGetBorderLong(Native, flags);
-
 	/// <summary>Get the ID to be used for help events generated at the given point.</summary>
 	public int GetHelpIdAtPoint(Point point) => WxKitNative.WindowGetHelpIdAtPoint(Native, point);
 
 	/// <summary>Gets the help text to be used as context-sensitive help for this window.</summary>
 	public string GetHelpTextAtPoint(Point point, HelpOrigin origin) => NativeString.Take(WxKitNative.WindowGetHelpTextAtPoint(Native, point, (int)origin));
-
-	/// <summary>May be overridden if the control minimal size depends on the layout direction.</summary>
-	public Size GetMinSizeFromKnownDirection(int direction, int size, int availableOtherDir) => WxKitNative.WindowGetMinSizeFromKnownDirection(Native, direction, size, availableOtherDir);
 
 	/// <summary>Returns the space taken by the scrollbar of the given orientation when it is shown in this window.</summary>
 	public int GetScrollBarSize(int orientation) => WxKitNative.WindowGetScrollbarSize(Native, orientation);
@@ -810,9 +801,6 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>This sets the window to receive keyboard input.</summary>
 	public void SetFocus() => WxKitNative.WindowSetFocus(Native);
 
-	/// <summary>This function is called by wxWidgets keyboard navigation code when the user gives the focus to this window from keyboard (e.g. using TAB key).</summary>
-	public void SetFocusFromKbd() => WxKitNative.WindowSetFocusFromKbd(Native);
-
 	/// <summary>A smart SetSize that will fill in default size components with the window's best size values.</summary>
 	public bool SetInitialSize(Size? size = null) => WxKitNative.WindowSetInitialSize(Native, size ?? global::WxKit.Size.Default) != 0;
 
@@ -896,12 +884,6 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>This function sends one or more wxUpdateUIEvent to the window.</summary>
 	public void UpdateWindowUI(UpdateUIFlags flags = UpdateUIFlags.None) => WxKitNative.WindowUpdateWindowUI(Native, (long)flags);
-
-	/// <summary>Return true if a background colour has been set for this window.</summary>
-	public bool UseBackgroundColor() => WxKitNative.WindowUseBackgroundColour(Native) != 0;
-
-	/// <summary>Return true if a foreground colour has been set for this window.</summary>
-	public bool UseForegroundColor() => WxKitNative.WindowUseForegroundColour(Native) != 0;
 
 	/// <summary>Validates the current values of the child controls using their validators.</summary>
 	public bool Validate() => WxKitNative.WindowValidate(Native) != 0;

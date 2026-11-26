@@ -32,10 +32,6 @@ WXK_FUNCTION(void) wxk_ScrolledWindow_ShowScrollbars(wxk_Window* self, int32_t h
 	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->ShowScrollbars(static_cast<wxScrollbarVisibility>(horizontal), static_cast<wxScrollbarVisibility>(vertical)); });
 }
 
-WXK_FUNCTION(void) wxk_ScrolledWindow_GetVirtualSize(wxk_Window* self, int32_t* x, int32_t* y) noexcept {
-	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->GetVirtualSize(x, y); });
-}
-
 WXK_FUNCTION(void) wxk_ScrolledWindow_Scroll(wxk_Window* self, wxk_Point point) noexcept {
 	wxk::Guard([&] { static_cast<wxScrolledWindow*>(wxk::Unwrap(self))->Scroll(wxk::FromPoint(point)); });
 }

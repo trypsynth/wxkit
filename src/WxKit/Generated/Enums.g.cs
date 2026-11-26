@@ -482,10 +482,6 @@ public enum BrushStyle {
 	HorizontalHatch = 115,
 	/// <summary>Vertical hatch. Wraps wxBRUSHSTYLE_VERTICAL_HATCH.</summary>
 	VerticalHatch = 116,
-	/// <summary>First of the hatch styles (inclusive). Wraps wxBRUSHSTYLE_FIRST_HATCH.</summary>
-	FirstHatch = 111,
-	/// <summary>Last of the hatch styles (inclusive). Wraps wxBRUSHSTYLE_LAST_HATCH.</summary>
-	LastHatch = 116,
 }
 
 /// <summary>Wraps wxCalendarHitTestResult.</summary>
@@ -843,8 +839,6 @@ public enum FontEncoding {
 	MacKeyboard = 88,
 	/// <summary>ISO-2022-JP JIS encoding. Wraps wxFONTENCODING_ISO2022_JP.</summary>
 	Iso2022Jp = 89,
-	/// <summary>Wraps wxFONTENCODING_MACMIN.</summary>
-	MacMin = 49,
 	/// <summary>Simplified Chinese. Wraps wxFONTENCODING_GB2312.</summary>
 	Gb2312 = 28,
 	/// <summary>Traditional Chinese. Wraps wxFONTENCODING_BIG5.</summary>
@@ -1439,12 +1433,6 @@ public enum KeyModifiers {
 	Shift = 4,
 	/// <summary>Wraps wxMOD_META.</summary>
 	Meta = 8,
-	/// <summary>Wraps wxMOD_WIN.</summary>
-	Win = 8,
-	/// <summary>deprecated, identic to wxMOD_CONTROL on all platforms. Wraps wxMOD_CMD.</summary>
-	Cmd = 2,
-	/// <summary>Wraps wxMOD_ALL.</summary>
-	All = 65535,
 	/// <summary>The Control key of a Mac, where Control is the Command key. Only macOS reports it. Wraps macOS's wxMOD_RAW_CONTROL.</summary>
 	RawControl = 16,
 }
@@ -1936,10 +1924,6 @@ public enum PenStyle {
 	HorizontalHatch = 115,
 	/// <summary>Vertical hatch. Wraps wxPENSTYLE_VERTICAL_HATCH.</summary>
 	VerticalHatch = 116,
-	/// <summary>First of the hatch styles (inclusive). Wraps wxPENSTYLE_FIRST_HATCH.</summary>
-	FirstHatch = 111,
-	/// <summary>Last of the hatch styles (inclusive). Wraps wxPENSTYLE_LAST_HATCH.</summary>
-	LastHatch = 116,
 }
 
 /// <summary>Wraps wxPrintBin.</summary>
@@ -2336,12 +2320,8 @@ public enum SystemColor {
 	ThreeDFace = 15,
 	/// <summary>Synonym for wxSYS_COLOUR_BTNSHADOW. Wraps wxSYS_COLOUR_3DSHADOW.</summary>
 	ThreeDShadow = 16,
-	/// <summary>Synonym for wxSYS_COLOUR_BTNHIGHLIGHT. Wraps wxSYS_COLOUR_BTNHILIGHT.</summary>
-	ButtonHilight = 20,
 	/// <summary>Synonym for wxSYS_COLOUR_BTNHIGHLIGHT. Wraps wxSYS_COLOUR_3DHIGHLIGHT.</summary>
 	ThreeDHighlight = 20,
-	/// <summary>Synonym for wxSYS_COLOUR_BTNHIGHLIGHT. Wraps wxSYS_COLOUR_3DHILIGHT.</summary>
-	ThreeDhilight = 20,
 	/// <summary>Synonym for wxSYS_COLOUR_BTNFACE. Wraps wxSYS_COLOUR_FRAMEBK.</summary>
 	FrameBackground = 15,
 }
