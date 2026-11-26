@@ -25,7 +25,40 @@ public unsafe partial class Event : EventArgs {
 	internal virtual void OnHandled() {
 	}
 
+	// Runs once the handlers are done with the event, even if one threw, to free what it lent them.
+	internal virtual void OnFinished() {
+	}
+
 	internal void Invalidate() => _native = null;
+}
+
+/// <remarks>
+/// Paint on <see cref="DC"/>, which the event makes the first time a handler asks for it, and
+/// disposes when the handlers return. A handler that leaves the painting to wxWidgets, such as
+/// one on a control that draws itself, calls <see cref="Event.Skip"/> instead.
+/// </remarks>
+public unsafe partial class PaintEvent {
+	private PaintDC? _dc;
+
+	/// <summary>The DC to paint the window's client area on, which only lasts while the handlers run.</summary>
+	public PaintDC DC {
+		get {
+			_ = Handle;
+			return _dc ??= EventObject is Window window ? new PaintDC(WxKitNative.PaintDCNew((WxkWindow*)window.Native)) : throw new InvalidOperationException("The paint event is not a window's.");
+		}
+	}
+
+	// A window whose paint event is handled without a paint DC being made stays unpainted as far as
+	// the platform knows, and Windows then sends the event again without end. So one is made here
+	// for a handler that painted nothing.
+	internal override void OnHandled() {
+		if (_dc is null && !IsSkipped) _ = DC;
+	}
+
+	internal override void OnFinished() {
+		_dc?.Dispose();
+		_dc = null;
+	}
 }
 
 /// <remarks>

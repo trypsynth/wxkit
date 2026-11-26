@@ -18,6 +18,8 @@ internal static class Internals {
 		tweaks.Class("wxBitmap").Ignore("CleanUpHandlers", "InitStandardHandlers");
 		// A printout's pages are begun and ended by the printing it is given to.
 		tweaks.Class("wxDC").Ignore("StartDoc", "EndDoc", "StartPage", "EndPage");
+		// A paint event lends the DC to paint on, which it makes and disposes itself.
+		tweaks.Class("wxPaintDC").Internal("wxPaintDC");
 		// A frame attaches the menu bar it is given.
 		tweaks.Class("wxMenuBar").Ignore("Attach", "Detach");
 		tweaks.Class("wxEvent").Ignore("GetEventUserData", "GetEventCategory", "IsCommandEvent");

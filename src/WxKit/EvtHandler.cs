@@ -136,6 +136,7 @@ public abstract unsafe class EvtHandler {
 				handlers(sender, e);
 				e.OnHandled();
 			} finally {
+				e.OnFinished();
 				e.Invalidate();
 			}
 		}

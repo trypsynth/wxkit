@@ -18,7 +18,7 @@ internal sealed class ChecklistControl : Panel {
 		// The control paints all of itself, so wxWidgets need not erase it first.
 		BackgroundStyle = BackgroundStyle.Paint;
 		MinSize = new Size(240, RowHeight * Math.Max(_items.Count, 4));
-		Paint += (_, _) => Draw();
+		Paint += (_, e) => Draw(e.DC);
 		KeyDown += OnKeyDown;
 		LeftDown += (_, e) => {
 			SetFocus();
@@ -102,8 +102,7 @@ internal sealed class ChecklistControl : Panel {
 		SetAccessibleCurrentRow(_items.Count == 0 ? -1 : _current);
 	}
 
-	private void Draw() {
-		using PaintDC dc = new(this);
+	private void Draw(DC dc) {
 		Color background = SystemSettings.GetColor(SystemColor.ListBox) ?? new Color(255, 255, 255);
 		Color text = SystemSettings.GetColor(SystemColor.ListBoxText) ?? new Color(0, 0, 0);
 		Color highlight = SystemSettings.GetColor(SystemColor.Highlight) ?? new Color(0, 120, 215);

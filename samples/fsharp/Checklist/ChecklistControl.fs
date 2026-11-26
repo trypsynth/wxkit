@@ -62,8 +62,7 @@ type ChecklistControl(parent: Window, texts: string seq) as this =
             this.Navigate(direction ||| NavigationFlags.FromTab) |> ignore
         | _ -> e.Skip()
 
-    let draw () =
-        use dc = new PaintDC(this)
+    let draw (dc: DC) =
         let background = systemColor SystemColor.ListBox (rgb 255 255 255)
         let text = systemColor SystemColor.ListBoxText (rgb 0 0 0)
         let highlight = systemColor SystemColor.Highlight (rgb 0 120 215)
@@ -103,7 +102,7 @@ type ChecklistControl(parent: Window, texts: string seq) as this =
         // The control paints all of itself, so wxWidgets need not erase it first.
         this.BackgroundStyle <- BackgroundStyle.Paint
         this.MinSize <- Size(240, rowHeight () * max items.Length 4)
-        this.Paint.Add(fun _ -> draw ())
+        this.Paint.Add(fun e -> draw e.DC)
         this.KeyDown.Add onKeyDown
         this.LeftDown.Add(fun e ->
             this.SetFocus()

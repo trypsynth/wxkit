@@ -13,7 +13,7 @@ internal sealed class StatusStrip : Control {
 		BackgroundStyle = BackgroundStyle.Paint;
 		DisableFocusFromKeyboard();
 		MinSize = new Size(-1, CharHeight + 10);
-		Paint += (_, _) => Draw();
+		Paint += (_, e) => Draw(e.DC);
 		SizeChanged += (_, e) => {
 			Refresh();
 			Describe();
@@ -36,8 +36,7 @@ internal sealed class StatusStrip : Control {
 
 	private void Describe() => SetAccessibleParts(_fields.Select((field, index) => new AccessiblePart(field, FieldBounds(index))));
 
-	private void Draw() {
-		using PaintDC dc = new(this);
+	private void Draw(DC dc) {
 		using Brush background = new(SystemSettings.GetColor(SystemColor.ButtonFace) ?? new Color(240, 240, 240));
 		dc.Background = background;
 		dc.Clear();

@@ -27,15 +27,19 @@ public class DrawingTests {
 	public Task PaintsAWindow() => Gui.WithFrame(async frame => {
 		Panel panel = new(frame, size: new Size(50, 50));
 		int paints = 0;
-		panel.Paint += (_, _) => {
-			using PaintDC dc = new(panel);
-			dc.DrawLine(new Point(0, 0), new Point(50, 50));
+		PaintDC? lent = null;
+		panel.Paint += (_, e) => {
+			lent = e.DC;
+			Assert.Same(lent, e.DC);
+			lent.DrawLine(new Point(0, 0), new Point(50, 50));
 			paints++;
 		};
 		frame.Show();
 		panel.Refresh();
 		panel.Update();
 		await Gui.WaitUntil(() => paints > 0);
+		// The DC was the event's, which disposed it when the handler returned.
+		Assert.True(lent?.IsDisposed);
 	});
 
 	[Fact]

@@ -6,16 +6,6 @@ namespace WxKit;
 
 /// <summary>A wxPaintDC must be constructed if an application wishes to paint on the client area of a window from within an EVT_PAINT() event handler. Wraps wxPaintDC.</summary>
 public unsafe partial class PaintDC : ClientDC {
-	/// <summary>Constructor.</summary>
-	public PaintDC(Window window) : this(CreateNative(window)) {
-	}
-
 	internal PaintDC(WxkObject* native) : base(native) {
-	}
-
-	private static WxkObject* CreateNative(Window window) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(window);
-		return WxKitNative.PaintDCNew((WxkWindow*)window.Native);
 	}
 }

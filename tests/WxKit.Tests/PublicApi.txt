@@ -3205,8 +3205,8 @@ class WxKit.PageSetupDialogData : NativeObject
     bool EnablePrinter { get; set; }
     bool IsOk { get; }
 class WxKit.PaintDC : ClientDC
-    PaintDC(Window window)
 class WxKit.PaintEvent : Event
+    PaintDC DC { get; }
 class WxKit.Panel : Window
     Panel(Window parent, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.TabTraversal)
     event EventHandler<NavigationKeyEvent>? NavigationKey

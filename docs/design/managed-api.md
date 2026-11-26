@@ -44,7 +44,7 @@ Bitmaps, fonts, pens, brushes, images, icons, and cursors are reference counted 
 
 Null going in is the class's empty object, such as `wxNullFont`, and setting a window's font or cursor to null restores its default. An empty object coming back is null. An object that wxWidgets changes in place, such as the bitmap a `MemoryDC` draws into, is the managed object's own copy, so the change shows there. A parameter that takes a bitmap or icon bundle takes a `Bitmap` or `Icon`. The images of a tree, list view, or notebook are any sequence of bitmaps, given to `SetImages`, or a list view's `SetNormalImages` and `SetSmallImages`, and an item names its image by its position. The control keeps its own copies.
 
-`DC` and its window, client, paint, memory, and screen classes derive from `NativeObject` too. Dispose of one before the handler that made it returns, as in `using PaintDC dc = new(panel);` in a `Paint` handler, rather than waiting for the collector. A context that wxWidgets hands out, such as an erase event's, isn't WxKit's to delete, so members that return one aren't bound yet.
+`DC` and its window, client, paint, memory, and screen classes derive from `NativeObject` too. Dispose of one before the handler that made it returns, as in `using ClientDC dc = new(panel);`, rather than waiting for the collector. A `Paint` handler makes none: it paints on the event's `DC`, a `PaintDC` the event makes when first asked for it and disposes when the handlers return. A context that wxWidgets hands out, such as an erase event's, isn't WxKit's to delete, so members that return one aren't bound yet.
 
 ### Objects a control owns
 

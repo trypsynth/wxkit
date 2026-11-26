@@ -20,8 +20,7 @@ type StatusStrip(parent: Window) as this =
     let describe () =
         this.SetAccessibleParts(fields |> List.mapi (fun index field -> AccessiblePart(field, bounds index)))
 
-    let draw () =
-        use dc = new PaintDC(this)
+    let draw (dc: DC) =
         use background = new Brush(systemColor SystemColor.ButtonFace (rgb 240 240 240))
         dc.Background <- background
         dc.Clear()
@@ -41,7 +40,7 @@ type StatusStrip(parent: Window) as this =
         this.BackgroundStyle <- BackgroundStyle.Paint
         this.DisableFocusFromKeyboard()
         this.MinSize <- Size(-1, this.CharHeight + 10)
-        this.Paint.Add(fun _ -> draw ())
+        this.Paint.Add(fun e -> draw e.DC)
         this.SizeChanged.Add(fun e ->
             this.Refresh()
             describe ()
