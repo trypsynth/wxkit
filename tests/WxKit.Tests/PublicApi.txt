@@ -8292,16 +8292,13 @@ enum WxKit.TreeItemIcon : int
     Selected = 1
     SelectedExpanded = 3
 readonly record struct WxKit.TreeItemId : IEquatable<TreeItemId>
-    TreeItemId(nint Value)
     bool Equals(TreeItemId other)
     bool IsOk { get; }
-    nint Value { get; init; }
     override bool Equals(object obj)
     override int GetHashCode()
     override string ToString()
     static bool op_Equality(TreeItemId left, TreeItemId right)
     static bool op_Inequality(TreeItemId left, TreeItemId right)
-    void Deconstruct(out nint Value)
 class WxKit.TreeListCtrl : Window
     CheckBoxState GetCheckedState(TreeListItem item)
     DataViewCtrl? DataView { get; }
@@ -8367,16 +8364,13 @@ class WxKit.TreeListEvent : NotifyEvent
     TreeListItem Item { get; }
     int Column { get; }
 readonly record struct WxKit.TreeListItem : IEquatable<TreeListItem>
-    TreeListItem(nint Value)
     bool Equals(TreeListItem other)
     bool IsOk { get; }
-    nint Value { get; init; }
     override bool Equals(object obj)
     override int GetHashCode()
     override string ToString()
     static bool op_Equality(TreeListItem left, TreeListItem right)
     static bool op_Inequality(TreeListItem left, TreeListItem right)
-    void Deconstruct(out nint Value)
 class WxKit.Treebook : BookCtrlBase
     Treebook(Window parent, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
     bool AddSubPage(Window page, string text, bool select = false, int imageId = -1)

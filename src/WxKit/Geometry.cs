@@ -35,14 +35,28 @@ public readonly record struct Color(byte R, byte G, byte B, byte A = 255) {
 	internal static Color? FromNative(WxkColor color) => color.Valid != 0 ? new Color(color.Red, color.Green, color.Blue, color.Alpha) : null;
 }
 
-/// <summary>An item in a <see cref="TreeCtrl"/>. Wraps wxTreeItemId. The default one is no item.</summary>
-public readonly record struct TreeItemId(nint Value) {
+/// <summary>
+/// An item in a <see cref="TreeCtrl"/>, which only the control gives out, since it is a pointer
+/// the control follows. Wraps wxTreeItemId. The default one is no item.
+/// </summary>
+public readonly record struct TreeItemId {
+	internal TreeItemId(nint value) => Value = value;
+
+	internal nint Value { get; }
+
 	/// <summary>Whether this is an item, rather than none.</summary>
 	public bool IsOk => Value != 0;
 }
 
-/// <summary>An item in a <see cref="TreeListCtrl"/>. Wraps wxTreeListItem. The default one is no item.</summary>
-public readonly record struct TreeListItem(nint Value) {
+/// <summary>
+/// An item in a <see cref="TreeListCtrl"/>, which only the control gives out, since it is a
+/// pointer the control follows. Wraps wxTreeListItem. The default one is no item.
+/// </summary>
+public readonly record struct TreeListItem {
+	internal TreeListItem(nint value) => Value = value;
+
+	internal nint Value { get; }
+
 	/// <summary>Whether this is an item, rather than none.</summary>
 	public bool IsOk => Value != 0;
 }
