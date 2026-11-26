@@ -12770,9 +12770,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte WindowDestroyChildren(WxkWindow* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Window_FindWindow_Long")]
+	[LibraryImport(Library, EntryPoint = "wxk_Window_FindWindow_Int")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkWindow* WindowFindWindowLong(WxkWindow* self, long id);
+	public static partial WxkWindow* WindowFindWindowInt(WxkWindow* self, int id);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Window_FindWindow_String")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -13264,7 +13264,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_Window_FindWindowById")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkWindow* WindowFindWindowById(long id, WxkWindow* parent);
+	public static partial WxkWindow* WindowFindWindowById(int id, WxkWindow* parent);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Window_FindWindowByLabel")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

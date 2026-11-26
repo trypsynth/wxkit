@@ -302,6 +302,14 @@ internal sealed class ClassTweak(string name) {
 	/// <summary>Whether the class's longs are indexes, positions, and counts, which are ints in the managed API.</summary>
 	public bool HasIntIndexes { get; private set; }
 
+	/// <summary>A member's long parameters that are ints in the managed API, such as a window's id.</summary>
+	public HashSet<(string Member, string Parameter)> IntParameters { get; } = [];
+
+	public ClassTweak IntParameter(string member, string parameter) {
+		IntParameters.Add((member, parameter));
+		return this;
+	}
+
 	public ClassTweak IntIndexes() {
 		HasIntIndexes = true;
 		return this;

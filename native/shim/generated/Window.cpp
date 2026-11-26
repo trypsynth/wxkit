@@ -41,7 +41,7 @@ WXK_FUNCTION(uint8_t) wxk_Window_DestroyChildren(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->DestroyChildren()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(wxk_Window*) wxk_Window_FindWindow_Long(wxk_Window* self, int64_t id) noexcept {
+WXK_FUNCTION(wxk_Window*) wxk_Window_FindWindow_Int(wxk_Window* self, int32_t id) noexcept {
 	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(static_cast<wxWindow*>(wxk::Unwrap(self))->FindWindow(static_cast<long>(id)))); });
 }
 
@@ -547,7 +547,7 @@ WXK_FUNCTION(wxk_Window*) wxk_Window_FindFocus(void) noexcept {
 	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(wxWindow::FindFocus())); });
 }
 
-WXK_FUNCTION(wxk_Window*) wxk_Window_FindWindowById(int64_t id, wxk_Window* parent) noexcept {
+WXK_FUNCTION(wxk_Window*) wxk_Window_FindWindowById(int32_t id, wxk_Window* parent) noexcept {
 	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(wxWindow::FindWindowById(static_cast<long>(id), static_cast<wxWindow*>(wxk::Unwrap(parent))))); });
 }
 

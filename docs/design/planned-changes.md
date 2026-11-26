@@ -14,7 +14,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
   - `StyledTextEvent.Modifiers`, whose values are Scintilla's, not `KeyModifiers`', so it needs converting, or an enum of its own.
   - `StatusBar.SetStatusStyles`, which takes a list of numbers, where the generator's enums only go on one number.
 - Each control's style enum has the styles every window takes, such as the borders, so a borderless list doesn't need a cast. The text entry and choice dialogs get style enums that can say what their defaults are.
-- Window ids are `int` everywhere: `Window.FindWindow` and `FindWindowById` take a `long`.
 
 ## Members that go
 
@@ -54,7 +53,6 @@ Porting the samples to F# found these, which F# makes more of than C# does:
 
 - `DataViewTreeModel<T>` knows its items by reference, so an F# record, which changes by being copied, is a new item each time it changes. It could take an `IEqualityComparer<T>`, so an item is known by a key, such as an id, and `ItemChanged` with a changed copy keeps the copy.
 - A `row` or `column` inside another needs `section` before `fill` or `grow` can change it, as in `section (row { ... }) |> fill`. The item functions could take a sizer too, so it reads `row { ... } |> fill`.
-- Flags enums without a `None`, such as `FindReplaceFlags` and `FindReplaceDialogStyle`, which F# can only write as `enum 0`, and C# as `0`, have one.
 - `Dialog.CreateStdDialogButtonSizer`, which gives a dialog OK and Cancel, or the other standard buttons, in the platform's order, isn't bound, since it returns a sizer the caller owns until a sizer takes it, so each sample makes the buttons itself. It could give the sizer as a sizer the caller adds.
 
 ## Considered and not planned

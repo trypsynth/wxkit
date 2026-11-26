@@ -42,6 +42,8 @@ internal static class Internals {
 		// A grid sizer's constructor is written by hand, to take the columns and a gap. wxWidgets'
 		// four take a first number that is the rows or the columns by how many follow.
 		foreach (string grid in (string[])["wxGridSizer", "wxFlexGridSizer"]) tweaks.Class(grid).IgnoreOverload(grid, "vgap", "int").InternalOverload(grid, "gap", "const wxSize &");
+		// A window's id is an int everywhere else.
+		tweaks.Class("wxWindow").IntParameter("FindWindow", "id").IntParameter("FindWindowById", "id");
 		// An image's Rescale and Resize change it, where Scale and Resized return a copy.
 		tweaks.Class("wxImage").DiscardReturn("Rescale", "Resize");
 		// A position's column and line, named for what they are and in the order given.

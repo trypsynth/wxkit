@@ -3757,7 +3757,7 @@ WXK_FUNCTION(void) wxk_Window_SetFocusFromKbd(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_EnableInputMethod(wxk_Window* self, uint8_t enable) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_UpdateInputMethodCursorRect(wxk_Window* self, wxk_Rect rect) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_DestroyChildren(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Window*) wxk_Window_FindWindow_Long(wxk_Window* self, int64_t id) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Window*) wxk_Window_FindWindow_Int(wxk_Window* self, int32_t id) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_Window_FindWindow_String(wxk_Window* self, const char16_t* name, size_t nameLength) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_IsDescendant(wxk_Window* self, wxk_Window* window) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_Reparent(wxk_Window* self, wxk_Window* newParent) WXK_NOEXCEPT;
@@ -3880,7 +3880,7 @@ WXK_FUNCTION(uint8_t) wxk_Window_RegisterHotKey(wxk_Window* self, int32_t hotkey
 WXK_FUNCTION(uint8_t) wxk_Window_UnregisterHotKey(wxk_Window* self, int32_t hotkeyId) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_UpdateWindowUI(wxk_Window* self, int64_t flags) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_Window_FindFocus(void) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Window*) wxk_Window_FindWindowById(int64_t id, wxk_Window* parent) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Window*) wxk_Window_FindWindowById(int32_t id, wxk_Window* parent) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_Window_FindWindowByLabel(const char16_t* label, size_t labelLength, wxk_Window* parent) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_Window_FindWindowByName(const char16_t* name, size_t nameLength, wxk_Window* parent) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Window_NewControlId(int32_t count) WXK_NOEXCEPT;

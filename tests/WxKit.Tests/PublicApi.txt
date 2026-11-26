@@ -8669,7 +8669,7 @@ class WxKit.Window : EvtHandler
     Size WindowToClientSize(Size size)
     Sizer? Sizer { get; set; }
     Validator? Validator { get; set; }
-    Window? FindWindow(long id)
+    Window? FindWindow(int id)
     Window? FindWindow(string name)
     Window? GrandParent { get; }
     Window? NextSibling { get; }
@@ -8798,7 +8798,7 @@ class WxKit.Window : EvtHandler
     nint NativeHandle { get; }
     static Window? Capture { get; }
     static Window? FindFocus()
-    static Window? FindWindowById(long id, Window? parent = null)
+    static Window? FindWindowById(int id, Window? parent = null)
     static Window? FindWindowByLabel(string label, Window? parent = null)
     static Window? FindWindowByName(string name, Window? parent = null)
     static int NewControlId(int count = 1)

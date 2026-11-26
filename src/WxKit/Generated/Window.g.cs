@@ -585,7 +585,7 @@ public unsafe partial class Window : EvtHandler {
 	}
 
 	/// <summary>Find a child of this window, by id.</summary>
-	public Window? FindWindow(long id) => ObjectRegistry.Wrap<Window>(WxKitNative.WindowFindWindowLong(Native, id));
+	public Window? FindWindow(int id) => ObjectRegistry.Wrap<Window>(WxKitNative.WindowFindWindowInt(Native, id));
 
 	/// <summary>Find a child of this window, by name.</summary>
 	public Window? FindWindow(string name) {
@@ -596,7 +596,7 @@ public unsafe partial class Window : EvtHandler {
 	}
 
 	/// <summary>Find the first window with the given id.</summary>
-	public static Window? FindWindowById(long id, Window? parent = null) {
+	public static Window? FindWindowById(int id, Window? parent = null) {
 		Application.VerifyAccess();
 		return ObjectRegistry.Wrap<Window>(WxKitNative.WindowFindWindowById(id, parent is null ? null : (WxkWindow*)parent.Native));
 	}
