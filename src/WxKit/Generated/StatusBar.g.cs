@@ -7,7 +7,7 @@ namespace WxKit;
 /// <summary>A status bar is a narrow window that can be placed along the bottom of a frame to give small amounts of status information. Wraps wxStatusBar.</summary>
 public unsafe partial class StatusBar : Control {
 	/// <summary>Constructor, creating the window.</summary>
-	public StatusBar(Window parent, StatusBarStyle style = StatusBarStyle.Default, int id = StandardId.Any) : this(CreateNative(parent, style, id)) {
+	public StatusBar(Window parent, int id = StandardId.Any, StatusBarStyle style = StatusBarStyle.Default) : this(CreateNative(parent, id, style)) {
 	}
 
 	internal StatusBar(WxkWindow* native) : base(native) {
@@ -82,7 +82,7 @@ public unsafe partial class StatusBar : Control {
 		}
 	}
 
-	private static WxkWindow* CreateNative(Window parent, StatusBarStyle style, int id) {
+	private static WxkWindow* CreateNative(Window parent, int id, StatusBarStyle style) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(parent);
 		return WxKitNative.StatusBarNew((WxkWindow*)parent.Native, id, (long)style);

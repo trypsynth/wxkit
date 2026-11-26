@@ -346,10 +346,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* BitmapButtonNewCloseButton(WxkWindow* parent, int id, char* name, nuint nameLength);
 
-	[LibraryImport(Library, EntryPoint = "wxk_BitmapComboBox_new_WindowIntStringPointSize")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkWindow* BitmapComboBoxNewWindowIntStringPointSize(WxkWindow* parent, int id, char* value, nuint valueLength, Point position, Size size);
-
 	[LibraryImport(Library, EntryPoint = "wxk_BitmapComboBox_new_WindowIntStringPointSizeStringsBitmapComboBoxStyle")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* BitmapComboBoxNewWindowIntStringPointSizeStringsBitmapComboBoxStyle(WxkWindow* parent, int id, char* value, nuint valueLength, Point position, Size size, WxkStringArray* choices, long style);
@@ -5524,11 +5520,11 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_NumberEntryDialog_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkWindow* NumberEntryDialogNew(WxkWindow* parent, char* message, nuint messageLength, char* prompt, nuint promptLength, char* caption, nuint captionLength, long value, long min, long max, Point position);
+	public static partial WxkWindow* NumberEntryDialogNew(WxkWindow* parent, char* message, nuint messageLength, char* prompt, nuint promptLength, char* caption, nuint captionLength, int value, int min, int max, Point position);
 
 	[LibraryImport(Library, EntryPoint = "wxk_NumberEntryDialog_GetValue")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial long NumberEntryDialogGetValue(WxkWindow* self);
+	public static partial int NumberEntryDialogGetValue(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_PageSetupDialog_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -6976,7 +6972,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_SingleChoiceDialog_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkWindow* SingleChoiceDialogNew(WxkWindow* parent, char* message, nuint messageLength, char* caption, nuint captionLength, WxkStringArray* choices);
+	public static partial WxkWindow* SingleChoiceDialogNew(WxkWindow* parent, char* message, nuint messageLength, char* caption, nuint captionLength, WxkStringArray* choices, long style, Point position);
 
 	[LibraryImport(Library, EntryPoint = "wxk_SingleChoiceDialog_GetSelection")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

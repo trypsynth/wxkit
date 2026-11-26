@@ -8,12 +8,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 
 A second review of the whole API on 2026-11-26, before the first preview, found these. The earlier review's changes are made, and listed in [the first preview's notes](../releases/0.2.0-preview.1.md).
 
-### Constructors
-
-- The style comes before the id in `StatusBar` and `InfoBar`, and the name before the id in `Frame.CreateStatusBar` and `CreateToolBar`.
-- `BitmapComboBox` has two constructors, where `ComboBox` has one. `SingleChoiceDialog` has no style or position. `DirPickerCtrl` and `FilePickerCtrl` take a null style. `NumberEntryDialog` takes `long`s and has no defaults.
-- `ProgressDialog` and `MessageBox.Show` take their parent last. That's wxWidgets' order, and a parent is seldom given, so it may stay.
-
 ### The styled text control
 
 - `Stc` has about 2,900 constants as `int`s, with the words run together that the enums split, such as `CmdCharleftextend`, and a British `Behaviour`. The control takes them as `int`s, as in `Lexer`, `EolMode`, `WrapMode`, and `CmdKeyAssign`. The groups that aren't a lexer's styles could be enums, and the class named `StyledText`, as `EventType` says.

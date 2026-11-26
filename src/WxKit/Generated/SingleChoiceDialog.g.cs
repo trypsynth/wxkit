@@ -7,7 +7,7 @@ namespace WxKit;
 /// <summary>This class represents a dialog that shows a list of strings, and allows the user to select one. Wraps wxSingleChoiceDialog.</summary>
 public unsafe partial class SingleChoiceDialog : Dialog {
 	/// <summary>Constructor, taking an array of wxString choices and optional client data.</summary>
-	public SingleChoiceDialog(Window? parent, string message, string caption, IEnumerable<string> choices) : this(CreateNative(parent, message, caption, choices)) {
+	public SingleChoiceDialog(Window? parent, string message, string caption, IEnumerable<string> choices, SingleChoiceDialogStyle style = SingleChoiceDialogStyle.Default, Point? position = null) : this(CreateNative(parent, message, caption, choices, style, position)) {
 	}
 
 	internal SingleChoiceDialog(WxkWindow* native) : base(native) {
@@ -28,7 +28,7 @@ public unsafe partial class SingleChoiceDialog : Dialog {
 		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
 	}
 
-	private static WxkWindow* CreateNative(Window? parent, string message, string caption, IEnumerable<string> choices) {
+	private static WxkWindow* CreateNative(Window? parent, string message, string caption, IEnumerable<string> choices, SingleChoiceDialogStyle style, Point? position) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(message);
 		ArgumentNullException.ThrowIfNull(caption);
@@ -36,7 +36,7 @@ public unsafe partial class SingleChoiceDialog : Dialog {
 		using NativeStringArray choicesNative = new(choices);
 		fixed (char* messageText = message)
 		fixed (char* captionText = caption) {
-			return WxKitNative.SingleChoiceDialogNew(parent is null ? null : (WxkWindow*)parent.Native, messageText, NativeString.Length(message), captionText, NativeString.Length(caption), choicesNative.Handle);
+			return WxKitNative.SingleChoiceDialogNew(parent is null ? null : (WxkWindow*)parent.Native, messageText, NativeString.Length(message), captionText, NativeString.Length(caption), choicesNative.Handle, (long)style, position ?? global::WxKit.Point.Default);
 		}
 	}
 }

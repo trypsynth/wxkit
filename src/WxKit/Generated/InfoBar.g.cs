@@ -7,7 +7,7 @@ namespace WxKit;
 /// <summary>An info bar is a transient window shown at top or bottom of its parent window to display non-critical information to the user. Wraps wxInfoBar.</summary>
 public unsafe partial class InfoBar : Control {
 	/// <summary>Constructor creating the info bar window.</summary>
-	public InfoBar(Window parent, WindowStyle style = WindowStyle.None, int id = StandardId.Any) : this(CreateNative(parent, style, id)) {
+	public InfoBar(Window parent, int id = StandardId.Any, WindowStyle style = WindowStyle.None) : this(CreateNative(parent, id, style)) {
 	}
 
 	internal InfoBar(WxkWindow* native) : base(native) {
@@ -70,7 +70,7 @@ public unsafe partial class InfoBar : Control {
 		}
 	}
 
-	private static WxkWindow* CreateNative(Window parent, WindowStyle style, int id) {
+	private static WxkWindow* CreateNative(Window parent, int id, WindowStyle style) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(parent);
 		return WxKitNative.InfoBarNew((WxkWindow*)parent.Native, id, (long)style);

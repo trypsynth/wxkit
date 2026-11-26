@@ -162,7 +162,14 @@ internal sealed partial class Binder {
 			returns = mapped;
 		}
 		List<BoundParameter> parameters = [];
+		List<(int Index, string Argument)> filled = [];
 		foreach (DoxygenParameter parameter in member.Parameters) {
+			// A constructor's untyped pointers to keep with its items, as wxSingleChoiceDialog's
+			// void** clientData, are left null, so the style and position after them aren't cut off.
+			if (isConstructor && parameter.Default is not null && parameter.Type.Replace(" ", string.Empty, StringComparison.Ordinal) == "void**") {
+				filled.Add((parameters.Count + filled.Count, "nullptr"));
+				continue;
+			}
 			// A window's name, which few applications set, is left to its default, so every
 			// constructor ends the same way.
 			if (isConstructor && owner.Handle == HandleKind.Window && parameter.Name == "name" && parameter.Default is not null) break;
@@ -224,6 +231,8 @@ internal sealed partial class Binder {
 				managedDefault = "null";
 				nullable = true;
 			}
+			// A window's style can always be left out, which gives it none, where an overload requires it, as the one of wxBitmapComboBox that takes a list does.
+			if (isConstructor && owner.Handle == HandleKind.Window && managedDefault is null && parameter.Name == "style" && conversion is EnumConversion && TryDefault("0", conversion, out string? none, out _)) managedDefault = none;
 			// An item control can be made empty and filled later, so its list of items can be left out.
 			if (isConstructor && owner.Tweak.HasOptionalItems && managedDefault is null && conversion is StringArrayConversion) {
 				managedDefault = "null";
@@ -236,7 +245,6 @@ internal sealed partial class Binder {
 		// A function that fills one list, as GetSelections(wxArrayInt&) and GetPaths(wxArrayString&)
 		// do, returns the list, as .NET does, and a getter of it becomes a property. What it returned
 		// besides, such as the list's length or whether it could, is left out.
-		List<(int Index, string Argument)> filled = [];
 		List<int> lists = [.. parameters.Select(static (parameter, index) => (parameter, index)).Where(static pair => pair.parameter.Conversion is StringArrayOutConversion or NumberListOutConversion && pair.parameter.Default is null).Select(static pair => pair.index)];
 		if (!isConstructor && lists is [int position] && returns is VoidConversion or BoolConversion or NumberConversion or CountConversion) {
 			returns = parameters[position].Conversion is NumberListOutConversion numbers ? FilledListConversion.Of(numbers.Kind) : FilledListConversion.Strings;
@@ -273,8 +281,9 @@ internal sealed partial class Binder {
 		if (id >= 0) {
 			BoundParameter moved = ordered[id] with { Default = "StandardId.Any" };
 			ordered.RemoveAt(id);
+			// Without a position it keeps its place, ahead of the style and the name, as in wxStatusBar(parent, id, style).
 			int position = ordered.FindIndex(id, static parameter => parameter.CppName == "pos");
-			ordered.Insert(position >= 0 ? position : ordered.Count, moved);
+			ordered.Insert(position >= 0 ? position : id, moved);
 		}
 		// C# needs every parameter after an optional one to be optional too, so the required ones
 		// move first, keeping their order, as wxChoice's list moves ahead of its id and position.

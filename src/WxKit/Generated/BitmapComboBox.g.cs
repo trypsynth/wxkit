@@ -7,11 +7,7 @@ namespace WxKit;
 /// <summary>A combobox that displays bitmap in front of the list items. Wraps wxBitmapComboBox.</summary>
 public unsafe partial class BitmapComboBox : ComboBox {
 	/// <summary>Constructor, creating and showing a combobox.</summary>
-	public BitmapComboBox(Window parent, string value = "", int id = StandardId.Any, Point? position = null, Size? size = null) : this(CreateNative(parent, value, id, position, size)) {
-	}
-
-	/// <summary>Constructor, creating and showing a combobox.</summary>
-	public BitmapComboBox(Window parent, string value, IEnumerable<string> choices, BitmapComboBoxStyle style, int id = StandardId.Any, Point? position = null, Size? size = null) : this(CreateNative(parent, value, choices, style, id, position, size)) {
+	public BitmapComboBox(Window parent, string value = "", IEnumerable<string>? choices = null, int id = StandardId.Any, Point? position = null, Size? size = null, BitmapComboBoxStyle style = BitmapComboBoxStyle.None) : this(CreateNative(parent, value, choices, id, position, size, style)) {
 	}
 
 	internal BitmapComboBox(WxkWindow* native) : base(native) {
@@ -70,20 +66,10 @@ public unsafe partial class BitmapComboBox : ComboBox {
 		WxKitNative.BitmapComboBoxSetItemBitmap(Native, checked((uint)index), bitmap.Native);
 	}
 
-	private static WxkWindow* CreateNative(Window parent, string value, int id, Point? position, Size? size) {
+	private static WxkWindow* CreateNative(Window parent, string value, IEnumerable<string>? choices, int id, Point? position, Size? size, BitmapComboBoxStyle style) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(parent);
 		ArgumentNullException.ThrowIfNull(value);
-		fixed (char* valueText = value) {
-			return WxKitNative.BitmapComboBoxNewWindowIntStringPointSize((WxkWindow*)parent.Native, id, valueText, NativeString.Length(value), position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default);
-		}
-	}
-
-	private static WxkWindow* CreateNative(Window parent, string value, IEnumerable<string> choices, BitmapComboBoxStyle style, int id, Point? position, Size? size) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(parent);
-		ArgumentNullException.ThrowIfNull(value);
-		ArgumentNullException.ThrowIfNull(choices);
 		using NativeStringArray choicesNative = new(choices);
 		fixed (char* valueText = value) {
 			return WxKitNative.BitmapComboBoxNewWindowIntStringPointSizeStringsBitmapComboBoxStyle((WxkWindow*)parent.Native, id, valueText, NativeString.Length(value), position ?? global::WxKit.Point.Default, size ?? global::WxKit.Size.Default, choicesNative.Handle, (long)style);

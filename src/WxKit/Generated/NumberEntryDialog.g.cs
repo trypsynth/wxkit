@@ -7,16 +7,16 @@ namespace WxKit;
 /// <summary>This class represents a dialog that requests a numeric input from the user. Wraps wxNumberEntryDialog.</summary>
 public unsafe partial class NumberEntryDialog : Dialog {
 	/// <summary>Constructor.</summary>
-	public NumberEntryDialog(Window? parent, string message, string prompt, string caption, long value, long min, long max, Point? position = null) : this(CreateNative(parent, message, prompt, caption, value, min, max, position)) {
+	public NumberEntryDialog(Window? parent, string message, string prompt, string caption, int value, int min, int max, Point? position = null) : this(CreateNative(parent, message, prompt, caption, value, min, max, position)) {
 	}
 
 	internal NumberEntryDialog(WxkWindow* native) : base(native) {
 	}
 
 	/// <summary>Returns the value that the user has entered if the user has pressed OK, or the original value if the user has pressed Cancel.</summary>
-	public long Value => WxKitNative.NumberEntryDialogGetValue(Native);
+	public int Value => WxKitNative.NumberEntryDialogGetValue(Native);
 
-	private static WxkWindow* CreateNative(Window? parent, string message, string prompt, string caption, long value, long min, long max, Point? position) {
+	private static WxkWindow* CreateNative(Window? parent, string message, string prompt, string caption, int value, int min, int max, Point? position) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(message);
 		ArgumentNullException.ThrowIfNull(prompt);

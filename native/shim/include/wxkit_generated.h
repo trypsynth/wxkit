@@ -126,7 +126,6 @@ WXK_FUNCTION(wxk_Window*) wxk_BitmapButton_NewCloseButton(wxk_Window* parent, in
 
 // wxBitmapComboBox
 
-WXK_FUNCTION(wxk_Window*) wxk_BitmapComboBox_new_WindowIntStringPointSize(wxk_Window* parent, int32_t id, const char16_t* value, size_t valueLength, wxk_Point position, wxk_Size size) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_BitmapComboBox_new_WindowIntStringPointSizeStringsBitmapComboBoxStyle(wxk_Window* parent, int32_t id, const char16_t* value, size_t valueLength, wxk_Point position, wxk_Size size, const wxk_StringArray* choices, int64_t style) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_BitmapComboBox_Append_StringBitmap(wxk_Window* self, const char16_t* item, size_t itemLength, const wxk_Object* bitmap) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_BitmapComboBox_Append_StringBitmapData(wxk_Window* self, const char16_t* item, size_t itemLength, const wxk_Object* bitmap, void* data) WXK_NOEXCEPT;
@@ -1720,8 +1719,8 @@ WXK_FUNCTION(uint8_t) wxk_NotifyEvent_IsAllowed(wxk_Event* self) WXK_NOEXCEPT;
 
 // wxNumberEntryDialog
 
-WXK_FUNCTION(wxk_Window*) wxk_NumberEntryDialog_new(wxk_Window* parent, const char16_t* message, size_t messageLength, const char16_t* prompt, size_t promptLength, const char16_t* caption, size_t captionLength, int64_t value, int64_t min, int64_t max, wxk_Point position) WXK_NOEXCEPT;
-WXK_FUNCTION(int64_t) wxk_NumberEntryDialog_GetValue(wxk_Window* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Window*) wxk_NumberEntryDialog_new(wxk_Window* parent, const char16_t* message, size_t messageLength, const char16_t* prompt, size_t promptLength, const char16_t* caption, size_t captionLength, int32_t value, int32_t min, int32_t max, wxk_Point position) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_NumberEntryDialog_GetValue(wxk_Window* self) WXK_NOEXCEPT;
 
 // wxPageSetupDialog
 
@@ -2173,7 +2172,7 @@ WXK_FUNCTION(uint8_t) wxk_Simplebook_ShowNewPage(wxk_Window* self, wxk_Window* p
 
 // wxSingleChoiceDialog
 
-WXK_FUNCTION(wxk_Window*) wxk_SingleChoiceDialog_new(wxk_Window* parent, const char16_t* message, size_t messageLength, const char16_t* caption, size_t captionLength, const wxk_StringArray* choices) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Window*) wxk_SingleChoiceDialog_new(wxk_Window* parent, const char16_t* message, size_t messageLength, const char16_t* caption, size_t captionLength, const wxk_StringArray* choices, int64_t style, wxk_Point position) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_SingleChoiceDialog_GetSelection(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_SingleChoiceDialog_SetSelection(wxk_Window* self, int32_t selection) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_SingleChoiceDialog_GetStringSelection(wxk_Window* self) WXK_NOEXCEPT;

@@ -20,7 +20,7 @@ public unsafe partial class BitmapButton : Button {
 	}
 
 	/// <summary>Helper function creating a standard-looking "Close" button.</summary>
-	public static BitmapButton? NewCloseButton(Window parent, string name = "", int id = StandardId.Any) {
+	public static BitmapButton? NewCloseButton(Window parent, int id = StandardId.Any, string name = "") {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(parent);
 		ArgumentNullException.ThrowIfNull(name);

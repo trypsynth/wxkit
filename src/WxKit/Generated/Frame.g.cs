@@ -62,14 +62,14 @@ public unsafe partial class Frame : TopLevelWindow {
 	}
 
 	/// <summary>Creates a status bar at the bottom of the frame.</summary>
-	public StatusBar? CreateStatusBar(int number = 1, StatusBarStyle style = StatusBarStyle.Default, string? name = null, int id = StandardId.Any) {
+	public StatusBar? CreateStatusBar(int number = 1, StatusBarStyle style = StatusBarStyle.Default, int id = StandardId.Any, string? name = null) {
 		fixed (char* nameText = name) {
 			return ObjectRegistry.Wrap<StatusBar>(WxKitNative.FrameCreateStatusBar(Native, number, (long)style, id, nameText, name is null ? 0 : NativeString.Length(name)));
 		}
 	}
 
 	/// <summary>Creates a toolbar at the top or left of the frame.</summary>
-	public ToolBar? CreateToolBar(ToolBarStyle style = ToolBarStyle.Default, string? name = null, int id = StandardId.Any) {
+	public ToolBar? CreateToolBar(ToolBarStyle style = ToolBarStyle.Default, int id = StandardId.Any, string? name = null) {
 		fixed (char* nameText = name) {
 			return ObjectRegistry.Wrap<ToolBar>(WxKitNative.FrameCreateToolBar(Native, (long)style, id, nameText, name is null ? 0 : NativeString.Length(name)));
 		}

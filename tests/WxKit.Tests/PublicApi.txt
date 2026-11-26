@@ -427,7 +427,7 @@ class WxKit.Bitmap : NativeObject
 class WxKit.BitmapButton : Button
     BitmapButton(Window parent, Bitmap bitmap, int id = -1, Point? position = null, Size? size = null, BitmapButtonStyle style = BitmapButtonStyle.None)
     BitmapButtonStyle Style { get; set; }
-    static BitmapButton? NewCloseButton(Window parent, string name = "", int id = -1)
+    static BitmapButton? NewCloseButton(Window parent, int id = -1, string name = "")
 [Flags] enum WxKit.BitmapButtonStyle : long
     AlwaysShowScrollBar = 8388608
     BorderNone = 2097152
@@ -449,8 +449,7 @@ class WxKit.BitmapButton : Button
     WantsChars = 262144
 class WxKit.BitmapComboBox : ComboBox
     Bitmap? GetItemBitmap(int index)
-    BitmapComboBox(Window parent, string value = "", int id = -1, Point? position = null, Size? size = null)
-    BitmapComboBox(Window parent, string value, IEnumerable<string> choices, BitmapComboBoxStyle style, int id = -1, Point? position = null, Size? size = null)
+    BitmapComboBox(Window parent, string value = "", IEnumerable<string>? choices = null, int id = -1, Point? position = null, Size? size = null, BitmapComboBoxStyle style = BitmapComboBoxStyle.None)
     BitmapComboBoxStyle Style { get; set; }
     Size BitmapSize { get; }
     int Append(string item, Bitmap bitmap, object? data)
@@ -2330,9 +2329,9 @@ class WxKit.Frame : TopLevelWindow
     Frame(Window? parent, string title, int id = -1, Point? position = null, Size? size = null, FrameStyle style = FrameStyle.Default)
     FrameStyle Style { get; set; }
     MenuBar? MenuBar { get; set; }
-    StatusBar? CreateStatusBar(int number = 1, StatusBarStyle style = StatusBarStyle.Default, string? name = null, int id = -1)
+    StatusBar? CreateStatusBar(int number = 1, StatusBarStyle style = StatusBarStyle.Default, int id = -1, string? name = null)
     StatusBar? StatusBar { get; set; }
-    ToolBar? CreateToolBar(ToolBarStyle style = ToolBarStyle.Default, string? name = null, int id = -1)
+    ToolBar? CreateToolBar(ToolBarStyle style = ToolBarStyle.Default, int id = -1, string? name = null)
     ToolBar? ToolBar { get; set; }
     bool ProcessCommand(int id)
     event EventHandler<IconizeEvent>? Iconized
@@ -2699,7 +2698,7 @@ enum WxKit.ImageResizeQuality : int
     Nearest = 5
     Normal = 0
 class WxKit.InfoBar : Control
-    InfoBar(Window parent, WindowStyle style = WindowStyle.None, int id = -1)
+    InfoBar(Window parent, int id = -1, WindowStyle style = WindowStyle.None)
     ShowEffect HideEffect { get; }
     ShowEffect ShowEffect { get; }
     TimeSpan EffectDuration { get; set; }
@@ -3548,8 +3547,8 @@ class WxKit.NotifyEvent : CommandEvent
     void Allow()
     void Veto()
 class WxKit.NumberEntryDialog : Dialog
-    NumberEntryDialog(Window? parent, string message, string prompt, string caption, long value, long min, long max, Point? position = null)
-    long Value { get; }
+    NumberEntryDialog(Window? parent, string message, string prompt, string caption, int value, int min, int max, Point? position = null)
+    int Value { get; }
 [Flags] enum WxKit.Orientation : int
     Both = 12
     Horizontal = 4
@@ -4290,7 +4289,7 @@ class WxKit.Simplebook : BookCtrlBase
     void SetEffects(ShowEffect showEffect, ShowEffect hideEffect)
     void SetEffectsTimeouts(TimeSpan showTimeout, TimeSpan hideTimeout)
 class WxKit.SingleChoiceDialog : Dialog
-    SingleChoiceDialog(Window? parent, string message, string caption, IEnumerable<string> choices)
+    SingleChoiceDialog(Window? parent, string message, string caption, IEnumerable<string> choices, SingleChoiceDialogStyle style = SingleChoiceDialogStyle.Default, Point? position = null)
     SingleChoiceDialogStyle Style { get; set; }
     int Selection { get; set; }
     string StringSelection { get; }
@@ -4778,7 +4777,7 @@ class WxKit.StaticText : Control
     Wrap = 2
 class WxKit.StatusBar : Control
     Size Borders { get; }
-    StatusBar(Window parent, StatusBarStyle style = StatusBarStyle.Default, int id = -1)
+    StatusBar(Window parent, int id = -1, StatusBarStyle style = StatusBarStyle.Default)
     StatusBarFieldStyle GetStatusStyle(int field)
     StatusBarStyle Style { get; set; }
     bool AddFieldControl(int field, Window window)

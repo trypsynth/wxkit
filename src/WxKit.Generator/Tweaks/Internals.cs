@@ -203,6 +203,9 @@ internal static class Internals {
 		tweaks.Class("wxImage").ParameterName("SaveFile", "name", "fileName");
 		tweaks.Class("wxFont").ParameterName("Scaled", "x", "factor");
 		tweaks.Class("wxWindow").ParameterName("FromDIP", "d", "value").ParameterName("ToDIP", "d", "value").ParameterName("FromPhys", "d", "value").ParameterName("ToPhys", "d", "value");
+		// A bitmap combo box has one constructor, as a combo box does, and a number dialog's numbers are ints.
+		tweaks.Class("wxBitmapComboBox").OptionalItems();
+		tweaks.Class("wxNumberEntryDialog").IntIndexes();
 		tweaks.Class("wxCollapsiblePane").Property("IsCollapsed", "IsCollapsed", "Collapse");
 		tweaks.Class("wxListCtrl").Property("HasCheckBoxes", "HasCheckBoxes", "EnableCheckBoxes");
 		tweaks.Class("wxSearchCtrl").Property("IsSearchButtonVisible", "IsSearchButtonVisible", "ShowSearchButton").Property("IsCancelButtonVisible", "IsCancelButtonVisible", "ShowCancelButton");
