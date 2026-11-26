@@ -33,7 +33,7 @@ sealed record WxKit.AccessibilityInfo : IEquatable<AccessibilityInfo>
     void Deconstruct(out AccessibleRole Role, out string Name, out string PlatformRole, out bool IsEnabled, out bool IsFocused, out bool IsChecked)
 abstract class WxKit.Accessible
     Window Window { get; }
-    protected Accessible(Window window)
+    protected Accessible()
     protected virtual AccessibleElement? GetChild(int childId)
     protected virtual AccessibleElement? GetFocus()
     protected virtual AccessibleElement? HitTest(Point point)
@@ -1417,14 +1417,13 @@ class WxKit.DropFilesEvent : Event
     Point Position { get; }
     int NumberOfFiles { get; }
 sealed class WxKit.DropTarget
-    DropTarget(Window window, params DataFormat[] formats)
+    DropTarget(params DataFormat[] formats)
     IReadOnlyList<DataFormat> Formats { get; }
-    Window Window { get; }
+    Window? Window { get; }
     event EventHandler<DragEventArgs>? DragEnter
     event EventHandler<DragEventArgs>? DragOver
     event EventHandler<DropEventArgs>? Drop
     event EventHandler? DragLeave
-    void Remove()
 enum WxKit.DuplexMode : int
     Horizontal = 1
     Simplex = 0
@@ -8576,13 +8575,14 @@ enum WxKit.WebViewZoomType : int
     Layout = 0
     Text = 1
 class WxKit.Window : EvtHandler
-    Accessible? Accessible { get; }
+    Accessible? Accessible { get; set; }
     BackgroundStyle BackgroundStyle { get; set; }
     Border Border { get; }
     Border GetBorder(long flags)
     Color? BackgroundColor { get; set; }
     Color? ForegroundColor { get; set; }
     Cursor? Cursor { get; set; }
+    DropTarget? DropTarget { get; set; }
     EvtHandler? EventHandler { get; set; }
     Font? Font { get; set; }
     HitTestResult HitTest(Point point)

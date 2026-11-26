@@ -72,11 +72,12 @@ type ScrapbookFrame() as this =
                     e.Enable(selected () |> Option.isSome)
         )
         // The list takes files and text dropped on it, and copies them, rather than moving them.
-        let target = DropTarget(list, DataFormat.Files, DataFormat.Text)
+        let target = DropTarget(DataFormat.Files, DataFormat.Text)
         target.DragOver.Add(fun e -> e.Effect <- DragResult.Copy)
         target.Drop.Add(fun e ->
             from e.Files e.Text |> Option.iter add
             e.Effect <- DragResult.Copy)
+        list.DropTarget <- target
         // Dragging the selected snippet out of the list gives it to wherever it's dropped.
         list.MouseMoved.Add(fun e ->
             match selected () with

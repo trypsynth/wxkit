@@ -97,12 +97,14 @@ A control that draws itself, such as a grid or a game board, is one window to th
 A class derived from `Accessible` describes it through Microsoft Active Accessibility, so it only works on Windows:
 
 ```csharp
-sealed class BoardAccessible(Board board) : Accessible(board) {
+sealed class BoardAccessible(Board board) : Accessible {
 	protected override string? GetName(int childId) => childId == 0 ? "Board" : board.CellName(childId);
 	protected override AccessibleRole? GetRole(int childId) => childId == 0 ? AccessibleRole.Table : AccessibleRole.Cell;
 	protected override int? GetChildCount() => board.CellCount;
 	protected override AccessibleElement? GetFocus() => AccessibleElement.Child(board.FocusedCell);
 }
+
+board.Accessible = new BoardAccessible(board);
 ```
 
 Each member answers for the window when the id is 0, or for a part, numbered from 1. Null means no answer, and Windows answers from the window's standard accessible object. `GetChild`, `GetFocus`, `HitTest`, and `Navigate` return an `AccessibleElement`: `Self`, `Child` for a part, `Of` for an element with an accessible object of its own, or `None`. Throwing `ArgumentOutOfRangeException` tells the screen reader the part doesn't exist, and any other exception goes to `Application.UnhandledException` and tells it the question failed. Creating the object gives it to the window, which keeps it until it is destroyed or given another, and `Window.Accessible` is the one it has. Call `Accessible.NotifyEvent` when something changes, such as the focus moving to another cell.
@@ -141,7 +143,7 @@ Image file formats work the same way. Images can always load and save BMP, and a
 
 `DragDrop.DoDragDrop(source, content, flags)` drags a `ClipboardContent`, the same content the clipboard takes, so each target takes a format it understands. Call it when the mouse moves with a button held, such as from a list's `BeginDrag`. It returns once the content is dropped or the drag is cancelled, with what the target did. When that is `DragResult.Move`, which `DragFlags.AllowMove` permits, remove what was dragged from the source.
 
-A `DropTarget` makes a window take content dropped on it, in the formats it names: `DataFormat.Text`, `Html`, `Bitmap`, `Files`, or `DataFormat.Named("MyApp.Shape")`. Content that has several arrives in the first of these the target takes. Its events are:
+A `DropTarget` takes content dropped on the window whose `DropTarget` it is set as, as in `list.DropTarget = target`, in the formats it names: `DataFormat.Text`, `Html`, `Bitmap`, `Files`, or `DataFormat.Named("MyApp.Shape")`. Content that has several arrives in the first of these the target takes. Its events are:
 
 - `DragEnter` and `DragOver`, as a drag comes in and moves over the window, with its `Position`, the `Format` it would arrive in, and the `Effect` to show, which a handler sets to `DragResult.None` to refuse it.
 - `DragLeave`, when it leaves without a drop.

@@ -74,7 +74,7 @@ public class AccessiblePartsTests {
 	[Fact]
 	public Task RefusesAWindowWithAnAccessibleOfItsOwnOnWindows() => Gui.WithFrame(frame => {
 		Panel panel = new(frame);
-		_ = new Named(panel);
+		panel.Accessible = new Named();
 		if (OperatingSystem.IsWindows()) {
 			Assert.Throws<InvalidOperationException>(() => panel.SetAccessibleParts([]));
 		} else {
@@ -85,9 +85,6 @@ public class AccessiblePartsTests {
 	});
 
 	private sealed class Named : Accessible {
-		public Named(Window window) : base(window) {
-		}
-
 		protected override string? GetName(int childId) => childId == 0 ? "Named" : null;
 	}
 }

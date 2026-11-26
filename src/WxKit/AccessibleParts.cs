@@ -99,14 +99,16 @@ public unsafe partial class Window {
 		if (Accessible is PartsAccessible parts) return parts;
 		// Only Windows asks an Accessible, so elsewhere one sits beside the parts and rows wxWidgets shows.
 		if (Accessible is not null) throw new InvalidOperationException("The window is described by an Accessible of its own, which its parts or rows would replace.");
-		return new PartsAccessible(this);
+		PartsAccessible made = new();
+		Accessible = made;
+		return made;
 	}
 }
 
 // On Windows, where wxWidgets's parts and rows do nothing, an accessible object answers Microsoft
 // Active Accessibility from them, and tells screen readers what changed, as macOS and GTK do.
 // Parts are static text, and rows list items, whose names are their cells' labels together.
-internal sealed class PartsAccessible(Window window) : Accessible(window) {
+internal sealed class PartsAccessible : Accessible {
 	private AccessiblePart[] _parts = [];
 	private AccessibleRow[] _rows = [];
 	private bool _isTable;

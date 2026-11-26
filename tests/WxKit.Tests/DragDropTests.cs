@@ -9,7 +9,8 @@ public class DragDropTests {
 	[Fact]
 	public Task DropsText() => Gui.WithFrame(frame => {
 		Panel panel = new(frame);
-		DropTarget target = new(panel, DataFormat.Text);
+		DropTarget target = new(DataFormat.Text);
+		panel.DropTarget = target;
 		List<string> seen = [];
 		target.DragEnter += (_, e) => seen.Add($"enter {e.Format} at {e.Position.X},{e.Position.Y}");
 		target.DragOver += (_, e) => seen.Add($"over {e.Effect}");
@@ -22,7 +23,8 @@ public class DragDropTests {
 	[Fact]
 	public Task RefusesADrag() => Gui.WithFrame(frame => {
 		Panel panel = new(frame);
-		DropTarget target = new(panel, DataFormat.Text);
+		DropTarget target = new(DataFormat.Text);
+		panel.DropTarget = target;
 		bool dropped = false;
 		bool left = false;
 		target.DragOver += (_, e) => e.Effect = DragResult.None;
@@ -36,7 +38,8 @@ public class DragDropTests {
 	[Fact]
 	public Task SaysWhatTheDropDid() => Gui.WithFrame(frame => {
 		Panel panel = new(frame);
-		DropTarget target = new(panel, DataFormat.Text);
+		DropTarget target = new(DataFormat.Text);
+		panel.DropTarget = target;
 		target.Drop += (_, e) => e.Effect = DragResult.Move;
 		Assert.Equal(DragResult.Move, target.TestDrop(new ClipboardContent { Text = "moved" }, new Point(1, 1)));
 	});
@@ -44,7 +47,8 @@ public class DragDropTests {
 	[Fact]
 	public Task IgnoresFormatsItDoesNotTake() => Gui.WithFrame(frame => {
 		Panel panel = new(frame);
-		DropTarget target = new(panel, DataFormat.Text);
+		DropTarget target = new(DataFormat.Text);
+		panel.DropTarget = target;
 		bool entered = false;
 		target.DragEnter += (_, _) => entered = true;
 		Assert.Equal(DragResult.None, target.TestDrop(new ClipboardContent { Files = [Path.GetTempPath()] }, new Point(1, 1)));
@@ -54,7 +58,8 @@ public class DragDropTests {
 	[Fact]
 	public Task TakesTheFirstFormatItAccepts() => Gui.WithFrame(frame => {
 		Panel panel = new(frame);
-		DropTarget target = new(panel, DataFormat.Files, DataFormat.Text);
+		DropTarget target = new(DataFormat.Files, DataFormat.Text);
+		panel.DropTarget = target;
 		DropEventArgs? drop = null;
 		target.Drop += (_, e) => drop = e;
 		target.TestDrop(new ClipboardContent { Text = "words", Files = [Path.GetTempPath()] }, new Point(1, 1));
@@ -67,7 +72,8 @@ public class DragDropTests {
 	[Fact]
 	public Task DropsFilesHtmlAndNamedData() => Gui.WithFrame(frame => {
 		Panel panel = new(frame);
-		DropTarget target = new(panel, DataFormat.Files, DataFormat.Html, Shape);
+		DropTarget target = new(DataFormat.Files, DataFormat.Html, Shape);
+		panel.DropTarget = target;
 		List<DropEventArgs> drops = [];
 		target.Drop += (_, e) => drops.Add(e);
 		string file = Path.Combine(Path.GetTempPath(), "wxkit-drop.txt");
@@ -86,7 +92,8 @@ public class DragDropTests {
 	[Fact]
 	public Task DropsABitmap() => Gui.WithFrame(frame => {
 		Panel panel = new(frame);
-		DropTarget target = new(panel, DataFormat.Bitmap);
+		DropTarget target = new(DataFormat.Bitmap);
+		panel.DropTarget = target;
 		Bitmap? dropped = null;
 		bool raised = false;
 		target.Drop += (_, e) => {
@@ -102,8 +109,20 @@ public class DragDropTests {
 	[Fact]
 	public Task StopsTakingDrops() => Gui.WithFrame(frame => {
 		Panel panel = new(frame);
-		DropTarget target = new(panel, DataFormat.Text);
-		target.Remove();
-		Assert.Equal(DragResult.Error, target.TestDrop(new ClipboardContent { Text = "gone" }, new Point(1, 1)));
+		DropTarget target = new(DataFormat.Text);
+		panel.DropTarget = target;
+		Assert.Same(panel, target.Window);
+		panel.DropTarget = null;
+		Assert.Null(panel.DropTarget);
+		Assert.Null(target.Window);
+		// Another target takes the first's place, and a target is one window's at a time.
+		panel.DropTarget = target;
+		DropTarget second = new(DataFormat.Text);
+		panel.DropTarget = second;
+		Assert.Null(target.Window);
+		Assert.Same(second, panel.DropTarget);
+		Assert.Throws<InvalidOperationException>(() => new Panel(frame).DropTarget = second);
+		panel.Destroy();
+		Assert.Null(second.Window);
 	});
 }

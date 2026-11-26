@@ -69,45 +69,50 @@ public static unsafe class DragDrop {
 }
 
 /// <summary>
-/// Makes a window take content dropped on it, in the formats given. Wraps wxDropTarget. The
-/// window keeps the target until it is destroyed, or given another, or <see cref="Remove"/> takes
-/// it away. To take only files, <see cref="Window.DragAcceptFiles"/> and its DropFiles event
-/// are enough.
+/// Takes content dropped on a window, in the formats given. Wraps wxDropTarget. Set a window's
+/// <see cref="Window.DropTarget"/> to it, and the window keeps it until it is destroyed, or given
+/// another, or null. To take only files, <see cref="Window.DragAcceptFiles"/> and its DropFiles
+/// event are enough.
 /// </summary>
 /// <example>
 /// <code>
-/// DropTarget target = new(list, DataFormat.Text, DataFormat.Files);
+/// DropTarget target = new(DataFormat.Text, DataFormat.Files);
 /// target.Drop += (_, e) => list.Append(e.Text ?? string.Join(", ", e.Files!));
+/// list.DropTarget = target;
 /// </code>
 /// </example>
 public sealed unsafe class DropTarget {
 	private static bool _callbacksSet;
-	private bool _removed;
 
-	/// <summary>Makes <paramref name="window"/> take the formats given, in place of any target it had.</summary>
-	/// <param name="window">The window content is dropped on.</param>
+	/// <summary>Makes a target that takes the formats given.</summary>
 	/// <param name="formats">The formats it takes. A drag that has several arrives in the first of text, HTML, a bitmap, files, and then the named formats in order.</param>
-	public DropTarget(Window window, params DataFormat[] formats) {
-		ArgumentNullException.ThrowIfNull(window);
+	public DropTarget(params DataFormat[] formats) {
 		ArgumentNullException.ThrowIfNull(formats);
 		if (formats.Length == 0) throw new ArgumentException("A drop target takes at least one format.", nameof(formats));
-		WxkWindow* native = window.Native;
-		Window = window;
 		Formats = [.. formats.Distinct()];
+	}
+
+	/// <summary>The window content is dropped on, or null while no window has the target.</summary>
+	public Window? Window { get; private set; }
+
+	// Makes a window's drop target this one, in place of any it had.
+	internal void Give(Window window) {
+		if (Window is not null) throw new InvalidOperationException("The drop target is another window's already.");
+		WxkWindow* native = window.Native;
 		uint kinds = 0;
 		foreach (DataFormat format in Formats.Where(static format => format.Name is null)) kinds |= 1u << format.Kind;
 		string[] named = [.. Formats.Select(static format => format.Name).OfType<string>()];
 		SetCallbacks();
 		GCHandle handle = GCHandle.Alloc(this);
 		using NativeStringArray names = new(named);
+		// The window deletes the target it had, which OnFree hears of, and forgets.
 		if (WxKitNative.DropTargetSet(native, kinds, names.Handle, (void*)GCHandle.ToIntPtr(handle)) == 0) {
 			handle.Free();
 			throw new InvalidOperationException("The window could not be made a drop target.");
 		}
+		Window = window;
+		window.KeepDropTarget(this);
 	}
-
-	/// <summary>The window content is dropped on.</summary>
-	public Window Window { get; }
 
 	/// <summary>The formats the target takes.</summary>
 	public IReadOnlyList<DataFormat> Formats { get; }
@@ -127,15 +132,9 @@ public sealed unsafe class DropTarget {
 	/// <summary>Raised when content is dropped, with the content. Set the event's Effect to say what was done with it, such as <see cref="DragResult.None"/> when nothing was.</summary>
 	public event EventHandler<DropEventArgs>? Drop;
 
-	/// <summary>Stops the window taking drops.</summary>
-	public void Remove() {
-		if (_removed || Window.IsDestroyed) return;
-		WxKitNative.DropTargetRemove(Window.Native);
-	}
-
 	// For tests: drags content over the target and drops it, as the system does, without its drag loop.
 	internal DragResult TestDrop(ClipboardContent content, Point position, DragResult suggested = DragResult.Copy) {
-		WxkWindow* window = Window.Native;
+		WxkWindow* window = Window is not null ? Window.Native : throw new InvalidOperationException("No window has the drop target.");
 		return (DragResult)WxKitNative.DropTargetTestDrop(window, content.CreateNative(), position.X, position.Y, (int)suggested);
 	}
 
@@ -191,9 +190,32 @@ public sealed unsafe class DropTarget {
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
 	private static void OnFree(void* userdata) {
 		GCHandle handle = GCHandle.FromIntPtr((nint)userdata);
-		if (handle.Target is DropTarget target) target._removed = true;
+		if (handle.Target is DropTarget target) {
+			// The window deleted it, as it does when it is destroyed, or given another, or none.
+			if (ReferenceEquals(target.Window?.DropTarget, target)) target.Window.KeepDropTarget(null);
+			target.Window = null;
+		}
 		handle.Free();
 	}
+}
+
+public unsafe partial class Window {
+	private DropTarget? _dropTarget;
+
+	/// <summary>
+	/// What takes content dropped on the window, or null when nothing does. A target is one
+	/// window's at a time, and the window lets it go when it is destroyed.
+	/// </summary>
+	public DropTarget? DropTarget {
+		get => _dropTarget;
+		set {
+			if (ReferenceEquals(value, _dropTarget)) return;
+			if (value is not null) value.Give(this);
+			else WxKitNative.DropTargetRemove(Native);
+		}
+	}
+
+	internal void KeepDropTarget(DropTarget? target) => _dropTarget = target;
 }
 
 /// <summary>A drag over a drop target: where it is, the format its content would arrive in, and what dropping it would do.</summary>

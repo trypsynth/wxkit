@@ -32,33 +32,58 @@ public abstract unsafe class Accessible : IDirected {
 	private const int InvalidArgument = 5;
 	private static bool _directorsSet;
 	private WxkAccessible* _native;
+	private Window? _window;
 
-	/// <summary>Gives the window this accessible object, which replaces the one it had. The window keeps it for as long as it exists.</summary>
-	protected Accessible(Window window) {
-		ArgumentNullException.ThrowIfNull(window);
-		Application.VerifyAccess();
-		Window = window;
-		window.Accessible = this;
-		// Only Windows asks, through Microsoft Active Accessibility. Elsewhere the window keeps the
-		// accessibility its port gives it.
-		if (!OperatingSystem.IsWindows()) return;
-		SetDirectors();
-		GCHandle handle = GCHandle.Alloc(this);
-		_native = WxKitNative.AccessibleNew((void*)GCHandle.ToIntPtr(handle), window.Native);
-		if (_native is null) {
-			handle.Free();
-			window.Accessible = null;
-			throw new InvalidOperationException("The window could not be given an accessible object.");
-		}
-		if (WxKitNative.WindowGiveAccessible(window.Native, _native) == 0) {
-			// Deleting it calls OnNativeFreed, which forgets it, and frees the handle.
-			WxKitNative.ObjectFree((WxkObject*)_native);
-			throw new InvalidOperationException("The window could not be given an accessible object.");
-		}
+	/// <summary>Makes an accessible object, which describes the window whose <see cref="Window.Accessible"/> is set to it.</summary>
+	protected Accessible() {
 	}
 
-	/// <summary>The window this describes.</summary>
-	public Window Window { get; }
+	/// <summary>The window this describes. Throws while no window has it, which is never while a member is asked something.</summary>
+	public Window Window => _window ?? throw new InvalidOperationException("No window has the accessible object. Set a window's Accessible to it.");
+
+	// Makes a window's accessible object this one, in place of the one it had.
+	internal void Give(Window window) {
+		Application.VerifyAccess();
+		if (_window is not null) throw new InvalidOperationException("The accessible object is another window's already.");
+		WxkWindow* owner = window.Native;
+		// Only Windows asks, through Microsoft Active Accessibility. Elsewhere the window keeps the
+		// accessibility its port gives it.
+		if (!OperatingSystem.IsWindows()) {
+			window.Accessible?.Forget();
+			_window = window;
+			window.KeepAccessible(this);
+			return;
+		}
+		SetDirectors();
+		GCHandle handle = GCHandle.Alloc(this);
+		WxkAccessible* native = WxKitNative.AccessibleNew((void*)GCHandle.ToIntPtr(handle), owner);
+		if (native is null) {
+			handle.Free();
+			throw new InvalidOperationException("The window could not be given an accessible object.");
+		}
+		_native = native;
+		_window = window;
+		// The window deletes the one it had, which OnNativeFreed hears of, and forgets.
+		if (WxKitNative.WindowGiveAccessible(owner, native) == 0) {
+			// Deleting it calls OnNativeFreed, which forgets it, and frees the handle.
+			WxKitNative.ObjectFree((WxkObject*)native);
+			throw new InvalidOperationException("The window could not be given an accessible object.");
+		}
+		window.KeepAccessible(this);
+	}
+
+	// Gives the window back its standard accessible object.
+	internal void TakeFrom(Window window) {
+		Application.VerifyAccess();
+		if (_native is not null) WxKitNative.WindowGiveAccessible(window.Native, null);
+		else Forget();
+	}
+
+	private void Forget() {
+		Window? window = _window;
+		_window = null;
+		if (ReferenceEquals(window?.Accessible, this)) window.KeepAccessible(null);
+	}
 
 	internal WxkAccessible* Native => _native is not null ? _native : throw new InvalidOperationException("The window this accessible object described has been destroyed, or given another one.");
 
@@ -159,7 +184,7 @@ public abstract unsafe class Accessible : IDirected {
 	// The window deleted its accessible object, as it does when it is destroyed or given another.
 	void IDirected.OnNativeFreed() {
 		_native = null;
-		if (Window.Accessible == this) Window.Accessible = null;
+		Forget();
 	}
 
 	private static Accessible? Of(void* userdata) => (Accessible?)GCHandle.FromIntPtr((nint)userdata).Target;
@@ -353,6 +378,21 @@ public readonly struct AccessibleElement {
 // The accessible object WxKit gave a window, if any. It's named after its type, which C# allows, so
 // Accessible.NotifyEvent still names the class inside a control.
 public partial class Window {
-	/// <summary>The accessible object a class derived from <see cref="WxKit.Accessible"/> gave the window, or null when it has the standard one.</summary>
-	public Accessible? Accessible { get; internal set; }
+	private Accessible? _accessible;
+
+	/// <summary>
+	/// The object that describes the window to screen readers, of a class derived from
+	/// <see cref="WxKit.Accessible"/>, or null when it has the standard one. An accessible object is
+	/// one window's at a time, and the window lets it go when it is destroyed.
+	/// </summary>
+	public Accessible? Accessible {
+		get => _accessible;
+		set {
+			if (ReferenceEquals(value, _accessible)) return;
+			if (value is not null) value.Give(this);
+			else _accessible?.TakeFrom(this);
+		}
+	}
+
+	internal void KeepAccessible(Accessible? accessible) => _accessible = accessible;
 }

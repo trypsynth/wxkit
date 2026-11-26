@@ -11,7 +11,8 @@ public class AccessibleTests {
 	public Task DescribesAControlAndItsParts() => Gui.WithFrame(frame => {
 		Assert.SkipUnless(OperatingSystem.IsWindows(), "Microsoft Active Accessibility is Windows's.");
 		Panel board = new(frame);
-		BoardAccessible accessible = new(board);
+		BoardAccessible accessible = new();
+		board.Accessible = accessible;
 		Assert.Same(accessible, board.Accessible);
 		IAccessible msaa = Msaa.Of(board);
 		Assert.Equal("Board", msaa.GetName(0));
@@ -29,7 +30,8 @@ public class AccessibleTests {
 	public Task DoesAPartsDefaultAction() => Gui.WithFrame(frame => {
 		Assert.SkipUnless(OperatingSystem.IsWindows(), "Microsoft Active Accessibility is Windows's.");
 		Panel board = new(frame);
-		BoardAccessible accessible = new(board);
+		BoardAccessible accessible = new();
+		board.Accessible = accessible;
 		Msaa.Of(board).DoDefaultAction(7);
 		Assert.Equal(7, accessible.Pressed);
 	});
@@ -38,7 +40,7 @@ public class AccessibleTests {
 	public Task ReportsTheFocusedPart() => Gui.WithFrame(frame => {
 		Assert.SkipUnless(OperatingSystem.IsWindows(), "Microsoft Active Accessibility is Windows's.");
 		Panel board = new(frame);
-		_ = new BoardAccessible(board);
+		board.Accessible = new BoardAccessible();
 		Assert.Equal(5, Msaa.Of(board).GetFocus());
 	});
 
@@ -48,7 +50,7 @@ public class AccessibleTests {
 	public Task AnswersWithTheWindowItself() => Gui.WithFrame(frame => {
 		Assert.SkipUnless(OperatingSystem.IsWindows(), "Microsoft Active Accessibility is Windows's.");
 		Panel panel = new(frame);
-		_ = new SelfAccessible(panel);
+		panel.Accessible = new SelfAccessible();
 		Point inside = panel.ClientToScreen(new Point(1, 1));
 		Assert.Equal(0, Msaa.Of(panel).HitTest(inside.X, inside.Y));
 		// wxWidgets gives navigation's answer as the object, which is the window's own.
@@ -59,7 +61,7 @@ public class AccessibleTests {
 	public Task LeavesWhatItDoesNotAnswerToWindows() => Gui.WithFrame(frame => {
 		Assert.SkipUnless(OperatingSystem.IsWindows(), "Microsoft Active Accessibility is Windows's.");
 		Panel panel = new(frame);
-		_ = new NameOnly(panel);
+		panel.Accessible = new NameOnly();
 		IAccessible msaa = Msaa.Of(panel);
 		Assert.Equal("Only a name", msaa.GetName(0));
 		Assert.Equal(Msaa.RoleClient, msaa.GetRole(0));
@@ -69,7 +71,7 @@ public class AccessibleTests {
 	public Task TellsTheScreenReaderAPartDoesNotExist() => Gui.WithFrame(frame => {
 		Assert.SkipUnless(OperatingSystem.IsWindows(), "Microsoft Active Accessibility is Windows's.");
 		Panel board = new(frame);
-		_ = new BoardAccessible(board);
+		board.Accessible = new BoardAccessible();
 		Assert.ThrowsAny<ArgumentException>(() => Msaa.Of(board).GetName(42));
 		Assert.Empty(Gui.TakeUnhandled());
 	});
@@ -78,7 +80,7 @@ public class AccessibleTests {
 	public Task ReportsAnExceptionAndFails() => Gui.WithFrame(frame => {
 		Assert.SkipUnless(OperatingSystem.IsWindows(), "Microsoft Active Accessibility is Windows's.");
 		Panel panel = new(frame);
-		_ = new Throwing(panel);
+		panel.Accessible = new Throwing();
 		Assert.ThrowsAny<COMException>(() => Msaa.Of(panel).GetName(0));
 		Exception error = Assert.Single(Gui.TakeUnhandled());
 		Assert.IsType<InvalidOperationException>(error);
@@ -88,8 +90,9 @@ public class AccessibleTests {
 	public Task ReplacesAWindowsAccessibleObject() => Gui.WithFrame(frame => {
 		Assert.SkipUnless(OperatingSystem.IsWindows(), "Microsoft Active Accessibility is Windows's.");
 		Panel panel = new(frame);
-		_ = new NameOnly(panel);
-		BoardAccessible second = new(panel);
+		panel.Accessible = new NameOnly();
+		BoardAccessible second = new();
+		panel.Accessible = second;
 		Assert.Same(second, panel.Accessible);
 		Assert.Equal("Board", Msaa.Of(panel).GetName(0));
 	});
@@ -98,25 +101,34 @@ public class AccessibleTests {
 	public Task LetsGoWhenTheWindowIsDestroyed() => Gui.WithFrame(frame => {
 		Assert.SkipUnless(OperatingSystem.IsWindows(), "Microsoft Active Accessibility is Windows's.");
 		Panel panel = new(frame);
-		_ = new NameOnly(panel);
-		Assert.NotNull(panel.Accessible);
+		NameOnly described = new();
+		Assert.Throws<InvalidOperationException>(() => described.Window);
+		panel.Accessible = described;
+		Assert.Same(panel, described.Window);
+		// An accessible object is one window's at a time.
+		Assert.Throws<InvalidOperationException>(() => new Panel(frame).Accessible = described);
+		// Without one, the window answers as it did, with the name it was given.
+		panel.SetAccessibleName("Kept");
+		panel.Accessible = null;
+		Assert.Null(panel.Accessible);
+		Assert.Throws<InvalidOperationException>(() => described.Window);
+		Assert.Equal("Kept", Msaa.Of(panel).GetName(0));
+		panel.Accessible = described;
 		panel.Destroy();
 		Assert.Null(panel.Accessible);
+		Assert.Throws<InvalidOperationException>(() => described.Window);
 	});
 
 	[Fact]
 	public Task NotifiesScreenReaders() => Gui.WithFrame(frame => {
 		Panel board = new(frame);
-		_ = new BoardAccessible(board);
+		board.Accessible = new BoardAccessible();
 		Accessible.NotifyEvent(AccessibleEvent.ObjectFocus, board, AccessibleObjectId.Client, 5);
 		Accessible.NotifyEvent(AccessibleEvent.ObjectNameChange, board, 5);
 	});
 
 	// A three by three board, with the middle cell focused and marked.
 	private sealed class BoardAccessible : Accessible {
-		public BoardAccessible(Window window) : base(window) {
-		}
-
 		public int Pressed { get; private set; }
 
 		protected override string? GetName(int childId) => childId switch {
@@ -147,25 +159,16 @@ public class AccessibleTests {
 	}
 
 	private sealed class SelfAccessible : Accessible {
-		public SelfAccessible(Window window) : base(window) {
-		}
-
 		protected override AccessibleElement? HitTest(Point point) => AccessibleElement.Self;
 
 		protected override AccessibleElement? Navigate(NavigationDirection direction, int fromId) => AccessibleElement.Self;
 	}
 
 	private sealed class NameOnly : Accessible {
-		public NameOnly(Window window) : base(window) {
-		}
-
 		protected override string? GetName(int childId) => childId == 0 ? "Only a name" : null;
 	}
 
 	private sealed class Throwing : Accessible {
-		public Throwing(Window window) : base(window) {
-		}
-
 		protected override string? GetName(int childId) => throw new InvalidOperationException("No name.");
 	}
 }

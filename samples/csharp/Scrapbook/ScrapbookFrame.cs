@@ -33,13 +33,14 @@ internal sealed class ScrapbookFrame : Frame {
 			if (e.Id == copy.Id || e.Id == remove.Id || e.Id == StandardId.Copy || e.Id == StandardId.Delete) e.Enable(_list.Selection >= 0);
 		});
 		// The list takes files and text dropped on it, and copies them, rather than moving them.
-		DropTarget target = new(_list, DataFormat.Files, DataFormat.Text);
+		DropTarget target = new(DataFormat.Files, DataFormat.Text);
 		target.DragOver += (_, e) => e.Effect = DragResult.Copy;
 		target.Drop += (_, e) => {
 			if (e.Files is [_, ..] files) Add(new FilesSnippet { Files = files });
 			else if (e.Text is { Length: > 0 } text) Add(new TextSnippet { Text = text });
 			e.Effect = DragResult.Copy;
 		};
+		_list.DropTarget = target;
 		// Dragging the selected snippet out of the list gives it to wherever it's dropped.
 		_list.MouseMoved += (_, e) => {
 			if (!e.IsDragging || !e.IsLeftButtonPressed || _dragging || _list.Selection < 0) {

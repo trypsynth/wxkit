@@ -288,7 +288,8 @@ WXK_FUNCTION(void) wxk_DataViewItems_Add(wxk_DataViewItems* items, wxk_ItemId it
 // Accessibility
 
 // Gives the window an accessible object made with wxk_Accessible_new, which replaces the one it had
-// and keeps its name. Returns 0 where there's no Microsoft Active Accessibility, or when it fails.
+// and keeps its name, or its standard one back for null. Returns 0 where there's no Microsoft
+// Active Accessibility, or when it fails.
 // The accessible object's members, and its director, are generated.
 WXK_FUNCTION(uint8_t) wxk_Window_GiveAccessible(wxk_Window* window, wxk_Accessible* accessible) WXK_NOEXCEPT;
 

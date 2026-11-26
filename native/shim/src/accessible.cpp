@@ -14,7 +14,19 @@ WXK_FUNCTION(uint8_t) wxk_Window_GiveAccessible(wxk_Window* window, wxk_Accessib
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t {
 		wxWindow* owner = wxk::Unwrap(window);
 		auto* given = reinterpret_cast<wxAccessible*>(accessible);
-		if (wxAccessible* previous = owner->GetAccessible()) given->SetNameOverride(previous->GetNameOverride());
+		wxAccessible* previous = owner->GetAccessible();
+		// For none, the window gets its standard one back, if it had another. A window without a
+		// standard one gets a plain one if it has a name to keep, as SetAccessibleName gives it.
+		if (given == nullptr) {
+			if (previous == nullptr) return 1;
+			given = owner->CreateAccessible();
+			if (given == nullptr && !previous->GetNameOverride().empty()) given = new wxAccessible(owner);
+			if (given == nullptr) {
+				owner->SetAccessible(nullptr);
+				return 1;
+			}
+		}
+		if (previous != nullptr) given->SetNameOverride(previous->GetNameOverride());
 		owner->SetAccessible(given);
 		return 1;
 	});
