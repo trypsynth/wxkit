@@ -70,7 +70,7 @@ type EditorFrame() as this =
 
     let updateStatus () =
         let _, column, line = text.PositionToXY text.InsertionPoint
-        let shown = $"Line {line + 1L}, column {column + 1L}"
+        let shown = $"Line {line + 1}, column {column + 1}"
         if shown <> status then
             status <- shown
             this.SetStatusText shown
@@ -83,7 +83,7 @@ type EditorFrame() as this =
                 newLine <- if contents.Contains "\r\n" then "\r\n" else "\n"
                 text.ChangeValue(contents.Replace("\r\n", "\n"))
                 text.DiscardEdits()
-                text.InsertionPoint <- 0L
+                text.InsertionPoint <- 0
                 path <- Some file
                 updateTitle ()
             with
@@ -198,8 +198,8 @@ type EditorFrame() as this =
             let start = if flags &&& FindReplaceFlags.Down = FindReplaceFlags.Down then int last else int from - 1
             match Search.find text.Value needle start flags with
             | Some found ->
-                text.SetSelection(int64 found, int64 (found + needle.Length))
-                text.ShowPosition(int64 found)
+                text.SetSelection(found, found + needle.Length)
+                text.ShowPosition(found)
                 true
             | None ->
                 message $"{AppName} cannot find \"{needle}\"." MessageDialogStyle.IconInformation (searchParent ())
@@ -209,7 +209,7 @@ type EditorFrame() as this =
         let from, last = text.GetSelection()
         if last > from && String.Equals(text.GetRange(from, last), needle, Search.comparison flags) then
             text.Replace(from, last, replacement)
-            text.SetSelection(from, from + int64 replacement.Length)
+            text.SetSelection(from, from + replacement.Length)
         findNext needle flags |> ignore
 
     and replaceAll needle replacement flags =
@@ -230,7 +230,7 @@ type EditorFrame() as this =
         let _, _, current = text.PositionToXY text.InsertionPoint
         let lines = text.NumberOfLines
         let answer =
-            use dialog = new TextEntryDialog(this, $"Line number, from 1 to {lines}:", "Go To Line", string (current + 1L))
+            use dialog = new TextEntryDialog(this, $"Line number, from 1 to {lines}:", "Go To Line", string (current + 1))
             if dialog.ShowModal() = StandardId.Ok then Some dialog.Value else None
         let (|Line|_|) (typed: string) =
             match Int32.TryParse(typed, NumberStyles.Integer, CultureInfo.CurrentCulture) with
@@ -239,7 +239,7 @@ type EditorFrame() as this =
         match answer with
         | None -> ()
         | Some(Line line) ->
-            let position = text.XYToPosition(0L, int64 (line - 1))
+            let position = text.XYToPosition(0, line - 1)
             text.InsertionPoint <- position
             text.ShowPosition position
         | Some _ ->

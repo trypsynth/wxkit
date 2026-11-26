@@ -44,7 +44,7 @@ public unsafe partial class ListItem : NativeObject {
 	}
 
 	/// <summary>Returns the zero-based item position.</summary>
-	public long Id {
+	public int Id {
 		get => WxKitNative.ListItemGetId(Native);
 		set => WxKitNative.ListItemSetId(Native, value);
 	}
@@ -94,7 +94,7 @@ public unsafe partial class ListItem : NativeObject {
 	public void Clear() => WxKitNative.ListItemClear(Native);
 
 	/// <summary>Sets client data for the item.</summary>
-	public void SetData(long data) => WxKitNative.ListItemSetData(Native, data);
+	public void SetData(int data) => WxKitNative.ListItemSetData(Native, data);
 
 	/// <summary>Sets the bitmask that is used to determine which of the state flags are to be set.</summary>
 	public void SetStateMask(ListItemState stateMask) => WxKitNative.ListItemSetStateMask(Native, (long)stateMask);

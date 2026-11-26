@@ -427,6 +427,8 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 	// A number a tweak says is milliseconds is a TimeSpan over whatever the number would have been.
 	private Conversion? Map(CppType type, BoundClass owner, string member, string? parameter, bool isReturn) {
 		Conversion? conversion = MapType(type, owner, member, parameter, isReturn);
+		if (conversion == NumberConversion.Long && owner.Tweak.HasIntIndexes) conversion = NumberConversion.Index;
+		if (conversion == OutConversion.Long && owner.Tweak.HasIntIndexes) conversion = OutConversion.Index;
 		return conversion is not null and not MillisecondsConversion && owner.Tweak.Milliseconds.Contains((member, isReturn ? "return" : parameter ?? string.Empty)) ? new MillisecondsConversion(conversion) : conversion;
 	}
 

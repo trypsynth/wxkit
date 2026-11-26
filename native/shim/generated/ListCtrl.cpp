@@ -3,10 +3,10 @@
 
 namespace wxk::directors {
 
-wxk_String* (*ListCtrl_OnGetItemText)(wxk_Window* self, void* userdata, int64_t item, int64_t column) = nullptr;
-int32_t (*ListCtrl_OnGetItemImage)(wxk_Window* self, void* userdata, int64_t item) = nullptr;
-int32_t (*ListCtrl_OnGetItemColumnImage)(wxk_Window* self, void* userdata, int64_t item, int64_t column) = nullptr;
-uint8_t (*ListCtrl_OnGetItemIsChecked)(wxk_Window* self, void* userdata, int64_t item) = nullptr;
+wxk_String* (*ListCtrl_OnGetItemText)(wxk_Window* self, void* userdata, int32_t item, int32_t column) = nullptr;
+int32_t (*ListCtrl_OnGetItemImage)(wxk_Window* self, void* userdata, int32_t item) = nullptr;
+int32_t (*ListCtrl_OnGetItemColumnImage)(wxk_Window* self, void* userdata, int32_t item, int32_t column) = nullptr;
+uint8_t (*ListCtrl_OnGetItemIsChecked)(wxk_Window* self, void* userdata, int32_t item) = nullptr;
 
 } // namespace wxk::directors
 
@@ -64,22 +64,22 @@ struct ListCtrlDirector final : wxListCtrl, wxk::directors::ListCtrlBase {
 
 	wxString OnGetItemText(long item, long column) const override {
 		if (wxk::directors::ListCtrl_OnGetItemText == nullptr) return wxListCtrl::OnGetItemText(item, column);
-		return wxk::TakeString(wxk::directors::ListCtrl_OnGetItemText(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListCtrlDirector*>(this))), _userdata, static_cast<int64_t>(item), static_cast<int64_t>(column)));
+		return wxk::TakeString(wxk::directors::ListCtrl_OnGetItemText(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListCtrlDirector*>(this))), _userdata, static_cast<int32_t>(item), static_cast<int32_t>(column)));
 	}
 
 	int OnGetItemImage(long item) const override {
 		if (wxk::directors::ListCtrl_OnGetItemImage == nullptr) return wxListCtrl::OnGetItemImage(item);
-		return static_cast<int>(wxk::directors::ListCtrl_OnGetItemImage(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListCtrlDirector*>(this))), _userdata, static_cast<int64_t>(item)));
+		return static_cast<int>(wxk::directors::ListCtrl_OnGetItemImage(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListCtrlDirector*>(this))), _userdata, static_cast<int32_t>(item)));
 	}
 
 	int OnGetItemColumnImage(long item, long column) const override {
 		if (wxk::directors::ListCtrl_OnGetItemColumnImage == nullptr) return wxListCtrl::OnGetItemColumnImage(item, column);
-		return static_cast<int>(wxk::directors::ListCtrl_OnGetItemColumnImage(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListCtrlDirector*>(this))), _userdata, static_cast<int64_t>(item), static_cast<int64_t>(column)));
+		return static_cast<int>(wxk::directors::ListCtrl_OnGetItemColumnImage(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListCtrlDirector*>(this))), _userdata, static_cast<int32_t>(item), static_cast<int32_t>(column)));
 	}
 
 	bool OnGetItemIsChecked(long item) const override {
 		if (wxk::directors::ListCtrl_OnGetItemIsChecked == nullptr) return wxListCtrl::OnGetItemIsChecked(item);
-		return wxk::directors::ListCtrl_OnGetItemIsChecked(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListCtrlDirector*>(this))), _userdata, static_cast<int64_t>(item)) != 0;
+		return wxk::directors::ListCtrl_OnGetItemIsChecked(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListCtrlDirector*>(this))), _userdata, static_cast<int32_t>(item)) != 0;
 	}
 
 	private:
@@ -95,24 +95,24 @@ WXK_FUNCTION(wxk_Window*) wxk_ListCtrl_new(void* userdata, wxk_Window* parent, i
 	});
 }
 
-WXK_FUNCTION(wxk_String*) wxk_ListCtrl_base_OnGetItemText(wxk_Window* self, int64_t item, int64_t column) noexcept {
+WXK_FUNCTION(wxk_String*) wxk_ListCtrl_base_OnGetItemText(wxk_Window* self, int32_t item, int32_t column) noexcept {
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(ListCtrlAccess::OnGetItemText(static_cast<wxListCtrl*>(wxk::Unwrap(self)), static_cast<long>(item), static_cast<long>(column))); });
 }
 
-WXK_FUNCTION(int32_t) wxk_ListCtrl_base_OnGetItemImage(wxk_Window* self, int64_t item) noexcept {
+WXK_FUNCTION(int32_t) wxk_ListCtrl_base_OnGetItemImage(wxk_Window* self, int32_t item) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(ListCtrlAccess::OnGetItemImage(static_cast<wxListCtrl*>(wxk::Unwrap(self)), static_cast<long>(item))); });
 }
 
-WXK_FUNCTION(int32_t) wxk_ListCtrl_base_OnGetItemColumnImage(wxk_Window* self, int64_t item, int64_t column) noexcept {
+WXK_FUNCTION(int32_t) wxk_ListCtrl_base_OnGetItemColumnImage(wxk_Window* self, int32_t item, int32_t column) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(ListCtrlAccess::OnGetItemColumnImage(static_cast<wxListCtrl*>(wxk::Unwrap(self)), static_cast<long>(item), static_cast<long>(column))); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_base_OnGetItemIsChecked(wxk_Window* self, int64_t item) noexcept {
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_base_OnGetItemIsChecked(wxk_Window* self, int32_t item) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (ListCtrlAccess::OnGetItemIsChecked(static_cast<wxListCtrl*>(wxk::Unwrap(self)), static_cast<long>(item))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(int64_t) wxk_ListCtrl_AppendColumn(wxk_Window* self, const char16_t* heading, size_t headingLength, int32_t format, int32_t width) noexcept {
-	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->AppendColumn(wxk::FromUtf16(heading, headingLength), static_cast<wxListColumnFormat>(format), static_cast<int>(width))); });
+WXK_FUNCTION(int32_t) wxk_ListCtrl_AppendColumn(wxk_Window* self, const char16_t* heading, size_t headingLength, int32_t format, int32_t width) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->AppendColumn(wxk::FromUtf16(heading, headingLength), static_cast<wxListColumnFormat>(format), static_cast<int>(width))); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_Arrange(wxk_Window* self, int32_t flag) noexcept {
@@ -135,11 +135,11 @@ WXK_FUNCTION(uint8_t) wxk_ListCtrl_DeleteColumn(wxk_Window* self, int32_t column
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->DeleteColumn(static_cast<int>(column))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_DeleteItem(wxk_Window* self, int64_t item) noexcept {
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_DeleteItem(wxk_Window* self, int32_t item) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->DeleteItem(static_cast<long>(item))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(wxk_Window*) wxk_ListCtrl_EditLabel(wxk_Window* self, int64_t item) noexcept {
+WXK_FUNCTION(wxk_Window*) wxk_ListCtrl_EditLabel(wxk_Window* self, int32_t item) noexcept {
 	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->EditLabel(static_cast<long>(item)))); });
 }
 
@@ -155,20 +155,20 @@ WXK_FUNCTION(uint8_t) wxk_ListCtrl_EndEditLabel(wxk_Window* self, uint8_t cancel
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->EndEditLabel(cancel != 0)) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_EnsureVisible(wxk_Window* self, int64_t item) noexcept {
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_EnsureVisible(wxk_Window* self, int32_t item) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->EnsureVisible(static_cast<long>(item))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(int64_t) wxk_ListCtrl_FindItem_LongStringBool(wxk_Window* self, int64_t start, const char16_t* text, size_t textLength, uint8_t partial) noexcept {
-	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->FindItem(static_cast<long>(start), wxk::FromUtf16(text, textLength), partial != 0)); });
+WXK_FUNCTION(int32_t) wxk_ListCtrl_FindItem_IntStringBool(wxk_Window* self, int32_t start, const char16_t* text, size_t textLength, uint8_t partial) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->FindItem(static_cast<long>(start), wxk::FromUtf16(text, textLength), partial != 0)); });
 }
 
-WXK_FUNCTION(int64_t) wxk_ListCtrl_FindItem_LongLong(wxk_Window* self, int64_t start, int64_t data) noexcept {
-	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->FindItem(static_cast<long>(start), static_cast<wxUIntPtr>(data))); });
+WXK_FUNCTION(int32_t) wxk_ListCtrl_FindItem_IntLong(wxk_Window* self, int32_t start, int64_t data) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->FindItem(static_cast<long>(start), static_cast<wxUIntPtr>(data))); });
 }
 
-WXK_FUNCTION(int64_t) wxk_ListCtrl_FindItem_LongPointListFindDirection(wxk_Window* self, int64_t start, wxk_Point point, int32_t direction) noexcept {
-	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->FindItem(static_cast<long>(start), wxk::FromPoint(point), static_cast<int>(direction))); });
+WXK_FUNCTION(int32_t) wxk_ListCtrl_FindItem_IntPointListFindDirection(wxk_Window* self, int32_t start, wxk_Point point, int32_t direction) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->FindItem(static_cast<long>(start), wxk::FromPoint(point), static_cast<int>(direction))); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetColumn(wxk_Window* self, int32_t column, wxk_Object* item) noexcept {
@@ -191,39 +191,39 @@ WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetItem(wxk_Window* self, wxk_Object* info) n
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetItem(wxk::ValueRef<wxListItem>(info))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(wxk_Colour) wxk_ListCtrl_GetItemBackgroundColour(wxk_Window* self, int64_t item) noexcept {
+WXK_FUNCTION(wxk_Colour) wxk_ListCtrl_GetItemBackgroundColour(wxk_Window* self, int32_t item) noexcept {
 	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetItemBackgroundColour(static_cast<long>(item))); });
 }
 
-WXK_FUNCTION(int64_t) wxk_ListCtrl_GetItemData(wxk_Window* self, int64_t item) noexcept {
+WXK_FUNCTION(int64_t) wxk_ListCtrl_GetItemData(wxk_Window* self, int32_t item) noexcept {
 	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetItemData(static_cast<long>(item))); });
 }
 
-WXK_FUNCTION(wxk_Object*) wxk_ListCtrl_GetItemFont(wxk_Window* self, int64_t item) noexcept {
+WXK_FUNCTION(wxk_Object*) wxk_ListCtrl_GetItemFont(wxk_Window* self, int32_t item) noexcept {
 	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxFont>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetItemFont(static_cast<long>(item))); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetItemRect(wxk_Window* self, int64_t item, wxk_Rect* rect, int32_t code) noexcept {
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetItemRect(wxk_Window* self, int32_t item, wxk_Rect* rect, int32_t code) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetItemRect(static_cast<long>(item), wxk::OutValue<wxRect, wxk_Rect, wxk::ToRect>{rect}, static_cast<int>(code))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(int32_t) wxk_ListCtrl_GetItemState(wxk_Window* self, int64_t item, int64_t stateMask) noexcept {
+WXK_FUNCTION(int32_t) wxk_ListCtrl_GetItemState(wxk_Window* self, int32_t item, int64_t stateMask) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetItemState(static_cast<long>(item), static_cast<long>(stateMask))); });
 }
 
-WXK_FUNCTION(wxk_String*) wxk_ListCtrl_GetItemText(wxk_Window* self, int64_t item, int32_t column) noexcept {
+WXK_FUNCTION(wxk_String*) wxk_ListCtrl_GetItemText(wxk_Window* self, int32_t item, int32_t column) noexcept {
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetItemText(static_cast<long>(item), static_cast<int>(column))); });
 }
 
-WXK_FUNCTION(wxk_Colour) wxk_ListCtrl_GetItemTextColour(wxk_Window* self, int64_t item) noexcept {
+WXK_FUNCTION(wxk_Colour) wxk_ListCtrl_GetItemTextColour(wxk_Window* self, int32_t item) noexcept {
 	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetItemTextColour(static_cast<long>(item))); });
 }
 
-WXK_FUNCTION(int64_t) wxk_ListCtrl_GetNextItem(wxk_Window* self, int64_t item, int32_t geometry, int32_t state) noexcept {
-	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetNextItem(static_cast<long>(item), static_cast<int>(geometry), static_cast<int>(state))); });
+WXK_FUNCTION(int32_t) wxk_ListCtrl_GetNextItem(wxk_Window* self, int32_t item, int32_t geometry, int32_t state) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetNextItem(static_cast<long>(item), static_cast<int>(geometry), static_cast<int>(state))); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetSubItemRect(wxk_Window* self, int64_t item, int64_t subItem, wxk_Rect* rect, int32_t code) noexcept {
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetSubItemRect(wxk_Window* self, int32_t item, int32_t subItem, wxk_Rect* rect, int32_t code) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetSubItemRect(static_cast<long>(item), static_cast<long>(subItem), wxk::OutValue<wxRect, wxk_Rect, wxk::ToRect>{rect}, static_cast<int>(code))) ? 1 : 0; });
 }
 
@@ -231,35 +231,35 @@ WXK_FUNCTION(uint8_t) wxk_ListCtrl_InReportView(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->InReportView()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(int64_t) wxk_ListCtrl_InsertColumn_LongListItem(wxk_Window* self, int64_t column, const wxk_Object* info) noexcept {
-	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->InsertColumn(static_cast<long>(column), wxk::ValueOf<wxListItem>(info))); });
+WXK_FUNCTION(int32_t) wxk_ListCtrl_InsertColumn_IntListItem(wxk_Window* self, int32_t column, const wxk_Object* info) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->InsertColumn(static_cast<long>(column), wxk::ValueOf<wxListItem>(info))); });
 }
 
-WXK_FUNCTION(int64_t) wxk_ListCtrl_InsertColumn_LongStringListColumnFormatInt(wxk_Window* self, int64_t column, const char16_t* heading, size_t headingLength, int32_t format, int32_t width) noexcept {
-	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->InsertColumn(static_cast<long>(column), wxk::FromUtf16(heading, headingLength), static_cast<int>(format), static_cast<int>(width))); });
+WXK_FUNCTION(int32_t) wxk_ListCtrl_InsertColumn_IntStringListColumnFormatInt(wxk_Window* self, int32_t column, const char16_t* heading, size_t headingLength, int32_t format, int32_t width) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->InsertColumn(static_cast<long>(column), wxk::FromUtf16(heading, headingLength), static_cast<int>(format), static_cast<int>(width))); });
 }
 
-WXK_FUNCTION(int64_t) wxk_ListCtrl_InsertItem_ListItem(wxk_Window* self, wxk_Object* info) noexcept {
-	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->InsertItem(wxk::ValueRef<wxListItem>(info))); });
+WXK_FUNCTION(int32_t) wxk_ListCtrl_InsertItem_ListItem(wxk_Window* self, wxk_Object* info) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->InsertItem(wxk::ValueRef<wxListItem>(info))); });
 }
 
-WXK_FUNCTION(int64_t) wxk_ListCtrl_InsertItem_LongString(wxk_Window* self, int64_t index, const char16_t* label, size_t labelLength) noexcept {
-	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->InsertItem(static_cast<long>(index), wxk::FromUtf16(label, labelLength))); });
+WXK_FUNCTION(int32_t) wxk_ListCtrl_InsertItem_IntString(wxk_Window* self, int32_t index, const char16_t* label, size_t labelLength) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->InsertItem(static_cast<long>(index), wxk::FromUtf16(label, labelLength))); });
 }
 
-WXK_FUNCTION(int64_t) wxk_ListCtrl_InsertItem_LongInt(wxk_Window* self, int64_t index, int32_t imageIndex) noexcept {
-	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->InsertItem(static_cast<long>(index), static_cast<int>(imageIndex))); });
+WXK_FUNCTION(int32_t) wxk_ListCtrl_InsertItem_IntInt(wxk_Window* self, int32_t index, int32_t imageIndex) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->InsertItem(static_cast<long>(index), static_cast<int>(imageIndex))); });
 }
 
-WXK_FUNCTION(int64_t) wxk_ListCtrl_InsertItem_LongStringInt(wxk_Window* self, int64_t index, const char16_t* label, size_t labelLength, int32_t imageIndex) noexcept {
-	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->InsertItem(static_cast<long>(index), wxk::FromUtf16(label, labelLength), static_cast<int>(imageIndex))); });
+WXK_FUNCTION(int32_t) wxk_ListCtrl_InsertItem_IntStringInt(wxk_Window* self, int32_t index, const char16_t* label, size_t labelLength, int32_t imageIndex) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->InsertItem(static_cast<long>(index), wxk::FromUtf16(label, labelLength), static_cast<int>(imageIndex))); });
 }
 
-WXK_FUNCTION(void) wxk_ListCtrl_RefreshItem(wxk_Window* self, int64_t item) noexcept {
+WXK_FUNCTION(void) wxk_ListCtrl_RefreshItem(wxk_Window* self, int32_t item) noexcept {
 	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->RefreshItem(static_cast<long>(item)); });
 }
 
-WXK_FUNCTION(void) wxk_ListCtrl_RefreshItems(wxk_Window* self, int64_t itemFrom, int64_t itemTo) noexcept {
+WXK_FUNCTION(void) wxk_ListCtrl_RefreshItems(wxk_Window* self, int32_t itemFrom, int32_t itemTo) noexcept {
 	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->RefreshItems(static_cast<long>(itemFrom), static_cast<long>(itemTo)); });
 }
 
@@ -287,7 +287,7 @@ WXK_FUNCTION(void) wxk_ListCtrl_SetSmallImages(wxk_Window* self, wxk_Object* con
 	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetSmallImages(wxk::ToBitmapBundles(images, imagesCount)); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_IsVisible(wxk_Window* self, int64_t item) noexcept {
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_IsVisible(wxk_Window* self, int32_t item) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->IsVisible(static_cast<long>(item))) ? 1 : 0; });
 }
 
@@ -295,47 +295,43 @@ WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItem_ListItem(wxk_Window* self, wxk_Object
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItem(wxk::ValueRef<wxListItem>(info))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItem_LongIntStringInt(wxk_Window* self, int64_t index, int32_t column, const char16_t* label, size_t labelLength, int32_t imageId) noexcept {
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItem_IntIntStringInt(wxk_Window* self, int32_t index, int32_t column, const char16_t* label, size_t labelLength, int32_t imageId) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItem(static_cast<long>(index), static_cast<int>(column), wxk::FromUtf16(label, labelLength), static_cast<int>(imageId))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_ListCtrl_SetItemBackgroundColour(wxk_Window* self, int64_t item, wxk_Colour color) noexcept {
+WXK_FUNCTION(void) wxk_ListCtrl_SetItemBackgroundColour(wxk_Window* self, int32_t item, wxk_Colour color) noexcept {
 	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItemBackgroundColour(static_cast<long>(item), wxk::FromColour(color)); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItemColumnImage(wxk_Window* self, int64_t item, int64_t column, int32_t image) noexcept {
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItemColumnImage(wxk_Window* self, int32_t item, int32_t column, int32_t image) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItemColumnImage(static_cast<long>(item), static_cast<long>(column), static_cast<int>(image))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_ListCtrl_SetItemCount(wxk_Window* self, int64_t count) noexcept {
-	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItemCount(static_cast<long>(count)); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItemData(wxk_Window* self, int64_t item, int64_t data) noexcept {
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItemData(wxk_Window* self, int32_t item, int32_t data) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItemData(static_cast<long>(item), static_cast<long>(data))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_ListCtrl_SetItemFont(wxk_Window* self, int64_t item, const wxk_Object* font) noexcept {
+WXK_FUNCTION(void) wxk_ListCtrl_SetItemFont(wxk_Window* self, int32_t item, const wxk_Object* font) noexcept {
 	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItemFont(static_cast<long>(item), wxk::ValueOf<wxFont>(font)); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItemImage(wxk_Window* self, int64_t item, int32_t image, int32_t selectedImage) noexcept {
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItemImage(wxk_Window* self, int32_t item, int32_t image, int32_t selectedImage) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItemImage(static_cast<long>(item), static_cast<int>(image), static_cast<int>(selectedImage))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItemPosition(wxk_Window* self, int64_t item, wxk_Point position) noexcept {
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItemPosition(wxk_Window* self, int32_t item, wxk_Point position) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItemPosition(static_cast<long>(item), wxk::FromPoint(position))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItemState(wxk_Window* self, int64_t item, int64_t state, int64_t stateMask) noexcept {
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetItemState(wxk_Window* self, int32_t item, int64_t state, int64_t stateMask) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItemState(static_cast<long>(item), static_cast<long>(state), static_cast<long>(stateMask))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_ListCtrl_SetItemText(wxk_Window* self, int64_t item, const char16_t* text, size_t textLength) noexcept {
+WXK_FUNCTION(void) wxk_ListCtrl_SetItemText(wxk_Window* self, int32_t item, const char16_t* text, size_t textLength) noexcept {
 	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItemText(static_cast<long>(item), wxk::FromUtf16(text, textLength)); });
 }
 
-WXK_FUNCTION(void) wxk_ListCtrl_SetItemTextColour(wxk_Window* self, int64_t item, wxk_Colour color) noexcept {
+WXK_FUNCTION(void) wxk_ListCtrl_SetItemTextColour(wxk_Window* self, int32_t item, wxk_Colour color) noexcept {
 	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItemTextColour(static_cast<long>(item), wxk::FromColour(color)); });
 }
 
@@ -351,11 +347,11 @@ WXK_FUNCTION(uint8_t) wxk_ListCtrl_EnableCheckBoxes(wxk_Window* self, uint8_t en
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->EnableCheckBoxes(enable != 0)) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_IsItemChecked(wxk_Window* self, int64_t item) noexcept {
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_IsItemChecked(wxk_Window* self, int32_t item) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->IsItemChecked(static_cast<long>(item))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_ListCtrl_CheckItem(wxk_Window* self, int64_t item, uint8_t check) noexcept {
+WXK_FUNCTION(void) wxk_ListCtrl_CheckItem(wxk_Window* self, int32_t item, uint8_t check) noexcept {
 	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->CheckItem(static_cast<long>(item), check != 0); });
 }
 
@@ -399,6 +395,10 @@ WXK_FUNCTION(int32_t) wxk_ListCtrl_GetItemCount(wxk_Window* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetItemCount()); });
 }
 
+WXK_FUNCTION(void) wxk_ListCtrl_SetItemCount(wxk_Window* self, int32_t count) noexcept {
+	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetItemCount(static_cast<long>(count)); });
+}
+
 WXK_FUNCTION(wxk_Size) wxk_ListCtrl_GetItemSpacing(wxk_Window* self) noexcept {
 	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetItemSpacing()); });
 }
@@ -415,8 +415,8 @@ WXK_FUNCTION(void) wxk_ListCtrl_SetTextColour(wxk_Window* self, wxk_Colour color
 	wxk::Guard([&] { static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetTextColour(wxk::FromColour(color)); });
 }
 
-WXK_FUNCTION(int64_t) wxk_ListCtrl_GetTopItem(wxk_Window* self) noexcept {
-	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetTopItem()); });
+WXK_FUNCTION(int32_t) wxk_ListCtrl_GetTopItem(wxk_Window* self) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetTopItem()); });
 }
 
 WXK_FUNCTION(wxk_Rect) wxk_ListCtrl_GetViewRect(wxk_Window* self) noexcept {
@@ -451,7 +451,7 @@ WXK_FUNCTION(uint8_t) wxk_ListCtrl_IsAscendingSortIndicator(wxk_Window* self) no
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->IsAscendingSortIndicator()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_ListCtrl_SetDirectors(wxk_String* (*onGetItemText)(wxk_Window* self, void* userdata, int64_t item, int64_t column), int32_t (*onGetItemImage)(wxk_Window* self, void* userdata, int64_t item), int32_t (*onGetItemColumnImage)(wxk_Window* self, void* userdata, int64_t item, int64_t column), uint8_t (*onGetItemIsChecked)(wxk_Window* self, void* userdata, int64_t item)) noexcept {
+WXK_FUNCTION(void) wxk_ListCtrl_SetDirectors(wxk_String* (*onGetItemText)(wxk_Window* self, void* userdata, int32_t item, int32_t column), int32_t (*onGetItemImage)(wxk_Window* self, void* userdata, int32_t item), int32_t (*onGetItemColumnImage)(wxk_Window* self, void* userdata, int32_t item, int32_t column), uint8_t (*onGetItemIsChecked)(wxk_Window* self, void* userdata, int32_t item)) noexcept {
 	wxk::directors::ListCtrl_OnGetItemText = onGetItemText;
 	wxk::directors::ListCtrl_OnGetItemImage = onGetItemImage;
 	wxk::directors::ListCtrl_OnGetItemColumnImage = onGetItemColumnImage;

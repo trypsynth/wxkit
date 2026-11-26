@@ -8,7 +8,7 @@ public class ListTests {
 		list.InsertColumn(0, "Name");
 		list.InsertColumn(1, "Size", ListColumnFormat.Right);
 		Assert.Equal(2, list.ColumnCount);
-		long first = list.InsertItem(0, "readme.md");
+		int first = list.InsertItem(0, "readme.md");
 		list.SetItem(first, 1, "4 KB");
 		list.InsertItem(1, "license");
 		Assert.Equal(2, list.ItemCount);

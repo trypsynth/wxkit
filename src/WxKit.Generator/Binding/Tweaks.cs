@@ -283,6 +283,14 @@ internal sealed class ClassTweak(string name) {
 	/// <summary>The class is copied like a value, though it is not one of the classes that are by their ancestry, such as wxListItem.</summary>
 	public bool IsValueObject { get; private set; }
 
+	/// <summary>Whether the class's longs are indexes, positions, and counts, which are ints in the managed API.</summary>
+	public bool HasIntIndexes { get; private set; }
+
+	public ClassTweak IntIndexes() {
+		HasIntIndexes = true;
+		return this;
+	}
+
 	public ClassTweak ValueObject() {
 		IsValueObject = true;
 		return this;

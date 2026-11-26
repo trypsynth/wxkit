@@ -10,13 +10,13 @@ public unsafe partial class ListEvent : NotifyEvent {
 	}
 
 	/// <summary>For EVT_LIST_CACHE_HINT event only: return the first item which the list control advises us to cache.</summary>
-	public long CacheFrom {
+	public int CacheFrom {
 		get => WxKitNative.ListEventGetCacheFrom(Handle);
 		set => WxKitNative.ListEventSetCacheFrom(Handle, value);
 	}
 
 	/// <summary>For EVT_LIST_CACHE_HINT event only: return the last item (inclusive) which the list control advises us to cache.</summary>
-	public long CacheTo {
+	public int CacheTo {
 		get => WxKitNative.ListEventGetCacheTo(Handle);
 		set => WxKitNative.ListEventSetCacheTo(Handle, value);
 	}
@@ -34,7 +34,7 @@ public unsafe partial class ListEvent : NotifyEvent {
 	public int Image => WxKitNative.ListEventGetImage(Handle);
 
 	/// <summary>The item index.</summary>
-	public long Index {
+	public int Index {
 		get => WxKitNative.ListEventGetIndex(Handle);
 		set => WxKitNative.ListEventSetIndex(Handle, value);
 	}

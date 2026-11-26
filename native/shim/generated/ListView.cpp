@@ -32,22 +32,22 @@ struct ListViewDirector final : wxListView, wxk::directors::ListCtrlBase {
 
 	wxString OnGetItemText(long item, long column) const override {
 		if (wxk::directors::ListCtrl_OnGetItemText == nullptr) return wxListView::OnGetItemText(item, column);
-		return wxk::TakeString(wxk::directors::ListCtrl_OnGetItemText(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListViewDirector*>(this))), _userdata, static_cast<int64_t>(item), static_cast<int64_t>(column)));
+		return wxk::TakeString(wxk::directors::ListCtrl_OnGetItemText(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListViewDirector*>(this))), _userdata, static_cast<int32_t>(item), static_cast<int32_t>(column)));
 	}
 
 	int OnGetItemImage(long item) const override {
 		if (wxk::directors::ListCtrl_OnGetItemImage == nullptr) return wxListView::OnGetItemImage(item);
-		return static_cast<int>(wxk::directors::ListCtrl_OnGetItemImage(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListViewDirector*>(this))), _userdata, static_cast<int64_t>(item)));
+		return static_cast<int>(wxk::directors::ListCtrl_OnGetItemImage(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListViewDirector*>(this))), _userdata, static_cast<int32_t>(item)));
 	}
 
 	int OnGetItemColumnImage(long item, long column) const override {
 		if (wxk::directors::ListCtrl_OnGetItemColumnImage == nullptr) return wxListView::OnGetItemColumnImage(item, column);
-		return static_cast<int>(wxk::directors::ListCtrl_OnGetItemColumnImage(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListViewDirector*>(this))), _userdata, static_cast<int64_t>(item), static_cast<int64_t>(column)));
+		return static_cast<int>(wxk::directors::ListCtrl_OnGetItemColumnImage(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListViewDirector*>(this))), _userdata, static_cast<int32_t>(item), static_cast<int32_t>(column)));
 	}
 
 	bool OnGetItemIsChecked(long item) const override {
 		if (wxk::directors::ListCtrl_OnGetItemIsChecked == nullptr) return wxListView::OnGetItemIsChecked(item);
-		return wxk::directors::ListCtrl_OnGetItemIsChecked(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListViewDirector*>(this))), _userdata, static_cast<int64_t>(item)) != 0;
+		return wxk::directors::ListCtrl_OnGetItemIsChecked(wxk::Wrap(static_cast<wxWindow*>(const_cast<ListViewDirector*>(this))), _userdata, static_cast<int32_t>(item)) != 0;
 	}
 
 	private:
@@ -67,19 +67,19 @@ WXK_FUNCTION(void) wxk_ListView_ClearColumnImage(wxk_Window* self, int32_t colum
 	wxk::Guard([&] { static_cast<wxListView*>(wxk::Unwrap(self))->ClearColumnImage(static_cast<int>(column)); });
 }
 
-WXK_FUNCTION(void) wxk_ListView_Focus(wxk_Window* self, int64_t index) noexcept {
+WXK_FUNCTION(void) wxk_ListView_Focus(wxk_Window* self, int32_t index) noexcept {
 	wxk::Guard([&] { static_cast<wxListView*>(wxk::Unwrap(self))->Focus(static_cast<long>(index)); });
 }
 
-WXK_FUNCTION(int64_t) wxk_ListView_GetNextSelected(wxk_Window* self, int64_t item) noexcept {
-	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListView*>(wxk::Unwrap(self))->GetNextSelected(static_cast<long>(item))); });
+WXK_FUNCTION(int32_t) wxk_ListView_GetNextSelected(wxk_Window* self, int32_t item) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListView*>(wxk::Unwrap(self))->GetNextSelected(static_cast<long>(item))); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ListView_IsSelected(wxk_Window* self, int64_t index) noexcept {
+WXK_FUNCTION(uint8_t) wxk_ListView_IsSelected(wxk_Window* self, int32_t index) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListView*>(wxk::Unwrap(self))->IsSelected(static_cast<long>(index))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_ListView_Select(wxk_Window* self, int64_t index, uint8_t on) noexcept {
+WXK_FUNCTION(void) wxk_ListView_Select(wxk_Window* self, int32_t index, uint8_t on) noexcept {
 	wxk::Guard([&] { static_cast<wxListView*>(wxk::Unwrap(self))->Select(static_cast<long>(index), on != 0); });
 }
 
@@ -87,11 +87,11 @@ WXK_FUNCTION(void) wxk_ListView_SetColumnImage(wxk_Window* self, int32_t column,
 	wxk::Guard([&] { static_cast<wxListView*>(wxk::Unwrap(self))->SetColumnImage(static_cast<int>(column), static_cast<int>(image)); });
 }
 
-WXK_FUNCTION(int64_t) wxk_ListView_GetFirstSelected(wxk_Window* self) noexcept {
-	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListView*>(wxk::Unwrap(self))->GetFirstSelected()); });
+WXK_FUNCTION(int32_t) wxk_ListView_GetFirstSelected(wxk_Window* self) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListView*>(wxk::Unwrap(self))->GetFirstSelected()); });
 }
 
-WXK_FUNCTION(int64_t) wxk_ListView_GetFocusedItem(wxk_Window* self) noexcept {
-	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListView*>(wxk::Unwrap(self))->GetFocusedItem()); });
+WXK_FUNCTION(int32_t) wxk_ListView_GetFocusedItem(wxk_Window* self) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListView*>(wxk::Unwrap(self))->GetFocusedItem()); });
 }
 

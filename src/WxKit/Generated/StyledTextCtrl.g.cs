@@ -331,7 +331,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Returns the insertion point, or cursor, position.</summary>
-	public long InsertionPoint {
+	public int InsertionPoint {
 		get => WxKitNative.StyledTextCtrlGetInsertionPoint(Native);
 		set => WxKitNative.StyledTextCtrlSetInsertionPoint(Native, value);
 	}
@@ -355,7 +355,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Returns the zero based index of the last position in the text control, which is equal to the number of characters in the control.</summary>
-	public long LastPosition => WxKitNative.StyledTextCtrlGetLastPosition(Native);
+	public int LastPosition => WxKitNative.StyledTextCtrlGetLastPosition(Native);
 
 	/// <summary>Retrieve the degree of caching of layout information.</summary>
 	public int LayoutCache {
@@ -1468,7 +1468,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public DragResult DoDragOver(int x, int y, DragResult defaultResult) => (DragResult)WxKitNative.StyledTextCtrlDoDragOver(Native, x, y, (int)defaultResult);
 
 	/// <summary>Allow for simulating a DnD DropText.</summary>
-	public bool DoDropText(long x, long y, string data) {
+	public bool DoDropText(int x, int y, string data) {
 		ArgumentNullException.ThrowIfNull(data);
 		fixed (char* dataText = data) {
 			return WxKitNative.StyledTextCtrlDoDropText(Native, x, y, dataText, NativeString.Length(data)) != 0;
@@ -1616,7 +1616,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public int GetLineIndentation(int line) => WxKitNative.StyledTextCtrlGetLineIndentation(Native, line);
 
 	/// <summary>Gets the length of the specified line, not including any trailing newline character(s).</summary>
-	public int GetLineLength(long lineNumber) => WxKitNative.StyledTextCtrlGetLineLength(Native, lineNumber);
+	public int GetLineLength(int lineNumber) => WxKitNative.StyledTextCtrlGetLineLength(Native, lineNumber);
 
 	/// <summary>Retrieve the position of the end of the selection at the given line (wxSTC_INVALID_POSITION if no selection on this line).</summary>
 	public int GetLineSelEndPosition(int line) => WxKitNative.StyledTextCtrlGetLineSelEndPosition(Native, line);
@@ -1628,7 +1628,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public int GetLineState(int line) => WxKitNative.StyledTextCtrlGetLineState(Native, line);
 
 	/// <summary>Returns the contents of a given line in the text control, not including any trailing newline character(s).</summary>
-	public string GetLineText(long lineNumber) => NativeString.Take(WxKitNative.StyledTextCtrlGetLineText(Native, lineNumber));
+	public string GetLineText(int lineNumber) => NativeString.Take(WxKitNative.StyledTextCtrlGetLineText(Native, lineNumber));
 
 	/// <summary>Is a line visible?</summary>
 	public bool GetLineVisible(int line) => WxKitNative.StyledTextCtrlGetLineVisible(Native, line) != 0;
@@ -1688,7 +1688,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Returns the string containing the text starting in the positions from and up to to in the control.</summary>
-	public string GetRange(long from, long to) => NativeString.Take(WxKitNative.StyledTextCtrlGetRange(Native, from, to));
+	public string GetRange(int from, int to) => NativeString.Take(WxKitNative.StyledTextCtrlGetRange(Native, from, to));
 
 	/// <summary>Set the way a character is drawn.</summary>
 	public string GetRepresentation(string encodedCharacter) {
@@ -1699,13 +1699,12 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Gets the current selection span.</summary>
-	public void GetSelection(out long from, out long to) {
-		from = 0;
-		to = 0;
-		fixed (long* fromPointer = &from)
-		fixed (long* toPointer = &to) {
-			WxKitNative.StyledTextCtrlGetSelection(Native, fromPointer, toPointer);
-		}
+	public void GetSelection(out int from, out int to) {
+		long fromWide = 0;
+		long toWide = 0;
+		WxKitNative.StyledTextCtrlGetSelection(Native, &fromWide, &toWide);
+		from = checked((int)fromWide);
+		to = checked((int)toWide);
 	}
 
 	/// <summary>Return the anchor position of the nth selection.</summary>
@@ -1763,11 +1762,11 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void HideSelection(bool hide) => WxKitNative.StyledTextCtrlHideSelection(Native, hide ? (byte)1 : (byte)0);
 
 	/// <summary>Finds the position of the character at the specified point.</summary>
-	public TextCtrlHitTestResult HitTest(Point point, out long position) {
-		position = 0;
-		fixed (long* positionPointer = &position) {
-			return (TextCtrlHitTestResult)WxKitNative.StyledTextCtrlHitTest(Native, point, positionPointer);
-		}
+	public TextCtrlHitTestResult HitTest(Point point, out int position) {
+		long positionWide = 0;
+		var returned = WxKitNative.StyledTextCtrlHitTest(Native, point, &positionWide);
+		position = checked((int)positionWide);
+		return (TextCtrlHitTestResult)returned;
 	}
 
 	/// <summary>Move caret to first position on line.</summary>
@@ -2138,13 +2137,13 @@ public unsafe partial class StyledTextCtrl : Control {
 	public int PositionRelativeCodeUnits(int position, int relative) => WxKitNative.StyledTextCtrlPositionRelativeCodeUnits(Native, position, relative);
 
 	/// <summary>Converts given position to a zero-based column, line number pair.</summary>
-	public bool PositionToXY(long position, out long x, out long y) {
-		x = 0;
-		y = 0;
-		fixed (long* xPointer = &x)
-		fixed (long* yPointer = &y) {
-			return WxKitNative.StyledTextCtrlPositionToXY(Native, position, xPointer, yPointer) != 0;
-		}
+	public bool PositionToXY(int position, out int x, out int y) {
+		long xWide = 0;
+		long yWide = 0;
+		var returned = WxKitNative.StyledTextCtrlPositionToXY(Native, position, &xWide, &yWide);
+		x = checked((int)xWide);
+		y = checked((int)yWide);
+		return returned != 0;
 	}
 
 	/// <summary>Retrieve a '\n' separated list of properties understood by the current lexer.</summary>
@@ -2171,10 +2170,10 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void ReleaseAllExtendedStyles() => WxKitNative.StyledTextCtrlReleaseAllExtendedStyles(Native);
 
 	/// <summary>Removes the text starting at the first given position up to (but not including) the character at the last position.</summary>
-	public void Remove(long from, long to) => WxKitNative.StyledTextCtrlRemove(Native, from, to);
+	public void Remove(int from, int to) => WxKitNative.StyledTextCtrlRemove(Native, from, to);
 
 	/// <summary>Replaces the text starting at the first position up to (but not including) the character at the last position with the given text.</summary>
-	public void Replace(long from, long to, string value) {
+	public void Replace(int from, int to, string value) {
 		ArgumentNullException.ThrowIfNull(value);
 		fixed (char* valueText = value) {
 			WxKitNative.StyledTextCtrlReplace(Native, from, to, valueText, NativeString.Length(value));
@@ -2403,7 +2402,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void SetSelForeground(bool useSetting, Color? fore) => WxKitNative.StyledTextCtrlSetSelForeground(Native, useSetting ? (byte)1 : (byte)0, global::WxKit.Color.ToNative(fore));
 
 	/// <summary>Selects the text starting at the first position up to (but not including) the character at the last position.</summary>
-	public void SetSelection(long from, long to) => WxKitNative.StyledTextCtrlSetSelection(Native, from, to);
+	public void SetSelection(int from, int to) => WxKitNative.StyledTextCtrlSetSelection(Native, from, to);
 
 	/// <summary>Set the anchor position of the nth selection.</summary>
 	public void SetSelectionNAnchor(int selection, int anchor) => WxKitNative.StyledTextCtrlSetSelectionNAnchor(Native, selection, anchor);
@@ -2454,7 +2453,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	public void ShowLines(int lineStart, int lineEnd) => WxKitNative.StyledTextCtrlShowLines(Native, lineStart, lineEnd);
 
 	/// <summary>Makes the line containing the given position visible.</summary>
-	public void ShowPosition(long position) => WxKitNative.StyledTextCtrlShowPosition(Native, position);
+	public void ShowPosition(int position) => WxKitNative.StyledTextCtrlShowPosition(Native, position);
 
 	/// <summary>Start notifying the container of all key presses and commands.</summary>
 	public void StartRecord() => WxKitNative.StyledTextCtrlStartRecord(Native);
@@ -2744,7 +2743,7 @@ public unsafe partial class StyledTextCtrl : Control {
 	}
 
 	/// <summary>Converts the given zero based column and line number to a position.</summary>
-	public long XYToPosition(long x, long y) => WxKitNative.StyledTextCtrlXYToPosition(Native, x, y);
+	public int XYToPosition(int x, int y) => WxKitNative.StyledTextCtrlXYToPosition(Native, x, y);
 
 	/// <summary>Magnify the displayed text by increasing the sizes by 1 point.</summary>
 	public void ZoomIn() => WxKitNative.StyledTextCtrlZoomIn(Native);

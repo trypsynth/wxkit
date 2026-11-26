@@ -830,13 +830,13 @@ class WxKit.ComboBox : Control
     int Insert(IEnumerable<string> items, int position)
     int Insert(string item, int position)
     int Insert(string item, int position, object? clientData)
+    int InsertionPoint { get; set; }
+    int LastPosition { get; }
     int Selection { get; set; }
-    long InsertionPoint { get; set; }
-    long LastPosition { get; }
-    long SelectionLength { get; set; }
-    long SelectionStart { get; set; }
+    int SelectionLength { get; set; }
+    int SelectionStart { get; set; }
     object? GetClientObject(int index)
-    string GetRange(long from, long to)
+    string GetRange(int from, int to)
     string GetString(int index)
     string Hint { get; set; }
     string StringSelection { get; set; }
@@ -849,12 +849,12 @@ class WxKit.ComboBox : Control
     void Delete(int index)
     void Dismiss()
     void ForceUpper()
-    void GetSelection(out long from, out long to)
+    void GetSelection(out int from, out int to)
     void Paste()
     void Popup()
     void Redo()
-    void Remove(long from, long to)
-    void Replace(long from, long to, string value)
+    void Remove(int from, int to)
+    void Replace(int from, int to, string value)
     void Select(int index)
     void SelectAll()
     void SelectNone()
@@ -862,7 +862,7 @@ class WxKit.ComboBox : Control
     void SetClientObject(int index, object? data)
     void SetInsertionPointEnd()
     void SetMaxLength(int length)
-    void SetSelection(long from, long to)
+    void SetSelection(int from, int to)
     void SetString(int index, string text)
     void Undo()
     void WriteText(string text)
@@ -2826,25 +2826,25 @@ enum WxKit.ListColumnFormat : int
     Right = 1
 class WxKit.ListCtrl : Control
     Color? AlternateRowColor { get; set; }
-    Color? GetItemBackgroundColor(long item)
-    Color? GetItemTextColor(long item)
+    Color? GetItemBackgroundColor(int item)
+    Color? GetItemTextColor(int item)
     Color? TextColor { get; set; }
-    Font? GetItemFont(long item)
+    Font? GetItemFont(int item)
     IReadOnlyList<int> ColumnsOrder { get; set; }
     ListCtrl(Window parent, int id = -1, Point? position = null, Size? size = null, ListCtrlStyle style = ListCtrlStyle.Icon)
-    ListItemState GetItemState(long item, ListItemState stateMask)
+    ListItemState GetItemState(int item, ListItemState stateMask)
     Rect ViewRect { get; }
     Size ItemSpacing { get; }
     TextCtrl? EditControl { get; }
-    TextCtrl? EditLabel(long item)
+    TextCtrl? EditLabel(int item)
     bool Arrange(ListArrangement flag = ListArrangement.Default)
     bool DeleteAllColumns()
     bool DeleteAllItems()
     bool DeleteColumn(int column)
-    bool DeleteItem(long item)
+    bool DeleteItem(int item)
     bool EnableCheckBoxes(bool enable = true)
     bool EndEditLabel(bool cancel)
-    bool EnsureVisible(long item)
+    bool EnsureVisible(int item)
     bool GetColumn(int column, ListItem item)
     bool GetItem(ListItem info)
     bool GetUpdatedAscendingSortIndicator(int column)
@@ -2852,22 +2852,22 @@ class WxKit.ListCtrl : Control
     bool InReportView()
     bool IsAscendingSortIndicator { get; }
     bool IsEmpty { get; }
-    bool IsItemChecked(long item)
+    bool IsItemChecked(int item)
     bool IsVirtual { get; }
-    bool IsVisible(long item)
+    bool IsVisible(int item)
     bool ScrollList(int dx, int dy)
     bool SetBackgroundColor(Color? color)
     bool SetColumn(int column, ListItem item)
     bool SetColumnWidth(int column, int width)
     bool SetItem(ListItem info)
-    bool SetItem(long index, int column, string label, int imageId = -1)
-    bool SetItemColumnImage(long item, long column, int image)
-    bool SetItemData(long item, long data)
-    bool SetItemImage(long item, int image, int selectedImage = -1)
-    bool SetItemPosition(long item, Point position)
-    bool SetItemState(long item, ListItemState state, ListItemState stateMask)
-    bool TryGetItemRect(long item, out Rect rect, ListRect code = ListRect.Bounds)
-    bool TryGetSubItemRect(long item, long subItem, out Rect rect, ListRect code = ListRect.Bounds)
+    bool SetItem(int index, int column, string label, int imageId = -1)
+    bool SetItemColumnImage(int item, int column, int image)
+    bool SetItemData(int item, int data)
+    bool SetItemImage(int item, int image, int selectedImage = -1)
+    bool SetItemPosition(int item, Point position)
+    bool SetItemState(int item, ListItemState state, ListItemState stateMask)
+    bool TryGetItemRect(int item, out Rect rect, ListRect code = ListRect.Bounds)
+    bool TryGetSubItemRect(int item, int subItem, out Rect rect, ListRect code = ListRect.Bounds)
     event EventHandler<ListEvent>? AllItemsDeleted
     event EventHandler<ListEvent>? BeginDrag
     event EventHandler<ListEvent>? BeginLabelEdit
@@ -2890,45 +2890,44 @@ class WxKit.ListCtrl : Control
     event EventHandler<ListEvent>? ItemRightClick
     event EventHandler<ListEvent>? ItemSelected
     event EventHandler<ListEvent>? ItemUnchecked
+    int AppendColumn(string heading, ListColumnFormat format = ListColumnFormat.Left, int width = -1)
     int ColumnCount { get; }
     int CountPerPage { get; }
+    int FindItem(int start, Point point, ListFindDirection direction)
+    int FindItem(int start, long data)
+    int FindItem(int start, string text, bool partial = false)
     int GetColumnIndexFromOrder(int position)
     int GetColumnOrder(int column)
     int GetColumnWidth(int column)
-    int ItemCount { get; }
+    int GetNextItem(int item, ListNextItem geometry = ListNextItem.All, ListItemState state = ListItemState.None)
+    int InsertColumn(int column, ListItem info)
+    int InsertColumn(int column, string heading, ListColumnFormat format = ListColumnFormat.Left, int width = -1)
+    int InsertItem(ListItem info)
+    int InsertItem(int index, int imageIndex)
+    int InsertItem(int index, string label)
+    int InsertItem(int index, string label, int imageIndex)
+    int ItemCount { get; set; }
     int SelectedItemCount { get; }
     int SortIndicator { get; }
-    long AppendColumn(string heading, ListColumnFormat format = ListColumnFormat.Left, int width = -1)
-    long FindItem(long start, Point point, ListFindDirection direction)
-    long FindItem(long start, long data)
-    long FindItem(long start, string text, bool partial = false)
-    long GetItemData(long item)
-    long GetNextItem(long item, ListNextItem geometry = ListNextItem.All, ListItemState state = ListItemState.None)
-    long InsertColumn(long column, ListItem info)
-    long InsertColumn(long column, string heading, ListColumnFormat format = ListColumnFormat.Left, int width = -1)
-    long InsertItem(ListItem info)
-    long InsertItem(long index, int imageIndex)
-    long InsertItem(long index, string label)
-    long InsertItem(long index, string label, int imageIndex)
-    long TopItem { get; }
-    protected virtual bool OnGetItemIsChecked(long item)
-    protected virtual int OnGetItemColumnImage(long item, long column)
-    protected virtual int OnGetItemImage(long item)
-    protected virtual string OnGetItemText(long item, long column)
-    string GetItemText(long item, int column = 0)
-    void CheckItem(long item, bool check)
+    int TopItem { get; }
+    long GetItemData(int item)
+    protected virtual bool OnGetItemIsChecked(int item)
+    protected virtual int OnGetItemColumnImage(int item, int column)
+    protected virtual int OnGetItemImage(int item)
+    protected virtual string OnGetItemText(int item, int column)
+    string GetItemText(int item, int column = 0)
+    void CheckItem(int item, bool check)
     void ClearAll()
     void EnableAlternateRowColors(bool enable = true)
     void EnableBellOnNoMatch(bool on = true)
     void ExtendRulesAndAlternateColor(bool extend = true)
-    void RefreshItem(long item)
-    void RefreshItems(long itemFrom, long itemTo)
+    void RefreshItem(int item)
+    void RefreshItems(int itemFrom, int itemTo)
     void RemoveSortIndicator()
-    void SetItemBackgroundColor(long item, Color? color)
-    void SetItemCount(long count)
-    void SetItemFont(long item, Font font)
-    void SetItemText(long item, string text)
-    void SetItemTextColor(long item, Color? color)
+    void SetItemBackgroundColor(int item, Color? color)
+    void SetItemFont(int item, Font font)
+    void SetItemText(int item, string text)
+    void SetItemTextColor(int item, Color? color)
     void SetNormalImages(IEnumerable<Bitmap> images)
     void SetSingleStyle(ListCtrlStyle style, bool add = true)
     void SetSmallImages(IEnumerable<Bitmap> images)
@@ -2957,12 +2956,12 @@ class WxKit.ListEvent : NotifyEvent
     ListItemMask Mask { get; }
     Point Point { get; set; }
     bool IsEditCanceled { get; }
+    int CacheFrom { get; set; }
+    int CacheTo { get; set; }
     int Column { get; set; }
     int Image { get; }
-    long CacheFrom { get; set; }
-    long CacheTo { get; set; }
+    int Index { get; set; }
     long Data { get; }
-    long Index { get; set; }
     string Label { get; }
     string Text { get; }
 enum WxKit.ListFindDirection : int
@@ -2979,13 +2978,13 @@ class WxKit.ListItem : NativeObject
     ListItemMask Mask { get; set; }
     ListItemState State { get; set; }
     int Column { get; set; }
+    int Id { get; set; }
     int Image { get; set; }
     int Width { get; set; }
     long Data { get; }
-    long Id { get; set; }
     string Text { get; set; }
     void Clear()
-    void SetData(long data)
+    void SetData(int data)
     void SetStateMask(ListItemState stateMask)
 [Flags] enum WxKit.ListItemMask : int
     Data = 8
@@ -3013,13 +3012,13 @@ enum WxKit.ListRect : int
     Label = 2
 class WxKit.ListView : ListCtrl
     ListView(Window parent, int id = -1, Point? position = null, Size? size = null, ListCtrlStyle style = ListCtrlStyle.Report)
-    bool IsSelected(long index)
-    long FirstSelected { get; }
-    long FocusedItem { get; }
-    long GetNextSelected(long item)
+    bool IsSelected(int index)
+    int FirstSelected { get; }
+    int FocusedItem { get; }
+    int GetNextSelected(int item)
     void ClearColumnImage(int column)
-    void Focus(long index)
-    void Select(long index, bool on = true)
+    void Focus(int index)
+    void Select(int index, bool on = true)
     void SetColumnImage(int column, int image)
 class WxKit.Listbook : BookCtrlBase
     ListView? ListView { get; }
@@ -3932,12 +3931,12 @@ class WxKit.SearchCtrl : Control
     event EventHandler<CommandEvent>? SearchCanceled
     event EventHandler<CommandEvent>? SearchRequested
     event EventHandler<CommandEvent>? TextChanged
-    long InsertionPoint { get; set; }
-    long LastPosition { get; }
-    long SelectionLength { get; set; }
-    long SelectionStart { get; set; }
+    int InsertionPoint { get; set; }
+    int LastPosition { get; }
+    int SelectionLength { get; set; }
+    int SelectionStart { get; set; }
     string DescriptiveText { get; set; }
-    string GetRange(long from, long to)
+    string GetRange(int from, int to)
     string Hint { get; set; }
     string StringSelection { get; }
     string Value { get; set; }
@@ -3947,16 +3946,16 @@ class WxKit.SearchCtrl : Control
     void Copy()
     void Cut()
     void ForceUpper()
-    void GetSelection(out long from, out long to)
+    void GetSelection(out int from, out int to)
     void Paste()
     void Redo()
-    void Remove(long from, long to)
-    void Replace(long from, long to, string value)
+    void Remove(int from, int to)
+    void Replace(int from, int to, string value)
     void SelectAll()
     void SelectNone()
     void SetInsertionPointEnd()
     void SetMaxLength(int length)
-    void SetSelection(long from, long to)
+    void SetSelection(int from, int to)
     void ShowCancelButton(bool show)
     void ShowSearchButton(bool show)
     void Undo()
@@ -4142,7 +4141,7 @@ class WxKit.SpinCtrl : Control
     int Value { get; set; }
     string TextValue { get; }
     void SetRange(int minValue, int maxValue)
-    void SetSelection(long from, long to)
+    void SetSelection(int from, int to)
     void SetValue(string text)
 class WxKit.SpinCtrlDouble : Control
     SpinCtrlDouble(Window parent, string value = "", int id = -1, Point? position = null, Size? size = null, SpinCtrlDoubleStyle style = SpinCtrlDoubleStyle.ArrowKeys, double min = 0, double max = 100, double initial = 0, double inc = 1)
@@ -7270,7 +7269,7 @@ class WxKit.StyledTextCtrl : Control
     Font? StyleGetFont(int style)
     Point PointFromPosition(int position)
     StyledTextCtrl(Window parent, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
-    TextCtrlHitTestResult HitTest(Point point, out long position)
+    TextCtrlHitTestResult HitTest(Point point, out int position)
     bool AdditionalCaretsBlink { get; set; }
     bool AdditionalCaretsVisible { get; set; }
     bool AdditionalSelectionTyping { get; set; }
@@ -7292,7 +7291,7 @@ class WxKit.StyledTextCtrl : Control
     bool CaretLineVisible { get; set; }
     bool CaretLineVisibleAlways { get; set; }
     bool CommandEvents { get; set; }
-    bool DoDropText(long x, long y, string data)
+    bool DoDropText(int x, int y, string data)
     bool EndAtLastLine { get; set; }
     bool GetFoldExpanded(int line)
     bool GetLineVisible(int line)
@@ -7314,7 +7313,7 @@ class WxKit.StyledTextCtrl : Control
     bool MultipleSelection { get; set; }
     bool Overtype { get; set; }
     bool PasteConvertEndings { get; set; }
-    bool PositionToXY(long position, out long x, out long y)
+    bool PositionToXY(int position, out int x, out int y)
     bool ReadOnly { get; set; }
     bool SaveFile(string fileName)
     bool ScrollWidthTracking { get; set; }
@@ -7437,7 +7436,7 @@ class WxKit.StyledTextCtrl : Control
     int GetLineEndPosition(int line)
     int GetLineIndentPosition(int line)
     int GetLineIndentation(int line)
-    int GetLineLength(long lineNumber)
+    int GetLineLength(int lineNumber)
     int GetLineSelEndPosition(int line)
     int GetLineSelStartPosition(int line)
     int GetLineState(int line)
@@ -7479,6 +7478,8 @@ class WxKit.StyledTextCtrl : Control
     int IndicatorStart(int indicator, int position)
     int IndicatorValue { get; set; }
     int IndicatorValueAt(int indicator, int position)
+    int InsertionPoint { get; set; }
+    int LastPosition { get; }
     int LayoutCache { get; set; }
     int Length { get; }
     int Lexer { get; set; }
@@ -7570,10 +7571,8 @@ class WxKit.StyledTextCtrl : Control
     int WrapVisualFlags { get; set; }
     int WrapVisualFlagsLocation { get; set; }
     int XOffset { get; set; }
+    int XYToPosition(int x, int y)
     int Zoom { get; set; }
-    long InsertionPoint { get; set; }
-    long LastPosition { get; }
-    long XYToPosition(long x, long y)
     string AnnotationGetStyles(int line)
     string AnnotationGetText(int line)
     string AutoCompGetCurrentText()
@@ -7584,10 +7583,10 @@ class WxKit.StyledTextCtrl : Control
     string DescriptionOfStyle(int style)
     string EolAnnotationGetText(int line)
     string GetLine(int line)
-    string GetLineText(long lineNumber)
+    string GetLineText(int lineNumber)
     string GetProperty(string key)
     string GetPropertyExpanded(string key)
-    string GetRange(long from, long to)
+    string GetRange(int from, int to)
     string GetRepresentation(string encodedCharacter)
     string GetTag(int tagNumber)
     string GetTextRange(int startPosition, int endPosition)
@@ -7714,7 +7713,7 @@ class WxKit.StyledTextCtrl : Control
     void FoldLine(int line, int action)
     void FormFeed()
     void FreeSubStyles()
-    void GetSelection(out long from, out long to)
+    void GetSelection(out int from, out int to)
     void GotoLine(int line)
     void GotoPos(int caret)
     void HideLines(int lineStart, int lineEnd)
@@ -7798,8 +7797,8 @@ class WxKit.StyledTextCtrl : Control
     void Redo()
     void RegisterImage(int type, Bitmap bitmap)
     void ReleaseAllExtendedStyles()
-    void Remove(long from, long to)
-    void Replace(long from, long to, string value)
+    void Remove(int from, int to)
+    void Replace(int from, int to, string value)
     void ReplaceSelection(string text)
     void RgbaImageSetHeight(int height)
     void RgbaImageSetScale(int scalePercent)
@@ -7845,7 +7844,7 @@ class WxKit.StyledTextCtrl : Control
     void SetSavePoint()
     void SetSelBackground(bool useSetting, Color? back)
     void SetSelForeground(bool useSetting, Color? fore)
-    void SetSelection(long from, long to)
+    void SetSelection(int from, int to)
     void SetSelectionNAnchor(int selection, int anchor)
     void SetSelectionNAnchorVirtualSpace(int selection, int space)
     void SetSelectionNCaret(int selection, int caret)
@@ -7861,7 +7860,7 @@ class WxKit.StyledTextCtrl : Control
     void SetXCaretPolicy(int caretPolicy, int caretSlop)
     void SetYCaretPolicy(int caretPolicy, int caretSlop)
     void ShowLines(int lineStart, int lineEnd)
-    void ShowPosition(long position)
+    void ShowPosition(int position)
     void StartRecord()
     void StartStyling(int start)
     void StopRecord()
@@ -8101,9 +8100,9 @@ enum WxKit.TaskBarIconType : int
     Dock = 0
 class WxKit.TextCtrl : Control
     Point Margins { get; set; }
-    Point PositionToCoords(long position)
+    Point PositionToCoords(int position)
     TextCtrl(Window parent, string value = "", int id = -1, Point? position = null, Size? size = null, TextCtrlStyle style = TextCtrlStyle.None)
-    TextCtrlHitTestResult HitTest(Point point, out long position)
+    TextCtrlHitTestResult HitTest(Point point, out int position)
     bool AutoComplete(IEnumerable<string> choices)
     bool AutoCompleteDirectories()
     bool AutoCompleteFileNames()
@@ -8121,22 +8120,22 @@ class WxKit.TextCtrl : Control
     bool IsRtfSupported { get; }
     bool IsSingleLine { get; }
     bool LoadFile(string fileName, int fileType = 0)
-    bool PositionToXY(long position, out long x, out long y)
+    bool PositionToXY(int position, out int x, out int y)
     bool SaveFile(string fileName = "", int fileType = 0)
     bool SetMargins(int left, int top = -1)
     event EventHandler<CommandEvent>? MaxLengthReached
     event EventHandler<CommandEvent>? TextChanged
     event EventHandler<CommandEvent>? TextEnter
     event EventHandler<CommandEvent>? UrlClicked
-    int GetLineLength(long lineNumber)
+    int GetLineLength(int lineNumber)
+    int InsertionPoint { get; set; }
+    int LastPosition { get; }
     int NumberOfLines { get; }
-    long InsertionPoint { get; set; }
-    long LastPosition { get; }
-    long SelectionLength { get; set; }
-    long SelectionStart { get; set; }
-    long XYToPosition(long x, long y)
-    string GetLineText(long lineNumber)
-    string GetRange(long from, long to)
+    int SelectionLength { get; set; }
+    int SelectionStart { get; set; }
+    int XYToPosition(int x, int y)
+    string GetLineText(int lineNumber)
+    string GetRange(int from, int to)
     string Hint { get; set; }
     string RtfValue { get; set; }
     string StringSelection { get; }
@@ -8149,7 +8148,7 @@ class WxKit.TextCtrl : Control
     void DiscardEdits()
     void EmptyUndoBuffer()
     void ForceUpper()
-    void GetSelection(out long from, out long to)
+    void GetSelection(out int from, out int to)
     void MarkDirty()
     void OsxDisableAllSmartSubstitutions()
     void OsxEnableAutomaticDashSubstitution(bool enable)
@@ -8157,14 +8156,14 @@ class WxKit.TextCtrl : Control
     void OsxEnableNewLineReplacement(bool enable)
     void Paste()
     void Redo()
-    void Remove(long from, long to)
-    void Replace(long from, long to, string value)
+    void Remove(int from, int to)
+    void Replace(int from, int to, string value)
     void SelectAll()
     void SelectNone()
     void SetInsertionPointEnd()
     void SetMaxLength(int length)
-    void SetSelection(long from, long to)
-    void ShowPosition(long position)
+    void SetSelection(int from, int to)
+    void ShowPosition(int position)
     void Undo()
     void WriteText(string text)
 enum WxKit.TextCtrlHitTestResult : int

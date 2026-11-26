@@ -59,7 +59,7 @@ public unsafe partial class ComboBox : Control {
 	}
 
 	/// <summary>Same as wxTextEntry::GetInsertionPoint().</summary>
-	public long InsertionPoint {
+	public int InsertionPoint {
 		get => WxKitNative.ComboBoxGetInsertionPoint(Native);
 		set => WxKitNative.ComboBoxSetInsertionPoint(Native, value);
 	}
@@ -80,7 +80,7 @@ public unsafe partial class ComboBox : Control {
 	public bool IsTextEmpty => WxKitNative.ComboBoxIsTextEmpty(Native) != 0;
 
 	/// <summary>Returns the zero based index of the last position in the text control, which is equal to the number of characters in the control.</summary>
-	public long LastPosition => WxKitNative.ComboBoxGetLastPosition(Native);
+	public int LastPosition => WxKitNative.ComboBoxGetLastPosition(Native);
 
 	/// <summary>Returns the margins used by the control.</summary>
 	public Point Margins {
@@ -231,16 +231,15 @@ public unsafe partial class ComboBox : Control {
 	public object? GetClientObject(int index) => ItemData.Get(WxKitNative.ComboBoxGetClientObject(Native, checked((uint)index)));
 
 	/// <summary>Returns the string containing the text starting in the positions from and up to to in the control.</summary>
-	public string GetRange(long from, long to) => NativeString.Take(WxKitNative.ComboBoxGetRange(Native, from, to));
+	public string GetRange(int from, int to) => NativeString.Take(WxKitNative.ComboBoxGetRange(Native, from, to));
 
 	/// <summary>Gets the current selection span.</summary>
-	public void GetSelection(out long from, out long to) {
-		from = 0;
-		to = 0;
-		fixed (long* fromPointer = &from)
-		fixed (long* toPointer = &to) {
-			WxKitNative.ComboBoxGetSelectionOutLongOutLong(Native, fromPointer, toPointer);
-		}
+	public void GetSelection(out int from, out int to) {
+		long fromWide = 0;
+		long toWide = 0;
+		WxKitNative.ComboBoxGetSelectionOutLongOutLong(Native, &fromWide, &toWide);
+		from = checked((int)fromWide);
+		to = checked((int)toWide);
 	}
 
 	/// <summary>Returns the label of the item with the given index.</summary>
@@ -279,10 +278,10 @@ public unsafe partial class ComboBox : Control {
 	public void Redo() => WxKitNative.ComboBoxRedo(Native);
 
 	/// <summary>Removes the text starting at the first given position up to (but not including) the character at the last position.</summary>
-	public void Remove(long from, long to) => WxKitNative.ComboBoxRemove(Native, from, to);
+	public void Remove(int from, int to) => WxKitNative.ComboBoxRemove(Native, from, to);
 
 	/// <summary>Replaces the text starting at the first position up to (but not including) the character at the last position with the given text.</summary>
-	public void Replace(long from, long to, string value) {
+	public void Replace(int from, int to, string value) {
 		ArgumentNullException.ThrowIfNull(value);
 		fixed (char* valueText = value) {
 			WxKitNative.ComboBoxReplace(Native, from, to, valueText, NativeString.Length(value));
@@ -318,7 +317,7 @@ public unsafe partial class ComboBox : Control {
 	public void SetMaxLength(int length) => WxKitNative.ComboBoxSetMaxLength(Native, checked((nuint)length));
 
 	/// <summary>Same as wxTextEntry::SetSelection().</summary>
-	public void SetSelection(long from, long to) => WxKitNative.ComboBoxSetSelectionLongLong(Native, from, to);
+	public void SetSelection(int from, int to) => WxKitNative.ComboBoxSetSelectionIntInt(Native, from, to);
 
 	/// <summary>Changes the text of the specified combobox item.</summary>
 	public void SetString(int index, string text) {

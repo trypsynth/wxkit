@@ -5,6 +5,9 @@ internal static class Lists {
 	public static void Apply(Binding.Tweaks tweaks) {
 		// A virtual list asks for each row as it shows it, through members C# overrides. A getter
 		// that can fail returns whether it could, as .NET's Try methods do.
+		// A list's items and columns, and a text control's positions and lines, are ints, as .NET's
+		// indexes are, where wxWidgets has longs.
+		foreach (string indexed in (string[])["wxListCtrl", "wxListView", "wxListEvent", "wxListItem", "wxTextCtrl", "wxComboBox", "wxBitmapComboBox", "wxSearchCtrl", "wxSpinCtrl", "wxStyledTextCtrl"]) tweaks.Class(indexed, value => value.IntIndexes());
 		// What wxWidgets takes as numbers, and names with constants, are enums.
 		tweaks.ConstantEnum("ListItemState", "wxLIST_STATE_", isFlags: true);
 		tweaks.ConstantEnum("ListItemMask", "wxLIST_MASK_", isFlags: true);

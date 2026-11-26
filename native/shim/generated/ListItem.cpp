@@ -8,7 +8,7 @@ WXK_FUNCTION(wxk_Object*) wxk_ListItem_new(void) noexcept {
 	});
 }
 
-WXK_FUNCTION(void) wxk_ListItem_SetData(wxk_Object* self, int64_t data) noexcept {
+WXK_FUNCTION(void) wxk_ListItem_SetData(wxk_Object* self, int32_t data) noexcept {
 	wxk::Guard([&] { static_cast<wxListItem*>(wxk::Unwrap(self))->SetData(static_cast<long>(data)); });
 }
 
@@ -56,11 +56,11 @@ WXK_FUNCTION(void) wxk_ListItem_SetFont(wxk_Object* self, const wxk_Object* font
 	wxk::Guard([&] { static_cast<wxListItem*>(wxk::Unwrap(self))->SetFont(wxk::ValueOf<wxFont>(font)); });
 }
 
-WXK_FUNCTION(int64_t) wxk_ListItem_GetId(wxk_Object* self) noexcept {
-	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxListItem*>(wxk::Unwrap(self))->GetId()); });
+WXK_FUNCTION(int32_t) wxk_ListItem_GetId(wxk_Object* self) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListItem*>(wxk::Unwrap(self))->GetId()); });
 }
 
-WXK_FUNCTION(void) wxk_ListItem_SetId(wxk_Object* self, int64_t id) noexcept {
+WXK_FUNCTION(void) wxk_ListItem_SetId(wxk_Object* self, int32_t id) noexcept {
 	wxk::Guard([&] { static_cast<wxListItem*>(wxk::Unwrap(self))->SetId(static_cast<long>(id)); });
 }
 

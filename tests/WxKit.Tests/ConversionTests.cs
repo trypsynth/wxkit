@@ -41,7 +41,7 @@ public class ConversionTests {
 	public Task GivesOutputParametersAsOut() => Gui.WithFrame(frame => {
 		TextCtrl text = new(frame, "hello world");
 		text.SetSelection(2, 7);
-		text.GetSelection(out long from, out long to);
+		text.GetSelection(out int from, out int to);
 		Assert.Equal((2L, 7L), (from, to));
 	});
 

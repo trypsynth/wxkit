@@ -12,7 +12,7 @@ WXK_FUNCTION(void) wxk_SpinCtrl_SetRange(wxk_Window* self, int32_t minValue, int
 	wxk::Guard([&] { static_cast<wxSpinCtrl*>(wxk::Unwrap(self))->SetRange(static_cast<int>(minValue), static_cast<int>(maxValue)); });
 }
 
-WXK_FUNCTION(void) wxk_SpinCtrl_SetSelection(wxk_Window* self, int64_t from, int64_t to) noexcept {
+WXK_FUNCTION(void) wxk_SpinCtrl_SetSelection(wxk_Window* self, int32_t from, int32_t to) noexcept {
 	wxk::Guard([&] { static_cast<wxSpinCtrl*>(wxk::Unwrap(self))->SetSelection(static_cast<long>(from), static_cast<long>(to)); });
 }
 

@@ -43,10 +43,10 @@ extern uint8_t (*DataViewVirtualListModel_SetValueByRow)(wxk_DataViewModel* self
 extern uint8_t (*DataViewVirtualListModel_IsEnabledByRow)(wxk_DataViewModel* self, void* userdata, uint32_t row, uint32_t col);
 
 // wxListCtrl's overridable members call into .NET through these, once it sets them.
-extern wxk_String* (*ListCtrl_OnGetItemText)(wxk_Window* self, void* userdata, int64_t item, int64_t column);
-extern int32_t (*ListCtrl_OnGetItemImage)(wxk_Window* self, void* userdata, int64_t item);
-extern int32_t (*ListCtrl_OnGetItemColumnImage)(wxk_Window* self, void* userdata, int64_t item, int64_t column);
-extern uint8_t (*ListCtrl_OnGetItemIsChecked)(wxk_Window* self, void* userdata, int64_t item);
+extern wxk_String* (*ListCtrl_OnGetItemText)(wxk_Window* self, void* userdata, int32_t item, int32_t column);
+extern int32_t (*ListCtrl_OnGetItemImage)(wxk_Window* self, void* userdata, int32_t item);
+extern int32_t (*ListCtrl_OnGetItemColumnImage)(wxk_Window* self, void* userdata, int32_t item, int32_t column);
+extern uint8_t (*ListCtrl_OnGetItemIsChecked)(wxk_Window* self, void* userdata, int32_t item);
 
 // What wxListCtrl's own members do, which each director made from it gives.
 struct ListCtrlBase {

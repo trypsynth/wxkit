@@ -51,7 +51,7 @@ public unsafe partial class SearchCtrl : Control {
 	}
 
 	/// <summary>Returns the insertion point, or cursor, position.</summary>
-	public long InsertionPoint {
+	public int InsertionPoint {
 		get => WxKitNative.SearchCtrlGetInsertionPoint(Native);
 		set => WxKitNative.SearchCtrlSetInsertionPoint(Native, value);
 	}
@@ -72,7 +72,7 @@ public unsafe partial class SearchCtrl : Control {
 	public bool IsSearchButtonVisible => WxKitNative.SearchCtrlIsSearchButtonVisible(Native) != 0;
 
 	/// <summary>Returns the zero based index of the last position in the text control, which is equal to the number of characters in the control.</summary>
-	public long LastPosition => WxKitNative.SearchCtrlGetLastPosition(Native);
+	public int LastPosition => WxKitNative.SearchCtrlGetLastPosition(Native);
 
 	/// <summary>Returns the margins used by the control.</summary>
 	public Point Margins {
@@ -159,16 +159,15 @@ public unsafe partial class SearchCtrl : Control {
 	public void ForceUpper() => WxKitNative.SearchCtrlForceUpper(Native);
 
 	/// <summary>Returns the string containing the text starting in the positions from and up to to in the control.</summary>
-	public string GetRange(long from, long to) => NativeString.Take(WxKitNative.SearchCtrlGetRange(Native, from, to));
+	public string GetRange(int from, int to) => NativeString.Take(WxKitNative.SearchCtrlGetRange(Native, from, to));
 
 	/// <summary>Gets the current selection span.</summary>
-	public void GetSelection(out long from, out long to) {
-		from = 0;
-		to = 0;
-		fixed (long* fromPointer = &from)
-		fixed (long* toPointer = &to) {
-			WxKitNative.SearchCtrlGetSelection(Native, fromPointer, toPointer);
-		}
+	public void GetSelection(out int from, out int to) {
+		long fromWide = 0;
+		long toWide = 0;
+		WxKitNative.SearchCtrlGetSelection(Native, &fromWide, &toWide);
+		from = checked((int)fromWide);
+		to = checked((int)toWide);
 	}
 
 	/// <summary>Pastes text from the clipboard to the text item.</summary>
@@ -178,10 +177,10 @@ public unsafe partial class SearchCtrl : Control {
 	public void Redo() => WxKitNative.SearchCtrlRedo(Native);
 
 	/// <summary>Removes the text starting at the first given position up to (but not including) the character at the last position.</summary>
-	public void Remove(long from, long to) => WxKitNative.SearchCtrlRemove(Native, from, to);
+	public void Remove(int from, int to) => WxKitNative.SearchCtrlRemove(Native, from, to);
 
 	/// <summary>Replaces the text starting at the first position up to (but not including) the character at the last position with the given text.</summary>
-	public void Replace(long from, long to, string value) {
+	public void Replace(int from, int to, string value) {
 		ArgumentNullException.ThrowIfNull(value);
 		fixed (char* valueText = value) {
 			WxKitNative.SearchCtrlReplace(Native, from, to, valueText, NativeString.Length(value));
@@ -204,7 +203,7 @@ public unsafe partial class SearchCtrl : Control {
 	public void SetMaxLength(int length) => WxKitNative.SearchCtrlSetMaxLength(Native, checked((nuint)length));
 
 	/// <summary>Selects the text starting at the first position up to (but not including) the character at the last position.</summary>
-	public void SetSelection(long from, long to) => WxKitNative.SearchCtrlSetSelection(Native, from, to);
+	public void SetSelection(int from, int to) => WxKitNative.SearchCtrlSetSelection(Native, from, to);
 
 	/// <summary>Shows or hides the cancel button.</summary>
 	public void ShowCancelButton(bool show) => WxKitNative.SearchCtrlShowCancelButton(Native, show ? (byte)1 : (byte)0);

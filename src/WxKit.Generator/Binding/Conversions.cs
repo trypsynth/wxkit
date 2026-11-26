@@ -141,6 +141,10 @@ internal sealed class NumberConversion(string suffix, string cType, string cppTy
 
 	public static NumberConversion Long { get; } = new("Long", "int64_t", "long", "long");
 
+	// A long that counts or numbers things, such as a list's items or a text control's positions,
+	// which is an int in the managed API, as .NET's indexes are.
+	public static NumberConversion Index { get; } = new("Int", "int32_t", "long", "int");
+
 	public static NumberConversion Double { get; } = new("Double", "double", "double", "double");
 
 	public static NumberConversion Float { get; } = new("Float", "float", "float", "float");
@@ -968,6 +972,11 @@ internal sealed class OutConversion(string suffix, string cType, string csharpTy
 
 	public static OutConversion Long { get; } = new("OutLong", "int64_t", "long", isLong: true);
 
+	// A long that is an index or a position, which the managed API gives as an int, through a long of its own.
+	public static OutConversion Index { get; } = new("OutLong", "int64_t", "long", isLong: true) { IsIndex = true };
+
+	private bool IsIndex { get; init; }
+
 	public static OutConversion Double { get; } = new("OutDouble", "double", "double", isLong: false);
 
 	public override string Suffix => suffix;
@@ -996,14 +1005,18 @@ internal sealed class OutConversion(string suffix, string cType, string csharpTy
 
 	public override IEnumerable<string> InteropParameters(string name) => [$"{csharpType}* {name}"];
 
-	public override string ManagedType(bool nullable) => "out " + csharpType;
+	public override string ManagedType(bool nullable) => "out " + (IsIndex ? "int" : csharpType);
 
 	// An out parameter has to be assigned before its address is taken.
-	public override string? Prepare(string name) => $"{name} = 0;";
+	public override string? Prepare(string name) => IsIndex ? $"{csharpType} {Wide(name)} = 0;" : $"{name} = 0;";
 
-	public override string? Fixed(string name) => $"fixed ({csharpType}* {Pointer(name)} = &{name})";
+	public override string? Fixed(string name) => IsIndex ? null : $"fixed ({csharpType}* {Pointer(name)} = &{name})";
 
-	public override IEnumerable<string> InteropArguments(string name, bool nullable) => [Pointer(name)];
+	public override IEnumerable<string> InteropArguments(string name, bool nullable) => [IsIndex ? "&" + Wide(name) : Pointer(name)];
+
+	public override string? Finish(string name) => IsIndex ? $"{name} = checked((int){Wide(name)});" : null;
+
+	private static string Wide(string name) => name.TrimStart('@') + "Wide";
 
 	public override string ManagedReturn(string expression) => throw new InvalidOperationException("Output pointers are only parameters.");
 

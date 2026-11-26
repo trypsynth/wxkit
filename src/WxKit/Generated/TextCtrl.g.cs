@@ -40,7 +40,7 @@ public unsafe partial class TextCtrl : Control {
 	}
 
 	/// <summary>Returns the insertion point, or cursor, position.</summary>
-	public long InsertionPoint {
+	public int InsertionPoint {
 		get => WxKitNative.TextCtrlGetInsertionPoint(Native);
 		set => WxKitNative.TextCtrlSetInsertionPoint(Native, value);
 	}
@@ -70,7 +70,7 @@ public unsafe partial class TextCtrl : Control {
 	public bool IsSingleLine => WxKitNative.TextCtrlIsSingleLine(Native) != 0;
 
 	/// <summary>Returns the zero based index of the last position in the text control, which is equal to the number of characters in the control.</summary>
-	public long LastPosition => WxKitNative.TextCtrlGetLastPosition(Native);
+	public int LastPosition => WxKitNative.TextCtrlGetLastPosition(Native);
 
 	/// <summary>Returns the margins used by the control.</summary>
 	public Point Margins {
@@ -181,22 +181,21 @@ public unsafe partial class TextCtrl : Control {
 	public void ForceUpper() => WxKitNative.TextCtrlForceUpper(Native);
 
 	/// <summary>Gets the length of the specified line, not including any trailing newline character(s).</summary>
-	public int GetLineLength(long lineNumber) => WxKitNative.TextCtrlGetLineLength(Native, lineNumber);
+	public int GetLineLength(int lineNumber) => WxKitNative.TextCtrlGetLineLength(Native, lineNumber);
 
 	/// <summary>Returns the contents of a given line in the text control, not including any trailing newline character(s).</summary>
-	public string GetLineText(long lineNumber) => NativeString.Take(WxKitNative.TextCtrlGetLineText(Native, lineNumber));
+	public string GetLineText(int lineNumber) => NativeString.Take(WxKitNative.TextCtrlGetLineText(Native, lineNumber));
 
 	/// <summary>Returns the string containing the text starting in the positions from and up to to in the control.</summary>
-	public string GetRange(long from, long to) => NativeString.Take(WxKitNative.TextCtrlGetRange(Native, from, to));
+	public string GetRange(int from, int to) => NativeString.Take(WxKitNative.TextCtrlGetRange(Native, from, to));
 
 	/// <summary>Gets the current selection span.</summary>
-	public void GetSelection(out long from, out long to) {
-		from = 0;
-		to = 0;
-		fixed (long* fromPointer = &from)
-		fixed (long* toPointer = &to) {
-			WxKitNative.TextCtrlGetSelection(Native, fromPointer, toPointer);
-		}
+	public void GetSelection(out int from, out int to) {
+		long fromWide = 0;
+		long toWide = 0;
+		WxKitNative.TextCtrlGetSelection(Native, &fromWide, &toWide);
+		from = checked((int)fromWide);
+		to = checked((int)toWide);
 	}
 
 	/// <summary>Sets the content of a multiline text control from a Pango markup buffer.</summary>
@@ -208,11 +207,11 @@ public unsafe partial class TextCtrl : Control {
 	}
 
 	/// <summary>Finds the position of the character at the specified point.</summary>
-	public TextCtrlHitTestResult HitTest(Point point, out long position) {
-		position = 0;
-		fixed (long* positionPointer = &position) {
-			return (TextCtrlHitTestResult)WxKitNative.TextCtrlHitTest(Native, point, positionPointer);
-		}
+	public TextCtrlHitTestResult HitTest(Point point, out int position) {
+		long positionWide = 0;
+		var returned = WxKitNative.TextCtrlHitTest(Native, point, &positionWide);
+		position = checked((int)positionWide);
+		return (TextCtrlHitTestResult)returned;
 	}
 
 	/// <summary>Loads and displays the named file, if it exists.</summary>
@@ -242,26 +241,26 @@ public unsafe partial class TextCtrl : Control {
 	public void Paste() => WxKitNative.TextCtrlPaste(Native);
 
 	/// <summary>Converts given text position to client coordinates in pixels.</summary>
-	public Point PositionToCoords(long position) => WxKitNative.TextCtrlPositionToCoords(Native, position);
+	public Point PositionToCoords(int position) => WxKitNative.TextCtrlPositionToCoords(Native, position);
 
 	/// <summary>Converts given position to a zero-based column, line number pair.</summary>
-	public bool PositionToXY(long position, out long x, out long y) {
-		x = 0;
-		y = 0;
-		fixed (long* xPointer = &x)
-		fixed (long* yPointer = &y) {
-			return WxKitNative.TextCtrlPositionToXY(Native, position, xPointer, yPointer) != 0;
-		}
+	public bool PositionToXY(int position, out int x, out int y) {
+		long xWide = 0;
+		long yWide = 0;
+		var returned = WxKitNative.TextCtrlPositionToXY(Native, position, &xWide, &yWide);
+		x = checked((int)xWide);
+		y = checked((int)yWide);
+		return returned != 0;
 	}
 
 	/// <summary>If there is a redo facility and the last operation can be redone, redoes the last operation.</summary>
 	public void Redo() => WxKitNative.TextCtrlRedo(Native);
 
 	/// <summary>Removes the text starting at the first given position up to (but not including) the character at the last position.</summary>
-	public void Remove(long from, long to) => WxKitNative.TextCtrlRemove(Native, from, to);
+	public void Remove(int from, int to) => WxKitNative.TextCtrlRemove(Native, from, to);
 
 	/// <summary>Replaces the text starting at the first position up to (but not including) the character at the last position with the given text.</summary>
-	public void Replace(long from, long to, string value) {
+	public void Replace(int from, int to, string value) {
 		ArgumentNullException.ThrowIfNull(value);
 		fixed (char* valueText = value) {
 			WxKitNative.TextCtrlReplace(Native, from, to, valueText, NativeString.Length(value));
@@ -292,10 +291,10 @@ public unsafe partial class TextCtrl : Control {
 	public void SetMaxLength(int length) => WxKitNative.TextCtrlSetMaxLength(Native, checked((nuint)length));
 
 	/// <summary>Selects the text starting at the first position up to (but not including) the character at the last position.</summary>
-	public void SetSelection(long from, long to) => WxKitNative.TextCtrlSetSelection(Native, from, to);
+	public void SetSelection(int from, int to) => WxKitNative.TextCtrlSetSelection(Native, from, to);
 
 	/// <summary>Makes the line containing the given position visible.</summary>
-	public void ShowPosition(long position) => WxKitNative.TextCtrlShowPosition(Native, position);
+	public void ShowPosition(int position) => WxKitNative.TextCtrlShowPosition(Native, position);
 
 	/// <summary>If there is an undo facility and the last operation can be undone, undoes the last operation.</summary>
 	public void Undo() => WxKitNative.TextCtrlUndo(Native);
@@ -309,7 +308,7 @@ public unsafe partial class TextCtrl : Control {
 	}
 
 	/// <summary>Converts the given zero based column and line number to a position.</summary>
-	public long XYToPosition(long x, long y) => WxKitNative.TextCtrlXYToPosition(Native, x, y);
+	public int XYToPosition(int x, int y) => WxKitNative.TextCtrlXYToPosition(Native, x, y);
 
 	private static WxkWindow* CreateNative(Window parent, string value, int id, Point? position, Size? size, TextCtrlStyle style) {
 		Application.VerifyAccess();

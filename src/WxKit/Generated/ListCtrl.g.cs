@@ -54,7 +54,10 @@ public unsafe partial class ListCtrl : Control {
 	public bool IsVirtual => WxKitNative.ListCtrlIsVirtual(Native) != 0;
 
 	/// <summary>Returns the number of items in the list control.</summary>
-	public int ItemCount => WxKitNative.ListCtrlGetItemCount(Native);
+	public int ItemCount {
+		get => WxKitNative.ListCtrlGetItemCount(Native);
+		set => WxKitNative.ListCtrlSetItemCount(Native, value);
+	}
 
 	/// <summary>Retrieves the spacing between icons in pixels: horizontal spacing is returned as x component of the wxSize object and the vertical spacing as its y component.</summary>
 	public Size ItemSpacing => WxKitNative.ListCtrlGetItemSpacing(Native);
@@ -72,7 +75,7 @@ public unsafe partial class ListCtrl : Control {
 	}
 
 	/// <summary>Gets the index of the topmost visible item when in list or report view.</summary>
-	public long TopItem => WxKitNative.ListCtrlGetTopItem(Native);
+	public int TopItem => WxKitNative.ListCtrlGetTopItem(Native);
 
 	/// <summary>Returns the rectangle taken by all items in the control.</summary>
 	public Rect ViewRect => WxKitNative.ListCtrlGetViewRect(Native);
@@ -210,7 +213,7 @@ public unsafe partial class ListCtrl : Control {
 	}
 
 	/// <summary>Adds a new column to the list control in report view mode.</summary>
-	public long AppendColumn(string heading, ListColumnFormat format = ListColumnFormat.Left, int width = -1) {
+	public int AppendColumn(string heading, ListColumnFormat format = ListColumnFormat.Left, int width = -1) {
 		ArgumentNullException.ThrowIfNull(heading);
 		fixed (char* headingText = heading) {
 			return WxKitNative.ListCtrlAppendColumn(Native, headingText, NativeString.Length(heading), (int)format, width);
@@ -221,7 +224,7 @@ public unsafe partial class ListCtrl : Control {
 	public bool Arrange(ListArrangement flag = ListArrangement.Default) => WxKitNative.ListCtrlArrange(Native, (int)flag) != 0;
 
 	/// <summary>Check or uncheck a wxListItem in a control using checkboxes.</summary>
-	public void CheckItem(long item, bool check) => WxKitNative.ListCtrlCheckItem(Native, item, check ? (byte)1 : (byte)0);
+	public void CheckItem(int item, bool check) => WxKitNative.ListCtrlCheckItem(Native, item, check ? (byte)1 : (byte)0);
 
 	/// <summary>Deletes all items and all columns.</summary>
 	public void ClearAll() => WxKitNative.ListCtrlClearAll(Native);
@@ -236,10 +239,10 @@ public unsafe partial class ListCtrl : Control {
 	public bool DeleteColumn(int column) => WxKitNative.ListCtrlDeleteColumn(Native, column) != 0;
 
 	/// <summary>Deletes the specified item.</summary>
-	public bool DeleteItem(long item) => WxKitNative.ListCtrlDeleteItem(Native, item) != 0;
+	public bool DeleteItem(int item) => WxKitNative.ListCtrlDeleteItem(Native, item) != 0;
 
 	/// <summary>Starts editing the label of the given item.</summary>
-	public TextCtrl? EditLabel(long item) => ObjectRegistry.Wrap<TextCtrl>(WxKitNative.ListCtrlEditLabel(Native, item));
+	public TextCtrl? EditLabel(int item) => ObjectRegistry.Wrap<TextCtrl>(WxKitNative.ListCtrlEditLabel(Native, item));
 
 	/// <summary>Enable alternating row background colours (also called zebra striping).</summary>
 	public void EnableAlternateRowColors(bool enable = true) => WxKitNative.ListCtrlEnableAlternateRowColours(Native, enable ? (byte)1 : (byte)0);
@@ -254,24 +257,24 @@ public unsafe partial class ListCtrl : Control {
 	public bool EndEditLabel(bool cancel) => WxKitNative.ListCtrlEndEditLabel(Native, cancel ? (byte)1 : (byte)0) != 0;
 
 	/// <summary>Ensures this item is visible.</summary>
-	public bool EnsureVisible(long item) => WxKitNative.ListCtrlEnsureVisible(Native, item) != 0;
+	public bool EnsureVisible(int item) => WxKitNative.ListCtrlEnsureVisible(Native, item) != 0;
 
 	/// <summary>Extend rules and alternate rows background to the entire client area.</summary>
 	public void ExtendRulesAndAlternateColor(bool extend = true) => WxKitNative.ListCtrlExtendRulesAndAlternateColour(Native, extend ? (byte)1 : (byte)0);
 
 	/// <summary>Find an item whose label matches this string, starting from start or the beginning if start is -1.</summary>
-	public long FindItem(long start, string text, bool partial = false) {
+	public int FindItem(int start, string text, bool partial = false) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			return WxKitNative.ListCtrlFindItemLongStringBool(Native, start, textText, NativeString.Length(text), partial ? (byte)1 : (byte)0);
+			return WxKitNative.ListCtrlFindItemIntStringBool(Native, start, textText, NativeString.Length(text), partial ? (byte)1 : (byte)0);
 		}
 	}
 
 	/// <summary>Find an item whose data matches this data, starting from start or the beginning if 'start' is -1.</summary>
-	public long FindItem(long start, long data) => WxKitNative.ListCtrlFindItemLongLong(Native, start, data);
+	public int FindItem(int start, long data) => WxKitNative.ListCtrlFindItemIntLong(Native, start, data);
 
 	/// <summary>Find an item nearest this position in the specified direction, starting from start or the beginning if start is -1.</summary>
-	public long FindItem(long start, Point point, ListFindDirection direction) => WxKitNative.ListCtrlFindItemLongPointListFindDirection(Native, start, point, (int)direction);
+	public int FindItem(int start, Point point, ListFindDirection direction) => WxKitNative.ListCtrlFindItemIntPointListFindDirection(Native, start, point, (int)direction);
 
 	/// <summary>Gets information about this column.</summary>
 	public bool GetColumn(int column, ListItem item) {
@@ -295,25 +298,25 @@ public unsafe partial class ListCtrl : Control {
 	}
 
 	/// <summary>Returns the colour for this item.</summary>
-	public Color? GetItemBackgroundColor(long item) => global::WxKit.Color.FromNative(WxKitNative.ListCtrlGetItemBackgroundColour(Native, item));
+	public Color? GetItemBackgroundColor(int item) => global::WxKit.Color.FromNative(WxKitNative.ListCtrlGetItemBackgroundColour(Native, item));
 
 	/// <summary>Gets the application-defined data associated with this item.</summary>
-	public long GetItemData(long item) => WxKitNative.ListCtrlGetItemData(Native, item);
+	public long GetItemData(int item) => WxKitNative.ListCtrlGetItemData(Native, item);
 
 	/// <summary>Returns the item's font.</summary>
-	public Font? GetItemFont(long item) => global::WxKit.Font.Take(WxKitNative.ListCtrlGetItemFont(Native, item));
+	public Font? GetItemFont(int item) => global::WxKit.Font.Take(WxKitNative.ListCtrlGetItemFont(Native, item));
 
 	/// <summary>Gets the item state.</summary>
-	public ListItemState GetItemState(long item, ListItemState stateMask) => (ListItemState)WxKitNative.ListCtrlGetItemState(Native, item, (long)stateMask);
+	public ListItemState GetItemState(int item, ListItemState stateMask) => (ListItemState)WxKitNative.ListCtrlGetItemState(Native, item, (long)stateMask);
 
 	/// <summary>Gets the item text for this item.</summary>
-	public string GetItemText(long item, int column = 0) => NativeString.Take(WxKitNative.ListCtrlGetItemText(Native, item, column));
+	public string GetItemText(int item, int column = 0) => NativeString.Take(WxKitNative.ListCtrlGetItemText(Native, item, column));
 
 	/// <summary>Returns the colour for this item.</summary>
-	public Color? GetItemTextColor(long item) => global::WxKit.Color.FromNative(WxKitNative.ListCtrlGetItemTextColour(Native, item));
+	public Color? GetItemTextColor(int item) => global::WxKit.Color.FromNative(WxKitNative.ListCtrlGetItemTextColour(Native, item));
 
 	/// <summary>Searches for an item with the given geometry or state, starting from item but excluding the item itself.</summary>
-	public long GetNextItem(long item, ListNextItem geometry = ListNextItem.All, ListItemState state = ListItemState.None) => WxKitNative.ListCtrlGetNextItem(Native, item, (int)geometry, (int)state);
+	public int GetNextItem(int item, ListNextItem geometry = ListNextItem.All, ListItemState state = ListItemState.None) => WxKitNative.ListCtrlGetNextItem(Native, item, (int)geometry, (int)state);
 
 	/// <summary>Returns the new value to use for sort indicator after clicking a column.</summary>
 	public bool GetUpdatedAscendingSortIndicator(int column) => WxKitNative.ListCtrlGetUpdatedAscendingSortIndicator(Native, column) != 0;
@@ -322,55 +325,55 @@ public unsafe partial class ListCtrl : Control {
 	public bool InReportView() => WxKitNative.ListCtrlInReportView(Native) != 0;
 
 	/// <summary>For report view mode (only), inserts a column.</summary>
-	public long InsertColumn(long column, ListItem info) {
+	public int InsertColumn(int column, ListItem info) {
 		ArgumentNullException.ThrowIfNull(info);
-		return WxKitNative.ListCtrlInsertColumnLongListItem(Native, column, info.Native);
+		return WxKitNative.ListCtrlInsertColumnIntListItem(Native, column, info.Native);
 	}
 
 	/// <summary>For report view mode (only), inserts a column.</summary>
-	public long InsertColumn(long column, string heading, ListColumnFormat format = ListColumnFormat.Left, int width = -1) {
+	public int InsertColumn(int column, string heading, ListColumnFormat format = ListColumnFormat.Left, int width = -1) {
 		ArgumentNullException.ThrowIfNull(heading);
 		fixed (char* headingText = heading) {
-			return WxKitNative.ListCtrlInsertColumnLongStringListColumnFormatInt(Native, column, headingText, NativeString.Length(heading), (int)format, width);
+			return WxKitNative.ListCtrlInsertColumnIntStringListColumnFormatInt(Native, column, headingText, NativeString.Length(heading), (int)format, width);
 		}
 	}
 
 	/// <summary>Inserts an item, returning the index of the new item if successful, -1 otherwise.</summary>
-	public long InsertItem(ListItem info) {
+	public int InsertItem(ListItem info) {
 		ArgumentNullException.ThrowIfNull(info);
 		return WxKitNative.ListCtrlInsertItemListItem(Native, info.Native);
 	}
 
 	/// <summary>Insert a string item.</summary>
-	public long InsertItem(long index, string label) {
+	public int InsertItem(int index, string label) {
 		ArgumentNullException.ThrowIfNull(label);
 		fixed (char* labelText = label) {
-			return WxKitNative.ListCtrlInsertItemLongString(Native, index, labelText, NativeString.Length(label));
+			return WxKitNative.ListCtrlInsertItemIntString(Native, index, labelText, NativeString.Length(label));
 		}
 	}
 
 	/// <summary>Insert an image item.</summary>
-	public long InsertItem(long index, int imageIndex) => WxKitNative.ListCtrlInsertItemLongInt(Native, index, imageIndex);
+	public int InsertItem(int index, int imageIndex) => WxKitNative.ListCtrlInsertItemIntInt(Native, index, imageIndex);
 
 	/// <summary>Insert an image/string item.</summary>
-	public long InsertItem(long index, string label, int imageIndex) {
+	public int InsertItem(int index, string label, int imageIndex) {
 		ArgumentNullException.ThrowIfNull(label);
 		fixed (char* labelText = label) {
-			return WxKitNative.ListCtrlInsertItemLongStringInt(Native, index, labelText, NativeString.Length(label), imageIndex);
+			return WxKitNative.ListCtrlInsertItemIntStringInt(Native, index, labelText, NativeString.Length(label), imageIndex);
 		}
 	}
 
 	/// <summary>Return true if the checkbox for the given wxListItem is checked.</summary>
-	public bool IsItemChecked(long item) => WxKitNative.ListCtrlIsItemChecked(Native, item) != 0;
+	public bool IsItemChecked(int item) => WxKitNative.ListCtrlIsItemChecked(Native, item) != 0;
 
 	/// <summary>Check if the item is visible.</summary>
-	public bool IsVisible(long item) => WxKitNative.ListCtrlIsVisible(Native, item) != 0;
+	public bool IsVisible(int item) => WxKitNative.ListCtrlIsVisible(Native, item) != 0;
 
 	/// <summary>Redraws the given item.</summary>
-	public void RefreshItem(long item) => WxKitNative.ListCtrlRefreshItem(Native, item);
+	public void RefreshItem(int item) => WxKitNative.ListCtrlRefreshItem(Native, item);
 
 	/// <summary>Redraws the items between itemFrom and itemTo.</summary>
-	public void RefreshItems(long itemFrom, long itemTo) => WxKitNative.ListCtrlRefreshItems(Native, itemFrom, itemTo);
+	public void RefreshItems(int itemFrom, int itemTo) => WxKitNative.ListCtrlRefreshItems(Native, itemFrom, itemTo);
 
 	/// <summary>Remove the sort indicator from the column being used as sort key.</summary>
 	public void RemoveSortIndicator() => WxKitNative.ListCtrlRemoveSortIndicator(Native);
@@ -397,42 +400,39 @@ public unsafe partial class ListCtrl : Control {
 	}
 
 	/// <summary>Sets an item string field at a particular column.</summary>
-	public bool SetItem(long index, int column, string label, int imageId = -1) {
+	public bool SetItem(int index, int column, string label, int imageId = -1) {
 		ArgumentNullException.ThrowIfNull(label);
 		fixed (char* labelText = label) {
-			return WxKitNative.ListCtrlSetItemLongIntStringInt(Native, index, column, labelText, NativeString.Length(label), imageId) != 0;
+			return WxKitNative.ListCtrlSetItemIntIntStringInt(Native, index, column, labelText, NativeString.Length(label), imageId) != 0;
 		}
 	}
 
 	/// <summary>Sets the background colour for this item.</summary>
-	public void SetItemBackgroundColor(long item, Color? color) => WxKitNative.ListCtrlSetItemBackgroundColour(Native, item, global::WxKit.Color.ToNative(color));
+	public void SetItemBackgroundColor(int item, Color? color) => WxKitNative.ListCtrlSetItemBackgroundColour(Native, item, global::WxKit.Color.ToNative(color));
 
 	/// <summary>Sets the image associated with the item.</summary>
-	public bool SetItemColumnImage(long item, long column, int image) => WxKitNative.ListCtrlSetItemColumnImage(Native, item, column, image) != 0;
-
-	/// <summary>This method can only be used with virtual list controls.</summary>
-	public void SetItemCount(long count) => WxKitNative.ListCtrlSetItemCount(Native, count);
+	public bool SetItemColumnImage(int item, int column, int image) => WxKitNative.ListCtrlSetItemColumnImage(Native, item, column, image) != 0;
 
 	/// <summary>Associates application-defined data with this item.</summary>
-	public bool SetItemData(long item, long data) => WxKitNative.ListCtrlSetItemData(Native, item, data) != 0;
+	public bool SetItemData(int item, int data) => WxKitNative.ListCtrlSetItemData(Native, item, data) != 0;
 
 	/// <summary>Sets the item's font.</summary>
-	public void SetItemFont(long item, Font font) {
+	public void SetItemFont(int item, Font font) {
 		ArgumentNullException.ThrowIfNull(font);
 		WxKitNative.ListCtrlSetItemFont(Native, item, font.Native);
 	}
 
 	/// <summary>Sets the unselected and selected images associated with the item.</summary>
-	public bool SetItemImage(long item, int image, int selectedImage = -1) => WxKitNative.ListCtrlSetItemImage(Native, item, image, selectedImage) != 0;
+	public bool SetItemImage(int item, int image, int selectedImage = -1) => WxKitNative.ListCtrlSetItemImage(Native, item, image, selectedImage) != 0;
 
 	/// <summary>Sets the position of the item, in icon or small icon view.</summary>
-	public bool SetItemPosition(long item, Point position) => WxKitNative.ListCtrlSetItemPosition(Native, item, position) != 0;
+	public bool SetItemPosition(int item, Point position) => WxKitNative.ListCtrlSetItemPosition(Native, item, position) != 0;
 
 	/// <summary>Sets the item state.</summary>
-	public bool SetItemState(long item, ListItemState state, ListItemState stateMask) => WxKitNative.ListCtrlSetItemState(Native, item, (long)state, (long)stateMask) != 0;
+	public bool SetItemState(int item, ListItemState state, ListItemState stateMask) => WxKitNative.ListCtrlSetItemState(Native, item, (long)state, (long)stateMask) != 0;
 
 	/// <summary>Sets the item text for this item.</summary>
-	public void SetItemText(long item, string text) {
+	public void SetItemText(int item, string text) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
 			WxKitNative.ListCtrlSetItemText(Native, item, textText, NativeString.Length(text));
@@ -440,7 +440,7 @@ public unsafe partial class ListCtrl : Control {
 	}
 
 	/// <summary>Sets the colour for this item.</summary>
-	public void SetItemTextColor(long item, Color? color) => WxKitNative.ListCtrlSetItemTextColour(Native, item, global::WxKit.Color.ToNative(color));
+	public void SetItemTextColor(int item, Color? color) => WxKitNative.ListCtrlSetItemTextColour(Native, item, global::WxKit.Color.ToNative(color));
 
 	/// <summary>Sets the images to use when showing large, normal icons in this control.</summary>
 	public void SetNormalImages(IEnumerable<Bitmap> images) {
@@ -470,7 +470,7 @@ public unsafe partial class ListCtrl : Control {
 	public void ShowSortIndicator(int column, bool ascending = true) => WxKitNative.ListCtrlShowSortIndicator(Native, column, ascending ? (byte)1 : (byte)0);
 
 	/// <summary>Returns the rectangle representing the item's size and position, in physical coordinates.</summary>
-	public bool TryGetItemRect(long item, out Rect rect, ListRect code = ListRect.Bounds) {
+	public bool TryGetItemRect(int item, out Rect rect, ListRect code = ListRect.Bounds) {
 		rect = default;
 		fixed (Rect* rectPointer = &rect) {
 			return WxKitNative.ListCtrlGetItemRect(Native, item, rectPointer, (int)code) != 0;
@@ -478,7 +478,7 @@ public unsafe partial class ListCtrl : Control {
 	}
 
 	/// <summary>Returns the rectangle representing the size and position, in physical coordinates, of the given subitem, i.e.</summary>
-	public bool TryGetSubItemRect(long item, long subItem, out Rect rect, ListRect code = ListRect.Bounds) {
+	public bool TryGetSubItemRect(int item, int subItem, out Rect rect, ListRect code = ListRect.Bounds) {
 		rect = default;
 		fixed (Rect* rectPointer = &rect) {
 			return WxKitNative.ListCtrlGetSubItemRect(Native, item, subItem, rectPointer, (int)code) != 0;
@@ -486,19 +486,19 @@ public unsafe partial class ListCtrl : Control {
 	}
 
 	/// <summary>Override this function in the derived class for a control with wxLC_VIRTUAL and wxLC_REPORT styles in order to specify the image index for the given line and column.</summary>
-	protected virtual int OnGetItemColumnImage(long item, long column) => WxKitNative.ListCtrlBaseOnGetItemColumnImage(Native, item, column);
+	protected virtual int OnGetItemColumnImage(int item, int column) => WxKitNative.ListCtrlBaseOnGetItemColumnImage(Native, item, column);
 
 	/// <summary>This function must be overridden in the derived class for a control with wxLC_VIRTUAL style using images.</summary>
-	protected virtual int OnGetItemImage(long item) => WxKitNative.ListCtrlBaseOnGetItemImage(Native, item);
+	protected virtual int OnGetItemImage(int item) => WxKitNative.ListCtrlBaseOnGetItemImage(Native, item);
 
 	/// <summary>This function must be overridden in the derived class for a control with wxLC_VIRTUAL style that uses checkboxes.</summary>
-	protected virtual bool OnGetItemIsChecked(long item) => WxKitNative.ListCtrlBaseOnGetItemIsChecked(Native, item) != 0;
+	protected virtual bool OnGetItemIsChecked(int item) => WxKitNative.ListCtrlBaseOnGetItemIsChecked(Native, item) != 0;
 
 	/// <summary>This function must be overridden in the derived class for a control with wxLC_VIRTUAL style.</summary>
-	protected virtual string OnGetItemText(long item, long column) => NativeString.Take(WxKitNative.ListCtrlBaseOnGetItemText(Native, item, column));
+	protected virtual string OnGetItemText(int item, int column) => NativeString.Take(WxKitNative.ListCtrlBaseOnGetItemText(Native, item, column));
 
 	[global::System.Runtime.InteropServices.UnmanagedCallersOnly(CallConvs = [typeof(global::System.Runtime.CompilerServices.CallConvCdecl)])]
-	private static int DirectorOnGetItemColumnImage(WxkWindow* self, void* userdata, long item, long column) {
+	private static int DirectorOnGetItemColumnImage(WxkWindow* self, void* userdata, int item, int column) {
 		try {
 			if (DirectorTarget.Find<ListCtrl>(userdata) is not ListCtrl owner) return WxKitNative.ListCtrlBaseOnGetItemColumnImage(self, item, column);
 			return owner.OnGetItemColumnImage(item, column);
@@ -509,7 +509,7 @@ public unsafe partial class ListCtrl : Control {
 	}
 
 	[global::System.Runtime.InteropServices.UnmanagedCallersOnly(CallConvs = [typeof(global::System.Runtime.CompilerServices.CallConvCdecl)])]
-	private static int DirectorOnGetItemImage(WxkWindow* self, void* userdata, long item) {
+	private static int DirectorOnGetItemImage(WxkWindow* self, void* userdata, int item) {
 		try {
 			if (DirectorTarget.Find<ListCtrl>(userdata) is not ListCtrl owner) return WxKitNative.ListCtrlBaseOnGetItemImage(self, item);
 			return owner.OnGetItemImage(item);
@@ -520,7 +520,7 @@ public unsafe partial class ListCtrl : Control {
 	}
 
 	[global::System.Runtime.InteropServices.UnmanagedCallersOnly(CallConvs = [typeof(global::System.Runtime.CompilerServices.CallConvCdecl)])]
-	private static byte DirectorOnGetItemIsChecked(WxkWindow* self, void* userdata, long item) {
+	private static byte DirectorOnGetItemIsChecked(WxkWindow* self, void* userdata, int item) {
 		try {
 			if (DirectorTarget.Find<ListCtrl>(userdata) is not ListCtrl owner) return WxKitNative.ListCtrlBaseOnGetItemIsChecked(self, item);
 			return owner.OnGetItemIsChecked(item) ? (byte)1 : (byte)0;
@@ -531,7 +531,7 @@ public unsafe partial class ListCtrl : Control {
 	}
 
 	[global::System.Runtime.InteropServices.UnmanagedCallersOnly(CallConvs = [typeof(global::System.Runtime.CompilerServices.CallConvCdecl)])]
-	private static WxkString* DirectorOnGetItemText(WxkWindow* self, void* userdata, long item, long column) {
+	private static WxkString* DirectorOnGetItemText(WxkWindow* self, void* userdata, int item, int column) {
 		try {
 			if (DirectorTarget.Find<ListCtrl>(userdata) is not ListCtrl owner) return WxKitNative.ListCtrlBaseOnGetItemText(self, item, column);
 			return NativeString.Create(owner.OnGetItemText(item, column));

@@ -15,25 +15,25 @@ public unsafe partial class ListView : ListCtrl {
 	}
 
 	/// <summary>Returns the first selected item in a (presumably) multiple selection control.</summary>
-	public long FirstSelected => WxKitNative.ListViewGetFirstSelected(Native);
+	public int FirstSelected => WxKitNative.ListViewGetFirstSelected(Native);
 
 	/// <summary>Returns the currently focused item or -1 if none.</summary>
-	public long FocusedItem => WxKitNative.ListViewGetFocusedItem(Native);
+	public int FocusedItem => WxKitNative.ListViewGetFocusedItem(Native);
 
 	/// <summary>Resets the column image after calling this function, no image will be shown.</summary>
 	public void ClearColumnImage(int column) => WxKitNative.ListViewClearColumnImage(Native, column);
 
 	/// <summary>Sets focus to the item with the given index.</summary>
-	public void Focus(long index) => WxKitNative.ListViewFocus(Native, index);
+	public void Focus(int index) => WxKitNative.ListViewFocus(Native, index);
 
 	/// <summary>Used together with GetFirstSelected() to iterate over all selected items in the control.</summary>
-	public long GetNextSelected(long item) => WxKitNative.ListViewGetNextSelected(Native, item);
+	public int GetNextSelected(int item) => WxKitNative.ListViewGetNextSelected(Native, item);
 
 	/// <summary>Returns true if the item with the given index is selected, false otherwise.</summary>
-	public bool IsSelected(long index) => WxKitNative.ListViewIsSelected(Native, index) != 0;
+	public bool IsSelected(int index) => WxKitNative.ListViewIsSelected(Native, index) != 0;
 
 	/// <summary>Selects or unselects the given item.</summary>
-	public void Select(long index, bool on = true) => WxKitNative.ListViewSelect(Native, index, on ? (byte)1 : (byte)0);
+	public void Select(int index, bool on = true) => WxKitNative.ListViewSelect(Native, index, on ? (byte)1 : (byte)0);
 
 	/// <summary>Sets the column image for the specified column.</summary>
 	public void SetColumnImage(int column, int image) => WxKitNative.ListViewSetColumnImage(Native, column, image);

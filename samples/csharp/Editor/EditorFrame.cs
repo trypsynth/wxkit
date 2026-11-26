@@ -141,7 +141,7 @@ internal sealed class EditorFrame : Frame {
 	}
 
 	private void UpdateStatus() {
-		_text.PositionToXY(_text.InsertionPoint, out long column, out long line);
+		_text.PositionToXY(_text.InsertionPoint, out int column, out int line);
 		string status = $"Line {line + 1}, column {column + 1}";
 		if (status != _status) {
 			_status = status;
@@ -220,7 +220,7 @@ internal sealed class EditorFrame : Frame {
 	}
 
 	private void DeleteSelection() {
-		_text.GetSelection(out long from, out long to);
+		_text.GetSelection(out int from, out int to);
 		if (to > from) _text.Remove(from, to);
 	}
 
@@ -255,7 +255,7 @@ internal sealed class EditorFrame : Frame {
 			ShowFindDialog(replace: false);
 			return false;
 		}
-		_text.GetSelection(out long from, out long to);
+		_text.GetSelection(out int from, out int to);
 		bool down = flags.HasFlag(FindReplaceFlags.Down);
 		int found = Search(_text.Value, needle, down ? (int)to : (int)from - 1, down, flags);
 		if (found < 0) {
@@ -268,7 +268,7 @@ internal sealed class EditorFrame : Frame {
 	}
 
 	private void Replace(string needle, string replacement, FindReplaceFlags flags) {
-		_text.GetSelection(out long from, out long to);
+		_text.GetSelection(out int from, out int to);
 		if (to > from && string.Equals(_text.GetRange(from, to), needle, Comparison(flags))) {
 			_text.Replace(from, to, replacement);
 			_text.SetSelection(from, from + replacement.Length);
@@ -324,7 +324,7 @@ internal sealed class EditorFrame : Frame {
 	private static bool IsWordCharacter(char character) => char.IsLetterOrDigit(character) || character == '_';
 
 	private void GoToLine() {
-		_text.PositionToXY(_text.InsertionPoint, out _, out long current);
+		_text.PositionToXY(_text.InsertionPoint, out _, out int current);
 		int lines = _text.NumberOfLines;
 		using TextEntryDialog dialog = new(this, $"Line number, from 1 to {lines}:", "Go To Line", (current + 1).ToString(CultureInfo.CurrentCulture));
 		if (dialog.ShowModal() != StandardId.Ok) return;
@@ -332,7 +332,7 @@ internal sealed class EditorFrame : Frame {
 			MessageBox.Show($"The line number has to be from 1 to {lines}.", "Go To Line", MessageDialogStyle.Ok | MessageDialogStyle.IconWarning, this);
 			return;
 		}
-		long position = _text.XYToPosition(0, line - 1);
+		int position = _text.XYToPosition(0, line - 1);
 		_text.InsertionPoint = position;
 		_text.ShowPosition(position);
 	}
@@ -342,7 +342,7 @@ internal sealed class EditorFrame : Frame {
 	private void ToggleWordWrap() {
 		_wordWrap = !_wordWrap;
 		TextCtrl old = _text;
-		old.GetSelection(out long from, out long to);
+		old.GetSelection(out int from, out int to);
 		bool modified = old.IsModified;
 		using Font? font = old.Font;
 		_text = CreateText(old.Value);

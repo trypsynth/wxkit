@@ -14,7 +14,7 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
   - `StyledTextEvent.Modifiers`, whose values are Scintilla's, not `KeyModifiers`', so it needs converting, or an enum of its own.
   - `StatusBar.SetStatusStyles`, which takes a list of numbers, where the generator's enums only go on one number.
 - Each control's style enum has the styles every window takes, such as the borders, so a borderless list doesn't need a cast. The text entry and choice dialogs get style enums that can say what their defaults are.
-- One integer type for one thing: `ListCtrl`'s items and columns, `TextCtrl`'s and the styled text control's positions and lines, and window ids, which are `int`, as .NET's indexes are.
+- Window ids are `int` everywhere: `Window.FindWindow` and `FindWindowById` take a `long`.
 
 ## Events
 
