@@ -32,60 +32,6 @@ public unsafe partial class ScrollBar : Control {
 	public int ThumbSize => WxKitNative.ScrollBarGetThumbSize(Native);
 
 	/// <summary>Process wxEVT_SCROLL_BOTTOM scroll to bottom or rightmost (maximum) position events.</summary>
-	public event EventHandler<ScrollEvent>? CommandScrollBottom {
-		add => AddHandler(EventType.ScrollBottom, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ScrollBottom, StandardId.Any, StandardId.Any, value);
-	}
-
-	/// <summary>Process wxEVT_SCROLL_CHANGED end of scrolling events (MSW only).</summary>
-	public event EventHandler<ScrollEvent>? CommandScrollChanged {
-		add => AddHandler(EventType.ScrollChanged, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ScrollChanged, StandardId.Any, StandardId.Any, value);
-	}
-
-	/// <summary>Process wxEVT_SCROLL_LINEDOWN line down or right events.</summary>
-	public event EventHandler<ScrollEvent>? CommandScrollLineDown {
-		add => AddHandler(EventType.ScrollLineDown, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ScrollLineDown, StandardId.Any, StandardId.Any, value);
-	}
-
-	/// <summary>Process wxEVT_SCROLL_LINEUP line up or left events.</summary>
-	public event EventHandler<ScrollEvent>? CommandScrollLineUp {
-		add => AddHandler(EventType.ScrollLineUp, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ScrollLineUp, StandardId.Any, StandardId.Any, value);
-	}
-
-	/// <summary>Process wxEVT_SCROLL_PAGEDOWN page down or right events.</summary>
-	public event EventHandler<ScrollEvent>? CommandScrollPageDown {
-		add => AddHandler(EventType.ScrollPageDown, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ScrollPageDown, StandardId.Any, StandardId.Any, value);
-	}
-
-	/// <summary>Process wxEVT_SCROLL_PAGEUP page up or left events.</summary>
-	public event EventHandler<ScrollEvent>? CommandScrollPageUp {
-		add => AddHandler(EventType.ScrollPageUp, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ScrollPageUp, StandardId.Any, StandardId.Any, value);
-	}
-
-	/// <summary>Process wxEVT_SCROLL_THUMBRELEASE thumb release events.</summary>
-	public event EventHandler<ScrollEvent>? CommandScrollThumbRelease {
-		add => AddHandler(EventType.ScrollThumbRelease, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ScrollThumbRelease, StandardId.Any, StandardId.Any, value);
-	}
-
-	/// <summary>Process wxEVT_SCROLL_THUMBTRACK thumbtrack events (frequent events sent as the user drags the thumbtrack).</summary>
-	public event EventHandler<ScrollEvent>? CommandScrollThumbTrack {
-		add => AddHandler(EventType.ScrollThumbTrack, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ScrollThumbTrack, StandardId.Any, StandardId.Any, value);
-	}
-
-	/// <summary>Process wxEVT_SCROLL_TOP scroll to top or leftmost (minimum) position events.</summary>
-	public event EventHandler<ScrollEvent>? CommandScrollTop {
-		add => AddHandler(EventType.ScrollTop, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ScrollTop, StandardId.Any, StandardId.Any, value);
-	}
-
-	/// <summary>Process wxEVT_SCROLL_BOTTOM scroll to bottom or rightmost (maximum) position events.</summary>
 	public event EventHandler<ScrollEvent>? ScrollBottom {
 		add => AddHandler(EventType.ScrollBottom, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ScrollBottom, StandardId.Any, StandardId.Any, value);

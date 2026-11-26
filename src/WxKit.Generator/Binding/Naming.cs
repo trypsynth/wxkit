@@ -534,9 +534,7 @@ internal static class Naming {
 		{ "EVT_DATAVIEW_ITEM_VALUE_CHANGED", "ItemValueChanged" },
 		{ "EVT_DATAVIEW_SELECTION_CHANGED", "SelectionChanged" },
 		{ "EVT_TOOL", "ToolClicked" },
-		{ "EVT_TOOL_RANGE", "ToolClickedRange" },
 		{ "EVT_TOOL_RCLICKED", "ToolRightClicked" },
-		{ "EVT_TOOL_RCLICKED_RANGE", "ToolRightClickedRange" },
 		{ "EVT_TOOL_DROPDOWN", "ToolDropDown" },
 		{ "EVT_TOOL_ENTER", "ToolHovered" },
 		{ "EVT_INIT_DIALOG", "Initializing" },
@@ -586,7 +584,7 @@ internal static class Naming {
 		{ "EVT_SPLITTER_SASH_POS_CHANGED", "SashPositionChanged" },
 		{ "EVT_SPLITTER_SASH_POS_CHANGING", "SashPositionChanging" },
 		{ "EVT_SPLITTER_SASH_POS_RESIZE", "SashPositionResizing" },
-		{ "EVT_SPLITTER_UNSPLIT", "Unsplit" },
+		{ "EVT_SPLITTER_UNSPLIT", "WindowRemoved" },
 		{ "EVT_TOGGLEBUTTON", "Toggled" },
 	};
 

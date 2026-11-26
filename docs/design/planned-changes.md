@@ -19,9 +19,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 ## Events
 
 - An event's setters go, since an application only receives events, except those a handler is meant to use, such as `SplitterEvent.SashPosition` and the data view's drag members. There are about 55, on `Event`, `CommandEvent`, `KeyEvent`, `MouseEvent`, the list, scroll, and size events, and `StyledTextEvent`.
-- Duplicate events go: those bound from wxWidgets' `_RANGE` macros, such as `ToolBar.ToolClickedRange`, the 18 `CommandScroll` events of `ScrollBar` and `Slider`, and `BitmapComboBox.Text`.
-- Events get the class they're sent with: `Window.ContextMenu`'s is `ContextMenuEvent`, `GenericDirCtrl`'s are `TreeEvent`s, and `Window.SetCursor`'s, renamed `CursorRequested`, is a `SetCursorEvent`.
-- `SplitterWindow.UnsplitEvent` becomes `WindowRemoved`, and `NotificationMessage.Clicked` becomes `Click`.
 
 ## Members that go
 

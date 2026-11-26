@@ -695,6 +695,12 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 			if (!macros.Contains(named)) throw new InvalidOperationException($"A tweak names the event {named} of {bound.CppName}, which its event table does not list.");
 		}
 		foreach (DoxygenEvent found in events.Where(found => !tweak.IgnoredEvents.Contains(found.Macro))) {
+			// A macro for a range of ids, or a scroll event's macro that takes an id, binds the event
+			// type another macro already does, so it would be the same event under a second name.
+			if (found.Macro.EndsWith("_RANGE", StringComparison.Ordinal) || found.Macro.StartsWith("EVT_COMMAND_SCROLL", StringComparison.Ordinal)) {
+				_skipped.Add($"{bound.CppName} event {found.Macro}: another macro binds the same event type");
+				continue;
+			}
 			// With a list of members to bind, events are bound only when a tweak names them too.
 			if (!tweak.EventNames.TryGetValue(found.Macro, out string? name)) {
 				if (tweak.OnlyMembers is not null) continue;

@@ -545,17 +545,17 @@ public static unsafe partial class EventType {
 	}
 
 	/// <summary>Wraps wxEVT_DIRCTRL_FILEACTIVATED.</summary>
-	public static EventType<Event> GenericDirCtrlFileActivated => GenericDirCtrlFileActivatedType.Value;
+	public static EventType<TreeEvent> GenericDirCtrlFileActivated => GenericDirCtrlFileActivatedType.Value;
 
 	private static class GenericDirCtrlFileActivatedType {
-		public static readonly EventType<Event> Value = new(WxKitNative.EventTypeGenericDirCtrlFileActivated, static native => new Event((WxkEvent*)native));
+		public static readonly EventType<TreeEvent> Value = new(WxKitNative.EventTypeGenericDirCtrlFileActivated, static native => new TreeEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_DIRCTRL_SELECTIONCHANGED.</summary>
-	public static EventType<Event> GenericDirCtrlSelectionChanged => GenericDirCtrlSelectionChangedType.Value;
+	public static EventType<TreeEvent> GenericDirCtrlSelectionChanged => GenericDirCtrlSelectionChangedType.Value;
 
 	private static class GenericDirCtrlSelectionChangedType {
-		public static readonly EventType<Event> Value = new(WxKitNative.EventTypeGenericDirCtrlSelectionChanged, static native => new Event((WxkEvent*)native));
+		public static readonly EventType<TreeEvent> Value = new(WxKitNative.EventTypeGenericDirCtrlSelectionChanged, static native => new TreeEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_SET_FOCUS.</summary>

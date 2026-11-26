@@ -68,13 +68,13 @@ public unsafe partial class GenericDirCtrl : Control {
 	public TreeCtrl? TreeCtrl => ObjectRegistry.Wrap<TreeCtrl>(WxKitNative.GenericDirCtrlGetTreeCtrl(Native));
 
 	/// <summary>The user activated a file by double-clicking or pressing Enter. Available since wxWidgets 2.9.5.</summary>
-	public event EventHandler<Event>? FileActivated {
+	public event EventHandler<TreeEvent>? FileActivated {
 		add => AddHandler(EventType.GenericDirCtrlFileActivated, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.GenericDirCtrlFileActivated, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Selected directory has changed. Processes a wxEVT_DIRCTRL_SELECTIONCHANGED event type. Notice that this event is generated even for the changes done by the program itself and not only those done by the user. Available since wxWidgets 2.9.5.</summary>
-	public event EventHandler<Event>? SelectionChanged {
+	public event EventHandler<TreeEvent>? SelectionChanged {
 		add => AddHandler(EventType.GenericDirCtrlSelectionChanged, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.GenericDirCtrlSelectionChanged, StandardId.Any, StandardId.Any, value);
 	}

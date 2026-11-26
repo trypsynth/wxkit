@@ -35,6 +35,8 @@ internal static class Controls {
 		tweaks.Class("wxToggleButton").Property("IsChecked", "GetValue", "SetValue");
 		// IsEmpty is ambiguous on purpose, between the list and the text. IsListEmpty and IsTextEmpty say which.
 		tweaks.Class("wxComboBox").Event("EVT_TEXT", "TextChanged").Ignore("IsEmpty");
+		// A combo box with bitmaps has its text event from the combo box it is.
+		tweaks.Class("wxBitmapComboBox").IgnoreEvent("EVT_TEXT");
 		tweaks.Class("wxSlider").Rename("GetSelStart", "SelectionStart").Rename("GetSelEnd", "SelectionEnd").Rename("ClearSel", "ClearSelection");
 		tweaks.Class("wxSplitterWindow").ParameterEnum("SetSplitMode", "mode", "SplitMode");
 		tweaks.ConstantEnumOf("StatusBarFieldStyle", isFlags: false, "wxSB_NORMAL", "wxSB_FLAT", "wxSB_RAISED", "wxSB_SUNKEN");

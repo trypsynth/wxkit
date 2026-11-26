@@ -87,6 +87,10 @@ internal static class Events {
 		// A window asks for its cursor with a wxSetCursorEvent, whose handler gives one.
 		tweaks.Class("wxSetCursorEvent");
 		tweaks.EventType("wxEVT_SET_CURSOR", "wxSetCursorEvent");
+		tweaks.Class("wxWindow").Event("EVT_SET_CURSOR", "CursorRequested");
+		// The directory control sends its events as the tree's, whose item is the one chosen.
+		tweaks.EventType("wxEVT_DIRCTRL_SELECTIONCHANGED", "wxTreeEvent");
+		tweaks.EventType("wxEVT_DIRCTRL_FILEACTIVATED", "wxTreeEvent");
 		// The headers give the color dialog's event the color picker's class, which it is not.
 		tweaks.EventType("wxEVT_COLOUR_CHANGED", "wxColourDialogEvent");
 	}

@@ -86,7 +86,7 @@ public unsafe partial class SplitterWindow : Window {
 	}
 
 	/// <summary>The splitter has been just unsplit. Processes a wxEVT_SPLITTER_UNSPLIT event.</summary>
-	public event EventHandler<SplitterEvent>? UnsplitEvent {
+	public event EventHandler<SplitterEvent>? WindowRemoved {
 		add => AddHandler(EventType.SplitterUnsplit, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.SplitterUnsplit, StandardId.Any, StandardId.Any, value);
 	}

@@ -24,7 +24,7 @@ public unsafe partial class NotificationMessage : EvtHandler {
 	}
 
 	/// <summary>Process a wxEVT_NOTIFICATION_MESSAGE_CLICK event, when a notification is clicked.</summary>
-	public event EventHandler<CommandEvent>? Clicked {
+	public event EventHandler<CommandEvent>? Click {
 		add => AddHandler(EventType.NotificationMessageClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.NotificationMessageClick, StandardId.Any, StandardId.Any, value);
 	}

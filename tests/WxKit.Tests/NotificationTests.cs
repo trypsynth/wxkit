@@ -9,7 +9,7 @@ public class NotificationTests {
 		notification.SetTitle("Backed up");
 		notification.SetMessage("Your tasks are backed up.");
 		notification.SetFlags(MessageIcon.Error);
-		notification.Clicked += (_, _) => { };
+		notification.Click += (_, _) => { };
 		Assert.False(notification.IsDestroyed);
 		notification.Dispose();
 		Assert.True(notification.IsDestroyed);

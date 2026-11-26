@@ -359,6 +359,12 @@ public unsafe partial class Window : EvtHandler {
 		remove => RemoveHandler(EventType.ContextMenu, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_SET_CURSOR event. See wxSetCursorEvent.</summary>
+	public event EventHandler<SetCursorEvent>? CursorRequested {
+		add => AddHandler(EventType.CursorRequested, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.CursorRequested, StandardId.Any, StandardId.Any, value);
+	}
+
 	/// <summary>Process a wxEVT_DROP_FILES event. See wxDropFilesEvent.</summary>
 	public event EventHandler<DropFilesEvent>? DropFiles {
 		add => AddHandler(EventType.DropFiles, StandardId.Any, StandardId.Any, value, this);
@@ -375,12 +381,6 @@ public unsafe partial class Window : EvtHandler {
 	public event EventHandler<FocusEvent>? GotFocus {
 		add => AddHandler(EventType.GotFocus, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.GotFocus, StandardId.Any, StandardId.Any, value);
-	}
-
-	/// <summary>Process a wxEVT_HELP event for a range of ids. See wxHelpEvent.</summary>
-	public event EventHandler<HelpEvent>? HelpRange {
-		add => AddHandler(EventType.Help, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.Help, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_HELP event. See wxHelpEvent.</summary>
@@ -489,12 +489,6 @@ public unsafe partial class Window : EvtHandler {
 	public event EventHandler<MouseEvent>? RightUp {
 		add => AddHandler(EventType.RightUp, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.RightUp, StandardId.Any, StandardId.Any, value);
-	}
-
-	/// <summary>Process a wxEVT_SET_CURSOR event. See wxSetCursorEvent.</summary>
-	public event EventHandler<SetCursorEvent>? SetCursor {
-		add => AddHandler(EventType.CursorRequested, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.CursorRequested, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_SIZE event. See wxSizeEvent.</summary>

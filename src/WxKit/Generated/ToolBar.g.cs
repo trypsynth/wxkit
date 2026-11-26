@@ -49,12 +49,6 @@ public unsafe partial class ToolBar : Control {
 		remove => RemoveHandler(EventType.Tool, StandardId.Any, StandardId.Any, value);
 	}
 
-	/// <summary>Process a wxEVT_TOOL event for a range of identifiers. Pass the ids of the tools.</summary>
-	public event EventHandler<CommandEvent>? ToolClickedRange {
-		add => AddHandler(EventType.Tool, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.Tool, StandardId.Any, StandardId.Any, value);
-	}
-
 	/// <summary>Process a wxEVT_TOOL_DROPDOWN event. If unhandled, displays the default dropdown menu set using wxToolBar::SetDropdownMenu().</summary>
 	public event EventHandler<CommandEvent>? ToolDropDown {
 		add => AddHandler(EventType.ToolDropDown, StandardId.Any, StandardId.Any, value, this);
@@ -69,12 +63,6 @@ public unsafe partial class ToolBar : Control {
 
 	/// <summary>Process a wxEVT_TOOL_RCLICKED event. Pass the id of the tool. (Not available on wxOSX.)</summary>
 	public event EventHandler<CommandEvent>? ToolRightClicked {
-		add => AddHandler(EventType.ToolRightClicked, StandardId.Any, StandardId.Any, value, this);
-		remove => RemoveHandler(EventType.ToolRightClicked, StandardId.Any, StandardId.Any, value);
-	}
-
-	/// <summary>Process a wxEVT_TOOL_RCLICKED event for a range of ids. Pass the ids of the tools. (Not available on wxOSX.)</summary>
-	public event EventHandler<CommandEvent>? ToolRightClickedRange {
 		add => AddHandler(EventType.ToolRightClicked, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ToolRightClicked, StandardId.Any, StandardId.Any, value);
 	}
