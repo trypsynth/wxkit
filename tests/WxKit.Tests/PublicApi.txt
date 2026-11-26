@@ -2713,6 +2713,8 @@ class WxKit.ListCtrl : Control
     Font? GetItemFont(int item)
     IReadOnlyList<int> ColumnsOrder { get; set; }
     ListCtrl(Window parent, int id = -1, Point? position = null, Size? size = null, ListCtrlStyle style = ListCtrlStyle.Icon)
+    ListItem? GetColumn(int column)
+    ListItem? GetItem(int item, int column = 0)
     ListItemState GetItemState(int item, ListItemState stateMask)
     Rect ViewRect { get; }
     Size ItemSpacing { get; }
@@ -2725,8 +2727,6 @@ class WxKit.ListCtrl : Control
     bool DeleteItem(int item)
     bool EndEditLabel(bool cancel)
     bool EnsureVisible(int item)
-    bool GetColumn(int column, ListItem item)
-    bool GetItem(ListItem info)
     bool GetUpdatedAscendingSortIndicator(int column)
     bool HasCheckBoxes { get; set; }
     bool InReportView()

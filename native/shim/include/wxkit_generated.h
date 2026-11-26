@@ -1410,6 +1410,8 @@ WXK_FUNCTION(wxk_String*) wxk_ListCtrl_base_OnGetItemText(wxk_Window* self, int3
 WXK_FUNCTION(int32_t) wxk_ListCtrl_base_OnGetItemImage(wxk_Window* self, int32_t item) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListCtrl_base_OnGetItemColumnImage(wxk_Window* self, int32_t item, int32_t column) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_base_OnGetItemIsChecked(wxk_Window* self, int32_t item) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetColumn(wxk_Window* self, int32_t column, wxk_Object* item) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetItem(wxk_Window* self, wxk_Object* info) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListCtrl_AppendColumn(wxk_Window* self, const char16_t* heading, size_t headingLength, int32_t format, int32_t width) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_Arrange(wxk_Window* self, int32_t flag) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ListCtrl_ClearAll(wxk_Window* self) WXK_NOEXCEPT;
@@ -1425,11 +1427,9 @@ WXK_FUNCTION(uint8_t) wxk_ListCtrl_EnsureVisible(wxk_Window* self, int32_t item)
 WXK_FUNCTION(int32_t) wxk_ListCtrl_FindItem_IntStringBool(wxk_Window* self, int32_t start, const char16_t* text, size_t textLength, uint8_t partial) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListCtrl_FindItem_IntLong(wxk_Window* self, int32_t start, int64_t data) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListCtrl_FindItem_IntPointListFindDirection(wxk_Window* self, int32_t start, wxk_Point point, int32_t direction) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetColumn(wxk_Window* self, int32_t column, wxk_Object* item) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListCtrl_GetColumnIndexFromOrder(wxk_Window* self, int32_t position) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListCtrl_GetColumnOrder(wxk_Window* self, int32_t column) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ListCtrl_GetColumnWidth(wxk_Window* self, int32_t column) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetItem(wxk_Window* self, wxk_Object* info) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Colour) wxk_ListCtrl_GetItemBackgroundColour(wxk_Window* self, int32_t item) WXK_NOEXCEPT;
 WXK_FUNCTION(int64_t) wxk_ListCtrl_GetItemData(wxk_Window* self, int32_t item) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_ListCtrl_GetItemFont(wxk_Window* self, int32_t item) WXK_NOEXCEPT;

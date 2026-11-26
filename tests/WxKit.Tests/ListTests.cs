@@ -16,6 +16,21 @@ public class ListTests {
 		list.Select(1);
 		Assert.True(list.IsSelected(1));
 		Assert.Equal(1, list.FirstSelected);
+		// The list gives an item, and a column, as an item it makes.
+		using (ListItem? size = list.GetItem(first, 1)) {
+			Assert.NotNull(size);
+			Assert.Equal("4 KB", size.Text);
+		}
+		using (ListItem? selected = list.GetItem(1)) {
+			Assert.NotNull(selected);
+			Assert.True(selected.State.HasFlag(ListItemState.Selected));
+		}
+		using (ListItem? heading = list.GetColumn(1)) {
+			Assert.NotNull(heading);
+			Assert.Equal("Size", heading.Text);
+		}
+		Assert.Null(list.GetItem(99));
+		Assert.Null(list.GetColumn(99));
 		// An item's data, such as a key into the application's own records, can be read back and found.
 		Assert.True(list.SetItemData(1, 42));
 		Assert.Equal(42, list.GetItemData(1));

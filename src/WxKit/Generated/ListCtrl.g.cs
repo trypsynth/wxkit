@@ -276,12 +276,6 @@ public unsafe partial class ListCtrl : Control {
 	/// <summary>Find an item nearest this position in the specified direction, starting from start or the beginning if start is -1.</summary>
 	public int FindItem(int start, Point point, ListFindDirection direction) => WxKitNative.ListCtrlFindItemIntPointListFindDirection(Native, start, point, (int)direction);
 
-	/// <summary>Gets information about this column.</summary>
-	public bool GetColumn(int column, ListItem item) {
-		ArgumentNullException.ThrowIfNull(item);
-		return WxKitNative.ListCtrlGetColumn(Native, column, item.Native) != 0;
-	}
-
 	/// <summary>Gets the column index from its position in visual order.</summary>
 	public int GetColumnIndexFromOrder(int position) => WxKitNative.ListCtrlGetColumnIndexFromOrder(Native, position);
 
@@ -290,12 +284,6 @@ public unsafe partial class ListCtrl : Control {
 
 	/// <summary>Gets the column width (report view only).</summary>
 	public int GetColumnWidth(int column) => WxKitNative.ListCtrlGetColumnWidth(Native, column);
-
-	/// <summary>Gets information about the item.</summary>
-	public bool GetItem(ListItem info) {
-		ArgumentNullException.ThrowIfNull(info);
-		return WxKitNative.ListCtrlGetItem(Native, info.Native) != 0;
-	}
 
 	/// <summary>Returns the colour for this item.</summary>
 	public Color? GetItemBackgroundColor(int item) => global::WxKit.Color.FromNative(WxKitNative.ListCtrlGetItemBackgroundColour(Native, item));

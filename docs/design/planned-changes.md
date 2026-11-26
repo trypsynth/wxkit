@@ -32,7 +32,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
   - The print dialog's `Enable` members, which have no getters bound.
 - A window's style is one property of the class's own style enum, rather than `WindowStyle`, `WindowStyleFlag`, `SetWindowStyle`, and `HasFlag` taking three types.
 - The item controls, `Choice`, `ComboBox`, `ListBox`, and `CheckListBox`, have one constructor each, with optional items and a style, and share an `IItemContainer` interface rather than repeating its members. Their item data has one name.
-- `ListCtrl.GetItem` and `GetColumn` return a `ListItem` rather than filling one the caller makes.
 - `Image`'s colors given as three bytes, as `SetRgb`, `Replace`, and `ConvertToMono` take them, are `Color`s.
 - `ListCtrl` items, `TreeItemId`, `TreeListItem`, and `DataViewItem` can't be made from a number outside WxKit, which could crash the control.
 

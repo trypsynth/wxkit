@@ -111,6 +111,14 @@ WXK_FUNCTION(uint8_t) wxk_ListCtrl_base_OnGetItemIsChecked(wxk_Window* self, int
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (ListCtrlAccess::OnGetItemIsChecked(static_cast<wxListCtrl*>(wxk::Unwrap(self)), static_cast<long>(item))) ? 1 : 0; });
 }
 
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetColumn(wxk_Window* self, int32_t column, wxk_Object* item) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetColumn(static_cast<int>(column), wxk::ValueRef<wxListItem>(item))) ? 1 : 0; });
+}
+
+WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetItem(wxk_Window* self, wxk_Object* info) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetItem(wxk::ValueRef<wxListItem>(info))) ? 1 : 0; });
+}
+
 WXK_FUNCTION(int32_t) wxk_ListCtrl_AppendColumn(wxk_Window* self, const char16_t* heading, size_t headingLength, int32_t format, int32_t width) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->AppendColumn(wxk::FromUtf16(heading, headingLength), static_cast<wxListColumnFormat>(format), static_cast<int>(width))); });
 }
@@ -171,10 +179,6 @@ WXK_FUNCTION(int32_t) wxk_ListCtrl_FindItem_IntPointListFindDirection(wxk_Window
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->FindItem(static_cast<long>(start), wxk::FromPoint(point), static_cast<int>(direction))); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetColumn(wxk_Window* self, int32_t column, wxk_Object* item) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetColumn(static_cast<int>(column), wxk::ValueRef<wxListItem>(item))) ? 1 : 0; });
-}
-
 WXK_FUNCTION(int32_t) wxk_ListCtrl_GetColumnIndexFromOrder(wxk_Window* self, int32_t position) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetColumnIndexFromOrder(static_cast<int>(position))); });
 }
@@ -185,10 +189,6 @@ WXK_FUNCTION(int32_t) wxk_ListCtrl_GetColumnOrder(wxk_Window* self, int32_t colu
 
 WXK_FUNCTION(int32_t) wxk_ListCtrl_GetColumnWidth(wxk_Window* self, int32_t column) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetColumnWidth(static_cast<int>(column))); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_GetItem(wxk_Window* self, wxk_Object* info) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->GetItem(wxk::ValueRef<wxListItem>(info))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(wxk_Colour) wxk_ListCtrl_GetItemBackgroundColour(wxk_Window* self, int32_t item) noexcept {

@@ -4510,6 +4510,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ListCtrlBaseOnGetItemIsChecked(WxkWindow* self, int item);
 
+	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_GetColumn")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ListCtrlGetColumn(WxkWindow* self, int column, WxkObject* item);
+
+	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_GetItem")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ListCtrlGetItem(WxkWindow* self, WxkObject* info);
+
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_AppendColumn")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int ListCtrlAppendColumn(WxkWindow* self, char* heading, nuint headingLength, int format, int width);
@@ -4570,10 +4578,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int ListCtrlFindItemIntPointListFindDirection(WxkWindow* self, int start, Point point, int direction);
 
-	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_GetColumn")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ListCtrlGetColumn(WxkWindow* self, int column, WxkObject* item);
-
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_GetColumnIndexFromOrder")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int ListCtrlGetColumnIndexFromOrder(WxkWindow* self, int position);
@@ -4585,10 +4589,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_GetColumnWidth")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int ListCtrlGetColumnWidth(WxkWindow* self, int column);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_GetItem")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ListCtrlGetItem(WxkWindow* self, WxkObject* info);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListCtrl_GetItemBackgroundColour")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
