@@ -2917,8 +2917,8 @@ WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetLineLength(wxk_Window* self, int32_t
 WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetLineText(wxk_Window* self, int32_t lineNumber) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_MarkDirty(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_DiscardEdits(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_XYToPosition(wxk_Window* self, int32_t x, int32_t y) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_PositionToXY(wxk_Window* self, int32_t position, int64_t* x, int64_t* y) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_XYToPosition(wxk_Window* self, int32_t column, int32_t line) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_PositionToXY(wxk_Window* self, int32_t position, int64_t* column, int64_t* line) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_ShowPosition(wxk_Window* self, int32_t position) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_HitTest(wxk_Window* self, wxk_Point point, int64_t* position) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_SetMirrorCtrl(wxk_Window* self, wxk_Window* mirrorCtrl) WXK_NOEXCEPT;
@@ -3258,11 +3258,11 @@ WXK_FUNCTION(wxk_String*) wxk_TextCtrl_GetLineText(wxk_Window* self, int32_t lin
 WXK_FUNCTION(int32_t) wxk_TextCtrl_HitTest(wxk_Window* self, wxk_Point point, int64_t* position) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_TextCtrl_LoadFile(wxk_Window* self, const char16_t* fileName, size_t fileNameLength, int32_t fileType) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_TextCtrl_MarkDirty(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_TextCtrl_PositionToXY(wxk_Window* self, int32_t position, int64_t* x, int64_t* y) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_TextCtrl_PositionToXY(wxk_Window* self, int32_t position, int64_t* column, int64_t* line) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Point) wxk_TextCtrl_PositionToCoords(wxk_Window* self, int32_t position) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_TextCtrl_SaveFile(wxk_Window* self, const char16_t* fileName, size_t fileNameLength, int32_t fileType) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_TextCtrl_ShowPosition(wxk_Window* self, int32_t position) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_TextCtrl_XYToPosition(wxk_Window* self, int32_t x, int32_t y) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_TextCtrl_XYToPosition(wxk_Window* self, int32_t column, int32_t line) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_TextCtrl_SetMargins_IntInt(wxk_Window* self, int32_t left, int32_t top) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_TextCtrl_AppendText(wxk_Window* self, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_TextCtrl_AutoComplete(wxk_Window* self, const wxk_StringArray* choices) WXK_NOEXCEPT;

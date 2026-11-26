@@ -320,6 +320,14 @@ internal sealed class ClassTweak(string name) {
 		return this;
 	}
 
+	/// <summary>Members that change their object and return it, which are bound without the return, so they aren't taken for ones that return a copy.</summary>
+	public HashSet<string> DiscardedReturns { get; } = new(StringComparer.Ordinal);
+
+	public ClassTweak DiscardReturn(params string[] members) {
+		DiscardedReturns.UnionWith(members);
+		return this;
+	}
+
 	/// <summary>Whether only the shim and its imports are written, for hand-written code to call, rather than a managed class too.</summary>
 	public bool IsInteropOnly { get; private set; }
 

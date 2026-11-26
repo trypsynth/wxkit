@@ -141,7 +141,7 @@ internal sealed class EditorFrame : Frame {
 	}
 
 	private void UpdateStatus() {
-		_text.PositionToXY(_text.InsertionPoint, out int column, out int line);
+		_text.TryGetColumnAndLine(_text.InsertionPoint, out int column, out int line);
 		string status = $"Line {line + 1}, column {column + 1}";
 		if (status != _status) {
 			_status = status;
@@ -327,7 +327,7 @@ internal sealed class EditorFrame : Frame {
 	private static bool IsWordCharacter(char character) => char.IsLetterOrDigit(character) || character == '_';
 
 	private void GoToLine() {
-		_text.PositionToXY(_text.InsertionPoint, out _, out int current);
+		_text.TryGetColumnAndLine(_text.InsertionPoint, out _, out int current);
 		int lines = _text.NumberOfLines;
 		using TextEntryDialog dialog = new(this, $"Line number, from 1 to {lines}:", "Go To Line", (current + 1).ToString(CultureInfo.CurrentCulture));
 		if (dialog.ShowModal() != StandardId.Ok) return;
@@ -335,7 +335,7 @@ internal sealed class EditorFrame : Frame {
 			MessageBox.Show($"The line number has to be from 1 to {lines}.", "Go To Line", MessageDialogStyle.Ok | MessageDialogStyle.IconWarning, this);
 			return;
 		}
-		int position = _text.XYToPosition(0, line - 1);
+		int position = _text.PositionFromColumnAndLine(0, line - 1);
 		_text.InsertionPoint = position;
 		_text.ShowPosition(position);
 	}

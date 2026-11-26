@@ -251,22 +251,13 @@ public unsafe partial class Image : NativeObject {
 	public void Replace(byte r1, byte g1, byte b1, byte r2, byte g2, byte b2) => WxKitNative.ImageReplace(Native, r1, g1, b1, r2, g2, b2);
 
 	/// <summary>Changes the size of the image in-place by scaling it: after a call to this function,the image will have the given width and height.</summary>
-	public Image Rescale(int width, int height, ImageResizeQuality quality = ImageResizeQuality.Normal) {
-		WxKitNative.ImageRescaleIntIntImageResizeQuality(Native, width, height, (int)quality);
-		return this;
-	}
+	public void Rescale(int width, int height, ImageResizeQuality quality = ImageResizeQuality.Normal) => WxKitNative.ImageRescaleIntIntImageResizeQuality(Native, width, height, (int)quality);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Image Rescale(Size size, ImageResizeQuality quality = ImageResizeQuality.Normal) {
-		WxKitNative.ImageRescaleSizeImageResizeQuality(Native, size, (int)quality);
-		return this;
-	}
+	public void Rescale(Size size, ImageResizeQuality quality = ImageResizeQuality.Normal) => WxKitNative.ImageRescaleSizeImageResizeQuality(Native, size, (int)quality);
 
 	/// <summary>Changes the size of the image in-place without scaling it by adding either a border with the given colour or cropping as necessary.</summary>
-	public Image Resize(Size size, Point position, int red = -1, int green = -1, int blue = -1) {
-		WxKitNative.ImageResize(Native, size, position, red, green, blue);
-		return this;
-	}
+	public void Resize(Size size, Point position, int red = -1, int green = -1, int blue = -1) => WxKitNative.ImageResize(Native, size, position, red, green, blue);
 
 	/// <summary>Returns a resized version of this image without scaling it by adding either a border with the given colour or cropping as necessary.</summary>
 	public Image? Resized(Size size, Point position, int red = -1, int green = -1, int blue = -1) => global::WxKit.Image.Take(WxKitNative.ImageSize(Native, size, position, red, green, blue));

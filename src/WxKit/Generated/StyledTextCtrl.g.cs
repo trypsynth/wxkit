@@ -2074,6 +2074,9 @@ public unsafe partial class StyledTextCtrl : Control {
 	/// <summary>Given a valid document position, return the previous position taking code page into account.</summary>
 	public int PositionBefore(int position) => WxKitNative.StyledTextCtrlPositionBefore(Native, position);
 
+	/// <summary>Converts the given zero based column and line number to a position.</summary>
+	public int PositionFromColumnAndLine(int column, int line) => WxKitNative.StyledTextCtrlXYToPosition(Native, column, line);
+
 	/// <summary>Retrieve the position at the start of a line.</summary>
 	public int PositionFromLine(int line) => WxKitNative.StyledTextCtrlPositionFromLine(Native, line);
 
@@ -2088,16 +2091,6 @@ public unsafe partial class StyledTextCtrl : Control {
 
 	/// <summary>Given a valid document position, return a position that differs in a number of UTF-16 code units.</summary>
 	public int PositionRelativeCodeUnits(int position, int relative) => WxKitNative.StyledTextCtrlPositionRelativeCodeUnits(Native, position, relative);
-
-	/// <summary>Converts given position to a zero-based column, line number pair.</summary>
-	public bool PositionToXY(int position, out int x, out int y) {
-		long xWide = 0;
-		long yWide = 0;
-		var returned = WxKitNative.StyledTextCtrlPositionToXY(Native, position, &xWide, &yWide);
-		x = checked((int)xWide);
-		y = checked((int)yWide);
-		return returned != 0;
-	}
 
 	/// <summary>Retrieve a '\n' separated list of properties understood by the current lexer.</summary>
 	public string PropertyNames() => NativeString.Take(WxKitNative.StyledTextCtrlPropertyNames(Native));
@@ -2598,6 +2591,16 @@ public unsafe partial class StyledTextCtrl : Control {
 		}
 	}
 
+	/// <summary>Converts given position to a zero-based column, line number pair.</summary>
+	public bool TryGetColumnAndLine(int position, out int column, out int line) {
+		long columnWide = 0;
+		long lineWide = 0;
+		var returned = WxKitNative.StyledTextCtrlPositionToXY(Native, position, &columnWide, &lineWide);
+		column = checked((int)columnWide);
+		line = checked((int)lineWide);
+		return returned != 0;
+	}
+
 	/// <summary>Undo one action in the undo history.</summary>
 	public void Undo() => WxKitNative.StyledTextCtrlUndo(Native);
 
@@ -2694,9 +2697,6 @@ public unsafe partial class StyledTextCtrl : Control {
 			WxKitNative.StyledTextCtrlWriteText(Native, textText, NativeString.Length(text));
 		}
 	}
-
-	/// <summary>Converts the given zero based column and line number to a position.</summary>
-	public int XYToPosition(int x, int y) => WxKitNative.StyledTextCtrlXYToPosition(Native, x, y);
 
 	/// <summary>Magnify the displayed text by increasing the sizes by 1 point.</summary>
 	public void ZoomIn() => WxKitNative.StyledTextCtrlZoomIn(Native);

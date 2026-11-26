@@ -39,6 +39,13 @@ internal static class Internals {
 		tweaks.Class("wxFont").Ignore("MakeBold", "MakeItalic", "MakeLarger", "MakeSmaller", "MakeStrikethrough", "MakeUnderlined", "Scale")
 			.Rename("Bold", "WithBold").Rename("Italic", "WithItalic").Rename("Underlined", "WithUnderline").Rename("Strikethrough", "WithStrikethrough")
 			.Rename("Larger", "WithLargerSize").Rename("Smaller", "WithSmallerSize").Rename("Scaled", "WithScaledSize");
+		// An image's Rescale and Resize change it, where Scale and Resized return a copy.
+		tweaks.Class("wxImage").DiscardReturn("Rescale", "Resize");
+		// A position's column and line, named for what they are and in the order given.
+		foreach (string text in (string[])["wxTextCtrl", "wxStyledTextCtrl"]) {
+			tweaks.Class(text).Rename("PositionToXY", "TryGetColumnAndLine").ParameterName("PositionToXY", "x", "column").ParameterName("PositionToXY", "y", "line")
+				.Rename("XYToPosition", "PositionFromColumnAndLine").ParameterName("XYToPosition", "x", "column").ParameterName("XYToPosition", "y", "line");
+		}
 		// What kind of mouse event one is, and which buttons are held, are properties. IsLeftDown
 		// says the event is the left button going down, and IsLeftButtonPressed that it is held.
 		tweaks.Class("wxMouseEvent", e => {

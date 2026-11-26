@@ -292,6 +292,7 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		if (!isConstructor) {
 			Conversion? mapped = Map(CppType.Parse(member.Type), owner, member.Name, null, isReturn: true);
 			if (mapped is null && owner.Tweak.DiscardsUnboundReturns && CppType.Parse(member.Type).Pointers == 1) mapped = VoidConversion.Instance;
+			if (owner.Tweak.DiscardedReturns.Contains(member.Name)) mapped = VoidConversion.Instance;
 			if (mapped is null) {
 				Skip(owner, member, $"WxKit cannot convert its return type, {member.Type}");
 				return null;

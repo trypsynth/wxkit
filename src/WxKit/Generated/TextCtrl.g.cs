@@ -231,18 +231,11 @@ public unsafe partial class TextCtrl : Control {
 	/// <summary>Pastes text from the clipboard to the text item.</summary>
 	public void Paste() => WxKitNative.TextCtrlPaste(Native);
 
+	/// <summary>Converts the given zero based column and line number to a position.</summary>
+	public int PositionFromColumnAndLine(int column, int line) => WxKitNative.TextCtrlXYToPosition(Native, column, line);
+
 	/// <summary>Converts given text position to client coordinates in pixels.</summary>
 	public Point PositionToCoords(int position) => WxKitNative.TextCtrlPositionToCoords(Native, position);
-
-	/// <summary>Converts given position to a zero-based column, line number pair.</summary>
-	public bool PositionToXY(int position, out int x, out int y) {
-		long xWide = 0;
-		long yWide = 0;
-		var returned = WxKitNative.TextCtrlPositionToXY(Native, position, &xWide, &yWide);
-		x = checked((int)xWide);
-		y = checked((int)yWide);
-		return returned != 0;
-	}
 
 	/// <summary>If there is a redo facility and the last operation can be redone, redoes the last operation.</summary>
 	public void Redo() => WxKitNative.TextCtrlRedo(Native);
@@ -287,6 +280,16 @@ public unsafe partial class TextCtrl : Control {
 	/// <summary>Makes the line containing the given position visible.</summary>
 	public void ShowPosition(int position) => WxKitNative.TextCtrlShowPosition(Native, position);
 
+	/// <summary>Converts given position to a zero-based column, line number pair.</summary>
+	public bool TryGetColumnAndLine(int position, out int column, out int line) {
+		long columnWide = 0;
+		long lineWide = 0;
+		var returned = WxKitNative.TextCtrlPositionToXY(Native, position, &columnWide, &lineWide);
+		column = checked((int)columnWide);
+		line = checked((int)lineWide);
+		return returned != 0;
+	}
+
 	/// <summary>If there is an undo facility and the last operation can be undone, undoes the last operation.</summary>
 	public void Undo() => WxKitNative.TextCtrlUndo(Native);
 
@@ -297,9 +300,6 @@ public unsafe partial class TextCtrl : Control {
 			WxKitNative.TextCtrlWriteText(Native, textText, NativeString.Length(text));
 		}
 	}
-
-	/// <summary>Converts the given zero based column and line number to a position.</summary>
-	public int XYToPosition(int x, int y) => WxKitNative.TextCtrlXYToPosition(Native, x, y);
 
 	private static WxkWindow* CreateNative(Window parent, string value, int id, Point? position, Size? size, TextCtrlStyle style) {
 		Application.VerifyAccess();

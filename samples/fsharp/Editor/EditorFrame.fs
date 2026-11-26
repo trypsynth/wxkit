@@ -69,7 +69,7 @@ type EditorFrame() as this =
             this.Title <- title
 
     let updateStatus () =
-        let _, column, line = text.PositionToXY text.InsertionPoint
+        let _, column, line = text.TryGetColumnAndLine text.InsertionPoint
         let shown = $"Line {line + 1}, column {column + 1}"
         if shown <> status then
             status <- shown
@@ -230,7 +230,7 @@ type EditorFrame() as this =
             text.Remove(from, last)
 
     let goToLine () =
-        let _, _, current = text.PositionToXY text.InsertionPoint
+        let _, _, current = text.TryGetColumnAndLine text.InsertionPoint
         let lines = text.NumberOfLines
         let answer =
             use dialog = new TextEntryDialog(this, $"Line number, from 1 to {lines}:", "Go To Line", string (current + 1))
@@ -242,7 +242,7 @@ type EditorFrame() as this =
         match answer with
         | None -> ()
         | Some(Line line) ->
-            let position = text.XYToPosition(0, line - 1)
+            let position = text.PositionFromColumnAndLine(0, line - 1)
             text.InsertionPoint <- position
             text.ShowPosition position
         | Some _ ->

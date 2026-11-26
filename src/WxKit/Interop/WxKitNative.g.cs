@@ -9712,11 +9712,11 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_XYToPosition")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlXYToPosition(WxkWindow* self, int x, int y);
+	public static partial int StyledTextCtrlXYToPosition(WxkWindow* self, int column, int line);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_PositionToXY")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte StyledTextCtrlPositionToXY(WxkWindow* self, int position, long* x, long* y);
+	public static partial byte StyledTextCtrlPositionToXY(WxkWindow* self, int position, long* column, long* line);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ShowPosition")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -11028,7 +11028,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_TextCtrl_PositionToXY")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte TextCtrlPositionToXY(WxkWindow* self, int position, long* x, long* y);
+	public static partial byte TextCtrlPositionToXY(WxkWindow* self, int position, long* column, long* line);
 
 	[LibraryImport(Library, EntryPoint = "wxk_TextCtrl_PositionToCoords")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -11044,7 +11044,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_TextCtrl_XYToPosition")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int TextCtrlXYToPosition(WxkWindow* self, int x, int y);
+	public static partial int TextCtrlXYToPosition(WxkWindow* self, int column, int line);
 
 	[LibraryImport(Library, EntryPoint = "wxk_TextCtrl_SetMargins_IntInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

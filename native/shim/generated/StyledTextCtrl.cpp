@@ -1880,12 +1880,12 @@ WXK_FUNCTION(void) wxk_StyledTextCtrl_DiscardEdits(wxk_Window* self) noexcept {
 	wxk::Guard([&] { static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->DiscardEdits(); });
 }
 
-WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_XYToPosition(wxk_Window* self, int32_t x, int32_t y) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->XYToPosition(static_cast<long>(x), static_cast<long>(y))); });
+WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_XYToPosition(wxk_Window* self, int32_t column, int32_t line) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->XYToPosition(static_cast<long>(column), static_cast<long>(line))); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_PositionToXY(wxk_Window* self, int32_t position, int64_t* x, int64_t* y) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->PositionToXY(static_cast<long>(position), wxk::OutLong{x}, wxk::OutLong{y})) ? 1 : 0; });
+WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_PositionToXY(wxk_Window* self, int32_t position, int64_t* column, int64_t* line) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->PositionToXY(static_cast<long>(position), wxk::OutLong{column}, wxk::OutLong{line})) ? 1 : 0; });
 }
 
 WXK_FUNCTION(void) wxk_StyledTextCtrl_ShowPosition(wxk_Window* self, int32_t position) noexcept {

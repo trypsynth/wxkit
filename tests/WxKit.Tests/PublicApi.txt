@@ -2327,9 +2327,6 @@ enum WxKit.IdleMode : int
     Specified = 1
 class WxKit.Image : NativeObject
     BitmapType Type { get; set; }
-    Image Rescale(Size size, ImageResizeQuality quality = ImageResizeQuality.Normal)
-    Image Rescale(int width, int height, ImageResizeQuality quality = ImageResizeQuality.Normal)
-    Image Resize(Size size, Point position, int red = -1, int green = -1, int blue = -1)
     Image()
     Image(Size size, bool clear = true)
     Image(int width, int height, bool clear = true)
@@ -2408,6 +2405,9 @@ class WxKit.Image : NativeObject
     void InitAlpha()
     void Paste(Image image, int x, int y, ImageAlphaBlendMode alphaBlend = ImageAlphaBlendMode.Over)
     void Replace(byte r1, byte g1, byte b1, byte r2, byte g2, byte b2)
+    void Rescale(Size size, ImageResizeQuality quality = ImageResizeQuality.Normal)
+    void Rescale(int width, int height, ImageResizeQuality quality = ImageResizeQuality.Normal)
+    void Resize(Size size, Point position, int red = -1, int green = -1, int blue = -1)
     void RotateHue(double angle)
     void SetAlpha(int x, int y, byte alpha)
     void SetMask(bool hasMask = true)
@@ -7165,7 +7165,6 @@ class WxKit.StyledTextCtrl : Control
     bool MultipleSelection { get; set; }
     bool Overtype { get; set; }
     bool PasteConvertEndings { get; set; }
-    bool PositionToXY(int position, out int x, out int y)
     bool SaveFile(string fileName)
     bool ScrollWidthTracking { get; set; }
     bool SelEolFilled { get; set; }
@@ -7180,6 +7179,7 @@ class WxKit.StyledTextCtrl : Control
     bool StyleGetUnderline(int style)
     bool StyleGetVisible(int style)
     bool TabIndents { get; set; }
+    bool TryGetColumnAndLine(int position, out int column, out int line)
     bool UndoCollection { get; set; }
     bool UseAntiAliasing { get; set; }
     bool UseHorizontalScrollBar { get; set; }
@@ -7363,6 +7363,7 @@ class WxKit.StyledTextCtrl : Control
     int PositionAfter(int position)
     int PositionBefore(int position)
     int PositionCacheSize { get; set; }
+    int PositionFromColumnAndLine(int column, int line)
     int PositionFromLine(int line)
     int PositionFromPoint(Point point)
     int PositionFromPointClose(int x, int y)
@@ -7420,7 +7421,6 @@ class WxKit.StyledTextCtrl : Control
     int WrapVisualFlags { get; set; }
     int WrapVisualFlagsLocation { get; set; }
     int XOffset { get; set; }
-    int XYToPosition(int x, int y)
     int Zoom { get; set; }
     string AnnotationGetStyles(int line)
     string AnnotationGetText(int line)
@@ -7964,9 +7964,9 @@ class WxKit.TextCtrl : Control
     bool IsRtfSupported { get; }
     bool IsSingleLine { get; }
     bool LoadFile(string fileName, int fileType = 0)
-    bool PositionToXY(int position, out int x, out int y)
     bool SaveFile(string fileName = "", int fileType = 0)
     bool SetMargins(int left, int top = -1)
+    bool TryGetColumnAndLine(int position, out int column, out int line)
     event EventHandler<CommandEvent>? MaxLengthReached
     event EventHandler<CommandEvent>? TextChanged
     event EventHandler<CommandEvent>? TextEnter
@@ -7975,9 +7975,9 @@ class WxKit.TextCtrl : Control
     int InsertionPoint { get; set; }
     int LastPosition { get; }
     int NumberOfLines { get; }
+    int PositionFromColumnAndLine(int column, int line)
     int SelectionLength { get; set; }
     int SelectionStart { get; set; }
-    int XYToPosition(int x, int y)
     string GetLineText(int lineNumber)
     string GetRange(int from, int to)
     string Hint { get; set; }
