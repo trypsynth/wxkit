@@ -13,16 +13,10 @@ public unsafe partial class CommandEvent : Event {
 	public object? ClientObject => ItemData.Get(WxKitNative.CommandEventGetClientObject(Handle));
 
 	/// <summary>Returns extra information dependent on the event objects type.</summary>
-	public long ExtraLong {
-		get => WxKitNative.CommandEventGetExtraLong(Handle);
-		set => WxKitNative.CommandEventSetExtraLong(Handle, value);
-	}
+	public long ExtraLong => WxKitNative.CommandEventGetExtraLong(Handle);
 
 	/// <summary>Returns the integer identifier corresponding to a listbox, choice or radiobox selection (only if the event was a selection, not a deselection), or a boolean value representing the value of a checkbox.</summary>
-	public int Int {
-		get => WxKitNative.CommandEventGetInt(Handle);
-		set => WxKitNative.CommandEventSetInt(Handle, value);
-	}
+	public int Int => WxKitNative.CommandEventGetInt(Handle);
 
 	/// <summary>This method can be used with checkbox and menu events: for the checkboxes, the method returns true for a selection event and false for a deselection one.</summary>
 	public bool IsChecked => WxKitNative.CommandEventIsChecked(Handle) != 0;
@@ -34,13 +28,5 @@ public unsafe partial class CommandEvent : Event {
 	public int Selection => WxKitNative.CommandEventGetSelection(Handle);
 
 	/// <summary>Returns item string for a listbox or choice selection event.</summary>
-	public string String {
-		get => NativeString.Take(WxKitNative.CommandEventGetString(Handle));
-		set {
-			ArgumentNullException.ThrowIfNull(value);
-			fixed (char* valueText = value) {
-				WxKitNative.CommandEventSetString(Handle, valueText, NativeString.Length(value));
-			}
-		}
-	}
+	public string String => NativeString.Take(WxKitNative.CommandEventGetString(Handle));
 }

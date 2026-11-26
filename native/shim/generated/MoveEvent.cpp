@@ -5,15 +5,7 @@ WXK_FUNCTION(wxk_Point) wxk_MoveEvent_GetPosition(wxk_Event* self) noexcept {
 	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxMoveEvent*>(wxk::Unwrap(self))->GetPosition()); });
 }
 
-WXK_FUNCTION(void) wxk_MoveEvent_SetPosition(wxk_Event* self, wxk_Point position) noexcept {
-	wxk::Guard([&] { static_cast<wxMoveEvent*>(wxk::Unwrap(self))->SetPosition(wxk::FromPoint(position)); });
-}
-
 WXK_FUNCTION(wxk_Rect) wxk_MoveEvent_GetRect(wxk_Event* self) noexcept {
 	return wxk::Guard<wxk_Rect>(wxk_Rect{0, 0, 0, 0}, [&]() -> wxk_Rect { return wxk::ToRect(static_cast<wxMoveEvent*>(wxk::Unwrap(self))->GetRect()); });
-}
-
-WXK_FUNCTION(void) wxk_MoveEvent_SetRect(wxk_Event* self, wxk_Rect rect) noexcept {
-	wxk::Guard([&] { static_cast<wxMoveEvent*>(wxk::Unwrap(self))->SetRect(wxk::FromRect(rect)); });
 }
 

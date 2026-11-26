@@ -8,7 +8,7 @@ internal static class Events {
 		// An event does not delete the item data it is given, so only the item's data comes out.
 		tweaks.Class("wxCommandEvent").Ignore("SetClientObject");
 		// Veto is written by hand, since it refuses when the close cannot be vetoed.
-		tweaks.Class("wxCloseEvent", e => e.Ignore("Veto").Rename("GetVeto", "IsVetoed").Property("IsLoggingOff", "GetLoggingOff", "SetLoggingOff"));
+		tweaks.Class("wxCloseEvent", e => e.Ignore("Veto").Rename("GetVeto", "IsVetoed").Property("IsLoggingOff", "GetLoggingOff"));
 		// Booleans are named as IsChecked is, and whether a handler set a state as IsCheckedSet is,
 		// rather than as SetChecked, which reads as a command.
 		tweaks.Class("wxActivateEvent").Property("IsActive", "GetActive");
@@ -32,7 +32,7 @@ internal static class Events {
 		// Which way, and how, the focus moves, as Tab and Shift+Tab move it.
 		tweaks.Enum("wxNavigationKeyEvent::wxNavigationKeyEventFlags", "NavigationFlags", isFlags: true, memberPrefix: "Is");
 		// Whether the focus moves forward, a bool, which a Direction property would read as the enum.
-		tweaks.Class("wxNavigationKeyEvent").Property("IsForward", "GetDirection", "SetDirection");
+		tweaks.Class("wxNavigationKeyEvent").Property("IsForward", "GetDirection");
 		tweaks.Enum("wxKeyModifier", "KeyModifiers", isFlags: true);
 		tweaks.Class("wxKeyEvent", e => e.ParameterEnum("GetKeyCode", "return", "wxKeyCode").ParameterEnum("GetModifiers", "return", "wxKeyModifier"));
 		// Button(button) asks whether the event came from that button. GetButton is the Button
@@ -88,6 +88,13 @@ internal static class Events {
 		tweaks.Class("wxSetCursorEvent");
 		tweaks.EventType("wxEVT_SET_CURSOR", "wxSetCursorEvent");
 		tweaks.Class("wxWindow").Event("EVT_SET_CURSOR", "CursorRequested");
+		// What a handler sets on an event to answer it. An event's other setters aren't bound.
+		tweaks.Class("wxSetCursorEvent").HandlerSets("SetCursor");
+		tweaks.Class("wxSplitterEvent").HandlerSets("SetSashPosition");
+		tweaks.Class("wxTreeEvent").HandlerSets("SetToolTip");
+		tweaks.Class("wxUpdateUIEvent").HandlerSets("SetText", "Set3StateValue");
+		tweaks.Class("wxDataViewEvent").HandlerSets("SetDataObject", "SetDataFormat", "SetDragFlags", "SetDropEffect");
+		tweaks.Class("wxStyledTextEvent").HandlerSets("SetDragText", "SetDragFlags", "SetDragResult");
 		// The directory control sends its events as the tree's, whose item is the one chosen.
 		tweaks.EventType("wxEVT_DIRCTRL_SELECTIONCHANGED", "wxTreeEvent");
 		tweaks.EventType("wxEVT_DIRCTRL_FILEACTIVATED", "wxTreeEvent");

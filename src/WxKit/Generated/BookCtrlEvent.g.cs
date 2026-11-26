@@ -10,8 +10,5 @@ public unsafe partial class BookCtrlEvent : NotifyEvent {
 	}
 
 	/// <summary>Returns the page that was selected before the change, wxNOT_FOUND if none was selected.</summary>
-	public int OldSelection {
-		get => WxKitNative.BookCtrlEventGetOldSelection(Handle);
-		set => WxKitNative.BookCtrlEventSetOldSelection(Handle, value);
-	}
+	public int OldSelection => WxKitNative.BookCtrlEventGetOldSelection(Handle);
 }

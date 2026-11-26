@@ -5,7 +5,3 @@ WXK_FUNCTION(int32_t) wxk_SpinEvent_GetPosition(wxk_Event* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxSpinEvent*>(wxk::Unwrap(self))->GetPosition()); });
 }
 
-WXK_FUNCTION(void) wxk_SpinEvent_SetPosition(wxk_Event* self, int32_t position) noexcept {
-	wxk::Guard([&] { static_cast<wxSpinEvent*>(wxk::Unwrap(self))->SetPosition(static_cast<int>(position)); });
-}
-

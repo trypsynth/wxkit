@@ -125,26 +125,6 @@ WXK_FUNCTION(uint8_t) wxk_MouseEvent_Aux2IsDown(wxk_Event* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMouseState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->Aux2IsDown()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_MouseEvent_SetLeftDown(wxk_Event* self, uint8_t down) noexcept {
-	wxk::Guard([&] { static_cast<wxMouseState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->SetLeftDown(down != 0); });
-}
-
-WXK_FUNCTION(void) wxk_MouseEvent_SetMiddleDown(wxk_Event* self, uint8_t down) noexcept {
-	wxk::Guard([&] { static_cast<wxMouseState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->SetMiddleDown(down != 0); });
-}
-
-WXK_FUNCTION(void) wxk_MouseEvent_SetRightDown(wxk_Event* self, uint8_t down) noexcept {
-	wxk::Guard([&] { static_cast<wxMouseState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->SetRightDown(down != 0); });
-}
-
-WXK_FUNCTION(void) wxk_MouseEvent_SetAux1Down(wxk_Event* self, uint8_t down) noexcept {
-	wxk::Guard([&] { static_cast<wxMouseState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->SetAux1Down(down != 0); });
-}
-
-WXK_FUNCTION(void) wxk_MouseEvent_SetAux2Down(wxk_Event* self, uint8_t down) noexcept {
-	wxk::Guard([&] { static_cast<wxMouseState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->SetAux2Down(down != 0); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_MouseEvent_ControlDown(wxk_Event* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxKeyboardState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->ControlDown()) ? 1 : 0; });
 }
@@ -163,26 +143,6 @@ WXK_FUNCTION(uint8_t) wxk_MouseEvent_AltDown(wxk_Event* self) noexcept {
 
 WXK_FUNCTION(uint8_t) wxk_MouseEvent_CmdDown(wxk_Event* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxKeyboardState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->CmdDown()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(void) wxk_MouseEvent_SetControlDown(wxk_Event* self, uint8_t down) noexcept {
-	wxk::Guard([&] { static_cast<wxKeyboardState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->SetControlDown(down != 0); });
-}
-
-WXK_FUNCTION(void) wxk_MouseEvent_SetRawControlDown(wxk_Event* self, uint8_t down) noexcept {
-	wxk::Guard([&] { static_cast<wxKeyboardState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->SetRawControlDown(down != 0); });
-}
-
-WXK_FUNCTION(void) wxk_MouseEvent_SetShiftDown(wxk_Event* self, uint8_t down) noexcept {
-	wxk::Guard([&] { static_cast<wxKeyboardState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->SetShiftDown(down != 0); });
-}
-
-WXK_FUNCTION(void) wxk_MouseEvent_SetAltDown(wxk_Event* self, uint8_t down) noexcept {
-	wxk::Guard([&] { static_cast<wxKeyboardState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->SetAltDown(down != 0); });
-}
-
-WXK_FUNCTION(void) wxk_MouseEvent_SetMetaDown(wxk_Event* self, uint8_t down) noexcept {
-	wxk::Guard([&] { static_cast<wxKeyboardState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->SetMetaDown(down != 0); });
 }
 
 WXK_FUNCTION(int32_t) wxk_MouseEvent_GetButton(wxk_Event* self) noexcept {
@@ -237,24 +197,12 @@ WXK_FUNCTION(wxk_Point) wxk_MouseEvent_GetPosition(wxk_Event* self) noexcept {
 	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxMouseState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->GetPosition()); });
 }
 
-WXK_FUNCTION(void) wxk_MouseEvent_SetPosition(wxk_Event* self, wxk_Point position) noexcept {
-	wxk::Guard([&] { static_cast<wxMouseState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->SetPosition(wxk::FromPoint(position)); });
-}
-
 WXK_FUNCTION(int32_t) wxk_MouseEvent_GetX(wxk_Event* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxMouseState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->GetX()); });
 }
 
-WXK_FUNCTION(void) wxk_MouseEvent_SetX(wxk_Event* self, int32_t x) noexcept {
-	wxk::Guard([&] { static_cast<wxMouseState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->SetX(static_cast<int>(x)); });
-}
-
 WXK_FUNCTION(int32_t) wxk_MouseEvent_GetY(wxk_Event* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxMouseState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->GetY()); });
-}
-
-WXK_FUNCTION(void) wxk_MouseEvent_SetY(wxk_Event* self, int32_t y) noexcept {
-	wxk::Guard([&] { static_cast<wxMouseState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->SetY(static_cast<int>(y)); });
 }
 
 WXK_FUNCTION(int32_t) wxk_MouseEvent_GetModifiers(wxk_Event* self) noexcept {

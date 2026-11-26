@@ -5,7 +5,3 @@ WXK_FUNCTION(wxk_Window*) wxk_FocusEvent_GetWindow(wxk_Event* self) noexcept {
 	return wxk::Guard<wxk_Window*>(nullptr, [&]() -> wxk_Window* { return wxk::Wrap(static_cast<wxWindow*>(static_cast<wxFocusEvent*>(wxk::Unwrap(self))->GetWindow())); });
 }
 
-WXK_FUNCTION(void) wxk_FocusEvent_SetWindow(wxk_Event* self, wxk_Window* window) noexcept {
-	wxk::Guard([&] { static_cast<wxFocusEvent*>(wxk::Unwrap(self))->SetWindow(static_cast<wxWindow*>(wxk::Unwrap(window))); });
-}
-

@@ -10,13 +10,5 @@ public unsafe partial class HyperlinkEvent : CommandEvent {
 	}
 
 	/// <summary>Returns the URL of the hyperlink where the user has just clicked.</summary>
-	public string Url {
-		get => NativeString.Take(WxKitNative.HyperlinkEventGetURL(Handle));
-		set {
-			ArgumentNullException.ThrowIfNull(value);
-			fixed (char* valueText = value) {
-				WxKitNative.HyperlinkEventSetURL(Handle, valueText, NativeString.Length(value));
-			}
-		}
-	}
+	public string Url => NativeString.Take(WxKitNative.HyperlinkEventGetURL(Handle));
 }

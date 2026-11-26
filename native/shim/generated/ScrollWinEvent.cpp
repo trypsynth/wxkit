@@ -5,16 +5,8 @@ WXK_FUNCTION(int32_t) wxk_ScrollWinEvent_GetOrientation(wxk_Event* self) noexcep
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxScrollWinEvent*>(wxk::Unwrap(self))->GetOrientation()); });
 }
 
-WXK_FUNCTION(void) wxk_ScrollWinEvent_SetOrientation(wxk_Event* self, int32_t orientation) noexcept {
-	wxk::Guard([&] { static_cast<wxScrollWinEvent*>(wxk::Unwrap(self))->SetOrientation(static_cast<int>(orientation)); });
-}
-
 WXK_FUNCTION(int32_t) wxk_ScrollWinEvent_GetPosition(wxk_Event* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxScrollWinEvent*>(wxk::Unwrap(self))->GetPosition()); });
-}
-
-WXK_FUNCTION(void) wxk_ScrollWinEvent_SetPosition(wxk_Event* self, int32_t position) noexcept {
-	wxk::Guard([&] { static_cast<wxScrollWinEvent*>(wxk::Unwrap(self))->SetPosition(static_cast<int>(position)); });
 }
 
 WXK_FUNCTION(int32_t) wxk_ScrollWinEvent_GetPixelOffset(wxk_Event* self) noexcept {

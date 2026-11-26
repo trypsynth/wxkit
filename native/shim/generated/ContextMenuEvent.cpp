@@ -5,7 +5,3 @@ WXK_FUNCTION(wxk_Point) wxk_ContextMenuEvent_GetPosition(wxk_Event* self) noexce
 	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxContextMenuEvent*>(wxk::Unwrap(self))->GetPosition()); });
 }
 
-WXK_FUNCTION(void) wxk_ContextMenuEvent_SetPosition(wxk_Event* self, wxk_Point point) noexcept {
-	wxk::Guard([&] { static_cast<wxContextMenuEvent*>(wxk::Unwrap(self))->SetPosition(wxk::FromPoint(point)); });
-}
-

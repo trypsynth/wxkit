@@ -10,14 +10,8 @@ public unsafe partial class HelpEvent : CommandEvent {
 	}
 
 	/// <summary>Returns the origin of the help event which is one of the wxHelpEvent::Origin values.</summary>
-	public HelpOrigin Origin {
-		get => (HelpOrigin)WxKitNative.HelpEventGetOrigin(Handle);
-		set => WxKitNative.HelpEventSetOrigin(Handle, (int)value);
-	}
+	public HelpOrigin Origin => (HelpOrigin)WxKitNative.HelpEventGetOrigin(Handle);
 
 	/// <summary>Returns the left-click position of the mouse, in screen coordinates.</summary>
-	public Point Position {
-		get => WxKitNative.HelpEventGetPosition(Handle);
-		set => WxKitNative.HelpEventSetPosition(Handle, value);
-	}
+	public Point Position => WxKitNative.HelpEventGetPosition(Handle);
 }

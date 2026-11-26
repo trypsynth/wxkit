@@ -46,10 +46,7 @@ public unsafe partial class MouseEvent : Event {
 	public KeyModifiers Modifiers => (KeyModifiers)WxKitNative.MouseEventGetModifiers(Handle);
 
 	/// <summary>Returns the physical mouse position.</summary>
-	public Point Position {
-		get => WxKitNative.MouseEventGetPosition(Handle);
-		set => WxKitNative.MouseEventSetPosition(Handle, value);
-	}
+	public Point Position => WxKitNative.MouseEventGetPosition(Handle);
 
 	/// <summary>Gets the axis the wheel operation concerns.</summary>
 	public MouseWheelAxis WheelAxis => (MouseWheelAxis)WxKitNative.MouseEventGetWheelAxis(Handle);
@@ -61,16 +58,10 @@ public unsafe partial class MouseEvent : Event {
 	public int WheelRotation => WxKitNative.MouseEventGetWheelRotation(Handle);
 
 	/// <summary>Returns X coordinate of the physical mouse event position.</summary>
-	public int X {
-		get => WxKitNative.MouseEventGetX(Handle);
-		set => WxKitNative.MouseEventSetX(Handle, value);
-	}
+	public int X => WxKitNative.MouseEventGetX(Handle);
 
 	/// <summary>Returns Y coordinate of the physical mouse event position.</summary>
-	public int Y {
-		get => WxKitNative.MouseEventGetY(Handle);
-		set => WxKitNative.MouseEventSetY(Handle, value);
-	}
+	public int Y => WxKitNative.MouseEventGetY(Handle);
 
 	/// <summary>Returns true if the Alt key is pressed.</summary>
 	public bool AltDown() => WxKitNative.MouseEventAltDown(Handle) != 0;
@@ -179,26 +170,6 @@ public unsafe partial class MouseEvent : Event {
 
 	/// <summary>Returns true if the right mouse button changed to up.</summary>
 	public bool RightUp() => WxKitNative.MouseEventRightUp(Handle) != 0;
-
-	public void SetAltDown(bool down) => WxKitNative.MouseEventSetAltDown(Handle, down ? (byte)1 : (byte)0);
-
-	public void SetAux1Down(bool down) => WxKitNative.MouseEventSetAux1Down(Handle, down ? (byte)1 : (byte)0);
-
-	public void SetAux2Down(bool down) => WxKitNative.MouseEventSetAux2Down(Handle, down ? (byte)1 : (byte)0);
-
-	public void SetControlDown(bool down) => WxKitNative.MouseEventSetControlDown(Handle, down ? (byte)1 : (byte)0);
-
-	public void SetLeftDown(bool down) => WxKitNative.MouseEventSetLeftDown(Handle, down ? (byte)1 : (byte)0);
-
-	public void SetMetaDown(bool down) => WxKitNative.MouseEventSetMetaDown(Handle, down ? (byte)1 : (byte)0);
-
-	public void SetMiddleDown(bool down) => WxKitNative.MouseEventSetMiddleDown(Handle, down ? (byte)1 : (byte)0);
-
-	public void SetRawControlDown(bool down) => WxKitNative.MouseEventSetRawControlDown(Handle, down ? (byte)1 : (byte)0);
-
-	public void SetRightDown(bool down) => WxKitNative.MouseEventSetRightDown(Handle, down ? (byte)1 : (byte)0);
-
-	public void SetShiftDown(bool down) => WxKitNative.MouseEventSetShiftDown(Handle, down ? (byte)1 : (byte)0);
 
 	/// <summary>Returns true if the Shift key is pressed.</summary>
 	public bool ShiftDown() => WxKitNative.MouseEventShiftDown(Handle) != 0;

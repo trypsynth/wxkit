@@ -10,32 +10,14 @@ public unsafe partial class NavigationKeyEvent : Event {
 	}
 
 	/// <summary>Returns the child that has the focus, or nullptr.</summary>
-	public Window? CurrentFocus {
-		get => ObjectRegistry.Wrap<Window>(WxKitNative.NavigationKeyEventGetCurrentFocus(Handle));
-		set {
-			ArgumentNullException.ThrowIfNull(value);
-			WxKitNative.NavigationKeyEventSetCurrentFocus(Handle, (WxkWindow*)value.Native);
-		}
-	}
+	public Window? CurrentFocus => ObjectRegistry.Wrap<Window>(WxKitNative.NavigationKeyEventGetCurrentFocus(Handle));
 
 	/// <summary>Returns true if the navigation was in the forward direction.</summary>
-	public bool IsForward {
-		get => WxKitNative.NavigationKeyEventGetDirection(Handle) != 0;
-		set => WxKitNative.NavigationKeyEventSetDirection(Handle, value ? (byte)1 : (byte)0);
-	}
+	public bool IsForward => WxKitNative.NavigationKeyEventGetDirection(Handle) != 0;
 
 	/// <summary>Returns true if the navigation event was from a tab key.</summary>
-	public bool IsFromTab {
-		get => WxKitNative.NavigationKeyEventIsFromTab(Handle) != 0;
-		set => WxKitNative.NavigationKeyEventSetFromTab(Handle, value ? (byte)1 : (byte)0);
-	}
+	public bool IsFromTab => WxKitNative.NavigationKeyEventIsFromTab(Handle) != 0;
 
 	/// <summary>Returns true if the navigation event represents a window change (for example, from Ctrl-Page Down in a notebook).</summary>
-	public bool IsWindowChange {
-		get => WxKitNative.NavigationKeyEventIsWindowChange(Handle) != 0;
-		set => WxKitNative.NavigationKeyEventSetWindowChange(Handle, value ? (byte)1 : (byte)0);
-	}
-
-	/// <summary>Sets the flags for this event.</summary>
-	public void SetFlags(long flags) => WxKitNative.NavigationKeyEventSetFlags(Handle, flags);
+	public bool IsWindowChange => WxKitNative.NavigationKeyEventIsWindowChange(Handle) != 0;
 }

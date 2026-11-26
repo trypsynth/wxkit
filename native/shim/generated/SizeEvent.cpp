@@ -5,15 +5,7 @@ WXK_FUNCTION(wxk_Size) wxk_SizeEvent_GetSize(wxk_Event* self) noexcept {
 	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxSizeEvent*>(wxk::Unwrap(self))->GetSize()); });
 }
 
-WXK_FUNCTION(void) wxk_SizeEvent_SetSize(wxk_Event* self, wxk_Size size) noexcept {
-	wxk::Guard([&] { static_cast<wxSizeEvent*>(wxk::Unwrap(self))->SetSize(wxk::FromSize(size)); });
-}
-
 WXK_FUNCTION(wxk_Rect) wxk_SizeEvent_GetRect(wxk_Event* self) noexcept {
 	return wxk::Guard<wxk_Rect>(wxk_Rect{0, 0, 0, 0}, [&]() -> wxk_Rect { return wxk::ToRect(static_cast<wxSizeEvent*>(wxk::Unwrap(self))->GetRect()); });
-}
-
-WXK_FUNCTION(void) wxk_SizeEvent_SetRect(wxk_Event* self, wxk_Rect rect) noexcept {
-	wxk::Guard([&] { static_cast<wxSizeEvent*>(wxk::Unwrap(self))->SetRect(wxk::FromRect(rect)); });
 }
 

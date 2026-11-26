@@ -178,6 +178,12 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 			bool isConstructor = member.Name == shortName;
 			if (tweak.IgnoredMembers.Contains(member.Name) || tweak.IgnoredOverloads.Any(ignored => ignored.Matches(member))) continue;
 			bool isInternal = tweak.InternalMembers.Contains(member.Name);
+			// An application receives events and doesn't make them, so what fills one in is left out,
+			// but for what a handler answers with, such as the cursor a wxSetCursorEvent asks for.
+			if (bound.CppName.EndsWith("Event", StringComparison.Ordinal) && !member.IsStatic && !isInternal && member.Name.StartsWith("Set", StringComparison.Ordinal) && !tweak.HandlerSetters.Contains(member.Name)) {
+				_skipped.Add($"{bound.CppName}::{member.Name}: it fills in an event, which an application only receives");
+				continue;
+			}
 			if (tweak.IsHandwritten && !isInternal) continue;
 			if (isConstructor) {
 				// A class with pure virtual members, such as wxBookCtrlBase, cannot be created.

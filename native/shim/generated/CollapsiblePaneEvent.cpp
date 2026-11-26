@@ -5,7 +5,3 @@ WXK_FUNCTION(uint8_t) wxk_CollapsiblePaneEvent_GetCollapsed(wxk_Event* self) noe
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxCollapsiblePaneEvent*>(wxk::Unwrap(self))->GetCollapsed()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_CollapsiblePaneEvent_SetCollapsed(wxk_Event* self, uint8_t collapsed) noexcept {
-	wxk::Guard([&] { static_cast<wxCollapsiblePaneEvent*>(wxk::Unwrap(self))->SetCollapsed(collapsed != 0); });
-}
-

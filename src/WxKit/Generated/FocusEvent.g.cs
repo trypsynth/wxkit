@@ -10,11 +10,5 @@ public unsafe partial class FocusEvent : Event {
 	}
 
 	/// <summary>Returns the window associated with this event, that is the window which had the focus before for the wxEVT_SET_FOCUS event and the window which is going to receive focus for the wxEVT_KILL_FOCUS one.</summary>
-	public Window? Window {
-		get => ObjectRegistry.Wrap<Window>(WxKitNative.FocusEventGetWindow(Handle));
-		set {
-			ArgumentNullException.ThrowIfNull(value);
-			WxKitNative.FocusEventSetWindow(Handle, (WxkWindow*)value.Native);
-		}
-	}
+	public Window? Window => ObjectRegistry.Wrap<Window>(WxKitNative.FocusEventGetWindow(Handle));
 }

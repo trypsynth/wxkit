@@ -16,10 +16,7 @@ public unsafe partial class Event {
 	public EvtHandler? EventUserData => ObjectRegistry.Wrap<EvtHandler>(WxKitNative.EventGetEventUserData(Handle));
 
 	/// <summary>Returns the identifier associated with this event, such as a button command id.</summary>
-	public int Id {
-		get => WxKitNative.EventGetId(Handle);
-		set => WxKitNative.EventSetId(Handle, value);
-	}
+	public int Id => WxKitNative.EventGetId(Handle);
 
 	/// <summary>Returns true if the event is or is derived from wxCommandEvent else it returns false.</summary>
 	public bool IsCommandEvent => WxKitNative.EventIsCommandEvent(Handle) != 0;
@@ -28,10 +25,7 @@ public unsafe partial class Event {
 	public bool IsSkipped => WxKitNative.EventGetSkipped(Handle) != 0;
 
 	/// <summary>Gets the timestamp for the event.</summary>
-	public long Timestamp {
-		get => WxKitNative.EventGetTimestamp(Handle);
-		set => WxKitNative.EventSetTimestamp(Handle, value);
-	}
+	public long Timestamp => WxKitNative.EventGetTimestamp(Handle);
 
 	/// <summary>Sets the propagation level to the given value (for example returned from an earlier call to wxEvent::StopPropagation).</summary>
 	public void ResumePropagation(int propagationLevel) => WxKitNative.EventResumePropagation(Handle, propagationLevel);

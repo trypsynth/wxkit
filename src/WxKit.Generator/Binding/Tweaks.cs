@@ -161,6 +161,14 @@ internal sealed class ClassTweak(string name) {
 		return this;
 	}
 
+	/// <summary>An event's setters a handler calls to answer it, which are bound though an event's other setters are not.</summary>
+	public HashSet<string> HandlerSetters { get; } = new(StringComparer.Ordinal);
+
+	public ClassTweak HandlerSets(params string[] members) {
+		HandlerSetters.UnionWith(members);
+		return this;
+	}
+
 	public ClassTweak Ignore(params string[] members) {
 		IgnoredMembers.UnionWith(members);
 		return this;

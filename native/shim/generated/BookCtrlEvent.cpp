@@ -5,7 +5,3 @@ WXK_FUNCTION(int32_t) wxk_BookCtrlEvent_GetOldSelection(wxk_Event* self) noexcep
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxBookCtrlEvent*>(wxk::Unwrap(self))->GetOldSelection()); });
 }
 
-WXK_FUNCTION(void) wxk_BookCtrlEvent_SetOldSelection(wxk_Event* self, int32_t page) noexcept {
-	wxk::Guard([&] { static_cast<wxBookCtrlEvent*>(wxk::Unwrap(self))->SetOldSelection(static_cast<int>(page)); });
-}
-

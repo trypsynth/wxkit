@@ -16,10 +16,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 - Each control's style enum has the styles every window takes, such as the borders, so a borderless list doesn't need a cast. The text entry and choice dialogs get style enums that can say what their defaults are.
 - Window ids are `int` everywhere: `Window.FindWindow` and `FindWindowById` take a `long`.
 
-## Events
-
-- An event's setters go, since an application only receives events, except those a handler is meant to use, such as `SplitterEvent.SashPosition` and the data view's drag members. There are about 55, on `Event`, `CommandEvent`, `KeyEvent`, `MouseEvent`, the list, scroll, and size events, and `StyledTextEvent`.
-
 ## Members that go
 
 - wxWidgets internals, and members meant to be overridden rather than called:

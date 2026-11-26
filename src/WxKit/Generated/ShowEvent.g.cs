@@ -11,7 +11,4 @@ public unsafe partial class ShowEvent : Event {
 
 	/// <summary>Return true if the window has been shown, false if it has been hidden.</summary>
 	public bool IsShown => WxKitNative.ShowEventIsShown(Handle) != 0;
-
-	/// <summary>Set whether the windows was shown or hidden.</summary>
-	public void SetShow(bool show) => WxKitNative.ShowEventSetShow(Handle, show ? (byte)1 : (byte)0);
 }

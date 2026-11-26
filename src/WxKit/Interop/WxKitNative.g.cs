@@ -522,10 +522,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int BookCtrlEventGetOldSelection(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_BookCtrlEvent_SetOldSelection")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void BookCtrlEventSetOldSelection(WxkEvent* self, int page);
-
 	[LibraryImport(Library, EntryPoint = "wxk_BoxSizer_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkSizer* BoxSizerNew(int orientation);
@@ -890,17 +886,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ClientDCCanBeUsedForDrawing(WxkWindow* window);
 
-	[LibraryImport(Library, EntryPoint = "wxk_CloseEvent_SetCanVeto")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void CloseEventSetCanVeto(WxkEvent* self, byte canVeto);
-
 	[LibraryImport(Library, EntryPoint = "wxk_CloseEvent_GetLoggingOff")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte CloseEventGetLoggingOff(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_CloseEvent_SetLoggingOff")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void CloseEventSetLoggingOff(WxkEvent* self, byte loggingOff);
 
 	[LibraryImport(Library, EntryPoint = "wxk_CloseEvent_CanVeto")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -937,10 +925,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_CollapsiblePaneEvent_GetCollapsed")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte CollapsiblePaneEventGetCollapsed(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_CollapsiblePaneEvent_SetCollapsed")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void CollapsiblePaneEventSetCollapsed(WxkEvent* self, byte collapsed);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ColorData_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -1298,17 +1282,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial long CommandEventGetExtraLong(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_CommandEvent_SetExtraLong")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void CommandEventSetExtraLong(WxkEvent* self, long extraLong);
-
 	[LibraryImport(Library, EntryPoint = "wxk_CommandEvent_GetInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int CommandEventGetInt(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_CommandEvent_SetInt")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void CommandEventSetInt(WxkEvent* self, int intCommand);
 
 	[LibraryImport(Library, EntryPoint = "wxk_CommandEvent_GetSelection")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -1317,10 +1293,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_CommandEvent_GetString")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkString* CommandEventGetString(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_CommandEvent_SetString")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void CommandEventSetString(WxkEvent* self, char* text, nuint textLength);
 
 	[LibraryImport(Library, EntryPoint = "wxk_CommandEvent_IsChecked")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -1357,10 +1329,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_ContextMenuEvent_GetPosition")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Point ContextMenuEventGetPosition(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ContextMenuEvent_SetPosition")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ContextMenuEventSetPosition(WxkEvent* self, Point point);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Control_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -2454,21 +2422,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial nint DataViewCtrlGetTopItem(WxkWindow* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_DataViewEvent_SetPosition")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DataViewEventSetPosition(WxkEvent* self, int x, int y);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DataViewEvent_SetCache")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DataViewEventSetCache(WxkEvent* self, int from, int to);
-
 	[LibraryImport(Library, EntryPoint = "wxk_DataViewEvent_GetColumn")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int DataViewEventGetColumn(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DataViewEvent_SetColumn")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DataViewEventSetColumn(WxkEvent* self, int column);
 
 	[LibraryImport(Library, EntryPoint = "wxk_DataViewEvent_GetDataViewColumn")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -2482,10 +2438,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkVariant* DataViewEventGetValue(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_DataViewEvent_SetValue")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DataViewEventSetValue(WxkEvent* self, WxkVariant* value);
-
 	[LibraryImport(Library, EntryPoint = "wxk_DataViewEvent_IsEditCancelled")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte DataViewEventIsEditCancelled(WxkEvent* self);
@@ -2493,10 +2445,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_DataViewEvent_GetDataSize")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial nuint DataViewEventGetDataSize(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DataViewEvent_SetDataSize")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DataViewEventSetDataSize(WxkEvent* self, nuint size);
 
 	[LibraryImport(Library, EntryPoint = "wxk_DataViewEvent_GetDropEffect")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -3114,10 +3062,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventGetId(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Event_SetId")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void EventSetId(WxkEvent* self, int id);
-
 	[LibraryImport(Library, EntryPoint = "wxk_Event_GetEventUserData")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* EventGetEventUserData(WxkEvent* self);
@@ -3129,10 +3073,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Event_GetTimestamp")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial long EventGetTimestamp(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Event_SetTimestamp")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void EventSetTimestamp(WxkEvent* self, long timeStamp);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Event_IsCommandEvent")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -3198,10 +3138,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkString* FileCtrlEventGetDirectory(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_FileCtrlEvent_SetDirectory")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void FileCtrlEventSetDirectory(WxkEvent* self, char* directory, nuint directoryLength);
-
 	[LibraryImport(Library, EntryPoint = "wxk_FileCtrlEvent_GetFile")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkString* FileCtrlEventGetFile(WxkEvent* self);
@@ -3210,17 +3146,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkStringArray* FileCtrlEventGetFiles(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_FileCtrlEvent_SetFiles")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void FileCtrlEventSetFiles(WxkEvent* self, WxkStringArray* files);
-
 	[LibraryImport(Library, EntryPoint = "wxk_FileCtrlEvent_GetFilterIndex")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int FileCtrlEventGetFilterIndex(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_FileCtrlEvent_SetFilterIndex")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void FileCtrlEventSetFilterIndex(WxkEvent* self, int index);
 
 	[LibraryImport(Library, EntryPoint = "wxk_FileDialog_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -3433,10 +3361,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_FocusEvent_GetWindow")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* FocusEventGetWindow(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_FocusEvent_SetWindow")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void FocusEventSetWindow(WxkEvent* self, WxkWindow* window);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Font_new_Default")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4102,17 +4026,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int HelpEventGetOrigin(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_HelpEvent_SetOrigin")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void HelpEventSetOrigin(WxkEvent* self, int origin);
-
 	[LibraryImport(Library, EntryPoint = "wxk_HelpEvent_GetPosition")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Point HelpEventGetPosition(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_HelpEvent_SetPosition")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void HelpEventSetPosition(WxkEvent* self, Point point);
 
 	[LibraryImport(Library, EntryPoint = "wxk_HyperlinkCtrl_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4161,10 +4077,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_HyperlinkEvent_GetURL")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkString* HyperlinkEventGetURL(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_HyperlinkEvent_SetURL")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void HyperlinkEventSetURL(WxkEvent* self, char* url, nuint urlLength);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Icon_new_Default")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -4657,26 +4569,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_KeyEvent_CmdDown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte KeyEventCmdDown(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_KeyEvent_SetControlDown")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void KeyEventSetControlDown(WxkEvent* self, byte down);
-
-	[LibraryImport(Library, EntryPoint = "wxk_KeyEvent_SetRawControlDown")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void KeyEventSetRawControlDown(WxkEvent* self, byte down);
-
-	[LibraryImport(Library, EntryPoint = "wxk_KeyEvent_SetShiftDown")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void KeyEventSetShiftDown(WxkEvent* self, byte down);
-
-	[LibraryImport(Library, EntryPoint = "wxk_KeyEvent_SetAltDown")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void KeyEventSetAltDown(WxkEvent* self, byte down);
-
-	[LibraryImport(Library, EntryPoint = "wxk_KeyEvent_SetMetaDown")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void KeyEventSetMetaDown(WxkEvent* self, byte down);
 
 	[LibraryImport(Library, EntryPoint = "wxk_KeyEvent_GetPosition")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -5246,25 +5138,13 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int ListEventGetCacheFrom(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_ListEvent_SetCacheFrom")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ListEventSetCacheFrom(WxkEvent* self, int cacheFrom);
-
 	[LibraryImport(Library, EntryPoint = "wxk_ListEvent_GetCacheTo")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int ListEventGetCacheTo(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_ListEvent_SetCacheTo")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ListEventSetCacheTo(WxkEvent* self, int cacheTo);
-
 	[LibraryImport(Library, EntryPoint = "wxk_ListEvent_GetColumn")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int ListEventGetColumn(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ListEvent_SetColumn")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ListEventSetColumn(WxkEvent* self, int column);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListEvent_GetData")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -5278,25 +5158,13 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int ListEventGetIndex(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_ListEvent_SetIndex")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ListEventSetIndex(WxkEvent* self, int index);
-
 	[LibraryImport(Library, EntryPoint = "wxk_ListEvent_GetItem")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* ListEventGetItem(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_ListEvent_SetItem")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ListEventSetItem(WxkEvent* self, WxkObject* item);
-
 	[LibraryImport(Library, EntryPoint = "wxk_ListEvent_GetKeyCode")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int ListEventGetKeyCode(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ListEvent_SetKeyCode")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ListEventSetKeyCode(WxkEvent* self, int code);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListEvent_GetLabel")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -5309,10 +5177,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_ListEvent_GetPoint")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Point ListEventGetPoint(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ListEvent_SetPoint")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ListEventSetPoint(WxkEvent* self, Point point);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ListEvent_GetText")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -5886,26 +5750,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte MouseEventAux2IsDown(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_SetLeftDown")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MouseEventSetLeftDown(WxkEvent* self, byte down);
-
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_SetMiddleDown")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MouseEventSetMiddleDown(WxkEvent* self, byte down);
-
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_SetRightDown")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MouseEventSetRightDown(WxkEvent* self, byte down);
-
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_SetAux1Down")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MouseEventSetAux1Down(WxkEvent* self, byte down);
-
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_SetAux2Down")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MouseEventSetAux2Down(WxkEvent* self, byte down);
-
 	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_ControlDown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte MouseEventControlDown(WxkEvent* self);
@@ -5925,26 +5769,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_CmdDown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte MouseEventCmdDown(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_SetControlDown")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MouseEventSetControlDown(WxkEvent* self, byte down);
-
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_SetRawControlDown")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MouseEventSetRawControlDown(WxkEvent* self, byte down);
-
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_SetShiftDown")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MouseEventSetShiftDown(WxkEvent* self, byte down);
-
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_SetAltDown")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MouseEventSetAltDown(WxkEvent* self, byte down);
-
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_SetMetaDown")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MouseEventSetMetaDown(WxkEvent* self, byte down);
 
 	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_GetButton")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -5998,25 +5822,13 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Point MouseEventGetPosition(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_SetPosition")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MouseEventSetPosition(WxkEvent* self, Point position);
-
 	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_GetX")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int MouseEventGetX(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_SetX")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MouseEventSetX(WxkEvent* self, int x);
-
 	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_GetY")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int MouseEventGetY(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_SetY")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MouseEventSetY(WxkEvent* self, int y);
 
 	[LibraryImport(Library, EntryPoint = "wxk_MouseEvent_GetModifiers")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -6034,17 +5846,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Point MoveEventGetPosition(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_MoveEvent_SetPosition")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MoveEventSetPosition(WxkEvent* self, Point position);
-
 	[LibraryImport(Library, EntryPoint = "wxk_MoveEvent_GetRect")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Rect MoveEventGetRect(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_MoveEvent_SetRect")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MoveEventSetRect(WxkEvent* self, Rect rect);
 
 	[LibraryImport(Library, EntryPoint = "wxk_MultiChoiceDialog_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -6058,41 +5862,21 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void MultiChoiceDialogSetSelections(WxkWindow* self, long* selections, nuint selectionsCount);
 
-	[LibraryImport(Library, EntryPoint = "wxk_NavigationKeyEvent_SetFlags")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void NavigationKeyEventSetFlags(WxkEvent* self, long flags);
-
 	[LibraryImport(Library, EntryPoint = "wxk_NavigationKeyEvent_GetDirection")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte NavigationKeyEventGetDirection(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_NavigationKeyEvent_SetDirection")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void NavigationKeyEventSetDirection(WxkEvent* self, byte direction);
 
 	[LibraryImport(Library, EntryPoint = "wxk_NavigationKeyEvent_GetCurrentFocus")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* NavigationKeyEventGetCurrentFocus(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_NavigationKeyEvent_SetCurrentFocus")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void NavigationKeyEventSetCurrentFocus(WxkEvent* self, WxkWindow* currentFocus);
-
 	[LibraryImport(Library, EntryPoint = "wxk_NavigationKeyEvent_IsFromTab")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte NavigationKeyEventIsFromTab(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_NavigationKeyEvent_SetFromTab")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void NavigationKeyEventSetFromTab(WxkEvent* self, byte fromTab);
-
 	[LibraryImport(Library, EntryPoint = "wxk_NavigationKeyEvent_IsWindowChange")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte NavigationKeyEventIsWindowChange(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_NavigationKeyEvent_SetWindowChange")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void NavigationKeyEventSetWindowChange(WxkEvent* self, byte windowChange);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Notebook_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -7258,33 +7042,17 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int ScrollEventGetOrientation(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_ScrollEvent_SetOrientation")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ScrollEventSetOrientation(WxkEvent* self, int orientation);
-
 	[LibraryImport(Library, EntryPoint = "wxk_ScrollEvent_GetPosition")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int ScrollEventGetPosition(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ScrollEvent_SetPosition")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ScrollEventSetPosition(WxkEvent* self, int position);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ScrollWinEvent_GetOrientation")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int ScrollWinEventGetOrientation(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_ScrollWinEvent_SetOrientation")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ScrollWinEventSetOrientation(WxkEvent* self, int orientation);
-
 	[LibraryImport(Library, EntryPoint = "wxk_ScrollWinEvent_GetPosition")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int ScrollWinEventGetPosition(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ScrollWinEvent_SetPosition")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ScrollWinEventSetPosition(WxkEvent* self, int position);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ScrollWinEvent_GetPixelOffset")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -7646,10 +7414,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte SetCursorEventHasCursor(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_ShowEvent_SetShow")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ShowEventSetShow(WxkEvent* self, byte show);
-
 	[LibraryImport(Library, EntryPoint = "wxk_ShowEvent_IsShown")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ShowEventIsShown(WxkEvent* self);
@@ -7718,17 +7482,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Size SizeEventGetSize(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_SizeEvent_SetSize")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void SizeEventSetSize(WxkEvent* self, Size size);
-
 	[LibraryImport(Library, EntryPoint = "wxk_SizeEvent_GetRect")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Rect SizeEventGetRect(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_SizeEvent_SetRect")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void SizeEventSetRect(WxkEvent* self, Rect rect);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Sizer_Add_WindowIntIntInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -7978,21 +7734,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial double SpinDoubleEventGetValue(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_SpinDoubleEvent_SetValue")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void SpinDoubleEventSetValue(WxkEvent* self, double value);
-
 	[LibraryImport(Library, EntryPoint = "wxk_SpinEvent_GetPosition")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int SpinEventGetPosition(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_SpinEvent_SetPosition")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void SpinEventSetPosition(WxkEvent* self, int position);
-
-	[LibraryImport(Library, EntryPoint = "wxk_SplitterEvent_SetSize")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void SplitterEventSetSize(WxkEvent* self, int oldSize, int newSize);
 
 	[LibraryImport(Library, EntryPoint = "wxk_SplitterEvent_GetSashPosition")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -11330,10 +11074,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte StyledTextCtrlIsEmpty(WxkWindow* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetAnnotationLinesAdded")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextEventSetAnnotationLinesAdded(WxkEvent* self, int value);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetAlt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte StyledTextEventGetAlt(WxkEvent* self);
@@ -11366,113 +11106,57 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetFoldLevelNow(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetFoldLevelNow")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextEventSetFoldLevelNow(WxkEvent* self, int value);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetFoldLevelPrev")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetFoldLevelPrev(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetFoldLevelPrev")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextEventSetFoldLevelPrev(WxkEvent* self, int value);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetKey")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetKey(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetKey")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextEventSetKey(WxkEvent* self, int k);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetLength")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetLength(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetLength")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextEventSetLength(WxkEvent* self, int length);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetLine")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetLine(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetLine")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextEventSetLine(WxkEvent* self, int value);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetLinesAdded")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetLinesAdded(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetLinesAdded")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextEventSetLinesAdded(WxkEvent* self, int num);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetListCompletionMethod")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetListCompletionMethod(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetListCompletionMethod")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextEventSetListCompletionMethod(WxkEvent* self, int value);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetListType")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetListType(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetListType")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextEventSetListType(WxkEvent* self, int value);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetLParam")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetLParam(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetLParam")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextEventSetLParam(WxkEvent* self, int value);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetMargin")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetMargin(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetMargin")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextEventSetMargin(WxkEvent* self, int value);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetMessage")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetMessage(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetMessage")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextEventSetMessage(WxkEvent* self, int value);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetModificationType")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetModificationType(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetModificationType")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextEventSetModificationType(WxkEvent* self, int t);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetModifiers")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetModifiers(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetModifiers")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextEventSetModifiers(WxkEvent* self, int m);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetPosition")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetPosition(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetPosition")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextEventSetPosition(WxkEvent* self, int position);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetShift")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -11482,41 +11166,21 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetToken(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetToken")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextEventSetToken(WxkEvent* self, int value);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetUpdated")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetUpdated(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetUpdated")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextEventSetUpdated(WxkEvent* self, int value);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetWParam")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetWParam(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetWParam")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextEventSetWParam(WxkEvent* self, int value);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetX")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetX(WxkEvent* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetX")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextEventSetX(WxkEvent* self, int value);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_GetY")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetY(WxkEvent* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextEvent_SetY")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextEventSetY(WxkEvent* self, int value);
 
 	[LibraryImport(Library, EntryPoint = "wxk_SystemSettings_GetColour")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

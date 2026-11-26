@@ -10,22 +10,13 @@ public unsafe partial class ListEvent : NotifyEvent {
 	}
 
 	/// <summary>For EVT_LIST_CACHE_HINT event only: return the first item which the list control advises us to cache.</summary>
-	public int CacheFrom {
-		get => WxKitNative.ListEventGetCacheFrom(Handle);
-		set => WxKitNative.ListEventSetCacheFrom(Handle, value);
-	}
+	public int CacheFrom => WxKitNative.ListEventGetCacheFrom(Handle);
 
 	/// <summary>For EVT_LIST_CACHE_HINT event only: return the last item (inclusive) which the list control advises us to cache.</summary>
-	public int CacheTo {
-		get => WxKitNative.ListEventGetCacheTo(Handle);
-		set => WxKitNative.ListEventSetCacheTo(Handle, value);
-	}
+	public int CacheTo => WxKitNative.ListEventGetCacheTo(Handle);
 
 	/// <summary>The column position: it is only used with COL events.</summary>
-	public int Column {
-		get => WxKitNative.ListEventGetColumn(Handle);
-		set => WxKitNative.ListEventSetColumn(Handle, value);
-	}
+	public int Column => WxKitNative.ListEventGetColumn(Handle);
 
 	/// <summary>The data.</summary>
 	public long Data => WxKitNative.ListEventGetData(Handle);
@@ -34,25 +25,16 @@ public unsafe partial class ListEvent : NotifyEvent {
 	public int Image => WxKitNative.ListEventGetImage(Handle);
 
 	/// <summary>The item index.</summary>
-	public int Index {
-		get => WxKitNative.ListEventGetIndex(Handle);
-		set => WxKitNative.ListEventSetIndex(Handle, value);
-	}
+	public int Index => WxKitNative.ListEventGetIndex(Handle);
 
 	/// <summary>This method only makes sense for EVT_LIST_END_LABEL_EDIT message and returns true if it the label editing has been cancelled by the user (GetLabel() returns an empty string in this case but it doesn't allow the application to distinguish between really cancelling the edit and the admittedly rare case when the user wants to rename it to an empty string).</summary>
 	public bool IsEditCanceled => WxKitNative.ListEventIsEditCancelled(Handle) != 0;
 
 	/// <summary>An item object, used by some events.</summary>
-	public ListItem? Item {
-		get => global::WxKit.ListItem.Take(WxKitNative.ListEventGetItem(Handle));
-		set => WxKitNative.ListEventSetItem(Handle, value is null ? null : value.Native);
-	}
+	public ListItem? Item => global::WxKit.ListItem.Take(WxKitNative.ListEventGetItem(Handle));
 
 	/// <summary>Key code if the event is a keypress event.</summary>
-	public KeyCode KeyCode {
-		get => (KeyCode)WxKitNative.ListEventGetKeyCode(Handle);
-		set => WxKitNative.ListEventSetKeyCode(Handle, (int)value);
-	}
+	public KeyCode KeyCode => (KeyCode)WxKitNative.ListEventGetKeyCode(Handle);
 
 	/// <summary>The (new) item label for EVT_LIST_END_LABEL_EDIT event.</summary>
 	public string Label => NativeString.Take(WxKitNative.ListEventGetLabel(Handle));
@@ -61,10 +43,7 @@ public unsafe partial class ListEvent : NotifyEvent {
 	public ListItemMask Mask => (ListItemMask)WxKitNative.ListEventGetMask(Handle);
 
 	/// <summary>The position of the mouse pointer if the event is a drag event.</summary>
-	public Point Point {
-		get => WxKitNative.ListEventGetPoint(Handle);
-		set => WxKitNative.ListEventSetPoint(Handle, value);
-	}
+	public Point Point => WxKitNative.ListEventGetPoint(Handle);
 
 	/// <summary>The text.</summary>
 	public string Text => NativeString.Take(WxKitNative.ListEventGetText(Handle));

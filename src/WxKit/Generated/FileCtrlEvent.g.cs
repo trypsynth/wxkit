@@ -10,32 +10,14 @@ public unsafe partial class FileCtrlEvent : CommandEvent {
 	}
 
 	/// <summary>Returns the current directory.</summary>
-	public string Directory {
-		get => NativeString.Take(WxKitNative.FileCtrlEventGetDirectory(Handle));
-		set {
-			ArgumentNullException.ThrowIfNull(value);
-			fixed (char* valueText = value) {
-				WxKitNative.FileCtrlEventSetDirectory(Handle, valueText, NativeString.Length(value));
-			}
-		}
-	}
+	public string Directory => NativeString.Take(WxKitNative.FileCtrlEventGetDirectory(Handle));
 
 	/// <summary>Returns the file selected (assuming it is only one file).</summary>
 	public string File => NativeString.Take(WxKitNative.FileCtrlEventGetFile(Handle));
 
 	/// <summary>Returns the files selected.</summary>
-	public IReadOnlyList<string> Files {
-		get => NativeStringArray.Take(WxKitNative.FileCtrlEventGetFiles(Handle));
-		set {
-			ArgumentNullException.ThrowIfNull(value);
-			using NativeStringArray valueNative = new(value);
-			WxKitNative.FileCtrlEventSetFiles(Handle, valueNative.Handle);
-		}
-	}
+	public IReadOnlyList<string> Files => NativeStringArray.Take(WxKitNative.FileCtrlEventGetFiles(Handle));
 
 	/// <summary>Returns the current file filter index.</summary>
-	public int FilterIndex {
-		get => WxKitNative.FileCtrlEventGetFilterIndex(Handle);
-		set => WxKitNative.FileCtrlEventSetFilterIndex(Handle, value);
-	}
+	public int FilterIndex => WxKitNative.FileCtrlEventGetFilterIndex(Handle);
 }

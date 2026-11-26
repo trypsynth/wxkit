@@ -10,8 +10,5 @@ public unsafe partial class ContextMenuEvent : CommandEvent {
 	}
 
 	/// <summary>Returns the position in screen coordinates at which the menu should be shown.</summary>
-	public Point Position {
-		get => WxKitNative.ContextMenuEventGetPosition(Handle);
-		set => WxKitNative.ContextMenuEventSetPosition(Handle, value);
-	}
+	public Point Position => WxKitNative.ContextMenuEventGetPosition(Handle);
 }

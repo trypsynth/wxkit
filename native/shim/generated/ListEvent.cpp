@@ -5,24 +5,12 @@ WXK_FUNCTION(int32_t) wxk_ListEvent_GetCacheFrom(wxk_Event* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListEvent*>(wxk::Unwrap(self))->GetCacheFrom()); });
 }
 
-WXK_FUNCTION(void) wxk_ListEvent_SetCacheFrom(wxk_Event* self, int32_t cacheFrom) noexcept {
-	wxk::Guard([&] { static_cast<wxListEvent*>(wxk::Unwrap(self))->SetCacheFrom(static_cast<long>(cacheFrom)); });
-}
-
 WXK_FUNCTION(int32_t) wxk_ListEvent_GetCacheTo(wxk_Event* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListEvent*>(wxk::Unwrap(self))->GetCacheTo()); });
 }
 
-WXK_FUNCTION(void) wxk_ListEvent_SetCacheTo(wxk_Event* self, int32_t cacheTo) noexcept {
-	wxk::Guard([&] { static_cast<wxListEvent*>(wxk::Unwrap(self))->SetCacheTo(static_cast<long>(cacheTo)); });
-}
-
 WXK_FUNCTION(int32_t) wxk_ListEvent_GetColumn(wxk_Event* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListEvent*>(wxk::Unwrap(self))->GetColumn()); });
-}
-
-WXK_FUNCTION(void) wxk_ListEvent_SetColumn(wxk_Event* self, int32_t column) noexcept {
-	wxk::Guard([&] { static_cast<wxListEvent*>(wxk::Unwrap(self))->SetColumn(static_cast<int>(column)); });
 }
 
 WXK_FUNCTION(int64_t) wxk_ListEvent_GetData(wxk_Event* self) noexcept {
@@ -37,24 +25,12 @@ WXK_FUNCTION(int32_t) wxk_ListEvent_GetIndex(wxk_Event* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListEvent*>(wxk::Unwrap(self))->GetIndex()); });
 }
 
-WXK_FUNCTION(void) wxk_ListEvent_SetIndex(wxk_Event* self, int32_t index) noexcept {
-	wxk::Guard([&] { static_cast<wxListEvent*>(wxk::Unwrap(self))->SetIndex(static_cast<long>(index)); });
-}
-
 WXK_FUNCTION(wxk_Object*) wxk_ListEvent_GetItem(wxk_Event* self) noexcept {
 	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxListItem>(static_cast<wxListEvent*>(wxk::Unwrap(self))->GetItem()); });
 }
 
-WXK_FUNCTION(void) wxk_ListEvent_SetItem(wxk_Event* self, const wxk_Object* item) noexcept {
-	wxk::Guard([&] { static_cast<wxListEvent*>(wxk::Unwrap(self))->SetItem(wxk::ValueOf<wxListItem>(item)); });
-}
-
 WXK_FUNCTION(int32_t) wxk_ListEvent_GetKeyCode(wxk_Event* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxListEvent*>(wxk::Unwrap(self))->GetKeyCode()); });
-}
-
-WXK_FUNCTION(void) wxk_ListEvent_SetKeyCode(wxk_Event* self, int32_t code) noexcept {
-	wxk::Guard([&] { static_cast<wxListEvent*>(wxk::Unwrap(self))->SetKeyCode(static_cast<int>(code)); });
 }
 
 WXK_FUNCTION(wxk_String*) wxk_ListEvent_GetLabel(wxk_Event* self) noexcept {
@@ -67,10 +43,6 @@ WXK_FUNCTION(int64_t) wxk_ListEvent_GetMask(wxk_Event* self) noexcept {
 
 WXK_FUNCTION(wxk_Point) wxk_ListEvent_GetPoint(wxk_Event* self) noexcept {
 	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxListEvent*>(wxk::Unwrap(self))->GetPoint()); });
-}
-
-WXK_FUNCTION(void) wxk_ListEvent_SetPoint(wxk_Event* self, wxk_Point point) noexcept {
-	wxk::Guard([&] { static_cast<wxListEvent*>(wxk::Unwrap(self))->SetPoint(wxk::FromPoint(point)); });
 }
 
 WXK_FUNCTION(wxk_String*) wxk_ListEvent_GetText(wxk_Event* self) noexcept {

@@ -5,15 +5,7 @@ WXK_FUNCTION(int32_t) wxk_HelpEvent_GetOrigin(wxk_Event* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxHelpEvent*>(wxk::Unwrap(self))->GetOrigin()); });
 }
 
-WXK_FUNCTION(void) wxk_HelpEvent_SetOrigin(wxk_Event* self, int32_t origin) noexcept {
-	wxk::Guard([&] { static_cast<wxHelpEvent*>(wxk::Unwrap(self))->SetOrigin(static_cast<wxHelpEvent::Origin>(origin)); });
-}
-
 WXK_FUNCTION(wxk_Point) wxk_HelpEvent_GetPosition(wxk_Event* self) noexcept {
 	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxHelpEvent*>(wxk::Unwrap(self))->GetPosition()); });
-}
-
-WXK_FUNCTION(void) wxk_HelpEvent_SetPosition(wxk_Event* self, wxk_Point point) noexcept {
-	wxk::Guard([&] { static_cast<wxHelpEvent*>(wxk::Unwrap(self))->SetPosition(wxk::FromPoint(point)); });
 }
 

@@ -10,13 +10,7 @@ public unsafe partial class MoveEvent : Event {
 	}
 
 	/// <summary>Returns the position of the window generating the move change event.</summary>
-	public Point Position {
-		get => WxKitNative.MoveEventGetPosition(Handle);
-		set => WxKitNative.MoveEventSetPosition(Handle, value);
-	}
+	public Point Position => WxKitNative.MoveEventGetPosition(Handle);
 
-	public Rect Rect {
-		get => WxKitNative.MoveEventGetRect(Handle);
-		set => WxKitNative.MoveEventSetRect(Handle, value);
-	}
+	public Rect Rect => WxKitNative.MoveEventGetRect(Handle);
 }

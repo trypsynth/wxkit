@@ -526,7 +526,7 @@ class WxKit.BookCtrlBase : Control
     void SetImages(IEnumerable<Bitmap> images)
     void SetPageSize(Size size)
 class WxKit.BookCtrlEvent : NotifyEvent
-    int OldSelection { get; set; }
+    int OldSelection { get; }
 enum WxKit.Border : int
     Default = 0
     Double = 268435456
@@ -734,9 +734,8 @@ sealed class WxKit.ClipboardContent
     void Add(string format, ReadOnlySpan<byte> data)
 class WxKit.CloseEvent : Event
     bool CanVeto { get; }
-    bool IsLoggingOff { get; set; }
+    bool IsLoggingOff { get; }
     bool IsVetoed { get; }
-    void SetCanVeto(bool canVeto)
     void Veto(bool veto = true)
 class WxKit.CollapsiblePane : Control
     CollapsiblePane(Window parent, string label, int id = -1, Point? position = null, Size? size = null, CollapsiblePaneStyle style = CollapsiblePaneStyle.Default)
@@ -748,7 +747,7 @@ class WxKit.CollapsiblePane : Control
     void Collapse(bool collapse = true)
     void Expand()
 class WxKit.CollapsiblePaneEvent : CommandEvent
-    bool Collapsed { get; set; }
+    bool Collapsed { get; }
 [Flags] enum WxKit.CollapsiblePaneStyle : long
     Default = 2621440
     NoTlwResize = 2
@@ -875,11 +874,11 @@ class WxKit.ComboBox : Control
 class WxKit.CommandEvent : Event
     bool IsChecked { get; }
     bool IsSelection { get; }
-    int Int { get; set; }
+    int Int { get; }
     int Selection { get; }
-    long ExtraLong { get; set; }
+    long ExtraLong { get; }
     object? ClientObject { get; }
-    string String { get; set; }
+    string String { get; }
 class WxKit.CommandLinkButton : Button
     CommandLinkButton(Window parent, string mainLabel = "", string note = "", int id = -1, Point? position = null, Size? size = null, ButtonStyle style = ButtonStyle.None)
     string MainLabel { get; set; }
@@ -889,7 +888,7 @@ enum WxKit.ContentProtection : int
     Enabled = 1
     None = 0
 class WxKit.ContextMenuEvent : CommandEvent
-    Point Position { get; set; }
+    Point Position { get; }
 class WxKit.Control : Window
     Control(Window parent, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
     Size GetSizeFromText(string text)
@@ -1203,12 +1202,10 @@ class WxKit.DataViewEvent : NotifyEvent
     bool IsEditCanceled { get; }
     int CacheFrom { get; }
     int CacheTo { get; }
-    int Column { get; set; }
-    int DataSize { get; set; }
+    int Column { get; }
+    int DataSize { get; }
     int ProposedDropIndex { get; }
-    object? Value { get; set; }
-    void SetCache(int from, int to)
-    void SetPosition(int x, int y)
+    object? Value { get; }
 class WxKit.DataViewIconText : NativeObject
     DataViewIconText(string text = "", Bitmap? bitmap = null)
     Icon? Icon { get; set; }
@@ -1524,9 +1521,9 @@ class WxKit.Event : EventArgs
     bool IsCommandEvent { get; }
     bool IsSkipped { get; }
     bool ShouldPropagate()
-    int Id { get; set; }
+    int Id { get; }
     int StopPropagation()
-    long Timestamp { get; set; }
+    long Timestamp { get; }
     void ResumePropagation(int propagationLevel)
     void Skip(bool skip = true)
 enum WxKit.EventCategory : int
@@ -1857,9 +1854,9 @@ class WxKit.FileCtrl : Control
     string Wildcard { get; set; }
     void ShowHidden(bool show)
 class WxKit.FileCtrlEvent : CommandEvent
-    IReadOnlyList<string> Files { get; set; }
-    int FilterIndex { get; set; }
-    string Directory { get; set; }
+    IReadOnlyList<string> Files { get; }
+    int FilterIndex { get; }
+    string Directory { get; }
     string File { get; }
 [Flags] enum WxKit.FileCtrlStyle : long
     Default = 1
@@ -1962,7 +1959,7 @@ enum WxKit.FloodFillStyle : int
     Border = 2
     Surface = 1
 class WxKit.FocusEvent : Event
-    Window? Window { get; set; }
+    Window? Window { get; }
 class WxKit.Font : NativeObject
     Font MakeBold()
     Font MakeItalic()
@@ -2328,8 +2325,8 @@ readonly record struct WxKit.GridSpan : IEquatable<GridSpan>
     static bool op_Inequality(GridSpan left, GridSpan right)
     void Deconstruct(out int Rows, out int Columns)
 class WxKit.HelpEvent : CommandEvent
-    HelpOrigin Origin { get; set; }
-    Point Position { get; set; }
+    HelpOrigin Origin { get; }
+    Point Position { get; }
 enum WxKit.HelpOrigin : int
     HelpButton = 2
     Keyboard = 1
@@ -2367,7 +2364,7 @@ class WxKit.HyperlinkCtrl : Control
     Default = 2097161
     None = 0
 class WxKit.HyperlinkEvent : CommandEvent
-    string Url { get; set; }
+    string Url { get; }
 class WxKit.Icon : NativeObject
     Icon()
     Icon(string name, BitmapType? type = null, int desiredWidth = -1, int desiredHeight = -1)
@@ -2726,11 +2723,6 @@ class WxKit.KeyEvent : Event
     int X { get; }
     int Y { get; }
     void DoAllowNextEvent()
-    void SetAltDown(bool down)
-    void SetControlDown(bool down)
-    void SetMetaDown(bool down)
-    void SetRawControlDown(bool down)
-    void SetShiftDown(bool down)
 [Flags] enum WxKit.KeyModifiers : int
     All = 65535
     Alt = 1
@@ -2950,16 +2942,16 @@ class WxKit.ListCtrl : Control
     VerticalRules = 1
     Virtual = 512
 class WxKit.ListEvent : NotifyEvent
-    KeyCode KeyCode { get; set; }
-    ListItem? Item { get; set; }
+    KeyCode KeyCode { get; }
+    ListItem? Item { get; }
     ListItemMask Mask { get; }
-    Point Point { get; set; }
+    Point Point { get; }
     bool IsEditCanceled { get; }
-    int CacheFrom { get; set; }
-    int CacheTo { get; set; }
-    int Column { get; set; }
+    int CacheFrom { get; }
+    int CacheTo { get; }
+    int Column { get; }
     int Image { get; }
-    int Index { get; set; }
+    int Index { get; }
     long Data { get; }
     string Label { get; }
     string Text { get; }
@@ -3173,7 +3165,7 @@ class WxKit.MouseEvent : Event
     MouseButton Button { get; }
     MouseWheelAxis WheelAxis { get; }
     Point GetLogicalPosition(DC dc)
-    Point Position { get; set; }
+    Point Position { get; }
     bool AltDown()
     bool Aux1DClick()
     bool Aux1Down()
@@ -3221,24 +3213,14 @@ class WxKit.MouseEvent : Event
     int LinesPerAction { get; }
     int WheelDelta { get; }
     int WheelRotation { get; }
-    int X { get; set; }
-    int Y { get; set; }
-    void SetAltDown(bool down)
-    void SetAux1Down(bool down)
-    void SetAux2Down(bool down)
-    void SetControlDown(bool down)
-    void SetLeftDown(bool down)
-    void SetMetaDown(bool down)
-    void SetMiddleDown(bool down)
-    void SetRawControlDown(bool down)
-    void SetRightDown(bool down)
-    void SetShiftDown(bool down)
+    int X { get; }
+    int Y { get; }
 enum WxKit.MouseWheelAxis : int
     Horizontal = 1
     Vertical = 0
 class WxKit.MoveEvent : Event
-    Point Position { get; set; }
-    Rect Rect { get; set; }
+    Point Position { get; }
+    Rect Rect { get; }
 class WxKit.MultiChoiceDialog : Dialog
     IReadOnlyList<int> Selections { get; set; }
     MultiChoiceDialog(Window? parent, string message, string caption, IEnumerable<string> choices, MultiChoiceDialogStyle style = MultiChoiceDialogStyle.536877141, Point? position = null)
@@ -3265,11 +3247,10 @@ enum WxKit.NavigationDirection : int
     FromTab = 4
     WinChange = 2
 class WxKit.NavigationKeyEvent : Event
-    Window? CurrentFocus { get; set; }
-    bool IsForward { get; set; }
-    bool IsFromTab { get; set; }
-    bool IsWindowChange { get; set; }
-    void SetFlags(long flags)
+    Window? CurrentFocus { get; }
+    bool IsForward { get; }
+    bool IsFromTab { get; }
+    bool IsWindowChange { get; }
 class WxKit.Notebook : BookCtrlBase
     Color? ThemeBackgroundColor { get; }
     Direction TabOrientation { get; }
@@ -3850,12 +3831,12 @@ enum WxKit.ScrollBarVisibility : int
     Default = 0
     Never = -1
 class WxKit.ScrollEvent : CommandEvent
-    Orientation Orientation { get; set; }
-    int Position { get; set; }
+    Orientation Orientation { get; }
+    int Position { get; }
 class WxKit.ScrollWinEvent : Event
-    Orientation Orientation { get; set; }
+    Orientation Orientation { get; }
     int PixelOffset { get; }
-    int Position { get; set; }
+    int Position { get; }
 class WxKit.ScrolledWindow : Panel
     Point CalcScrolledPosition(Point point)
     Point CalcUnscrolledPosition(Point point)
@@ -3981,7 +3962,6 @@ enum WxKit.ShowEffect : int
     SlideToTop = 7
 class WxKit.ShowEvent : Event
     bool IsShown { get; }
-    void SetShow(bool show)
 class WxKit.Simplebook : BookCtrlBase
     Simplebook(Window parent, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
     bool ShowNewPage(Window page)
@@ -4022,8 +4002,8 @@ readonly record struct WxKit.Size : IEquatable<Size>
     static bool op_Inequality(Size left, Size right)
     void Deconstruct(out int Width, out int Height)
 class WxKit.SizeEvent : Event
-    Rect Rect { get; set; }
-    Size Size { get; set; }
+    Rect Rect { get; }
+    Size Size { get; }
 [Flags] enum WxKit.SizeFlags : int
     AllowMinusOne = 4
     Auto = 3
@@ -4152,9 +4132,9 @@ class WxKit.SpinCtrlDouble : Control
     ProcessEnter = 1024
     Wrap = 32768
 class WxKit.SpinDoubleEvent : NotifyEvent
-    double Value { get; set; }
+    double Value { get; }
 class WxKit.SpinEvent : NotifyEvent
-    int Position { get; set; }
+    int Position { get; }
 enum WxKit.SplitMode : int
     Horizontal = 1
     Vertical = 2
@@ -4165,7 +4145,6 @@ class WxKit.SplitterEvent : NotifyEvent
     int SashPosition { get; set; }
     int X { get; }
     int Y { get; }
-    void SetSize(int oldSize, int newSize)
 class WxKit.SplitterWindow : Window
     Point LastSplitPosition { get; set; }
     SplitMode SplitMode { get; set; }
@@ -7911,26 +7890,25 @@ class WxKit.StyledTextEvent : CommandEvent
     bool IsControlDown { get; }
     bool IsShiftDown { get; }
     int AnnotationsLinesAdded { get; }
-    int FoldLevelNow { get; set; }
-    int FoldLevelPrevious { get; set; }
-    int Key { get; set; }
-    int LParam { get; set; }
-    int Length { get; set; }
-    int Line { get; set; }
-    int LinesAdded { get; set; }
-    int ListCompletionMethod { get; set; }
-    int ListType { get; set; }
-    int Margin { get; set; }
-    int Message { get; set; }
-    int ModificationType { get; set; }
-    int Modifiers { get; set; }
-    int Position { get; set; }
-    int Token { get; set; }
-    int Updated { get; set; }
-    int WParam { get; set; }
-    int X { get; set; }
-    int Y { get; set; }
-    void SetAnnotationLinesAdded(int value)
+    int FoldLevelNow { get; }
+    int FoldLevelPrevious { get; }
+    int Key { get; }
+    int LParam { get; }
+    int Length { get; }
+    int Line { get; }
+    int LinesAdded { get; }
+    int ListCompletionMethod { get; }
+    int ListType { get; }
+    int Margin { get; }
+    int Message { get; }
+    int ModificationType { get; }
+    int Modifiers { get; }
+    int Position { get; }
+    int Token { get; }
+    int Updated { get; }
+    int WParam { get; }
+    int X { get; }
+    int Y { get; }
 class WxKit.SysColorChangedEvent : Event
 sealed record WxKit.SystemAppearance : IEquatable<SystemAppearance>
     SystemAppearance(string Name, bool IsDark, bool IsUsingDarkBackground, bool AreAppsDark)

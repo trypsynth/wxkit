@@ -16,16 +16,10 @@ public unsafe partial class DataViewEvent : NotifyEvent {
 	public int CacheTo => WxKitNative.DataViewEventGetCacheTo(Handle);
 
 	/// <summary>Returns the position of the column in the control or -1 if column field is unavailable for this event.</summary>
-	public int Column {
-		get => WxKitNative.DataViewEventGetColumn(Handle);
-		set => WxKitNative.DataViewEventSetColumn(Handle, value);
-	}
+	public int Column => WxKitNative.DataViewEventGetColumn(Handle);
 
 	/// <summary>Gets the data size for a drop data transfer.</summary>
-	public int DataSize {
-		get => checked((int)WxKitNative.DataViewEventGetDataSize(Handle));
-		set => WxKitNative.DataViewEventSetDataSize(Handle, checked((nuint)value));
-	}
+	public int DataSize => checked((int)WxKitNative.DataViewEventGetDataSize(Handle));
 
 	/// <summary>Returns a pointer to the wxDataViewColumn from which the event was emitted or nullptr.</summary>
 	public DataViewColumn? DataViewColumn => DataViewColumn.Wrap(WxKitNative.DataViewEventGetDataViewColumn(Handle));
@@ -54,15 +48,5 @@ public unsafe partial class DataViewEvent : NotifyEvent {
 	public int ProposedDropIndex => WxKitNative.DataViewEventGetProposedDropIndex(Handle);
 
 	/// <summary>Returns a reference to a value.</summary>
-	public object? Value {
-		get => NativeVariant.Take(WxKitNative.DataViewEventGetValue(Handle));
-		set {
-			using NativeVariant valueNative = new(value);
-			WxKitNative.DataViewEventSetValue(Handle, valueNative.Handle);
-		}
-	}
-
-	public void SetCache(int from, int to) => WxKitNative.DataViewEventSetCache(Handle, from, to);
-
-	public void SetPosition(int x, int y) => WxKitNative.DataViewEventSetPosition(Handle, x, y);
+	public object? Value => NativeVariant.Take(WxKitNative.DataViewEventGetValue(Handle));
 }

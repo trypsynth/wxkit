@@ -9,16 +9,8 @@ WXK_FUNCTION(int64_t) wxk_CommandEvent_GetExtraLong(wxk_Event* self) noexcept {
 	return wxk::Guard<int64_t>(0, [&]() -> int64_t { return static_cast<int64_t>(static_cast<wxCommandEvent*>(wxk::Unwrap(self))->GetExtraLong()); });
 }
 
-WXK_FUNCTION(void) wxk_CommandEvent_SetExtraLong(wxk_Event* self, int64_t extraLong) noexcept {
-	wxk::Guard([&] { static_cast<wxCommandEvent*>(wxk::Unwrap(self))->SetExtraLong(static_cast<long>(extraLong)); });
-}
-
 WXK_FUNCTION(int32_t) wxk_CommandEvent_GetInt(wxk_Event* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxCommandEvent*>(wxk::Unwrap(self))->GetInt()); });
-}
-
-WXK_FUNCTION(void) wxk_CommandEvent_SetInt(wxk_Event* self, int32_t intCommand) noexcept {
-	wxk::Guard([&] { static_cast<wxCommandEvent*>(wxk::Unwrap(self))->SetInt(static_cast<int>(intCommand)); });
 }
 
 WXK_FUNCTION(int32_t) wxk_CommandEvent_GetSelection(wxk_Event* self) noexcept {
@@ -27,10 +19,6 @@ WXK_FUNCTION(int32_t) wxk_CommandEvent_GetSelection(wxk_Event* self) noexcept {
 
 WXK_FUNCTION(wxk_String*) wxk_CommandEvent_GetString(wxk_Event* self) noexcept {
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxCommandEvent*>(wxk::Unwrap(self))->GetString()); });
-}
-
-WXK_FUNCTION(void) wxk_CommandEvent_SetString(wxk_Event* self, const char16_t* text, size_t textLength) noexcept {
-	wxk::Guard([&] { static_cast<wxCommandEvent*>(wxk::Unwrap(self))->SetString(wxk::FromUtf16(text, textLength)); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_CommandEvent_IsChecked(wxk_Event* self) noexcept {

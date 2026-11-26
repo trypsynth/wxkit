@@ -25,16 +25,10 @@ public unsafe partial class StyledTextEvent : CommandEvent {
 	}
 
 	/// <summary>Returns the current fold level for the line.</summary>
-	public int FoldLevelNow {
-		get => WxKitNative.StyledTextEventGetFoldLevelNow(Handle);
-		set => WxKitNative.StyledTextEventSetFoldLevelNow(Handle, value);
-	}
+	public int FoldLevelNow => WxKitNative.StyledTextEventGetFoldLevelNow(Handle);
 
 	/// <summary>Returns previous fold level for the line.</summary>
-	public int FoldLevelPrevious {
-		get => WxKitNative.StyledTextEventGetFoldLevelPrev(Handle);
-		set => WxKitNative.StyledTextEventSetFoldLevelPrev(Handle, value);
-	}
+	public int FoldLevelPrevious => WxKitNative.StyledTextEventGetFoldLevelPrev(Handle);
 
 	/// <summary>Returns true if the Alt key is pressed.</summary>
 	public bool IsAltDown => WxKitNative.StyledTextEventGetAlt(Handle) != 0;
@@ -46,107 +40,53 @@ public unsafe partial class StyledTextEvent : CommandEvent {
 	public bool IsShiftDown => WxKitNative.StyledTextEventGetShift(Handle) != 0;
 
 	/// <summary>Returns the key code of the key that generated this event.</summary>
-	public int Key {
-		get => WxKitNative.StyledTextEventGetKey(Handle);
-		set => WxKitNative.StyledTextEventSetKey(Handle, value);
-	}
+	public int Key => WxKitNative.StyledTextEventGetKey(Handle);
 
 	/// <summary>Returns the value of the LParam field for this event.</summary>
-	public int LParam {
-		get => WxKitNative.StyledTextEventGetLParam(Handle);
-		set => WxKitNative.StyledTextEventSetLParam(Handle, value);
-	}
+	public int LParam => WxKitNative.StyledTextEventGetLParam(Handle);
 
 	/// <summary>Returns the length (number of characters) of this event.</summary>
-	public int Length {
-		get => WxKitNative.StyledTextEventGetLength(Handle);
-		set => WxKitNative.StyledTextEventSetLength(Handle, value);
-	}
+	public int Length => WxKitNative.StyledTextEventGetLength(Handle);
 
 	/// <summary>Returns zero-based line number for this event.</summary>
-	public int Line {
-		get => WxKitNative.StyledTextEventGetLine(Handle);
-		set => WxKitNative.StyledTextEventSetLine(Handle, value);
-	}
+	public int Line => WxKitNative.StyledTextEventGetLine(Handle);
 
 	/// <summary>Returns the number of lines added or deleted with this event.</summary>
-	public int LinesAdded {
-		get => WxKitNative.StyledTextEventGetLinesAdded(Handle);
-		set => WxKitNative.StyledTextEventSetLinesAdded(Handle, value);
-	}
+	public int LinesAdded => WxKitNative.StyledTextEventGetLinesAdded(Handle);
 
 	/// <summary>Returns a value describing the action that closed the list.</summary>
-	public int ListCompletionMethod {
-		get => WxKitNative.StyledTextEventGetListCompletionMethod(Handle);
-		set => WxKitNative.StyledTextEventSetListCompletionMethod(Handle, value);
-	}
+	public int ListCompletionMethod => WxKitNative.StyledTextEventGetListCompletionMethod(Handle);
 
 	/// <summary>Returns the list type for this event.</summary>
-	public int ListType {
-		get => WxKitNative.StyledTextEventGetListType(Handle);
-		set => WxKitNative.StyledTextEventSetListType(Handle, value);
-	}
+	public int ListType => WxKitNative.StyledTextEventGetListType(Handle);
 
 	/// <summary>Returns the zero-based index of the margin that generated this event.</summary>
-	public int Margin {
-		get => WxKitNative.StyledTextEventGetMargin(Handle);
-		set => WxKitNative.StyledTextEventSetMargin(Handle, value);
-	}
+	public int Margin => WxKitNative.StyledTextEventGetMargin(Handle);
 
 	/// <summary>Returns a message number while a macro is being recorded.</summary>
-	public int Message {
-		get => WxKitNative.StyledTextEventGetMessage(Handle);
-		set => WxKitNative.StyledTextEventSetMessage(Handle, value);
-	}
+	public int Message => WxKitNative.StyledTextEventGetMessage(Handle);
 
 	/// <summary>Returns the modification type for this event.</summary>
-	public int ModificationType {
-		get => WxKitNative.StyledTextEventGetModificationType(Handle);
-		set => WxKitNative.StyledTextEventSetModificationType(Handle, value);
-	}
+	public int ModificationType => WxKitNative.StyledTextEventGetModificationType(Handle);
 
 	/// <summary>Returns the modifiers of the key press or mouse click for this event.</summary>
-	public int Modifiers {
-		get => WxKitNative.StyledTextEventGetModifiers(Handle);
-		set => WxKitNative.StyledTextEventSetModifiers(Handle, value);
-	}
+	public int Modifiers => WxKitNative.StyledTextEventGetModifiers(Handle);
 
 	/// <summary>Returns the zero-based text position associated this event.</summary>
-	public int Position {
-		get => WxKitNative.StyledTextEventGetPosition(Handle);
-		set => WxKitNative.StyledTextEventSetPosition(Handle, value);
-	}
+	public int Position => WxKitNative.StyledTextEventGetPosition(Handle);
 
 	/// <summary>Returns the token value for this event.</summary>
-	public int Token {
-		get => WxKitNative.StyledTextEventGetToken(Handle);
-		set => WxKitNative.StyledTextEventSetToken(Handle, value);
-	}
+	public int Token => WxKitNative.StyledTextEventGetToken(Handle);
 
 	/// <summary>Returns the value of the updated field for this event.</summary>
-	public int Updated {
-		get => WxKitNative.StyledTextEventGetUpdated(Handle);
-		set => WxKitNative.StyledTextEventSetUpdated(Handle, value);
-	}
+	public int Updated => WxKitNative.StyledTextEventGetUpdated(Handle);
 
 	/// <summary>Returns value of the WParam field for this event.</summary>
-	public int WParam {
-		get => WxKitNative.StyledTextEventGetWParam(Handle);
-		set => WxKitNative.StyledTextEventSetWParam(Handle, value);
-	}
+	public int WParam => WxKitNative.StyledTextEventGetWParam(Handle);
 
 	/// <summary>Returns the X coordinate of the mouse for this event.</summary>
-	public int X {
-		get => WxKitNative.StyledTextEventGetX(Handle);
-		set => WxKitNative.StyledTextEventSetX(Handle, value);
-	}
+	public int X => WxKitNative.StyledTextEventGetX(Handle);
 
 	/// <summary>Returns the Y coordinate of the mouse for this event.</summary>
-	public int Y {
-		get => WxKitNative.StyledTextEventGetY(Handle);
-		set => WxKitNative.StyledTextEventSetY(Handle, value);
-	}
-
-	/// <summary>Sets the annotation lines added value for this event.</summary>
-	public void SetAnnotationLinesAdded(int value) => WxKitNative.StyledTextEventSetAnnotationLinesAdded(Handle, value);
+	public int Y => WxKitNative.StyledTextEventGetY(Handle);
 }

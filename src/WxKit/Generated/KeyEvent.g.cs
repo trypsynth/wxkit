@@ -63,16 +63,6 @@ public unsafe partial class KeyEvent : Event {
 	/// <summary>Returns true if the Control key (also under macOS).</summary>
 	public bool RawControlDown() => WxKitNative.KeyEventRawControlDown(Handle) != 0;
 
-	public void SetAltDown(bool down) => WxKitNative.KeyEventSetAltDown(Handle, down ? (byte)1 : (byte)0);
-
-	public void SetControlDown(bool down) => WxKitNative.KeyEventSetControlDown(Handle, down ? (byte)1 : (byte)0);
-
-	public void SetMetaDown(bool down) => WxKitNative.KeyEventSetMetaDown(Handle, down ? (byte)1 : (byte)0);
-
-	public void SetRawControlDown(bool down) => WxKitNative.KeyEventSetRawControlDown(Handle, down ? (byte)1 : (byte)0);
-
-	public void SetShiftDown(bool down) => WxKitNative.KeyEventSetShiftDown(Handle, down ? (byte)1 : (byte)0);
-
 	/// <summary>Returns true if the Shift key is pressed.</summary>
 	public bool ShiftDown() => WxKitNative.KeyEventShiftDown(Handle) != 0;
 }

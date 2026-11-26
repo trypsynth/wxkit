@@ -13,14 +13,8 @@ public unsafe partial class CloseEvent : Event {
 	public bool CanVeto => WxKitNative.CloseEventCanVeto(Handle) != 0;
 
 	/// <summary>Returns true if the user is just logging off or false if the system is shutting down.</summary>
-	public bool IsLoggingOff {
-		get => WxKitNative.CloseEventGetLoggingOff(Handle) != 0;
-		set => WxKitNative.CloseEventSetLoggingOff(Handle, value ? (byte)1 : (byte)0);
-	}
+	public bool IsLoggingOff => WxKitNative.CloseEventGetLoggingOff(Handle) != 0;
 
 	/// <summary>Returns whether the Veto flag was set.</summary>
 	public bool IsVetoed => WxKitNative.CloseEventGetVeto(Handle) != 0;
-
-	/// <summary>Sets the 'can veto' flag.</summary>
-	public void SetCanVeto(bool canVeto) => WxKitNative.CloseEventSetCanVeto(Handle, canVeto ? (byte)1 : (byte)0);
 }

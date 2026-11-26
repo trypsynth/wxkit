@@ -5,7 +5,3 @@ WXK_FUNCTION(wxk_String*) wxk_HyperlinkEvent_GetURL(wxk_Event* self) noexcept {
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxHyperlinkEvent*>(wxk::Unwrap(self))->GetURL()); });
 }
 
-WXK_FUNCTION(void) wxk_HyperlinkEvent_SetURL(wxk_Event* self, const char16_t* url, size_t urlLength) noexcept {
-	wxk::Guard([&] { static_cast<wxHyperlinkEvent*>(wxk::Unwrap(self))->SetURL(wxk::FromUtf16(url, urlLength)); });
-}
-

@@ -29,7 +29,4 @@ public unsafe partial class SplitterEvent : NotifyEvent {
 
 	/// <summary>Returns the y coordinate of the double-click point.</summary>
 	public int Y => WxKitNative.SplitterEventGetY(Handle);
-
-	/// <summary>Sets the size values of the window size.</summary>
-	public void SetSize(int oldSize, int newSize) => WxKitNative.SplitterEventSetSize(Handle, oldSize, newSize);
 }

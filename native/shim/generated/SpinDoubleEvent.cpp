@@ -5,7 +5,3 @@ WXK_FUNCTION(double) wxk_SpinDoubleEvent_GetValue(wxk_Event* self) noexcept {
 	return wxk::Guard<double>(0, [&]() -> double { return static_cast<double>(static_cast<wxSpinDoubleEvent*>(wxk::Unwrap(self))->GetValue()); });
 }
 
-WXK_FUNCTION(void) wxk_SpinDoubleEvent_SetValue(wxk_Event* self, double value) noexcept {
-	wxk::Guard([&] { static_cast<wxSpinDoubleEvent*>(wxk::Unwrap(self))->SetValue(static_cast<double>(value)); });
-}
-

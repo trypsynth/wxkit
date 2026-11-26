@@ -9,14 +9,8 @@ public unsafe partial class SizeEvent : Event {
 	internal SizeEvent(WxkEvent* native) : base(native) {
 	}
 
-	public Rect Rect {
-		get => WxKitNative.SizeEventGetRect(Handle);
-		set => WxKitNative.SizeEventSetRect(Handle, value);
-	}
+	public Rect Rect => WxKitNative.SizeEventGetRect(Handle);
 
 	/// <summary>Returns the entire size of the window generating the size change event.</summary>
-	public Size Size {
-		get => WxKitNative.SizeEventGetSize(Handle);
-		set => WxKitNative.SizeEventSetSize(Handle, value);
-	}
+	public Size Size => WxKitNative.SizeEventGetSize(Handle);
 }

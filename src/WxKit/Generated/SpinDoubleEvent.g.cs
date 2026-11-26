@@ -10,8 +10,5 @@ public unsafe partial class SpinDoubleEvent : NotifyEvent {
 	}
 
 	/// <summary>Returns the value associated with this spin control event.</summary>
-	public double Value {
-		get => WxKitNative.SpinDoubleEventGetValue(Handle);
-		set => WxKitNative.SpinDoubleEventSetValue(Handle, value);
-	}
+	public double Value => WxKitNative.SpinDoubleEventGetValue(Handle);
 }
