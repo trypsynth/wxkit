@@ -7,7 +7,7 @@ namespace WxKit;
 /// <summary>This class represents a dialog that requests a one-line text string from the user. Wraps wxTextEntryDialog.</summary>
 public unsafe partial class TextEntryDialog : Dialog {
 	/// <summary>Constructor.</summary>
-	public TextEntryDialog(Window? parent, string message, string? caption = null, string value = "", DialogStyle style = (DialogStyle)0x15, Point? position = null, Size? size = null) : this(CreateNative(parent, message, caption, value, style, position, size)) {
+	public TextEntryDialog(Window? parent, string message, string? caption = null, string value = "", TextEntryDialogStyle style = TextEntryDialogStyle.Default, Point? position = null, Size? size = null) : this(CreateNative(parent, message, caption, value, style, position, size)) {
 	}
 
 	internal TextEntryDialog(WxkWindow* native) : base(native) {
@@ -47,7 +47,7 @@ public unsafe partial class TextEntryDialog : Dialog {
 	/// <summary>Associate a validator with the text control used by the dialog.</summary>
 	public void SetTextValidator(TextValidatorStyle style = TextValidatorStyle.None) => WxKitNative.TextEntryDialogSetTextValidatorTextValidatorStyle(Native, (int)style);
 
-	private static WxkWindow* CreateNative(Window? parent, string message, string? caption, string value, DialogStyle style, Point? position, Size? size) {
+	private static WxkWindow* CreateNative(Window? parent, string message, string? caption, string value, TextEntryDialogStyle style, Point? position, Size? size) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(message);
 		ArgumentNullException.ThrowIfNull(value);

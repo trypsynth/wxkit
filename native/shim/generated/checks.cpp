@@ -306,6 +306,7 @@ static_assert(static_cast<long>(wxCHK_ALLOW_3RD_STATE_FOR_USER) == static_cast<l
 static_assert(static_cast<int32_t>(wxCHK_CHECKED) == static_cast<int32_t>(1LL), "wxCHK_CHECKED is not 1");
 static_assert(static_cast<int32_t>(wxCHK_UNCHECKED) == static_cast<int32_t>(0LL), "wxCHK_UNCHECKED is not 0");
 static_assert(static_cast<int32_t>(wxCHK_UNDETERMINED) == static_cast<int32_t>(2LL), "wxCHK_UNDETERMINED is not 2");
+static_assert(static_cast<long>(wxCHOICEDLG_STYLE) == static_cast<long>(536877141LL), "wxCHOICEDLG_STYLE is not 536877141");
 static_assert(static_cast<int32_t>(wxCLEAR) == static_cast<int32_t>(0LL), "wxCLEAR is not 0");
 static_assert(static_cast<long>(wxCLIP_CHILDREN) == static_cast<long>(4194304LL), "wxCLIP_CHILDREN is not 4194304");
 static_assert(static_cast<int32_t>(wxCLOSE) == static_cast<int32_t>(64LL), "wxCLOSE is not 64");
@@ -4078,6 +4079,7 @@ static_assert(static_cast<long>(wxTR_MULTIPLE) == static_cast<long>(32LL), "wxTR
 static_assert(static_cast<long>(wxTR_NO_LINES) == static_cast<long>(4LL), "wxTR_NO_LINES is not 4");
 static_assert(static_cast<long>(wxTR_ROW_LINES) == static_cast<long>(1024LL), "wxTR_ROW_LINES is not 1024");
 static_assert(static_cast<long>(wxTR_TWIST_BUTTONS) == static_cast<long>(16LL), "wxTR_TWIST_BUTTONS is not 16");
+static_assert(static_cast<long>(wxTextEntryDialogStyle) == static_cast<long>(21LL), "wxTextEntryDialogStyle is not 21");
 static_assert(static_cast<int32_t>(wxTreeItemIcon_Expanded) == static_cast<int32_t>(2LL), "wxTreeItemIcon_Expanded is not 2");
 static_assert(static_cast<int32_t>(wxTreeItemIcon_Normal) == static_cast<int32_t>(0LL), "wxTreeItemIcon_Normal is not 0");
 static_assert(static_cast<int32_t>(wxTreeItemIcon_Selected) == static_cast<int32_t>(1LL), "wxTreeItemIcon_Selected is not 1");

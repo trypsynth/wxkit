@@ -501,6 +501,14 @@ internal sealed class ClassTweak(string name) {
 		return this;
 	}
 
+	/// <summary>Styles the class takes that its documentation has no table of, each a constant, the member's name, and what it does.</summary>
+	public List<(string Constant, string Name, string Description)> AddedStyles { get; } = [];
+
+	public ClassTweak Style(string constant, string name, string description) {
+		AddedStyles.Add((constant, name, description));
+		return this;
+	}
+
 	public ClassTweak StylesPrefixed(string prefix) {
 		StylePrefix = prefix;
 		return this;

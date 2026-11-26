@@ -781,7 +781,7 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 	}
 
 	private BoundStyles? BindStyles(BoundClass bound) {
-		if (bound.Source.Styles.Count == 0) return null;
+		if (bound.Source.Styles.Count == 0 && bound.Tweak.AddedStyles.Count == 0) return null;
 		string? prefix = bound.Tweak.StylePrefix ?? Naming.SharedStylePrefix(bound.Source.Styles.Select(static style => style.Name), api.Constants.ContainsKey);
 		List<BoundStyle> members = [];
 		foreach (DoxygenStyle style in bound.Source.Styles) {
@@ -804,6 +804,19 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 			string name = Naming.Style(style.Name, prefix, bound.CppName);
 			if (members.Any(existing => existing.Name == name)) continue;
 			members.Add(new BoundStyle(name, style.Name, value, style.Description));
+		}
+		foreach ((string constant, string name, string description) in bound.Tweak.AddedStyles) {
+			long value = _constants.Value(constant) ?? _constants.Evaluate(constant) ?? throw new InvalidOperationException($"A tweak gives {bound.CppName} the style {constant}, whose value is unknown.");
+			members.RemoveAll(existing => existing.Name == name);
+			members.Add(new BoundStyle(name, constant, value, description));
+		}
+		// A window's own enum has the styles every window takes too, such as the borders, so a
+		// borderless list is ListBoxStyle.BorderNone rather than a cast. One whose number the class
+		// uses for a style of its own is left out, as is one the class already lists.
+		if (bound.CppName != "wxWindow" && bound.Handle == HandleKind.Window && !bound.Tweak.KeepsStylesApart && _classes.GetValueOrDefault("wxWindow")?.Styles is BoundStyles shared) {
+			foreach (BoundStyle style in shared.Members.Where(static style => style.Value != 0)) {
+				if (!members.Any(existing => existing.Name == style.Name || existing.Value == style.Value)) members.Add(style);
+			}
 		}
 		// Every style enum has None, even when a style such as wxTE_LEFT is also 0, so a default of 0 reads as None.
 		if (!members.Any(static member => member.Name == "None")) members.Insert(0, new BoundStyle("None", "0", 0, "No styles."));

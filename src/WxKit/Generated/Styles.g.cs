@@ -16,6 +16,32 @@ public enum BitmapButtonStyle : long {
 	Right = 0x100,
 	/// <summary>Aligns the bitmap label to the bottom of the button. Wraps wxBU_BOTTOM.</summary>
 	Bottom = 0x200,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="BitmapComboBox"/>.</summary>
@@ -29,6 +55,32 @@ public enum BitmapComboBoxStyle : long {
 	Sort = 0x8,
 	/// <summary>The control will generate the event wxEVT_TEXT_ENTER (otherwise pressing Enter key is either processed internally by the control or used for navigation between dialog controls). Windows only. Wraps wxTE_PROCESS_ENTER.</summary>
 	ProcessEnter = 0x400,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="Button"/>.</summary>
@@ -50,6 +102,30 @@ public enum ButtonStyle : long {
 	NoText = 0x2,
 	/// <summary>Creates a button without border. This is currently implemented in MSW, GTK2 and OSX/Cocoa. Wraps wxBORDER_NONE.</summary>
 	BorderNone = 0x200000,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="CalendarCtrl"/>.</summary>
@@ -73,6 +149,32 @@ public enum CalendarCtrlStyle : long {
 	SequentialMonthSelection = 0x10,
 	/// <summary>Show week numbers on the left side of the calendar. (not in generic). Wraps wxCAL_SHOW_WEEK_NUMBERS.</summary>
 	ShowWeekNumbers = 0x40,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="CheckBox"/>.</summary>
@@ -88,6 +190,32 @@ public enum CheckBoxStyle : long {
 	Allow3rdStateForUser = 0x2000,
 	/// <summary>Makes the text appear on the left of the checkbox. Wraps wxALIGN_RIGHT.</summary>
 	AlignRight = 0x200,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="Choice"/>.</summary>
@@ -97,6 +225,32 @@ public enum ChoiceStyle : long {
 	None = 0x0,
 	/// <summary>Sorts the entries alphabetically. Wraps wxCB_SORT.</summary>
 	Sort = 0x8,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="Choicebook"/>.</summary>
@@ -112,6 +266,32 @@ public enum ChoicebookStyle : long {
 	Right = 0x80,
 	/// <summary>Place labels below the page area. Wraps wxCHB_BOTTOM.</summary>
 	Bottom = 0x20,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="CollapsiblePane"/>.</summary>
@@ -123,6 +303,32 @@ public enum CollapsiblePaneStyle : long {
 	Default = 0x280000,
 	/// <summary>By default wxCollapsiblePane resizes the top level window containing it when its own size changes. This allows easily implementing dialogs containing an optionally shown part, for example, and so is the default behaviour but can be inconvenient in some specific cases use this flag to disable this automatic parent resizing then. Wraps wxCP_NO_TLW_RESIZE.</summary>
 	NoTlwResize = 0x2,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="ColorPickerCtrl"/>.</summary>
@@ -136,6 +342,32 @@ public enum ColorPickerCtrlStyle : long {
 	ShowLabel = 0x8,
 	/// <summary>Allows selecting opacity in the colour-chooser (effective under wxGTK and wxOSX). Wraps wxCLRP_SHOW_ALPHA.</summary>
 	ShowAlpha = 0x10,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="ComboBox"/>.</summary>
@@ -153,6 +385,32 @@ public enum ComboBoxStyle : long {
 	Sort = 0x8,
 	/// <summary>The control will generate the event wxEVT_TEXT_ENTER that can be handled by the program. Otherwise, i.e. either if this style not specified at all, or it is used, but there is no event handler for this event or the event handler called wxEvent::Skip() to avoid overriding the default handling, pressing Enter key is either processed internally by the control or used to activate the default button of the dialog, if any. Wraps wxTE_PROCESS_ENTER.</summary>
 	ProcessEnter = 0x400,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="DataViewCtrl"/>.</summary>
@@ -172,6 +430,32 @@ public enum DataViewCtrlStyle : long {
 	VariableLineHeight = 0x20,
 	/// <summary>Do not show column headers (which are shown by default). Wraps wxDV_NO_HEADER.</summary>
 	NoHeader = 0x2,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="DatePickerCtrl"/>.</summary>
@@ -187,6 +471,32 @@ public enum DatePickerCtrlStyle : long {
 	AllowNone = 0x8,
 	/// <summary>Forces display of the century in the default date format. Without this style the century could be displayed, or not, depending on the default date representation in the system. This style is not supported in OSX/Cocoa native version currently. Wraps wxDP_SHOWCENTURY.</summary>
 	ShowCentury = 0x4,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="Dialog"/>.</summary>
@@ -212,6 +522,32 @@ public enum DialogStyle : long {
 	StayOnTop = 0x8000,
 	/// <summary>By default, a dialog created with a nullptr parent window will be given the application's top level window as parent. Use this style to prevent this from happening and create an orphan dialog. This is not recommended for modal dialogs. Wraps wxDIALOG_NO_PARENT.</summary>
 	NoParent = 0x20,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="DirDialog"/>.</summary>
@@ -229,6 +565,32 @@ public enum DirDialogStyle : long {
 	Multiple = 0x400,
 	/// <summary>Show hidden and system folders. This flag is only available since wxWidgets 3.1.4. Wraps wxDD_SHOW_HIDDEN.</summary>
 	ShowHidden = 0x1,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="DirPickerCtrl"/>.</summary>
@@ -244,6 +606,32 @@ public enum DirPickerCtrlStyle : long {
 	ChangeDirectory = 0x10,
 	/// <summary>Use smaller version of the control with a small "..." button instead of the normal "Browse" one. This flag is new since wxWidgets 2.9.3. Wraps wxDIRP_SMALL.</summary>
 	Small = 0x8000,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="EditableListBox"/>.</summary>
@@ -261,6 +649,32 @@ public enum EditableListBoxStyle : long {
 	NoReorder = 0x800,
 	/// <summary>Default style: wxEL_ALLOW_NEW|wxEL_ALLOW_EDIT|wxEL_ALLOW_DELETE. Wraps wxEL_DEFAULT_STYLE.</summary>
 	Default = 0x700,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="FileCtrl"/>.</summary>
@@ -278,6 +692,32 @@ public enum FileCtrlStyle : long {
 	Multiple = 0x4,
 	/// <summary>Hides the "Show Hidden Files" checkbox (Generic only). Wraps wxFC_NOSHOWHIDDEN.</summary>
 	NoShowHidden = 0x8,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="FileDialog"/>.</summary>
@@ -305,6 +745,32 @@ public enum FileDialogStyle : long {
 	Preview = 0x100,
 	/// <summary>Show hidden files. This flag was added in wxWidgets 3.1.3. Wraps wxFD_SHOW_HIDDEN.</summary>
 	ShowHidden = 0x400,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="FilePickerCtrl"/>.</summary>
@@ -326,6 +792,32 @@ public enum FilePickerCtrlStyle : long {
 	ChangeDirectory = 0x4000,
 	/// <summary>Use smaller version of the control with a small "..." button instead of the normal "Browse" one. This flag is new since wxWidgets 2.9.3. Wraps wxFLP_SMALL.</summary>
 	Small = 0x8000,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="FontPickerCtrl"/>.</summary>
@@ -341,6 +833,32 @@ public enum FontPickerCtrlStyle : long {
 	FontDescriptionAsLabel = 0x8,
 	/// <summary>Uses the currently selected font to draw the label of the button. Wraps wxFNTP_USEFONT_FOR_LABEL.</summary>
 	UseFontForLabel = 0x10,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="Frame"/>.</summary>
@@ -378,6 +896,32 @@ public enum FrameStyle : long {
 	FloatOnParent = 0x8,
 	/// <summary>Windows with this style are allowed to have their shape changed with the SetShape() method. Wraps wxFRAME_SHAPED.</summary>
 	Shaped = 0x10,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="Gauge"/>.</summary>
@@ -395,6 +939,32 @@ public enum GaugeStyle : long {
 	Text = 0x40,
 	/// <summary>Reflect the value of gauge in the application taskbar button under Windows 7 and later and the dock icon under macOS, ignored under the other platforms. This flag is only available in wxWidgets 3.1.0 and later. Wraps wxGA_PROGRESS.</summary>
 	Progress = 0x10,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="GenericDirCtrl"/>.</summary>
@@ -414,6 +984,32 @@ public enum GenericDirCtrlStyle : long {
 	EditLabels = 0x100,
 	/// <summary>Allows multiple files and folders to be selected. Wraps wxDIRCTRL_MULTIPLE.</summary>
 	Multiple = 0x200,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="HyperlinkCtrl"/>.</summary>
@@ -431,6 +1027,32 @@ public enum HyperlinkCtrlStyle : long {
 	ContextMenu = 0x1,
 	/// <summary>The default style for wxHyperlinkCtrl: wxBORDER_NONE|wxHL_CONTEXTMENU|wxHL_ALIGN_CENTRE. Wraps wxHL_DEFAULT_STYLE.</summary>
 	Default = 0x200009,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="ListBox"/>.</summary>
@@ -452,6 +1074,30 @@ public enum ListBoxStyle : long {
 	NoSb = 0x400,
 	/// <summary>The listbox contents are sorted in alphabetical order. Wraps wxLB_SORT.</summary>
 	Sort = 0x10,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="ListCtrl"/>.</summary>
@@ -489,6 +1135,32 @@ public enum ListCtrlStyle : long {
 	HorizontalRules = 0x2,
 	/// <summary>Draws light vertical rules between columns in report mode. Wraps wxLC_VRULES.</summary>
 	VerticalRules = 0x1,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="Listbook"/>.</summary>
@@ -504,6 +1176,32 @@ public enum ListbookStyle : long {
 	Right = 0x80,
 	/// <summary>Place labels below the page area. Wraps wxLB_BOTTOM.</summary>
 	Bottom = 0x20,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="MessageDialog"/>.</summary>
@@ -570,6 +1268,32 @@ public enum MiniFrameStyle : long {
 	SystemMenu = 0x800,
 	/// <summary>Displays a resizable border around the window. Wraps wxRESIZE_BORDER.</summary>
 	ResizeBorder = 0x40,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="MultiChoiceDialog"/>.</summary>
@@ -583,6 +1307,42 @@ public enum MultiChoiceDialogStyle : long {
 	Cancel = 0x10,
 	/// <summary>Centre the message. Wraps wxCENTRE.</summary>
 	Center = 0x1,
+	/// <summary>Puts a caption on the dialog. Wraps wxCAPTION.</summary>
+	Caption = 0x20000000,
+	/// <summary>Shows a system menu. Wraps wxSYSTEM_MENU.</summary>
+	SystemMenu = 0x800,
+	/// <summary>Shows a close box. Wraps wxCLOSE_BOX.</summary>
+	CloseBox = 0x1000,
+	/// <summary>The dialog can be resized. Wraps wxRESIZE_BORDER.</summary>
+	ResizeBorder = 0x40,
+	/// <summary>A resizable dialog with a caption, a system menu, a close box, and OK and Cancel buttons, centered, which is what the dialog has when no styles are given. Wraps wxCHOICEDLG_STYLE.</summary>
+	Default = 0x20001855,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="Notebook"/>.</summary>
@@ -604,6 +1364,32 @@ public enum NotebookStyle : long {
 	MultiLine = 0x200,
 	/// <summary>(Windows only) Display a solid colour on notebook pages, and not a gradient, which can reduce performance. Wraps wxNB_NOPAGETHEME.</summary>
 	NoPageTheme = 0x400,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="PickerBase"/>.</summary>
@@ -613,6 +1399,32 @@ public enum PickerBaseStyle : long {
 	None = 0x0,
 	/// <summary>Creates a text control to the left of the picker which is completely managed by this wxPickerBase class. Wraps wxPB_USE_TEXTCTRL.</summary>
 	UseTextCtrl = 0x2,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="RadioBox"/>.</summary>
@@ -624,6 +1436,32 @@ public enum RadioBoxStyle : long {
 	SpecifyRows = 0x8,
 	/// <summary>The major dimension parameter refers to the maximum number of columns. Wraps wxRA_SPECIFY_COLS.</summary>
 	SpecifyColumns = 0x4,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="RadioButton"/>.</summary>
@@ -635,6 +1473,32 @@ public enum RadioButtonStyle : long {
 	Group = 0x4,
 	/// <summary>Creates a radio button which is not part of any radio button group. When this style is used, no other radio buttons will be turned off automatically when this button is turned on and such behaviour will need to be implemented manually, in the event handler for this button. This style is currently only supported in wxMSW and wxGTK (since version 3.3.0). In the other ports it can be specified, but single radio buttons can't be turned off, making them not very useful. Wraps wxRB_SINGLE.</summary>
 	Single = 0x8,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="ScrollBar"/>.</summary>
@@ -646,6 +1510,32 @@ public enum ScrollBarStyle : long {
 	Horizontal = 0x4,
 	/// <summary>Specifies a vertical scrollbar. Wraps wxSB_VERTICAL.</summary>
 	Vertical = 0x8,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="ScrolledWindow"/>.</summary>
@@ -659,6 +1549,26 @@ public enum ScrolledWindowStyle : long {
 	VerticalScrollBar = -2147483648,
 	/// <summary>Since wxWidgets 2.9.5, specifying this style makes the window always show its scrollbars, even if they are not used. See ShowScrollbars(). Wraps wxALWAYS_SHOW_SB.</summary>
 	AlwaysShowSb = 0x800000,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="SearchCtrl"/>.</summary>
@@ -674,6 +1584,32 @@ public enum SearchCtrlStyle : long {
 	Center = 0x100,
 	/// <summary>The text in the control will be right-justified (currently wxMSW and wxGTK2 only). Wraps wxTE_RIGHT.</summary>
 	Right = 0x200,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="SingleChoiceDialog"/>.</summary>
@@ -687,6 +1623,42 @@ public enum SingleChoiceDialogStyle : long {
 	Cancel = 0x10,
 	/// <summary>Centre the message. Wraps wxCENTRE.</summary>
 	Center = 0x1,
+	/// <summary>Puts a caption on the dialog. Wraps wxCAPTION.</summary>
+	Caption = 0x20000000,
+	/// <summary>Shows a system menu. Wraps wxSYSTEM_MENU.</summary>
+	SystemMenu = 0x800,
+	/// <summary>Shows a close box. Wraps wxCLOSE_BOX.</summary>
+	CloseBox = 0x1000,
+	/// <summary>The dialog can be resized. Wraps wxRESIZE_BORDER.</summary>
+	ResizeBorder = 0x40,
+	/// <summary>A resizable dialog with a caption, a system menu, a close box, and OK and Cancel buttons, centered, which is what the dialog has when no styles are given. Wraps wxCHOICEDLG_STYLE.</summary>
+	Default = 0x20001855,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="Slider"/>.</summary>
@@ -720,6 +1692,32 @@ public enum SliderStyle : long {
 	SelectionRange = 0x800,
 	/// <summary>Inverses the minimum and maximum endpoints on the slider. Not compatible with wxSL_SELRANGE. Wraps wxSL_INVERSE.</summary>
 	Inverse = 0x1000,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="SpinButton"/>.</summary>
@@ -735,6 +1733,32 @@ public enum SpinButtonStyle : long {
 	ArrowKeys = 0x4000,
 	/// <summary>The value wraps at the minimum and maximum. Wraps wxSP_WRAP.</summary>
 	Wrap = 0x8000,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="SpinCtrl"/>.</summary>
@@ -752,6 +1776,32 @@ public enum SpinCtrlStyle : long {
 	AlignCenterHorizontal = 0x100,
 	/// <summary>Same as wxTE_RIGHT for wxTextCtrl: the text is right aligned. Wraps wxALIGN_RIGHT.</summary>
 	AlignRight = 0x200,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="SpinCtrlDouble"/>.</summary>
@@ -769,6 +1819,32 @@ public enum SpinCtrlDoubleStyle : long {
 	AlignCenterHorizontal = 0x100,
 	/// <summary>Same as wxTE_RIGHT for wxTextCtrl: the text is right aligned. Wraps wxALIGN_RIGHT.</summary>
 	AlignRight = 0x200,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="SplitterWindow"/>.</summary>
@@ -790,6 +1866,32 @@ public enum SplitterWindowStyle : long {
 	PermitUnsplit = 0x40,
 	/// <summary>Don't draw XOR line but resize the child windows immediately. Wraps wxSP_LIVE_UPDATE.</summary>
 	LiveUpdate = 0x80,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="StaticLine"/>.</summary>
@@ -801,6 +1903,32 @@ public enum StaticLineStyle : long {
 	Horizontal = 0x4,
 	/// <summary>Creates a vertical line. Wraps wxLI_VERTICAL.</summary>
 	Vertical = 0x8,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="StaticText"/>.</summary>
@@ -822,6 +1950,32 @@ public enum StaticTextStyle : long {
 	EllipsizeEnd = 0x10,
 	/// <summary>Wrap label text on multiple lines if necessary, using the available horizontal space. This style only works when the control is used inside a sizer. It is available since wxWidgets 3.3.2. Wraps wxST_WRAP.</summary>
 	Wrap = 0x2,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="StatusBar"/>.</summary>
@@ -841,6 +1995,32 @@ public enum StatusBarStyle : long {
 	EllipsizeEnd = 0x100,
 	/// <summary>The default style: includes wxSTB_SIZEGRIP|wxSTB_SHOW_TIPS|wxSTB_ELLIPSIZE_END|wxFULL_REPAINT_ON_RESIZE. Wraps wxSTB_DEFAULT_STYLE.</summary>
 	Default = 0x10130,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="TextCtrl"/>.</summary>
@@ -880,6 +2060,49 @@ public enum TextCtrlStyle : long {
 	CharWrap = 0x4000,
 	/// <summary>For multiline controls only: wrap the lines too long to be shown entirely at word boundaries (wxUniv, wxMSW, wxGTK, wxOSX). Wraps wxTE_WORDWRAP.</summary>
 	WordWrap = 0x1,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
+}
+
+/// <summary>Styles for <see cref="TextEntryDialog"/>.</summary>
+[Flags]
+public enum TextEntryDialogStyle : long {
+	/// <summary>No styles. Wraps 0.</summary>
+	None = 0x0,
+	/// <summary>Show an OK button. Wraps wxOK.</summary>
+	Ok = 0x4,
+	/// <summary>Show a Cancel button. Wraps wxCANCEL.</summary>
+	Cancel = 0x10,
+	/// <summary>Center the dialog on its parent, or on the screen without one. Wraps wxCENTRE.</summary>
+	Center = 0x1,
+	/// <summary>The text can have more than one line. Wraps wxTE_MULTILINE.</summary>
+	MultiLine = 0x20,
+	/// <summary>The text is shown as password characters. Wraps wxTE_PASSWORD.</summary>
+	Password = 0x800,
+	/// <summary>OK and Cancel buttons, and centered, which is what the dialog has when no styles are given. Wraps wxTextEntryDialogStyle.</summary>
+	Default = 0x15,
 }
 
 /// <summary>Styles for <see cref="ToolBar"/>.</summary>
@@ -915,6 +2138,32 @@ public enum ToolBarStyle : long {
 	Right = 0x4000,
 	/// <summary>The wxTB_HORIZONTAL style. This style is new since wxWidgets 2.9.5. Wraps wxTB_DEFAULT_STYLE.</summary>
 	Default = 0x4,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="Toolbook"/>.</summary>
@@ -926,6 +2175,32 @@ public enum ToolbookStyle : long {
 	ButtonBar = 0x100,
 	/// <summary>Shows the text and the icons alongside, not vertically stacked (only implement under Windows and GTK 2 platforms as it relies on wxTB_HORZ_LAYOUT flag support). Wraps wxTBK_HORZ_LAYOUT.</summary>
 	HorzLayout = 0x8000,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="TreeCtrl"/>.</summary>
@@ -953,6 +2228,32 @@ public enum TreeCtrlStyle : long {
 	HasVariableRowHeight = 0x80,
 	/// <summary>Use this style to allow a range of items to be selected. If a second range is selected, the current range, if any, is deselected. Wraps wxTR_MULTIPLE.</summary>
 	Multiple = 0x20,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="TreeListCtrl"/>.</summary>
@@ -970,6 +2271,32 @@ public enum TreeListCtrlStyle : long {
 	UserThreeState = 0x8,
 	/// <summary>Don't show the column headers, that are shown by default. Notice that this style is only available since wxWidgets 2.9.5. Wraps wxTL_NO_HEADER.</summary>
 	NoHeader = 0x10,
+	/// <summary>Displays a thin border around the window. wxSIMPLE_BORDER is the old name for this style. Wraps wxBORDER_SIMPLE.</summary>
+	BorderSimple = 0x2000000,
+	/// <summary>Displays a sunken border. wxSUNKEN_BORDER is the old name for this style. Wraps wxBORDER_SUNKEN.</summary>
+	BorderSunken = 0x8000000,
+	/// <summary>Displays a raised border. wxRAISED_BORDER is the old name for this style. Wraps wxBORDER_RAISED.</summary>
+	BorderRaised = 0x4000000,
+	/// <summary>Displays a border suitable for a static control. wxSTATIC_BORDER is the old name for this style. Windows only. Wraps wxBORDER_STATIC.</summary>
+	BorderStatic = 0x1000000,
+	/// <summary>Displays a native border suitable for a control, on the current platform. On Windows, this will be a themed border; on most other platforms a sunken border will be used. For more information for themed borders on Windows, please see Themed borders on Windows. Wraps wxBORDER_THEME.</summary>
+	BorderTheme = 0x10000000,
+	/// <summary>Displays no border, overriding the default border style for the window. wxNO_BORDER is the old name for this style. Wraps wxBORDER_NONE.</summary>
+	BorderNone = 0x200000,
+	/// <summary>This style is used by wxWidgets for the windows supporting TAB navigation among their children, such as wxDialog and wxPanel. It should almost never be used in the application code. Wraps wxTAB_TRAVERSAL.</summary>
+	TabTraversal = 0x80000,
+	/// <summary>Use this to indicate that the window wants to get all char/key events for all keys - even for keys like TAB or ENTER which are usually used for dialog navigation and which wouldn't be generated without this style. If you need to use this style in order to get the arrows or etc., but would still like to have normal keyboard navigation take place, you should call Navigate in response to the key events for Tab and Shift-Tab. Wraps wxWANTS_CHARS.</summary>
+	WantsChars = 0x40000,
+	/// <summary>Use this style to enable a vertical scrollbar. Notice that this style cannot be used with native controls which don't support scrollbars nor with top-level windows in most ports. Wraps wxVSCROLL.</summary>
+	VerticalScrollBar = -2147483648,
+	/// <summary>Use this style to enable a horizontal scrollbar. The same limitations as for wxVSCROLL apply to this style. Wraps wxHSCROLL.</summary>
+	HorizontalScrollBar = 0x40000000,
+	/// <summary>If a window has scrollbars, disable them instead of hiding them when they are not needed (i.e. when the size of the window is big enough to not require the scrollbars to navigate it). This style is currently implemented for wxMSW, wxGTK and wxUniversal and does nothing on the other platforms. Wraps wxALWAYS_SHOW_SB.</summary>
+	AlwaysShowSb = 0x800000,
+	/// <summary>Use this style to eliminate flicker caused by the background being repainted, then children being painted over them. Windows only. Wraps wxCLIP_CHILDREN.</summary>
+	ClipChildren = 0x400000,
+	/// <summary>Use this style to force a complete redraw of the window whenever it is resized instead of redrawing just the part of the window affected by resizing. Note that this was the behaviour by default before 2.5.1 release and that if you experience redraw problems with code which previously used to work you may want to try this. Currently this style applies on GTK+ 2 and Windows only, and full repainting is always done on other platforms. Wraps wxFULL_REPAINT_ON_RESIZE.</summary>
+	FullRepaintOnResize = 0x10000,
 }
 
 /// <summary>Styles for <see cref="Window"/>.</summary>

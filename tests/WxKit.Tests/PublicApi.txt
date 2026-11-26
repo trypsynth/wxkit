@@ -433,11 +433,24 @@ class WxKit.BitmapButton : Button
     BitmapButtonStyle Style { get; set; }
     static BitmapButton? NewCloseButton(Window parent, string name = "", int id = -1)
 [Flags] enum WxKit.BitmapButtonStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
     Bottom = 512
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     Left = 64
     None = 0
     Right = 256
+    TabTraversal = 524288
     Top = 128
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.BitmapComboBox : ComboBox
     Bitmap? GetItemBitmap(int index)
     BitmapComboBox(Window parent, string value = "", int id = -1, Point? position = null, Size? size = null)
@@ -450,10 +463,23 @@ class WxKit.BitmapComboBox : ComboBox
     int Insert(string item, Bitmap bitmap, int position, object? data)
     void SetItemBitmap(int index, Bitmap bitmap)
 [Flags] enum WxKit.BitmapComboBoxStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     None = 0
     ProcessEnter = 1024
     ReadOnly = 16
     Sort = 8
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.BitmapToggleButton : ToggleButton
     BitmapToggleButton(Window parent, Bitmap label, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
     bool Value { get; set; }
@@ -564,14 +590,26 @@ class WxKit.Button : AnyButton
     event EventHandler<CommandEvent>? Click
     static Size GetDefaultSize(Window? window = null)
 [Flags] enum WxKit.ButtonStyle : long
+    AlwaysShowSb = 8388608
     BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
     Bottom = 512
+    ClipChildren = 4194304
     ExactFit = 1
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     Left = 64
     NoText = 2
     None = 0
     Right = 256
+    TabTraversal = 524288
     Top = 128
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.CalendarCtrl : Control
     CalendarCtrl(Window parent, DateTime? date = null, int id = -1, Point? position = null, Size? size = null, CalendarCtrlStyle style = CalendarCtrlStyle.ShowHolidays)
     CalendarCtrlStyle Style { get; set; }
@@ -594,6 +632,16 @@ class WxKit.CalendarCtrl : Control
     void ResetAttributes(int day)
     void SetHoliday(int day)
 [Flags] enum WxKit.CalendarCtrlStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     MondayFirst = 1
     NoMonthChange = 12
     NoYearChange = 4
@@ -603,6 +651,9 @@ class WxKit.CalendarCtrl : Control
     ShowSurroundingWeeks = 32
     ShowWeekNumbers = 64
     SundayFirst = 128
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.CalendarEvent : DateEvent
     DayOfWeek DayOfWeek { get; }
 enum WxKit.CalendarHitTestResult : int
@@ -628,9 +679,22 @@ enum WxKit.CheckBoxState : int
 [Flags] enum WxKit.CheckBoxStyle : long
     AlignRight = 512
     Allow3rdStateForUser = 8192
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     None = 0
+    TabTraversal = 524288
     ThreeState = 4096
     TwoState = 16384
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.CheckListBox : ListBox
     CheckListBox(Window parent, IEnumerable<string>? choices = null, int id = -1, Point? position = null, Size? size = null, ListBoxStyle style = ListBoxStyle.None)
     IReadOnlyList<int> CheckedItems { get; }
@@ -667,8 +731,21 @@ class WxKit.Choice : Control, IItemContainer
     void SetItemData(int index, object? data)
     void SetString(int index, string text)
 [Flags] enum WxKit.ChoiceStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     None = 0
     Sort = 8
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.Choicebook : BookCtrlBase
     Choice? ChoiceCtrl { get; }
     Choicebook(Window parent, int id = -1, Point? position = null, Size? size = null, ChoicebookStyle style = ChoicebookStyle.None)
@@ -676,11 +753,24 @@ class WxKit.Choicebook : BookCtrlBase
     event EventHandler<BookCtrlEvent>? PageChanged
     event EventHandler<BookCtrlEvent>? PageChanging
 [Flags] enum WxKit.ChoicebookStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
     Bottom = 32
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     Left = 64
     None = 0
     Right = 128
+    TabTraversal = 524288
     Top = 16
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.ClientDC : WindowDC
     ClientDC(Window window)
     static bool CanBeUsedForDrawing(Window window)
@@ -727,9 +817,22 @@ class WxKit.CollapsiblePane : Control
 class WxKit.CollapsiblePaneEvent : CommandEvent
     bool Collapsed { get; }
 [Flags] enum WxKit.CollapsiblePaneStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
     Default = 2621440
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     NoTlwResize = 2
     None = 0
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 readonly record struct WxKit.Color : IEquatable<Color>
     Color(byte R, byte G, byte B, byte A = 255)
     bool Equals(Color other)
@@ -764,10 +867,23 @@ class WxKit.ColorPickerCtrl : PickerBase
     event EventHandler<ColorPickerEvent>? CurrentColorChanged
     event EventHandler<ColorPickerEvent>? DialogCanceled
 [Flags] enum WxKit.ColorPickerCtrlStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     None = 0
     ShowAlpha = 16
     ShowLabel = 8
+    TabTraversal = 524288
     UseTextCtrl = 2
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.ColorPickerEvent : CommandEvent
     Color? Color { get; }
 class WxKit.ComboBox : Control, IItemContainer
@@ -838,12 +954,25 @@ class WxKit.ComboBox : Control, IItemContainer
     void Undo()
     void WriteText(string text)
 [Flags] enum WxKit.ComboBoxStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
     DropDown = 32
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     None = 0
     ProcessEnter = 1024
     ReadOnly = 16
     Simple = 4
     Sort = 8
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.CommandEvent : Event
     bool IsChecked { get; }
     bool IsSelection { get; }
@@ -1130,13 +1259,26 @@ class WxKit.DataViewCtrl : Control
     void Unselect(DataViewItem item)
     void UnselectAll()
 [Flags] enum WxKit.DataViewCtrlStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
     HorizRules = 4
+    HorizontalScrollBar = 1073741824
     Multiple = 1
     NoHeader = 2
     None = 0
     RowLines = 16
+    TabTraversal = 524288
     VariableLineHeight = 32
     VertRules = 8
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.DataViewEvent : NotifyEvent
     DataViewColumn? DataViewColumn { get; }
     DataViewItem Item { get; }
@@ -1281,10 +1423,23 @@ class WxKit.DatePickerCtrl : Control
     void SetRange(DateTime? earliest, DateTime? latest)
 [Flags] enum WxKit.DatePickerCtrlStyle : long
     AllowNone = 8
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
     DropDown = 2
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     None = 0
     ShowCentury = 4
     Spin = 1
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 static class WxKit.Desktop
     static bool Open(string path)
     static bool OpenUrl(Uri url)
@@ -1319,9 +1474,19 @@ class WxKit.Dialog : TopLevelWindow, IDisposable
     Ok = 4
     Yes = 2
 [Flags] enum WxKit.DialogStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
     Caption = 536870912
+    ClipChildren = 4194304
     CloseBox = 4096
     Default = 536877056
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     MaximizeBox = 512
     MinimizeBox = 1024
     NoParent = 32
@@ -1329,6 +1494,9 @@ class WxKit.Dialog : TopLevelWindow, IDisposable
     ResizeBorder = 64
     StayOnTop = 32768
     SystemMenu = 2048
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.DirDialog : Dialog
     DirDialog(Window? parent, string? message = null, string defaultPath = "", DirDialogStyle style = DirDialogStyle.Default, Point? position = null, Size? size = null)
     DirDialogStyle Style { get; set; }
@@ -1336,12 +1504,25 @@ class WxKit.DirDialog : Dialog
     string Message { get; set; }
     string Path { get; set; }
 [Flags] enum WxKit.DirDialogStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
     ChangeDirectory = 256
+    ClipChildren = 4194304
     Default = 536877120
     DirectoryMustExist = 512
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     Multiple = 1024
     None = 0
     ShowHidden = 1
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.DirPickerCtrl : PickerBase
     DirPickerCtrl(Window parent, string path = "", string? message = null, int id = -1, Point? position = null, Size? size = null, DirPickerCtrlStyle? style = null)
     DirPickerCtrlStyle Style { get; set; }
@@ -1349,11 +1530,24 @@ class WxKit.DirPickerCtrl : PickerBase
     string Path { get; set; }
     void SetInitialDirectory(string directory)
 [Flags] enum WxKit.DirPickerCtrlStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
     ChangeDirectory = 16
+    ClipChildren = 4194304
     DirectoryMustExist = 8
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     None = 0
     Small = 32768
+    TabTraversal = 524288
     UseTextCtrl = 2
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 [Flags] enum WxKit.Direction : int
     All = 240
     Bottom = 128
@@ -1440,9 +1634,22 @@ class WxKit.EditableListBox : Panel
     AllowDelete = 1024
     AllowEdit = 512
     AllowNew = 256
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
     Default = 1792
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     NoReorder = 2048
     None = 0
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 sealed class WxKit.EmbeddedTranslationsLoader : TranslationsLoader
     EmbeddedTranslationsLoader()
     EmbeddedTranslationsLoader(IEnumerable<Assembly> assemblies)
@@ -1785,12 +1992,25 @@ class WxKit.FileCtrlEvent : CommandEvent
     string Directory { get; }
     string File { get; }
 [Flags] enum WxKit.FileCtrlStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
     Default = 1
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     Multiple = 4
     NoShowHidden = 8
     None = 0
     Open = 1
     Save = 2
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.FileDialog : Dialog
     FileDialog(Window? parent, string? message = null, string defaultDirectory = "", string defaultFile = "", string? wildcard = null, FileDialogStyle style = FileDialogStyle.Open, Point? position = null, Size? size = null)
     FileDialogStyle Style { get; set; }
@@ -1810,9 +2030,19 @@ enum WxKit.FileDialogShortcut : int
     Bottom = 2
     Top = 1
 [Flags] enum WxKit.FileDialogStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
     ChangeDirectory = 128
+    ClipChildren = 4194304
     Default = 1
     FileMustExist = 16
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     Multiple = 512
     NoFollow = 8
     None = 0
@@ -1821,6 +2051,9 @@ enum WxKit.FileDialogShortcut : int
     Preview = 256
     Save = 2
     ShowHidden = 1024
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.FileDirPickerEvent : CommandEvent
     string Path { get; }
 class WxKit.FilePickerCtrl : PickerBase
@@ -1830,14 +2063,27 @@ class WxKit.FilePickerCtrl : PickerBase
     string Path { get; set; }
     void SetInitialDirectory(string directory)
 [Flags] enum WxKit.FilePickerCtrlStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
     ChangeDirectory = 16384
+    ClipChildren = 4194304
     FileMustExist = 8192
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     None = 0
     Open = 1024
     OverwritePrompt = 4096
     Save = 2048
     Small = 32768
+    TabTraversal = 524288
     UseTextCtrl = 2
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.FindDialogEvent : CommandEvent
     FindReplaceDialog? Dialog { get; }
     FindReplaceFlags Flags { get; }
@@ -2050,11 +2296,24 @@ class WxKit.FontPickerCtrl : PickerBase
     int MaxPointSize { get; set; }
     int MinPointSize { get; set; }
 [Flags] enum WxKit.FontPickerCtrlStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
     Default = 24
     FontDescriptionAsLabel = 8
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     None = 0
+    TabTraversal = 524288
     UseFontForLabel = 16
     UseTextCtrl = 2
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.FontPickerEvent : CommandEvent
     Font? Font { get; }
 [Flags] enum WxKit.FontRestriction : int
@@ -2104,10 +2363,20 @@ class WxKit.Frame : TopLevelWindow
     void SetStatusWidths(IEnumerable<int> widths)
     void SetWindowModality(WindowMode modality)
 [Flags] enum WxKit.FrameStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
     Caption = 536870912
+    ClipChildren = 4194304
     CloseBox = 4096
     Default = 541072960
     FloatOnParent = 8
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     Iconize = 16384
     Maximize = 8192
     MaximizeBox = 512
@@ -2119,7 +2388,10 @@ class WxKit.Frame : TopLevelWindow
     Shaped = 16
     StayOnTop = 32768
     SystemMenu = 2048
+    TabTraversal = 524288
     ToolWindow = 4
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.FullScreenEvent : Event
     bool IsFullScreen { get; }
 [Flags] enum WxKit.FullScreenStyle : int
@@ -2138,12 +2410,25 @@ class WxKit.Gauge : Control
     int Value { get; set; }
     void Pulse()
 [Flags] enum WxKit.GaugeStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
     Horizontal = 4
+    HorizontalScrollBar = 1073741824
     None = 0
     Progress = 16
     Smooth = 32
+    TabTraversal = 524288
     Text = 64
     Vertical = 8
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.GenericDirCtrl : Control
     GenericDirCtrl(Window parent, string? directory = null, int id = -1, Point? position = null, Size? size = null, GenericDirCtrlStyle style = GenericDirCtrlStyle.ThreeDInternal, string filter = "", int defaultFilter = 0)
     GenericDirCtrlStyle Style { get; set; }
@@ -2168,13 +2453,26 @@ class WxKit.GenericDirCtrl : Control
     void ShowHidden(bool show)
     void UnselectAll()
 [Flags] enum WxKit.GenericDirCtrlStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
     DirectoryOnly = 16
     EditLabels = 256
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     Multiple = 512
     None = 0
     SelectFirst = 32
     ShowFilters = 64
+    TabTraversal = 524288
     ThreeDInternal = 128
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 static class WxKit.Gettext
     static string _(string text)
     static string _(string text, params object?[] args)
@@ -2269,9 +2567,22 @@ class WxKit.HyperlinkCtrl : Control
     AlignCenter = 8
     AlignLeft = 2
     AlignRight = 4
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
     ContextMenu = 1
     Default = 2097161
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     None = 0
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.HyperlinkEvent : CommandEvent
     string Url { get; }
 interface WxKit.IItemContainer
@@ -2711,13 +3022,25 @@ class WxKit.ListBox : Control, IItemContainer
     void SetString(int index, string text)
 [Flags] enum WxKit.ListBoxStyle : long
     AlwaysSb = 512
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
     Extended = 128
+    FullRepaintOnResize = 65536
     HorizontalScrollBar = 1073741824
     Multiple = 64
     NoSb = 1024
     None = 0
     Single = 32
     Sort = 16
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 enum WxKit.ListColumnFormat : int
     Center = 2
     Left = 0
@@ -2832,9 +3155,19 @@ class WxKit.ListCtrl : Control
 [Flags] enum WxKit.ListCtrlStyle : long
     AlignLeft = 128
     AlignTop = 64
+    AlwaysShowSb = 8388608
     AutoArrange = 256
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
     EditLabels = 1024
+    FullRepaintOnResize = 65536
     HorizontalRules = 2
+    HorizontalScrollBar = 1073741824
     Icon = 4
     List = 16
     NoHeader = 2048
@@ -2844,8 +3177,11 @@ class WxKit.ListCtrl : Control
     SmallIcon = 8
     SortAscending = 16384
     SortDescending = 32768
+    TabTraversal = 524288
     VerticalRules = 1
+    VerticalScrollBar = -2147483648
     Virtual = 512
+    WantsChars = 262144
 class WxKit.ListEvent : NotifyEvent
     KeyCode KeyCode { get; }
     ListItem? Item { get; }
@@ -2923,11 +3259,24 @@ class WxKit.Listbook : BookCtrlBase
     event EventHandler<BookCtrlEvent>? PageChanged
     event EventHandler<BookCtrlEvent>? PageChanging
 [Flags] enum WxKit.ListbookStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
     Bottom = 32
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     Left = 64
     None = 0
     Right = 128
+    TabTraversal = 524288
     Top = 16
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 sealed class WxKit.LiveRegion : Control
     LiveRegion(Window parent)
     bool Announce(string message, AnnouncementPriority priority = AnnouncementPriority.High)
@@ -3043,8 +3392,18 @@ class WxKit.MiniFrame : Frame
     MiniFrame(Window? parent, string title, int id = -1, Point? position = null, Size? size = null, MiniFrameStyle style = MiniFrameStyle.ResizeBorder | MiniFrameStyle.Caption)
     MiniFrameStyle Style { get; set; }
 [Flags] enum WxKit.MiniFrameStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
     Caption = 536870912
+    ClipChildren = 4194304
     CloseBox = 4096
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     Iconize = 16384
     Maximize = 8192
     MaximizeBox = 512
@@ -3054,6 +3413,9 @@ class WxKit.MiniFrame : Frame
     ResizeBorder = 64
     StayOnTop = 32768
     SystemMenu = 2048
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 static class WxKit.Mouse
     static Point Position { get; }
 enum WxKit.MouseButton : int
@@ -3122,13 +3484,31 @@ class WxKit.MoveEvent : Event
     Rect Rect { get; }
 class WxKit.MultiChoiceDialog : Dialog
     IReadOnlyList<int> Selections { get; set; }
-    MultiChoiceDialog(Window? parent, string message, string caption, IEnumerable<string> choices, MultiChoiceDialogStyle style = MultiChoiceDialogStyle.536877141, Point? position = null)
+    MultiChoiceDialog(Window? parent, string message, string caption, IEnumerable<string> choices, MultiChoiceDialogStyle style = MultiChoiceDialogStyle.Default, Point? position = null)
     MultiChoiceDialogStyle Style { get; set; }
 [Flags] enum WxKit.MultiChoiceDialogStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
     Cancel = 16
+    Caption = 536870912
     Center = 1
+    ClipChildren = 4194304
+    CloseBox = 4096
+    Default = 536877141
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     None = 0
     Ok = 4
+    ResizeBorder = 64
+    SystemMenu = 2048
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 abstract class WxKit.NativeObject : IDisposable
     bool IsDisposed { get; }
     void Dispose()
@@ -3162,14 +3542,27 @@ class WxKit.Notebook : BookCtrlBase
     int RowCount { get; }
     void SetPadding(Size padding)
 [Flags] enum WxKit.NotebookStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
     Bottom = 32
+    ClipChildren = 4194304
     FixedWidth = 256
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     Left = 64
     MultiLine = 512
     NoPageTheme = 1024
     None = 0
     Right = 128
+    TabTraversal = 524288
     Top = 16
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 sealed class WxKit.NotificationMessage : EvtHandler, IDisposable
     NotificationMessage()
     NotificationMessage(string title, string message = "", Window? parent = null, MessageIcon icon = MessageIcon.Information)
@@ -3360,7 +3753,7 @@ enum WxKit.PaperKind : int
     Tabloid = 8
     TabloidExtra = 50
 class WxKit.PasswordEntryDialog : TextEntryDialog
-    PasswordEntryDialog(Window? parent, string message, string? caption = null, string defaultValue = "", DialogStyle style = DialogStyle.21, Point? position = null)
+    PasswordEntryDialog(Window? parent, string message, string? caption = null, string defaultValue = "", TextEntryDialogStyle style = TextEntryDialogStyle.Default, Point? position = null)
 class WxKit.Pen : NativeObject
     Color? Color { get; set; }
     Pen()
@@ -3417,8 +3810,21 @@ class WxKit.PickerBase : Control
     void UpdatePickerFromTextCtrl()
     void UpdateTextCtrlFromPicker()
 [Flags] enum WxKit.PickerBaseStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     None = 0
+    TabTraversal = 524288
     UseTextCtrl = 2
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 readonly record struct WxKit.Point : IEquatable<Point>
     Point(int X, int Y)
     bool Equals(Point other)
@@ -3609,9 +4015,22 @@ class WxKit.RadioBox : Control
     void SetItemToolTip(int item, string text)
     void SetString(int index, string text)
 [Flags] enum WxKit.RadioBoxStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     None = 0
     SpecifyColumns = 4
     SpecifyRows = 8
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.RadioButton : Control
     RadioButton(Window parent, string label, int id = -1, Point? position = null, Size? size = null, RadioButtonStyle style = RadioButtonStyle.None)
     RadioButton? FirstInGroup { get; }
@@ -3622,9 +4041,22 @@ class WxKit.RadioButton : Control
     bool IsChecked { get; set; }
     event EventHandler<CommandEvent>? Selected
 [Flags] enum WxKit.RadioButtonStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
     Group = 4
+    HorizontalScrollBar = 1073741824
     None = 0
     Single = 8
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 enum WxKit.RasterOperationMode : int
     And = 6
     AndInvert = 7
@@ -3724,9 +4156,22 @@ class WxKit.ScrollBar : Control
     int ThumbSize { get; }
     void SetScrollBar(int position, int thumbSize, int range, int pageSize, bool refresh = true)
 [Flags] enum WxKit.ScrollBarStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
     Horizontal = 4
+    HorizontalScrollBar = 1073741824
     None = 0
+    TabTraversal = 524288
     Vertical = 8
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 enum WxKit.ScrollBarVisibility : int
     Always = 1
     Default = 0
@@ -3779,9 +4224,19 @@ class WxKit.ScrolledWindow : Panel
     void StopAutoScrolling()
 [Flags] enum WxKit.ScrolledWindowStyle : long
     AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
     HorizontalScrollBar = 1073741824
     None = 0
+    TabTraversal = 524288
     VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.SearchCtrl : Control
     Menu? Menu { get; set; }
     Point Margins { get; set; }
@@ -3830,11 +4285,24 @@ class WxKit.SearchCtrl : Control
     void Undo()
     void WriteText(string text)
 [Flags] enum WxKit.SearchCtrlStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
     Center = 256
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     NoHideSelection = 8192
     None = 0
     ProcessTab = 64
     Right = 512
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 [Flags] enum WxKit.SendSizeEventFlags : int
     None = 0
     Post = 1
@@ -3871,10 +4339,28 @@ class WxKit.SingleChoiceDialog : Dialog
     int Selection { get; set; }
     string StringSelection { get; }
 [Flags] enum WxKit.SingleChoiceDialogStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
     Cancel = 16
+    Caption = 536870912
     Center = 1
+    ClipChildren = 4194304
+    CloseBox = 4096
+    Default = 536877141
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     None = 0
     Ok = 4
+    ResizeBorder = 64
+    SystemMenu = 2048
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 sealed class WxKit.SingleInstance : IDisposable
     event EventHandler<SingleInstanceMessageEventArgs>? MessageReceived
     static SingleInstance? Claim(string name, IEnumerable<string> message)
@@ -3960,10 +4446,20 @@ class WxKit.Slider : Control
     void SetSelection(int startPosition, int endPosition)
     void SetTick(int tickPosition)
 [Flags] enum WxKit.SliderStyle : long
+    AlwaysShowSb = 8388608
     AutoTicks = 16
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
     Both = 1024
     Bottom = 512
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
     Horizontal = 4
+    HorizontalScrollBar = 1073741824
     Inverse = 4096
     Labels = 24576
     Left = 64
@@ -3971,9 +4467,12 @@ class WxKit.Slider : Control
     None = 0
     Right = 256
     SelectionRange = 2048
+    TabTraversal = 524288
     Top = 128
     ValueLabel = 16384
     Vertical = 8
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.SpinButton : Control
     SpinButton(Window parent, int id = -1, Point? position = null, Size? size = null, SpinButtonStyle style = SpinButtonStyle.Vertical)
     SpinButtonStyle Style { get; set; }
@@ -3986,10 +4485,23 @@ class WxKit.SpinButton : Control
     int Value { get; set; }
     void SetRange(int min, int max)
 [Flags] enum WxKit.SpinButtonStyle : long
+    AlwaysShowSb = 8388608
     ArrowKeys = 16384
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
     Horizontal = 4
+    HorizontalScrollBar = 1073741824
     None = 0
+    TabTraversal = 524288
     Vertical = 8
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
     Wrap = 32768
 class WxKit.SpinCtrl : Control
     SpinCtrl(Window parent, string value = "", int id = -1, Point? position = null, Size? size = null, SpinCtrlStyle style = SpinCtrlStyle.ArrowKeys, int min = 0, int max = 100, int initial = 0)
@@ -4019,16 +4531,42 @@ class WxKit.SpinCtrlDouble : Control
 [Flags] enum WxKit.SpinCtrlDoubleStyle : long
     AlignCenterHorizontal = 256
     AlignRight = 512
+    AlwaysShowSb = 8388608
     ArrowKeys = 16384
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     None = 0
     ProcessEnter = 1024
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
     Wrap = 32768
 [Flags] enum WxKit.SpinCtrlStyle : long
     AlignCenterHorizontal = 256
     AlignRight = 512
+    AlwaysShowSb = 8388608
     ArrowKeys = 16384
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     None = 0
     ProcessEnter = 1024
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
     Wrap = 32768
 class WxKit.SpinDoubleEvent : NotifyEvent
     double Value { get; }
@@ -4070,14 +4608,27 @@ class WxKit.SplitterWindow : Window
     void Initialize(Window window)
     void UpdateSize()
 [Flags] enum WxKit.SplitterWindowStyle : long
+    AlwaysShowSb = 8388608
     Border = 512
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     LiveUpdate = 128
     NoXpTheme = 1024
     None = 0
     PermitUnsplit = 64
+    TabTraversal = 524288
     ThreeD = 768
     ThreeDBorder = 512
     ThreeDSash = 256
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 static class WxKit.StandardId
     const int Abort = 5115
     const int About = 5014
@@ -4228,9 +4779,22 @@ class WxKit.StaticLine : Control
     bool IsVertical { get; }
     static int DefaultSize { get; }
 [Flags] enum WxKit.StaticLineStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
     Horizontal = 4
+    HorizontalScrollBar = 1073741824
     None = 0
+    TabTraversal = 524288
     Vertical = 8
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.StaticText : Control
     StaticText(Window parent, string label, int id = -1, Point? position = null, Size? size = null, StaticTextStyle style = StaticTextStyle.None)
     StaticTextStyle Style { get; set; }
@@ -4239,11 +4803,24 @@ class WxKit.StaticText : Control
 [Flags] enum WxKit.StaticTextStyle : long
     AlignCenterHorizontal = 256
     AlignRight = 512
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
     EllipsizeEnd = 16
     EllipsizeMiddle = 8
     EllipsizeStart = 4
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     NoAutoResize = 1
     None = 0
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
     Wrap = 2
 class WxKit.StatusBar : Control
     Size Borders { get; }
@@ -4267,13 +4844,26 @@ enum WxKit.StatusBarFieldStyle : int
     Raised = 2
     Sunken = 3
 [Flags] enum WxKit.StatusBarStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
     Default = 65840
     EllipsizeEnd = 256
     EllipsizeMiddle = 128
     EllipsizeStart = 64
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     None = 0
     ShowTips = 32
     SizeGrip = 16
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 static class WxKit.Stc
     const int A68kComment = 1
     const int A68kCommentDoxygen = 18
@@ -8003,10 +8593,19 @@ enum WxKit.TextCtrlHitTestResult : int
     OnText = 0
     Unknown = -2
 [Flags] enum WxKit.TextCtrlStyle : long
+    AlwaysShowSb = 8388608
     AutoUrl = 4096
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
     Center = 256
     CharWrap = 16384
+    ClipChildren = 4194304
     DontWrap = 1073741824
+    FullRepaintOnResize = 65536
     HorizontalScrollBar = 1073741824
     MultiLine = 32
     NoHideSelection = 8192
@@ -8019,15 +8618,26 @@ enum WxKit.TextCtrlHitTestResult : int
     Rich = 128
     Rich2 = 32768
     Right = 512
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
     WordWrap = 1
 class WxKit.TextEntryDialog : Dialog
-    TextEntryDialog(Window? parent, string message, string? caption = null, string value = "", DialogStyle style = DialogStyle.21, Point? position = null, Size? size = null)
+    TextEntryDialog(Window? parent, string message, string? caption = null, string value = "", TextEntryDialogStyle style = TextEntryDialogStyle.Default, Point? position = null, Size? size = null)
     string Value { get; set; }
     void ForceUpper()
     void SetHint(string hint)
     void SetMaxLength(int length)
     void SetTextValidator(TextValidator validator)
     void SetTextValidator(TextValidatorStyle style = TextValidatorStyle.None)
+[Flags] enum WxKit.TextEntryDialogStyle : long
+    Cancel = 16
+    Center = 1
+    Default = 21
+    MultiLine = 32
+    None = 0
+    Ok = 4
+    Password = 2048
 class WxKit.TextValidator : Validator
     IReadOnlyList<string> Excludes { get; set; }
     IReadOnlyList<string> Includes { get; set; }
@@ -8118,11 +8728,21 @@ class WxKit.ToolBar : Control
     void SetToolShortHelp(int toolId, string helpString)
     void ToggleTool(int toolId, bool toggle)
 [Flags] enum WxKit.ToolBarStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
     Bottom = 8192
+    ClipChildren = 4194304
     Default = 4
     Dockable = 64
     Flat = 32
+    FullRepaintOnResize = 65536
     Horizontal = 4
+    HorizontalScrollBar = 1073741824
     HorzLayout = 2048
     HorzText = 2304
     NoAlign = 1024
@@ -8131,8 +8751,11 @@ class WxKit.ToolBar : Control
     NoToolTips = 4096
     None = 0
     Right = 16384
+    TabTraversal = 524288
     Text = 256
     Vertical = 8
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 sealed class WxKit.ToolBarTool
     Bitmap? DisabledBitmap { get; }
     Bitmap? NormalBitmap { get; }
@@ -8159,9 +8782,22 @@ class WxKit.Toolbook : BookCtrlBase
     event EventHandler<BookCtrlEvent>? PageChanged
     event EventHandler<BookCtrlEvent>? PageChanging
 [Flags] enum WxKit.ToolbookStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
     ButtonBar = 256
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     HorzLayout = 32768
     None = 0
+    TabTraversal = 524288
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.TopLevelWindow : Window
     ContentProtection ContentProtection { get; set; }
     Icon? Icon { get; set; }
@@ -8322,17 +8958,30 @@ class WxKit.TreeCtrl : Control
     void UnselectAll()
     void UnselectItem(TreeItemId item)
 [Flags] enum WxKit.TreeCtrlStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
+    ClipChildren = 4194304
     EditLabels = 512
+    FullRepaintOnResize = 65536
     FullRowHighlight = 8192
     HasButtons = 1
     HasVariableRowHeight = 128
     HideRoot = 2048
+    HorizontalScrollBar = 1073741824
     LinesAtRoot = 8
     Multiple = 32
     NoLines = 4
     None = 0
     RowLines = 1024
+    TabTraversal = 524288
     TwistButtons = 16
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.TreeEvent : NotifyEvent
     KeyCode KeyCode { get; }
     Point Point { get; }
@@ -8409,12 +9058,25 @@ class WxKit.TreeListCtrl : Window
     void UnselectAll()
     void UpdateItemParentStateRecursively(TreeListItem item)
 [Flags] enum WxKit.TreeListCtrlStyle : long
+    AlwaysShowSb = 8388608
+    BorderNone = 2097152
+    BorderRaised = 67108864
+    BorderSimple = 33554432
+    BorderStatic = 16777216
+    BorderSunken = 134217728
+    BorderTheme = 268435456
     CheckBox = 2
+    ClipChildren = 4194304
+    FullRepaintOnResize = 65536
+    HorizontalScrollBar = 1073741824
     Multiple = 1
     NoHeader = 16
     None = 0
+    TabTraversal = 524288
     ThreeState = 4
     UserThreeState = 8
+    VerticalScrollBar = -2147483648
+    WantsChars = 262144
 class WxKit.TreeListEvent : NotifyEvent
     CheckBoxState OldCheckedState { get; }
     TreeListItem Item { get; }

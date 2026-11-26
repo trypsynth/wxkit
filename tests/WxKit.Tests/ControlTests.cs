@@ -152,6 +152,14 @@ public class ControlTests {
 		// A window seen as its base has the same styles, as the base's enum.
 		Window seen = list;
 		Assert.Equal((long)list.Style, (long)seen.Style);
+		// A control's enum has the styles every window takes, with the window's numbers.
+		ListBox plain = new(frame, style: ListBoxStyle.Single | ListBoxStyle.BorderNone);
+		Assert.True(plain.Style.HasFlag(ListBoxStyle.BorderNone));
+		Assert.Equal((long)WindowStyle.WantsChars, (long)TextCtrlStyle.WantsChars);
+		Assert.Equal((long)WindowStyle.BorderSimple, (long)ButtonStyle.BorderSimple);
+		// The text entry and choice dialogs' defaults have names.
+		Assert.Equal(TextEntryDialogStyle.Ok | TextEntryDialogStyle.Cancel | TextEntryDialogStyle.Center, TextEntryDialogStyle.Default);
+		Assert.True(MultiChoiceDialogStyle.Default.HasFlag(MultiChoiceDialogStyle.ResizeBorder | MultiChoiceDialogStyle.Ok));
 	});
 
 	[Fact]

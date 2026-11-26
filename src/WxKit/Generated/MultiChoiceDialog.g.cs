@@ -7,7 +7,7 @@ namespace WxKit;
 /// <summary>This class represents a dialog that shows a list of strings, and allows the user to select one or more. Wraps wxMultiChoiceDialog.</summary>
 public unsafe partial class MultiChoiceDialog : Dialog {
 	/// <summary>Constructor taking an array of wxString choices.</summary>
-	public MultiChoiceDialog(Window? parent, string message, string caption, IEnumerable<string> choices, MultiChoiceDialogStyle style = (MultiChoiceDialogStyle)0x20001855, Point? position = null) : this(CreateNative(parent, message, caption, choices, style, position)) {
+	public MultiChoiceDialog(Window? parent, string message, string caption, IEnumerable<string> choices, MultiChoiceDialogStyle style = MultiChoiceDialogStyle.Default, Point? position = null) : this(CreateNative(parent, message, caption, choices, style, position)) {
 	}
 
 	internal MultiChoiceDialog(WxkWindow* native) : base(native) {

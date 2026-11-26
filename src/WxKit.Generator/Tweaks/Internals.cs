@@ -72,6 +72,24 @@ internal static class Internals {
 		tweaks.Class("wxListCtrl").Ignore("SetWindowStyleFlag");
 		// A message dialog's buttons and icon aren't its window's styles, and MessageDialogStyle gives them.
 		tweaks.Class("wxMessageDialog").StylesKeptApart();
+		// The text entry dialog's documentation has its styles in prose. It keeps them apart from
+		// its window's, and passes those that aren't its own to its text control.
+		tweaks.Class("wxTextEntryDialog").StylesKeptApart()
+			.Style("wxOK", "Ok", "Show an OK button.")
+			.Style("wxCANCEL", "Cancel", "Show a Cancel button.")
+			.Style("wxCENTRE", "Center", "Center the dialog on its parent, or on the screen without one.")
+			.Style("wxTE_MULTILINE", "MultiLine", "The text can have more than one line.")
+			.Style("wxTE_PASSWORD", "Password", "The text is shown as password characters.")
+			.Style("wxTextEntryDialogStyle", "Default", "OK and Cancel buttons, and centered, which is what the dialog has when no styles are given.");
+		// The choice dialogs take a dialog's styles with their own, and their default has both.
+		foreach (string dialog in (string[])["wxSingleChoiceDialog", "wxMultiChoiceDialog"]) {
+			tweaks.Class(dialog)
+				.Style("wxCAPTION", "Caption", "Puts a caption on the dialog.")
+				.Style("wxSYSTEM_MENU", "SystemMenu", "Shows a system menu.")
+				.Style("wxCLOSE_BOX", "CloseBox", "Shows a close box.")
+				.Style("wxRESIZE_BORDER", "ResizeBorder", "The dialog can be resized.")
+				.Style("wxCHOICEDLG_STYLE", "Default", "A resizable dialog with a caption, a system menu, a close box, and OK and Cancel buttons, centered, which is what the dialog has when no styles are given.");
+		}
 		tweaks.Class("wxTreeCtrl").Ignore("SetWindowStyle");
 		tweaks.Class("wxCollapsiblePane").Property("IsCollapsed", "IsCollapsed", "Collapse");
 		tweaks.Class("wxListCtrl").Property("HasCheckBoxes", "HasCheckBoxes", "EnableCheckBoxes");

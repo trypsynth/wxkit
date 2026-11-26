@@ -7,13 +7,13 @@ namespace WxKit;
 /// <summary>This class represents a dialog that requests a one-line password string from the user. Wraps wxPasswordEntryDialog.</summary>
 public unsafe partial class PasswordEntryDialog : TextEntryDialog {
 	/// <summary>Constructor.</summary>
-	public PasswordEntryDialog(Window? parent, string message, string? caption = null, string defaultValue = "", DialogStyle style = (DialogStyle)0x15, Point? position = null) : this(CreateNative(parent, message, caption, defaultValue, style, position)) {
+	public PasswordEntryDialog(Window? parent, string message, string? caption = null, string defaultValue = "", TextEntryDialogStyle style = TextEntryDialogStyle.Default, Point? position = null) : this(CreateNative(parent, message, caption, defaultValue, style, position)) {
 	}
 
 	internal PasswordEntryDialog(WxkWindow* native) : base(native) {
 	}
 
-	private static WxkWindow* CreateNative(Window? parent, string message, string? caption, string defaultValue, DialogStyle style, Point? position) {
+	private static WxkWindow* CreateNative(Window? parent, string message, string? caption, string defaultValue, TextEntryDialogStyle style, Point? position) {
 		Application.VerifyAccess();
 		ArgumentNullException.ThrowIfNull(message);
 		ArgumentNullException.ThrowIfNull(defaultValue);
