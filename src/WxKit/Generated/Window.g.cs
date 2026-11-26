@@ -763,7 +763,7 @@ public unsafe partial class Window : EvtHandler {
 	public bool Hide() => WxKitNative.WindowHide(Native) != 0;
 
 	/// <summary>This function hides a window, like Hide(), but using a special visual effect if possible.</summary>
-	public bool HideWithEffect(ShowEffect effect, int timeout = 0) => WxKitNative.WindowHideWithEffect(Native, (int)effect, checked((uint)timeout)) != 0;
+	public bool HideWithEffect(ShowEffect effect, TimeSpan timeout = default) => WxKitNative.WindowHideWithEffect(Native, (int)effect, checked((uint)checked((long)timeout.TotalMilliseconds))) != 0;
 
 	/// <summary>Return where the given point lies, exactly.</summary>
 	public HitTestResult HitTest(int x, int y) => (HitTestResult)WxKitNative.WindowHitTestIntInt(Native, x, y);
@@ -1012,7 +1012,7 @@ public unsafe partial class Window : EvtHandler {
 	public bool Show(bool show = true) => WxKitNative.WindowShow(Native, show ? (byte)1 : (byte)0) != 0;
 
 	/// <summary>This function shows a window, like Show(), but using a special visual effect if possible.</summary>
-	public bool ShowWithEffect(ShowEffect effect, int timeout = 0) => WxKitNative.WindowShowWithEffect(Native, (int)effect, checked((uint)timeout)) != 0;
+	public bool ShowWithEffect(ShowEffect effect, TimeSpan timeout = default) => WxKitNative.WindowShowWithEffect(Native, (int)effect, checked((uint)checked((long)timeout.TotalMilliseconds))) != 0;
 
 	/// <summary>Re-enables window updating after a previous call to Freeze().</summary>
 	public void Thaw() => WxKitNative.WindowThaw(Native);

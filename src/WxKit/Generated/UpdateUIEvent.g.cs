@@ -63,14 +63,14 @@ public unsafe partial class UpdateUIEvent : CommandEvent {
 	}
 
 	/// <summary>Returns the current interval between updates in milliseconds.</summary>
-	public static long UpdateInterval {
+	public static TimeSpan UpdateInterval {
 		get {
 			Application.VerifyAccess();
-			return WxKitNative.UpdateUIEventGetUpdateInterval();
+			return TimeSpan.FromMilliseconds(WxKitNative.UpdateUIEventGetUpdateInterval());
 		}
 		set {
 			Application.VerifyAccess();
-			WxKitNative.UpdateUIEventSetUpdateInterval(value);
+			WxKitNative.UpdateUIEventSetUpdateInterval(checked((long)value.TotalMilliseconds));
 		}
 	}
 

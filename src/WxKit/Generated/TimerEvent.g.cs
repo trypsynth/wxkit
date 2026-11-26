@@ -10,5 +10,5 @@ public unsafe partial class TimerEvent : Event {
 	}
 
 	/// <summary>Returns the interval of the timer which generated this event.</summary>
-	public int Interval => WxKitNative.TimerEventGetInterval(Handle);
+	public TimeSpan Interval => TimeSpan.FromMilliseconds(WxKitNative.TimerEventGetInterval(Handle));
 }

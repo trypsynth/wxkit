@@ -424,7 +424,13 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		return api.Enums.ContainsKey(nested) ? new CallbackOutConversion(nested, "int32_t", "int", byReference: false) : null;
 	}
 
+	// A number a tweak says is milliseconds is a TimeSpan over whatever the number would have been.
 	private Conversion? Map(CppType type, BoundClass owner, string member, string? parameter, bool isReturn) {
+		Conversion? conversion = MapType(type, owner, member, parameter, isReturn);
+		return conversion is not null and not MillisecondsConversion && owner.Tweak.Milliseconds.Contains((member, isReturn ? "return" : parameter ?? string.Empty)) ? new MillisecondsConversion(conversion) : conversion;
+	}
+
+	private Conversion? MapType(CppType type, BoundClass owner, string member, string? parameter, bool isReturn) {
 		bool isHandwrittenDirector = owner.Tweak.IsDirectorInternal && owner.Tweak.DirectorMembers.Contains(member);
 		if (!isReturn && isHandwrittenDirector && CallbackOutFor(type, owner) is Conversion given) return given;
 		if (!isReturn && _classes.TryGetValue(type.Name, out BoundClass? owned) && owned.Handle == HandleKind.Owned && (type.IsReference || type.Pointers == 1)) return new OwnedConversion(owned, type.IsReference);
@@ -552,6 +558,9 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 			return true;
 		}
 		switch (conversion) {
+			case MillisecondsConversion when value == "0":
+				managed = "default";
+				return true;
 			case BoolConversion when value is "true" or "false":
 				managed = value;
 				return true;

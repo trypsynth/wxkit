@@ -218,6 +218,31 @@ internal sealed class EnumConversion(string enumName, NumberConversion number, s
 	public NumberConversion Number => number;
 }
 
+/// <summary>A number of milliseconds, which is a TimeSpan in the managed API, and the number everywhere else.</summary>
+internal sealed class MillisecondsConversion(Conversion number) : Conversion {
+	public override string Suffix => "TimeSpan";
+
+	public override string CReturnType => number.CReturnType;
+
+	public override string Fallback => number.Fallback;
+
+	public override string InteropReturnType => number.InteropReturnType;
+
+	public override IEnumerable<string> CParameters(string name) => number.CParameters(name);
+
+	public override string ToCpp(string name) => number.ToCpp(name);
+
+	public override string FromCpp(string expression) => number.FromCpp(expression);
+
+	public override IEnumerable<string> InteropParameters(string name) => number.InteropParameters(name);
+
+	public override string ManagedType(bool nullable) => "TimeSpan";
+
+	public override IEnumerable<string> InteropArguments(string name, bool nullable) => number.InteropArguments($"checked((long){name}.TotalMilliseconds)", nullable);
+
+	public override string ManagedReturn(string expression) => $"TimeSpan.FromMilliseconds({number.ManagedReturn(expression)})";
+}
+
 /// <summary>
 /// An enum parameter whose C++ default depends on the platform, such as wxTreeCtrl's
 /// wxTR_DEFAULT_STYLE. It is nullable in the managed API, and null passes the C++ default.

@@ -14,6 +14,8 @@ internal static class Desktop {
 			.ParameterEnum("SetFlags", "flags", "MessageIcon")
 			.ParameterName("wxNotificationMessage", "flags", "icon")
 			.ParameterName("AddAction", "actionid", "actionId")
+			// Show is written by hand, since its timeout is seconds, or one of two numbers that mean something else.
+			.Internal("Show")
 			.Event("EVT_NOTIFICATION_MESSAGE_CLICK", "Clicked")
 			.Event("EVT_NOTIFICATION_MESSAGE_DISMISSED", "Dismissed")
 			.Event("EVT_NOTIFICATION_MESSAGE_ACTION", "ActionSelected"));

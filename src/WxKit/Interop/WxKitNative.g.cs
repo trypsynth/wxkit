@@ -6126,6 +6126,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkEvtHandler* NotificationMessageNewStringStringWindowMessageIcon(char* title, nuint titleLength, char* message, nuint messageLength, WxkWindow* parent, int icon);
 
+	[LibraryImport(Library, EntryPoint = "wxk_NotificationMessage_Show")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte NotificationMessageShow(WxkEvtHandler* self, int timeout);
+
 	[LibraryImport(Library, EntryPoint = "wxk_NotificationMessage_AddAction")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte NotificationMessageAddAction(WxkEvtHandler* self, int actionId, char* label, nuint labelLength);
@@ -6153,10 +6157,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_NotificationMessage_SetTitle")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void NotificationMessageSetTitle(WxkEvtHandler* self, char* title, nuint titleLength);
-
-	[LibraryImport(Library, EntryPoint = "wxk_NotificationMessage_Show")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte NotificationMessageShow(WxkEvtHandler* self, int timeout);
 
 	[LibraryImport(Library, EntryPoint = "wxk_NotificationMessage_UseTaskBarIcon")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

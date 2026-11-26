@@ -148,6 +148,8 @@ internal sealed class ClassTweak(string name) {
 
 	public Dictionary<(string Member, string Parameter), string> ParameterEnums { get; } = [];
 
+	public HashSet<(string Member, string Parameter)> Milliseconds { get; } = [];
+
 	/// <summary>Managed names of parameters the naming rules get wrong, such as a dir that is a directory, not a direction.</summary>
 	public Dictionary<(string Member, string Parameter), string> ParameterNames { get; } = [];
 
@@ -415,6 +417,12 @@ internal sealed class ClassTweak(string name) {
 
 	public ClassTweak Rename(string member, string managedName) {
 		Renames[member] = managedName;
+		return this;
+	}
+
+	/// <summary>Makes a number of milliseconds a TimeSpan. The parameter "return" names the return value.</summary>
+	public ClassTweak ParameterMilliseconds(string member, string parameter) {
+		Milliseconds.Add((member, parameter));
 		return this;
 	}
 

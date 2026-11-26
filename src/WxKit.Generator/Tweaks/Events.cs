@@ -75,6 +75,12 @@ internal static class Events {
 		// Bound by hand-written classes: menu items' clicks and timers' ticks.
 		tweaks.EventType("wxEVT_MENU", "wxCommandEvent");
 		tweaks.EventType("wxEVT_TIMER", "wxTimerEvent");
+		// Times wxWidgets gives in milliseconds are TimeSpans. An update interval of -1 milliseconds,
+		// which stops the updates, is Timeout.InfiniteTimeSpan.
+		tweaks.Class("wxTimerEvent", e => e.ParameterMilliseconds("GetInterval", "return"));
+		tweaks.Class("wxUpdateUIEvent", e => e.ParameterMilliseconds("GetUpdateInterval", "return").ParameterMilliseconds("SetUpdateInterval", "updateInterval"));
+		tweaks.Class("wxWindow", window => window.ParameterMilliseconds("ShowWithEffect", "timeout").ParameterMilliseconds("HideWithEffect", "timeout"));
+		tweaks.Class("wxSimplebook", book => book.ParameterMilliseconds("SetEffectTimeout", "timeout").ParameterMilliseconds("SetEffectsTimeouts", "showTimeout").ParameterMilliseconds("SetEffectsTimeouts", "hideTimeout"));
 		// The headers list the context menu among the command events, though it's sent as a
 		// wxContextMenuEvent, which says where the menu goes, as when the keyboard opens it.
 		tweaks.EventType("wxEVT_CONTEXT_MENU", "wxContextMenuEvent");

@@ -1865,6 +1865,7 @@ WXK_FUNCTION(int32_t) wxk_Notebook_GetTabOrientation(wxk_Window* self) WXK_NOEXC
 
 WXK_FUNCTION(wxk_EvtHandler*) wxk_NotificationMessage_new_Default(void) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_EvtHandler*) wxk_NotificationMessage_new_StringStringWindowMessageIcon(const char16_t* title, size_t titleLength, const char16_t* message, size_t messageLength, wxk_Window* parent, int32_t icon) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_NotificationMessage_Show(wxk_EvtHandler* self, int32_t timeout) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_NotificationMessage_AddAction(wxk_EvtHandler* self, int32_t actionId, const char16_t* label, size_t labelLength) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_NotificationMessage_Close(wxk_EvtHandler* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_NotificationMessage_SetFlags(wxk_EvtHandler* self, int32_t flags) WXK_NOEXCEPT;
@@ -1872,7 +1873,6 @@ WXK_FUNCTION(void) wxk_NotificationMessage_SetIcon(wxk_EvtHandler* self, const w
 WXK_FUNCTION(void) wxk_NotificationMessage_SetMessage(wxk_EvtHandler* self, const char16_t* message, size_t messageLength) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_NotificationMessage_SetParent(wxk_EvtHandler* self, wxk_Window* parent) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_NotificationMessage_SetTitle(wxk_EvtHandler* self, const char16_t* title, size_t titleLength) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_NotificationMessage_Show(wxk_EvtHandler* self, int32_t timeout) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_EvtHandler*) wxk_NotificationMessage_UseTaskBarIcon(wxk_EvtHandler* icon) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_NotificationMessage_MSWUseToasts(const char16_t* shortcutPath, size_t shortcutPathLength, const char16_t* appId, size_t appIdLength) WXK_NOEXCEPT;
 

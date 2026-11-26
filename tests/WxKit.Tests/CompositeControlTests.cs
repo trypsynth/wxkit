@@ -91,6 +91,19 @@ public class CompositeControlTests {
 	});
 
 	[Fact]
+	public Task GivesTimesAsTimeSpans() => Gui.Run(() => {
+		TimeSpan before = UpdateUIEvent.UpdateInterval;
+		try {
+			UpdateUIEvent.UpdateInterval = TimeSpan.FromMilliseconds(250);
+			Assert.Equal(TimeSpan.FromMilliseconds(250), UpdateUIEvent.UpdateInterval);
+			UpdateUIEvent.UpdateInterval = Timeout.InfiniteTimeSpan;
+			Assert.Equal(Timeout.InfiniteTimeSpan, UpdateUIEvent.UpdateInterval);
+		} finally {
+			UpdateUIEvent.UpdateInterval = before;
+		}
+	});
+
+	[Fact]
 	public Task SelectsAListItemByItsState() => Gui.WithFrame(frame => {
 		ListCtrl list = new(frame, style: ListCtrlStyle.Report);
 		list.AppendColumn("Name");

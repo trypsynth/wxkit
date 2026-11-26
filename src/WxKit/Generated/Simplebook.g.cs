@@ -17,13 +17,13 @@ public unsafe partial class Simplebook : BookCtrlBase {
 	public void SetEffect(ShowEffect effect) => WxKitNative.SimplebookSetEffect(Native, (int)effect);
 
 	/// <summary>Set the same effect timeout to use for both showing and hiding the pages.</summary>
-	public void SetEffectTimeout(int timeout) => WxKitNative.SimplebookSetEffectTimeout(Native, checked((uint)timeout));
+	public void SetEffectTimeout(TimeSpan timeout) => WxKitNative.SimplebookSetEffectTimeout(Native, checked((uint)checked((long)timeout.TotalMilliseconds)));
 
 	/// <summary>Set the effects to use for showing and hiding the pages.</summary>
 	public void SetEffects(ShowEffect showEffect, ShowEffect hideEffect) => WxKitNative.SimplebookSetEffects(Native, (int)showEffect, (int)hideEffect);
 
 	/// <summary>Set the effect timeout to use for showing and hiding the pages.</summary>
-	public void SetEffectsTimeouts(int showTimeout, int hideTimeout) => WxKitNative.SimplebookSetEffectsTimeouts(Native, checked((uint)showTimeout), checked((uint)hideTimeout));
+	public void SetEffectsTimeouts(TimeSpan showTimeout, TimeSpan hideTimeout) => WxKitNative.SimplebookSetEffectsTimeouts(Native, checked((uint)checked((long)showTimeout.TotalMilliseconds)), checked((uint)checked((long)hideTimeout.TotalMilliseconds)));
 
 	/// <summary>Add a new page and show it immediately.</summary>
 	public bool ShowNewPage(Window page) {

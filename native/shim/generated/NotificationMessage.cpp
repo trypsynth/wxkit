@@ -15,6 +15,10 @@ WXK_FUNCTION(wxk_EvtHandler*) wxk_NotificationMessage_new_StringStringWindowMess
 	});
 }
 
+WXK_FUNCTION(uint8_t) wxk_NotificationMessage_Show(wxk_EvtHandler* self, int32_t timeout) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxNotificationMessage*>(wxk::Unwrap(self))->Show(static_cast<int>(timeout))) ? 1 : 0; });
+}
+
 WXK_FUNCTION(uint8_t) wxk_NotificationMessage_AddAction(wxk_EvtHandler* self, int32_t actionId, const char16_t* label, size_t labelLength) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxNotificationMessage*>(wxk::Unwrap(self))->AddAction(static_cast<int>(actionId), wxk::FromUtf16(label, labelLength))) ? 1 : 0; });
 }
@@ -41,10 +45,6 @@ WXK_FUNCTION(void) wxk_NotificationMessage_SetParent(wxk_EvtHandler* self, wxk_W
 
 WXK_FUNCTION(void) wxk_NotificationMessage_SetTitle(wxk_EvtHandler* self, const char16_t* title, size_t titleLength) noexcept {
 	wxk::Guard([&] { static_cast<wxNotificationMessage*>(wxk::Unwrap(self))->SetTitle(wxk::FromUtf16(title, titleLength)); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_NotificationMessage_Show(wxk_EvtHandler* self, int32_t timeout) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxNotificationMessage*>(wxk::Unwrap(self))->Show(static_cast<int>(timeout))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(wxk_EvtHandler*) wxk_NotificationMessage_UseTaskBarIcon(wxk_EvtHandler* icon) noexcept {
