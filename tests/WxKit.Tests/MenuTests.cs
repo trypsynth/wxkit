@@ -93,6 +93,21 @@ public class MenuTests {
 		Assert.False(empty.IsEnabled);
 		Assert.False(convert.Append(StandardId.Any, "x").Id == submenu.Id);
 		Assert.Equal("&Presets", submenu.Label);
+		// An item is the native item, so it says what it is, and two separators are apart.
+		Assert.Same(presets, submenu.SubMenu);
+		Assert.Null(empty.SubMenu);
+		MenuItem line = convert.AppendSeparator();
+		Assert.True(line.IsSeparator);
+		Assert.False(empty.IsSeparator);
+		empty.Help = "Presets you save show here";
+		Assert.Equal("Presets you save show here", empty.Help);
+		MenuItem check = convert.Append(StandardId.Any, "&Loop", kind: MenuItemKind.Check);
+		check.IsChecked = true;
+		Assert.True(check.IsChecked);
+		Menu popup = new();
+		MenuItem copy = popup.Append(StandardId.Copy);
+		popup.Dispose();
+		Assert.Throws<ObjectDisposedException>(() => copy.IsEnabled);
 	});
 
 	[Fact]

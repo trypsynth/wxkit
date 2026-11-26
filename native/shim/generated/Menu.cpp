@@ -38,30 +38,6 @@ WXK_FUNCTION(wxk_MenuItem*) wxk_Menu_AppendSubMenu(wxk_Menu* self, wxk_Menu* sub
 	return wxk::Guard<wxk_MenuItem*>(nullptr, [&]() -> wxk_MenuItem* { return wxk::Wrap(static_cast<wxMenuItem*>(static_cast<wxMenu*>(wxk::Unwrap(self))->AppendSubMenu(static_cast<wxMenu*>(wxk::Unwrap(submenu)), wxk::FromUtf16(text, textLength), wxk::FromUtf16(help, helpLength)))); });
 }
 
-WXK_FUNCTION(void) wxk_Menu_Check(wxk_Menu* self, int32_t id, uint8_t check) noexcept {
-	wxk::Guard([&] { static_cast<wxMenu*>(wxk::Unwrap(self))->Check(static_cast<int>(id), check != 0); });
-}
-
-WXK_FUNCTION(void) wxk_Menu_Enable(wxk_Menu* self, int32_t id, uint8_t enable) noexcept {
-	wxk::Guard([&] { static_cast<wxMenu*>(wxk::Unwrap(self))->Enable(static_cast<int>(id), enable != 0); });
-}
-
-WXK_FUNCTION(wxk_String*) wxk_Menu_GetLabel(wxk_Menu* self, int32_t id) noexcept {
-	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxMenu*>(wxk::Unwrap(self))->GetLabel(static_cast<int>(id))); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Menu_IsChecked(wxk_Menu* self, int32_t id) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMenu*>(wxk::Unwrap(self))->IsChecked(static_cast<int>(id))) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Menu_IsEnabled(wxk_Menu* self, int32_t id) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMenu*>(wxk::Unwrap(self))->IsEnabled(static_cast<int>(id))) ? 1 : 0; });
-}
-
-WXK_FUNCTION(void) wxk_Menu_SetLabel(wxk_Menu* self, int32_t id, const char16_t* label, size_t labelLength) noexcept {
-	wxk::Guard([&] { static_cast<wxMenu*>(wxk::Unwrap(self))->SetLabel(static_cast<int>(id), wxk::FromUtf16(label, labelLength)); });
-}
-
 WXK_FUNCTION(wxk_Menu*) wxk_Menu_GetParent(wxk_Menu* self) noexcept {
 	return wxk::Guard<wxk_Menu*>(nullptr, [&]() -> wxk_Menu* { return wxk::Wrap(static_cast<wxMenu*>(static_cast<wxMenu*>(wxk::Unwrap(self))->GetParent())); });
 }

@@ -5074,30 +5074,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkMenuItem* MenuAppendSubMenu(WxkMenu* self, WxkMenu* submenu, char* text, nuint textLength, char* help, nuint helpLength);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Menu_Check")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MenuCheck(WxkMenu* self, int id, byte check);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Menu_Enable")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MenuEnable(WxkMenu* self, int id, byte enable);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Menu_GetLabel")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkString* MenuGetLabel(WxkMenu* self, int id);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Menu_IsChecked")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte MenuIsChecked(WxkMenu* self, int id);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Menu_IsEnabled")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte MenuIsEnabled(WxkMenu* self, int id);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Menu_SetLabel")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void MenuSetLabel(WxkMenu* self, int id, char* label, nuint labelLength);
-
 	[LibraryImport(Library, EntryPoint = "wxk_Menu_GetParent")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkMenu* MenuGetParent(WxkMenu* self);
@@ -5226,9 +5202,49 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte MenuEventIsPopup(WxkEvent* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_MenuItem_GetHelp")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* MenuItemGetHelp(WxkMenuItem* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_MenuItem_GetId")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int MenuItemGetId(WxkMenuItem* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_MenuItem_GetItemLabel")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkString* MenuItemGetItemLabel(WxkMenuItem* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_MenuItem_GetSubMenu")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkMenu* MenuItemGetSubMenu(WxkMenuItem* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_MenuItem_IsChecked")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte MenuItemIsChecked(WxkMenuItem* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_MenuItem_IsEnabled")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte MenuItemIsEnabled(WxkMenuItem* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_MenuItem_IsSeparator")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte MenuItemIsSeparator(WxkMenuItem* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_MenuItem_SetHelp")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void MenuItemSetHelp(WxkMenuItem* self, char* helpString, nuint helpStringLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_MenuItem_SetItemLabel")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void MenuItemSetItemLabel(WxkMenuItem* self, char* label, nuint labelLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_MenuItem_Check")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void MenuItemCheck(WxkMenuItem* self, byte check);
+
+	[LibraryImport(Library, EntryPoint = "wxk_MenuItem_Enable")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void MenuItemEnable(WxkMenuItem* self, byte enable);
 
 	[LibraryImport(Library, EntryPoint = "wxk_MessageDialog_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

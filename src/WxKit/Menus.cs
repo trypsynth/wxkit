@@ -61,52 +61,69 @@ public sealed unsafe class Menu : EvtHandler, IDisposable {
 	}
 }
 
-/// <summary>An item on a menu. Wraps wxMenuItem. Its menu owns it.</summary>
+/// <summary>
+/// An item on a menu. Wraps wxMenuItem. Its menu owns it, and destroys it with itself, after which
+/// its members throw <see cref="ObjectDisposedException"/>.
+/// </summary>
 public sealed unsafe class MenuItem {
-	private MenuItem(Menu menu, int id) {
-		Menu = menu;
-		Id = id;
+	private readonly Menu _menu;
+	private readonly WxkMenuItem* _native;
+
+	private MenuItem(Menu menu, WxkMenuItem* native) {
+		_menu = menu;
+		_native = native;
+		Id = WxKitNative.MenuItemGetId(native);
 	}
 
-	public Menu Menu { get; }
+	// A menu deletes its items with itself, and has nothing else that removes one.
+	private WxkMenuItem* Native {
+		get {
+			Application.VerifyAccess();
+			return !_menu.IsDisposed ? _native : throw new ObjectDisposedException(nameof(MenuItem), "wxWidgets has destroyed this item, along with its menu.");
+		}
+	}
+
+	/// <summary>The menu the item is on.</summary>
+	public Menu Menu => _menu;
 
 	/// <summary>The item's id, which wxWidgets picks when the item was added with <see cref="StandardId.Any"/>.</summary>
 	public int Id { get; }
 
+	/// <summary>Whether the item is a line between items, which can't be chosen.</summary>
+	public bool IsSeparator => WxKitNative.MenuItemIsSeparator(Native) != 0;
+
+	/// <summary>The menu the item opens, or null when it opens none.</summary>
+	public Menu? SubMenu => ObjectRegistry.Wrap<Menu>(WxKitNative.MenuItemGetSubMenu(Native));
+
 	/// <summary>Whether the user can choose the item. A disabled one is grayed out, and screen readers say it is unavailable.</summary>
 	public bool IsEnabled {
-		get {
-			Application.VerifyAccess();
-			return WxKitNative.MenuIsEnabled(Menu.Native, Id) != 0;
-		}
-		set {
-			Application.VerifyAccess();
-			WxKitNative.MenuEnable(Menu.Native, Id, value ? (byte)1 : (byte)0);
-		}
+		get => WxKitNative.MenuItemIsEnabled(Native) != 0;
+		set => WxKitNative.MenuItemEnable(Native, value ? (byte)1 : (byte)0);
 	}
 
 	/// <summary>Whether a check or radio item is checked.</summary>
 	public bool IsChecked {
-		get {
-			Application.VerifyAccess();
-			return WxKitNative.MenuIsChecked(Menu.Native, Id) != 0;
-		}
-		set {
-			Application.VerifyAccess();
-			WxKitNative.MenuCheck(Menu.Native, Id, value ? (byte)1 : (byte)0);
-		}
+		get => WxKitNative.MenuItemIsChecked(Native) != 0;
+		set => WxKitNative.MenuItemCheck(Native, value ? (byte)1 : (byte)0);
 	}
 
 	/// <summary>The item's text, with its accelerator's ampersand, and its shortcut after a tab.</summary>
 	public string Label {
-		get {
-			Application.VerifyAccess();
-			return NativeString.Take(WxKitNative.MenuGetLabel(Menu.Native, Id));
-		}
+		get => NativeString.Take(WxKitNative.MenuItemGetItemLabel(Native));
 		set {
 			ArgumentNullException.ThrowIfNull(value);
-			Application.VerifyAccess();
-			fixed (char* text = value) WxKitNative.MenuSetLabel(Menu.Native, Id, text, NativeString.Length(value));
+			WxkMenuItem* native = Native;
+			fixed (char* text = value) WxKitNative.MenuItemSetItemLabel(native, text, NativeString.Length(value));
+		}
+	}
+
+	/// <summary>What a frame's status bar says of the item while it is highlighted.</summary>
+	public string Help {
+		get => NativeString.Take(WxKitNative.MenuItemGetHelp(Native));
+		set {
+			ArgumentNullException.ThrowIfNull(value);
+			WxkMenuItem* native = Native;
+			fixed (char* text = value) WxKitNative.MenuItemSetHelp(native, text, NativeString.Length(value));
 		}
 	}
 
@@ -118,6 +135,6 @@ public sealed unsafe class MenuItem {
 
 	internal static MenuItem Wrap(Menu menu, WxkMenuItem* native) {
 		if (native is null) throw new InvalidOperationException("wxWidgets could not add the menu item.");
-		return new MenuItem(menu, WxKitNative.MenuItemGetId(native));
+		return new MenuItem(menu, native);
 	}
 }

@@ -2956,10 +2956,13 @@ class WxKit.MenuEvent : Event
     int MenuId { get; }
 sealed class WxKit.MenuItem
     Menu Menu { get; }
+    Menu? SubMenu { get; }
     bool IsChecked { get; set; }
     bool IsEnabled { get; set; }
+    bool IsSeparator { get; }
     event EventHandler<CommandEvent>? Click
     int Id { get; }
+    string Help { get; set; }
     string Label { get; set; }
 enum WxKit.MenuItemKind : int
     Check = 1

@@ -28,7 +28,6 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 
 ## The hand-written classes
 
-- `MenuItem` wraps the native item, as `ToolBarTool` does, rather than a menu and an id.
 
 ## What the F# samples found
 
