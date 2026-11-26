@@ -23,10 +23,9 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 - Members that only repeat another:
   - Overloads that take x and y beside one that takes a `Point` or `Size`, and members that take x and y alone take a `Point`.
   - `KeyEvent.RawControlDown()` and `MouseEvent`'s, once `KeyModifiers` has a member for the Control key of a Mac, where `Control` is Command.
-  - The styled text control's twins of its text entry members, such as `Modify` beside `IsModified` and `GetLine` beside `GetLineText`. Its `Clear()`, which clears the selection where `TextCtrl.Clear()` clears everything, becomes `DeleteSelection`.
+  - The styled text control's `Text` beside `Value`, `TextLength` beside `LastPosition`, and `CurrentPos` beside `InsertionPoint`, if one of each should go. Its `ClearAll` could be `Clear`, as `TextCtrl`'s is.
   - `Font`'s `MakeBold` family, which change a font in place, beside `Bold` and the others that return a changed copy, which are named one way, such as `WithBold`.
 - Enum members that are sentinels or aliases, such as `Max`, `First`, `Last`, and `Invalid`, `BitmapType.Tif` beside `Tiff`, and zero members of flags enums, such as `ListBoxStyle.NeededSb`, which make `HasFlag` always true. Flags enums without a `None` get one.
-- The styled text control's members that do nothing there, since it has the text entry's interface without its implementation: `Margins`, `SetMaxLength`, the `AutoComplete` members, `ForceUpper`, and `Hint`, which can wipe its text.
 
 ## Members that have a better form now
 

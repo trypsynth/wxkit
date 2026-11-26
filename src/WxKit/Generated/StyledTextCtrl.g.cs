@@ -383,9 +383,6 @@ public unsafe partial class StyledTextCtrl : Control {
 		}
 	}
 
-	/// <summary>Returns the number of lines in the document.</summary>
-	public int LineCount => WxKitNative.StyledTextCtrlGetLineCount(Native);
-
 	/// <summary>Get the line end types currently recognised.</summary>
 	public int LineEndTypesActive => WxKitNative.StyledTextCtrlGetLineEndTypesActive(Native);
 
@@ -436,9 +433,6 @@ public unsafe partial class StyledTextCtrl : Control {
 		get => WxKitNative.StyledTextCtrlGetModEventMask(Native);
 		set => WxKitNative.StyledTextCtrlSetModEventMask(Native, value);
 	}
-
-	/// <summary>Is the document different from when it was last saved?</summary>
-	public bool Modify => WxKitNative.StyledTextCtrlGetModify(Native) != 0;
 
 	/// <summary>Get whether mouse gets captured.</summary>
 	public bool MouseDownCaptures {
@@ -536,12 +530,6 @@ public unsafe partial class StyledTextCtrl : Control {
 				WxKitNative.StyledTextCtrlSetPunctuationChars(Native, valueText, NativeString.Length(value));
 			}
 		}
-	}
-
-	/// <summary>In read-only mode?</summary>
-	public bool ReadOnly {
-		get => WxKitNative.StyledTextCtrlGetReadOnly(Native) != 0;
-		set => WxKitNative.StyledTextCtrlSetReadOnly(Native, value ? (byte)1 : (byte)0);
 	}
 
 	/// <summary>Return the anchor position of the rectangular selection.</summary>
@@ -1341,9 +1329,6 @@ public unsafe partial class StyledTextCtrl : Control {
 	/// <summary>Set the last x chosen value to be the caret x position.</summary>
 	public void ChooseCaretX() => WxKitNative.StyledTextCtrlChooseCaretX(Native);
 
-	/// <summary>Clear the selection.</summary>
-	public void Clear() => WxKitNative.StyledTextCtrlClear(Native);
-
 	/// <summary>Delete all text in the document.</summary>
 	public void ClearAll() => WxKitNative.StyledTextCtrlClearAll(Native);
 
@@ -1437,6 +1422,9 @@ public unsafe partial class StyledTextCtrl : Control {
 
 	/// <summary>Delete a range of text in the document.</summary>
 	public void DeleteRange(int start, int lengthDelete) => WxKitNative.StyledTextCtrlDeleteRange(Native, start, lengthDelete);
+
+	/// <summary>Clear the selection.</summary>
+	public void DeleteSelection() => WxKitNative.StyledTextCtrlClear(Native);
 
 	/// <summary>Retrieve a '\n' separated list of descriptions of the keyword sets understood by the current lexer.</summary>
 	public string DescribeKeyWordSets() => NativeString.Take(WxKitNative.StyledTextCtrlDescribeKeyWordSets(Native));
@@ -1586,9 +1574,6 @@ public unsafe partial class StyledTextCtrl : Control {
 	/// <summary>Find the last child line of a header line.</summary>
 	public int GetLastChild(int line, int level) => WxKitNative.StyledTextCtrlGetLastChild(Native, line, level);
 
-	/// <summary>Retrieve the contents of a line.</summary>
-	public string GetLine(int line) => NativeString.Take(WxKitNative.StyledTextCtrlGetLine(Native, line));
-
 	/// <summary>Get the position after the last visible characters on a line.</summary>
 	public int GetLineEndPosition(int line) => WxKitNative.StyledTextCtrlGetLineEndPosition(Native, line);
 
@@ -1719,9 +1704,6 @@ public unsafe partial class StyledTextCtrl : Control {
 
 	/// <summary>Retrieve the value of a tag from a regular expression search.</summary>
 	public string GetTag(int tagNumber) => NativeString.Take(WxKitNative.StyledTextCtrlGetTag(Native, tagNumber));
-
-	/// <summary>Retrieve a range of text.</summary>
-	public string GetTextRange(int startPosition, int endPosition) => NativeString.Take(WxKitNative.StyledTextCtrlGetTextRange(Native, startPosition, endPosition));
 
 	/// <summary>Set caret to start of a line and ensure it is visible.</summary>
 	public void GotoLine(int line) => WxKitNative.StyledTextCtrlGotoLine(Native, line);
@@ -1882,9 +1864,6 @@ public unsafe partial class StyledTextCtrl : Control {
 
 	/// <summary>Retrieve the line containing a position.</summary>
 	public int LineFromPosition(int position) => WxKitNative.StyledTextCtrlLineFromPosition(Native, position);
-
-	/// <summary>How many characters are on a line, including end of line characters?</summary>
-	public int LineLength(int line) => WxKitNative.StyledTextCtrlLineLength(Native, line);
 
 	/// <summary>Reverse order of selected lines.</summary>
 	public void LineReverse() => WxKitNative.StyledTextCtrlLineReverse(Native);

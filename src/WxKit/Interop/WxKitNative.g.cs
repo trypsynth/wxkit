@@ -7906,14 +7906,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlSetSavePoint(WxkWindow* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLine")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkString* StyledTextCtrlGetLine(WxkWindow* self, int line);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetTextRange")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkString* StyledTextCtrlGetTextRange(WxkWindow* self, int startPosition, int endPosition);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_ReplaceSelection")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlReplaceSelection(WxkWindow* self, char* text, nuint textLength);
@@ -8093,10 +8085,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MoveCaretInsideView")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlMoveCaretInsideView(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LineLength")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlLineLength(WxkWindow* self, int line);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_LinesOnScreen")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -9786,14 +9774,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlSetInsertionPointEnd(WxkWindow* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetReadOnly")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte StyledTextCtrlGetReadOnly(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetReadOnly")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void StyledTextCtrlSetReadOnly(WxkWindow* self, byte readOnly);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetText")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkString* StyledTextCtrlGetText(WxkWindow* self);
@@ -9913,14 +9893,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_SetSelectionEnd")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlSetSelectionEnd(WxkWindow* self, int caret);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetLineCount")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlGetLineCount(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetModify")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte StyledTextCtrlGetModify(WxkWindow* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelectedText")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

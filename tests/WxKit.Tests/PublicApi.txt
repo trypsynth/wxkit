@@ -7203,7 +7203,6 @@ class WxKit.StyledTextCtrl : Control
     bool IsRangeWord(int start, int end)
     bool LastKeydownProcessed { get; set; }
     bool LoadFile(string fileName)
-    bool Modify { get; }
     bool MouseDownCaptures { get; set; }
     bool MouseSelectionRectangularSwitch { get; set; }
     bool MouseWheelCaptures { get; set; }
@@ -7212,7 +7211,6 @@ class WxKit.StyledTextCtrl : Control
     bool Overtype { get; set; }
     bool PasteConvertEndings { get; set; }
     bool PositionToXY(int position, out int x, out int y)
-    bool ReadOnly { get; set; }
     bool SaveFile(string fileName)
     bool ScrollWidthTracking { get; set; }
     bool SelEolFilled { get; set; }
@@ -7381,12 +7379,10 @@ class WxKit.StyledTextCtrl : Control
     int LayoutCache { get; set; }
     int Length { get; }
     int Lexer { get; set; }
-    int LineCount { get; }
     int LineEndTypesActive { get; }
     int LineEndTypesAllowed { get; set; }
     int LineEndTypesSupported { get; }
     int LineFromPosition(int position)
-    int LineLength(int line)
     int LinesOnScreen()
     int MainSelection { get; set; }
     int MarginCount { get; set; }
@@ -7480,14 +7476,12 @@ class WxKit.StyledTextCtrl : Control
     string DescribeProperty(string name)
     string DescriptionOfStyle(int style)
     string EolAnnotationGetText(int line)
-    string GetLine(int line)
     string GetLineText(int lineNumber)
     string GetProperty(string key)
     string GetPropertyExpanded(string key)
     string GetRange(int from, int to)
     string GetRepresentation(string encodedCharacter)
     string GetTag(int tagNumber)
-    string GetTextRange(int startPosition, int endPosition)
     string LexerLanguage { get; set; }
     string MarginGetStyles(int line)
     string MarginGetText(int line)
@@ -7560,7 +7554,6 @@ class WxKit.StyledTextCtrl : Control
     void CharRightExtend()
     void CharRightRectExtend()
     void ChooseCaretX()
-    void Clear()
     void ClearAll()
     void ClearDocumentStyle()
     void ClearRegisteredImages()
@@ -7586,6 +7579,7 @@ class WxKit.StyledTextCtrl : Control
     void DeleteBack()
     void DeleteBackNotLine()
     void DeleteRange(int start, int lengthDelete)
+    void DeleteSelection()
     void DiscardEdits()
     void DocumentEnd()
     void DocumentEndExtend()

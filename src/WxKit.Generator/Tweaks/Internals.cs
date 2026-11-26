@@ -50,5 +50,9 @@ internal static class Internals {
 		// SelectionStart and SelectionLength, or the styled text control's SelectionEnd, give the
 		// selection without out parameters. The hand-written properties call the import.
 		foreach (string entry in (string[])["wxTextCtrl", "wxComboBox", "wxSearchCtrl", "wxStyledTextCtrl"]) tweaks.Class(entry).InternalOverload("GetSelection", "from", "long *");
+		// Scintilla's names for what the styled text control has as a text control too, under the
+		// names TextCtrl has. Its Clear deletes the selection, where a text control's clears it all,
+		// which ClearAll does here.
+		tweaks.Class("wxStyledTextCtrl").Ignore("GetModify", "GetLine", "LineLength", "GetLineCount", "GetTextRange", "GetReadOnly", "SetReadOnly").Rename("Clear", "DeleteSelection");
 	}
 }

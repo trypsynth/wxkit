@@ -2466,8 +2466,6 @@ WXK_FUNCTION(void) wxk_StyledTextCtrl_ClearDocumentStyle(wxk_Window* self) WXK_N
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetCharAt(wxk_Window* self, int32_t position) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetStyleAt(wxk_Window* self, int32_t position) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_SetSavePoint(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetLine(wxk_Window* self, int32_t line) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetTextRange(wxk_Window* self, int32_t startPosition, int32_t endPosition) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_ReplaceSelection(wxk_Window* self, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_AppendText(wxk_Window* self, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_Allocate(wxk_Window* self, int32_t bytes) WXK_NOEXCEPT;
@@ -2513,7 +2511,6 @@ WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_PositionFromLine(wxk_Window* self, int3
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_TextWidth(wxk_Window* self, int32_t style, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_TextHeight(wxk_Window* self, int32_t line) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_MoveCaretInsideView(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_LineLength(wxk_Window* self, int32_t line) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_LinesOnScreen(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_SelectionIsRectangle(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_ChooseCaretX(wxk_Window* self) WXK_NOEXCEPT;
@@ -2936,8 +2933,6 @@ WXK_FUNCTION(void) wxk_StyledTextCtrl_SetCustomDrawn(wxk_Window* self, uint8_t c
 WXK_FUNCTION(void) wxk_StyledTextCtrl_ChangeValue(wxk_Window* self, const char16_t* value, size_t valueLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetRange(wxk_Window* self, int32_t from, int32_t to) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_SetInsertionPointEnd(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_GetReadOnly(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_StyledTextCtrl_SetReadOnly(wxk_Window* self, uint8_t readOnly) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetText(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_SetText(wxk_Window* self, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetTargetStart(wxk_Window* self) WXK_NOEXCEPT;
@@ -2968,8 +2963,6 @@ WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetSelectionStart(wxk_Window* self) WXK
 WXK_FUNCTION(void) wxk_StyledTextCtrl_SetSelectionStart(wxk_Window* self, int32_t anchor) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetSelectionEnd(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_SetSelectionEnd(wxk_Window* self, int32_t caret) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetLineCount(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_GetModify(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetSelectedText(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetTextLength(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetSelectionMode(wxk_Window* self) WXK_NOEXCEPT;

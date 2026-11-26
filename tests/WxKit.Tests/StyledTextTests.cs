@@ -7,9 +7,9 @@ public class StyledTextTests {
 		StyledTextCtrl editor = new(frame);
 		editor.Text = "first line\nsecond line";
 		Assert.Equal("first line\nsecond line", editor.Text);
-		Assert.Equal(2, editor.LineCount);
+		Assert.Equal(2, editor.NumberOfLines);
 		editor.AppendText("\nthird line");
-		Assert.Equal(3, editor.LineCount);
+		Assert.Equal(3, editor.NumberOfLines);
 		editor.GotoLine(2);
 		Assert.Equal(2, editor.CurrentLine);
 		Assert.Equal(editor.Text.Length, editor.TextLength);
@@ -38,8 +38,8 @@ public class StyledTextTests {
 		editor.Text = "hello";
 		Assert.True(modified > 0);
 		editor.SetSavePoint();
-		Assert.False(editor.Modify);
+		Assert.False(editor.IsModified);
 		editor.AppendText(" world");
-		Assert.True(editor.Modify);
+		Assert.True(editor.IsModified);
 	});
 }

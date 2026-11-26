@@ -48,14 +48,6 @@ WXK_FUNCTION(void) wxk_StyledTextCtrl_SetSavePoint(wxk_Window* self) noexcept {
 	wxk::Guard([&] { static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->SetSavePoint(); });
 }
 
-WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetLine(wxk_Window* self, int32_t line) noexcept {
-	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->GetLine(static_cast<int>(line))); });
-}
-
-WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetTextRange(wxk_Window* self, int32_t startPosition, int32_t endPosition) noexcept {
-	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->GetTextRange(static_cast<int>(startPosition), static_cast<int>(endPosition))); });
-}
-
 WXK_FUNCTION(void) wxk_StyledTextCtrl_ReplaceSelection(wxk_Window* self, const char16_t* text, size_t textLength) noexcept {
 	wxk::Guard([&] { static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->ReplaceSelection(wxk::FromUtf16(text, textLength)); });
 }
@@ -234,10 +226,6 @@ WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_TextHeight(wxk_Window* self, int32_t li
 
 WXK_FUNCTION(void) wxk_StyledTextCtrl_MoveCaretInsideView(wxk_Window* self) noexcept {
 	wxk::Guard([&] { static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->MoveCaretInsideView(); });
-}
-
-WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_LineLength(wxk_Window* self, int32_t line) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->LineLength(static_cast<int>(line))); });
 }
 
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_LinesOnScreen(wxk_Window* self) noexcept {
@@ -1928,14 +1916,6 @@ WXK_FUNCTION(void) wxk_StyledTextCtrl_SetInsertionPointEnd(wxk_Window* self) noe
 	wxk::Guard([&] { static_cast<wxTextEntryBase*>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self)))->SetInsertionPointEnd(); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_GetReadOnly(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->GetReadOnly()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(void) wxk_StyledTextCtrl_SetReadOnly(wxk_Window* self, uint8_t readOnly) noexcept {
-	wxk::Guard([&] { static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->SetReadOnly(readOnly != 0); });
-}
-
 WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetText(wxk_Window* self) noexcept {
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->GetText()); });
 }
@@ -2054,14 +2034,6 @@ WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetSelectionEnd(wxk_Window* self) noexc
 
 WXK_FUNCTION(void) wxk_StyledTextCtrl_SetSelectionEnd(wxk_Window* self, int32_t caret) noexcept {
 	wxk::Guard([&] { static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->SetSelectionEnd(static_cast<int>(caret)); });
-}
-
-WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetLineCount(wxk_Window* self) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->GetLineCount()); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_StyledTextCtrl_GetModify(wxk_Window* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->GetModify()) ? 1 : 0; });
 }
 
 WXK_FUNCTION(wxk_String*) wxk_StyledTextCtrl_GetSelectedText(wxk_Window* self) noexcept {
