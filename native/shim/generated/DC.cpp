@@ -45,32 +45,16 @@ WXK_FUNCTION(void) wxk_DC_DrawArc_PointPointPoint(wxk_Object* self, wxk_Point st
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawArc(wxk::FromPoint(start), wxk::FromPoint(end), wxk::FromPoint(center)); });
 }
 
-WXK_FUNCTION(void) wxk_DC_DrawBitmap_BitmapIntIntBool(wxk_Object* self, const wxk_Object* bitmap, int32_t x, int32_t y, uint8_t useMask) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawBitmap(wxk::ValueOf<wxBitmap>(bitmap), static_cast<int>(x), static_cast<int>(y), useMask != 0); });
-}
-
-WXK_FUNCTION(void) wxk_DC_DrawBitmap_BitmapPointBool(wxk_Object* self, const wxk_Object* bitmap, wxk_Point point, uint8_t useMask) noexcept {
+WXK_FUNCTION(void) wxk_DC_DrawBitmap(wxk_Object* self, const wxk_Object* bitmap, wxk_Point point, uint8_t useMask) noexcept {
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawBitmap(wxk::ValueOf<wxBitmap>(bitmap), wxk::FromPoint(point), useMask != 0); });
 }
 
-WXK_FUNCTION(void) wxk_DC_DrawCheckMark_IntIntIntInt(wxk_Object* self, int32_t x, int32_t y, int32_t width, int32_t height) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawCheckMark(static_cast<int>(x), static_cast<int>(y), static_cast<int>(width), static_cast<int>(height)); });
-}
-
-WXK_FUNCTION(void) wxk_DC_DrawCheckMark_Rect(wxk_Object* self, wxk_Rect rect) noexcept {
+WXK_FUNCTION(void) wxk_DC_DrawCheckMark(wxk_Object* self, wxk_Rect rect) noexcept {
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawCheckMark(wxk::FromRect(rect)); });
 }
 
-WXK_FUNCTION(void) wxk_DC_DrawCircle_IntIntInt(wxk_Object* self, int32_t x, int32_t y, int32_t radius) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawCircle(static_cast<int>(x), static_cast<int>(y), static_cast<int>(radius)); });
-}
-
-WXK_FUNCTION(void) wxk_DC_DrawCircle_PointInt(wxk_Object* self, wxk_Point point, int32_t radius) noexcept {
+WXK_FUNCTION(void) wxk_DC_DrawCircle(wxk_Object* self, wxk_Point point, int32_t radius) noexcept {
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawCircle(wxk::FromPoint(point), static_cast<int>(radius)); });
-}
-
-WXK_FUNCTION(void) wxk_DC_DrawEllipse_IntIntIntInt(wxk_Object* self, int32_t x, int32_t y, int32_t width, int32_t height) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawEllipse(static_cast<int>(x), static_cast<int>(y), static_cast<int>(width), static_cast<int>(height)); });
 }
 
 WXK_FUNCTION(void) wxk_DC_DrawEllipse_PointSize(wxk_Object* self, wxk_Point point, wxk_Size size) noexcept {
@@ -81,19 +65,11 @@ WXK_FUNCTION(void) wxk_DC_DrawEllipse_Rect(wxk_Object* self, wxk_Rect rect) noex
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawEllipse(wxk::FromRect(rect)); });
 }
 
-WXK_FUNCTION(void) wxk_DC_DrawEllipticArc_IntIntIntIntDoubleDouble(wxk_Object* self, int32_t x, int32_t y, int32_t width, int32_t height, double start, double end) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawEllipticArc(static_cast<int>(x), static_cast<int>(y), static_cast<int>(width), static_cast<int>(height), static_cast<double>(start), static_cast<double>(end)); });
-}
-
-WXK_FUNCTION(void) wxk_DC_DrawEllipticArc_PointSizeDoubleDouble(wxk_Object* self, wxk_Point point, wxk_Size size, double sa, double ea) noexcept {
+WXK_FUNCTION(void) wxk_DC_DrawEllipticArc(wxk_Object* self, wxk_Point point, wxk_Size size, double sa, double ea) noexcept {
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawEllipticArc(wxk::FromPoint(point), wxk::FromSize(size), static_cast<double>(sa), static_cast<double>(ea)); });
 }
 
-WXK_FUNCTION(void) wxk_DC_DrawIcon_IconIntInt(wxk_Object* self, const wxk_Object* icon, int32_t x, int32_t y) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawIcon(wxk::ValueOf<wxIcon>(icon), static_cast<int>(x), static_cast<int>(y)); });
-}
-
-WXK_FUNCTION(void) wxk_DC_DrawIcon_IconPoint(wxk_Object* self, const wxk_Object* icon, wxk_Point point) noexcept {
+WXK_FUNCTION(void) wxk_DC_DrawIcon(wxk_Object* self, const wxk_Object* icon, wxk_Point point) noexcept {
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawIcon(wxk::ValueOf<wxIcon>(icon), wxk::FromPoint(point)); });
 }
 
@@ -105,24 +81,12 @@ WXK_FUNCTION(void) wxk_DC_DrawLabel_StringRectAlignmentInt(wxk_Object* self, con
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawLabel(wxk::FromUtf16(text, textLength), wxk::FromRect(rect), static_cast<int>(alignment), static_cast<int>(acceleratorIndex)); });
 }
 
-WXK_FUNCTION(void) wxk_DC_DrawLine_IntIntIntInt(wxk_Object* self, int32_t x1, int32_t y1, int32_t x2, int32_t y2) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawLine(static_cast<int>(x1), static_cast<int>(y1), static_cast<int>(x2), static_cast<int>(y2)); });
-}
-
-WXK_FUNCTION(void) wxk_DC_DrawLine_PointPoint(wxk_Object* self, wxk_Point point1, wxk_Point point2) noexcept {
+WXK_FUNCTION(void) wxk_DC_DrawLine(wxk_Object* self, wxk_Point point1, wxk_Point point2) noexcept {
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawLine(wxk::FromPoint(point1), wxk::FromPoint(point2)); });
 }
 
-WXK_FUNCTION(void) wxk_DC_DrawPoint_IntInt(wxk_Object* self, int32_t x, int32_t y) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawPoint(static_cast<int>(x), static_cast<int>(y)); });
-}
-
-WXK_FUNCTION(void) wxk_DC_DrawPoint_Point(wxk_Object* self, wxk_Point point) noexcept {
+WXK_FUNCTION(void) wxk_DC_DrawPoint(wxk_Object* self, wxk_Point point) noexcept {
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawPoint(wxk::FromPoint(point)); });
-}
-
-WXK_FUNCTION(void) wxk_DC_DrawRectangle_IntIntIntInt(wxk_Object* self, int32_t x, int32_t y, int32_t width, int32_t height) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawRectangle(static_cast<int>(x), static_cast<int>(y), static_cast<int>(width), static_cast<int>(height)); });
 }
 
 WXK_FUNCTION(void) wxk_DC_DrawRectangle_PointSize(wxk_Object* self, wxk_Point point, wxk_Size size) noexcept {
@@ -133,16 +97,8 @@ WXK_FUNCTION(void) wxk_DC_DrawRectangle_Rect(wxk_Object* self, wxk_Rect rect) no
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawRectangle(wxk::FromRect(rect)); });
 }
 
-WXK_FUNCTION(void) wxk_DC_DrawRotatedText_StringIntIntDouble(wxk_Object* self, const char16_t* text, size_t textLength, int32_t x, int32_t y, double angle) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawRotatedText(wxk::FromUtf16(text, textLength), static_cast<int>(x), static_cast<int>(y), static_cast<double>(angle)); });
-}
-
-WXK_FUNCTION(void) wxk_DC_DrawRotatedText_StringPointDouble(wxk_Object* self, const char16_t* text, size_t textLength, wxk_Point point, double angle) noexcept {
+WXK_FUNCTION(void) wxk_DC_DrawRotatedText(wxk_Object* self, const char16_t* text, size_t textLength, wxk_Point point, double angle) noexcept {
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawRotatedText(wxk::FromUtf16(text, textLength), wxk::FromPoint(point), static_cast<double>(angle)); });
-}
-
-WXK_FUNCTION(void) wxk_DC_DrawRoundedRectangle_IntIntIntIntDouble(wxk_Object* self, int32_t x, int32_t y, int32_t width, int32_t height, double radius) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawRoundedRectangle(static_cast<int>(x), static_cast<int>(y), static_cast<int>(width), static_cast<int>(height), static_cast<double>(radius)); });
 }
 
 WXK_FUNCTION(void) wxk_DC_DrawRoundedRectangle_PointSizeDouble(wxk_Object* self, wxk_Point point, wxk_Size size, double radius) noexcept {
@@ -157,11 +113,7 @@ WXK_FUNCTION(void) wxk_DC_DrawSpline(wxk_Object* self, int32_t x1, int32_t y1, i
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawSpline(static_cast<int>(x1), static_cast<int>(y1), static_cast<int>(x2), static_cast<int>(y2), static_cast<int>(x3), static_cast<int>(y3)); });
 }
 
-WXK_FUNCTION(void) wxk_DC_DrawText_StringIntInt(wxk_Object* self, const char16_t* text, size_t textLength, int32_t x, int32_t y) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawText(wxk::FromUtf16(text, textLength), static_cast<int>(x), static_cast<int>(y)); });
-}
-
-WXK_FUNCTION(void) wxk_DC_DrawText_StringPoint(wxk_Object* self, const char16_t* text, size_t textLength, wxk_Point point) noexcept {
+WXK_FUNCTION(void) wxk_DC_DrawText(wxk_Object* self, const char16_t* text, size_t textLength, wxk_Point point) noexcept {
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawText(wxk::FromUtf16(text, textLength), wxk::FromPoint(point)); });
 }
 
@@ -177,19 +129,11 @@ WXK_FUNCTION(void) wxk_DC_GradientFillLinear(wxk_Object* self, wxk_Rect rect, wx
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->GradientFillLinear(wxk::FromRect(rect), wxk::FromColour(initialColor), wxk::FromColour(destColor), static_cast<wxDirection>(direction)); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_DC_FloodFill_IntIntColorFloodFillStyle(wxk_Object* self, int32_t x, int32_t y, wxk_Colour color, int32_t style) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDC*>(wxk::Unwrap(self))->FloodFill(static_cast<int>(x), static_cast<int>(y), wxk::FromColour(color), static_cast<wxFloodFillStyle>(style))) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_DC_FloodFill_PointColorFloodFillStyle(wxk_Object* self, wxk_Point point, wxk_Colour color, int32_t style) noexcept {
+WXK_FUNCTION(uint8_t) wxk_DC_FloodFill(wxk_Object* self, wxk_Point point, wxk_Colour color, int32_t style) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDC*>(wxk::Unwrap(self))->FloodFill(wxk::FromPoint(point), wxk::FromColour(color), static_cast<wxFloodFillStyle>(style))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(void) wxk_DC_CrossHair_IntInt(wxk_Object* self, int32_t x, int32_t y) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->CrossHair(static_cast<int>(x), static_cast<int>(y)); });
-}
-
-WXK_FUNCTION(void) wxk_DC_CrossHair_Point(wxk_Object* self, wxk_Point point) noexcept {
+WXK_FUNCTION(void) wxk_DC_CrossHair(wxk_Object* self, wxk_Point point) noexcept {
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->CrossHair(wxk::FromPoint(point)); });
 }
 
@@ -199,10 +143,6 @@ WXK_FUNCTION(void) wxk_DC_DestroyClippingRegion(wxk_Object* self) noexcept {
 
 WXK_FUNCTION(uint8_t) wxk_DC_GetClippingBox(wxk_Object* self, wxk_Rect* rect) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxDC*>(wxk::Unwrap(self))->GetClippingBox(wxk::OutValue<wxRect, wxk_Rect, wxk::ToRect>{rect})) ? 1 : 0; });
-}
-
-WXK_FUNCTION(void) wxk_DC_SetClippingRegion_IntIntIntInt(wxk_Object* self, int32_t x, int32_t y, int32_t width, int32_t height) noexcept {
-	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->SetClippingRegion(static_cast<int>(x), static_cast<int>(y), static_cast<int>(width), static_cast<int>(height)); });
 }
 
 WXK_FUNCTION(void) wxk_DC_SetClippingRegion_PointSize(wxk_Object* self, wxk_Point point, wxk_Size size) noexcept {
@@ -285,11 +225,7 @@ WXK_FUNCTION(int32_t) wxk_DC_LogicalToDeviceYRel(wxk_Object* self, int32_t y) no
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->LogicalToDeviceYRel(static_cast<int>(y))); });
 }
 
-WXK_FUNCTION(wxk_Point) wxk_DC_DeviceToLogical_IntInt(wxk_Object* self, int32_t x, int32_t y) noexcept {
-	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->DeviceToLogical(static_cast<int>(x), static_cast<int>(y))); });
-}
-
-WXK_FUNCTION(wxk_Point) wxk_DC_DeviceToLogical_Point(wxk_Object* self, wxk_Point point) noexcept {
+WXK_FUNCTION(wxk_Point) wxk_DC_DeviceToLogical(wxk_Object* self, wxk_Point point) noexcept {
 	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->DeviceToLogical(wxk::FromPoint(point))); });
 }
 
@@ -301,11 +237,7 @@ WXK_FUNCTION(wxk_Size) wxk_DC_DeviceToLogicalRel_Size(wxk_Object* self, wxk_Size
 	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->DeviceToLogicalRel(wxk::FromSize(dim))); });
 }
 
-WXK_FUNCTION(wxk_Point) wxk_DC_LogicalToDevice_IntInt(wxk_Object* self, int32_t x, int32_t y) noexcept {
-	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->LogicalToDevice(static_cast<int>(x), static_cast<int>(y))); });
-}
-
-WXK_FUNCTION(wxk_Point) wxk_DC_LogicalToDevice_Point(wxk_Object* self, wxk_Point point) noexcept {
+WXK_FUNCTION(wxk_Point) wxk_DC_LogicalToDevice(wxk_Object* self, wxk_Point point) noexcept {
 	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(static_cast<wxReadOnlyDC*>(static_cast<wxDC*>(wxk::Unwrap(self)))->LogicalToDevice(wxk::FromPoint(point))); });
 }
 

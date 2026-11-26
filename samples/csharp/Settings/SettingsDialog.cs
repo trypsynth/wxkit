@@ -78,7 +78,7 @@ internal sealed class SettingsDialog : Dialog {
 		sizer.Add(pages, new SizerFlags(1).Expand().Border());
 		sizer.Add(buttons, SizerFlags.Default.Expand().Border(Direction.Left | Direction.Right | Direction.Bottom));
 		Sizer = sizer;
-		SetSize(560, 480);
+		Size = new Size(560, 480);
 		_name.SetFocus();
 	}
 

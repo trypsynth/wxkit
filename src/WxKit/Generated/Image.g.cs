@@ -136,11 +136,8 @@ public unsafe partial class Image : NativeObject {
 	/// <summary>Returns an identical copy of this image.</summary>
 	public Image? Copy() => global::WxKit.Image.Take(WxKitNative.ImageCopy(Native));
 
-	/// <summary>Creates a fresh image.</summary>
-	public bool Create(int width, int height, bool clear = true) => WxKitNative.ImageCreateIntIntBool(Native, width, height, clear ? (byte)1 : (byte)0) != 0;
-
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public bool Create(Size size, bool clear = true) => WxKitNative.ImageCreateSizeBool(Native, size, clear ? (byte)1 : (byte)0) != 0;
+	public bool Create(Size size, bool clear = true) => WxKitNative.ImageCreate(Native, size, clear ? (byte)1 : (byte)0) != 0;
 
 	/// <summary>Destroys the image data.</summary>
 	public void Destroy() => WxKitNative.ImageDestroy(Native);
@@ -238,11 +235,8 @@ public unsafe partial class Image : NativeObject {
 	/// <summary>Replaces the colour specified by r1,g1,b1 by the colour r2,g2,b2.</summary>
 	public void Replace(byte r1, byte g1, byte b1, byte r2, byte g2, byte b2) => WxKitNative.ImageReplace(Native, r1, g1, b1, r2, g2, b2);
 
-	/// <summary>Changes the size of the image in-place by scaling it: after a call to this function,the image will have the given width and height.</summary>
-	public void Rescale(int width, int height, ImageResizeQuality quality = ImageResizeQuality.Normal) => WxKitNative.ImageRescaleIntIntImageResizeQuality(Native, width, height, (int)quality);
-
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public void Rescale(Size size, ImageResizeQuality quality = ImageResizeQuality.Normal) => WxKitNative.ImageRescaleSizeImageResizeQuality(Native, size, (int)quality);
+	public void Rescale(Size size, ImageResizeQuality quality = ImageResizeQuality.Normal) => WxKitNative.ImageRescale(Native, size, (int)quality);
 
 	/// <summary>Changes the size of the image in-place without scaling it by adding either a border with the given colour or cropping as necessary.</summary>
 	public void Resize(Size size, Point position, int red = -1, int green = -1, int blue = -1) => WxKitNative.ImageResize(Native, size, position, red, green, blue);
@@ -288,11 +282,8 @@ public unsafe partial class Image : NativeObject {
 		}
 	}
 
-	/// <summary>Returns a scaled version of the image.</summary>
-	public Image? Scale(int width, int height, ImageResizeQuality quality = ImageResizeQuality.Normal) => global::WxKit.Image.Take(WxKitNative.ImageScaleIntIntImageResizeQuality(Native, width, height, (int)quality));
-
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Image? Scale(Size size, ImageResizeQuality quality = ImageResizeQuality.Normal) => global::WxKit.Image.Take(WxKitNative.ImageScaleSizeImageResizeQuality(Native, size, (int)quality));
+	public Image? Scale(Size size, ImageResizeQuality quality = ImageResizeQuality.Normal) => global::WxKit.Image.Take(WxKitNative.ImageScale(Native, size, (int)quality));
 
 	/// <summary>Sets the alpha value for the given pixel.</summary>
 	public void SetAlpha(int x, int y, byte alpha) => WxKitNative.ImageSetAlpha(Native, x, y, alpha);

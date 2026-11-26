@@ -411,13 +411,9 @@ class WxKit.Bitmap : NativeObject
     Size Size { get; }
     bool CopyFromIcon(Icon icon)
     bool Create(Size size, int depth = -1)
-    bool Create(int width, int height, DC dc)
-    bool Create(int width, int height, int depth = -1)
     bool CreateScaled(int width, int height, int depth, double logicalScale)
     bool CreateWithDipSize(Size size, double scale, int depth = -1)
-    bool CreateWithDipSize(int width, int height, double scale, int depth = -1)
     bool CreateWithLogicalSize(Size size, double scale, int depth = -1)
-    bool CreateWithLogicalSize(int width, int height, double scale, int depth = -1)
     bool HasAlpha { get; }
     bool IsOk { get; }
     bool LoadFile(string name, BitmapType? type = null)
@@ -938,11 +934,9 @@ class WxKit.DC : NativeObject
     Pen? Pen { get; set; }
     Point DeviceOrigin { get; set; }
     Point DeviceToLogical(Point point)
-    Point DeviceToLogical(int x, int y)
     Point FromDip(Point point)
     Point LogicalOrigin { get; set; }
     Point LogicalToDevice(Point point)
-    Point LogicalToDevice(int x, int y)
     Point ToDip(Point point)
     RasterOperationMode LogicalFunction { get; set; }
     Size DeviceToLogicalRel(Size dim)
@@ -964,7 +958,6 @@ class WxKit.DC : NativeObject
     bool CanGetTextExtent { get; }
     bool CanUseTransformMatrix { get; }
     bool FloodFill(Point point, Color? color, FloodFillStyle style = FloodFillStyle.Surface)
-    bool FloodFill(int x, int y, Color? color, FloodFillStyle style = FloodFillStyle.Surface)
     bool IsOk { get; }
     bool StretchBlit(int xDestination, int yDestination, int destinationWidth, int destinationHeight, DC source, int xSource, int ySource, int sourceWidth, int sourceHeight, RasterOperationMode logicalFunction = RasterOperationMode.Copy, bool useMask = false, int xSourceMask = -1, int ySourceMask = -1)
     bool TryGetClippingBox(out Rect rect)
@@ -991,41 +984,28 @@ class WxKit.DC : NativeObject
     void Clear()
     void CopyAttributes(DC dc)
     void CrossHair(Point point)
-    void CrossHair(int x, int y)
     void DestroyClippingRegion()
     void DisableAutomaticBoundingBoxUpdates()
     void DrawArc(Point start, Point end, Point center)
     void DrawArc(int xStart, int yStart, int xEnd, int yEnd, int xc, int yc)
     void DrawBitmap(Bitmap bitmap, Point point, bool useMask = false)
-    void DrawBitmap(Bitmap bitmap, int x, int y, bool useMask = false)
     void DrawCheckMark(Rect rect)
-    void DrawCheckMark(int x, int y, int width, int height)
     void DrawCircle(Point point, int radius)
-    void DrawCircle(int x, int y, int radius)
     void DrawEllipse(Point point, Size size)
     void DrawEllipse(Rect rect)
-    void DrawEllipse(int x, int y, int width, int height)
     void DrawEllipticArc(Point point, Size size, double sa, double ea)
-    void DrawEllipticArc(int x, int y, int width, int height, double start, double end)
     void DrawIcon(Icon icon, Point point)
-    void DrawIcon(Icon icon, int x, int y)
     void DrawLabel(string text, Bitmap bitmap, Rect rect, Alignment alignment = Alignment.Left, int acceleratorIndex = -1)
     void DrawLabel(string text, Rect rect, Alignment alignment = Alignment.Left, int acceleratorIndex = -1)
     void DrawLine(Point point1, Point point2)
-    void DrawLine(int x1, int y1, int x2, int y2)
     void DrawPoint(Point point)
-    void DrawPoint(int x, int y)
     void DrawRectangle(Point point, Size size)
     void DrawRectangle(Rect rect)
-    void DrawRectangle(int x, int y, int width, int height)
     void DrawRotatedText(string text, Point point, double angle)
-    void DrawRotatedText(string text, int x, int y, double angle)
     void DrawRoundedRectangle(Point point, Size size, double radius)
     void DrawRoundedRectangle(Rect rect, double radius)
-    void DrawRoundedRectangle(int x, int y, int width, int height, double radius)
     void DrawSpline(int x1, int y1, int x2, int y2, int x3, int y3)
     void DrawText(string text, Point point)
-    void DrawText(string text, int x, int y)
     void GradientFillConcentric(Rect rect, Color? initialColor, Color? destColor)
     void GradientFillConcentric(Rect rect, Color? initialColor, Color? destColor, Point circleCenter)
     void GradientFillLinear(Rect rect, Color? initialColor, Color? destColor, Direction direction = Direction.Right)
@@ -1034,7 +1014,6 @@ class WxKit.DC : NativeObject
     void SetAxisOrientation(bool xLeftRight, bool yBottomUp)
     void SetClippingRegion(Point point, Size size)
     void SetClippingRegion(Rect rect)
-    void SetClippingRegion(int x, int y, int width, int height)
 readonly record struct WxKit.DataFormat : IEquatable<DataFormat>
     bool Equals(DataFormat other)
     override bool Equals(object obj)
@@ -2338,13 +2317,11 @@ class WxKit.Image : NativeObject
     Image? Rotate180()
     Image? Rotate90(bool clockwise = true)
     Image? Scale(Size size, ImageResizeQuality quality = ImageResizeQuality.Normal)
-    Image? Scale(int width, int height, ImageResizeQuality quality = ImageResizeQuality.Normal)
     ImageLoadFlags LoadFlags { get; set; }
     Size Size { get; }
     bool ConvertAlphaToMask()
     bool ConvertAlphaToMask(byte mr, byte mg, byte mb)
     bool Create(Size size, bool clear = true)
-    bool Create(int width, int height, bool clear = true)
     bool HasAlpha { get; }
     bool HasMask { get; }
     bool HasOption(string name)
@@ -2393,7 +2370,6 @@ class WxKit.Image : NativeObject
     void Paste(Image image, int x, int y, ImageAlphaBlendMode alphaBlend = ImageAlphaBlendMode.Over)
     void Replace(byte r1, byte g1, byte b1, byte r2, byte g2, byte b2)
     void Rescale(Size size, ImageResizeQuality quality = ImageResizeQuality.Normal)
-    void Rescale(int width, int height, ImageResizeQuality quality = ImageResizeQuality.Normal)
     void Resize(Size size, Point position, int red = -1, int green = -1, int blue = -1)
     void RotateHue(double angle)
     void SetAlpha(int x, int y, byte alpha)
@@ -3765,7 +3741,6 @@ class WxKit.ScrolledWindow : Panel
     void EnableScrolling(bool xScrolling, bool yScrolling)
     void GetVirtualSize(out int x, out int y)
     void Scroll(Point point)
-    void Scroll(int x, int y)
     void SetScale(double xs, double ys)
     void SetScrollBars(int pixelsPerUnitX, int pixelsPerUnitY, int noUnitsX, int noUnitsY, int xPos = 0, int yPos = 0, bool noRefresh = false)
     void SetScrollPageSize(Orientation orientation, int pageSize)
@@ -8616,7 +8591,6 @@ class WxKit.Window : EvtHandler
     EvtHandler? EventHandler { get; set; }
     Font? Font { get; set; }
     HitTestResult HitTest(Point point)
-    HitTestResult HitTest(int x, int y)
     IReadOnlyList<Window> Children { get; }
     LayoutDirection LayoutDirection { get; set; }
     Point ClientAreaOrigin { get; }
@@ -8694,8 +8668,6 @@ class WxKit.Window : EvtHandler
     bool IsDescendant(Window window)
     bool IsDoubleBuffered { get; set; }
     bool IsEnabled { get; set; }
-    bool IsExposed(int x, int y)
-    bool IsExposed(int x, int y, int w, int h)
     bool IsFocusable { get; }
     bool IsFrozen { get; }
     bool IsInputMethodEnabled { get; }
@@ -8714,7 +8686,6 @@ class WxKit.Window : EvtHandler
     bool PageDown()
     bool PageUp()
     bool PopupMenu(Menu menu, Point? position = null)
-    bool PopupMenu(Menu menu, int x, int y)
     bool RegisterHotKey(int hotkeyId, KeyModifiers modifiers, int virtualKeyCode)
     bool Reparent(Window newParent)
     bool ScrollLines(int lines)
@@ -8816,7 +8787,6 @@ class WxKit.Window : EvtHandler
     void InvalidateBestSize()
     void Lower()
     void Move(Point point, SizeFlags flags = SizeFlags.UseExisting)
-    void Move(int x, int y, SizeFlags flags = SizeFlags.UseExisting)
     void MoveAfterInTabOrder(Window window)
     void MoveBeforeInTabOrder(Window window)
     void PostSizeEvent()
@@ -8834,7 +8804,6 @@ class WxKit.Window : EvtHandler
     void SetAccessibleRows(IEnumerable<AccessibleRow> rows, int rowCount)
     void SetCanFocus(bool canFocus)
     void SetClientSize(Rect rect)
-    void SetClientSize(int width, int height)
     void SetFocus()
     void SetFocusFromKbd()
     void SetOwnBackgroundColor(Color? color)
@@ -8843,11 +8812,8 @@ class WxKit.Window : EvtHandler
     void SetScrollBar(Orientation orientation, int position, int thumbSize, int range, bool refresh = true)
     void SetScrollPosition(Orientation orientation, int position, bool refresh = true)
     void SetSize(Rect rect)
-    void SetSize(int width, int height)
-    void SetSize(int x, int y, int width, int height, SizeFlags sizeFlags = SizeFlags.Auto)
     void SetSizeHints(Size minSize, Size? maxSize = null, Size? incSize = null)
     void SetSizeHints(int minWidth, int minHeight, int maxWidth = -1, int maxHeight = -1, int widthIncrement = -1, int heightIncrement = -1)
-    void SetVirtualSize(int width, int height)
     void SetWindowStyle(long style)
     void Thaw()
     void Update()

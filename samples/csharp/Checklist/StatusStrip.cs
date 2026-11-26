@@ -48,8 +48,8 @@ internal sealed class StatusStrip : Control {
 		dc.Pen = divider;
 		for (int index = 0; index < _fields.Length; index++) {
 			Rect bounds = FieldBounds(index);
-			dc.DrawText(_fields[index], bounds.X + 6, bounds.Y + 5);
-			if (index > 0) dc.DrawLine(bounds.X, bounds.Y + 2, bounds.X, bounds.Y + bounds.Height - 2);
+			dc.DrawText(_fields[index], new Point(bounds.X + 6, bounds.Y + 5));
+			if (index > 0) dc.DrawLine(new Point(bounds.X, bounds.Y + 2), new Point(bounds.X, bounds.Y + bounds.Height - 2));
 		}
 	}
 }

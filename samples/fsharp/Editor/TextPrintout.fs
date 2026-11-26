@@ -68,6 +68,6 @@ type TextPrintout(title: string, text: string, fontDescription: string option) =
         lines
         |> Seq.skip ((page - 1) * linesPerPage)
         |> Seq.truncate linesPerPage
-        |> Seq.iteri (fun index line -> dc.DrawText(line, margin, margin + index * lineHeight))
+        |> Seq.iteri (fun index line -> dc.DrawText(line, Point(margin, margin + index * lineHeight)))
         hasPrinted <- true
         true

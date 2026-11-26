@@ -69,32 +69,16 @@ WXK_FUNCTION(uint8_t) wxk_Bitmap_CopyFromIcon(wxk_Object* self, const wxk_Object
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxBitmap*>(wxk::Unwrap(self))->CopyFromIcon(wxk::ValueOf<wxIcon>(icon))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_Bitmap_Create_IntIntInt(wxk_Object* self, int32_t width, int32_t height, int32_t depth) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxBitmap*>(wxk::Unwrap(self))->Create(static_cast<int>(width), static_cast<int>(height), static_cast<int>(depth))) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Bitmap_Create_SizeInt(wxk_Object* self, wxk_Size size, int32_t depth) noexcept {
+WXK_FUNCTION(uint8_t) wxk_Bitmap_Create(wxk_Object* self, wxk_Size size, int32_t depth) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxBitmap*>(wxk::Unwrap(self))->Create(wxk::FromSize(size), static_cast<int>(depth))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_Bitmap_Create_IntIntDC(wxk_Object* self, int32_t width, int32_t height, wxk_Object* dc) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxBitmap*>(wxk::Unwrap(self))->Create(static_cast<int>(width), static_cast<int>(height), *static_cast<wxDC*>(wxk::Unwrap(dc)))) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Bitmap_CreateWithDIPSize_SizeDoubleInt(wxk_Object* self, wxk_Size size, double scale, int32_t depth) noexcept {
+WXK_FUNCTION(uint8_t) wxk_Bitmap_CreateWithDIPSize(wxk_Object* self, wxk_Size size, double scale, int32_t depth) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxBitmap*>(wxk::Unwrap(self))->CreateWithDIPSize(wxk::FromSize(size), static_cast<double>(scale), static_cast<int>(depth))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_Bitmap_CreateWithDIPSize_IntIntDoubleInt(wxk_Object* self, int32_t width, int32_t height, double scale, int32_t depth) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxBitmap*>(wxk::Unwrap(self))->CreateWithDIPSize(static_cast<int>(width), static_cast<int>(height), static_cast<double>(scale), static_cast<int>(depth))) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Bitmap_CreateWithLogicalSize_SizeDoubleInt(wxk_Object* self, wxk_Size size, double scale, int32_t depth) noexcept {
+WXK_FUNCTION(uint8_t) wxk_Bitmap_CreateWithLogicalSize(wxk_Object* self, wxk_Size size, double scale, int32_t depth) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxBitmap*>(wxk::Unwrap(self))->CreateWithLogicalSize(wxk::FromSize(size), static_cast<double>(scale), static_cast<int>(depth))) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Bitmap_CreateWithLogicalSize_IntIntDoubleInt(wxk_Object* self, int32_t width, int32_t height, double scale, int32_t depth) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxBitmap*>(wxk::Unwrap(self))->CreateWithLogicalSize(static_cast<int>(width), static_cast<int>(height), static_cast<double>(scale), static_cast<int>(depth))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Bitmap_CreateScaled(wxk_Object* self, int32_t width, int32_t height, int32_t depth, double logicalScale) noexcept {

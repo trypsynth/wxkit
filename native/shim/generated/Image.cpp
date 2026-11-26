@@ -64,11 +64,7 @@ WXK_FUNCTION(wxk_Object*) wxk_Image_Copy(wxk_Object* self) noexcept {
 	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxImage>(static_cast<wxImage*>(wxk::Unwrap(self))->Copy()); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_Image_Create_IntIntBool(wxk_Object* self, int32_t width, int32_t height, uint8_t clear) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->Create(static_cast<int>(width), static_cast<int>(height), clear != 0)) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Image_Create_SizeBool(wxk_Object* self, wxk_Size size, uint8_t clear) noexcept {
+WXK_FUNCTION(uint8_t) wxk_Image_Create(wxk_Object* self, wxk_Size size, uint8_t clear) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxImage*>(wxk::Unwrap(self))->Create(wxk::FromSize(size), clear != 0)) ? 1 : 0; });
 }
 
@@ -108,11 +104,7 @@ WXK_FUNCTION(void) wxk_Image_Replace(wxk_Object* self, uint8_t r1, uint8_t g1, u
 	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->Replace(static_cast<unsigned char>(r1), static_cast<unsigned char>(g1), static_cast<unsigned char>(b1), static_cast<unsigned char>(r2), static_cast<unsigned char>(g2), static_cast<unsigned char>(b2)); });
 }
 
-WXK_FUNCTION(void) wxk_Image_Rescale_IntIntImageResizeQuality(wxk_Object* self, int32_t width, int32_t height, int32_t quality) noexcept {
-	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->Rescale(static_cast<int>(width), static_cast<int>(height), static_cast<wxImageResizeQuality>(quality)); });
-}
-
-WXK_FUNCTION(void) wxk_Image_Rescale_SizeImageResizeQuality(wxk_Object* self, wxk_Size size, int32_t quality) noexcept {
+WXK_FUNCTION(void) wxk_Image_Rescale(wxk_Object* self, wxk_Size size, int32_t quality) noexcept {
 	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->Rescale(wxk::FromSize(size), static_cast<wxImageResizeQuality>(quality)); });
 }
 
@@ -148,11 +140,7 @@ WXK_FUNCTION(void) wxk_Image_ChangeHSV(wxk_Object* self, double angleH, double f
 	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->ChangeHSV(static_cast<double>(angleH), static_cast<double>(factorS), static_cast<double>(factorV)); });
 }
 
-WXK_FUNCTION(wxk_Object*) wxk_Image_Scale_IntIntImageResizeQuality(wxk_Object* self, int32_t width, int32_t height, int32_t quality) noexcept {
-	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxImage>(static_cast<wxImage*>(wxk::Unwrap(self))->Scale(static_cast<int>(width), static_cast<int>(height), static_cast<wxImageResizeQuality>(quality))); });
-}
-
-WXK_FUNCTION(wxk_Object*) wxk_Image_Scale_SizeImageResizeQuality(wxk_Object* self, wxk_Size size, int32_t quality) noexcept {
+WXK_FUNCTION(wxk_Object*) wxk_Image_Scale(wxk_Object* self, wxk_Size size, int32_t quality) noexcept {
 	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxImage>(static_cast<wxImage*>(wxk::Unwrap(self))->Scale(wxk::FromSize(size), static_cast<wxImageResizeQuality>(quality))); });
 }
 

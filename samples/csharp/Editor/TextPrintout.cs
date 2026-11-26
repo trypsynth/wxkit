@@ -43,7 +43,7 @@ internal sealed class TextPrintout(string title, string text, string? fontDescri
 		dc.TextForeground = new Color(0, 0, 0);
 		int y = _margin;
 		foreach (string line in _lines.Skip((page - 1) * _linesPerPage).Take(_linesPerPage)) {
-			dc.DrawText(line, _margin, y);
+			dc.DrawText(line, new Point(_margin, y));
 			y += _lineHeight;
 		}
 		HasPrinted = true;

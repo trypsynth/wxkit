@@ -29,7 +29,7 @@ public class DrawingTests {
 		int paints = 0;
 		panel.Paint += (_, _) => {
 			using PaintDC dc = new(panel);
-			dc.DrawLine(0, 0, 50, 50);
+			dc.DrawLine(new Point(0, 0), new Point(50, 50));
 			paints++;
 		};
 		frame.Show();

@@ -126,20 +126,14 @@ public unsafe partial class DC : NativeObject {
 		WxKitNative.DCCopyAttributes(Native, dc.Native);
 	}
 
-	/// <summary>Displays a cross hair using the current pen.</summary>
-	public void CrossHair(int x, int y) => WxKitNative.DCCrossHairIntInt(Native, x, y);
-
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public void CrossHair(Point point) => WxKitNative.DCCrossHairPoint(Native, point);
+	public void CrossHair(Point point) => WxKitNative.DCCrossHair(Native, point);
 
 	/// <summary>Destroys the current clipping region so that none of the DC is clipped.</summary>
 	public void DestroyClippingRegion() => WxKitNative.DCDestroyClippingRegion(Native);
 
-	/// <summary>Converts device (x, y) coordinates to logical coordinates taking into account all applied transformations like the current mapping mode, scale factors, device origin, axes orientation, affine transformation.</summary>
-	public Point DeviceToLogical(int x, int y) => WxKitNative.DCDeviceToLogicalIntInt(Native, x, y);
-
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Point DeviceToLogical(Point point) => WxKitNative.DCDeviceToLogicalPoint(Native, point);
+	public Point DeviceToLogical(Point point) => WxKitNative.DCDeviceToLogical(Native, point);
 
 	/// <summary>Converts device x, y coordinates to relative logical coordinates taking into account all applied transformations like the current mapping mode, scale factors, affine transformation.</summary>
 	public Size DeviceToLogicalRel(int x, int y) => WxKitNative.DCDeviceToLogicalRelIntInt(Native, x, y);
@@ -168,32 +162,17 @@ public unsafe partial class DC : NativeObject {
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public void DrawArc(Point start, Point end, Point center) => WxKitNative.DCDrawArcPointPointPoint(Native, start, end, center);
 
-	/// <summary>Draw a bitmap on the device context at the specified point.</summary>
-	public void DrawBitmap(Bitmap bitmap, int x, int y, bool useMask = false) {
-		ArgumentNullException.ThrowIfNull(bitmap);
-		WxKitNative.DCDrawBitmapBitmapIntIntBool(Native, bitmap.Native, x, y, useMask ? (byte)1 : (byte)0);
-	}
-
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public void DrawBitmap(Bitmap bitmap, Point point, bool useMask = false) {
 		ArgumentNullException.ThrowIfNull(bitmap);
-		WxKitNative.DCDrawBitmapBitmapPointBool(Native, bitmap.Native, point, useMask ? (byte)1 : (byte)0);
+		WxKitNative.DCDrawBitmap(Native, bitmap.Native, point, useMask ? (byte)1 : (byte)0);
 	}
 
-	/// <summary>Draws a check mark inside the given rectangle.</summary>
-	public void DrawCheckMark(int x, int y, int width, int height) => WxKitNative.DCDrawCheckMarkIntIntIntInt(Native, x, y, width, height);
+	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
+	public void DrawCheckMark(Rect rect) => WxKitNative.DCDrawCheckMark(Native, rect);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public void DrawCheckMark(Rect rect) => WxKitNative.DCDrawCheckMarkRect(Native, rect);
-
-	/// <summary>Draws a circle with the given centre and radius.</summary>
-	public void DrawCircle(int x, int y, int radius) => WxKitNative.DCDrawCircleIntIntInt(Native, x, y, radius);
-
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public void DrawCircle(Point point, int radius) => WxKitNative.DCDrawCirclePointInt(Native, point, radius);
-
-	/// <summary>Draws an ellipse contained in the rectangle specified either with the given top left corner and the given size or directly.</summary>
-	public void DrawEllipse(int x, int y, int width, int height) => WxKitNative.DCDrawEllipseIntIntIntInt(Native, x, y, width, height);
+	public void DrawCircle(Point point, int radius) => WxKitNative.DCDrawCircle(Native, point, radius);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public void DrawEllipse(Point point, Size size) => WxKitNative.DCDrawEllipsePointSize(Native, point, size);
@@ -201,22 +180,13 @@ public unsafe partial class DC : NativeObject {
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public void DrawEllipse(Rect rect) => WxKitNative.DCDrawEllipseRect(Native, rect);
 
-	/// <summary>Draws an arc of an ellipse.</summary>
-	public void DrawEllipticArc(int x, int y, int width, int height, double start, double end) => WxKitNative.DCDrawEllipticArcIntIntIntIntDoubleDouble(Native, x, y, width, height, start, end);
-
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public void DrawEllipticArc(Point point, Size size, double sa, double ea) => WxKitNative.DCDrawEllipticArcPointSizeDoubleDouble(Native, point, size, sa, ea);
-
-	/// <summary>Draw an icon on the display (does nothing if the device context is PostScript).</summary>
-	public void DrawIcon(Icon icon, int x, int y) {
-		ArgumentNullException.ThrowIfNull(icon);
-		WxKitNative.DCDrawIconIconIntInt(Native, icon.Native, x, y);
-	}
+	public void DrawEllipticArc(Point point, Size size, double sa, double ea) => WxKitNative.DCDrawEllipticArc(Native, point, size, sa, ea);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public void DrawIcon(Icon icon, Point point) {
 		ArgumentNullException.ThrowIfNull(icon);
-		WxKitNative.DCDrawIconIconPoint(Native, icon.Native, point);
+		WxKitNative.DCDrawIcon(Native, icon.Native, point);
 	}
 
 	/// <summary>Draw optional bitmap and the text into the given rectangle and aligns it as specified by alignment parameter; it also will emphasize the character with the given index if it is != -1 and return the bounding rectangle if required.</summary>
@@ -236,20 +206,11 @@ public unsafe partial class DC : NativeObject {
 		}
 	}
 
-	/// <summary>Draws a line from the first point to the second.</summary>
-	public void DrawLine(int x1, int y1, int x2, int y2) => WxKitNative.DCDrawLineIntIntIntInt(Native, x1, y1, x2, y2);
+	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
+	public void DrawLine(Point point1, Point point2) => WxKitNative.DCDrawLine(Native, point1, point2);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public void DrawLine(Point point1, Point point2) => WxKitNative.DCDrawLinePointPoint(Native, point1, point2);
-
-	/// <summary>Draws a point using the color of the current pen.</summary>
-	public void DrawPoint(int x, int y) => WxKitNative.DCDrawPointIntInt(Native, x, y);
-
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public void DrawPoint(Point point) => WxKitNative.DCDrawPointPoint(Native, point);
-
-	/// <summary>Draws a rectangle with the given corner coordinate and size.</summary>
-	public void DrawRectangle(int x, int y, int width, int height) => WxKitNative.DCDrawRectangleIntIntIntInt(Native, x, y, width, height);
+	public void DrawPoint(Point point) => WxKitNative.DCDrawPoint(Native, point);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public void DrawRectangle(Point point, Size size) => WxKitNative.DCDrawRectanglePointSize(Native, point, size);
@@ -257,24 +218,13 @@ public unsafe partial class DC : NativeObject {
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public void DrawRectangle(Rect rect) => WxKitNative.DCDrawRectangleRect(Native, rect);
 
-	/// <summary>Draws the text rotated by angle degrees (positive angles are counterclockwise; the full angle is 360 degrees).</summary>
-	public void DrawRotatedText(string text, int x, int y, double angle) {
-		ArgumentNullException.ThrowIfNull(text);
-		fixed (char* textText = text) {
-			WxKitNative.DCDrawRotatedTextStringIntIntDouble(Native, textText, NativeString.Length(text), x, y, angle);
-		}
-	}
-
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public void DrawRotatedText(string text, Point point, double angle) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			WxKitNative.DCDrawRotatedTextStringPointDouble(Native, textText, NativeString.Length(text), point, angle);
+			WxKitNative.DCDrawRotatedText(Native, textText, NativeString.Length(text), point, angle);
 		}
 	}
-
-	/// <summary>Draws a rectangle with the given top left corner, and with the given size.</summary>
-	public void DrawRoundedRectangle(int x, int y, int width, int height, double radius) => WxKitNative.DCDrawRoundedRectangleIntIntIntIntDouble(Native, x, y, width, height, radius);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public void DrawRoundedRectangle(Point point, Size size, double radius) => WxKitNative.DCDrawRoundedRectanglePointSizeDouble(Native, point, size, radius);
@@ -285,27 +235,16 @@ public unsafe partial class DC : NativeObject {
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public void DrawSpline(int x1, int y1, int x2, int y2, int x3, int y3) => WxKitNative.DCDrawSpline(Native, x1, y1, x2, y2, x3, y3);
 
-	/// <summary>Draws a text string at the specified point, using the current text font, and the current text foreground and background colours.</summary>
-	public void DrawText(string text, int x, int y) {
-		ArgumentNullException.ThrowIfNull(text);
-		fixed (char* textText = text) {
-			WxKitNative.DCDrawTextStringIntInt(Native, textText, NativeString.Length(text), x, y);
-		}
-	}
-
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public void DrawText(string text, Point point) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			WxKitNative.DCDrawTextStringPoint(Native, textText, NativeString.Length(text), point);
+			WxKitNative.DCDrawText(Native, textText, NativeString.Length(text), point);
 		}
 	}
 
-	/// <summary>Flood fills the device context starting from the given point, using the current brush colour, and using a style:</summary>
-	public bool FloodFill(int x, int y, Color? color, FloodFillStyle style = FloodFillStyle.Surface) => WxKitNative.DCFloodFillIntIntColorFloodFillStyle(Native, x, y, global::WxKit.Color.ToNative(color), (int)style) != 0;
-
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public bool FloodFill(Point point, Color? color, FloodFillStyle style = FloodFillStyle.Surface) => WxKitNative.DCFloodFillPointColorFloodFillStyle(Native, point, global::WxKit.Color.ToNative(color), (int)style) != 0;
+	public bool FloodFill(Point point, Color? color, FloodFillStyle style = FloodFillStyle.Surface) => WxKitNative.DCFloodFill(Native, point, global::WxKit.Color.ToNative(color), (int)style) != 0;
 
 	/// <summary>Convert DPI-independent pixel values to the value in pixels appropriate for the DC.</summary>
 	public Size FromDip(Size size) => WxKitNative.DCFromDIPSize(Native, size);
@@ -349,11 +288,8 @@ public unsafe partial class DC : NativeObject {
 	/// <summary>Fill the area specified by rect with a linear gradient, starting from initialColour and eventually fading to destColour.</summary>
 	public void GradientFillLinear(Rect rect, Color? initialColor, Color? destColor, Direction direction = Direction.Right) => WxKitNative.DCGradientFillLinear(Native, rect, global::WxKit.Color.ToNative(initialColor), global::WxKit.Color.ToNative(destColor), (int)direction);
 
-	/// <summary>Converts logical (x, y) coordinates to device coordinates taking into account all applied transformations like the current mapping mode, scale factors, device origin, axes orientation, affine transformation.</summary>
-	public Point LogicalToDevice(int x, int y) => WxKitNative.DCLogicalToDeviceIntInt(Native, x, y);
-
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Point LogicalToDevice(Point point) => WxKitNative.DCLogicalToDevicePoint(Native, point);
+	public Point LogicalToDevice(Point point) => WxKitNative.DCLogicalToDevice(Native, point);
 
 	/// <summary>Converts logical x, y coordinates to relative device coordinates taking into account all applied transformations like the current mapping mode, scale factors, affine transformation.</summary>
 	public Size LogicalToDeviceRel(int x, int y) => WxKitNative.DCLogicalToDeviceRelIntInt(Native, x, y);
@@ -393,9 +329,6 @@ public unsafe partial class DC : NativeObject {
 
 	/// <summary>Sets the x and y axis orientation (i.e. the direction from lowest to highest values on the axis).</summary>
 	public void SetAxisOrientation(bool xLeftRight, bool yBottomUp) => WxKitNative.DCSetAxisOrientation(Native, xLeftRight ? (byte)1 : (byte)0, yBottomUp ? (byte)1 : (byte)0);
-
-	/// <summary>Sets the clipping region for this device context to the intersection of the given region described by the parameters of this method and the previously set clipping region.</summary>
-	public void SetClippingRegion(int x, int y, int width, int height) => WxKitNative.DCSetClippingRegionIntIntIntInt(Native, x, y, width, height);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public void SetClippingRegion(Point point, Size size) => WxKitNative.DCSetClippingRegionPointSize(Native, point, size);

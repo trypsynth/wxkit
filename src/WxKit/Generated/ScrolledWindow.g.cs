@@ -134,11 +134,8 @@ public unsafe partial class ScrolledWindow : Panel {
 		}
 	}
 
-	/// <summary>Scrolls a window so the view start is at the given point.</summary>
-	public void Scroll(int x, int y) => WxKitNative.ScrolledWindowScrollIntInt(Native, x, y);
-
 	/// <summary>This is an overload of Scroll(int,int); see that function for more info.</summary>
-	public void Scroll(Point point) => WxKitNative.ScrolledWindowScrollPoint(Native, point);
+	public void Scroll(Point point) => WxKitNative.ScrolledWindowScroll(Native, point);
 
 	/// <summary>Set the scaling factor for the window.</summary>
 	public void SetScale(double xs, double ys) => WxKitNative.ScrolledWindowSetScale(Native, xs, ys);

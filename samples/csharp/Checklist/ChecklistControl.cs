@@ -131,7 +131,7 @@ internal sealed class ChecklistControl : Panel {
 			dc.Brush = boxBrush;
 			dc.DrawRectangle(new Rect(6, top + (height - box) / 2, box, box));
 			dc.TextForeground = ink;
-			dc.DrawText(item.Text, 12 + box, top + 4);
+			dc.DrawText(item.Text, new Point(12 + box, top + 4));
 		}
 	}
 }

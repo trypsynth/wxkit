@@ -55,7 +55,7 @@ public class PrintingTests {
 
 		protected override bool OnPrintPage(int page, DC dc) {
 			Drawn.Add(page);
-			dc.DrawText($"Page {page} of {count}", 10, 10);
+			dc.DrawText($"Page {page} of {count}", new Point(10, 10));
 			return true;
 		}
 	}

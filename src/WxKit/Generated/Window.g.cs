@@ -305,7 +305,7 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>This gets the virtual size of the window in pixels.</summary>
 	public Size VirtualSize {
 		get => WxKitNative.WindowGetVirtualSizeDefault(Native);
-		set => WxKitNative.WindowSetVirtualSizeSize(Native, value);
+		set => WxKitNative.WindowSetVirtualSize(Native, value);
 	}
 
 	/// <summary>Returns the size of the left/right and top/bottom borders of this window in x and y components of the result respectively.</summary>
@@ -696,11 +696,8 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>This function hides a window, like Hide(), but using a special visual effect if possible.</summary>
 	public bool HideWithEffect(ShowEffect effect, TimeSpan timeout = default) => WxKitNative.WindowHideWithEffect(Native, (int)effect, checked((uint)checked((long)timeout.TotalMilliseconds))) != 0;
 
-	/// <summary>Return where the given point lies, exactly.</summary>
-	public HitTestResult HitTest(int x, int y) => (HitTestResult)WxKitNative.WindowHitTestIntInt(Native, x, y);
-
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public HitTestResult HitTest(Point point) => (HitTestResult)WxKitNative.WindowHitTestPoint(Native, point);
+	public HitTestResult HitTest(Point point) => (HitTestResult)WxKitNative.WindowHitTest(Native, point);
 
 	/// <summary>Return true if this window inherits the background colour from its parent.</summary>
 	public bool InheritsBackgroundColor() => WxKitNative.WindowInheritsBackgroundColour(Native) != 0;
@@ -720,12 +717,6 @@ public unsafe partial class Window : EvtHandler {
 		return WxKitNative.WindowIsDescendant(Native, (WxkWindow*)window.Native) != 0;
 	}
 
-	/// <summary>Returns true if the given point or rectangle area has been exposed since the last repaint.</summary>
-	public bool IsExposed(int x, int y) => WxKitNative.WindowIsExposedIntInt(Native, x, y) != 0;
-
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public bool IsExposed(int x, int y, int w, int h) => WxKitNative.WindowIsExposedIntIntIntInt(Native, x, y, w, h) != 0;
-
 	/// <summary>Return whether a scrollbar is always shown.</summary>
 	public bool IsScrollBarAlwaysShown(Orientation orientation) => WxKitNative.WindowIsScrollbarAlwaysShown(Native, (int)orientation) != 0;
 
@@ -742,10 +733,7 @@ public unsafe partial class Window : EvtHandler {
 	public void Lower() => WxKitNative.WindowLower(Native);
 
 	/// <summary>Moves the window to the given position.</summary>
-	public void Move(int x, int y, SizeFlags flags = SizeFlags.UseExisting) => WxKitNative.WindowMoveIntIntSizeFlags(Native, x, y, (int)flags);
-
-	/// <summary>Moves the window to the given position.</summary>
-	public void Move(Point point, SizeFlags flags = SizeFlags.UseExisting) => WxKitNative.WindowMovePointSizeFlags(Native, point, (int)flags);
+	public void Move(Point point, SizeFlags flags = SizeFlags.UseExisting) => WxKitNative.WindowMove(Native, point, (int)flags);
 
 	/// <summary>Moves this window in the tab navigation order after the specified win.</summary>
 	public void MoveAfterInTabOrder(Window window) {
@@ -780,13 +768,7 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>Pops up the given menu at the specified coordinates, relative to this window, and returns control when the user has dismissed the menu.</summary>
 	public bool PopupMenu(Menu menu, Point? position = null) {
 		ArgumentNullException.ThrowIfNull(menu);
-		return WxKitNative.WindowPopupMenuMenuPoint(Native, (WxkMenu*)menu.Native, position ?? global::WxKit.Point.Default) != 0;
-	}
-
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public bool PopupMenu(Menu menu, int x, int y) {
-		ArgumentNullException.ThrowIfNull(menu);
-		return WxKitNative.WindowPopupMenuMenuIntInt(Native, (WxkMenu*)menu.Native, x, y) != 0;
+		return WxKitNative.WindowPopupMenu(Native, (WxkMenu*)menu.Native, position ?? global::WxKit.Point.Default) != 0;
 	}
 
 	/// <summary>Posts a size event to the window.</summary>
@@ -837,9 +819,6 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>This method is only implemented by ports which have support for native TAB traversal (such as GTK+ 2.0).</summary>
 	public void SetCanFocus(bool canFocus) => WxKitNative.WindowSetCanFocus(Native, canFocus ? (byte)1 : (byte)0);
 
-	/// <summary>This sets the size of the window client area in pixels.</summary>
-	public void SetClientSize(int width, int height) => WxKitNative.WindowSetClientSizeIntInt(Native, width, height);
-
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public void SetClientSize(Rect rect) => WxKitNative.WindowSetClientSizeRect(Native, rect);
 
@@ -871,13 +850,7 @@ public unsafe partial class Window : EvtHandler {
 	public void SetScrollPosition(Orientation orientation, int position, bool refresh = true) => WxKitNative.WindowSetScrollPos(Native, (int)orientation, position, refresh ? (byte)1 : (byte)0);
 
 	/// <summary>Sets the size of the window in pixels.</summary>
-	public void SetSize(int x, int y, int width, int height, SizeFlags sizeFlags = SizeFlags.Auto) => WxKitNative.WindowSetSizeIntIntIntIntSizeFlags(Native, x, y, width, height, (int)sizeFlags);
-
-	/// <summary>Sets the size of the window in pixels.</summary>
 	public void SetSize(Rect rect) => WxKitNative.WindowSetSizeRect(Native, rect);
-
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public void SetSize(int width, int height) => WxKitNative.WindowSetSizeIntInt(Native, width, height);
 
 	/// <summary>Use of this function for windows which are not toplevel windows (such as wxDialog or wxFrame) is discouraged.</summary>
 	public void SetSizeHints(Size minSize, Size? maxSize = null, Size? incSize = null) => WxKitNative.WindowSetSizeHintsSizeSizeSize(Native, minSize, maxSize ?? global::WxKit.Size.Default, incSize ?? global::WxKit.Size.Default);
@@ -887,9 +860,6 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>Set the transparency of the window.</summary>
 	public bool SetTransparent(byte alpha) => WxKitNative.WindowSetTransparent(Native, alpha) != 0;
-
-	/// <summary>Sets the virtual size of the window in pixels.</summary>
-	public void SetVirtualSize(int width, int height) => WxKitNative.WindowSetVirtualSizeIntInt(Native, width, height);
 
 	/// <summary>See SetWindowStyleFlag() for more info.</summary>
 	public void SetWindowStyle(long style) => WxKitNative.WindowSetWindowStyle(Native, style);

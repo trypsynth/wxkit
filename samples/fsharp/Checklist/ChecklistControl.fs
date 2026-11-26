@@ -92,7 +92,7 @@ type ChecklistControl(parent: Window, texts: string seq) as this =
             dc.Brush <- boxBrush
             dc.DrawRectangle(Rect(6, top + (height - box) / 2, box, box))
             dc.TextForeground <- ink
-            dc.DrawText(item.Text, 12 + box, top + 4))
+            dc.DrawText(item.Text, Point(12 + box, top + 4)))
 
     do
         // A window that draws itself has no name of its own, so it takes the label's, which macOS

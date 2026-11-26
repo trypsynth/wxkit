@@ -41,7 +41,7 @@ public class ValueTests {
 		Assert.Equal(16, bitmap.Height);
 		using Image? image = bitmap.ConvertToImage();
 		Assert.NotNull(image);
-		using Image? half = image.Scale(16, 8);
+		using Image? half = image.Scale(new Size(16, 8));
 		Assert.Equal(new Size(16, 8), new Size(half!.Width, half.Height));
 		using Bitmap back = new(half);
 		Assert.Equal(16, back.Width);

@@ -102,7 +102,7 @@ type SettingsDialog(parent: Window, settings: AppSettings) as this =
                 item pages |> grow
                 section buttons |> fill |> border (Direction.Left ||| Direction.Right ||| Direction.Bottom)
             }
-        this.SetSize(560, 480)
+        this.Size <- Size(560, 480)
         name.SetFocus()
 
     /// The settings as the dialog has them, for when it's closed with OK.

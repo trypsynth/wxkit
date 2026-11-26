@@ -33,9 +33,9 @@ type StatusStrip(parent: Window) as this =
         fields
         |> List.iteri (fun index field ->
             let area = bounds index
-            dc.DrawText(field, area.X + 6, area.Y + 5)
+            dc.DrawText(field, Point(area.X + 6, area.Y + 5))
             if index > 0 then
-                dc.DrawLine(area.X, area.Y + 2, area.X, area.Y + area.Height - 2))
+                dc.DrawLine(Point(area.X, area.Y + 2), Point(area.X, area.Y + area.Height - 2)))
 
     do
         this.BackgroundStyle <- BackgroundStyle.Paint

@@ -165,6 +165,9 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 			members = members.Concat(lender.Members.Where(member => member.Name != source && member.Name != "~" + source && !bound.Source.Members.Any(own => own.Name == member.Name)).Select(member => member with { Mixin = source }));
 		}
 		List<DoxygenMember> candidates = [.. members.Where(static member => member.IsPublic && !member.Name.StartsWith('~') && !member.Name.StartsWith("operator", StringComparison.Ordinal))];
+		// An overload that takes x and y, or a width and a height, beside one that takes a point, a
+		// size, or a rectangle, only repeats it. A constructor keeps both, as .NET's Bitmap does.
+		candidates.RemoveAll(member => member.Name != bound.CppName && candidates.Any(other => other.Name == member.Name && other.IsStatic == member.IsStatic && other.Parameters.Count < member.Parameters.Count && RepeatsWithCoordinates(member, other)));
 		HashSet<string> known = [.. candidates.Select(static member => member.Name)];
 		foreach (string kept in tweak.KeptAlive) {
 			if (!candidates.Any(member => member.Name == bound.CppName && member.Parameters.Any(parameter => parameter.Name == kept))) throw new InvalidOperationException($"A tweak keeps {bound.CppName}'s constructor parameter {kept} alive, which no constructor has.");
@@ -828,6 +831,26 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 	}
 
 	// The last four are a mask, a bound without the underscore, and second spellings of Tiff.
+	// Whether a member takes as numbers what another overload takes as a point, a size, or a
+	// rectangle: x and y for a point, a width and a height for a size, and all four for a rectangle
+	// or for a point and a size.
+	private static bool RepeatsWithCoordinates(DoxygenMember member, DoxygenMember other) {
+		bool point = HasPair(member, "x", "y") || HasPair(member, "x1", "y1");
+		bool size = HasPair(member, "width", "height") || HasPair(member, "w", "h");
+		if (!point && !size) return false;
+		HashSet<string> types = [.. other.Parameters.Select(static parameter => CppType.Parse(parameter.Type).Name)];
+		if (point && size) return types.Contains("wxRect") || (types.Contains("wxPoint") && types.Contains("wxSize"));
+		return types.Contains(point ? "wxPoint" : "wxSize");
+	}
+
+	private static bool HasPair(DoxygenMember member, string first, string second) {
+		for (int index = 0; index + 1 < member.Parameters.Count; index++) {
+			if (member.Parameters[index].Name != first || member.Parameters[index + 1].Name != second) continue;
+			if (CppType.Parse(member.Parameters[index].Type).Name is "int" or "wxCoord" && CppType.Parse(member.Parameters[index + 1].Type).Name is "int" or "wxCoord") return true;
+		}
+		return false;
+	}
+
 	private static bool IsSentinel(string constant) => constant.EndsWith("_MAX", StringComparison.OrdinalIgnoreCase) || constant.EndsWith("_INVALID", StringComparison.Ordinal) || constant.EndsWith("_FIRST", StringComparison.Ordinal) || constant.EndsWith("_LAST", StringComparison.Ordinal) || constant is "wxBORDER_MASK" or "wxFONTENCODING_MACMAX" or "wxBITMAP_TYPE_TIF" or "wxBITMAP_TYPE_TIF_RESOURCE";
 
 	// Constants wxWidgets defines one by one, such as wxACC_STATE_SYSTEM_FOCUSED, as one enum in

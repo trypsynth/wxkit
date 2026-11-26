@@ -20,7 +20,7 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 - `TreeCtrl.OnCompareItems` becomes an override, as `ListCtrl.OnGetItemText` is.
 - Two-step creation: `Bitmap()` and its `Create` members become static factories, such as `Bitmap.FromDipSize`, and `Image.Create` goes.
 - Members that only repeat another:
-  - Overloads that take x and y beside one that takes a `Point` or `Size`, and members that take x and y alone take a `Point`.
+  - Members that take x and y alone, which would take a `Point`, such as `Image.GetRed`, `Image.SetRgb`, `DC.Blit`, `Window.WarpPointer`, and `ToolBar.SetMargins`, about 20.
   - `KeyEvent.RawControlDown()` and `MouseEvent`'s, once `KeyModifiers` has a member for the Control key of a Mac, where `Control` is Command.
   - The styled text control's `Text` beside `Value`, `TextLength` beside `LastPosition`, and `CurrentPos` beside `InsertionPoint`, if one of each should go. Its `ClearAll` could be `Clear`, as `TextCtrl`'s is.
 - Zero members of flags enums that aren't a class's styles, which make `HasFlag` always true, if they should go as the styles' did: `Alignment.Left` and `Top`, `DragFlags.CopyOnly`, `NavigationFlags.Backward`, `SizeFlags.UseExisting`, and `Default` of `WebViewFindFlags` and `WebViewPrintFlags`. `Direction` and `Orientation` have no `None`.
