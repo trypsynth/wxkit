@@ -9,7 +9,9 @@ WxKit uses the wxWidgets names, adjusted to .NET conventions. [Generator](genera
 - Types drop the `wx` prefix, so `wxFrame` becomes `Frame`. Methods keep their names, which wxWidgets already writes in Pascal case.
 - Names use .NET's American spellings, not wxWidgets's British ones: `wxColour` becomes `Color`, `Centre` becomes `Center`, and `wxEVT_COLOUR_CHANGED` becomes `ColorChanged`. Each type's documentation comment names its wxWidgets class.
 - A getter and setter pair becomes a property, so `GetLabel` and `SetLabel` become `Label`, and `IsEnabled` and `Enable` become `IsEnabled`, with a setter.
-- Style flags become a `[Flags]` enum for each class, such as `ButtonStyle`, with the styles wxWidgets documents for that class. A class without styles of its own takes `WindowStyle`.
+- Style flags become a `[Flags]` enum for each class, such as `ButtonStyle`, with the styles wxWidgets documents for that class and the ones every window takes, such as the borders. A class without styles of its own takes its nearest base's, which for most is `WindowStyle`. A window's `Style` property gives its styles as its class's enum.
+- A style that is 0, such as wxTE_LEFT, has no member, since `None` says it and `HasFlag` would find it in every value. Other flags enums keep a zero member that names the choice a parameter defaults to, such as `Alignment.Left`, `SizeFlags.UseExisting`, and `NavigationFlags.Backward`, because `align = Alignment.Left` says more than `None` would. Test for those with `==` on the bits in question, not `HasFlag`.
+- `UpdateUIEvent.Checked` keeps its name, though other booleans start with `Is`, because `IsChecked` is its base's, `CommandEvent.IsChecked`, which says something else.
 - Other constants become enums. Standard ids, such as `wxID_OK`, are `int` constants on the static class `StandardId`, such as `StandardId.Ok`, because an application's own ids are plain numbers beside them.
 - Parameters keep their wxWidgets names in camel case, so named arguments read naturally.
 - A static member stays static, such as `Window.FindFocus()`, and a class with only static members, such as `SystemSettings`, is a static class.
