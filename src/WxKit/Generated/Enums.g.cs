@@ -332,11 +332,8 @@ public enum ActivationReason {
 }
 
 /// <summary>Wraps wxAlignment.</summary>
+[Flags]
 public enum Alignment {
-	/// <summary>A value different from any valid alignment value. Wraps wxALIGN_INVALID.</summary>
-	Invalid = -1,
-	/// <summary>Wraps wxALIGN_NOT.</summary>
-	Not = 0,
 	/// <summary>Wraps wxALIGN_CENTER_HORIZONTAL.</summary>
 	CenterHorizontal = 256,
 	/// <summary>Wraps wxALIGN_LEFT.</summary>
@@ -351,8 +348,6 @@ public enum Alignment {
 	CenterVertical = 2048,
 	/// <summary>Wraps wxALIGN_CENTER.</summary>
 	Center = 2304,
-	/// <summary>A mask to extract alignment from the combination of flags. Wraps wxALIGN_MASK.</summary>
-	Mask = 3840,
 }
 
 /// <summary>Wraps wxBackgroundStyle.</summary>

@@ -66,6 +66,10 @@ internal static class Windows {
 		// What's at a point in a window, named so the enum isn't hidden by Window.HitTest inside a control.
 		tweaks.Enum("wxHitTest", "HitTestResult");
 		// The flags these take, which wxWidgets declares as constants rather than a named enum.
+		// An alignment is one way across and one way down, together. Not is Left and Top, which are
+		// both no flag, and Mask and Invalid are for wxWidgets's own use.
+		tweaks.Enum("wxAlignment", "Alignment", isFlags: true, exclude: ["wxALIGN_NOT", "wxALIGN_MASK", "wxALIGN_INVALID"]);
+		tweaks.Class("wxDC", dc => dc.ParameterEnum("DrawLabel", "alignment", "wxAlignment"));
 		tweaks.ConstantEnum("WindowExtraStyle", "wxWS_EX_", isFlags: true);
 		tweaks.ConstantEnum("SizeFlags", "wxSIZE_", isFlags: true, excludePrefixes: ["wxSIZE_CONV_", "wxSIZE_SET_"]);
 		tweaks.ConstantEnum("SendSizeEventFlags", "wxSEND_EVENT_", isFlags: true);

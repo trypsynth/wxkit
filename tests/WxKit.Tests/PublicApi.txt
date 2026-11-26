@@ -249,15 +249,12 @@ class WxKit.ActivityIndicator : Control
     bool IsRunning { get; }
     void Start()
     void Stop()
-enum WxKit.Alignment : int
+[Flags] enum WxKit.Alignment : int
     Bottom = 1024
     Center = 2304
     CenterHorizontal = 256
     CenterVertical = 2048
-    Invalid = -1
     Left = 0
-    Mask = 3840
-    Not = 0
     Right = 512
     Top = 0
 enum WxKit.AnnouncementPriority : int
@@ -1034,8 +1031,8 @@ class WxKit.DC : NativeObject
     void DrawEllipticArc(int x, int y, int width, int height, double start, double end)
     void DrawIcon(Icon icon, Point point)
     void DrawIcon(Icon icon, int x, int y)
-    void DrawLabel(string text, Bitmap bitmap, Rect rect, int alignment = 0, int acceleratorIndex = -1)
-    void DrawLabel(string text, Rect rect, int alignment = 0, int acceleratorIndex = -1)
+    void DrawLabel(string text, Bitmap bitmap, Rect rect, Alignment alignment = Alignment.Left, int acceleratorIndex = -1)
+    void DrawLabel(string text, Rect rect, Alignment alignment = Alignment.Left, int acceleratorIndex = -1)
     void DrawLine(Point point1, Point point2)
     void DrawLine(int x1, int y1, int x2, int y2)
     void DrawPoint(Point point)
@@ -1114,14 +1111,14 @@ sealed class WxKit.DataViewColumn
 class WxKit.DataViewCtrl : Control
     DataViewColumn? AppendBitmapColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Center, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
     DataViewColumn? AppendBitmapColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Center, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
-    DataViewColumn? AppendDateColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Activatable, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
-    DataViewColumn? AppendDateColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Activatable, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
-    DataViewColumn? AppendIconTextColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
-    DataViewColumn? AppendIconTextColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
+    DataViewColumn? AppendDateColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Activatable, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
+    DataViewColumn? AppendDateColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Activatable, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
+    DataViewColumn? AppendIconTextColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
+    DataViewColumn? AppendIconTextColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
     DataViewColumn? AppendProgressColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = 80, Alignment align = Alignment.Center, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
     DataViewColumn? AppendProgressColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = 80, Alignment align = Alignment.Center, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
-    DataViewColumn? AppendTextColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
-    DataViewColumn? AppendTextColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
+    DataViewColumn? AppendTextColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
+    DataViewColumn? AppendTextColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
     DataViewColumn? AppendToggleColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = 30, Alignment align = Alignment.Center, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
     DataViewColumn? AppendToggleColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = 30, Alignment align = Alignment.Center, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
     DataViewColumn? CurrentColumn { get; }
@@ -1129,14 +1126,14 @@ class WxKit.DataViewCtrl : Control
     DataViewColumn? GetColumn(int position)
     DataViewColumn? PrependBitmapColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Center, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
     DataViewColumn? PrependBitmapColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Center, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
-    DataViewColumn? PrependDateColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Activatable, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
-    DataViewColumn? PrependDateColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Activatable, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
-    DataViewColumn? PrependIconTextColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
-    DataViewColumn? PrependIconTextColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
+    DataViewColumn? PrependDateColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Activatable, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
+    DataViewColumn? PrependDateColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Activatable, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
+    DataViewColumn? PrependIconTextColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
+    DataViewColumn? PrependIconTextColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
     DataViewColumn? PrependProgressColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = 80, Alignment align = Alignment.Center, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
     DataViewColumn? PrependProgressColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = 80, Alignment align = Alignment.Center, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
-    DataViewColumn? PrependTextColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
-    DataViewColumn? PrependTextColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
+    DataViewColumn? PrependTextColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
+    DataViewColumn? PrependTextColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
     DataViewColumn? PrependToggleColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = 30, Alignment align = Alignment.Center, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
     DataViewColumn? PrependToggleColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = 30, Alignment align = Alignment.Center, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
     DataViewColumn? SortingColumn { get; }
@@ -1233,10 +1230,10 @@ readonly record struct WxKit.DataViewItem : IEquatable<DataViewItem>
     static bool op_Inequality(DataViewItem left, DataViewItem right)
     void Deconstruct(out nint Value)
 class WxKit.DataViewListCtrl : DataViewCtrl
-    DataViewColumn? AppendIconTextColumn(string label, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
-    DataViewColumn? AppendProgressColumn(string label, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
-    DataViewColumn? AppendTextColumn(string label, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
-    DataViewColumn? AppendToggleColumn(string label, DataViewCellMode mode = DataViewCellMode.Activatable, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
+    DataViewColumn? AppendIconTextColumn(string label, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
+    DataViewColumn? AppendProgressColumn(string label, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
+    DataViewColumn? AppendTextColumn(string label, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
+    DataViewColumn? AppendToggleColumn(string label, DataViewCellMode mode = DataViewCellMode.Activatable, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable)
     DataViewItem RowToItem(int row)
     DataViewListCtrl(Window parent, int id = -1, Point? position = null, Size? size = null, DataViewCtrlStyle style = DataViewCtrlStyle.RowLines)
     bool GetToggleValue(int row, int column)
@@ -8567,7 +8564,7 @@ class WxKit.TreeListCtrl : Window
     event EventHandler<TreeListEvent>? ItemExpanded
     event EventHandler<TreeListEvent>? ItemExpanding
     event EventHandler<TreeListEvent>? SelectionChanged
-    int AppendColumn(string title, int width = -2, Alignment align = Alignment.Not, int flags = 1)
+    int AppendColumn(string title, int width = -2, Alignment align = Alignment.Left, int flags = 1)
     int ColumnCount { get; }
     int GetColumnWidth(int column)
     int WidthFor(string text)

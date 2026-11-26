@@ -202,7 +202,7 @@ public unsafe partial class DataViewCtrl : Control {
 	}
 
 	/// <summary>Appends a column for rendering a date.</summary>
-	public DataViewColumn? AppendDateColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Activatable, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
+	public DataViewColumn? AppendDateColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Activatable, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
 		ArgumentNullException.ThrowIfNull(label);
 		fixed (char* labelText = label) {
 			return DataViewColumn.Wrap(WxKitNative.DataViewCtrlAppendDateColumnStringUIntDataViewCellModeIntAlignmentDataViewColumnFlags(Native, labelText, NativeString.Length(label), checked((uint)modelColumn), (int)mode, width, (int)align, (int)flags));
@@ -210,13 +210,13 @@ public unsafe partial class DataViewCtrl : Control {
 	}
 
 	/// <summary>Appends a column for rendering a date.</summary>
-	public DataViewColumn? AppendDateColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Activatable, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
+	public DataViewColumn? AppendDateColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Activatable, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
 		ArgumentNullException.ThrowIfNull(label);
 		return DataViewColumn.Wrap(WxKitNative.DataViewCtrlAppendDateColumnBitmapUIntDataViewCellModeIntAlignmentDataViewColumnFlags(Native, label.Native, checked((uint)modelColumn), (int)mode, width, (int)align, (int)flags));
 	}
 
 	/// <summary>Appends a column for rendering text with an icon.</summary>
-	public DataViewColumn? AppendIconTextColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
+	public DataViewColumn? AppendIconTextColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
 		ArgumentNullException.ThrowIfNull(label);
 		fixed (char* labelText = label) {
 			return DataViewColumn.Wrap(WxKitNative.DataViewCtrlAppendIconTextColumnStringUIntDataViewCellModeIntAlignmentDataViewColumnFlags(Native, labelText, NativeString.Length(label), checked((uint)modelColumn), (int)mode, width, (int)align, (int)flags));
@@ -224,7 +224,7 @@ public unsafe partial class DataViewCtrl : Control {
 	}
 
 	/// <summary>Appends a column for rendering text with an icon.</summary>
-	public DataViewColumn? AppendIconTextColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
+	public DataViewColumn? AppendIconTextColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
 		ArgumentNullException.ThrowIfNull(label);
 		return DataViewColumn.Wrap(WxKitNative.DataViewCtrlAppendIconTextColumnBitmapUIntDataViewCellModeIntAlignmentDataViewColumnFlags(Native, label.Native, checked((uint)modelColumn), (int)mode, width, (int)align, (int)flags));
 	}
@@ -244,7 +244,7 @@ public unsafe partial class DataViewCtrl : Control {
 	}
 
 	/// <summary>Appends a column for rendering text.</summary>
-	public DataViewColumn? AppendTextColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
+	public DataViewColumn? AppendTextColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
 		ArgumentNullException.ThrowIfNull(label);
 		fixed (char* labelText = label) {
 			return DataViewColumn.Wrap(WxKitNative.DataViewCtrlAppendTextColumnStringUIntDataViewCellModeIntAlignmentDataViewColumnFlags(Native, labelText, NativeString.Length(label), checked((uint)modelColumn), (int)mode, width, (int)align, (int)flags));
@@ -252,7 +252,7 @@ public unsafe partial class DataViewCtrl : Control {
 	}
 
 	/// <summary>Appends a column for rendering text.</summary>
-	public DataViewColumn? AppendTextColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
+	public DataViewColumn? AppendTextColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
 		ArgumentNullException.ThrowIfNull(label);
 		return DataViewColumn.Wrap(WxKitNative.DataViewCtrlAppendTextColumnBitmapUIntDataViewCellModeIntAlignmentDataViewColumnFlags(Native, label.Native, checked((uint)modelColumn), (int)mode, width, (int)align, (int)flags));
 	}
@@ -325,7 +325,7 @@ public unsafe partial class DataViewCtrl : Control {
 	}
 
 	/// <summary>Prepends a column for rendering a date.</summary>
-	public DataViewColumn? PrependDateColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Activatable, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
+	public DataViewColumn? PrependDateColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Activatable, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
 		ArgumentNullException.ThrowIfNull(label);
 		fixed (char* labelText = label) {
 			return DataViewColumn.Wrap(WxKitNative.DataViewCtrlPrependDateColumnStringUIntDataViewCellModeIntAlignmentDataViewColumnFlags(Native, labelText, NativeString.Length(label), checked((uint)modelColumn), (int)mode, width, (int)align, (int)flags));
@@ -333,13 +333,13 @@ public unsafe partial class DataViewCtrl : Control {
 	}
 
 	/// <summary>Prepends a column for rendering a date.</summary>
-	public DataViewColumn? PrependDateColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Activatable, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
+	public DataViewColumn? PrependDateColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Activatable, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
 		ArgumentNullException.ThrowIfNull(label);
 		return DataViewColumn.Wrap(WxKitNative.DataViewCtrlPrependDateColumnBitmapUIntDataViewCellModeIntAlignmentDataViewColumnFlags(Native, label.Native, checked((uint)modelColumn), (int)mode, width, (int)align, (int)flags));
 	}
 
 	/// <summary>Prepends a column for rendering text with an icon.</summary>
-	public DataViewColumn? PrependIconTextColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
+	public DataViewColumn? PrependIconTextColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
 		ArgumentNullException.ThrowIfNull(label);
 		fixed (char* labelText = label) {
 			return DataViewColumn.Wrap(WxKitNative.DataViewCtrlPrependIconTextColumnStringUIntDataViewCellModeIntAlignmentDataViewColumnFlags(Native, labelText, NativeString.Length(label), checked((uint)modelColumn), (int)mode, width, (int)align, (int)flags));
@@ -347,7 +347,7 @@ public unsafe partial class DataViewCtrl : Control {
 	}
 
 	/// <summary>Prepends a column for rendering text with an icon.</summary>
-	public DataViewColumn? PrependIconTextColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
+	public DataViewColumn? PrependIconTextColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
 		ArgumentNullException.ThrowIfNull(label);
 		return DataViewColumn.Wrap(WxKitNative.DataViewCtrlPrependIconTextColumnBitmapUIntDataViewCellModeIntAlignmentDataViewColumnFlags(Native, label.Native, checked((uint)modelColumn), (int)mode, width, (int)align, (int)flags));
 	}
@@ -367,7 +367,7 @@ public unsafe partial class DataViewCtrl : Control {
 	}
 
 	/// <summary>Prepends a column for rendering text.</summary>
-	public DataViewColumn? PrependTextColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
+	public DataViewColumn? PrependTextColumn(string label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
 		ArgumentNullException.ThrowIfNull(label);
 		fixed (char* labelText = label) {
 			return DataViewColumn.Wrap(WxKitNative.DataViewCtrlPrependTextColumnStringUIntDataViewCellModeIntAlignmentDataViewColumnFlags(Native, labelText, NativeString.Length(label), checked((uint)modelColumn), (int)mode, width, (int)align, (int)flags));
@@ -375,7 +375,7 @@ public unsafe partial class DataViewCtrl : Control {
 	}
 
 	/// <summary>Prepends a column for rendering text.</summary>
-	public DataViewColumn? PrependTextColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Not, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
+	public DataViewColumn? PrependTextColumn(Bitmap label, int modelColumn, DataViewCellMode mode = DataViewCellMode.Inert, int width = -1, Alignment align = Alignment.Left, DataViewColumnFlags flags = DataViewColumnFlags.Resizable) {
 		ArgumentNullException.ThrowIfNull(label);
 		return DataViewColumn.Wrap(WxKitNative.DataViewCtrlPrependTextColumnBitmapUIntDataViewCellModeIntAlignmentDataViewColumnFlags(Native, label.Native, checked((uint)modelColumn), (int)mode, width, (int)align, (int)flags));
 	}

@@ -65,11 +65,11 @@ WXK_FUNCTION(void) wxk_DC_DrawIcon_IconPoint(wxk_Object* self, const wxk_Object*
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawIcon(wxk::ValueOf<wxIcon>(icon), wxk::FromPoint(point)); });
 }
 
-WXK_FUNCTION(void) wxk_DC_DrawLabel_StringBitmapRectIntInt(wxk_Object* self, const char16_t* text, size_t textLength, const wxk_Object* bitmap, wxk_Rect rect, int32_t alignment, int32_t acceleratorIndex) noexcept {
+WXK_FUNCTION(void) wxk_DC_DrawLabel_StringBitmapRectAlignmentInt(wxk_Object* self, const char16_t* text, size_t textLength, const wxk_Object* bitmap, wxk_Rect rect, int32_t alignment, int32_t acceleratorIndex) noexcept {
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawLabel(wxk::FromUtf16(text, textLength), wxk::ValueOf<wxBitmap>(bitmap), wxk::FromRect(rect), static_cast<int>(alignment), static_cast<int>(acceleratorIndex)); });
 }
 
-WXK_FUNCTION(void) wxk_DC_DrawLabel_StringRectIntInt(wxk_Object* self, const char16_t* text, size_t textLength, wxk_Rect rect, int32_t alignment, int32_t acceleratorIndex) noexcept {
+WXK_FUNCTION(void) wxk_DC_DrawLabel_StringRectAlignmentInt(wxk_Object* self, const char16_t* text, size_t textLength, wxk_Rect rect, int32_t alignment, int32_t acceleratorIndex) noexcept {
 	wxk::Guard([&] { static_cast<wxDC*>(wxk::Unwrap(self))->DrawLabel(wxk::FromUtf16(text, textLength), wxk::FromRect(rect), static_cast<int>(alignment), static_cast<int>(acceleratorIndex)); });
 }
 

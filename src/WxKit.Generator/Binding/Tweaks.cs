@@ -32,7 +32,7 @@ internal sealed class Tweaks {
 
 	/// <param name="memberPrefix">A prefix most members share that their names leave out, such as wxROLE_SYSTEM_.</param>
 	/// <param name="guard">The preprocessor condition under which wxWidgets declares the enum, such as wxUSE_ACCESSIBILITY, which only wxMSW has.</param>
-	public void Enum(string cppName, string managedName, bool isFlags = false, string? memberPrefix = null, string? guard = null) => Enums[cppName] = new EnumTweak(managedName, isFlags, memberPrefix, guard);
+	public void Enum(string cppName, string managedName, bool isFlags = false, string? memberPrefix = null, string? guard = null, string[]? exclude = null) => Enums[cppName] = new EnumTweak(managedName, isFlags, memberPrefix, guard, exclude ?? []);
 
 	/// <param name="excludePrefixes">Prefixes of constants that share the prefix but belong to something else, such as wxSIZE_CONV_ under wxSIZE_.</param>
 	public void ConstantEnum(string managedName, string prefix, bool isFlags = false, string? guard = null, string[]? excludePrefixes = null) => ConstantEnums.Add(new ConstantEnumTweak(managedName, prefix, isFlags, guard, excludePrefixes ?? []));
@@ -94,7 +94,7 @@ internal sealed record TemplateInstanceTweak(string Template, string Name, strin
 
 internal sealed record FunctionGroupTweak(string Name, string Header, IReadOnlyList<string> Functions);
 
-internal sealed record EnumTweak(string Name, bool IsFlags, string? MemberPrefix, string? Guard);
+internal sealed record EnumTweak(string Name, bool IsFlags, string? MemberPrefix, string? Guard, string[] Exclude);
 
 internal sealed record ConstantEnumTweak(string Name, string Prefix, bool IsFlags, string? Guard, IReadOnlyList<string> ExcludePrefixes, IReadOnlyList<string>? Constants = null);
 

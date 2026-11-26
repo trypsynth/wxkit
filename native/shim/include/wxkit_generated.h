@@ -535,8 +535,8 @@ WXK_FUNCTION(void) wxk_DC_DrawEllipticArc_IntIntIntIntDoubleDouble(wxk_Object* s
 WXK_FUNCTION(void) wxk_DC_DrawEllipticArc_PointSizeDoubleDouble(wxk_Object* self, wxk_Point point, wxk_Size size, double sa, double ea) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_DrawIcon_IconIntInt(wxk_Object* self, const wxk_Object* icon, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_DrawIcon_IconPoint(wxk_Object* self, const wxk_Object* icon, wxk_Point point) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_DC_DrawLabel_StringBitmapRectIntInt(wxk_Object* self, const char16_t* text, size_t textLength, const wxk_Object* bitmap, wxk_Rect rect, int32_t alignment, int32_t acceleratorIndex) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_DC_DrawLabel_StringRectIntInt(wxk_Object* self, const char16_t* text, size_t textLength, wxk_Rect rect, int32_t alignment, int32_t acceleratorIndex) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DC_DrawLabel_StringBitmapRectAlignmentInt(wxk_Object* self, const char16_t* text, size_t textLength, const wxk_Object* bitmap, wxk_Rect rect, int32_t alignment, int32_t acceleratorIndex) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DC_DrawLabel_StringRectAlignmentInt(wxk_Object* self, const char16_t* text, size_t textLength, wxk_Rect rect, int32_t alignment, int32_t acceleratorIndex) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_DrawLine_IntIntIntInt(wxk_Object* self, int32_t x1, int32_t y1, int32_t x2, int32_t y2) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_DrawLine_PointPoint(wxk_Object* self, wxk_Point point1, wxk_Point point2) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_DrawPoint_IntInt(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;

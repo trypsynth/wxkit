@@ -226,19 +226,19 @@ public unsafe partial class DC : NativeObject {
 	}
 
 	/// <summary>Draw optional bitmap and the text into the given rectangle and aligns it as specified by alignment parameter; it also will emphasize the character with the given index if it is != -1 and return the bounding rectangle if required.</summary>
-	public void DrawLabel(string text, Bitmap bitmap, Rect rect, int alignment = 0, int acceleratorIndex = -1) {
+	public void DrawLabel(string text, Bitmap bitmap, Rect rect, Alignment alignment = Alignment.Left | Alignment.Top, int acceleratorIndex = -1) {
 		ArgumentNullException.ThrowIfNull(text);
 		ArgumentNullException.ThrowIfNull(bitmap);
 		fixed (char* textText = text) {
-			WxKitNative.DCDrawLabelStringBitmapRectIntInt(Native, textText, NativeString.Length(text), bitmap.Native, rect, alignment, acceleratorIndex);
+			WxKitNative.DCDrawLabelStringBitmapRectAlignmentInt(Native, textText, NativeString.Length(text), bitmap.Native, rect, (int)alignment, acceleratorIndex);
 		}
 	}
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public void DrawLabel(string text, Rect rect, int alignment = 0, int acceleratorIndex = -1) {
+	public void DrawLabel(string text, Rect rect, Alignment alignment = Alignment.Left | Alignment.Top, int acceleratorIndex = -1) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
-			WxKitNative.DCDrawLabelStringRectIntInt(Native, textText, NativeString.Length(text), rect, alignment, acceleratorIndex);
+			WxKitNative.DCDrawLabelStringRectAlignmentInt(Native, textText, NativeString.Length(text), rect, (int)alignment, acceleratorIndex);
 		}
 	}
 

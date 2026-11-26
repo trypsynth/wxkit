@@ -778,15 +778,17 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		if (!api.Enums.TryGetValue(cppName, out DoxygenEnum? source) || source.Values.Count == 0) return null;
 		EnumTweak? tweak = tweaks.Enums.GetValueOrDefault(cppName);
 		string managed = tweak?.Name ?? Naming.Type(cppName.Contains("::", StringComparison.Ordinal) ? cppName[(cppName.LastIndexOf(':') + 1)..] : cppName);
-		BoundEnum bound = new(managed, cppName, EnumMembers(cppName, source, tweak?.MemberPrefix)) { IsFlags = tweak?.IsFlags ?? false, Guard = tweak?.Guard };
+		BoundEnum bound = new(managed, cppName, EnumMembers(cppName, source, tweak?.MemberPrefix, tweak?.Exclude)) { IsFlags = tweak?.IsFlags ?? false, Guard = tweak?.Guard };
 		_enums[cppName] = bound;
 		return bound;
 	}
 
-	private List<BoundStyle> EnumMembers(string owner, DoxygenEnum source, string? memberPrefix) {
+	private List<BoundStyle> EnumMembers(string owner, DoxygenEnum source, string? memberPrefix, string[]? exclude = null) {
 		int shared = SharedWords(source);
 		List<BoundStyle> members = [];
 		foreach (DoxygenEnumValue value in source.Values) {
+			// A tweak leaves out a sentinel, or an alias, such as wxALIGN_MASK.
+			if (exclude?.Contains(value.Name) == true) continue;
 			// A value that is unknown, or depends on the platform, such as wxCURSOR_ARROWWAIT, is left out.
 			if (_constants.Value(value.Name) is not long number) {
 				_skipped.Add($"enum {owner}: the value of {value.Name} is unknown or depends on the platform");

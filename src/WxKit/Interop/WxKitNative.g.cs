@@ -1610,13 +1610,13 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DCDrawIconIconPoint(WxkObject* self, WxkObject* icon, Point point);
 
-	[LibraryImport(Library, EntryPoint = "wxk_DC_DrawLabel_StringBitmapRectIntInt")]
+	[LibraryImport(Library, EntryPoint = "wxk_DC_DrawLabel_StringBitmapRectAlignmentInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DCDrawLabelStringBitmapRectIntInt(WxkObject* self, char* text, nuint textLength, WxkObject* bitmap, Rect rect, int alignment, int acceleratorIndex);
+	public static partial void DCDrawLabelStringBitmapRectAlignmentInt(WxkObject* self, char* text, nuint textLength, WxkObject* bitmap, Rect rect, int alignment, int acceleratorIndex);
 
-	[LibraryImport(Library, EntryPoint = "wxk_DC_DrawLabel_StringRectIntInt")]
+	[LibraryImport(Library, EntryPoint = "wxk_DC_DrawLabel_StringRectAlignmentInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DCDrawLabelStringRectIntInt(WxkObject* self, char* text, nuint textLength, Rect rect, int alignment, int acceleratorIndex);
+	public static partial void DCDrawLabelStringRectAlignmentInt(WxkObject* self, char* text, nuint textLength, Rect rect, int alignment, int acceleratorIndex);
 
 	[LibraryImport(Library, EntryPoint = "wxk_DC_DrawLine_IntIntIntInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
