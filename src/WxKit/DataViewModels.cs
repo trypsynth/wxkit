@@ -233,20 +233,42 @@ public abstract unsafe class DataViewTreeModel : DataViewModel {
 /// time the control sees it, and keeps it until <see cref="NotifyItemDeleted(T, T)"/> or
 /// <see cref="DataViewModel.NotifyCleared"/>. The root is null.
 /// </summary>
-/// <typeparam name="T">The items' type, compared by reference.</typeparam>
+/// <remarks>
+/// Two objects are the same item when they are the same object, unless the model is made with a
+/// comparer. With one that compares a key, such as an id, an object that changes by being copied,
+/// as an F# record does, stays the item it was: give the copy to <see cref="NotifyItemChanged(T)"/>,
+/// or return it from <see cref="GetChildren(T)"/>, and the model keeps the copy in place of the
+/// object it had.
+/// </remarks>
+/// <typeparam name="T">The items' type.</typeparam>
 public abstract class DataViewTreeModel<T> : DataViewTreeModel where T : class {
-	private readonly Dictionary<T, nint> _ids = new(ReferenceEqualityComparer.Instance);
+	private readonly Dictionary<T, nint> _ids;
 	private readonly Dictionary<nint, T> _items = [];
 	// The ids of the items under each item, and under 0 for the root, so deleting an item forgets
 	// the items under it too, without looking through every item for them.
 	private readonly Dictionary<nint, HashSet<nint>> _children = [];
 	private nint _lastId;
 
-	/// <summary>The item for an object, or <see cref="DataViewItem.Root"/> for null.</summary>
+	/// <summary>Makes a model that knows an object by the object it is.</summary>
+	protected DataViewTreeModel() : this(null) {
+	}
+
+	/// <summary>Makes a model that knows an object by what a comparer compares, or by the object it is for null.</summary>
+	protected DataViewTreeModel(IEqualityComparer<T>? comparer) => _ids = comparer is null ? new(ReferenceEqualityComparer.Instance) : new(comparer);
+
+	/// <summary>
+	/// The item for an object, or <see cref="DataViewItem.Root"/> for null. An object equal to one
+	/// the model has, by its comparer, takes that one's place.
+	/// </summary>
 	public DataViewItem ItemOf(T? item) {
 		if (item is null) return DataViewItem.Root;
 		if (!_ids.TryGetValue(item, out nint id)) {
 			id = ++_lastId;
+			_ids[item] = id;
+			_items[id] = item;
+		} else if (!ReferenceEquals(_items[id], item)) {
+			// The key is replaced too, so the object it was isn't kept alive.
+			_ids.Remove(item);
 			_ids[item] = id;
 			_items[id] = item;
 		}

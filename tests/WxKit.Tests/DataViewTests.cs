@@ -146,6 +146,23 @@ public class DataViewTests {
 		Assert.Null(model.ObjectOf(bluesItem));
 	});
 
+	// With a comparer, an object that changes by being copied stays the item it was.
+	[Fact]
+	public Task KnowsACopiedItemByItsKey() => Gui.WithFrame(frame => {
+		DataViewCtrl view = new(frame);
+		view.AppendTextColumn("Name", 0);
+		List<Track> tracks = [new Track(1, "Intro"), new Track(2, "Outro")];
+		Tracks model = new(tracks);
+		view.Model = model;
+		DataViewItem first = model.ItemOf(tracks[0]);
+		Track renamed = tracks[0] with { Name = "Overture" };
+		tracks[0] = renamed;
+		Assert.True(model.NotifyItemChanged(renamed));
+		Assert.Equal(first, model.ItemOf(renamed));
+		Assert.Same(renamed, model.ObjectOf(first));
+		Assert.NotEqual(first, model.ItemOf(tracks[1]));
+	});
+
 	[Fact]
 	public Task SelectsAModelsItem() => Gui.WithFrame(frame => {
 		DataViewCtrl view = new(frame);
@@ -214,6 +231,18 @@ public class DataViewTests {
 	}
 
 	private sealed record Folder(string Name, List<Folder> Children);
+
+	private sealed record Track(int Id, string Name);
+
+	private sealed class Tracks(List<Track> tracks) : DataViewTreeModel<Track>(EqualityComparer<Track>.Create((a, b) => a?.Id == b?.Id, track => track.Id)) {
+		protected override object? GetValue(Track item, int column) => item.Name;
+
+		protected override Track? GetParent(Track item) => null;
+
+		protected override bool IsContainer(Track item) => false;
+
+		protected override IEnumerable<Track> GetChildren(Track? item) => item is null ? tracks : [];
+	}
 
 	private sealed class Folders : DataViewTreeModel<Folder> {
 		private readonly List<Folder> _top;

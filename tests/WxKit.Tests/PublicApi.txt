@@ -1246,6 +1246,7 @@ abstract class WxKit.DataViewTreeModel`1<T> : DataViewTreeModel
     bool NotifyItemDeleted(T? parent, T item)
     bool NotifyValueChanged(T item, int column)
     protected DataViewTreeModel()
+    protected DataViewTreeModel(IEqualityComparer<T>? comparer)
     protected abstract IEnumerable<T> GetChildren(T? item)
     protected abstract T? GetParent(T item)
     protected abstract bool IsContainer(T item)
