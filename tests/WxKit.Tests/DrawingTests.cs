@@ -39,6 +39,16 @@ public class DrawingTests {
 	});
 
 	[Fact]
+	public Task ScalesWhatItDraws() => Gui.Run(() => {
+		using Bitmap bitmap = new(20, 20);
+		using MemoryDC dc = new(bitmap);
+		Assert.Equal((1, 1), dc.UserScale);
+		dc.UserScale = (2, 3);
+		Assert.Equal((2, 3), dc.UserScale);
+		Assert.Equal(new Point(4, 6), dc.LogicalToDevice(new Point(2, 2)));
+	});
+
+	[Fact]
 	public Task MeasuresText() => Gui.Run(() => {
 		using Bitmap bitmap = new(100, 40);
 		using MemoryDC dc = new(bitmap);

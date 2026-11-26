@@ -519,6 +519,10 @@ WXK_FUNCTION(wxk_Point) wxk_Cursor_GetHotSpot(wxk_Object* self) WXK_NOEXCEPT;
 
 // wxDC
 
+WXK_FUNCTION(void) wxk_DC_SetUserScale(wxk_Object* self, double xScale, double yScale) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DC_SetLogicalScale(wxk_Object* self, double x, double y) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DC_GetLogicalScale(wxk_Object* self, double* x, double* y) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DC_GetUserScale(wxk_Object* self, double* x, double* y) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_Clear(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_DrawArc_IntIntIntIntIntInt(wxk_Object* self, int32_t xStart, int32_t yStart, int32_t xEnd, int32_t yEnd, int32_t xc, int32_t yc) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_DrawArc_PointPointPoint(wxk_Object* self, wxk_Point start, wxk_Point end, wxk_Point center) WXK_NOEXCEPT;
@@ -596,9 +600,6 @@ WXK_FUNCTION(wxk_Size) wxk_DC_LogicalToDeviceRel_IntInt(wxk_Object* self, int32_
 WXK_FUNCTION(wxk_Size) wxk_DC_LogicalToDeviceRel_Size(wxk_Object* self, wxk_Size dim) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_SetAxisOrientation(wxk_Object* self, uint8_t xLeftRight, uint8_t yBottomUp) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_SetDeviceOrigin(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_DC_SetUserScale(wxk_Object* self, double xScale, double yScale) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_DC_SetLogicalScale(wxk_Object* self, double x, double y) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_DC_GetLogicalScale(wxk_Object* self, double* x, double* y) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_SetLogicalOrigin(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_ResetTransformMatrix(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_DC_GetMultiLineTextExtent(wxk_Object* self, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
@@ -610,7 +611,6 @@ WXK_FUNCTION(int32_t) wxk_DC_FromDIP_Int(wxk_Object* self, int32_t d) WXK_NOEXCE
 WXK_FUNCTION(wxk_Size) wxk_DC_ToDIP_Size(wxk_Object* self, wxk_Size size) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Point) wxk_DC_ToDIP_Point(wxk_Object* self, wxk_Point point) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_DC_ToDIP_Int(wxk_Object* self, int32_t d) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_DC_GetUserScale(wxk_Object* self, double* x, double* y) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_DC_GetMapMode(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_SetMapMode(wxk_Object* self, int32_t mode) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_DC_AreAutomaticBoundingBoxUpdatesEnabled(wxk_Object* self) WXK_NOEXCEPT;

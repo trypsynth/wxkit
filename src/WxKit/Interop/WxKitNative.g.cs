@@ -1546,6 +1546,22 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Point CursorGetHotSpot(WxkObject* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_DC_SetUserScale")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DCSetUserScale(WxkObject* self, double xScale, double yScale);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DC_SetLogicalScale")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DCSetLogicalScale(WxkObject* self, double x, double y);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DC_GetLogicalScale")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DCGetLogicalScale(WxkObject* self, double* x, double* y);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DC_GetUserScale")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DCGetUserScale(WxkObject* self, double* x, double* y);
+
 	[LibraryImport(Library, EntryPoint = "wxk_DC_Clear")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DCClear(WxkObject* self);
@@ -1854,18 +1870,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DCSetDeviceOrigin(WxkObject* self, int x, int y);
 
-	[LibraryImport(Library, EntryPoint = "wxk_DC_SetUserScale")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DCSetUserScale(WxkObject* self, double xScale, double yScale);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DC_SetLogicalScale")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DCSetLogicalScale(WxkObject* self, double x, double y);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DC_GetLogicalScale")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DCGetLogicalScale(WxkObject* self, double* x, double* y);
-
 	[LibraryImport(Library, EntryPoint = "wxk_DC_SetLogicalOrigin")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DCSetLogicalOrigin(WxkObject* self, int x, int y);
@@ -1909,10 +1913,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_DC_ToDIP_Int")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int DCToDIPInt(WxkObject* self, int d);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DC_GetUserScale")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DCGetUserScale(WxkObject* self, double* x, double* y);
 
 	[LibraryImport(Library, EntryPoint = "wxk_DC_GetMapMode")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

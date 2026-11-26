@@ -30,6 +30,8 @@ internal static class Drawing {
 		tweaks.Class("wxDC", dc => dc
 			.Property("MappingMode", "GetMapMode", "SetMapMode")
 			.Rename("GetSizeMM", "SizeInMillimeters")
+			// The scales are written by hand, as properties that give both numbers as one value.
+			.Internal("GetUserScale", "SetUserScale", "GetLogicalScale", "SetLogicalScale")
 			.InheritUnboundBases()
 			.ParameterEnum("SetBackgroundMode", "mode", "BrushStyle")
 			.ParameterEnum("GetBackgroundMode", "return", "BrushStyle")

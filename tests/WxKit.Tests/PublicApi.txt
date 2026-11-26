@@ -979,6 +979,8 @@ class WxKit.DC : NativeObject
     Size Size { get; }
     Size SizeInMillimeters { get; }
     Size ToDip(Size size)
+    ValueTuple<double, double> LogicalScale { get; set; }
+    ValueTuple<double, double> UserScale { get; set; }
     bool AreAutomaticBoundingBoxUpdatesEnabled { get; }
     bool Blit(int xDestination, int yDestination, int width, int height, DC source, int xSource, int ySource, RasterOperationMode logicalFunction = RasterOperationMode.Copy, bool useMask = false, int xSourceMask = -1, int ySourceMask = -1)
     bool CanDrawBitmap { get; }
@@ -1050,8 +1052,6 @@ class WxKit.DC : NativeObject
     void DrawText(string text, int x, int y)
     void EndDoc()
     void EndPage()
-    void GetLogicalScale(out double x, out double y)
-    void GetUserScale(out double x, out double y)
     void GradientFillConcentric(Rect rect, Color? initialColor, Color? destColor)
     void GradientFillConcentric(Rect rect, Color? initialColor, Color? destColor, Point circleCenter)
     void GradientFillLinear(Rect rect, Color? initialColor, Color? destColor, Direction direction = Direction.Right)
@@ -1063,8 +1063,6 @@ class WxKit.DC : NativeObject
     void SetClippingRegion(int x, int y, int width, int height)
     void SetDeviceOrigin(int x, int y)
     void SetLogicalOrigin(int x, int y)
-    void SetLogicalScale(double x, double y)
-    void SetUserScale(double xScale, double yScale)
     void StartPage()
 readonly record struct WxKit.DataFormat : IEquatable<DataFormat>
     bool Equals(DataFormat other)

@@ -328,16 +328,6 @@ public unsafe partial class DC : NativeObject {
 	/// <summary>Convert DPI-independent value in pixels to the value in pixels appropriate for the DC.</summary>
 	public int FromDip(int d) => WxKitNative.DCFromDIPInt(Native, d);
 
-	/// <summary>Return the scale set by the last call to SetLogicalScale().</summary>
-	public void GetLogicalScale(out double x, out double y) {
-		x = 0;
-		y = 0;
-		fixed (double* xPointer = &x)
-		fixed (double* yPointer = &y) {
-			WxKitNative.DCGetLogicalScale(Native, xPointer, yPointer);
-		}
-	}
-
 	/// <summary>Gets the dimensions of the string using the currently selected font.</summary>
 	public Size GetMultiLineTextExtent(string text) {
 		ArgumentNullException.ThrowIfNull(text);
@@ -359,16 +349,6 @@ public unsafe partial class DC : NativeObject {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
 			return WxKitNative.DCGetTextExtent(Native, textText, NativeString.Length(text));
-		}
-	}
-
-	/// <summary>Gets the current user scale factor.</summary>
-	public void GetUserScale(out double x, out double y) {
-		x = 0;
-		y = 0;
-		fixed (double* xPointer = &x)
-		fixed (double* yPointer = &y) {
-			WxKitNative.DCGetUserScale(Native, xPointer, yPointer);
 		}
 	}
 
@@ -440,12 +420,6 @@ public unsafe partial class DC : NativeObject {
 
 	/// <summary>Change the offset used for translating wxDC coordinates.</summary>
 	public void SetLogicalOrigin(int x, int y) => WxKitNative.DCSetLogicalOrigin(Native, x, y);
-
-	/// <summary>Set the scale to use for translating wxDC coordinates to the physical pixels.</summary>
-	public void SetLogicalScale(double x, double y) => WxKitNative.DCSetLogicalScale(Native, x, y);
-
-	/// <summary>Sets the user scaling factor, useful for applications which require 'zooming'.</summary>
-	public void SetUserScale(double xScale, double yScale) => WxKitNative.DCSetUserScale(Native, xScale, yScale);
 
 	/// <summary>Starts a document (only relevant when outputting to a printer).</summary>
 	public bool StartDoc(string message) {
