@@ -108,15 +108,6 @@ public unsafe partial class DC : NativeObject {
 		set => WxKitNative.DCSetTextForeground(Native, global::WxKit.Color.ToNative(value));
 	}
 
-	/// <summary>Copy from a source DC to this DC.</summary>
-	public bool Blit(int xDestination, int yDestination, int width, int height, DC source, int xSource, int ySource, RasterOperationMode logicalFunction = RasterOperationMode.Copy, bool useMask = false, int xSourceMask = -1, int ySourceMask = -1) {
-		ArgumentNullException.ThrowIfNull(source);
-		return WxKitNative.DCBlit(Native, xDestination, yDestination, width, height, source.Native, xSource, ySource, (int)logicalFunction, useMask ? (byte)1 : (byte)0, xSourceMask, ySourceMask) != 0;
-	}
-
-	/// <summary>Adds the specified point to the bounding box which can be retrieved with MinX(), MaxX() and MinY(), MaxY() functions.</summary>
-	public void CalcBoundingBox(int x, int y) => WxKitNative.DCCalcBoundingBox(Native, x, y);
-
 	/// <summary>Clears the device context using the current background brush.</summary>
 	public void Clear() => WxKitNative.DCClear(Native);
 
@@ -135,11 +126,8 @@ public unsafe partial class DC : NativeObject {
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public Point DeviceToLogical(Point point) => WxKitNative.DCDeviceToLogical(Native, point);
 
-	/// <summary>Converts device x, y coordinates to relative logical coordinates taking into account all applied transformations like the current mapping mode, scale factors, affine transformation.</summary>
-	public Size DeviceToLogicalRel(int x, int y) => WxKitNative.DCDeviceToLogicalRelIntInt(Native, x, y);
-
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Size DeviceToLogicalRel(Size dim) => WxKitNative.DCDeviceToLogicalRelSize(Native, dim);
+	public Size DeviceToLogicalRel(Size dim) => WxKitNative.DCDeviceToLogicalRel(Native, dim);
 
 	/// <summary>Convert device X coordinate to logical coordinate, using the current mapping mode, user scale factor, device origin and axis orientation.</summary>
 	public int DeviceToLogicalX(int x) => WxKitNative.DCDeviceToLogicalX(Native, x);
@@ -156,11 +144,8 @@ public unsafe partial class DC : NativeObject {
 	/// <summary>Disable automatic bounding box updates.</summary>
 	public void DisableAutomaticBoundingBoxUpdates() => WxKitNative.DCDisableAutomaticBoundingBoxUpdates(Native);
 
-	/// <summary>Draws an arc from the given start to the given end point.</summary>
-	public void DrawArc(int xStart, int yStart, int xEnd, int yEnd, int xc, int yc) => WxKitNative.DCDrawArcIntIntIntIntIntInt(Native, xStart, yStart, xEnd, yEnd, xc, yc);
-
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public void DrawArc(Point start, Point end, Point center) => WxKitNative.DCDrawArcPointPointPoint(Native, start, end, center);
+	public void DrawArc(Point start, Point end, Point center) => WxKitNative.DCDrawArc(Native, start, end, center);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public void DrawBitmap(Bitmap bitmap, Point point, bool useMask = false) {
@@ -233,9 +218,6 @@ public unsafe partial class DC : NativeObject {
 	public void DrawRoundedRectangle(Rect rect, double radius) => WxKitNative.DCDrawRoundedRectangleRectDouble(Native, rect, radius);
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public void DrawSpline(int x1, int y1, int x2, int y2, int x3, int y3) => WxKitNative.DCDrawSpline(Native, x1, y1, x2, y2, x3, y3);
-
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public void DrawText(string text, Point point) {
 		ArgumentNullException.ThrowIfNull(text);
 		fixed (char* textText = text) {
@@ -291,11 +273,8 @@ public unsafe partial class DC : NativeObject {
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public Point LogicalToDevice(Point point) => WxKitNative.DCLogicalToDevice(Native, point);
 
-	/// <summary>Converts logical x, y coordinates to relative device coordinates taking into account all applied transformations like the current mapping mode, scale factors, affine transformation.</summary>
-	public Size LogicalToDeviceRel(int x, int y) => WxKitNative.DCLogicalToDeviceRelIntInt(Native, x, y);
-
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Size LogicalToDeviceRel(Size dim) => WxKitNative.DCLogicalToDeviceRelSize(Native, dim);
+	public Size LogicalToDeviceRel(Size dim) => WxKitNative.DCLogicalToDeviceRel(Native, dim);
 
 	/// <summary>Converts logical X coordinate to device coordinate, using the current mapping mode, user scale factor, device origin and axis orientation.</summary>
 	public int LogicalToDeviceX(int x) => WxKitNative.DCLogicalToDeviceX(Native, x);
@@ -335,12 +314,6 @@ public unsafe partial class DC : NativeObject {
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public void SetClippingRegion(Rect rect) => WxKitNative.DCSetClippingRegionRect(Native, rect);
-
-	/// <summary>Copy from a source DC to this DC possibly changing the scale.</summary>
-	public bool StretchBlit(int xDestination, int yDestination, int destinationWidth, int destinationHeight, DC source, int xSource, int ySource, int sourceWidth, int sourceHeight, RasterOperationMode logicalFunction = RasterOperationMode.Copy, bool useMask = false, int xSourceMask = -1, int ySourceMask = -1) {
-		ArgumentNullException.ThrowIfNull(source);
-		return WxKitNative.DCStretchBlit(Native, xDestination, yDestination, destinationWidth, destinationHeight, source.Native, xSource, ySource, sourceWidth, sourceHeight, (int)logicalFunction, useMask ? (byte)1 : (byte)0, xSourceMask, ySourceMask) != 0;
-	}
 
 	/// <summary>Convert pixel values of the current DC to DPI-independent pixel values.</summary>
 	public Size ToDip(Size size) => WxKitNative.DCToDIPSize(Native, size);

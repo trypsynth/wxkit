@@ -63,6 +63,31 @@ public class DrawingTests {
 		Assert.Throws<ArgumentOutOfRangeException>(() => Bitmap.FromLogicalSize(new Size(0, 5), 1));
 	});
 
+	// A place is a Point and an extent a Size, in what copies from one drawing to another.
+	[Fact]
+	public Task CopiesToAPoint() => Gui.Run(() => {
+		using Bitmap from = new(10, 10);
+		using Bitmap to = new(10, 10);
+		using (MemoryDC source = new(from)) {
+			using MemoryDC target = new(to);
+			using Brush red = new(new Color(255, 0, 0));
+			using Brush white = new(new Color(255, 255, 255));
+			source.Background = red;
+			source.Clear();
+			target.Background = white;
+			target.Clear();
+			Assert.True(target.Blit(new Point(5, 0), new Size(5, 10), source, new Point(0, 0)));
+		}
+		using Image? image = to.ConvertToImage();
+		Assert.NotNull(image);
+		Assert.Equal(new Color(255, 255, 255), image.GetRgb(new Point(2, 2)));
+		Assert.Equal(new Color(255, 0, 0), image.GetRgb(new Point(7, 2)));
+		using Image small = new(2, 2);
+		small.SetRgb(new Rect(0, 0, 2, 2), new Color(0, 0, 255));
+		image.Paste(small, new Point(1, 1));
+		Assert.Equal(new Color(0, 0, 255), image.GetRgb(new Point(2, 2)));
+	});
+
 	[Fact]
 	public Task MeasuresText() => Gui.Run(() => {
 		using Bitmap bitmap = new(100, 40);

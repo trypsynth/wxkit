@@ -68,11 +68,8 @@ public unsafe partial class Control : Window {
 		}
 	}
 
-	/// <summary>Determine the size needed by the control to leave the given area for its text.</summary>
-	public Size GetSizeFromTextSize(int xlen, int ylen = -1) => WxKitNative.ControlGetSizeFromTextSizeIntInt(Native, xlen, ylen);
-
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public Size GetSizeFromTextSize(Size tsize) => WxKitNative.ControlGetSizeFromTextSizeSize(Native, tsize);
+	public Size GetSizeFromTextSize(Size tsize) => WxKitNative.ControlGetSizeFromTextSize(Native, tsize);
 
 	/// <summary>Returns the given str string without mnemonics ("&amp;" characters).</summary>
 	public static string RemoveMnemonics(string text) {

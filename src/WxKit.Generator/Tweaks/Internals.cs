@@ -107,6 +107,21 @@ internal static class Internals {
 		tweaks.Class("wxTopLevelWindow").Ignore("SetMinSize", "SetMaxSize");
 		tweaks.Class("wxInfoBar").Ignore("SetFont");
 		tweaks.Class("wxListCtrl").Ignore("SetBackgroundColour");
+		// A place or a size given as two numbers, which another overload or a property takes as one value.
+		tweaks.Class("wxAnyButton").IgnoreOverload("SetBitmapMargins", "x", "wxCoord");
+		tweaks.Class("wxToolBar").IgnoreOverload("SetMargins", "x", "int");
+		tweaks.Class("wxControl").IgnoreOverload("GetSizeFromTextSize", "xlen", "int");
+		tweaks.Class("wxDC")
+			.IgnoreOverload("DeviceToLogicalRel", "x", "int")
+			.IgnoreOverload("LogicalToDeviceRel", "x", "int")
+			.IgnoreOverload("DrawArc", "xStart", "wxCoord")
+			// The rest have no such overload, so each is written by hand, in Points.cs, to take Points.
+			.Internal("Blit", "StretchBlit", "CalcBoundingBox", "DrawSpline");
+		tweaks.Class("wxImage").Internal("Paste");
+		tweaks.Class("wxPrintout").Internal("SetLogicalOrigin", "OffsetLogicalOrigin");
+		tweaks.Class("wxStyledTextCtrl").Internal("CharPositionFromPoint", "CharPositionFromPointClose", "PositionFromPointClose");
+		tweaks.Class("wxToolBar").Internal("FindToolForPosition");
+		tweaks.Class("wxWindow").Internal("WarpPointer");
 		// A color given as three bytes, or by name, is a Color.
 		tweaks.Class("wxBrush").IgnoreOverload("SetColour", "red", "unsigned char");
 		tweaks.Class("wxPen").IgnoreOverload("SetColour", "red", "unsigned char");

@@ -85,6 +85,14 @@ WXK_FUNCTION(wxk_Object*) wxk_Printout_GetDC(wxk_Object* self) noexcept {
 	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::Wrap(static_cast<wxObject*>(static_cast<wxPrintout*>(wxk::Unwrap(self))->GetDC())); });
 }
 
+WXK_FUNCTION(void) wxk_Printout_OffsetLogicalOrigin(wxk_Object* self, int32_t xOffset, int32_t yOffset) noexcept {
+	wxk::Guard([&] { static_cast<wxPrintout*>(wxk::Unwrap(self))->OffsetLogicalOrigin(static_cast<int>(xOffset), static_cast<int>(yOffset)); });
+}
+
+WXK_FUNCTION(void) wxk_Printout_SetLogicalOrigin(wxk_Object* self, int32_t x, int32_t y) noexcept {
+	wxk::Guard([&] { static_cast<wxPrintout*>(wxk::Unwrap(self))->SetLogicalOrigin(static_cast<int>(x), static_cast<int>(y)); });
+}
+
 WXK_FUNCTION(void) wxk_Printout_FitThisSizeToPage(wxk_Object* self, wxk_Size imageSize) noexcept {
 	wxk::Guard([&] { static_cast<wxPrintout*>(wxk::Unwrap(self))->FitThisSizeToPage(wxk::FromSize(imageSize)); });
 }
@@ -115,14 +123,6 @@ WXK_FUNCTION(void) wxk_Printout_MapScreenSizeToPageMargins(wxk_Object* self, con
 
 WXK_FUNCTION(void) wxk_Printout_MapScreenSizeToPaper(wxk_Object* self) noexcept {
 	wxk::Guard([&] { static_cast<wxPrintout*>(wxk::Unwrap(self))->MapScreenSizeToPaper(); });
-}
-
-WXK_FUNCTION(void) wxk_Printout_OffsetLogicalOrigin(wxk_Object* self, int32_t xOffset, int32_t yOffset) noexcept {
-	wxk::Guard([&] { static_cast<wxPrintout*>(wxk::Unwrap(self))->OffsetLogicalOrigin(static_cast<int>(xOffset), static_cast<int>(yOffset)); });
-}
-
-WXK_FUNCTION(void) wxk_Printout_SetLogicalOrigin(wxk_Object* self, int32_t x, int32_t y) noexcept {
-	wxk::Guard([&] { static_cast<wxPrintout*>(wxk::Unwrap(self))->SetLogicalOrigin(static_cast<int>(x), static_cast<int>(y)); });
 }
 
 WXK_FUNCTION(wxk_Size) wxk_Printout_GetPageSizeMM(wxk_Object* self) noexcept {

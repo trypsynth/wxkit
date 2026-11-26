@@ -1311,12 +1311,6 @@ public unsafe partial class StyledTextCtrl : Control {
 	/// <summary>Move caret left one character, extending rectangular selection to new caret position.</summary>
 	public void CharLeftRectExtend() => WxKitNative.StyledTextCtrlCharLeftRectExtend(Native);
 
-	/// <summary>Find the position of a character from a point within the window.</summary>
-	public int CharPositionFromPoint(int x, int y) => WxKitNative.StyledTextCtrlCharPositionFromPoint(Native, x, y);
-
-	/// <summary>Find the position of a character from a point within the window.</summary>
-	public int CharPositionFromPointClose(int x, int y) => WxKitNative.StyledTextCtrlCharPositionFromPointClose(Native, x, y);
-
 	/// <summary>Move caret right one character.</summary>
 	public void CharRight() => WxKitNative.StyledTextCtrlCharRight(Native);
 
@@ -2082,9 +2076,6 @@ public unsafe partial class StyledTextCtrl : Control {
 
 	/// <summary>Find the position from a point within the window.</summary>
 	public int PositionFromPoint(Point point) => WxKitNative.StyledTextCtrlPositionFromPoint(Native, point);
-
-	/// <summary>Find the position from a point within the window but return wxSTC_INVALID_POSITION if not close to text.</summary>
-	public int PositionFromPointClose(int x, int y) => WxKitNative.StyledTextCtrlPositionFromPointClose(Native, x, y);
 
 	/// <summary>Given a valid document position, return a position that differs in a number of characters.</summary>
 	public int PositionRelative(int position, int relative) => WxKitNative.StyledTextCtrlPositionRelative(Native, position, relative);

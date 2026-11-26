@@ -36,6 +36,10 @@ WXK_FUNCTION(wxk_Object*) wxk_Image_new_StringStringInt(const char16_t* name, si
 	});
 }
 
+WXK_FUNCTION(void) wxk_Image_Paste(wxk_Object* self, const wxk_Object* image, int32_t x, int32_t y, int32_t alphaBlend) noexcept {
+	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->Paste(wxk::ValueOf<wxImage>(image), static_cast<int>(x), static_cast<int>(y), static_cast<wxImageAlphaBlendMode>(alphaBlend)); });
+}
+
 WXK_FUNCTION(void) wxk_Image_Replace(wxk_Object* self, uint8_t r1, uint8_t g1, uint8_t b1, uint8_t r2, uint8_t g2, uint8_t b2) noexcept {
 	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->Replace(static_cast<unsigned char>(r1), static_cast<unsigned char>(g1), static_cast<unsigned char>(b1), static_cast<unsigned char>(r2), static_cast<unsigned char>(g2), static_cast<unsigned char>(b2)); });
 }
@@ -146,10 +150,6 @@ WXK_FUNCTION(wxk_Object*) wxk_Image_BlurVertical(wxk_Object* self, int32_t blurR
 
 WXK_FUNCTION(wxk_Object*) wxk_Image_Mirror(wxk_Object* self, uint8_t horizontally) noexcept {
 	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxImage>(static_cast<wxImage*>(wxk::Unwrap(self))->Mirror(horizontally != 0)); });
-}
-
-WXK_FUNCTION(void) wxk_Image_Paste(wxk_Object* self, const wxk_Object* image, int32_t x, int32_t y, int32_t alphaBlend) noexcept {
-	wxk::Guard([&] { static_cast<wxImage*>(wxk::Unwrap(self))->Paste(wxk::ValueOf<wxImage>(image), static_cast<int>(x), static_cast<int>(y), static_cast<wxImageAlphaBlendMode>(alphaBlend)); });
 }
 
 WXK_FUNCTION(void) wxk_Image_Rescale(wxk_Object* self, wxk_Size size, int32_t quality) noexcept {

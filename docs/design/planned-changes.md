@@ -19,7 +19,7 @@ Most of these are patterns, which a change to the generator's rules fixes everyw
 
 - `Bitmap()` and `Image()`, which make an empty one, if `LoadFile` should become a static factory too, such as `Bitmap.FromFile`.
 - Members that only repeat another:
-  - Members that take x and y alone, which would take a `Point`, such as `DC.Blit`, `Image.Paste`, `Window.WarpPointer`, and `ToolBar.SetMargins`, about 12.
+  - A text control's `SetMargins(left, top)`, beside its `Margins`, which is kept for the result it returns, and `ScrolledWindow.SetScrollRate` and `SetScale`, whose two numbers aren't a place or a size.
   - `KeyEvent.RawControlDown()` and `MouseEvent`'s, once `KeyModifiers` has a member for the Control key of a Mac, where `Control` is Command.
   - The styled text control's `Text` beside `Value`, `TextLength` beside `LastPosition`, and `CurrentPos` beside `InsertionPoint`, if one of each should go. Its `ClearAll` could be `Clear`, as `TextCtrl`'s is.
 - Zero members of flags enums that aren't a class's styles, which make `HasFlag` always true, if they should go as the styles' did: `Alignment.Left` and `Top`, `DragFlags.CopyOnly`, `NavigationFlags.Backward`, `SizeFlags.UseExisting`, and `Default` of `WebViewFindFlags` and `WebViewPrintFlags`. `Direction` and `Orientation` have no `None`.

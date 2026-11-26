@@ -13,6 +13,10 @@ WXK_FUNCTION(void) wxk_Window_SetSizer(wxk_Window* self, wxk_Sizer* sizer, uint8
 	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->SetSizer(static_cast<wxSizer*>(wxk::Unwrap(sizer)), deleteOld != 0); });
 }
 
+WXK_FUNCTION(void) wxk_Window_WarpPointer(wxk_Window* self, int32_t x, int32_t y) noexcept {
+	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->WarpPointer(static_cast<int>(x), static_cast<int>(y)); });
+}
+
 WXK_FUNCTION(void) wxk_Window_DisableFocusFromKeyboard(wxk_Window* self) noexcept {
 	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->DisableFocusFromKeyboard(); });
 }
@@ -463,10 +467,6 @@ WXK_FUNCTION(void) wxk_Window_CaptureMouse(wxk_Window* self) noexcept {
 
 WXK_FUNCTION(void) wxk_Window_ReleaseMouse(wxk_Window* self) noexcept {
 	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->ReleaseMouse(); });
-}
-
-WXK_FUNCTION(void) wxk_Window_WarpPointer(wxk_Window* self, int32_t x, int32_t y) noexcept {
-	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->WarpPointer(static_cast<int>(x), static_cast<int>(y)); });
 }
 
 WXK_FUNCTION(uint8_t) wxk_Window_EnableTouchEvents(wxk_Window* self, int32_t eventsMask) noexcept {

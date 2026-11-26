@@ -86,10 +86,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ActivityIndicatorIsRunning(WxkWindow* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_AnyButton_SetBitmapMargins_IntInt")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void AnyButtonSetBitmapMarginsIntInt(WxkWindow* self, int x, int y);
-
 	[LibraryImport(Library, EntryPoint = "wxk_AnyButton_SetBitmap")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void AnyButtonSetBitmap(WxkWindow* self, WxkObject* bitmap, int direction);
@@ -146,9 +142,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Size AnyButtonGetBitmapMargins(WxkWindow* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_AnyButton_SetBitmapMargins_Size")]
+	[LibraryImport(Library, EntryPoint = "wxk_AnyButton_SetBitmapMargins")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void AnyButtonSetBitmapMarginsSize(WxkWindow* self, Size size);
+	public static partial void AnyButtonSetBitmapMargins(WxkWindow* self, Size size);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ArtProvider_GetBitmap")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -1282,13 +1278,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* ControlNew(WxkWindow* parent, int id, Point position, Size size, long style);
 
-	[LibraryImport(Library, EntryPoint = "wxk_Control_GetSizeFromTextSize_IntInt")]
+	[LibraryImport(Library, EntryPoint = "wxk_Control_GetSizeFromTextSize")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial Size ControlGetSizeFromTextSizeIntInt(WxkWindow* self, int xlen, int ylen);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Control_GetSizeFromTextSize_Size")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial Size ControlGetSizeFromTextSizeSize(WxkWindow* self, Size tsize);
+	public static partial Size ControlGetSizeFromTextSize(WxkWindow* self, Size tsize);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Control_GetSizeFromText")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -1462,6 +1454,22 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Point CursorGetHotSpot(WxkObject* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_DC_DrawSpline")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DCDrawSpline(WxkObject* self, int x1, int y1, int x2, int y2, int x3, int y3);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DC_CalcBoundingBox")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void DCCalcBoundingBox(WxkObject* self, int x, int y);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DC_Blit")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte DCBlit(WxkObject* self, int xDestination, int yDestination, int width, int height, WxkObject* source, int xSource, int ySource, int logicalFunction, byte useMask, int xSourceMask, int ySourceMask);
+
+	[LibraryImport(Library, EntryPoint = "wxk_DC_StretchBlit")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte DCStretchBlit(WxkObject* self, int xDestination, int yDestination, int destinationWidth, int destinationHeight, WxkObject* source, int xSource, int ySource, int sourceWidth, int sourceHeight, int logicalFunction, byte useMask, int xSourceMask, int ySourceMask);
+
 	[LibraryImport(Library, EntryPoint = "wxk_DC_SetDeviceOrigin")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DCSetDeviceOrigin(WxkObject* self, int x, int y);
@@ -1498,13 +1506,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DCClear(WxkObject* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_DC_DrawArc_IntIntIntIntIntInt")]
+	[LibraryImport(Library, EntryPoint = "wxk_DC_DrawArc")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DCDrawArcIntIntIntIntIntInt(WxkObject* self, int xStart, int yStart, int xEnd, int yEnd, int xc, int yc);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DC_DrawArc_PointPointPoint")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DCDrawArcPointPointPoint(WxkObject* self, Point start, Point end, Point center);
+	public static partial void DCDrawArc(WxkObject* self, Point start, Point end, Point center);
 
 	[LibraryImport(Library, EntryPoint = "wxk_DC_DrawBitmap")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -1570,10 +1574,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DCDrawRoundedRectangleRectDouble(WxkObject* self, Rect rect, double radius);
 
-	[LibraryImport(Library, EntryPoint = "wxk_DC_DrawSpline")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DCDrawSpline(WxkObject* self, int x1, int y1, int x2, int y2, int x3, int y3);
-
 	[LibraryImport(Library, EntryPoint = "wxk_DC_DrawText")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DCDrawText(WxkObject* self, char* text, nuint textLength, Point point);
@@ -1618,10 +1618,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DCDisableAutomaticBoundingBoxUpdates(WxkObject* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_DC_CalcBoundingBox")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void DCCalcBoundingBox(WxkObject* self, int x, int y);
-
 	[LibraryImport(Library, EntryPoint = "wxk_DC_MaxX")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int DCMaxX(WxkObject* self);
@@ -1641,14 +1637,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_DC_ResetBoundingBox")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DCResetBoundingBox(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DC_Blit")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte DCBlit(WxkObject* self, int xDestination, int yDestination, int width, int height, WxkObject* source, int xSource, int ySource, int logicalFunction, byte useMask, int xSourceMask, int ySourceMask);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DC_StretchBlit")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte DCStretchBlit(WxkObject* self, int xDestination, int yDestination, int destinationWidth, int destinationHeight, WxkObject* source, int xSource, int ySource, int sourceWidth, int sourceHeight, int logicalFunction, byte useMask, int xSourceMask, int ySourceMask);
 
 	[LibraryImport(Library, EntryPoint = "wxk_DC_CopyAttributes")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -1690,25 +1678,17 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Point DCDeviceToLogical(WxkObject* self, Point point);
 
-	[LibraryImport(Library, EntryPoint = "wxk_DC_DeviceToLogicalRel_IntInt")]
+	[LibraryImport(Library, EntryPoint = "wxk_DC_DeviceToLogicalRel")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial Size DCDeviceToLogicalRelIntInt(WxkObject* self, int x, int y);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DC_DeviceToLogicalRel_Size")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial Size DCDeviceToLogicalRelSize(WxkObject* self, Size dim);
+	public static partial Size DCDeviceToLogicalRel(WxkObject* self, Size dim);
 
 	[LibraryImport(Library, EntryPoint = "wxk_DC_LogicalToDevice")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Point DCLogicalToDevice(WxkObject* self, Point point);
 
-	[LibraryImport(Library, EntryPoint = "wxk_DC_LogicalToDeviceRel_IntInt")]
+	[LibraryImport(Library, EntryPoint = "wxk_DC_LogicalToDeviceRel")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial Size DCLogicalToDeviceRelIntInt(WxkObject* self, int x, int y);
-
-	[LibraryImport(Library, EntryPoint = "wxk_DC_LogicalToDeviceRel_Size")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial Size DCLogicalToDeviceRelSize(WxkObject* self, Size dim);
+	public static partial Size DCLogicalToDeviceRel(WxkObject* self, Size dim);
 
 	[LibraryImport(Library, EntryPoint = "wxk_DC_SetAxisOrientation")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -3926,6 +3906,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* ImageNewStringStringInt(char* name, nuint nameLength, char* mimeType, nuint mimeTypeLength, int index);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Image_Paste")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void ImagePaste(WxkObject* self, WxkObject* image, int x, int y, int alphaBlend);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Image_Replace")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void ImageReplace(WxkObject* self, byte r1, byte g1, byte b1, byte r2, byte g2, byte b2);
@@ -4037,10 +4021,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Image_Mirror")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* ImageMirror(WxkObject* self, byte horizontally);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_Paste")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ImagePaste(WxkObject* self, WxkObject* image, int x, int y, int alphaBlend);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Image_Rescale")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -6218,6 +6198,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* PrintoutGetDC(WxkObject* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Printout_OffsetLogicalOrigin")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void PrintoutOffsetLogicalOrigin(WxkObject* self, int xOffset, int yOffset);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Printout_SetLogicalOrigin")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void PrintoutSetLogicalOrigin(WxkObject* self, int x, int y);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Printout_FitThisSizeToPage")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void PrintoutFitThisSizeToPage(WxkObject* self, Size imageSize);
@@ -6249,14 +6237,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Printout_MapScreenSizeToPaper")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void PrintoutMapScreenSizeToPaper(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Printout_OffsetLogicalOrigin")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void PrintoutOffsetLogicalOrigin(WxkObject* self, int xOffset, int yOffset);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Printout_SetLogicalOrigin")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void PrintoutSetLogicalOrigin(WxkObject* self, int x, int y);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Printout_GetPageSizeMM")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -7710,6 +7690,18 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* StyledTextCtrlNew(WxkWindow* parent, int id, Point position, Size size, long style);
 
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_PositionFromPointClose")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlPositionFromPointClose(WxkWindow* self, int x, int y);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CharPositionFromPoint")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlCharPositionFromPoint(WxkWindow* self, int x, int y);
+
+	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CharPositionFromPointClose")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int StyledTextCtrlCharPositionFromPointClose(WxkWindow* self, int x, int y);
+
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GetSelection")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlGetSelection(WxkWindow* self, long* from, long* to);
@@ -7874,10 +7866,6 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextCtrlPositionFromPoint(WxkWindow* self, Point point);
 
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_PositionFromPointClose")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlPositionFromPointClose(WxkWindow* self, int x, int y);
-
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_GotoLine")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void StyledTextCtrlGotoLine(WxkWindow* self, int line);
@@ -7965,14 +7953,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_FindColumn")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextCtrlFindColumn(WxkWindow* self, int line, int column);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CharPositionFromPoint")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlCharPositionFromPoint(WxkWindow* self, int x, int y);
-
-	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_CharPositionFromPointClose")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial int StyledTextCtrlCharPositionFromPointClose(WxkWindow* self, int x, int y);
 
 	[LibraryImport(Library, EntryPoint = "wxk_StyledTextCtrl_MoveSelectedLinesUp")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -11286,6 +11266,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ToolBarDeleteToolByPos(WxkWindow* self, nuint position);
 
+	[LibraryImport(Library, EntryPoint = "wxk_ToolBar_FindToolForPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkToolBarTool* ToolBarFindToolForPosition(WxkWindow* self, int x, int y);
+
 	[LibraryImport(Library, EntryPoint = "wxk_ToolBar_AddTool_IntStringBitmapStringMenuItemKind")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkToolBarTool* ToolBarAddToolIntStringBitmapStringMenuItemKind(WxkWindow* self, int toolId, char* label, nuint labelLength, WxkObject* bitmap, char* shortHelp, nuint shortHelpLength, int kind);
@@ -11297,10 +11281,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_ToolBar_InsertTool")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkToolBarTool* ToolBarInsertTool(WxkWindow* self, nuint position, int toolId, char* label, nuint labelLength, WxkObject* bitmap, WxkObject* disabledBitmap, int kind, char* shortHelp, nuint shortHelpLength, char* longHelp, nuint longHelpLength);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ToolBar_SetMargins_IntInt")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ToolBarSetMarginsIntInt(WxkWindow* self, int x, int y);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ToolBar_AddCheckTool")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -11333,10 +11313,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_ToolBar_FindControl")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* ToolBarFindControl(WxkWindow* self, int id);
-
-	[LibraryImport(Library, EntryPoint = "wxk_ToolBar_FindToolForPosition")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkToolBarTool* ToolBarFindToolForPosition(WxkWindow* self, int x, int y);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ToolBar_GetToolByPos")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -11406,9 +11382,9 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Size ToolBarGetMargins(WxkWindow* self);
 
-	[LibraryImport(Library, EntryPoint = "wxk_ToolBar_SetMargins_Size")]
+	[LibraryImport(Library, EntryPoint = "wxk_ToolBar_SetMargins")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void ToolBarSetMarginsSize(WxkWindow* self, Size size);
+	public static partial void ToolBarSetMargins(WxkWindow* self, Size size);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ToolBar_GetToolBitmapSize")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -12634,6 +12610,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void WindowSetSizer(WxkWindow* self, WxkSizer* sizer, byte deleteOld);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Window_WarpPointer")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void WindowWarpPointer(WxkWindow* self, int x, int y);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Window_DisableFocusFromKeyboard")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void WindowDisableFocusFromKeyboard(WxkWindow* self);
@@ -13085,10 +13065,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Window_ReleaseMouse")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void WindowReleaseMouse(WxkWindow* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Window_WarpPointer")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial void WindowWarpPointer(WxkWindow* self, int x, int y);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Window_EnableTouchEvents")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

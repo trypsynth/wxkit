@@ -927,9 +927,6 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>Validates the current values of the child controls using their validators.</summary>
 	public bool Validate() => WxKitNative.WindowValidate(Native) != 0;
 
-	/// <summary>Moves the pointer to the given position on the window.</summary>
-	public void WarpPointer(int x, int y) => WxKitNative.WindowWarpPointer(Native, x, y);
-
 	/// <summary>Converts window size size to corresponding client area size In other words, the returned value is what would GetClientSize() return if this window had given window size.</summary>
 	public Size WindowToClientSize(Size size) => WxKitNative.WindowWindowToClientSize(Native, size);
 }

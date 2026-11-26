@@ -68,10 +68,4 @@ public unsafe partial class Printout : NativeObject {
 
 	/// <summary>Set the user scale and device origin of the wxDC associated with this wxPrintout so that the printed page matches the screen size as closely as possible and the logical origin is in the top left corner of the paper rectangle.</summary>
 	public void MapScreenSizeToPaper() => WxKitNative.PrintoutMapScreenSizeToPaper(Native);
-
-	/// <summary>Shift the device origin by an amount specified in logical coordinates.</summary>
-	public void OffsetLogicalOrigin(int xOffset, int yOffset) => WxKitNative.PrintoutOffsetLogicalOrigin(Native, xOffset, yOffset);
-
-	/// <summary>Set the device origin of the associated wxDC so that the current logical point becomes the new logical origin.</summary>
-	public void SetLogicalOrigin(int x, int y) => WxKitNative.PrintoutSetLogicalOrigin(Native, x, y);
 }

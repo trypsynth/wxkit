@@ -270,7 +270,6 @@ class WxKit.AnyButton : Control
     Bitmap? BitmapPressed { get; set; }
     Size BitmapMargins { get; set; }
     void SetBitmap(Bitmap bitmap, Direction direction = Direction.Left)
-    void SetBitmapMargins(int x, int y)
     void SetBitmapPosition(Direction direction)
 enum WxKit.Appearance : int
     Dark = 2
@@ -866,7 +865,6 @@ class WxKit.Control : Window
     Control(Window parent, int id = -1, Point? position = null, Size? size = null, WindowStyle style = WindowStyle.None)
     Size GetSizeFromText(string text)
     Size GetSizeFromTextSize(Size tsize)
-    Size GetSizeFromTextSize(int xlen, int ylen = -1)
     bool SetLabelMarkup(string markup)
     event EventHandler<CommandEvent>? TextCopy
     event EventHandler<CommandEvent>? TextCut
@@ -938,12 +936,10 @@ class WxKit.DC : NativeObject
     Point ToDip(Point point)
     RasterOperationMode LogicalFunction { get; set; }
     Size DeviceToLogicalRel(Size dim)
-    Size DeviceToLogicalRel(int x, int y)
     Size FromDip(Size size)
     Size GetMultiLineTextExtent(string text)
     Size GetTextExtent(string text)
     Size LogicalToDeviceRel(Size dim)
-    Size LogicalToDeviceRel(int x, int y)
     Size Ppi { get; }
     Size Size { get; }
     Size SizeInMillimeters { get; }
@@ -951,13 +947,13 @@ class WxKit.DC : NativeObject
     ValueTuple<double, double> LogicalScale { get; set; }
     ValueTuple<double, double> UserScale { get; set; }
     bool AreAutomaticBoundingBoxUpdatesEnabled { get; }
-    bool Blit(int xDestination, int yDestination, int width, int height, DC source, int xSource, int ySource, RasterOperationMode logicalFunction = RasterOperationMode.Copy, bool useMask = false, int xSourceMask = -1, int ySourceMask = -1)
+    bool Blit(Point destination, Size size, DC source, Point sourcePoint, RasterOperationMode logicalFunction = RasterOperationMode.Copy, bool useMask = false, Point? sourceMask = null)
     bool CanDrawBitmap { get; }
     bool CanGetTextExtent { get; }
     bool CanUseTransformMatrix { get; }
     bool FloodFill(Point point, Color? color, FloodFillStyle style = FloodFillStyle.Surface)
     bool IsOk { get; }
-    bool StretchBlit(int xDestination, int yDestination, int destinationWidth, int destinationHeight, DC source, int xSource, int ySource, int sourceWidth, int sourceHeight, RasterOperationMode logicalFunction = RasterOperationMode.Copy, bool useMask = false, int xSourceMask = -1, int ySourceMask = -1)
+    bool StretchBlit(Rect destination, DC source, Rect sourceRect, RasterOperationMode logicalFunction = RasterOperationMode.Copy, bool useMask = false, Point? sourceMask = null)
     bool TryGetClippingBox(out Rect rect)
     double ContentScaleFactor { get; }
     int CharHeight { get; }
@@ -978,14 +974,13 @@ class WxKit.DC : NativeObject
     int MinY()
     int ToDip(int d)
     int[] GetPartialTextExtents(string text)
-    void CalcBoundingBox(int x, int y)
+    void CalcBoundingBox(Point point)
     void Clear()
     void CopyAttributes(DC dc)
     void CrossHair(Point point)
     void DestroyClippingRegion()
     void DisableAutomaticBoundingBoxUpdates()
     void DrawArc(Point start, Point end, Point center)
-    void DrawArc(int xStart, int yStart, int xEnd, int yEnd, int xc, int yc)
     void DrawBitmap(Bitmap bitmap, Point point, bool useMask = false)
     void DrawCheckMark(Rect rect)
     void DrawCircle(Point point, int radius)
@@ -1002,7 +997,7 @@ class WxKit.DC : NativeObject
     void DrawRotatedText(string text, Point point, double angle)
     void DrawRoundedRectangle(Point point, Size size, double radius)
     void DrawRoundedRectangle(Rect rect, double radius)
-    void DrawSpline(int x1, int y1, int x2, int y2, int x3, int y3)
+    void DrawSpline(Point start, Point control, Point end)
     void DrawText(string text, Point point)
     void GradientFillConcentric(Rect rect, Color? initialColor, Color? destColor)
     void GradientFillConcentric(Rect rect, Color? initialColor, Color? destColor, Point circleCenter)
@@ -2361,7 +2356,7 @@ class WxKit.Image : NativeObject
     void ClearAlpha()
     void Destroy()
     void InitAlpha()
-    void Paste(Image image, int x, int y, ImageAlphaBlendMode alphaBlend = ImageAlphaBlendMode.Over)
+    void Paste(Image image, Point position, ImageAlphaBlendMode alphaBlend = ImageAlphaBlendMode.Over)
     void Replace(Color from, Color to)
     void Rescale(Size size, ImageResizeQuality quality = ImageResizeQuality.Normal)
     void Resize(Size size, Point position, Color? border = null)
@@ -3512,8 +3507,8 @@ abstract class WxKit.Printout : NativeObject
     void MapScreenSizeToPage()
     void MapScreenSizeToPageMargins(PageSetupDialogData pageSetupData)
     void MapScreenSizeToPaper()
-    void OffsetLogicalOrigin(int xOffset, int yOffset)
-    void SetLogicalOrigin(int x, int y)
+    void OffsetLogicalOrigin(Point offset)
+    void SetLogicalOrigin(Point origin)
 class WxKit.ProgressDialog : Dialog
     ProgressDialog(string title, string message, int maximum = 100, Window? parent = null, ProgressDialogStyle style = ProgressDialogStyle.AppModal | ProgressDialogStyle.AutoHide)
     bool IsCanceled { get; }
@@ -7202,8 +7197,8 @@ class WxKit.StyledTextCtrl : Control
     int CaretStyle { get; set; }
     int CaretWidth { get; set; }
     int ChangeLexerState(int start, int end)
-    int CharPositionFromPoint(int x, int y)
-    int CharPositionFromPointClose(int x, int y)
+    int CharPositionFromPoint(Point point)
+    int CharPositionFromPointClose(Point point)
     int CharacterCategoryOptimization { get; set; }
     int CodePage { get; set; }
     int ContractedFoldNext(int lineStart)
@@ -7319,7 +7314,7 @@ class WxKit.StyledTextCtrl : Control
     int PositionFromColumnAndLine(int column, int line)
     int PositionFromLine(int line)
     int PositionFromPoint(Point point)
-    int PositionFromPointClose(int x, int y)
+    int PositionFromPointClose(Point point)
     int PositionRelative(int position, int relative)
     int PositionRelativeCodeUnits(int position, int relative)
     int PrintColorMode { get; set; }
@@ -8053,7 +8048,7 @@ class WxKit.ToolBar : Control
     ToolBarTool? AddTool(int toolId, string label, Bitmap bitmap, Bitmap disabledBitmap, MenuItemKind kind = MenuItemKind.Normal, string shortHelp = "", string longHelp = "")
     ToolBarTool? AddTool(int toolId, string label, Bitmap bitmap, string shortHelp = "", MenuItemKind kind = MenuItemKind.Normal)
     ToolBarTool? FindById(int id)
-    ToolBarTool? FindToolForPosition(int x, int y)
+    ToolBarTool? FindToolForPosition(Point point)
     ToolBarTool? GetToolByPosition(int position)
     ToolBarTool? InsertControl(int position, Control control, string label = "")
     ToolBarTool? InsertSeparator(int position)
@@ -8077,7 +8072,6 @@ class WxKit.ToolBar : Control
     string GetToolShortHelp(int toolId)
     void ClearTools()
     void EnableTool(int toolId, bool enable)
-    void SetMargins(int x, int y)
     void SetToolDisabledBitmap(int id, Bitmap bitmap)
     void SetToolLongHelp(int toolId, string helpString)
     void SetToolNormalBitmap(int id, Bitmap bitmap)
@@ -8814,7 +8808,7 @@ class WxKit.Window : EvtHandler
     void Update()
     void UpdateInputMethodCursorRect(Rect rect)
     void UpdateWindowUI(UpdateUIFlags flags = UpdateUIFlags.None)
-    void WarpPointer(int x, int y)
+    void WarpPointer(Point point)
 class WxKit.WindowDC : DC
     WindowDC(Window window)
 sealed class WxKit.WindowDisabler : IDisposable

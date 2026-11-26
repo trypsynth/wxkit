@@ -39,7 +39,7 @@ public unsafe partial class AnyButton : Control {
 	/// <summary>Get the margins between the bitmap and the text of the button.</summary>
 	public Size BitmapMargins {
 		get => WxKitNative.AnyButtonGetBitmapMargins(Native);
-		set => WxKitNative.AnyButtonSetBitmapMarginsSize(Native, value);
+		set => WxKitNative.AnyButtonSetBitmapMargins(Native, value);
 	}
 
 	/// <summary>Returns the bitmap used when the button is pressed.</summary>
@@ -53,9 +53,6 @@ public unsafe partial class AnyButton : Control {
 		ArgumentNullException.ThrowIfNull(bitmap);
 		WxKitNative.AnyButtonSetBitmap(Native, bitmap.Native, (int)direction);
 	}
-
-	/// <summary>Set the margins between the bitmap and the text of the button.</summary>
-	public void SetBitmapMargins(int x, int y) => WxKitNative.AnyButtonSetBitmapMarginsIntInt(Native, x, y);
 
 	/// <summary>Set the position at which the bitmap is displayed.</summary>
 	public void SetBitmapPosition(Direction direction) => WxKitNative.AnyButtonSetBitmapPosition(Native, (int)direction);

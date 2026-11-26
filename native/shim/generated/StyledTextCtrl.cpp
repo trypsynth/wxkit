@@ -8,6 +8,18 @@ WXK_FUNCTION(wxk_Window*) wxk_StyledTextCtrl_new(wxk_Window* parent, int32_t id,
 	});
 }
 
+WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_PositionFromPointClose(wxk_Window* self, int32_t x, int32_t y) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->PositionFromPointClose(static_cast<int>(x), static_cast<int>(y))); });
+}
+
+WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_CharPositionFromPoint(wxk_Window* self, int32_t x, int32_t y) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->CharPositionFromPoint(static_cast<int>(x), static_cast<int>(y))); });
+}
+
+WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_CharPositionFromPointClose(wxk_Window* self, int32_t x, int32_t y) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->CharPositionFromPointClose(static_cast<int>(x), static_cast<int>(y))); });
+}
+
 WXK_FUNCTION(void) wxk_StyledTextCtrl_GetSelection(wxk_Window* self, int64_t* from, int64_t* to) noexcept {
 	wxk::Guard([&] { static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->GetSelection(wxk::OutLong{from}, wxk::OutLong{to}); });
 }
@@ -172,10 +184,6 @@ WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_PositionFromPoint(wxk_Window* self, wxk
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->PositionFromPoint(wxk::FromPoint(point))); });
 }
 
-WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_PositionFromPointClose(wxk_Window* self, int32_t x, int32_t y) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->PositionFromPointClose(static_cast<int>(x), static_cast<int>(y))); });
-}
-
 WXK_FUNCTION(void) wxk_StyledTextCtrl_GotoLine(wxk_Window* self, int32_t line) noexcept {
 	wxk::Guard([&] { static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->GotoLine(static_cast<int>(line)); });
 }
@@ -262,14 +270,6 @@ WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetLineSelEndPosition(wxk_Window* self,
 
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_FindColumn(wxk_Window* self, int32_t line, int32_t column) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->FindColumn(static_cast<int>(line), static_cast<int>(column))); });
-}
-
-WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_CharPositionFromPoint(wxk_Window* self, int32_t x, int32_t y) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->CharPositionFromPoint(static_cast<int>(x), static_cast<int>(y))); });
-}
-
-WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_CharPositionFromPointClose(wxk_Window* self, int32_t x, int32_t y) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxStyledTextCtrl*>(wxk::Unwrap(self))->CharPositionFromPointClose(static_cast<int>(x), static_cast<int>(y))); });
 }
 
 WXK_FUNCTION(void) wxk_StyledTextCtrl_MoveSelectedLinesUp(wxk_Window* self) noexcept {

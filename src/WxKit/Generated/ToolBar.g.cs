@@ -16,7 +16,7 @@ public unsafe partial class ToolBar : Control {
 	/// <summary>Returns the left/right and top/bottom margins, which are also used for inter-toolspacing.</summary>
 	public Size Margins {
 		get => WxKitNative.ToolBarGetMargins(Native);
-		set => WxKitNative.ToolBarSetMarginsSize(Native, value);
+		set => WxKitNative.ToolBarSetMargins(Native, value);
 	}
 
 	/// <summary>Returns the size of bitmap that the toolbar expects to have.</summary>
@@ -142,9 +142,6 @@ public unsafe partial class ToolBar : Control {
 	/// <summary>Returns a pointer to the control identified by id or nullptr if no corresponding control is found.</summary>
 	public Control? FindControl(int id) => ObjectRegistry.Wrap<Control>(WxKitNative.ToolBarFindControl(Native, id));
 
-	/// <summary>Finds a tool for the given mouse position.</summary>
-	public ToolBarTool? FindToolForPosition(int x, int y) => ToolBarTool.Wrap(WxKitNative.ToolBarFindToolForPosition(Native, x, y));
-
 	/// <summary>Returns a pointer to the tool at ordinal position pos.</summary>
 	public ToolBarTool? GetToolByPosition(int position) => ToolBarTool.Wrap(WxKitNative.ToolBarGetToolByPos(Native, position));
 
@@ -199,9 +196,6 @@ public unsafe partial class ToolBar : Control {
 		ArgumentNullException.ThrowIfNull(menu);
 		return WxKitNative.ToolBarSetDropdownMenu(Native, id, (WxkMenu*)menu.Native) != 0;
 	}
-
-	/// <summary>Set the values to be used as margins for the toolbar.</summary>
-	public void SetMargins(int x, int y) => WxKitNative.ToolBarSetMarginsIntInt(Native, x, y);
 
 	/// <summary>Sets the bitmap to be used by the tool with the given ID when the tool is in a disabled state.</summary>
 	public void SetToolDisabledBitmap(int id, Bitmap bitmap) {

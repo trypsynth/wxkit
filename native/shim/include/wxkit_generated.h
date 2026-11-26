@@ -46,7 +46,6 @@ WXK_FUNCTION(uint8_t) wxk_ActivityIndicator_IsRunning(wxk_Window* self) WXK_NOEX
 
 // wxAnyButton
 
-WXK_FUNCTION(void) wxk_AnyButton_SetBitmapMargins_IntInt(wxk_Window* self, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_AnyButton_SetBitmap(wxk_Window* self, const wxk_Object* bitmap, int32_t direction) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_AnyButton_SetBitmapPosition(wxk_Window* self, int32_t direction) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_AnyButton_GetBitmap(wxk_Window* self) WXK_NOEXCEPT;
@@ -61,7 +60,7 @@ WXK_FUNCTION(void) wxk_AnyButton_SetBitmapLabel(wxk_Window* self, const wxk_Obje
 WXK_FUNCTION(wxk_Object*) wxk_AnyButton_GetBitmapPressed(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_AnyButton_SetBitmapPressed(wxk_Window* self, const wxk_Object* bitmap) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_AnyButton_GetBitmapMargins(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_AnyButton_SetBitmapMargins_Size(wxk_Window* self, wxk_Size size) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_AnyButton_SetBitmapMargins(wxk_Window* self, wxk_Size size) WXK_NOEXCEPT;
 
 // wxArtProvider
 
@@ -441,8 +440,7 @@ WXK_FUNCTION(wxk_Point) wxk_ContextMenuEvent_GetPosition(wxk_Event* self) WXK_NO
 // wxControl
 
 WXK_FUNCTION(wxk_Window*) wxk_Control_new(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Size) wxk_Control_GetSizeFromTextSize_IntInt(wxk_Window* self, int32_t xlen, int32_t ylen) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Size) wxk_Control_GetSizeFromTextSize_Size(wxk_Window* self, wxk_Size tsize) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Size) wxk_Control_GetSizeFromTextSize(wxk_Window* self, wxk_Size tsize) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_Control_GetSizeFromText(wxk_Window* self, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Control_SetLabelMarkup(wxk_Window* self, const char16_t* markup, size_t markupLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_Control_GetLabelText_String(const char16_t* label, size_t labelLength) WXK_NOEXCEPT;
@@ -498,6 +496,10 @@ WXK_FUNCTION(wxk_Point) wxk_Cursor_GetHotSpot(wxk_Object* self) WXK_NOEXCEPT;
 
 // wxDC
 
+WXK_FUNCTION(void) wxk_DC_DrawSpline(wxk_Object* self, int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DC_CalcBoundingBox(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_DC_Blit(wxk_Object* self, int32_t xDestination, int32_t yDestination, int32_t width, int32_t height, wxk_Object* source, int32_t xSource, int32_t ySource, int32_t logicalFunction, uint8_t useMask, int32_t xSourceMask, int32_t ySourceMask) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_DC_StretchBlit(wxk_Object* self, int32_t xDestination, int32_t yDestination, int32_t destinationWidth, int32_t destinationHeight, wxk_Object* source, int32_t xSource, int32_t ySource, int32_t sourceWidth, int32_t sourceHeight, int32_t logicalFunction, uint8_t useMask, int32_t xSourceMask, int32_t ySourceMask) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_SetDeviceOrigin(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_SetUserScale(wxk_Object* self, double xScale, double yScale) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_SetLogicalScale(wxk_Object* self, double x, double y) WXK_NOEXCEPT;
@@ -507,8 +509,7 @@ WXK_FUNCTION(wxk_Point) wxk_DC_GetLogicalOrigin(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Point) wxk_DC_GetDeviceOrigin(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_GetUserScale(wxk_Object* self, double* x, double* y) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_Clear(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_DC_DrawArc_IntIntIntIntIntInt(wxk_Object* self, int32_t xStart, int32_t yStart, int32_t xEnd, int32_t yEnd, int32_t xc, int32_t yc) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_DC_DrawArc_PointPointPoint(wxk_Object* self, wxk_Point start, wxk_Point end, wxk_Point center) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_DC_DrawArc(wxk_Object* self, wxk_Point start, wxk_Point end, wxk_Point center) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_DrawBitmap(wxk_Object* self, const wxk_Object* bitmap, wxk_Point point, uint8_t useMask) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_DrawCheckMark(wxk_Object* self, wxk_Rect rect) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_DrawCircle(wxk_Object* self, wxk_Point point, int32_t radius) WXK_NOEXCEPT;
@@ -525,7 +526,6 @@ WXK_FUNCTION(void) wxk_DC_DrawRectangle_Rect(wxk_Object* self, wxk_Rect rect) WX
 WXK_FUNCTION(void) wxk_DC_DrawRotatedText(wxk_Object* self, const char16_t* text, size_t textLength, wxk_Point point, double angle) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_DrawRoundedRectangle_PointSizeDouble(wxk_Object* self, wxk_Point point, wxk_Size size, double radius) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_DrawRoundedRectangle_RectDouble(wxk_Object* self, wxk_Rect rect, double radius) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_DC_DrawSpline(wxk_Object* self, int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_DrawText(wxk_Object* self, const char16_t* text, size_t textLength, wxk_Point point) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_GradientFillConcentric_RectColorColor(wxk_Object* self, wxk_Rect rect, wxk_Colour initialColor, wxk_Colour destColor) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_GradientFillConcentric_RectColorColorPoint(wxk_Object* self, wxk_Rect rect, wxk_Colour initialColor, wxk_Colour destColor, wxk_Point circleCenter) WXK_NOEXCEPT;
@@ -537,14 +537,11 @@ WXK_FUNCTION(uint8_t) wxk_DC_GetClippingBox(wxk_Object* self, wxk_Rect* rect) WX
 WXK_FUNCTION(void) wxk_DC_SetClippingRegion_PointSize(wxk_Object* self, wxk_Point point, wxk_Size size) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_SetClippingRegion_Rect(wxk_Object* self, wxk_Rect rect) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_DisableAutomaticBoundingBoxUpdates(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_DC_CalcBoundingBox(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_DC_MaxX(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_DC_MaxY(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_DC_MinX(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_DC_MinY(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_ResetBoundingBox(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_DC_Blit(wxk_Object* self, int32_t xDestination, int32_t yDestination, int32_t width, int32_t height, wxk_Object* source, int32_t xSource, int32_t ySource, int32_t logicalFunction, uint8_t useMask, int32_t xSourceMask, int32_t ySourceMask) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_DC_StretchBlit(wxk_Object* self, int32_t xDestination, int32_t yDestination, int32_t destinationWidth, int32_t destinationHeight, wxk_Object* source, int32_t xSource, int32_t ySource, int32_t sourceWidth, int32_t sourceHeight, int32_t logicalFunction, uint8_t useMask, int32_t xSourceMask, int32_t ySourceMask) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_CopyAttributes(wxk_Object* self, wxk_Object* dc) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_DC_DeviceToLogicalX(wxk_Object* self, int32_t x) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_DC_DeviceToLogicalXRel(wxk_Object* self, int32_t x) WXK_NOEXCEPT;
@@ -555,11 +552,9 @@ WXK_FUNCTION(int32_t) wxk_DC_LogicalToDeviceXRel(wxk_Object* self, int32_t x) WX
 WXK_FUNCTION(int32_t) wxk_DC_LogicalToDeviceY(wxk_Object* self, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_DC_LogicalToDeviceYRel(wxk_Object* self, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Point) wxk_DC_DeviceToLogical(wxk_Object* self, wxk_Point point) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Size) wxk_DC_DeviceToLogicalRel_IntInt(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Size) wxk_DC_DeviceToLogicalRel_Size(wxk_Object* self, wxk_Size dim) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Size) wxk_DC_DeviceToLogicalRel(wxk_Object* self, wxk_Size dim) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Point) wxk_DC_LogicalToDevice(wxk_Object* self, wxk_Point point) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Size) wxk_DC_LogicalToDeviceRel_IntInt(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_Size) wxk_DC_LogicalToDeviceRel_Size(wxk_Object* self, wxk_Size dim) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Size) wxk_DC_LogicalToDeviceRel(wxk_Object* self, wxk_Size dim) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_SetAxisOrientation(wxk_Object* self, uint8_t xLeftRight, uint8_t yBottomUp) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_DC_ResetTransformMatrix(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_DC_GetMultiLineTextExtent(wxk_Object* self, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
@@ -1252,6 +1247,7 @@ WXK_FUNCTION(wxk_Object*) wxk_Image_new_IntIntBool(int32_t width, int32_t height
 WXK_FUNCTION(wxk_Object*) wxk_Image_new_SizeBool(wxk_Size size, uint8_t clear) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Image_new_StringBitmapTypeInt(const char16_t* name, size_t nameLength, int32_t type, int32_t index) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Image_new_StringStringInt(const char16_t* name, size_t nameLength, const char16_t* mimeType, size_t mimeTypeLength, int32_t index) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Image_Paste(wxk_Object* self, const wxk_Object* image, int32_t x, int32_t y, int32_t alphaBlend) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_Replace(wxk_Object* self, uint8_t r1, uint8_t g1, uint8_t b1, uint8_t r2, uint8_t g2, uint8_t b2) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_Resize(wxk_Object* self, wxk_Size size, wxk_Point position, int32_t red, int32_t green, int32_t blue) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Image_Size(wxk_Object* self, wxk_Size size, wxk_Point position, int32_t red, int32_t green, int32_t blue) WXK_NOEXCEPT;
@@ -1280,7 +1276,6 @@ WXK_FUNCTION(wxk_Object*) wxk_Image_Blur(wxk_Object* self, int32_t blurRadius) W
 WXK_FUNCTION(wxk_Object*) wxk_Image_BlurHorizontal(wxk_Object* self, int32_t blurRadius) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Image_BlurVertical(wxk_Object* self, int32_t blurRadius) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Image_Mirror(wxk_Object* self, uint8_t horizontally) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Image_Paste(wxk_Object* self, const wxk_Object* image, int32_t x, int32_t y, int32_t alphaBlend) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_Rescale(wxk_Object* self, wxk_Size size, int32_t quality) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Image_Rotate(wxk_Object* self, double angle, wxk_Point rotationCenter, uint8_t interpolating) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Image_Rotate90(wxk_Object* self, uint8_t clockwise) WXK_NOEXCEPT;
@@ -1930,6 +1925,8 @@ WXK_FUNCTION(int32_t) wxk_Printer_GetLastError(void) WXK_NOEXCEPT;
 
 WXK_FUNCTION(wxk_Object*) wxk_Printout_new(void* userdata, const char16_t* title, size_t titleLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Object*) wxk_Printout_GetDC(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Printout_OffsetLogicalOrigin(wxk_Object* self, int32_t xOffset, int32_t yOffset) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Printout_SetLogicalOrigin(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Printout_FitThisSizeToPage(wxk_Object* self, wxk_Size imageSize) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Printout_FitThisSizeToPageMargins(wxk_Object* self, wxk_Size imageSize, const wxk_Object* pageSetupData) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Printout_FitThisSizeToPaper(wxk_Object* self, wxk_Size imageSize) WXK_NOEXCEPT;
@@ -1938,8 +1935,6 @@ WXK_FUNCTION(void) wxk_Printout_MapScreenSizeToDevice(wxk_Object* self) WXK_NOEX
 WXK_FUNCTION(void) wxk_Printout_MapScreenSizeToPage(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Printout_MapScreenSizeToPageMargins(wxk_Object* self, const wxk_Object* pageSetupData) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Printout_MapScreenSizeToPaper(wxk_Object* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Printout_OffsetLogicalOrigin(wxk_Object* self, int32_t xOffset, int32_t yOffset) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Printout_SetLogicalOrigin(wxk_Object* self, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_Printout_GetPageSizeMM(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Rect) wxk_Printout_GetLogicalPageRect(wxk_Object* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Rect) wxk_Printout_GetLogicalPaperRect(wxk_Object* self) WXK_NOEXCEPT;
@@ -2417,6 +2412,9 @@ WXK_FUNCTION(wxk_Window*) wxk_StdDialogButtonSizer_GetHelpButton(wxk_Sizer* self
 // wxStyledTextCtrl
 
 WXK_FUNCTION(wxk_Window*) wxk_StyledTextCtrl_new(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_PositionFromPointClose(wxk_Window* self, int32_t x, int32_t y) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_CharPositionFromPoint(wxk_Window* self, int32_t x, int32_t y) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_CharPositionFromPointClose(wxk_Window* self, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_GetSelection(wxk_Window* self, int64_t* from, int64_t* to) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_AddText(wxk_Window* self, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_InsertText(wxk_Window* self, int32_t position, const char16_t* text, size_t textLength) WXK_NOEXCEPT;
@@ -2458,7 +2456,6 @@ WXK_FUNCTION(void) wxk_StyledTextCtrl_Undo(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_AddUndoAction(wxk_Window* self, int32_t token, int32_t flags) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_SelectAll(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_PositionFromPoint(wxk_Window* self, wxk_Point point) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_PositionFromPointClose(wxk_Window* self, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_GotoLine(wxk_Window* self, int32_t line) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_GotoPos(wxk_Window* self, int32_t caret) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetColumn(wxk_Window* self, int32_t position) WXK_NOEXCEPT;
@@ -2481,8 +2478,6 @@ WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_PositionRelative(wxk_Window* self, int3
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetLineSelStartPosition(wxk_Window* self, int32_t line) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_GetLineSelEndPosition(wxk_Window* self, int32_t line) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_FindColumn(wxk_Window* self, int32_t line, int32_t column) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_CharPositionFromPoint(wxk_Window* self, int32_t x, int32_t y) WXK_NOEXCEPT;
-WXK_FUNCTION(int32_t) wxk_StyledTextCtrl_CharPositionFromPointClose(wxk_Window* self, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_MoveSelectedLinesUp(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_MoveSelectedLinesDown(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_StyledTextCtrl_ClearSelections(wxk_Window* self) WXK_NOEXCEPT;
@@ -3344,10 +3339,10 @@ WXK_FUNCTION(wxk_Window*) wxk_ToolBar_new(wxk_Window* parent, int32_t id, wxk_Po
 WXK_FUNCTION(void) wxk_ToolBar_ClearTools(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ToolBar_DeleteTool(wxk_Window* self, int32_t toolId) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ToolBar_DeleteToolByPos(wxk_Window* self, size_t position) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_ToolBarTool*) wxk_ToolBar_FindToolForPosition(wxk_Window* self, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_ToolBarTool*) wxk_ToolBar_AddTool_IntStringBitmapStringMenuItemKind(wxk_Window* self, int32_t toolId, const char16_t* label, size_t labelLength, const wxk_Object* bitmap, const char16_t* shortHelp, size_t shortHelpLength, int32_t kind) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_ToolBarTool*) wxk_ToolBar_AddTool_IntStringBitmapBitmapMenuItemKindStringString(wxk_Window* self, int32_t toolId, const char16_t* label, size_t labelLength, const wxk_Object* bitmap, const wxk_Object* disabledBitmap, int32_t kind, const char16_t* shortHelp, size_t shortHelpLength, const char16_t* longHelp, size_t longHelpLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_ToolBarTool*) wxk_ToolBar_InsertTool(wxk_Window* self, size_t position, int32_t toolId, const char16_t* label, size_t labelLength, const wxk_Object* bitmap, const wxk_Object* disabledBitmap, int32_t kind, const char16_t* shortHelp, size_t shortHelpLength, const char16_t* longHelp, size_t longHelpLength) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_ToolBar_SetMargins_IntInt(wxk_Window* self, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_ToolBarTool*) wxk_ToolBar_AddCheckTool(wxk_Window* self, int32_t toolId, const char16_t* label, size_t labelLength, const wxk_Object* bitmap1, const wxk_Object* disabledBitmap, const char16_t* shortHelp, size_t shortHelpLength, const char16_t* longHelp, size_t longHelpLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_ToolBarTool*) wxk_ToolBar_AddControl(wxk_Window* self, wxk_Window* control, const char16_t* label, size_t labelLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_ToolBarTool*) wxk_ToolBar_AddRadioTool(wxk_Window* self, int32_t toolId, const char16_t* label, size_t labelLength, const wxk_Object* bitmap1, const wxk_Object* disabledBitmap, const char16_t* shortHelp, size_t shortHelpLength, const char16_t* longHelp, size_t longHelpLength) WXK_NOEXCEPT;
@@ -3356,7 +3351,6 @@ WXK_FUNCTION(wxk_ToolBarTool*) wxk_ToolBar_AddStretchableSpace(wxk_Window* self)
 WXK_FUNCTION(void) wxk_ToolBar_EnableTool(wxk_Window* self, int32_t toolId, uint8_t enable) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_ToolBarTool*) wxk_ToolBar_FindById(wxk_Window* self, int32_t id) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_ToolBar_FindControl(wxk_Window* self, int32_t id) WXK_NOEXCEPT;
-WXK_FUNCTION(wxk_ToolBarTool*) wxk_ToolBar_FindToolForPosition(wxk_Window* self, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_ToolBarTool*) wxk_ToolBar_GetToolByPos(wxk_Window* self, int32_t position) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_ToolBar_GetToolEnabled(wxk_Window* self, int32_t toolId) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_ToolBar_GetToolLongHelp(wxk_Window* self, int32_t toolId) WXK_NOEXCEPT;
@@ -3374,7 +3368,7 @@ WXK_FUNCTION(void) wxk_ToolBar_SetToolNormalBitmap(wxk_Window* self, int32_t id,
 WXK_FUNCTION(void) wxk_ToolBar_SetToolShortHelp(wxk_Window* self, int32_t toolId, const char16_t* helpString, size_t helpStringLength) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ToolBar_ToggleTool(wxk_Window* self, int32_t toolId, uint8_t toggle) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_ToolBar_GetMargins(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_ToolBar_SetMargins_Size(wxk_Window* self, wxk_Size size) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_ToolBar_SetMargins(wxk_Window* self, wxk_Size size) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Size) wxk_ToolBar_GetToolBitmapSize(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_ToolBar_SetToolBitmapSize(wxk_Window* self, wxk_Size size) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_ToolBar_GetToolPacking(wxk_Window* self) WXK_NOEXCEPT;
@@ -3723,6 +3717,7 @@ WXK_FUNCTION(uint8_t) wxk_WebViewEvent_IsTargetMainFrame(wxk_Event* self) WXK_NO
 WXK_FUNCTION(wxk_String*) wxk_Window_GetToolTipText(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_UnsetToolTip(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_SetSizer(wxk_Window* self, wxk_Sizer* sizer, uint8_t deleteOld) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Window_WarpPointer(wxk_Window* self, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_DisableFocusFromKeyboard(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_EnableFocusFromKeyboard(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_SetCanFocus(wxk_Window* self, uint8_t canFocus) WXK_NOEXCEPT;
@@ -3836,7 +3831,6 @@ WXK_FUNCTION(void) wxk_Window_DragAcceptFiles(wxk_Window* self, uint8_t accept) 
 WXK_FUNCTION(uint8_t) wxk_Window_Layout(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_CaptureMouse(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_ReleaseMouse(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(void) wxk_Window_WarpPointer(wxk_Window* self, int32_t x, int32_t y) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_EnableTouchEvents(wxk_Window* self, int32_t eventsMask) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Window_HitTest(wxk_Window* self, wxk_Point point) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Window_GetBorder_Long(wxk_Window* self, int64_t flags) WXK_NOEXCEPT;

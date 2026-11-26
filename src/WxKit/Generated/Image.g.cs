@@ -193,12 +193,6 @@ public unsafe partial class Image : NativeObject {
 	/// <summary>Returns a mirrored copy of the image.</summary>
 	public Image? Mirror(bool horizontally = true) => global::WxKit.Image.Take(WxKitNative.ImageMirror(Native, horizontally ? (byte)1 : (byte)0));
 
-	/// <summary>Copy the data of the given image to the specified position in this image.</summary>
-	public void Paste(Image image, int x, int y, ImageAlphaBlendMode alphaBlend = ImageAlphaBlendMode.Over) {
-		ArgumentNullException.ThrowIfNull(image);
-		WxKitNative.ImagePaste(Native, image.Native, x, y, (int)alphaBlend);
-	}
-
 	/// <summary>Finds the handler with the given name, and removes it.</summary>
 	public static bool RemoveHandler(string name) {
 		Application.VerifyAccess();
