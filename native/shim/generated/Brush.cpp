@@ -22,10 +22,6 @@ WXK_FUNCTION(wxk_Object*) wxk_Brush_new_Bitmap(const wxk_Object* stippleBitmap) 
 	});
 }
 
-WXK_FUNCTION(void) wxk_Brush_SetColour_ByteByteByte(wxk_Object* self, uint8_t red, uint8_t green, uint8_t blue) noexcept {
-	wxk::Guard([&] { static_cast<wxBrush*>(wxk::Unwrap(self))->SetColour(static_cast<unsigned char>(red), static_cast<unsigned char>(green), static_cast<unsigned char>(blue)); });
-}
-
 WXK_FUNCTION(void) wxk_Brush_SetStipple(wxk_Object* self, const wxk_Object* bitmap) noexcept {
 	wxk::Guard([&] { static_cast<wxBrush*>(wxk::Unwrap(self))->SetStipple(wxk::ValueOf<wxBitmap>(bitmap)); });
 }
@@ -34,7 +30,7 @@ WXK_FUNCTION(wxk_Colour) wxk_Brush_GetColour(wxk_Object* self) noexcept {
 	return wxk::Guard<wxk_Colour>(wxk_Colour{0, 0, 0, 0, 0}, [&]() -> wxk_Colour { return wxk::ToColour(static_cast<wxBrush*>(wxk::Unwrap(self))->GetColour()); });
 }
 
-WXK_FUNCTION(void) wxk_Brush_SetColour_Color(wxk_Object* self, wxk_Colour color) noexcept {
+WXK_FUNCTION(void) wxk_Brush_SetColour(wxk_Object* self, wxk_Colour color) noexcept {
 	wxk::Guard([&] { static_cast<wxBrush*>(wxk::Unwrap(self))->SetColour(wxk::FromColour(color)); });
 }
 

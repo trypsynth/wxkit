@@ -33,7 +33,7 @@ public unsafe partial class Pen : NativeObject {
 	/// <summary>Returns a reference to the pen colour.</summary>
 	public Color? Color {
 		get => global::WxKit.Color.FromNative(WxKitNative.PenGetColour(Native));
-		set => WxKitNative.PenSetColourColor(Native, global::WxKit.Color.ToNative(value));
+		set => WxKitNative.PenSetColour(Native, global::WxKit.Color.ToNative(value));
 	}
 
 	/// <summary>Returns true if the pen is a valid non-transparent pen.</summary>
@@ -68,9 +68,6 @@ public unsafe partial class Pen : NativeObject {
 		get => WxKitNative.PenGetWidth(Native);
 		set => WxKitNative.PenSetWidth(Native, value);
 	}
-
-	/// <summary>The pen's colour is changed to the given colour.</summary>
-	public void SetColor(byte red, byte green, byte blue) => WxKitNative.PenSetColourByteByteByte(Native, red, green, blue);
 
 	/// <summary>Sets the bitmap for stippling.</summary>
 	public void SetStipple(Bitmap stipple) {

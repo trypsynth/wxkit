@@ -40,9 +40,10 @@ public class ConversionTests {
 	[Fact]
 	public Task GivesOutputParametersAsOut() => Gui.WithFrame(frame => {
 		TextCtrl text = new(frame, "hello world");
+		Assert.True(text.PositionToXY(7, out int column, out int line));
+		Assert.Equal((7, 0), (column, line));
 		text.SetSelection(2, 7);
-		text.GetSelection(out int from, out int to);
-		Assert.Equal((2L, 7L), (from, to));
+		Assert.Equal((2, 5), (text.SelectionStart, text.SelectionLength));
 	});
 
 	[Fact]

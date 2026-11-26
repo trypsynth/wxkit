@@ -63,7 +63,7 @@ internal sealed class ChecklistControl : Panel {
 				break;
 			// The control wants every key, so it passes Tab on itself, as a standard control does.
 			case KeyCode.Tab:
-				Navigate(e.ShiftDown() ? NavigationFlags.Backward | NavigationFlags.FromTab : NavigationFlags.Forward | NavigationFlags.FromTab);
+				Navigate(e.Modifiers.HasFlag(KeyModifiers.Shift) ? NavigationFlags.Backward | NavigationFlags.FromTab : NavigationFlags.Forward | NavigationFlags.FromTab);
 				break;
 			default:
 				e.Skip();

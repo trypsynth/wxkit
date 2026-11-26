@@ -63,9 +63,6 @@ public unsafe partial class MouseEvent : Event {
 	/// <summary>Returns Y coordinate of the physical mouse event position.</summary>
 	public int Y => WxKitNative.MouseEventGetY(Handle);
 
-	/// <summary>Returns true if the Alt key is pressed.</summary>
-	public bool AltDown() => WxKitNative.MouseEventAltDown(Handle) != 0;
-
 	/// <summary>Returns true if the event was a first extra button double click.</summary>
 	public bool Aux1DClick() => WxKitNative.MouseEventAux1DClick(Handle) != 0;
 
@@ -98,12 +95,6 @@ public unsafe partial class MouseEvent : Event {
 
 	/// <summary>If the argument is omitted, this returns true if the event was a mouse button up event.</summary>
 	public bool ButtonUp(MouseButton button = MouseButton.Any) => WxKitNative.MouseEventButtonUp(Handle, (int)button) != 0;
-
-	/// <summary>Returns true if the key used for command accelerators is pressed.</summary>
-	public bool CmdDown() => WxKitNative.MouseEventCmdDown(Handle) != 0;
-
-	/// <summary>Returns true if the Control key or Apple/Command key under macOS is pressed.</summary>
-	public bool ControlDown() => WxKitNative.MouseEventControlDown(Handle) != 0;
 
 	/// <summary>Returns true if this was a dragging event (motion while a button is depressed).</summary>
 	public bool Dragging() => WxKitNative.MouseEventDragging(Handle) != 0;
@@ -138,9 +129,6 @@ public unsafe partial class MouseEvent : Event {
 	/// <summary>Returns true if the event is a magnify (i.e. pinch to zoom) event.</summary>
 	public bool Magnify() => WxKitNative.MouseEventMagnify(Handle) != 0;
 
-	/// <summary>Returns true if the Meta key was down at the time of the event.</summary>
-	public bool MetaDown() => WxKitNative.MouseEventMetaDown(Handle) != 0;
-
 	/// <summary>Returns true if the event was a middle double click.</summary>
 	public bool MiddleDClick() => WxKitNative.MouseEventMiddleDClick(Handle) != 0;
 
@@ -170,7 +158,4 @@ public unsafe partial class MouseEvent : Event {
 
 	/// <summary>Returns true if the right mouse button changed to up.</summary>
 	public bool RightUp() => WxKitNative.MouseEventRightUp(Handle) != 0;
-
-	/// <summary>Returns true if the Shift key is pressed.</summary>
-	public bool ShiftDown() => WxKitNative.MouseEventShiftDown(Handle) != 0;
 }

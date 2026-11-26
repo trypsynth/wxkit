@@ -149,12 +149,6 @@ public unsafe partial class TopLevelWindow : Window {
 		WxKitNative.TopLevelWindowSetIcons(Native, icons.Native);
 	}
 
-	/// <summary>A simpler interface for setting the size hints than SetSizeHints().</summary>
-	public void SetMaxSize(Size size) => WxKitNative.TopLevelWindowSetMaxSize(Native, size);
-
-	/// <summary>A simpler interface for setting the size hints than SetSizeHints().</summary>
-	public void SetMinSize(Size size) => WxKitNative.TopLevelWindowSetMinSize(Native, size);
-
 	/// <summary>Sets the file name represented by this wxTopLevelWindow.</summary>
 	public void SetRepresentedFileName(string fileName) {
 		ArgumentNullException.ThrowIfNull(fileName);

@@ -16,14 +16,6 @@ public unsafe partial class StaticText : Control {
 	/// <summary>Returns true if the window styles for this control contains one of the wxST_ELLIPSIZE_START, wxST_ELLIPSIZE_MIDDLE or wxST_ELLIPSIZE_END styles.</summary>
 	public bool IsEllipsized => WxKitNative.StaticTextIsEllipsized(Native) != 0;
 
-	/// <summary>Change the label shown in the control.</summary>
-	public void SetLabel(string label) {
-		ArgumentNullException.ThrowIfNull(label);
-		fixed (char* labelText = label) {
-			WxKitNative.StaticTextSetLabel(Native, labelText, NativeString.Length(label));
-		}
-	}
-
 	/// <summary>This functions wraps the controls label so that each of its lines becomes at most width pixels wide if possible (the lines are broken at words boundaries so it might not be the case if words are too long).</summary>
 	public void Wrap(int width) => WxKitNative.StaticTextWrap(Native, width);
 

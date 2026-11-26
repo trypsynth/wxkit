@@ -46,14 +46,6 @@ WXK_FUNCTION(void) wxk_TopLevelWindow_SetIcons(wxk_Window* self, const wxk_Objec
 	wxk::Guard([&] { static_cast<wxTopLevelWindow*>(wxk::Unwrap(self))->SetIcons(wxIconBundle(wxk::ValueOf<wxIcon>(icons))); });
 }
 
-WXK_FUNCTION(void) wxk_TopLevelWindow_SetMaxSize(wxk_Window* self, wxk_Size size) noexcept {
-	wxk::Guard([&] { static_cast<wxTopLevelWindow*>(wxk::Unwrap(self))->SetMaxSize(wxk::FromSize(size)); });
-}
-
-WXK_FUNCTION(void) wxk_TopLevelWindow_SetMinSize(wxk_Window* self, wxk_Size size) noexcept {
-	wxk::Guard([&] { static_cast<wxTopLevelWindow*>(wxk::Unwrap(self))->SetMinSize(wxk::FromSize(size)); });
-}
-
 WXK_FUNCTION(uint8_t) wxk_TopLevelWindow_ShouldPreventAppExit(wxk_Window* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxTopLevelWindow*>(wxk::Unwrap(self))->ShouldPreventAppExit()) ? 1 : 0; });
 }

@@ -267,10 +267,6 @@ WXK_FUNCTION(uint8_t) wxk_ListCtrl_ScrollList(wxk_Window* self, int32_t dx, int3
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->ScrollList(static_cast<int>(dx), static_cast<int>(dy))) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetBackgroundColour(wxk_Window* self, wxk_Colour color) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetBackgroundColour(wxk::FromColour(color))) ? 1 : 0; });
-}
-
 WXK_FUNCTION(uint8_t) wxk_ListCtrl_SetColumn(wxk_Window* self, int32_t column, wxk_Object* item) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxListCtrl*>(wxk::Unwrap(self))->SetColumn(static_cast<int>(column), wxk::ValueRef<wxListItem>(item))) ? 1 : 0; });
 }

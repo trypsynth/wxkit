@@ -73,10 +73,6 @@ WXK_FUNCTION(uint8_t) wxk_MouseEvent_Magnify(wxk_Event* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMouseEvent*>(wxk::Unwrap(self))->Magnify()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_MouseEvent_MetaDown(wxk_Event* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMouseEvent*>(wxk::Unwrap(self))->MetaDown()) ? 1 : 0; });
-}
-
 WXK_FUNCTION(uint8_t) wxk_MouseEvent_MiddleDClick(wxk_Event* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMouseEvent*>(wxk::Unwrap(self))->MiddleDClick()) ? 1 : 0; });
 }
@@ -125,24 +121,8 @@ WXK_FUNCTION(uint8_t) wxk_MouseEvent_Aux2IsDown(wxk_Event* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxMouseState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->Aux2IsDown()) ? 1 : 0; });
 }
 
-WXK_FUNCTION(uint8_t) wxk_MouseEvent_ControlDown(wxk_Event* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxKeyboardState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->ControlDown()) ? 1 : 0; });
-}
-
 WXK_FUNCTION(uint8_t) wxk_MouseEvent_RawControlDown(wxk_Event* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxKeyboardState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->RawControlDown()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_MouseEvent_ShiftDown(wxk_Event* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxKeyboardState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->ShiftDown()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_MouseEvent_AltDown(wxk_Event* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxKeyboardState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->AltDown()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_MouseEvent_CmdDown(wxk_Event* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxKeyboardState*>(static_cast<wxMouseEvent*>(wxk::Unwrap(self)))->CmdDown()) ? 1 : 0; });
 }
 
 WXK_FUNCTION(int32_t) wxk_MouseEvent_GetButton(wxk_Event* self) noexcept {

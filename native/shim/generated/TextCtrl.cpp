@@ -8,6 +8,10 @@ WXK_FUNCTION(wxk_Window*) wxk_TextCtrl_new(wxk_Window* parent, int32_t id, const
 	});
 }
 
+WXK_FUNCTION(void) wxk_TextCtrl_GetSelection(wxk_Window* self, int64_t* from, int64_t* to) noexcept {
+	wxk::Guard([&] { static_cast<wxTextEntry*>(static_cast<wxTextCtrl*>(wxk::Unwrap(self)))->GetSelection(wxk::OutLong{from}, wxk::OutLong{to}); });
+}
+
 WXK_FUNCTION(void) wxk_TextCtrl_OSXEnableNewLineReplacement(wxk_Window* self, uint8_t enable) noexcept {
 	#if defined(__WXOSX__)
 	wxk::Guard([&] { static_cast<wxTextCtrl*>(wxk::Unwrap(self))->OSXEnableNewLineReplacement(enable != 0); });
@@ -159,10 +163,6 @@ WXK_FUNCTION(void) wxk_TextCtrl_ForceUpper(wxk_Window* self) noexcept {
 
 WXK_FUNCTION(wxk_String*) wxk_TextCtrl_GetRange(wxk_Window* self, int32_t from, int32_t to) noexcept {
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxTextEntry*>(static_cast<wxTextCtrl*>(wxk::Unwrap(self)))->GetRange(static_cast<long>(from), static_cast<long>(to))); });
-}
-
-WXK_FUNCTION(void) wxk_TextCtrl_GetSelection(wxk_Window* self, int64_t* from, int64_t* to) noexcept {
-	wxk::Guard([&] { static_cast<wxTextEntry*>(static_cast<wxTextCtrl*>(wxk::Unwrap(self)))->GetSelection(wxk::OutLong{from}, wxk::OutLong{to}); });
 }
 
 WXK_FUNCTION(void) wxk_TextCtrl_Paste(wxk_Window* self) noexcept {

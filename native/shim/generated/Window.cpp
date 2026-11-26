@@ -265,54 +265,6 @@ WXK_FUNCTION(void) wxk_Window_SetVirtualSize_IntInt(wxk_Window* self, int32_t wi
 	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->SetVirtualSize(static_cast<int>(width), static_cast<int>(height)); });
 }
 
-WXK_FUNCTION(wxk_Size) wxk_Window_FromDIP_SizeWindow(wxk_Size size, wxk_Window* w) noexcept {
-	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(wxWindow::FromDIP(wxk::FromSize(size), static_cast<wxWindow*>(wxk::Unwrap(w)))); });
-}
-
-WXK_FUNCTION(wxk_Point) wxk_Window_FromDIP_PointWindow(wxk_Point point, wxk_Window* w) noexcept {
-	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(wxWindow::FromDIP(wxk::FromPoint(point), static_cast<wxWindow*>(wxk::Unwrap(w)))); });
-}
-
-WXK_FUNCTION(int32_t) wxk_Window_FromDIP_IntWindow(int32_t d, wxk_Window* w) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(wxWindow::FromDIP(static_cast<int>(d), static_cast<wxWindow*>(wxk::Unwrap(w)))); });
-}
-
-WXK_FUNCTION(wxk_Size) wxk_Window_ToDIP_SizeWindow(wxk_Size size, wxk_Window* w) noexcept {
-	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(wxWindow::ToDIP(wxk::FromSize(size), static_cast<wxWindow*>(wxk::Unwrap(w)))); });
-}
-
-WXK_FUNCTION(wxk_Point) wxk_Window_ToDIP_PointWindow(wxk_Point point, wxk_Window* w) noexcept {
-	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(wxWindow::ToDIP(wxk::FromPoint(point), static_cast<wxWindow*>(wxk::Unwrap(w)))); });
-}
-
-WXK_FUNCTION(int32_t) wxk_Window_ToDIP_IntWindow(int32_t d, wxk_Window* w) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(wxWindow::ToDIP(static_cast<int>(d), static_cast<wxWindow*>(wxk::Unwrap(w)))); });
-}
-
-WXK_FUNCTION(wxk_Size) wxk_Window_FromPhys_SizeWindow(wxk_Size size, wxk_Window* w) noexcept {
-	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(wxWindow::FromPhys(wxk::FromSize(size), static_cast<wxWindow*>(wxk::Unwrap(w)))); });
-}
-
-WXK_FUNCTION(wxk_Point) wxk_Window_FromPhys_PointWindow(wxk_Point point, wxk_Window* w) noexcept {
-	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(wxWindow::FromPhys(wxk::FromPoint(point), static_cast<wxWindow*>(wxk::Unwrap(w)))); });
-}
-
-WXK_FUNCTION(int32_t) wxk_Window_FromPhys_IntWindow(int32_t d, wxk_Window* w) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(wxWindow::FromPhys(static_cast<int>(d), static_cast<wxWindow*>(wxk::Unwrap(w)))); });
-}
-
-WXK_FUNCTION(wxk_Size) wxk_Window_ToPhys_SizeWindow(wxk_Size size, wxk_Window* w) noexcept {
-	return wxk::Guard<wxk_Size>(wxk_Size{-1, -1}, [&]() -> wxk_Size { return wxk::ToSize(wxWindow::ToPhys(wxk::FromSize(size), static_cast<wxWindow*>(wxk::Unwrap(w)))); });
-}
-
-WXK_FUNCTION(wxk_Point) wxk_Window_ToPhys_PointWindow(wxk_Point point, wxk_Window* w) noexcept {
-	return wxk::Guard<wxk_Point>(wxk_Point{-1, -1}, [&]() -> wxk_Point { return wxk::ToPoint(wxWindow::ToPhys(wxk::FromPoint(point), static_cast<wxWindow*>(wxk::Unwrap(w)))); });
-}
-
-WXK_FUNCTION(int32_t) wxk_Window_ToPhys_IntWindow(int32_t d, wxk_Window* w) noexcept {
-	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(wxWindow::ToPhys(static_cast<int>(d), static_cast<wxWindow*>(wxk::Unwrap(w)))); });
-}
-
 WXK_FUNCTION(void) wxk_Window_Center(wxk_Window* self, int32_t direction) noexcept {
 	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->Center(static_cast<int>(direction)); });
 }

@@ -1681,15 +1681,6 @@ public unsafe partial class StyledTextCtrl : Control {
 		}
 	}
 
-	/// <summary>Gets the current selection span.</summary>
-	public void GetSelection(out int from, out int to) {
-		long fromWide = 0;
-		long toWide = 0;
-		WxKitNative.StyledTextCtrlGetSelection(Native, &fromWide, &toWide);
-		from = checked((int)fromWide);
-		to = checked((int)toWide);
-	}
-
 	/// <summary>Return the anchor position of the nth selection.</summary>
 	public int GetSelectionNAnchor(int selection) => WxKitNative.StyledTextCtrlGetSelectionNAnchor(Native, selection);
 

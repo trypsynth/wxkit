@@ -381,9 +381,6 @@ public unsafe partial class ListCtrl : Control {
 	/// <summary>Scrolls the list control.</summary>
 	public bool ScrollList(int dx, int dy) => WxKitNative.ListCtrlScrollList(Native, dx, dy) != 0;
 
-	/// <summary>Sets the background colour.</summary>
-	public bool SetBackgroundColor(Color? color) => WxKitNative.ListCtrlSetBackgroundColour(Native, global::WxKit.Color.ToNative(color)) != 0;
-
 	/// <summary>Sets information about this column.</summary>
 	public bool SetColumn(int column, ListItem item) {
 		ArgumentNullException.ThrowIfNull(item);

@@ -8,10 +8,6 @@ WXK_FUNCTION(wxk_Window*) wxk_StaticText_new(wxk_Window* parent, int32_t id, con
 	});
 }
 
-WXK_FUNCTION(void) wxk_StaticText_SetLabel(wxk_Window* self, const char16_t* label, size_t labelLength) noexcept {
-	wxk::Guard([&] { static_cast<wxStaticText*>(wxk::Unwrap(self))->SetLabel(wxk::FromUtf16(label, labelLength)); });
-}
-
 WXK_FUNCTION(void) wxk_StaticText_Wrap(wxk_Window* self, int32_t width) noexcept {
 	wxk::Guard([&] { static_cast<wxStaticText*>(wxk::Unwrap(self))->Wrap(static_cast<int>(width)); });
 }

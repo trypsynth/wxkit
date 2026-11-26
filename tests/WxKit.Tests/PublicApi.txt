@@ -548,7 +548,6 @@ class WxKit.Brush : NativeObject
     bool IsNonTransparent { get; }
     bool IsOk { get; }
     bool IsTransparent { get; }
-    void SetColor(byte red, byte green, byte blue)
     void SetStipple(Bitmap bitmap)
 enum WxKit.BrushStyle : int
     BackwardDiagonalHatch = 111
@@ -779,7 +778,6 @@ class WxKit.ColorPickerCtrl : PickerBase
     event EventHandler<ColorPickerEvent>? ColorChanged
     event EventHandler<ColorPickerEvent>? CurrentColorChanged
     event EventHandler<ColorPickerEvent>? DialogCanceled
-    void SetColor(string colorName)
 [Flags] enum WxKit.ColorPickerCtrlStyle : long
     Default = 0
     None = 0
@@ -842,7 +840,6 @@ class WxKit.ComboBox : Control
     void Delete(int index)
     void Dismiss()
     void ForceUpper()
-    void GetSelection(out int from, out int to)
     void Paste()
     void Popup()
     void Redo()
@@ -1353,7 +1350,6 @@ class WxKit.Dialog : TopLevelWindow, IDisposable
     void AddMainButtonId(int id)
     void Dispose()
     void EndModal(int returnCode)
-    void SetIcon(Icon icon)
     void ShowWindowModal()
 [Flags] enum WxKit.DialogButtons : int
     Apply = 32
@@ -2467,7 +2463,6 @@ class WxKit.InfoBar : Control
     ShowEffect ShowEffect { get; }
     bool HasButtonId(int buttonId)
     bool IsCheckBoxChecked { get; }
-    bool SetFont(Font font)
     int ButtonCount { get; }
     int EffectDuration { get; set; }
     int GetButtonId(int index)
@@ -2673,17 +2668,12 @@ class WxKit.KeyEvent : Event
     KeyCode KeyCode { get; }
     KeyModifiers Modifiers { get; }
     Point Position { get; }
-    bool AltDown()
-    bool CmdDown()
-    bool ControlDown()
     bool HasAnyModifiers { get; }
     bool HasModifiers { get; }
     bool IsAutoRepeat { get; }
     bool IsKeyInCategory(KeyCategory category)
     bool IsNextEventAllowed { get; }
-    bool MetaDown()
     bool RawControlDown()
-    bool ShiftDown()
     int RawKeyCode { get; }
     int RawKeyFlags { get; }
     int X { get; }
@@ -2813,7 +2803,6 @@ class WxKit.ListCtrl : Control
     bool IsVirtual { get; }
     bool IsVisible(int item)
     bool ScrollList(int dx, int dy)
-    bool SetBackgroundColor(Color? color)
     bool SetColumn(int column, ListItem item)
     bool SetColumnWidth(int column, int width)
     bool SetItem(ListItem info)
@@ -3130,7 +3119,6 @@ class WxKit.MouseEvent : Event
     MouseWheelAxis WheelAxis { get; }
     Point GetLogicalPosition(DC dc)
     Point Position { get; }
-    bool AltDown()
     bool Aux1DClick()
     bool Aux1Down()
     bool Aux1IsDown()
@@ -3142,8 +3130,6 @@ class WxKit.MouseEvent : Event
     bool ButtonDClick(MouseButton button = MouseButton.Any)
     bool ButtonDown(MouseButton button = MouseButton.Any)
     bool ButtonUp(MouseButton button = MouseButton.Any)
-    bool CmdDown()
-    bool ControlDown()
     bool Dragging()
     bool Entering()
     bool HasAnyModifiers { get; }
@@ -3159,7 +3145,6 @@ class WxKit.MouseEvent : Event
     bool LeftIsDown()
     bool LeftUp()
     bool Magnify()
-    bool MetaDown()
     bool MiddleDClick()
     bool MiddleDown()
     bool MiddleIsDown()
@@ -3170,7 +3155,6 @@ class WxKit.MouseEvent : Event
     bool RightDown()
     bool RightIsDown()
     bool RightUp()
-    bool ShiftDown()
     float Magnification { get; }
     int ClickCount { get; }
     int ColumnsPerAction { get; }
@@ -3437,7 +3421,6 @@ class WxKit.Pen : NativeObject
     bool IsOk { get; }
     bool IsTransparent { get; }
     int Width { get; set; }
-    void SetColor(byte red, byte green, byte blue)
     void SetStipple(Bitmap stipple)
 enum WxKit.PenCap : int
     Butt = 132
@@ -3880,7 +3863,6 @@ class WxKit.SearchCtrl : Control
     void Copy()
     void Cut()
     void ForceUpper()
-    void GetSelection(out int from, out int to)
     void Paste()
     void Redo()
     void Remove(int from, int to)
@@ -4299,7 +4281,6 @@ class WxKit.StaticLine : Control
 class WxKit.StaticText : Control
     StaticText(Window parent, string label, int id = -1, Point? position = null, Size? size = null, StaticTextStyle style = StaticTextStyle.None)
     bool IsEllipsized { get; }
-    void SetLabel(string label)
     void Wrap(int width)
 [Flags] enum WxKit.StaticTextStyle : long
     AlignCenterHorizontal = 256
@@ -7629,7 +7610,6 @@ class WxKit.StyledTextCtrl : Control
     void FoldLine(int line, int action)
     void FormFeed()
     void FreeSubStyles()
-    void GetSelection(out int from, out int to)
     void GotoLine(int line)
     void GotoPos(int caret)
     void HideLines(int lineStart, int lineEnd)
@@ -8063,7 +8043,6 @@ class WxKit.TextCtrl : Control
     void DiscardEdits()
     void EmptyUndoBuffer()
     void ForceUpper()
-    void GetSelection(out int from, out int to)
     void MarkDirty()
     void OsxDisableAllSmartSubstitutions()
     void OsxEnableAutomaticDashSubstitution(bool enable)
@@ -8282,8 +8261,6 @@ class WxKit.TopLevelWindow : Window
     void RequestUserAttention(UserAttention flags = UserAttention.Info)
     void Restore()
     void SetIcons(Icon icons)
-    void SetMaxSize(Size size)
-    void SetMinSize(Size size)
     void SetRepresentedFileName(string fileName)
     void ShowWithoutActivating()
 sealed class WxKit.Translations : IDisposable
@@ -8882,24 +8859,12 @@ class WxKit.Window : EvtHandler
     int ToPhysical(int d)
     long WindowStyleFlag { get; set; }
     nint NativeHandle { get; }
-    static Point FromDip(Point point, Window w)
-    static Point FromPhysical(Point point, Window w)
-    static Point ToDip(Point point, Window w)
-    static Point ToPhysical(Point point, Window w)
-    static Size FromDip(Size size, Window w)
-    static Size FromPhysical(Size size, Window w)
-    static Size ToDip(Size size, Window w)
-    static Size ToPhysical(Size size, Window w)
     static Window? Capture { get; }
     static Window? FindFocus()
     static Window? FindWindowById(long id, Window? parent = null)
     static Window? FindWindowByLabel(string label, Window? parent = null)
     static Window? FindWindowByName(string name, Window? parent = null)
-    static int FromDip(int d, Window w)
-    static int FromPhysical(int d, Window w)
     static int NewControlId(int count = 1)
-    static int ToDip(int d, Window w)
-    static int ToPhysical(int d, Window w)
     static void UnreserveControlId(int id, int count = 1)
     string GetHelpTextAtPoint(Point point, HelpOrigin origin)
     string HelpText { get; set; }

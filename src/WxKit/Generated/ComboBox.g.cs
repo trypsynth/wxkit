@@ -233,15 +233,6 @@ public unsafe partial class ComboBox : Control {
 	/// <summary>Returns the string containing the text starting in the positions from and up to to in the control.</summary>
 	public string GetRange(int from, int to) => NativeString.Take(WxKitNative.ComboBoxGetRange(Native, from, to));
 
-	/// <summary>Gets the current selection span.</summary>
-	public void GetSelection(out int from, out int to) {
-		long fromWide = 0;
-		long toWide = 0;
-		WxKitNative.ComboBoxGetSelectionOutLongOutLong(Native, &fromWide, &toWide);
-		from = checked((int)fromWide);
-		to = checked((int)toWide);
-	}
-
 	/// <summary>Returns the label of the item with the given index.</summary>
 	public string GetString(int index) => NativeString.Take(WxKitNative.ComboBoxGetString(Native, checked((uint)index)));
 

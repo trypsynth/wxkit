@@ -42,27 +42,12 @@ public unsafe partial class KeyEvent : Event {
 	/// <summary>Returns the Y position (in client coordinates) of the event.</summary>
 	public int Y => WxKitNative.KeyEventGetY(Handle);
 
-	/// <summary>Returns true if the Alt key is pressed.</summary>
-	public bool AltDown() => WxKitNative.KeyEventAltDown(Handle) != 0;
-
-	/// <summary>Returns true if the key used for command accelerators is pressed.</summary>
-	public bool CmdDown() => WxKitNative.KeyEventCmdDown(Handle) != 0;
-
-	/// <summary>Returns true if the Control key or Apple/Command key under macOS is pressed.</summary>
-	public bool ControlDown() => WxKitNative.KeyEventControlDown(Handle) != 0;
-
 	/// <summary>Allow normal key events generation.</summary>
 	public void DoAllowNextEvent() => WxKitNative.KeyEventDoAllowNextEvent(Handle);
 
 	/// <summary>Returns true if the key is in the given key category.</summary>
 	public bool IsKeyInCategory(KeyCategory category) => WxKitNative.KeyEventIsKeyInCategory(Handle, (int)category) != 0;
 
-	/// <summary>Returns true if the Meta/Windows/Apple key is pressed.</summary>
-	public bool MetaDown() => WxKitNative.KeyEventMetaDown(Handle) != 0;
-
 	/// <summary>Returns true if the Control key (also under macOS).</summary>
 	public bool RawControlDown() => WxKitNative.KeyEventRawControlDown(Handle) != 0;
-
-	/// <summary>Returns true if the Shift key is pressed.</summary>
-	public bool ShiftDown() => WxKitNative.KeyEventShiftDown(Handle) != 0;
 }

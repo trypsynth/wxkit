@@ -16,10 +16,6 @@ WXK_FUNCTION(void) wxk_InfoBar_ShowCheckBox(wxk_Window* self, const char16_t* ch
 	wxk::Guard([&] { static_cast<wxInfoBar*>(wxk::Unwrap(self))->ShowCheckBox(wxk::FromUtf16(checkBoxText, checkBoxTextLength), checked != 0); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_InfoBar_SetFont(wxk_Window* self, const wxk_Object* font) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxInfoBar*>(wxk::Unwrap(self))->SetFont(wxk::ValueOf<wxFont>(font))) ? 1 : 0; });
-}
-
 WXK_FUNCTION(void) wxk_InfoBar_AddButton(wxk_Window* self, int32_t buttonId, const char16_t* label, size_t labelLength) noexcept {
 	wxk::Guard([&] { static_cast<wxInfoBar*>(wxk::Unwrap(self))->AddButton(static_cast<int>(buttonId), wxk::FromUtf16(label, labelLength)); });
 }

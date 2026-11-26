@@ -234,6 +234,14 @@ internal sealed class ClassTweak(string name) {
 	/// <summary>Overloads left out, told apart by one of their parameters, such as wxImage's SetAlpha that takes an alpha array.</summary>
 	public List<OverloadMatch> IgnoredOverloads { get; } = [];
 
+	/// <summary>Overloads whose import is kept for hand-written code, without a managed member, as <see cref="Internal"/> does for every overload.</summary>
+	public List<OverloadMatch> InternalOverloads { get; } = [];
+
+	public ClassTweak InternalOverload(string member, string parameter, string type) {
+		InternalOverloads.Add(new OverloadMatch(member, parameter, type));
+		return this;
+	}
+
 	public ClassTweak IgnoreOverload(string member, string parameter, string type) {
 		IgnoredOverloads.Add(new OverloadMatch(member, parameter, type));
 		return this;

@@ -9,28 +9,8 @@ WXK_FUNCTION(void) wxk_KeyEvent_DoAllowNextEvent(wxk_Event* self) noexcept {
 	wxk::Guard([&] { static_cast<wxKeyEvent*>(wxk::Unwrap(self))->DoAllowNextEvent(); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_KeyEvent_ControlDown(wxk_Event* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxKeyboardState*>(static_cast<wxKeyEvent*>(wxk::Unwrap(self)))->ControlDown()) ? 1 : 0; });
-}
-
 WXK_FUNCTION(uint8_t) wxk_KeyEvent_RawControlDown(wxk_Event* self) noexcept {
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxKeyboardState*>(static_cast<wxKeyEvent*>(wxk::Unwrap(self)))->RawControlDown()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_KeyEvent_ShiftDown(wxk_Event* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxKeyboardState*>(static_cast<wxKeyEvent*>(wxk::Unwrap(self)))->ShiftDown()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_KeyEvent_MetaDown(wxk_Event* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxKeyboardState*>(static_cast<wxKeyEvent*>(wxk::Unwrap(self)))->MetaDown()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_KeyEvent_AltDown(wxk_Event* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxKeyboardState*>(static_cast<wxKeyEvent*>(wxk::Unwrap(self)))->AltDown()) ? 1 : 0; });
-}
-
-WXK_FUNCTION(uint8_t) wxk_KeyEvent_CmdDown(wxk_Event* self) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxKeyboardState*>(static_cast<wxKeyEvent*>(wxk::Unwrap(self)))->CmdDown()) ? 1 : 0; });
 }
 
 WXK_FUNCTION(wxk_Point) wxk_KeyEvent_GetPosition(wxk_Event* self) noexcept {

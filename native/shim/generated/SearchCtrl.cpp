@@ -8,6 +8,10 @@ WXK_FUNCTION(wxk_Window*) wxk_SearchCtrl_new(wxk_Window* parent, int32_t id, con
 	});
 }
 
+WXK_FUNCTION(void) wxk_SearchCtrl_GetSelection(wxk_Window* self, int64_t* from, int64_t* to) noexcept {
+	wxk::Guard([&] { static_cast<wxTextEntry*>(static_cast<wxSearchCtrl*>(wxk::Unwrap(self)))->GetSelection(wxk::OutLong{from}, wxk::OutLong{to}); });
+}
+
 WXK_FUNCTION(void) wxk_SearchCtrl_ShowCancelButton(wxk_Window* self, uint8_t show) noexcept {
 	wxk::Guard([&] { static_cast<wxSearchCtrl*>(wxk::Unwrap(self))->ShowCancelButton(show != 0); });
 }
@@ -58,10 +62,6 @@ WXK_FUNCTION(void) wxk_SearchCtrl_ForceUpper(wxk_Window* self) noexcept {
 
 WXK_FUNCTION(wxk_String*) wxk_SearchCtrl_GetRange(wxk_Window* self, int32_t from, int32_t to) noexcept {
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxTextEntry*>(static_cast<wxSearchCtrl*>(wxk::Unwrap(self)))->GetRange(static_cast<long>(from), static_cast<long>(to))); });
-}
-
-WXK_FUNCTION(void) wxk_SearchCtrl_GetSelection(wxk_Window* self, int64_t* from, int64_t* to) noexcept {
-	wxk::Guard([&] { static_cast<wxTextEntry*>(static_cast<wxSearchCtrl*>(wxk::Unwrap(self)))->GetSelection(wxk::OutLong{from}, wxk::OutLong{to}); });
 }
 
 WXK_FUNCTION(void) wxk_SearchCtrl_Paste(wxk_Window* self) noexcept {

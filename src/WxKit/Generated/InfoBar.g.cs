@@ -51,12 +51,6 @@ public unsafe partial class InfoBar : Control {
 	/// <summary>Remove a button previously added by AddButton().</summary>
 	public void RemoveButton(int buttonId) => WxKitNative.InfoBarRemoveButton(Native, buttonId);
 
-	/// <summary>Overridden base class methods changes the font of the text message.</summary>
-	public bool SetFont(Font font) {
-		ArgumentNullException.ThrowIfNull(font);
-		return WxKitNative.InfoBarSetFont(Native, font.Native) != 0;
-	}
-
 	/// <summary>Set the effects to use when showing and hiding the bar.</summary>
 	public void SetShowHideEffects(ShowEffect showEffect, ShowEffect hideEffect) => WxKitNative.InfoBarSetShowHideEffects(Native, (int)showEffect, (int)hideEffect);
 

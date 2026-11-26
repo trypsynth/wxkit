@@ -58,7 +58,7 @@ type ChecklistControl(parent: Window, texts: string seq) as this =
         | KeyCode.Space -> toggle ()
         // The control wants every key, so it passes Tab on itself, as a standard control does.
         | KeyCode.Tab ->
-            let direction = if e.ShiftDown() then NavigationFlags.Backward else NavigationFlags.Forward
+            let direction = if e.Modifiers.HasFlag KeyModifiers.Shift then NavigationFlags.Backward else NavigationFlags.Forward
             this.Navigate(direction ||| NavigationFlags.FromTab) |> ignore
         | _ -> e.Skip()
 

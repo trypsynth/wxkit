@@ -637,27 +637,6 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>Convert DPI-independent distance in pixels to the value in pixels appropriate for the current toolkit.</summary>
 	public int FromDip(int d) => WxKitNative.WindowFromDIPInt(Native, d);
 
-	/// <summary>Non window-specific DPI-independent pixels conversion functions.</summary>
-	public static Size FromDip(Size size, Window w) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(w);
-		return WxKitNative.WindowFromDIPSizeWindow(size, (WxkWindow*)w.Native);
-	}
-
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public static Point FromDip(Point point, Window w) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(w);
-		return WxKitNative.WindowFromDIPPointWindow(point, (WxkWindow*)w.Native);
-	}
-
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public static int FromDip(int d, Window w) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(w);
-		return WxKitNative.WindowFromDIPIntWindow(d, (WxkWindow*)w.Native);
-	}
-
 	/// <summary>Convert from physical pixels to logical pixels.</summary>
 	public Size FromPhysical(Size size) => WxKitNative.WindowFromPhysSize(Native, size);
 
@@ -666,27 +645,6 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public int FromPhysical(int d) => WxKitNative.WindowFromPhysInt(Native, d);
-
-	/// <summary>Convert from physical pixels to logical pixels for any window.</summary>
-	public static Size FromPhysical(Size size, Window w) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(w);
-		return WxKitNative.WindowFromPhysSizeWindow(size, (WxkWindow*)w.Native);
-	}
-
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public static Point FromPhysical(Point point, Window w) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(w);
-		return WxKitNative.WindowFromPhysPointWindow(point, (WxkWindow*)w.Native);
-	}
-
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public static int FromPhysical(int d, Window w) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(w);
-		return WxKitNative.WindowFromPhysIntWindow(d, (WxkWindow*)w.Native);
-	}
 
 	/// <summary>Returns the best height needed by this window if it had the given width.</summary>
 	public int GetBestHeight(int width) => WxKitNative.WindowGetBestHeight(Native, width);
@@ -957,27 +915,6 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>Convert pixel values of the current toolkit to DPI-independent pixel values.</summary>
 	public int ToDip(int d) => WxKitNative.WindowToDIPInt(Native, d);
 
-	/// <summary>Non window-specific pixel to DPI-independent pixels conversion functions.</summary>
-	public static Size ToDip(Size size, Window w) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(w);
-		return WxKitNative.WindowToDIPSizeWindow(size, (WxkWindow*)w.Native);
-	}
-
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public static Point ToDip(Point point, Window w) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(w);
-		return WxKitNative.WindowToDIPPointWindow(point, (WxkWindow*)w.Native);
-	}
-
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public static int ToDip(int d, Window w) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(w);
-		return WxKitNative.WindowToDIPIntWindow(d, (WxkWindow*)w.Native);
-	}
-
 	/// <summary>Convert from logical pixels to physical pixels.</summary>
 	public Size ToPhysical(Size size) => WxKitNative.WindowToPhysSize(Native, size);
 
@@ -986,27 +923,6 @@ public unsafe partial class Window : EvtHandler {
 
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public int ToPhysical(int d) => WxKitNative.WindowToPhysInt(Native, d);
-
-	/// <summary>Convert from logical pixels to physical pixels for any window.</summary>
-	public static Size ToPhysical(Size size, Window w) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(w);
-		return WxKitNative.WindowToPhysSizeWindow(size, (WxkWindow*)w.Native);
-	}
-
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public static Point ToPhysical(Point point, Window w) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(w);
-		return WxKitNative.WindowToPhysPointWindow(point, (WxkWindow*)w.Native);
-	}
-
-	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
-	public static int ToPhysical(int d, Window w) {
-		Application.VerifyAccess();
-		ArgumentNullException.ThrowIfNull(w);
-		return WxKitNative.WindowToPhysIntWindow(d, (WxkWindow*)w.Native);
-	}
 
 	/// <summary>Turns the given flag on if it's currently turned off and vice versa.</summary>
 	public bool ToggleWindowStyle(int flag) => WxKitNative.WindowToggleWindowStyle(Native, flag) != 0;

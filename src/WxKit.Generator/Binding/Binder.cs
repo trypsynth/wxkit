@@ -177,7 +177,7 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		foreach (DoxygenMember member in candidates) {
 			bool isConstructor = member.Name == shortName;
 			if (tweak.IgnoredMembers.Contains(member.Name) || tweak.IgnoredOverloads.Any(ignored => ignored.Matches(member))) continue;
-			bool isInternal = tweak.InternalMembers.Contains(member.Name);
+			bool isInternal = tweak.InternalMembers.Contains(member.Name) || tweak.InternalOverloads.Any(overload => overload.Matches(member));
 			// An application receives events and doesn't make them, so what fills one in is left out,
 			// but for what a handler answers with, such as the cursor a wxSetCursorEvent asks for.
 			if (bound.CppName.EndsWith("Event", StringComparison.Ordinal) && !member.IsStatic && !isInternal && member.Name.StartsWith("Set", StringComparison.Ordinal) && !tweak.HandlerSetters.Contains(member.Name)) {
@@ -213,7 +213,7 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 		if (tweak.IsGlobal) {
 			foreach (BoundFunction function in functions.Where(static function => function.ExportName.StartsWith("wx", StringComparison.Ordinal))) function.ExportName = function.ExportName[2..];
 		}
-		bound.InternalFunctions.AddRange(functions.Where(function => tweak.InternalMembers.Contains(function.Source.Name)));
+		bound.InternalFunctions.AddRange(functions.Where(function => tweak.InternalMembers.Contains(function.Source.Name) || tweak.InternalOverloads.Any(overload => overload.Matches(function.Source))));
 		functions.RemoveAll(bound.InternalFunctions.Contains);
 		// Two C++ constructors can have the same managed signature, as an int and a long do, and C#
 		// allows only one.

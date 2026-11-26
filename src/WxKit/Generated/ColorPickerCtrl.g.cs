@@ -16,7 +16,7 @@ public unsafe partial class ColorPickerCtrl : PickerBase {
 	/// <summary>Returns the currently selected colour.</summary>
 	public Color? Color {
 		get => global::WxKit.Color.FromNative(WxKitNative.ColorPickerCtrlGetColour(Native));
-		set => WxKitNative.ColorPickerCtrlSetColourColor(Native, global::WxKit.Color.ToNative(value));
+		set => WxKitNative.ColorPickerCtrlSetColour(Native, global::WxKit.Color.ToNative(value));
 	}
 
 	/// <summary>The user changed the colour selected in the control either using the button or using text control (see wxCLRP_USE_TEXTCTRL; note that in this case the event is fired only if the user's input is valid, i.e. recognizable). When using a popup dialog for changing the colour, this event is sent only when the changes in the dialog are accepted by the user, unlike EVT_COLOURPICKER_CURRENT_CHANGED.</summary>
@@ -35,14 +35,6 @@ public unsafe partial class ColorPickerCtrl : PickerBase {
 	public event EventHandler<ColorPickerEvent>? DialogCanceled {
 		add => AddHandler(EventType.ColorPickerDialogCanceled, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ColorPickerDialogCanceled, StandardId.Any, StandardId.Any, value);
-	}
-
-	/// <summary>Sets the currently selected colour.</summary>
-	public void SetColor(string colorName) {
-		ArgumentNullException.ThrowIfNull(colorName);
-		fixed (char* colorNameText = colorName) {
-			WxKitNative.ColorPickerCtrlSetColourString(Native, colorNameText, NativeString.Length(colorName));
-		}
 	}
 
 	private static WxkWindow* CreateNative(Window parent, Color? color, int id, Point? position, Size? size, ColorPickerCtrlStyle style) {

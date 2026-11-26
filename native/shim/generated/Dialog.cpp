@@ -26,10 +26,6 @@ WXK_FUNCTION(uint8_t) wxk_Dialog_IsMainButtonId(wxk_Window* self, int32_t id) no
 	#endif
 }
 
-WXK_FUNCTION(void) wxk_Dialog_SetIcon(wxk_Window* self, const wxk_Object* icon) noexcept {
-	wxk::Guard([&] { static_cast<wxDialog*>(wxk::Unwrap(self))->SetIcon(wxk::ValueOf<wxIcon>(icon)); });
-}
-
 WXK_FUNCTION(int32_t) wxk_Dialog_ShowModal(wxk_Window* self) noexcept {
 	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxDialog*>(wxk::Unwrap(self))->ShowModal()); });
 }

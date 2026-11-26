@@ -189,15 +189,6 @@ public unsafe partial class TextCtrl : Control {
 	/// <summary>Returns the string containing the text starting in the positions from and up to to in the control.</summary>
 	public string GetRange(int from, int to) => NativeString.Take(WxKitNative.TextCtrlGetRange(Native, from, to));
 
-	/// <summary>Gets the current selection span.</summary>
-	public void GetSelection(out int from, out int to) {
-		long fromWide = 0;
-		long toWide = 0;
-		WxKitNative.TextCtrlGetSelection(Native, &fromWide, &toWide);
-		from = checked((int)fromWide);
-		to = checked((int)toWide);
-	}
-
 	/// <summary>Sets the content of a multiline text control from a Pango markup buffer.</summary>
 	public bool GtkSetPangoMarkup(string text) {
 		ArgumentNullException.ThrowIfNull(text);

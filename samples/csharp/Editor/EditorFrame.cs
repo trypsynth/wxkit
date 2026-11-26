@@ -220,7 +220,8 @@ internal sealed class EditorFrame : Frame {
 	}
 
 	private void DeleteSelection() {
-		_text.GetSelection(out int from, out int to);
+		int from = _text.SelectionStart;
+		int to = from + _text.SelectionLength;
 		if (to > from) _text.Remove(from, to);
 	}
 
@@ -255,7 +256,8 @@ internal sealed class EditorFrame : Frame {
 			ShowFindDialog(replace: false);
 			return false;
 		}
-		_text.GetSelection(out int from, out int to);
+		int from = _text.SelectionStart;
+		int to = from + _text.SelectionLength;
 		bool down = flags.HasFlag(FindReplaceFlags.Down);
 		int found = Search(_text.Value, needle, down ? (int)to : (int)from - 1, down, flags);
 		if (found < 0) {
@@ -268,7 +270,8 @@ internal sealed class EditorFrame : Frame {
 	}
 
 	private void Replace(string needle, string replacement, FindReplaceFlags flags) {
-		_text.GetSelection(out int from, out int to);
+		int from = _text.SelectionStart;
+		int to = from + _text.SelectionLength;
 		if (to > from && string.Equals(_text.GetRange(from, to), needle, Comparison(flags))) {
 			_text.Replace(from, to, replacement);
 			_text.SetSelection(from, from + replacement.Length);
@@ -342,7 +345,8 @@ internal sealed class EditorFrame : Frame {
 	private void ToggleWordWrap() {
 		_wordWrap = !_wordWrap;
 		TextCtrl old = _text;
-		old.GetSelection(out int from, out int to);
+		int from = old.SelectionStart;
+		int to = from + old.SelectionLength;
 		bool modified = old.IsModified;
 		using Font? font = old.Font;
 		_text = CreateText(old.Value);

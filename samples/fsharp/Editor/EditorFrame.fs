@@ -194,7 +194,8 @@ type EditorFrame() as this =
             showFindDialog false
             false
         else
-            let from, last = text.GetSelection()
+            let from = text.SelectionStart
+            let last = from + text.SelectionLength
             let start = if flags &&& FindReplaceFlags.Down = FindReplaceFlags.Down then int last else int from - 1
             match Search.find text.Value needle start flags with
             | Some found ->
@@ -206,7 +207,8 @@ type EditorFrame() as this =
                 false
 
     and replaceOne needle replacement flags =
-        let from, last = text.GetSelection()
+        let from = text.SelectionStart
+        let last = from + text.SelectionLength
         if last > from && String.Equals(text.GetRange(from, last), needle, Search.comparison flags) then
             text.Replace(from, last, replacement)
             text.SetSelection(from, from + replacement.Length)
@@ -222,7 +224,8 @@ type EditorFrame() as this =
             message $"{AppName} replaced {count} {occurrences} of \"{needle}\"." MessageDialogStyle.IconInformation (searchParent ())
 
     let deleteSelection () =
-        let from, last = text.GetSelection()
+        let from = text.SelectionStart
+        let last = from + text.SelectionLength
         if last > from then
             text.Remove(from, last)
 
@@ -251,7 +254,8 @@ type EditorFrame() as this =
     let toggleWordWrap () =
         wordWrap <- not wordWrap
         let old = text
-        let from, last = old.GetSelection()
+        let from = old.SelectionStart
+        let last = from + old.SelectionLength
         let modified = old.IsModified
         use font = old.Font
         text <- createText old.Value
