@@ -62,15 +62,13 @@ let main args =
         view.NavigationFailed.Add(fun e -> frame.Title <- $"Could not open {e.Url} - {name}")
         panel.Sizer <-
             column {
-                section (
-                    row {
-                        item addressLabel |> center
-                        item address |> grow |> center
-                        back
-                        forward
-                        reload
-                    }
-                )
+                row {
+                    item addressLabel |> center
+                    item address |> grow |> center
+                    back
+                    forward
+                    reload
+                }
                 |> fill
                 item view |> grow |> noBorder
             }

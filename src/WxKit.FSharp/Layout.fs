@@ -49,23 +49,47 @@ module Layout =
     let stretch =
         LayoutItem((fun sizer _ -> sizer.AddStretchSpacer 1), SizerFlags.Default)
 
+/// <summary>
+/// What the functions that change an item take: an item, or a window or a sizer, which become the
+/// <c>item</c> or the <c>section</c> they would be on a line of their own. It is how
+/// <c>row { ... } |> fill</c> and <c>list |> grow</c> work, and isn't for calling.
+/// </summary>
+[<Sealed; AbstractClass>]
+type LayoutSource =
+    static member Item(source: LayoutItem) = source
+
+    static member Item(source: Window) = item source
+
+    static member Item(source: Sizer) = section source
+
+    static member Change(source: LayoutItem, change: SizerFlags -> SizerFlags) = source.With(change source.Flags)
+
+/// <summary>The functions that change how a layout places an item, a window, or a sizer.</summary>
+[<AutoOpen>]
+module LayoutChanges =
     /// <summary>Takes a share of the spare room along the sizer, and fills the room across it, as a list does in a column.</summary>
-    let grow (item: LayoutItem) = item.With(item.Flags.Proportion(1).Expand())
+    let inline grow (source: ^Source) =
+        LayoutSource.Change(((^Source or LayoutSource): (static member Item: ^Source -> LayoutItem) source), (fun flags -> flags.Proportion(1).Expand()))
 
     /// <summary>Fills the room across the sizer, as a text box does in a column, without growing along it.</summary>
-    let fill (item: LayoutItem) = item.With(item.Flags.Expand())
+    let inline fill (source: ^Source) =
+        LayoutSource.Change(((^Source or LayoutSource): (static member Item: ^Source -> LayoutItem) source), (fun flags -> flags.Expand()))
 
     /// <summary>Centers the item across the sizer.</summary>
-    let center (item: LayoutItem) = item.With(item.Flags.Center())
+    let inline center (source: ^Source) =
+        LayoutSource.Change(((^Source or LayoutSource): (static member Item: ^Source -> LayoutItem) source), (fun flags -> flags.Center()))
 
     /// <summary>Puts the item at the right of a column.</summary>
-    let alignRight (item: LayoutItem) = item.With(item.Flags.Right())
+    let inline alignRight (source: ^Source) =
+        LayoutSource.Change(((^Source or LayoutSource): (static member Item: ^Source -> LayoutItem) source), (fun flags -> flags.Right()))
 
     /// <summary>Puts the platform's usual border on the given sides only, such as <c>Direction.Left ||| Direction.Right</c>.</summary>
-    let border (direction: Direction) (item: LayoutItem) = item.With(item.Flags.Border(direction))
+    let inline border (direction: Direction) (source: ^Source) =
+        LayoutSource.Change(((^Source or LayoutSource): (static member Item: ^Source -> LayoutItem) source), (fun flags -> flags.Border(direction)))
 
     /// <summary>Takes the border away.</summary>
-    let noBorder (item: LayoutItem) = item.With(item.Flags.Border(Direction.All, 0))
+    let inline noBorder (source: ^Source) =
+        LayoutSource.Change(((^Source or LayoutSource): (static member Item: ^Source -> LayoutItem) source), (fun flags -> flags.Border(Direction.All, 0)))
 
 /// <summary>
 /// Builds a sizer from the items listed in it, one to a line. A window or a sizer on its own is an

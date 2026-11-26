@@ -43,6 +43,27 @@ let ``stacks a column and grows what grows`` () =
         Assert.True(list.Size.Width > 270, string list.Size.Width))
 
 [<Fact>]
+let ``changes a window or a sizer as it does an item`` () =
+    Gui.withFrame (fun frame ->
+        let panel = new Panel(frame)
+        let label = new StaticText(panel, "&Find:")
+        let text = new TextCtrl(panel)
+        let list = new ListBox(panel)
+        panel.Sizer <-
+            column {
+                row {
+                    label |> center
+                    text |> grow
+                }
+                |> fill
+                list |> grow
+            }
+        laidOut frame panel
+        // The row fills the column, so the text box in it grows to the column's edge.
+        Assert.True(right text > 270, string (right text))
+        Assert.True(bottom list > 350, string (bottom list)))
+
+[<Fact>]
 let ``aligns, fills, and spaces items`` () =
     Gui.withFrame (fun frame ->
         let panel = new Panel(frame)

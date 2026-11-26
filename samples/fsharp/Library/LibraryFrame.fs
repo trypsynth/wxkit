@@ -115,14 +115,12 @@ type LibraryFrame() as this =
         )
         panel.Sizer <-
             column {
-                section (
-                    row {
-                        item searchLabel |> center
-                        item search |> grow |> center
-                        item orderLabel |> center
-                        item order |> center
-                    }
-                )
+                row {
+                    item searchLabel |> center
+                    item search |> grow |> center
+                    item orderLabel |> center
+                    item order |> center
+                }
                 |> fill
                 item listLabel |> border (Direction.Left ||| Direction.Right ||| Direction.Top)
                 item list |> grow
