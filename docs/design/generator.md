@@ -72,7 +72,7 @@ Today 168 classes bind 3303 functions and 260 event types. The report lists abou
 
 ## Conversions
 
-Each C++ type that crosses the boundary has a conversion in `src/WxKit.Generator/Binding/Conversions.cs`, which knows its C type in the shim, its interop type, its managed type, and the code between them. For example, `const wxString&` is a `char16_t*` and length in C, a `char*` and `nuint` in interop, and a `string` in the managed API. Adding a conversion binds every method that uses the type on the next run.
+Each C++ type that crosses the boundary has a conversion in `src/WxKit.Generator/Binding`, in `Conversion.cs` and the files named for a kind, such as `StringConversions.cs`, which knows its C type in the shim, its interop type, its managed type, and the code between them. For example, `const wxString&` is a `char16_t*` and length in C, a `char*` and `nuint` in interop, and a `string` in the managed API. Adding a conversion binds every method that uses the type on the next run.
 
 ## Generated code
 
