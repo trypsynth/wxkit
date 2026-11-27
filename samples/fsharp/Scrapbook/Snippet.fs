@@ -9,8 +9,7 @@ type Snippet =
     | Text of string
     | Files of string list
 
-let private fileName (path: string) =
-    Path.GetFileName path |> Option.ofObj |> Option.defaultValue path
+let private fileName (path: string) = Path.GetFileName path
 
 /// What the list shows for a snippet: text's first line, cut short when it's long, or the files' names.
 let describe snippet =
