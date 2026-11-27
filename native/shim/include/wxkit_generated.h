@@ -2227,6 +2227,13 @@ WXK_FUNCTION(void) wxk_Slider_SetTickFreq(wxk_Window* self, int32_t frequency) W
 WXK_FUNCTION(int32_t) wxk_Slider_GetValue(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Slider_SetValue(wxk_Window* self, int32_t value) WXK_NOEXCEPT;
 
+// wxSound
+
+WXK_FUNCTION(uint8_t) wxk_Sound_Play(wxk_Object* self, int32_t flags) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Sound_Stop(void) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Sound_IsOk(wxk_Object* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Sound_IsPlaying(void) WXK_NOEXCEPT;
+
 // wxSpinButton
 
 WXK_FUNCTION(wxk_Window*) wxk_SpinButton_new(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;

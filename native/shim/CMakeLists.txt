@@ -52,7 +52,8 @@ if(UNIX)
 	set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 	# A feature that needs a system library beyond GTK's would make every application need it, so
 	# these are left out until WxKit binds what uses them: web requests need libcurl, the secret
-	# store libsecret, sound SDL, and notifications libnotify.
+	# store libsecret, and notifications libnotify. wxSound is bound, but without SDL it plays only
+	# through OSS, which few systems have.
 	set(wxUSE_WEBREQUEST OFF CACHE BOOL "" FORCE)
 	set(wxUSE_SECRETSTORE OFF CACHE BOOL "" FORCE)
 	set(wxUSE_LIBSDL OFF CACHE BOOL "" FORCE)
@@ -124,6 +125,7 @@ set(WXK_SOURCES
 	src/handlers/xpm.cpp
 	src/handlers/icon.cpp
 	src/object.cpp
+	src/sound.cpp
 	src/string.cpp
 	src/taskbar.cpp
 	src/toolbar.cpp

@@ -87,6 +87,7 @@
 #include <wx/sizer.h>
 #include <wx/slider.h>
 #include <wx/snglinst.h>
+#include <wx/sound.h>
 #include <wx/spinbutt.h>
 #include <wx/spinctrl.h>
 #include <wx/splitter.h>

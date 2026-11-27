@@ -20,6 +20,13 @@ internal static partial class Win32 {
 	// the hot key's id, and its modifiers, as MOD_ALT, MOD_CONTROL, and MOD_SHIFT, below its virtual key code.
 	public static void PressHotKey(Window window, int id, uint modifiers, int virtualKey) => SendMessage(window.NativeHandle, 0x0312, id, (nint)(((uint)virtualKey << 16) | modifiers));
 
+	// Whether Windows has a device to play sounds on, which a machine without speakers or a sound
+	// card, such as a CI runner, may not.
+	public static bool HasAudioOutput => WaveOutGetNumDevs() > 0;
+
 	[LibraryImport("user32.dll", EntryPoint = "SendMessageW")]
 	private static partial nint SendMessage(nint window, uint message, nint wParam, nint lParam);
+
+	[LibraryImport("winmm.dll", EntryPoint = "waveOutGetNumDevs")]
+	private static partial uint WaveOutGetNumDevs();
 }

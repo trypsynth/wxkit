@@ -2164,6 +2164,17 @@ public enum SizeFlags {
 	ForceEvent = 32,
 }
 
+/// <summary>Wraps wxSOUND_*.</summary>
+[Flags]
+public enum SoundFlags {
+	/// <summary>Wraps wxSOUND_SYNC.</summary>
+	Sync = 0,
+	/// <summary>Wraps wxSOUND_ASYNC.</summary>
+	Async = 1,
+	/// <summary>Wraps wxSOUND_LOOP.</summary>
+	Loop = 2,
+}
+
 /// <summary>Wraps wxSplitMode.</summary>
 public enum SplitMode {
 	/// <summary>Wraps wxSPLIT_HORIZONTAL.</summary>

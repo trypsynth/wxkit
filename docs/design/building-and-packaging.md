@@ -50,7 +50,7 @@ On macOS:
 On Linux:
 
 - wxGTK is built against GTK 3 with CMake and Ninja, and needs the development files of GTK 3 and WebKitGTK 4.1, such as Ubuntu's `libgtk-3-dev` and `libwebkit2gtk-4.1-dev`, and PowerShell 7. The link targets list WebKitGTK's libraries, and on macOS WebKit, only for an application that sets `WxKitWebView`. CI builds on Ubuntu 22.04, so the packages work with its glibc and anything newer.
-- Features that need a system library beyond GTK's are left out: web requests, the secret store, sound, libnotify notifications, and spell checking. Everything is position independent, since Native AOT links position-independent executables, and the shared library hides wxWidgets's symbols with `--exclude-libs`.
+- Features that need a system library beyond GTK's are left out: web requests, the secret store, SDL, which `Sound` would play through, libnotify notifications, and spell checking. Without SDL, a sound plays only through OSS, which few Linux systems have. Everything is position independent, since Native AOT links position-independent executables, and the shared library hides wxWidgets's symbols with `--exclude-libs`.
 - The link targets name the system libraries that `readelf` finds the shared library needs by soname, such as `-l:libgtk-3.so.0`, so an application's build machine needs GTK but not its development files. GNU ld reads static libraries once, in order, so each is listed before the ones it uses. A Native AOT publish also needs `clang` and zlib's development files.
 - `wxAccessible` is Windows only, so `Accessible` does nothing on Linux, where GTK describes its controls through ATK.
 

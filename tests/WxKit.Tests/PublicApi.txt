@@ -4429,6 +4429,17 @@ class WxKit.Slider : Control
     Vertical = 8
     VerticalScrollBar = -2147483648
     WantsChars = 262144
+class WxKit.Sound : NativeObject
+    bool IsOk { get; }
+    bool Play(SoundFlags flags = SoundFlags.Async)
+    static Sound? FromFile(string fileName)
+    static Sound? FromStream(Stream stream)
+    static bool IsPlaying { get; }
+    static void Stop()
+[Flags] enum WxKit.SoundFlags : int
+    Async = 1
+    Loop = 2
+    Sync = 0
 class WxKit.SpinButton : Control
     SpinButton(Window parent, int id = -1, Point? position = null, Size? size = null, SpinButtonStyle style = SpinButtonStyle.Vertical)
     SpinButtonStyle Style { get; set; }
