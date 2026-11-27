@@ -12892,7 +12892,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_Window_RegisterHotKey")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte WindowRegisterHotKey(WxkWindow* self, int hotkeyId, int modifiers, int virtualKeyCode);
+	public static partial byte WindowRegisterHotKey(WxkWindow* self, int hotkeyId, int modifiers, int key);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Window_UnregisterHotKey")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -13757,6 +13757,10 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_Help")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeHelp();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_HotKey")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeHotKey();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_Hyperlink")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

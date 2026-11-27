@@ -7,7 +7,7 @@ namespace WxKit.Generator.Tests;
 public class ReaderTests {
 	// Trimmed from Doxygen's output for wxButton, with the shapes the reader has to handle: a type
 	// with a reference in it, defaults, a port-only member, a deprecated one, and the style and
-	// event tables as headed lists.
+	// event tables as headed lists, with the version an entry was added in.
 	private const string ButtonXml = """
 		<compounddef kind="class">
 			<compoundname>wxButton</compoundname>
@@ -43,7 +43,7 @@ public class ReaderTests {
 				<para><heading level="2">Events emitted by this class</heading></para>
 				<para>Handlers take a <ref>wxCommandEvent</ref>.</para>
 				<para><itemizedlist>
-					<listitem><para>EVT_BUTTON(id, func): Process a <computeroutput>wxEVT_BUTTON</computeroutput> event, when the button is clicked.</para></listitem>
+					<listitem><para>EVT_BUTTON(id, func): Process a <computeroutput>wxEVT_BUTTON</computeroutput> event, when the button is clicked. <simplesect kind="since"><para>3.1.1</para></simplesect></para></listitem>
 					<listitem><para>EVT_OTHER(id, func): Process a <ref>wxOtherEvent</ref>.</para></listitem>
 				</itemizedlist><heading level="2" /></para>
 			</detaileddescription>
@@ -89,6 +89,7 @@ public class ReaderTests {
 				Assert.Equal("EVT_BUTTON", first.Macro);
 				Assert.Equal("wxEVT_BUTTON", first.EventType);
 				Assert.Equal("wxCommandEvent", first.EventClass);
+				Assert.Equal("Process a wxEVT_BUTTON event, when the button is clicked.", first.Description);
 			},
 			static second => {
 				Assert.Equal("EVT_OTHER", second.Macro);

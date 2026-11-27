@@ -34,7 +34,7 @@ The generator loads the XML into a model, drops what WxKit does not bind, shapes
 
 Each managed type and member gets an XML documentation comment from its wxWidgets brief description. A type's comment ends by naming the class it wraps, as in "Wraps wxButton." Detailed descriptions are left to the wxWidgets reference.
 
-Today 168 classes bind 3303 functions and 260 event types. The report lists about 480 entries, mostly members whose types have no conversion yet, such as C arrays and classes not bound yet, like tool tips and drop targets, and event macros whose event type the headers do not declare. Classes that need more than the generator can express are written by hand beside it, such as `EvtHandler`, `Sizer`, `Menu`, `AboutBox`, `Clipboard`, `Accessible`, and the data view models. [Managed API](managed-api.md) describes them.
+Today 194 classes bind 3341 functions and 295 event types. The report lists about 620 entries, mostly members whose types have no conversion yet, such as C arrays and classes not bound yet, like tool tips and drop targets, and event macros whose event type the headers do not declare. Classes that need more than the generator can express are written by hand beside it, such as `EvtHandler`, `Sizer`, `Menu`, `AboutBox`, `Clipboard`, `Accessible`, and the data view models. [Managed API](managed-api.md) describes them.
 
 ## Rules for classes
 
@@ -68,7 +68,7 @@ Today 168 classes bind 3303 functions and 260 event types. The report lists abou
 - `GetX` with no parameters becomes the property `X`, and a matching one-parameter `SetX` becomes its setter. `IsX`, `HasX`, and `CanX` returning `bool` keep their names.
 - British spellings become American, a leading digit is spelled out, terse parameter names become words, such as `pos` to `position`, and snake_case parameters become camelCase.
 - A style enum's members drop `wx` and the short prefix the class's styles share, such as `TE_`, unless a tweak gives a longer one. `wxDEFAULT_FRAME_STYLE` becomes `Default`, and every style enum has `None`. Extra styles in a style table, whose names have `_EX_`, are left out, and `wxWS_EX_` is bound as `WindowExtraStyle`.
-- Events get .NET names from a table, such as `SizeChanged` and `GotFocus`, or from their macro, as `EVT_TEXT_ENTER` becomes `TextEnter`, with an `Event` suffix where a name would clash. Only event types the headers declare are bound. An event class WxKit does not bind is delivered as its nearest bound ancestor.
+- Events get .NET names from a table, such as `SizeChanged` and `GotFocus`, or from their macro, as `EVT_TEXT_ENTER` becomes `TextEnter`, with an `Event` suffix where a name would clash. Only event types the headers declare are bound. One they declare only under a condition, such as `wxEVT_HOTKEY` under `wxUSE_HOTKEY`, is a type of the shim's own where the condition doesn't hold, which no event is sent as. An event class WxKit does not bind is delivered as its nearest bound ancestor.
 
 ## Conversions
 

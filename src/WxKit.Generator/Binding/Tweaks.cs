@@ -24,6 +24,14 @@ internal sealed class Tweaks {
 
 	public void EventType(string constant, string eventClass) => ExtraEventTypes[constant] = eventClass;
 
+	/// <summary>
+	/// Event types the headers declare only under a condition, such as wxEVT_HOTKEY under
+	/// wxUSE_HOTKEY. Where it doesn't hold, the shim gives a type of its own, which no event has.
+	/// </summary>
+	public Dictionary<string, string> EventTypeGuards { get; } = new(StringComparer.Ordinal);
+
+	public void GuardEventType(string condition, string constant) => EventTypeGuards[constant] = condition;
+
 	/// <summary>C++ enums to bind under a name of their own, such as wxAccRole as AccessibleRole, even when no bound member uses them.</summary>
 	public Dictionary<string, EnumTweak> Enums { get; } = new(StringComparer.Ordinal);
 
@@ -161,7 +169,7 @@ internal sealed class ClassTweak(string name) {
 
 	public Dictionary<string, string> EventNames { get; } = new(StringComparer.Ordinal);
 
-	public List<(string Macro, string Constant, string EventClass, string Name)> AddedEvents { get; } = [];
+	public List<(string Macro, string Constant, string EventClass, string Name, string Description)> AddedEvents { get; } = [];
 
 	public Dictionary<string, (string Getter, string? Setter)> PropertyPairs { get; } = new(StringComparer.Ordinal);
 
@@ -497,9 +505,9 @@ internal sealed class ClassTweak(string name) {
 		return this;
 	}
 
-	/// <summary>Adds an event the class's event table leaves out.</summary>
-	public ClassTweak AddEvent(string macro, string constant, string eventClass, string eventName) {
-		AddedEvents.Add((macro, constant, eventClass, eventName));
+	/// <summary>Adds an event the class's event table leaves out, with the description its documentation comment gives, if any.</summary>
+	public ClassTweak AddEvent(string macro, string constant, string eventClass, string eventName, string description = "") {
+		AddedEvents.Add((macro, constant, eventClass, eventName, description));
 		EventNames[macro] = eventName;
 		return this;
 	}

@@ -1762,6 +1762,7 @@ static class WxKit.EventType
     static EventType<InitDialogEvent> InitDialog { get; }
     static EventType<KeyEvent> Char { get; }
     static EventType<KeyEvent> CharHook { get; }
+    static EventType<KeyEvent> HotKey { get; }
     static EventType<KeyEvent> KeyDown { get; }
     static EventType<KeyEvent> KeyUp { get; }
     static EventType<ListEvent> ListBeginDrag { get; }
@@ -9376,7 +9377,7 @@ class WxKit.Window : EvtHandler
     bool PageDown()
     bool PageUp()
     bool PopupMenu(Menu menu, Point? position = null)
-    bool RegisterHotKey(int hotkeyId, KeyModifiers modifiers, int virtualKeyCode)
+    bool RegisterHotKey(int hotkeyId, KeyModifiers modifiers, KeyCode key)
     bool Reparent(Window newParent)
     bool ScrollLines(int lines)
     bool ScrollPages(int pages)
@@ -9404,6 +9405,7 @@ class WxKit.Window : EvtHandler
     event EventHandler<IdleEvent>? Idle
     event EventHandler<KeyEvent>? CharHook
     event EventHandler<KeyEvent>? CharTyped
+    event EventHandler<KeyEvent>? HotKeyPressed
     event EventHandler<KeyEvent>? KeyDown
     event EventHandler<KeyEvent>? KeyUp
     event EventHandler<MouseEvent>? LeftDoubleClick

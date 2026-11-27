@@ -11,8 +11,8 @@ namespace WxKit;
 /// </summary>
 /// <remarks>
 /// On Windows, the engine starts after the control is created, and <see cref="Created"/> says when
-/// it is ready. A page or a script given before then waits for it, but other members, such as
-/// <see cref="AddScriptMessageHandler"/>, fail until then.
+/// it is ready. A page given before then waits for it, and a script waits until the first page has
+/// loaded, but other members, such as <see cref="AddScriptMessageHandler"/>, fail until then.
 /// </remarks>
 public unsafe partial class WebView {
 	private const string Switch = "WxKit.WebView";
@@ -21,6 +21,8 @@ public unsafe partial class WebView {
 	private readonly List<(long Request, string Script)> _waiting = [];
 	private long _lastRequest;
 	private bool _isCreated;
+	// On Windows, whether the engine is created but hasn't loaded its first page yet.
+	private bool _isLoadingFirstPage;
 
 	/// <summary>Creates a web view that shows <paramref name="url"/>.</summary>
 	/// <exception cref="InvalidOperationException">The project does not set <c>WxKitWebView</c>.</exception>
@@ -28,6 +30,8 @@ public unsafe partial class WebView {
 	public WebView(Window parent, string url = "about:blank", int id = StandardId.Any, Point? position = null, Size? size = null) : this(CreateNative(parent, url, id, position, size)) {
 		ScriptResult += OnScriptResult;
 		Created += OnCreated;
+		Loaded += OnFirstPageDone;
+		NavigationFailed += OnFirstPageDone;
 	}
 
 	/// <summary>
@@ -106,9 +110,24 @@ public unsafe partial class WebView {
 		}
 	}
 
-	// Every engine sends it after the constructor returns, even one that is ready at once.
+	// Every engine sends it after the constructor returns, even one that is ready at once. Edge
+	// sends it before it starts to load the page the web view was made with, and a script run
+	// before that page has loaded can come back as null, or not at all, so on Windows the scripts
+	// given until then wait for it.
 	private void OnCreated(object? sender, WebViewEvent e) {
 		e.Skip();
+		if (OperatingSystem.IsWindows()) _isLoadingFirstPage = true;
+		else RunWaiting();
+	}
+
+	private void OnFirstPageDone(object? sender, WebViewEvent e) {
+		e.Skip();
+		if (!_isLoadingFirstPage) return;
+		_isLoadingFirstPage = false;
+		RunWaiting();
+	}
+
+	private void RunWaiting() {
 		_isCreated = true;
 		foreach ((long request, string script) in _waiting) Run(Native, request, script);
 		_waiting.Clear();

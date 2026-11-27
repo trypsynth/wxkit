@@ -949,171 +949,205 @@ public unsafe partial class StyledTextCtrl : Control {
 		set => WxKitNative.StyledTextCtrlSetZoom(Native, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_AUTOCOMP_CANCELLED event.</summary>
 	public event EventHandler<StyledTextEvent>? AutoCompleteCanceled {
 		add => AddHandler(EventType.StyledTextAutoCompCanceled, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextAutoCompCanceled, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_AUTOCOMP_CHAR_DELETED event.</summary>
 	public event EventHandler<StyledTextEvent>? AutoCompleteCharDeleted {
 		add => AddHandler(EventType.StyledTextAutoCompCharDeleted, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextAutoCompCharDeleted, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_AUTOCOMP_COMPLETED event.</summary>
 	public event EventHandler<StyledTextEvent>? AutoCompleteCompleted {
 		add => AddHandler(EventType.StyledTextAutoCompCompleted, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextAutoCompCompleted, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_AUTOCOMP_SELECTION event.</summary>
 	public event EventHandler<StyledTextEvent>? AutoCompleteSelected {
 		add => AddHandler(EventType.StyledTextAutoCompSelection, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextAutoCompSelection, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_AUTOCOMP_SELECTION_CHANGE event.</summary>
 	public event EventHandler<StyledTextEvent>? AutoCompleteSelectionChanged {
 		add => AddHandler(EventType.StyledTextAutoCompSelectionChange, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextAutoCompSelectionChange, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_CALLTIP_CLICK event.</summary>
 	public event EventHandler<StyledTextEvent>? CallTipClick {
 		add => AddHandler(EventType.StyledTextCallTipClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextCallTipClick, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_CHANGE event.</summary>
 	public event EventHandler<StyledTextEvent>? Changed {
 		add => AddHandler(EventType.StyledTextChange, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextChange, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_CHARADDED event.</summary>
 	public event EventHandler<StyledTextEvent>? CharAdded {
 		add => AddHandler(EventType.StyledTextCharAdded, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextCharAdded, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_CLIPBOARD_COPY event.</summary>
 	public event EventHandler<StyledTextEvent>? ClipboardCopy {
 		add => AddHandler(EventType.StyledTextClipboardCopy, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextClipboardCopy, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_CLIPBOARD_PASTE event.</summary>
 	public event EventHandler<StyledTextEvent>? ClipboardPaste {
 		add => AddHandler(EventType.StyledTextClipboardPaste, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextClipboardPaste, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_DOUBLECLICK event.</summary>
 	public event EventHandler<StyledTextEvent>? DoubleClick {
 		add => AddHandler(EventType.StyledTextDoubleClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextDoubleClick, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_DRAG_OVER event.</summary>
 	public event EventHandler<StyledTextEvent>? DragOver {
 		add => AddHandler(EventType.StyledTextDragOver, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextDragOver, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_DWELLEND event.</summary>
 	public event EventHandler<StyledTextEvent>? DwellEnd {
 		add => AddHandler(EventType.StyledTextDwellEnd, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextDwellEnd, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_DWELLSTART event.</summary>
 	public event EventHandler<StyledTextEvent>? DwellStart {
 		add => AddHandler(EventType.StyledTextDwellStart, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextDwellStart, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_HOTSPOT_CLICK event.</summary>
 	public event EventHandler<StyledTextEvent>? HotspotClick {
 		add => AddHandler(EventType.StyledTextHotspotClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextHotspotClick, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_HOTSPOT_DCLICK event.</summary>
 	public event EventHandler<StyledTextEvent>? HotspotDoubleClick {
 		add => AddHandler(EventType.StyledTextHotspotDoubleClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextHotspotDoubleClick, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_HOTSPOT_RELEASE_CLICK event.</summary>
 	public event EventHandler<StyledTextEvent>? HotspotReleaseClick {
 		add => AddHandler(EventType.StyledTextHotspotReleaseClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextHotspotReleaseClick, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_INDICATOR_CLICK event.</summary>
 	public event EventHandler<StyledTextEvent>? IndicatorClick {
 		add => AddHandler(EventType.StyledTextIndicatorClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextIndicatorClick, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_INDICATOR_RELEASE event.</summary>
 	public event EventHandler<StyledTextEvent>? IndicatorRelease {
 		add => AddHandler(EventType.StyledTextIndicatorRelease, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextIndicatorRelease, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_MACRORECORD event.</summary>
 	public event EventHandler<StyledTextEvent>? MacroRecord {
 		add => AddHandler(EventType.StyledTextMacroRecord, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextMacroRecord, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_MARGINCLICK event.</summary>
 	public event EventHandler<StyledTextEvent>? MarginClick {
 		add => AddHandler(EventType.StyledTextMarginClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextMarginClick, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_MARGIN_RIGHT_CLICK event.</summary>
 	public event EventHandler<StyledTextEvent>? MarginRightClick {
 		add => AddHandler(EventType.StyledTextMarginRightClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextMarginRightClick, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_MODIFIED event.</summary>
 	public event EventHandler<StyledTextEvent>? Modified {
 		add => AddHandler(EventType.StyledTextModified, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextModified, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_NEEDSHOWN event.</summary>
 	public event EventHandler<StyledTextEvent>? NeedShown {
 		add => AddHandler(EventType.StyledTextNeedShown, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextNeedShown, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_PAINTED event.</summary>
 	public event EventHandler<StyledTextEvent>? Painted {
 		add => AddHandler(EventType.StyledTextPainted, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextPainted, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_ROMODIFYATTEMPT event.</summary>
 	public event EventHandler<StyledTextEvent>? ReadOnlyModifyAttempt {
 		add => AddHandler(EventType.StyledTextReadOnlyModifyAttempt, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextReadOnlyModifyAttempt, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_SAVEPOINTLEFT event.</summary>
 	public event EventHandler<StyledTextEvent>? SavePointLeft {
 		add => AddHandler(EventType.StyledTextSavePointLeft, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextSavePointLeft, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_SAVEPOINTREACHED event.</summary>
 	public event EventHandler<StyledTextEvent>? SavePointReached {
 		add => AddHandler(EventType.StyledTextSavePointReached, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextSavePointReached, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_START_DRAG event.</summary>
 	public event EventHandler<StyledTextEvent>? StartDrag {
 		add => AddHandler(EventType.StyledTextStartDrag, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextStartDrag, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_STYLENEEDED event.</summary>
 	public event EventHandler<StyledTextEvent>? StyleNeeded {
 		add => AddHandler(EventType.StyledTextStyleNeeded, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextStyleNeeded, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_DO_DROP event.</summary>
 	public event EventHandler<StyledTextEvent>? TextDropping {
 		add => AddHandler(EventType.StyledTextTextDropping, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextTextDropping, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_UPDATEUI event.</summary>
 	public event EventHandler<StyledTextEvent>? UIUpdated {
 		add => AddHandler(EventType.StyledTextUpdateUI, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextUpdateUI, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_USERLISTSELECTION event.</summary>
 	public event EventHandler<StyledTextEvent>? UserListSelected {
 		add => AddHandler(EventType.StyledTextUserListSelection, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextUserListSelection, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_STC_ZOOM event.</summary>
 	public event EventHandler<StyledTextEvent>? Zoomed {
 		add => AddHandler(EventType.StyledTextZoom, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.StyledTextZoom, StandardId.Any, StandardId.Any, value);

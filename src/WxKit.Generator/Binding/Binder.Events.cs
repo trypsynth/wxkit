@@ -8,7 +8,9 @@ namespace WxKit.Generator.Binding;
 internal sealed partial class Binder {
 	private void BindEvents(BoundClass bound) {
 		ClassTweak tweak = bound.Tweak;
-		List<DoxygenEvent> events = [.. bound.Source.Events, .. tweak.AddedEvents.Select(static added => new DoxygenEvent(added.Macro, added.Constant, added.EventClass, string.Empty))];
+		// An added event is documented as its event class's own table documents it, as wxMouseEvent's
+		// documents the mouse events, unless the tweak describes it.
+		List<DoxygenEvent> events = [.. bound.Source.Events, .. tweak.AddedEvents.Select(added => new DoxygenEvent(added.Macro, added.Constant, added.EventClass, added.Description.Length > 0 ? added.Description : EventClassDescription(added.EventClass, added.Macro)))];
 		HashSet<string> macros = [.. events.Select(static found => found.Macro)];
 		foreach (string named in tweak.EventNames.Keys.Concat(tweak.IgnoredEvents)) {
 			if (!macros.Contains(named)) throw new InvalidOperationException($"A tweak names the event {named} of {bound.CppName}, which its event table does not list.");
@@ -47,6 +49,9 @@ internal sealed partial class Binder {
 		}
 	}
 
+	private string EventClassDescription(string eventClass, string macro) =>
+		api.Classes.GetValueOrDefault(eventClass)?.Events.FirstOrDefault(found => found.Macro == macro)?.Description ?? string.Empty;
+
 	private static bool HasEvent(BoundClass? bound, string name) {
 		for (BoundClass? current = bound; current is not null; current = current.Base) {
 			if (current.Events.Any(boundEvent => boundEvent.Name == name)) return true;
@@ -67,7 +72,7 @@ internal sealed partial class Binder {
 		// An event class WxKit does not bind is delivered as its nearest bound ancestor.
 		BoundClass wrapper = Ancestors(eventClass).Select(name => _classes.GetValueOrDefault(name)).FirstOrDefault(static candidate => candidate?.Handle == HandleKind.Event)
 			?? throw new InvalidOperationException($"No bound event class can carry {constant}, a {eventClass}.");
-		BoundEventType type = new(constant, Naming.EventType(constant), wrapper, api.EventTypes.GetValueOrDefault(constant));
+		BoundEventType type = new(constant, Naming.EventType(constant), wrapper, api.EventTypes.GetValueOrDefault(constant), tweaks.EventTypeGuards.GetValueOrDefault(constant));
 		_eventTypes[constant] = type;
 		return type;
 	}
