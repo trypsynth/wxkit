@@ -153,6 +153,9 @@ public sealed unsafe class Translations : IDisposable {
 	/// <summary>
 	/// The language a domain's catalog is loaded in, or would be: <see cref="Language"/> when it is
 	/// set, or else the best one the user prefers that there is a catalog for, or null when there is none.
+	/// English, which the strings are in, counts as a language there is a catalog for, as
+	/// <see cref="AddCatalog"/> counts it, so for a user who prefers English to the languages there
+	/// are catalogs for, this is "en", and the strings are left as they are.
 	/// </summary>
 	public string? GetBestTranslation(string domain) {
 		ArgumentException.ThrowIfNullOrEmpty(domain);

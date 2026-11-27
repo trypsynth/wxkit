@@ -52,6 +52,32 @@ public class TranslationsTests {
 		Assert.Equal("pl", translations.GetHeaderValue("Language", "test"));
 	});
 
+	// English, which the strings are in, has no catalog, but is the language the text is in.
+	[Fact]
+	public Task NamesEnglishAsTheBestTranslationOfTheStringsAsTheyAre() => Gui.Run(() => {
+		using Translations english = new(new MemoryLoader()) { Language = "en" };
+		Assert.True(english.AddCatalog("test"));
+		Assert.False(english.IsLoaded("test"));
+		Assert.Equal("en", english.GetBestTranslation("test"));
+		using Translations british = new(new MemoryLoader()) { Language = "en_GB" };
+		Assert.Equal("en", british.GetBestTranslation("test"));
+		using Translations german = new(new MemoryLoader()) { Language = "de" };
+		Assert.False(german.AddCatalog("test"));
+		Assert.Null(german.GetBestTranslation("test"));
+	});
+
+	// wxWidgets takes the user's preferred languages from WXLANGUAGE when it's set, as GNU gettext
+	// does from LANGUAGE, so another copy of the tests is given its own.
+	[Theory]
+	[InlineData("en:de", "en", "Hello from the test catalog")]
+	[InlineData("de:en", "de", "Hallo aus dem Testkatalog")]
+	[InlineData("fr:en:de", "en", "Hello from the test catalog")]
+	public Task PicksTheLanguageTheUserPrefersEnglishIncluded(string preferred, string best, string translation) => Gui.Run(async () => {
+		Assert.SkipWhen(!new EmbeddedTranslationsLoader().GetAvailableTranslations("WxKit.Tests").Any() && Environment.GetEnvironmentVariable("CI") is null, "The catalogs are not compiled without GNU gettext's msgfmt.");
+		(int _, string output) = await SingleInstanceTests.RunAnotherProcess(new Dictionary<string, string?> { ["WXLANGUAGE"] = preferred }, "best", "Hello from the test catalog");
+		Assert.Equal($"{best}\n{translation}", output);
+	});
+
 	[Fact]
 	public Task DisposesTheTranslationsItReplaces() => Gui.Run(() => {
 		Translations first = new(new MemoryLoader());
