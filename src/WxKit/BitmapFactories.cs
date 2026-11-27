@@ -26,6 +26,19 @@ public unsafe partial class Bitmap {
 	public static Bitmap FromLogicalSize(Size size, double scale, int depth = -1) => Create(size, scale, depth, logical: true);
 
 	/// <summary>
+	/// Saves the bitmap to a file in a format whose handler was added, such as with
+	/// <see cref="Image.AddPngHandler"/>, and returns whether it could. BMP needs no handler.
+	/// Without the handler, the file isn't created, or changed when it is there.
+	/// </summary>
+	public bool SaveFile(string fileName, BitmapType type) {
+		ArgumentNullException.ThrowIfNull(fileName);
+		WxkObject* native = Native;
+		if (WxKitNative.BitmapCanSave((int)type) == 0) return false;
+		using QuietLog quiet = QuietLog.Start();
+		fixed (char* text = fileName) return WxKitNative.BitmapSaveFile(native, text, NativeString.Length(fileName), (int)type) != 0;
+	}
+
+	/// <summary>
 	/// Loads a bitmap from a file, and returns null if it could not, such as when the file is
 	/// missing, is not an image, or is in a format whose handler was not added.
 	/// </summary>

@@ -116,14 +116,6 @@ public unsafe partial class Bitmap : NativeObject {
 	/// <summary>Remove alpha channel from the bitmap.</summary>
 	public void ResetAlpha() => WxKitNative.BitmapResetAlpha(Native);
 
-	/// <summary>Saves a bitmap in the named file.</summary>
-	public bool SaveFile(string fileName, BitmapType type) {
-		ArgumentNullException.ThrowIfNull(fileName);
-		fixed (char* fileNameText = fileName) {
-			return WxKitNative.BitmapSaveFile(Native, fileNameText, NativeString.Length(fileName), (int)type) != 0;
-		}
-	}
-
 	private static WxkObject* CreateNative(int width, int height, int depth) {
 		Application.VerifyAccess();
 		return WxKitNative.BitmapNewIntIntInt(width, height, depth);

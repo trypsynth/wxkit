@@ -175,32 +175,6 @@ public unsafe partial class Image : NativeObject {
 	/// <summary>Rotates the hue of each pixel in the image by angle, which is a double in the range [-1.0..+1.0], where -1.0 corresponds to -360 degrees and +1.0 corresponds to +360 degrees.</summary>
 	public void RotateHue(double angle) => WxKitNative.ImageRotateHue(Native, angle);
 
-	/// <summary>Saves an image in the named file.</summary>
-	public bool SaveFile(string fileName, BitmapType type) {
-		ArgumentNullException.ThrowIfNull(fileName);
-		fixed (char* fileNameText = fileName) {
-			return WxKitNative.ImageSaveFileStringBitmapType(Native, fileNameText, NativeString.Length(fileName), (int)type) != 0;
-		}
-	}
-
-	/// <summary>Saves an image in the named file.</summary>
-	public bool SaveFile(string fileName, string mimeType) {
-		ArgumentNullException.ThrowIfNull(fileName);
-		ArgumentNullException.ThrowIfNull(mimeType);
-		fixed (char* fileNameText = fileName)
-		fixed (char* mimeTypeText = mimeType) {
-			return WxKitNative.ImageSaveFileStringString(Native, fileNameText, NativeString.Length(fileName), mimeTypeText, NativeString.Length(mimeType)) != 0;
-		}
-	}
-
-	/// <summary>Saves an image in the named file.</summary>
-	public bool SaveFile(string fileName) {
-		ArgumentNullException.ThrowIfNull(fileName);
-		fixed (char* fileNameText = fileName) {
-			return WxKitNative.ImageSaveFileString(Native, fileNameText, NativeString.Length(fileName)) != 0;
-		}
-	}
-
 	/// <summary>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</summary>
 	public Image? Scale(Size size, ImageResizeQuality quality = ImageResizeQuality.Normal) => global::WxKit.Image.Take(WxKitNative.ImageScale(Native, size, (int)quality));
 

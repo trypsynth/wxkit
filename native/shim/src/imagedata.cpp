@@ -1,5 +1,6 @@
 #include "shim.h"
 
+#include <wx/bitmap.h>
 #include <wx/image.h>
 #include <wx/log.h>
 #include <wx/mstream.h>
@@ -36,4 +37,22 @@ WXK_FUNCTION(uint8_t*) wxk_Image_SaveData(wxk_Object* image, int32_t type, size_
 // macOS when the event loop is next idle, or as the application exits.
 WXK_FUNCTION(uint8_t) wxk_Log_Enable(uint8_t enable) noexcept {
 	return wxk::Guard<uint8_t>(1, [&]() -> uint8_t { return wxLog::EnableLogging(enable != 0) ? 1 : 0; });
+}
+
+// Whether an image can be saved as a type, or as a MIME type when one is given. wxWidgets opens
+// the file before it looks for the format's handler, so saving one without it leaves an empty
+// file, or empties the one that was there, so the caller asks first.
+WXK_FUNCTION(uint8_t) wxk_Image_CanSave(int32_t type, const char16_t* mimeType, size_t mimeTypeLength) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t {
+		if (mimeType != nullptr) return wxImage::FindHandlerMime(wxk::FromUtf16(mimeType, mimeTypeLength)) != nullptr ? 1 : 0;
+		return wxImage::FindHandler(static_cast<wxBitmapType>(type)) != nullptr ? 1 : 0;
+	});
+}
+
+// A bitmap saves through a handler of its own, which wxMSW and wxOSX have for a few types, or
+// through an image's.
+WXK_FUNCTION(uint8_t) wxk_Bitmap_CanSave(int32_t type) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t {
+		return wxBitmap::FindHandler(static_cast<wxBitmapType>(type)) != nullptr || wxImage::FindHandler(static_cast<wxBitmapType>(type)) != nullptr ? 1 : 0;
+	});
 }

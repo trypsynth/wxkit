@@ -95,4 +95,44 @@ public unsafe partial class Image {
 		}
 		return true;
 	}
+
+	/// <summary>
+	/// Saves the image to a file in a format whose handler was added, such as with
+	/// <see cref="AddPngHandler"/>, and returns whether it could. BMP needs no handler. Without the
+	/// handler, the file isn't created, or changed when it is there.
+	/// </summary>
+	public bool SaveFile(string fileName, BitmapType type) {
+		ArgumentNullException.ThrowIfNull(fileName);
+		WxkObject* native = Native;
+		if (WxKitNative.ImageCanSave((int)type, null, 0) == 0) return false;
+		using QuietLog quiet = QuietLog.Start();
+		fixed (char* text = fileName) return WxKitNative.ImageSaveFileStringBitmapType(native, text, NativeString.Length(fileName), (int)type) != 0;
+	}
+
+	/// <summary>
+	/// Saves the image to a file in a format given as a MIME type, such as image/png, whose handler
+	/// was added, and returns whether it could. Without the handler, the file isn't created, or
+	/// changed when it is there.
+	/// </summary>
+	public bool SaveFile(string fileName, string mimeType) {
+		ArgumentNullException.ThrowIfNull(fileName);
+		ArgumentNullException.ThrowIfNull(mimeType);
+		WxkObject* native = Native;
+		fixed (char* mime = mimeType) {
+			if (WxKitNative.ImageCanSave(0, mime, NativeString.Length(mimeType)) == 0) return false;
+		}
+		using QuietLog quiet = QuietLog.Start();
+		fixed (char* text = fileName, mime = mimeType) return WxKitNative.ImageSaveFileStringString(native, text, NativeString.Length(fileName), mime, NativeString.Length(mimeType)) != 0;
+	}
+
+	/// <summary>
+	/// Saves the image to a file in the format its extension names, such as .png, whose handler was
+	/// added, and returns whether it could. Without the handler, the file isn't created.
+	/// </summary>
+	public bool SaveFile(string fileName) {
+		ArgumentNullException.ThrowIfNull(fileName);
+		WxkObject* native = Native;
+		using QuietLog quiet = QuietLog.Start();
+		fixed (char* text = fileName) return WxKitNative.ImageSaveFileString(native, text, NativeString.Length(fileName)) != 0;
+	}
 }

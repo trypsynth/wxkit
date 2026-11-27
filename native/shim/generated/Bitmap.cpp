@@ -69,6 +69,10 @@ WXK_FUNCTION(uint8_t) wxk_Bitmap_LoadFile(wxk_Object* self, const char16_t* name
 	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxBitmap*>(wxk::Unwrap(self))->LoadFile(wxk::FromUtf16(name, nameLength), (typeGiven != 0 ? static_cast<wxBitmapType>(type) : wxBITMAP_DEFAULT_TYPE))) ? 1 : 0; });
 }
 
+WXK_FUNCTION(uint8_t) wxk_Bitmap_SaveFile(wxk_Object* self, const char16_t* fileName, size_t fileNameLength, int32_t type) noexcept {
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxBitmap*>(wxk::Unwrap(self))->SaveFile(wxk::FromUtf16(fileName, fileNameLength), static_cast<wxBitmapType>(type))) ? 1 : 0; });
+}
+
 WXK_FUNCTION(wxk_Object*) wxk_Bitmap_ConvertToDisabled(wxk_Object* self, uint8_t brightness) noexcept {
 	return wxk::Guard<wxk_Object*>(nullptr, [&]() -> wxk_Object* { return wxk::CopyValue<wxBitmap>(static_cast<wxBitmap*>(wxk::Unwrap(self))->ConvertToDisabled(static_cast<unsigned char>(brightness))); });
 }
@@ -87,10 +91,6 @@ WXK_FUNCTION(wxk_Object*) wxk_Bitmap_GetSubBitmap(wxk_Object* self, wxk_Rect rec
 
 WXK_FUNCTION(void) wxk_Bitmap_ResetAlpha(wxk_Object* self) noexcept {
 	wxk::Guard([&] { static_cast<wxBitmap*>(wxk::Unwrap(self))->ResetAlpha(); });
-}
-
-WXK_FUNCTION(uint8_t) wxk_Bitmap_SaveFile(wxk_Object* self, const char16_t* fileName, size_t fileNameLength, int32_t type) noexcept {
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxBitmap*>(wxk::Unwrap(self))->SaveFile(wxk::FromUtf16(fileName, fileNameLength), static_cast<wxBitmapType>(type))) ? 1 : 0; });
 }
 
 WXK_FUNCTION(void) wxk_Bitmap_Rescale(wxk_Object* bitmap, wxk_Size sizeNeeded) noexcept {
