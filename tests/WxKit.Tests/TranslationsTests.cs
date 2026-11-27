@@ -79,6 +79,30 @@ public class TranslationsTests {
 	});
 
 	[Fact]
+	public Task UsesTheCatalogsOfTheAssemblyItIsGiven() => Gui.Run(() => {
+		Assert.SkipWhen(!new EmbeddedTranslationsLoader().GetAvailableTranslations("WxKit.Tests").Any() && Environment.GetEnvironmentVariable("CI") is null, "The catalogs are not compiled without GNU gettext's msgfmt.");
+		Assert.Throws<ArgumentNullException>(() => Translations.Use((System.Reflection.Assembly)null!, "WxKit.Tests"));
+		Assert.Throws<ArgumentException>(() => Translations.Use(typeof(TranslationsTests).Assembly, ""));
+		Translations tests = Translations.Use(typeof(TranslationsTests).Assembly, "WxKit.Tests", "de");
+		try {
+			Assert.Same(tests, Translations.Current);
+			Assert.True(tests.IsLoaded("WxKit.Tests"));
+			Assert.Equal("Hallo aus dem Testkatalog", _("Hello from the test catalog"));
+		} finally {
+			tests.Dispose();
+		}
+		// WxKit itself embeds no catalogs, so the tests' aren't found in it, though they are
+		// embedded in the entry assembly.
+		Translations library = Translations.Use(typeof(Translations).Assembly, "WxKit.Tests", "de");
+		try {
+			Assert.False(library.IsLoaded("WxKit.Tests"));
+			Assert.Equal("Hello from the test catalog", _("Hello from the test catalog"));
+		} finally {
+			library.Dispose();
+		}
+	});
+
+	[Fact]
 	public Task DisposesTheTranslationsItReplaces() => Gui.Run(() => {
 		Translations first = new(new MemoryLoader());
 		Translations.Current = first;

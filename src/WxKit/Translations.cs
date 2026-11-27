@@ -13,8 +13,8 @@ namespace WxKit;
 /// <remarks>
 /// <para>
 /// Set translations up in <see cref="Application.Run(Action)"/>'s start-up action, before making any
-/// windows, because a window's text is translated when it is made. <see cref="Use"/> does it in one
-/// call. To set them up step by step, make a <see cref="Translations"/>, set its
+/// windows, because a window's text is translated when it is made. <see cref="Use(string, string)"/>
+/// does it in one call. To set them up step by step, make a <see cref="Translations"/>, set its
 /// <see cref="Language"/>, add its catalogs, and make it <see cref="Current"/>. To change the
 /// language later, do the same again, and make the windows again.
 /// </para>
@@ -98,14 +98,34 @@ public sealed unsafe class Translations : IDisposable {
 
 	/// <summary>
 	/// Sets up translations from the system's language, or another, and makes them current: wxWidgets'
-	/// own catalog, and the application's, whose domain is the name of its catalogs.
+	/// own catalog, and the application's, whose domain is the name of its catalogs. The catalogs are
+	/// the ones embedded in the application, its entry assembly.
 	/// </summary>
 	/// <param name="domain">The name of the application's catalogs, as in myapp.mo.</param>
 	/// <param name="language">The language, or null for the best one the user prefers that there are catalogs for.</param>
 	/// <returns>The translations, which are now <see cref="Current"/>.</returns>
 	public static Translations Use(string domain, string? language = null) {
 		ArgumentException.ThrowIfNullOrEmpty(domain);
-		Translations translations = new();
+		return Use(new EmbeddedTranslationsLoader(), domain, language);
+	}
+
+	/// <summary>
+	/// Sets up translations as <see cref="Use(string, string)"/> does, from the catalogs embedded in
+	/// an assembly other than the entry one, such as a library that embeds its own, or an
+	/// application whose tests run in a test host.
+	/// </summary>
+	/// <param name="assembly">The assembly the catalogs are embedded in.</param>
+	/// <param name="domain">The name of the catalogs, as in myapp.mo.</param>
+	/// <param name="language">The language, or null for the best one the user prefers that there are catalogs for.</param>
+	/// <returns>The translations, which are now <see cref="Current"/>.</returns>
+	public static Translations Use(Assembly assembly, string domain, string? language = null) {
+		ArgumentNullException.ThrowIfNull(assembly);
+		ArgumentException.ThrowIfNullOrEmpty(domain);
+		return Use(new EmbeddedTranslationsLoader(assembly), domain, language);
+	}
+
+	private static Translations Use(TranslationsLoader loader, string domain, string? language) {
+		Translations translations = new(loader);
 		try {
 			translations.Language = language;
 			translations.AddStdCatalog();

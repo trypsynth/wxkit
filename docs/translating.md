@@ -55,6 +55,8 @@ return Application.Run(() => {
 
 The first argument is the domain, the name of the application's catalogs, which is the assembly's name unless you set `WxKitTranslationDomain`. To use a language other than the user's, pass it second, as in `Translations.Use("MyApp", "de")`.
 
+`Translations.Use` reads the catalogs embedded in the entry assembly, the application's executable. When they're embedded in another assembly, such as a library with catalogs of its own, or an application whose tests run in a test host, pass that assembly first, as in `Translations.Use(typeof(MainFrame).Assembly, "MyApp", "de")`.
+
 `UILocale.UseDefault` makes the numbers and dates in wxWidgets' controls follow the user's locale. It doesn't change the language of the text.
 
 ## Extract the strings
