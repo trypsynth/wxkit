@@ -46,10 +46,7 @@ type EditorFrame() as this =
 
     let mutable text = createText ""
 
-    let fileName (file: string) =
-        match Path.GetFileName file with
-        | null -> file
-        | name -> name
+    let fileName (file: string) = Path.GetFileName file
 
     let documentName () =
         path |> Option.map fileName |> Option.defaultValue "Untitled"

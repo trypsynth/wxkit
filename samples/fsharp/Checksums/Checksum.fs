@@ -28,6 +28,6 @@ let compute (files: string list) (progress: IProgress<int * string>) (token: Can
     files
     |> List.mapi (fun index file ->
         token.ThrowIfCancellationRequested()
-        let name = Path.GetFileName file |> Option.ofObj |> Option.defaultValue file
+        let name = Path.GetFileName file
         progress.Report((index, name))
         { Name = name; Hash = hash file })
