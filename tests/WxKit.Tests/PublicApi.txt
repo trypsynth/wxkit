@@ -3270,10 +3270,14 @@ class WxKit.MemoryDC : DC
     MemoryDC(DC dc)
     void SelectObjectAsSource(Bitmap bitmap)
 sealed class WxKit.Menu : EvtHandler, IDisposable
+    IReadOnlyList<MenuItem> Items { get; }
     Menu()
     MenuItem Append(int id, string text = "", string help = "", MenuItemKind kind = MenuItemKind.Normal)
     MenuItem AppendSeparator()
     MenuItem AppendSubMenu(Menu submenu, string text, string help = "")
+    MenuItem? FindItem(int id)
+    MenuItem? FindItem(string label)
+    int ItemCount { get; }
     void Dispose()
 class WxKit.MenuBar : Window
     Frame? Frame { get; }

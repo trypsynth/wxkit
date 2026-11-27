@@ -8,6 +8,9 @@ namespace WxKit;
 /// appended to it, and destroys it. A menu on neither is the application's, to dispose.
 /// </summary>
 public sealed unsafe class Menu : EvtHandler, IDisposable {
+	// One object for each item, however it was found, since nothing removes an item from its menu.
+	private readonly Dictionary<nint, MenuItem> _items = [];
+
 	public Menu() : base(Create()) {
 	}
 
@@ -44,6 +47,51 @@ public sealed unsafe class Menu : EvtHandler, IDisposable {
 		}
 	}
 
+	/// <summary>How many items the menu has, separators and submenus included, but not the items of its submenus.</summary>
+	public int ItemCount => checked((int)WxKitNative.MenuGetMenuItemCount(Native));
+
+	/// <summary>The menu's items, in order, separators and submenus included, as <see cref="Append"/> returned them.</summary>
+	public IReadOnlyList<MenuItem> Items {
+		get {
+			WxkMenu* native = Native;
+			int count = checked((int)WxKitNative.MenuGetMenuItemCount(native));
+			MenuItem[] items = new MenuItem[count];
+			for (int position = 0; position < count; position++) items[position] = Item(WxKitNative.MenuFindItemByPosition(native, (nuint)position));
+			return items;
+		}
+	}
+
+	/// <summary>The item with an id, on this menu or in one of its submenus, or null when there is none.</summary>
+	public MenuItem? FindItem(int id) {
+		WxkMenuItem* found = WxKitNative.MenuFindItemInt(Native, id);
+		return found is null ? null : ItemOf(found);
+	}
+
+	/// <summary>
+	/// The item with a label, on this menu or in one of its submenus, or null when there is none.
+	/// The labels are compared without their accelerator's ampersand and their shortcut, so "Open"
+	/// finds "&amp;Open\tCtrl+O". A submenu's item comes before a later item of this menu with the
+	/// same label, and a submenu is found by its own label too.
+	/// </summary>
+	public MenuItem? FindItem(string label) {
+		ArgumentNullException.ThrowIfNull(label);
+		WxkMenu* native = Native;
+		int id;
+		fixed (char* text = label) id = WxKitNative.MenuFindItemString(native, text, NativeString.Length(label));
+		// wxNOT_FOUND, -1, when no item has the label.
+		return id == -1 ? null : FindItem(id);
+	}
+
+	// The object for an item of this menu, the same one each time.
+	internal MenuItem Item(WxkMenuItem* native) {
+		if (native is null) throw new InvalidOperationException("wxWidgets could not add the menu item.");
+		if (!_items.TryGetValue((nint)native, out MenuItem? item)) _items[(nint)native] = item = new MenuItem(this, native);
+		return item;
+	}
+
+	// An item found in this menu or a submenu, whose own menu keeps its object.
+	private MenuItem ItemOf(WxkMenuItem* native) => (ObjectRegistry.Wrap<Menu>(WxKitNative.MenuItemGetMenu(native)) ?? this).Item(native);
+
 	/// <summary>
 	/// Frees the menu, if it is on no menu bar and in no menu, such as one made to pop up. A menu
 	/// that is on one stays, since its owner destroys it.
@@ -69,7 +117,7 @@ public sealed unsafe class MenuItem {
 	private readonly Menu _menu;
 	private readonly WxkMenuItem* _native;
 
-	private MenuItem(Menu menu, WxkMenuItem* native) {
+	internal MenuItem(Menu menu, WxkMenuItem* native) {
 		_menu = menu;
 		_native = native;
 		Id = WxKitNative.MenuItemGetId(native);
@@ -133,8 +181,5 @@ public sealed unsafe class MenuItem {
 		remove => Menu.RemoveHandler(EventType.Menu, Id, Id, value);
 	}
 
-	internal static MenuItem Wrap(Menu menu, WxkMenuItem* native) {
-		if (native is null) throw new InvalidOperationException("wxWidgets could not add the menu item.");
-		return new MenuItem(menu, native);
-	}
+	internal static MenuItem Wrap(Menu menu, WxkMenuItem* native) => menu.Item(native);
 }

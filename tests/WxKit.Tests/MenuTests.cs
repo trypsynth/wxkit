@@ -23,6 +23,39 @@ public class MenuTests {
 		Assert.Same(next, frame.MenuBar);
 	});
 
+	// The items are the objects Append returned, found in order, by id, or by label, in submenus too.
+	[Fact]
+	public Task ListsAndFindsItems() => Gui.WithFrame(frame => {
+		Menu file = new();
+		Assert.Equal(0, file.ItemCount);
+		Assert.Empty(file.Items);
+		MenuItem open = file.Append(StandardId.Open, "&Open	Ctrl+O");
+		MenuItem separator = file.AppendSeparator();
+		Menu recent = new();
+		MenuItem first = recent.Append(StandardId.Any, "&First file");
+		MenuItem submenu = file.AppendSubMenu(recent, "&Recent");
+		MenuItem exit = file.Append(StandardId.Exit);
+		Assert.Equal(4, file.ItemCount);
+		Assert.Equal([open, separator, submenu, exit], file.Items);
+		Assert.True(file.Items[1].IsSeparator);
+		Assert.Same(recent, file.Items[2].SubMenu);
+		Assert.Same(open, file.FindItem(StandardId.Open));
+		Assert.Same(first, file.FindItem(first.Id));
+		Assert.Same(recent, file.FindItem(first.Id)!.Menu);
+		Assert.Null(recent.FindItem(StandardId.Open));
+		Assert.Null(file.FindItem(StandardId.Copy));
+		Assert.Same(open, file.FindItem("Open"));
+		Assert.Same(open, file.FindItem("&Open"));
+		Assert.Same(first, file.FindItem("First file"));
+		Assert.Same(submenu, file.FindItem("Recent"));
+		Assert.Null(file.FindItem("Close"));
+		Assert.Throws<ArgumentNullException>(() => file.FindItem(null!));
+		MenuBar bar = new();
+		bar.Append(file, "&File");
+		frame.MenuBar = bar;
+		Assert.Same(open, bar.GetMenu(0)!.Items[0]);
+	});
+
 	[Fact]
 	public Task EnablesChecksAndRelabelsItems() => Gui.WithFrame(frame => {
 		Menu menu = new();
