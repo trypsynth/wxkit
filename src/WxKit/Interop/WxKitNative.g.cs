@@ -4962,6 +4962,22 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkMenuItem* MenuAppendSubMenu(WxkMenu* self, WxkMenu* submenu, char* text, nuint textLength, char* help, nuint helpLength);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Menu_FindItem_String")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int MenuFindItemString(WxkMenu* self, char* itemString, nuint itemStringLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Menu_FindItem_Int")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkMenuItem* MenuFindItemInt(WxkMenu* self, int id);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Menu_FindItemByPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkMenuItem* MenuFindItemByPosition(WxkMenu* self, nuint position);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Menu_GetMenuItemCount")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial nuint MenuGetMenuItemCount(WxkMenu* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Menu_GetParent")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkMenu* MenuGetParent(WxkMenu* self);
@@ -5101,6 +5117,10 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_MenuItem_GetItemLabel")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkString* MenuItemGetItemLabel(WxkMenuItem* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_MenuItem_GetMenu")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkMenu* MenuItemGetMenu(WxkMenuItem* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_MenuItem_GetSubMenu")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

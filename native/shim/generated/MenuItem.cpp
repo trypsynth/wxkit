@@ -13,6 +13,10 @@ WXK_FUNCTION(wxk_String*) wxk_MenuItem_GetItemLabel(wxk_MenuItem* self) noexcept
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* { return wxk::ToUtf16(static_cast<wxMenuItem*>(wxk::Unwrap(self))->GetItemLabel()); });
 }
 
+WXK_FUNCTION(wxk_Menu*) wxk_MenuItem_GetMenu(wxk_MenuItem* self) noexcept {
+	return wxk::Guard<wxk_Menu*>(nullptr, [&]() -> wxk_Menu* { return wxk::Wrap(static_cast<wxMenu*>(static_cast<wxMenuItem*>(wxk::Unwrap(self))->GetMenu())); });
+}
+
 WXK_FUNCTION(wxk_Menu*) wxk_MenuItem_GetSubMenu(wxk_MenuItem* self) noexcept {
 	return wxk::Guard<wxk_Menu*>(nullptr, [&]() -> wxk_Menu* { return wxk::Wrap(static_cast<wxMenu*>(static_cast<wxMenuItem*>(wxk::Unwrap(self))->GetSubMenu())); });
 }

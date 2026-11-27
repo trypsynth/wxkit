@@ -1541,6 +1541,10 @@ WXK_FUNCTION(wxk_MenuItem*) wxk_Menu_Append_IntStringStringMenuItemKind(wxk_Menu
 WXK_FUNCTION(wxk_MenuItem*) wxk_Menu_Append_MenuItem(wxk_Menu* self, wxk_MenuItem* menuItem) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_MenuItem*) wxk_Menu_AppendSeparator(wxk_Menu* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_MenuItem*) wxk_Menu_AppendSubMenu(wxk_Menu* self, wxk_Menu* submenu, const char16_t* text, size_t textLength, const char16_t* help, size_t helpLength) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_Menu_FindItem_String(wxk_Menu* self, const char16_t* itemString, size_t itemStringLength) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_MenuItem*) wxk_Menu_FindItem_Int(wxk_Menu* self, int32_t id) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_MenuItem*) wxk_Menu_FindItemByPosition(wxk_Menu* self, size_t position) WXK_NOEXCEPT;
+WXK_FUNCTION(size_t) wxk_Menu_GetMenuItemCount(wxk_Menu* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Menu*) wxk_Menu_GetParent(wxk_Menu* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Menu_IsAttached(wxk_Menu* self) WXK_NOEXCEPT;
 
@@ -1585,6 +1589,7 @@ WXK_FUNCTION(uint8_t) wxk_MenuEvent_IsPopup(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_MenuItem_GetHelp(wxk_MenuItem* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_MenuItem_GetId(wxk_MenuItem* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_MenuItem_GetItemLabel(wxk_MenuItem* self) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Menu*) wxk_MenuItem_GetMenu(wxk_MenuItem* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Menu*) wxk_MenuItem_GetSubMenu(wxk_MenuItem* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_MenuItem_IsChecked(wxk_MenuItem* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_MenuItem_IsEnabled(wxk_MenuItem* self) WXK_NOEXCEPT;

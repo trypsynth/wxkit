@@ -38,6 +38,22 @@ WXK_FUNCTION(wxk_MenuItem*) wxk_Menu_AppendSubMenu(wxk_Menu* self, wxk_Menu* sub
 	return wxk::Guard<wxk_MenuItem*>(nullptr, [&]() -> wxk_MenuItem* { return wxk::Wrap(static_cast<wxMenuItem*>(static_cast<wxMenu*>(wxk::Unwrap(self))->AppendSubMenu(static_cast<wxMenu*>(wxk::Unwrap(submenu)), wxk::FromUtf16(text, textLength), wxk::FromUtf16(help, helpLength)))); });
 }
 
+WXK_FUNCTION(int32_t) wxk_Menu_FindItem_String(wxk_Menu* self, const char16_t* itemString, size_t itemStringLength) noexcept {
+	return wxk::Guard<int32_t>(0, [&]() -> int32_t { return static_cast<int32_t>(static_cast<wxMenu*>(wxk::Unwrap(self))->FindItem(wxk::FromUtf16(itemString, itemStringLength))); });
+}
+
+WXK_FUNCTION(wxk_MenuItem*) wxk_Menu_FindItem_Int(wxk_Menu* self, int32_t id) noexcept {
+	return wxk::Guard<wxk_MenuItem*>(nullptr, [&]() -> wxk_MenuItem* { return wxk::Wrap(static_cast<wxMenuItem*>(static_cast<wxMenu*>(wxk::Unwrap(self))->FindItem(static_cast<int>(id)))); });
+}
+
+WXK_FUNCTION(wxk_MenuItem*) wxk_Menu_FindItemByPosition(wxk_Menu* self, size_t position) noexcept {
+	return wxk::Guard<wxk_MenuItem*>(nullptr, [&]() -> wxk_MenuItem* { return wxk::Wrap(static_cast<wxMenuItem*>(static_cast<wxMenu*>(wxk::Unwrap(self))->FindItemByPosition(position))); });
+}
+
+WXK_FUNCTION(size_t) wxk_Menu_GetMenuItemCount(wxk_Menu* self) noexcept {
+	return wxk::Guard<size_t>(0, [&]() -> size_t { return static_cast<size_t>(static_cast<wxMenu*>(wxk::Unwrap(self))->GetMenuItemCount()); });
+}
+
 WXK_FUNCTION(wxk_Menu*) wxk_Menu_GetParent(wxk_Menu* self) noexcept {
 	return wxk::Guard<wxk_Menu*>(nullptr, [&]() -> wxk_Menu* { return wxk::Wrap(static_cast<wxMenu*>(static_cast<wxMenu*>(wxk::Unwrap(self))->GetParent())); });
 }
