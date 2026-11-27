@@ -133,12 +133,33 @@ WXK_FUNCTION(int32_t) wxk_EventType_FullScreen(void) noexcept {
 	return wxEVT_FULLSCREEN;
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_GesturePan(void) noexcept {
+	return wxEVT_GESTURE_PAN;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_GestureRotate(void) noexcept {
+	return wxEVT_GESTURE_ROTATE;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_GestureZoom(void) noexcept {
+	return wxEVT_GESTURE_ZOOM;
+}
+
 WXK_FUNCTION(int32_t) wxk_EventType_GotFocus(void) noexcept {
 	return wxEVT_SET_FOCUS;
 }
 
 WXK_FUNCTION(int32_t) wxk_EventType_Help(void) noexcept {
 	return wxEVT_HELP;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_HotKey(void) noexcept {
+	#if wxUSE_HOTKEY
+	return wxEVT_HOTKEY;
+	#else
+	static const wxEventType unused = wxNewEventType();
+	return unused;
+	#endif
 }
 
 WXK_FUNCTION(int32_t) wxk_EventType_Iconize(void) noexcept {
@@ -183,6 +204,10 @@ WXK_FUNCTION(int32_t) wxk_EventType_ListBox(void) noexcept {
 
 WXK_FUNCTION(int32_t) wxk_EventType_ListBoxDoubleClick(void) noexcept {
 	return wxEVT_LISTBOX_DCLICK;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_LongPress(void) noexcept {
+	return wxEVT_LONG_PRESS;
 }
 
 WXK_FUNCTION(int32_t) wxk_EventType_LostFocus(void) noexcept {
@@ -263,6 +288,10 @@ WXK_FUNCTION(int32_t) wxk_EventType_NavigationKey(void) noexcept {
 
 WXK_FUNCTION(int32_t) wxk_EventType_Paint(void) noexcept {
 	return wxEVT_PAINT;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_PressAndTap(void) noexcept {
+	return wxEVT_PRESS_AND_TAP;
 }
 
 WXK_FUNCTION(int32_t) wxk_EventType_QueryEndSession(void) noexcept {
@@ -415,6 +444,10 @@ WXK_FUNCTION(int32_t) wxk_EventType_ToolEnter(void) noexcept {
 
 WXK_FUNCTION(int32_t) wxk_EventType_ToolRightClicked(void) noexcept {
 	return wxEVT_TOOL_RCLICKED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_TwoFingerTap(void) noexcept {
+	return wxEVT_TWO_FINGER_TAP;
 }
 
 WXK_FUNCTION(int32_t) wxk_EventType_UpdateUI(void) noexcept {

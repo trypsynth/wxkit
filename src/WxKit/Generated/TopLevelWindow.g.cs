@@ -67,6 +67,7 @@ public unsafe partial class TopLevelWindow : Window {
 		}
 	}
 
+	/// <summary>Process a wxEVT_CLOSE_WINDOW command event, supplying the member function. This event applies to wxFrame and wxDialog classes.</summary>
 	public event EventHandler<CloseEvent>? Closing {
 		add => AddHandler(EventType.CloseWindow, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.CloseWindow, StandardId.Any, StandardId.Any, value);

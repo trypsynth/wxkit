@@ -544,6 +544,27 @@ public static unsafe partial class EventType {
 		public static readonly EventType<TreeEvent> Value = new(WxKitNative.EventTypeGenericDirCtrlSelectionChanged, static native => new TreeEvent((WxkEvent*)native));
 	}
 
+	/// <summary>Wraps wxEVT_GESTURE_PAN.</summary>
+	public static EventType<PanGestureEvent> GesturePan => GesturePanType.Value;
+
+	private static class GesturePanType {
+		public static readonly EventType<PanGestureEvent> Value = new(WxKitNative.EventTypeGesturePan, static native => new PanGestureEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_GESTURE_ROTATE.</summary>
+	public static EventType<RotateGestureEvent> GestureRotate => GestureRotateType.Value;
+
+	private static class GestureRotateType {
+		public static readonly EventType<RotateGestureEvent> Value = new(WxKitNative.EventTypeGestureRotate, static native => new RotateGestureEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_GESTURE_ZOOM.</summary>
+	public static EventType<ZoomGestureEvent> GestureZoom => GestureZoomType.Value;
+
+	private static class GestureZoomType {
+		public static readonly EventType<ZoomGestureEvent> Value = new(WxKitNative.EventTypeGestureZoom, static native => new ZoomGestureEvent((WxkEvent*)native));
+	}
+
 	/// <summary>Wraps wxEVT_SET_FOCUS.</summary>
 	public static EventType<FocusEvent> GotFocus => GotFocusType.Value;
 
@@ -556,6 +577,13 @@ public static unsafe partial class EventType {
 
 	private static class HelpType {
 		public static readonly EventType<HelpEvent> Value = new(WxKitNative.EventTypeHelp, static native => new HelpEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_HOTKEY.</summary>
+	public static EventType<KeyEvent> HotKey => HotKeyType.Value;
+
+	private static class HotKeyType {
+		public static readonly EventType<KeyEvent> Value = new(WxKitNative.EventTypeHotKey, static native => new KeyEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_HYPERLINK.</summary>
@@ -810,6 +838,13 @@ public static unsafe partial class EventType {
 		public static readonly EventType<BookCtrlEvent> Value = new(WxKitNative.EventTypeListbookPageChanging, static native => new BookCtrlEvent((WxkEvent*)native));
 	}
 
+	/// <summary>Wraps wxEVT_LONG_PRESS.</summary>
+	public static EventType<LongPressEvent> LongPress => LongPressType.Value;
+
+	private static class LongPressType {
+		public static readonly EventType<LongPressEvent> Value = new(WxKitNative.EventTypeLongPress, static native => new LongPressEvent((WxkEvent*)native));
+	}
+
 	/// <summary>Wraps wxEVT_KILL_FOCUS.</summary>
 	public static EventType<FocusEvent> LostFocus => LostFocusType.Value;
 
@@ -983,6 +1018,13 @@ public static unsafe partial class EventType {
 
 	private static class PaintType {
 		public static readonly EventType<PaintEvent> Value = new(WxKitNative.EventTypePaint, static native => new PaintEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_PRESS_AND_TAP.</summary>
+	public static EventType<PressAndTapEvent> PressAndTap => PressAndTapType.Value;
+
+	private static class PressAndTapType {
+		public static readonly EventType<PressAndTapEvent> Value = new(WxKitNative.EventTypePressAndTap, static native => new PressAndTapEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_QUERY_END_SESSION.</summary>
@@ -1907,6 +1949,13 @@ public static unsafe partial class EventType {
 
 	private static class TreebookPageChangingType {
 		public static readonly EventType<BookCtrlEvent> Value = new(WxKitNative.EventTypeTreebookPageChanging, static native => new BookCtrlEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_TWO_FINGER_TAP.</summary>
+	public static EventType<TwoFingerTapEvent> TwoFingerTap => TwoFingerTapType.Value;
+
+	private static class TwoFingerTapType {
+		public static readonly EventType<TwoFingerTapEvent> Value = new(WxKitNative.EventTypeTwoFingerTap, static native => new TwoFingerTapEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_UPDATE_UI.</summary>

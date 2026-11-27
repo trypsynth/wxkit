@@ -16,6 +16,7 @@ public unsafe partial class ColorDialog : Dialog {
 	/// <summary>Returns the colour data associated with the colour dialog.</summary>
 	public ColorData? ColorData => global::WxKit.ColorData.Take(WxKitNative.ColorDialogGetColourData(Native));
 
+	/// <summary>Generated whenever the currently selected colour in the dialog changes. This event is currently only implemented in wxMSW.</summary>
 	public event EventHandler<ColorDialogEvent>? ColorChanged {
 		add => AddHandler(EventType.ColorChanged, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ColorChanged, StandardId.Any, StandardId.Any, value);

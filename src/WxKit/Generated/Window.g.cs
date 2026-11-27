@@ -368,6 +368,24 @@ public unsafe partial class Window : EvtHandler {
 		remove => RemoveHandler(EventType.EraseBackground, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_GESTURE_PAN event (the user moves a finger on the surface; wxGTK also sends it as the mouse is dragged with its left button, and macOS needs the primary mouse button pressed). Sent once EnableTouchEvents asks for it. See wxPanGestureEvent.</summary>
+	public event EventHandler<PanGestureEvent>? GesturePan {
+		add => AddHandler(EventType.GesturePan, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.GesturePan, StandardId.Any, StandardId.Any, value);
+	}
+
+	/// <summary>Process a wxEVT_GESTURE_ROTATE event (two fingers move in opposite directions on the surface). Sent once EnableTouchEvents asks for it. See wxRotateGestureEvent.</summary>
+	public event EventHandler<RotateGestureEvent>? GestureRotate {
+		add => AddHandler(EventType.GestureRotate, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.GestureRotate, StandardId.Any, StandardId.Any, value);
+	}
+
+	/// <summary>Process a wxEVT_GESTURE_ZOOM event (two fingers pinch the surface to zoom in or out). Sent once EnableTouchEvents asks for it. See wxZoomGestureEvent.</summary>
+	public event EventHandler<ZoomGestureEvent>? GestureZoom {
+		add => AddHandler(EventType.GestureZoom, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.GestureZoom, StandardId.Any, StandardId.Any, value);
+	}
+
 	/// <summary>Process a wxEVT_SET_FOCUS event. See wxFocusEvent.</summary>
 	public event EventHandler<FocusEvent>? GotFocus {
 		add => AddHandler(EventType.GotFocus, StandardId.Any, StandardId.Any, value, this);
@@ -378,6 +396,12 @@ public unsafe partial class Window : EvtHandler {
 	public event EventHandler<HelpEvent>? HelpRequested {
 		add => AddHandler(EventType.Help, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.Help, StandardId.Any, StandardId.Any, value);
+	}
+
+	/// <summary>Process a wxEVT_HOTKEY event (a hot key RegisterHotKey registered has been pressed, anywhere on the system). The event's Id is the hot key's id. See wxKeyEvent.</summary>
+	public event EventHandler<KeyEvent>? HotKeyPressed {
+		add => AddHandler(EventType.HotKey, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.HotKey, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_IDLE event. See wxIdleEvent.</summary>
@@ -398,19 +422,28 @@ public unsafe partial class Window : EvtHandler {
 		remove => RemoveHandler(EventType.KeyUp, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_LEFT_DCLICK event.</summary>
 	public event EventHandler<MouseEvent>? LeftDoubleClick {
 		add => AddHandler(EventType.LeftDoubleClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.LeftDoubleClick, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_LEFT_DOWN event. The handler of this event should normally call event.Skip() to allow the default processing to take place as otherwise the window under mouse wouldn't get the focus.</summary>
 	public event EventHandler<MouseEvent>? LeftDown {
 		add => AddHandler(EventType.LeftDown, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.LeftDown, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_LEFT_UP event.</summary>
 	public event EventHandler<MouseEvent>? LeftUp {
 		add => AddHandler(EventType.LeftUp, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.LeftUp, StandardId.Any, StandardId.Any, value);
+	}
+
+	/// <summary>Process a wxEVT_LONG_PRESS event (one finger touches the surface and stays still; wxGTK also sends it when the left mouse button is held down). Only Linux and macOS send it, once EnableTouchEvents asks for it. See wxLongPressEvent.</summary>
+	public event EventHandler<LongPressEvent>? LongPress {
+		add => AddHandler(EventType.LongPress, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.LongPress, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_KILL_FOCUS event. See wxFocusEvent.</summary>
@@ -419,11 +452,13 @@ public unsafe partial class Window : EvtHandler {
 		remove => RemoveHandler(EventType.LostFocus, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_MIDDLE_DOWN event.</summary>
 	public event EventHandler<MouseEvent>? MiddleDown {
 		add => AddHandler(EventType.MiddleDown, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.MiddleDown, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_MIDDLE_UP event.</summary>
 	public event EventHandler<MouseEvent>? MiddleUp {
 		add => AddHandler(EventType.MiddleUp, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.MiddleUp, StandardId.Any, StandardId.Any, value);
@@ -441,21 +476,25 @@ public unsafe partial class Window : EvtHandler {
 		remove => RemoveHandler(EventType.MouseCaptureLost, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_ENTER_WINDOW event.</summary>
 	public event EventHandler<MouseEvent>? MouseEntered {
 		add => AddHandler(EventType.EnterWindow, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.EnterWindow, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_LEAVE_WINDOW event.</summary>
 	public event EventHandler<MouseEvent>? MouseLeft {
 		add => AddHandler(EventType.LeaveWindow, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.LeaveWindow, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_MOTION event.</summary>
 	public event EventHandler<MouseEvent>? MouseMoved {
 		add => AddHandler(EventType.Motion, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.Motion, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_MOUSEWHEEL event.</summary>
 	public event EventHandler<MouseEvent>? MouseWheel {
 		add => AddHandler(EventType.MouseWheel, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.MouseWheel, StandardId.Any, StandardId.Any, value);
@@ -467,16 +506,25 @@ public unsafe partial class Window : EvtHandler {
 		remove => RemoveHandler(EventType.Paint, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_PRESS_AND_TAP event (the user presses the surface with one finger and taps with another, and then as the pressed finger moves). Sent once EnableTouchEvents asks for it. See wxPressAndTapEvent.</summary>
+	public event EventHandler<PressAndTapEvent>? PressAndTap {
+		add => AddHandler(EventType.PressAndTap, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.PressAndTap, StandardId.Any, StandardId.Any, value);
+	}
+
+	/// <summary>Process a wxEVT_RIGHT_DCLICK event.</summary>
 	public event EventHandler<MouseEvent>? RightDoubleClick {
 		add => AddHandler(EventType.RightDoubleClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.RightDoubleClick, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_RIGHT_DOWN event.</summary>
 	public event EventHandler<MouseEvent>? RightDown {
 		add => AddHandler(EventType.RightDown, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.RightDown, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_RIGHT_UP event.</summary>
 	public event EventHandler<MouseEvent>? RightUp {
 		add => AddHandler(EventType.RightUp, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.RightUp, StandardId.Any, StandardId.Any, value);
@@ -492,6 +540,12 @@ public unsafe partial class Window : EvtHandler {
 	public event EventHandler<SysColorChangedEvent>? SystemColorsChanged {
 		add => AddHandler(EventType.SysColorChanged, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.SysColorChanged, StandardId.Any, StandardId.Any, value);
+	}
+
+	/// <summary>Process a wxEVT_TWO_FINGER_TAP event (two fingers touch the surface at the same time). Sent once EnableTouchEvents asks for it. See wxTwoFingerTapEvent.</summary>
+	public event EventHandler<TwoFingerTapEvent>? TwoFingerTap {
+		add => AddHandler(EventType.TwoFingerTap, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TwoFingerTap, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Call this function to force one or both scrollbars to be always shown, even if the window is big enough to show its entire contents without scrolling.</summary>
@@ -763,7 +817,7 @@ public unsafe partial class Window : EvtHandler {
 	public void RefreshRect(Rect rect, bool eraseBackground = true) => WxKitNative.WindowRefreshRect(Native, rect, eraseBackground ? (byte)1 : (byte)0);
 
 	/// <summary>Registers a system wide hotkey.</summary>
-	public bool RegisterHotKey(int hotkeyId, KeyModifiers modifiers, int virtualKeyCode) => WxKitNative.WindowRegisterHotKey(Native, hotkeyId, (int)modifiers, virtualKeyCode) != 0;
+	public bool RegisterHotKey(int hotkeyId, KeyModifiers modifiers, KeyCode key) => WxKitNative.WindowRegisterHotKey(Native, hotkeyId, (int)modifiers, (int)key) != 0;
 
 	/// <summary>Releases mouse input captured with CaptureMouse().</summary>
 	public void ReleaseMouse() => WxKitNative.WindowReleaseMouse(Native);

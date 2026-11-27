@@ -185,7 +185,17 @@ internal static class ShimEmitter {
 	private static void WriteEventTypes(CodeWriter writer, IEnumerable<BoundEventType> types) {
 		foreach (BoundEventType type in types.OrderBy(static type => type.Name, StringComparer.Ordinal)) {
 			writer.Open($"WXK_FUNCTION(int32_t) wxk_EventType_{type.Name}(void) noexcept");
-			writer.Line($"return {type.Constant};");
+			if (type.Guard is string guard) {
+				writer.Line($"#if {guard}");
+				writer.Line($"return {type.Constant};");
+				writer.Line("#else");
+				// Where the port has no such events, a handler still binds, to a type no event is sent as.
+				writer.Line("static const wxEventType unused = wxNewEventType();");
+				writer.Line("return unused;");
+				writer.Line("#endif");
+			} else {
+				writer.Line($"return {type.Constant};");
+			}
 			writer.Close().Line();
 		}
 	}

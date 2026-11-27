@@ -136,9 +136,10 @@ internal static partial class DoxygenReader {
 		return (styles, events);
 	}
 
-	// A table entry reads "NAME: what it does", or "EVT_NAME(id, func): what it does".
+	// A table entry reads "NAME: what it does", or "EVT_NAME(id, func): what it does", and can end
+	// with the version of wxWidgets that added it, which isn't what it does.
 	private static (string Name, string Text)? ReadEntry(XElement item) {
-		string text = Text(item);
+		string text = Normalize(string.Concat(item.DescendantNodes().OfType<XText>().Where(static node => !node.Ancestors("simplesect").Any(static section => (string?)section.Attribute("kind") == "since")).Select(static node => node.Value)));
 		int colon = text.IndexOf("):", StringComparison.Ordinal) is int call and >= 0 ? call + 1 : text.IndexOf(':');
 		if (colon <= 0) return null;
 		return (text[..colon].Trim(), text[(colon + 1)..].Trim());

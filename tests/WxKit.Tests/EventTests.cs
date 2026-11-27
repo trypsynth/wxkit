@@ -125,6 +125,59 @@ public class EventTests {
 		Assert.Equal((KeyCode)'A', keyCode);
 	});
 
+	// The combination is one nothing else is likely to have registered, and the test sends the
+	// message Windows would, rather than pressing the keys.
+	[Fact]
+	public Task RaisesHotKeyPressedWithTheHotKeysId() => Gui.WithFrame(frame => {
+		Assert.SkipUnless(OperatingSystem.IsWindows(), "Hot keys are sent as Windows messages.");
+		const int id = 0x2A17;
+		Assert.True(frame.RegisterHotKey(id, KeyModifiers.Control | KeyModifiers.Alt | KeyModifiers.Shift, KeyCode.F23));
+		try {
+			List<(object? Sender, int Id, KeyCode KeyCode, KeyModifiers Modifiers)> presses = [];
+			frame.HotKeyPressed += (sender, e) => presses.Add((sender, e.Id, e.KeyCode, e.Modifiers));
+			// MOD_ALT, MOD_CONTROL, and MOD_SHIFT, and VK_F23.
+			Win32.PressHotKey(frame, id, 0x0001 | 0x0002 | 0x0004, 0x86);
+			var press = Assert.Single(presses);
+			Assert.Same(frame, press.Sender);
+			Assert.Equal(id, press.Id);
+			Assert.Equal(KeyCode.F23, press.KeyCode);
+			Assert.Equal(KeyModifiers.Control | KeyModifiers.Alt | KeyModifiers.Shift, press.Modifiers);
+		} finally {
+			Assert.True(frame.UnregisterHotKey(id));
+		}
+	});
+
+	// No test can send a gesture: Windows sends WM_GESTURE with a handle only the system makes, which
+	// wxWidgets reads it through. This checks that a window asks for every gesture, which Windows
+	// always lets it, and takes and lets go of a handler for each, which raise nothing by themselves.
+	[Fact]
+	public Task TakesAHandlerForEachGesture() => Gui.WithFrame(frame => {
+		Panel panel = new(frame);
+		int gestures = 0;
+		EventHandler<PanGestureEvent> pan = (_, e) => gestures += e.Delta.X;
+		EventHandler<ZoomGestureEvent> zoom = (_, e) => gestures += (int)e.ZoomFactor;
+		EventHandler<RotateGestureEvent> rotate = (_, e) => gestures += (int)e.RotationAngle;
+		EventHandler<TwoFingerTapEvent> twoFingerTap = (_, e) => gestures += e.Position.X;
+		EventHandler<LongPressEvent> longPress = (_, e) => gestures += e.IsGestureStart ? 1 : 0;
+		EventHandler<PressAndTapEvent> pressAndTap = (_, e) => gestures += e.IsGestureEnd ? 1 : 0;
+		panel.GesturePan += pan;
+		panel.GestureZoom += zoom;
+		panel.GestureRotate += rotate;
+		panel.TwoFingerTap += twoFingerTap;
+		panel.LongPress += longPress;
+		panel.PressAndTap += pressAndTap;
+		bool enabled = panel.EnableTouchEvents(TouchEvents.AllGestures);
+		if (OperatingSystem.IsWindows()) Assert.True(enabled);
+		panel.GesturePan -= pan;
+		panel.GestureZoom -= zoom;
+		panel.GestureRotate -= rotate;
+		panel.TwoFingerTap -= twoFingerTap;
+		panel.LongPress -= longPress;
+		panel.PressAndTap -= pressAndTap;
+		Assert.True(panel.EnableTouchEvents(TouchEvents.None) || !OperatingSystem.IsWindows());
+		Assert.Equal(0, gestures);
+	});
+
 	[Fact]
 	public Task GivesSizeEventsTheNewSize() => Gui.WithFrame(frame => {
 		Size? reported = null;

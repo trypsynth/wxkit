@@ -68,7 +68,7 @@ Today 168 classes bind 3303 functions and 260 event types. The report lists abou
 - `GetX` with no parameters becomes the property `X`, and a matching one-parameter `SetX` becomes its setter. `IsX`, `HasX`, and `CanX` returning `bool` keep their names.
 - British spellings become American, a leading digit is spelled out, terse parameter names become words, such as `pos` to `position`, and snake_case parameters become camelCase.
 - A style enum's members drop `wx` and the short prefix the class's styles share, such as `TE_`, unless a tweak gives a longer one. `wxDEFAULT_FRAME_STYLE` becomes `Default`, and every style enum has `None`. Extra styles in a style table, whose names have `_EX_`, are left out, and `wxWS_EX_` is bound as `WindowExtraStyle`.
-- Events get .NET names from a table, such as `SizeChanged` and `GotFocus`, or from their macro, as `EVT_TEXT_ENTER` becomes `TextEnter`, with an `Event` suffix where a name would clash. Only event types the headers declare are bound. An event class WxKit does not bind is delivered as its nearest bound ancestor.
+- Events get .NET names from a table, such as `SizeChanged` and `GotFocus`, or from their macro, as `EVT_TEXT_ENTER` becomes `TextEnter`, with an `Event` suffix where a name would clash. Only event types the headers declare are bound. One they declare only under a condition, such as `wxEVT_HOTKEY` under `wxUSE_HOTKEY`, is a type of the shim's own where the condition doesn't hold, which no event is sent as. An event class WxKit does not bind is delivered as its nearest bound ancestor.
 
 ## Conversions
 

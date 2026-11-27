@@ -16,6 +16,10 @@ internal static partial class Win32 {
 	// WM_KEYDOWN, with the virtual key code, which for letters is the upper-case letter.
 	public static void PressKey(Window window, char key) => SendMessage(window.NativeHandle, 0x0100, key, 0);
 
+	// WM_HOTKEY, which Windows sends the window that registered a hot key when it's pressed, with
+	// the hot key's id, and its modifiers, as MOD_ALT, MOD_CONTROL, and MOD_SHIFT, below its virtual key code.
+	public static void PressHotKey(Window window, int id, uint modifiers, int virtualKey) => SendMessage(window.NativeHandle, 0x0312, id, (nint)(((uint)virtualKey << 16) | modifiers));
+
 	[LibraryImport("user32.dll", EntryPoint = "SendMessageW")]
 	private static partial nint SendMessage(nint window, uint message, nint wParam, nint lParam);
 }

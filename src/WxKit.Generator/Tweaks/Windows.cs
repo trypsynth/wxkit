@@ -45,12 +45,22 @@ internal static class Windows {
 			.ParameterEnum("HasExtraStyle", "exFlag", "WindowExtraStyle")
 			// Char would hide System.Char inside a control.
 			.Event("EVT_CHAR", "CharTyped")
-			// wxGTK has no system-wide hot keys.
+			// wxGTK has no system-wide hot keys. Their event, whose id is the one RegisterHotKey was
+			// given, is documented only as an event type.
 			.Guard("wxUSE_HOTKEY", "RegisterHotKey", "UnregisterHotKey")
-			// Abbreviations .NET spells out, as its naming guidelines ask.
+			.AddEvent("EVT_HOTKEY", "wxEVT_HOTKEY", "wxKeyEvent", "HotKeyPressed", "Process a wxEVT_HOTKEY event (a hot key RegisterHotKey registered has been pressed, anywhere on the system). The event's Id is the hot key's id. See wxKeyEvent.")
+			// Touch gestures, which wxWidgets documents on their event classes, and sends only once
+			// EnableTouchEvents asks for them.
+			.AddEvent("EVT_GESTURE_PAN", "wxEVT_GESTURE_PAN", "wxPanGestureEvent", "GesturePan", "Process a wxEVT_GESTURE_PAN event (the user moves a finger on the surface; wxGTK also sends it as the mouse is dragged with its left button, and macOS needs the primary mouse button pressed). Sent once EnableTouchEvents asks for it. See wxPanGestureEvent.")
+			.AddEvent("EVT_GESTURE_ZOOM", "wxEVT_GESTURE_ZOOM", "wxZoomGestureEvent", "GestureZoom", "Process a wxEVT_GESTURE_ZOOM event (two fingers pinch the surface to zoom in or out). Sent once EnableTouchEvents asks for it. See wxZoomGestureEvent.")
+			.AddEvent("EVT_GESTURE_ROTATE", "wxEVT_GESTURE_ROTATE", "wxRotateGestureEvent", "GestureRotate", "Process a wxEVT_GESTURE_ROTATE event (two fingers move in opposite directions on the surface). Sent once EnableTouchEvents asks for it. See wxRotateGestureEvent.")
+			.AddEvent("EVT_TWO_FINGER_TAP", "wxEVT_TWO_FINGER_TAP", "wxTwoFingerTapEvent", "TwoFingerTap", "Process a wxEVT_TWO_FINGER_TAP event (two fingers touch the surface at the same time). Sent once EnableTouchEvents asks for it. See wxTwoFingerTapEvent.")
+			.AddEvent("EVT_LONG_PRESS", "wxEVT_LONG_PRESS", "wxLongPressEvent", "LongPress", "Process a wxEVT_LONG_PRESS event (one finger touches the surface and stays still; wxGTK also sends it when the left mouse button is held down). Only Linux and macOS send it, once EnableTouchEvents asks for it. See wxLongPressEvent.")
+			.AddEvent("EVT_PRESS_AND_TAP", "wxEVT_PRESS_AND_TAP", "wxPressAndTapEvent", "PressAndTap", "Process a wxEVT_PRESS_AND_TAP event (the user presses the surface with one finger and taps with another, and then as the pressed finger moves). Sent once EnableTouchEvents asks for it. See wxPressAndTapEvent.")          // Abbreviations .NET spells out, as its naming guidelines ask.
 			.Rename("GetScrollPos", "GetScrollPosition")
 			.Rename("SetScrollPos", "SetScrollPosition")
 			.Property("UsesBackgroundColor", "UseBgCol"));
+		tweaks.GuardEventType("wxUSE_HOTKEY", "wxEVT_HOTKEY");
 		// Null clears the default item.
 		tweaks.Class("wxTopLevelWindow", window => window
 			.NoConstructors()
