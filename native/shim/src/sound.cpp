@@ -69,6 +69,11 @@ WXK_FUNCTION(wxk_Object*) wxk_Sound_FromData(const uint8_t* data, size_t length)
 		wxLogNull quiet;
 #ifdef __WXMSW__
 		return Loaded(std::make_unique<DataSound>(data, length));
+#elif defined(__WXOSX__)
+		// wxOSX can't load a sound from memory, and fails an assertion that says so.
+		(void)data;
+		(void)length;
+		return nullptr;
 #else
 		return Loaded(std::make_unique<wxSound>(length, data));
 #endif

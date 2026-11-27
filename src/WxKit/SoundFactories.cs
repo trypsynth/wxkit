@@ -22,7 +22,7 @@ public unsafe partial class Sound {
 	/// Loads a sound from a stream that holds a WAV file, such as a resource, and returns null if it
 	/// could not, such as when the stream is empty. Reads the stream to its end, and keeps a copy of
 	/// what it read. Windows only reads the sound as it plays it, so there data that isn't WAV is
-	/// found out when <see cref="Play"/> returns false.
+	/// found out when <see cref="Play"/> returns false. macOS can't play a sound from memory, so there it returns null.
 	/// </summary>
 	/// <param name="stream">The stream, such as one from <see cref="System.Reflection.Assembly.GetManifestResourceStream(string)"/>.</param>
 	public static Sound? FromStream(Stream stream) {

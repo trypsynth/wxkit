@@ -29,12 +29,20 @@ public class SoundTests {
 		return wave.ToArray();
 	}
 
-	// Windows fails to play a sound when there is nothing to play it on, as on CI's runners.
-	private static bool CanPlay => !OperatingSystem.IsWindows() || Win32.HasAudioOutput;
+	// Windows fails to play a sound when there is nothing to play it on, as on CI's runners, and on
+	// macOS, wxWidgets' Play returns false even when it plays.
+	private static bool CanPlay => OperatingSystem.IsWindows() ? Win32.HasAudioOutput : !OperatingSystem.IsMacOS();
+
+	// macOS can't play a sound from memory, so a stream gives null there.
+	private static bool CanLoadFromAStream => !OperatingSystem.IsMacOS();
 
 	[Fact]
 	public Task PlaysASoundFromAStream() => Gui.Run(() => {
 		using Sound? sound = Sound.FromStream(new MemoryStream(Silence()));
+		if (!CanLoadFromAStream) {
+			Assert.Null(sound);
+			return;
+		}
 		Assert.NotNull(sound);
 		Assert.True(sound.IsOk);
 		bool played = sound.Play();
@@ -61,6 +69,7 @@ public class SoundTests {
 	// plays, as the garbage collector may do, would take with it.
 	[Fact]
 	public Task GoesOnPlayingASoundFromAStreamOnceItIsDisposed() => Gui.Run(() => {
+		Assert.SkipUnless(CanLoadFromAStream, "macOS can't play a sound from memory.");
 		Sound? sound = Sound.FromStream(new MemoryStream(Silence()));
 		Assert.NotNull(sound);
 		sound.Play(SoundFlags.Async | SoundFlags.Loop);
