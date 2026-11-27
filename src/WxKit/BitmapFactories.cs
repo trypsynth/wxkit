@@ -35,7 +35,7 @@ public unsafe partial class Bitmap {
 		ArgumentNullException.ThrowIfNull(fileName);
 		Application.VerifyAccess();
 		Bitmap bitmap;
-		fixed (char* characters = fileName) bitmap = new(WxKitNative.BitmapNewStringBitmapType(characters, (nuint)fileName.Length, (int)(type ?? default), (byte)(type is null ? 0 : 1)));
+		using (QuietLog.Start()) fixed (char* characters = fileName) bitmap = new(WxKitNative.BitmapNewStringBitmapType(characters, (nuint)fileName.Length, (int)(type ?? default), (byte)(type is null ? 0 : 1)));
 		if (bitmap.IsOk) return bitmap;
 		bitmap.Dispose();
 		return null;
