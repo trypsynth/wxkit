@@ -147,6 +147,65 @@ public class EventTests {
 		}
 	});
 
+	// Windows sends top-level windows the system's power and display changes as messages, which the
+	// tests send as Windows would.
+	[Fact]
+	public Task RaisesPowerSuspendedAndResumed() => Gui.WithFrame(frame => {
+		Assert.SkipUnless(OperatingSystem.IsWindows(), "Power events are sent as Windows messages.");
+		List<(object? Sender, string Name)> raised = [];
+		frame.PowerSuspended += (sender, _) => raised.Add((sender, "suspended"));
+		frame.PowerResumed += (sender, _) => raised.Add((sender, "resumed"));
+		Win32.Suspend(frame);
+		Win32.Resume(frame);
+		Assert.Equal([(frame, "suspended"), (frame, "resumed")], raised);
+	});
+
+	// Linux only keeps the system awake, and only with systemd's logind, which a runner may not have.
+	[Fact]
+	public Task KeepsTheScreenOnWhileHeld() => Gui.Run(() => {
+		Assert.SkipWhen(OperatingSystem.IsLinux(), "Linux can't keep the screen on.");
+		Assert.True(PowerResource.Acquire(PowerResourceKind.Screen, "WxKit's tests"));
+		PowerResource.Release(PowerResourceKind.Screen);
+	});
+
+	[Fact]
+	public Task RaisesDisplayChanged() => Gui.WithFrame(frame => {
+		Assert.SkipUnless(OperatingSystem.IsWindows(), "Display changes are sent as Windows messages.");
+		List<object?> senders = [];
+		frame.DisplayChanged += (sender, _) => senders.Add(sender);
+		Win32.ChangeDisplay(frame, 1920, 1080);
+		Assert.Same(frame, Assert.Single(senders));
+	});
+
+	// Windows sends the message to top-level windows, which pass it on to their children.
+	[Fact]
+	public Task RaisesSystemMetricChangedInTheWindowAndItsChildren() => Gui.WithFrame(frame => {
+		Assert.SkipUnless(OperatingSystem.IsWindows(), "System metric changes are sent as Windows messages.");
+		Panel panel = new(frame);
+		List<(object? Sender, SysMetric Metric)> changes = [];
+		frame.SystemMetricChanged += (sender, e) => changes.Add((sender, e.Metric));
+		panel.SystemMetricChanged += (sender, e) => changes.Add((sender, e.Metric));
+		Win32.ChangeCursorSize(frame);
+		Assert.Equal([(frame, SysMetric.CursorSize), (panel, SysMetric.CursorSize)], changes);
+	});
+
+	// wxWidgets counts a RECT's right and bottom as inside it, so its bounds are a pixel wider and
+	// taller than the RECT's, both ways.
+	[Fact]
+	public Task LetsSizeChangingChangeTheNewBounds() => Gui.WithFrame(frame => {
+		Assert.SkipUnless(OperatingSystem.IsWindows(), "Resizing is sent as a Windows message.");
+		List<(object? Sender, Rect Bounds)> resizes = [];
+		frame.SizeChanging += (sender, e) => {
+			resizes.Add((sender, e.Rect));
+			e.Rect = new Rect(10, 20, 401, 301);
+		};
+		Win32.NativeRect given = Win32.Resize(frame, new Win32.NativeRect(10, 20, 310, 220));
+		var resize = Assert.Single(resizes);
+		Assert.Same(frame, resize.Sender);
+		Assert.Equal(new Rect(10, 20, 301, 201), resize.Bounds);
+		Assert.Equal(new Win32.NativeRect(10, 20, 410, 320), given);
+	});
+
 	[Fact]
 	public Task GivesSizeEventsTheNewSize() => Gui.WithFrame(frame => {
 		Size? reported = null;

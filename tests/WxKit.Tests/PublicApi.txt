@@ -1557,6 +1557,7 @@ sealed record WxKit.Display : IEquatable<Display>
     static bool op_Inequality(Display? left, Display? right)
     string Name { get; init; }
     void Deconstruct(out int Index, out string Name, out Rect Bounds, out Rect WorkArea, out bool IsPrimary, out double ScaleFactor)
+class WxKit.DisplayChangedEvent : Event
 class WxKit.DpiChangedEvent : Event
     Point Scale(Point point)
     Rect Scale(Rect rect)
@@ -1735,6 +1736,7 @@ static class WxKit.EventType
     static EventType<DataViewEvent> DataViewSelectionChanged { get; }
     static EventType<DateEvent> DateChanged { get; }
     static EventType<DateEvent> TimeChanged { get; }
+    static EventType<DisplayChangedEvent> DisplayChanged { get; }
     static EventType<DpiChangedEvent> DpiChanged { get; }
     static EventType<DropFilesEvent> DropFiles { get; }
     static EventType<EraseEvent> EraseBackground { get; }
@@ -1817,6 +1819,8 @@ static class WxKit.EventType
     static EventType<MoveEvent> Moving { get; }
     static EventType<NavigationKeyEvent> NavigationKey { get; }
     static EventType<PaintEvent> Paint { get; }
+    static EventType<PowerEvent> PowerResume { get; }
+    static EventType<PowerEvent> PowerSuspended { get; }
     static EventType<ScrollEvent> ScrollBar { get; }
     static EventType<ScrollEvent> ScrollBottom { get; }
     static EventType<ScrollEvent> ScrollChanged { get; }
@@ -1838,6 +1842,7 @@ static class WxKit.EventType
     static EventType<SetCursorEvent> CursorRequested { get; }
     static EventType<ShowEvent> Show { get; }
     static EventType<SizeEvent> Size { get; }
+    static EventType<SizeEvent> Sizing { get; }
     static EventType<SpinDoubleEvent> SpinCtrlDouble { get; }
     static EventType<SpinEvent> Spin { get; }
     static EventType<SpinEvent> SpinCtrl { get; }
@@ -1883,6 +1888,7 @@ static class WxKit.EventType
     static EventType<StyledTextEvent> StyledTextUserListSelection { get; }
     static EventType<StyledTextEvent> StyledTextZoom { get; }
     static EventType<SysColorChangedEvent> SysColorChanged { get; }
+    static EventType<SysMetricChangedEvent> SysMetricChanged { get; }
     static EventType<TaskBarIconEvent> TaskBarClick { get; }
     static EventType<TaskBarIconEvent> TaskBarLeftDoubleClick { get; }
     static EventType<TaskBarIconEvent> TaskBarLeftDown { get; }
@@ -3798,6 +3804,16 @@ readonly record struct WxKit.Point : IEquatable<Point>
     static bool op_Equality(Point left, Point right)
     static bool op_Inequality(Point left, Point right)
     void Deconstruct(out int X, out int Y)
+enum WxKit.PowerBlockKind : int
+    Delay = 1
+    Prevent = 0
+class WxKit.PowerEvent : Event
+static class WxKit.PowerResource
+    static bool Acquire(PowerResourceKind kind, string reason = "", PowerBlockKind blockKind = PowerBlockKind.Prevent)
+    static void Release(PowerResourceKind kind)
+enum WxKit.PowerResourceKind : int
+    Screen = 0
+    System = 1
 enum WxKit.PrintBin : int
     Auto = 7
     Cassette = 12
@@ -4341,7 +4357,7 @@ readonly record struct WxKit.Size : IEquatable<Size>
     static bool op_Inequality(Size left, Size right)
     void Deconstruct(out int Width, out int Height)
 class WxKit.SizeEvent : Event
-    Rect Rect { get; }
+    Rect Rect { get; set; }
     Size Size { get; }
 [Flags] enum WxKit.SizeFlags : int
     AllowMinusOne = 4
@@ -8379,6 +8395,11 @@ enum WxKit.StyledTextWrapMode : int
     EndByText = 1
     StartByText = 2
 class WxKit.SysColorChangedEvent : Event
+enum WxKit.SysMetric : int
+    CursorSize = 1
+    Other = 0
+class WxKit.SysMetricChangedEvent : Event
+    SysMetric Metric { get; }
 sealed record WxKit.SystemAppearance : IEquatable<SystemAppearance>
     SystemAppearance(string Name, bool IsDark, bool IsUsingDarkBackground, bool AreAppsDark)
     bool AreAppsDark { get; init; }
@@ -8820,12 +8841,16 @@ class WxKit.TopLevelWindow : Window
     bool OsxIsModified { get; set; }
     bool ShowFullScreen(bool show, FullScreenStyle style = FullScreenStyle.All)
     event EventHandler<CloseEvent>? Closing
+    event EventHandler<DisplayChangedEvent>? DisplayChanged
     event EventHandler<FullScreenEvent>? FullScreenChanged
     event EventHandler<MaximizeEvent>? Maximized
     event EventHandler<MoveEvent>? MoveEnded
     event EventHandler<MoveEvent>? MoveStarted
     event EventHandler<MoveEvent>? Moved
+    event EventHandler<PowerEvent>? PowerResumed
+    event EventHandler<PowerEvent>? PowerSuspended
     event EventHandler<ShowEvent>? VisibilityChanged
+    event EventHandler<SizeEvent>? SizeChanging
     static Size DefaultSize { get; }
     string Title { get; set; }
     void CenterOnScreen(Orientation direction = Orientation.Both)
@@ -9424,6 +9449,7 @@ class WxKit.Window : EvtHandler
     event EventHandler<SetCursorEvent>? CursorRequested
     event EventHandler<SizeEvent>? SizeChanged
     event EventHandler<SysColorChangedEvent>? SystemColorsChanged
+    event EventHandler<SysMetricChangedEvent>? SystemMetricChanged
     int CharHeight { get; }
     int CharWidth { get; }
     int FromDip(int value)

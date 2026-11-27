@@ -512,6 +512,12 @@ public unsafe partial class Window : EvtHandler {
 		remove => RemoveHandler(EventType.SysColorChanged, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_SYS_METRIC_CHANGED event (a system metric, which SystemSettings.GetMetric() gives, has changed). Only Windows sends it, when the cursor size changes. See wxSysMetricChangedEvent.</summary>
+	public event EventHandler<SysMetricChangedEvent>? SystemMetricChanged {
+		add => AddHandler(EventType.SysMetricChanged, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.SysMetricChanged, StandardId.Any, StandardId.Any, value);
+	}
+
 	/// <summary>Call this function to force one or both scrollbars to be always shown, even if the window is big enough to show its entire contents without scrolling.</summary>
 	public void AlwaysShowScrollBars(bool horizontal = true, bool vertical = true) => WxKitNative.WindowAlwaysShowScrollbars(Native, horizontal ? (byte)1 : (byte)0, vertical ? (byte)1 : (byte)0);
 

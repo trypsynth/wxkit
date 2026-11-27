@@ -5814,6 +5814,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void PickerBaseSetTextCtrlGrowable(WxkWindow* self, byte grow);
 
+	[LibraryImport(Library, EntryPoint = "wxk_PowerResource_Acquire")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte PowerResourceAcquire(int kind, char* reason, nuint reasonLength, int blockKind);
+
+	[LibraryImport(Library, EntryPoint = "wxk_PowerResource_Release")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void PowerResourceRelease(int kind);
+
 	[LibraryImport(Library, EntryPoint = "wxk_PrintData_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* PrintDataNew();
@@ -7013,6 +7021,10 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_SizeEvent_GetRect")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial Rect SizeEventGetRect(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_SizeEvent_SetRect")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void SizeEventSetRect(WxkEvent* self, Rect rect);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Sizer_Add_WindowIntIntInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -10626,6 +10638,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int StyledTextEventGetUpdated(WxkEvent* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_SysMetricChangedEvent_GetMetric")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int SysMetricChangedEventGetMetric(WxkEvent* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_SystemSettings_GetColour")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkColor SystemSettingsGetColour(int index);
@@ -13682,6 +13698,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeDirPickerChanged();
 
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_DisplayChanged")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeDisplayChanged();
+
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_DpiChanged")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeDpiChanged();
@@ -14006,6 +14026,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypePaint();
 
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_PowerResume")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypePowerResume();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_PowerSuspended")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypePowerSuspended();
+
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_QueryEndSession")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeQueryEndSession();
@@ -14125,6 +14153,10 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_Size")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeSize();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_Sizing")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeSizing();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_Slider")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -14309,6 +14341,10 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_SysColorChanged")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeSysColorChanged();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_SysMetricChanged")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeSysMetricChanged();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_TaskBarClick")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

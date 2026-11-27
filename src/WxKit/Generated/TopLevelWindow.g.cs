@@ -73,6 +73,12 @@ public unsafe partial class TopLevelWindow : Window {
 		remove => RemoveHandler(EventType.CloseWindow, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_DISPLAY_CHANGED event (the display resolution has changed). Only Windows sends it. See wxDisplayChangedEvent.</summary>
+	public event EventHandler<DisplayChangedEvent>? DisplayChanged {
+		add => AddHandler(EventType.DisplayChanged, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.DisplayChanged, StandardId.Any, StandardId.Any, value);
+	}
+
 	/// <summary>Process a wxEVT_FULLSCREEN event. See wxFullScreenEvent.</summary>
 	public event EventHandler<FullScreenEvent>? FullScreenChanged {
 		add => AddHandler(EventType.FullScreen, StandardId.Any, StandardId.Any, value, this);
@@ -101,6 +107,24 @@ public unsafe partial class TopLevelWindow : Window {
 	public event EventHandler<MoveEvent>? Moved {
 		add => AddHandler(EventType.Move, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.Move, StandardId.Any, StandardId.Any, value);
+	}
+
+	/// <summary>System resumed from suspend: normally the application should restore the state in which it had been before the suspension. Linux and macOS only send it while PowerResource.Acquire(PowerResourceKind.System, reason, PowerBlockKind.Delay) holds the system. See wxPowerEvent.</summary>
+	public event EventHandler<PowerEvent>? PowerResumed {
+		add => AddHandler(EventType.PowerResume, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.PowerResume, StandardId.Any, StandardId.Any, value);
+	}
+
+	/// <summary>System is about to suspend: normally the application should quickly (i.e. without user intervention) close all the open files and network connections here, possibly remembering them to reopen them later when the system is resumed. Linux and macOS only send it while PowerResource.Acquire(PowerResourceKind.System, reason, PowerBlockKind.Delay) holds the system. See wxPowerEvent.</summary>
+	public event EventHandler<PowerEvent>? PowerSuspended {
+		add => AddHandler(EventType.PowerSuspended, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.PowerSuspended, StandardId.Any, StandardId.Any, value);
+	}
+
+	/// <summary>Process a wxEVT_SIZING event (the user is resizing the window). The event's Rect is the window's new bounds, in screen coordinates, and a handler can set it to other bounds. Only Windows sends it. See wxSizeEvent.</summary>
+	public event EventHandler<SizeEvent>? SizeChanging {
+		add => AddHandler(EventType.Sizing, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.Sizing, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_SHOW event. See wxShowEvent.</summary>

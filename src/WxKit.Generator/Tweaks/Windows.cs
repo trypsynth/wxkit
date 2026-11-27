@@ -49,6 +49,9 @@ internal static class Windows {
 			// given, is documented only as an event type.
 			.Guard("wxUSE_HOTKEY", "RegisterHotKey", "UnregisterHotKey")
 			.AddEvent("EVT_HOTKEY", "wxEVT_HOTKEY", "wxKeyEvent", "HotKeyPressed", "Process a wxEVT_HOTKEY event (a hot key RegisterHotKey registered has been pressed, anywhere on the system). The event's Id is the hot key's id. See wxKeyEvent.")
+			// Windows sends a top-level window this, which passes it on to its children, as it does
+			// wxEVT_SYS_COLOUR_CHANGED. It is documented only on its event class.
+			.AddEvent("EVT_SYS_METRIC_CHANGED", "wxEVT_SYS_METRIC_CHANGED", "wxSysMetricChangedEvent", "SystemMetricChanged", "Process a wxEVT_SYS_METRIC_CHANGED event (a system metric, which SystemSettings.GetMetric() gives, has changed). Only Windows sends it, when the cursor size changes. See wxSysMetricChangedEvent.")
 			// Abbreviations .NET spells out, as its naming guidelines ask.
 			.Rename("GetScrollPos", "GetScrollPosition")
 			.Rename("SetScrollPos", "SetScrollPosition")
@@ -65,7 +68,15 @@ internal static class Windows {
 			.ParameterEnum("ShowFullScreen", "style", "FullScreenStyle")
 			.ParameterEnum("EnableFullScreenView", "style", "FullScreenStyle")
 			.ParameterEnum("RequestUserAttention", "flags", "UserAttention")
-			.AddEvent("EVT_CLOSE", "wxEVT_CLOSE_WINDOW", "wxCloseEvent", "Closing"));
+			.AddEvent("EVT_CLOSE", "wxEVT_CLOSE_WINDOW", "wxCloseEvent", "Closing")
+			// The system tells top-level windows when it suspends and resumes, when a display changes,
+			// and, on Windows, as the user resizes one. wxWidgets documents these events on their event
+			// classes, or only as event types. It never sends a suspend that can be vetoed or canceled,
+			// wxEVT_POWER_SUSPENDING and wxEVT_POWER_SUSPEND_CANCEL, on Windows since Vista, or anywhere else.
+			.AddEvent("EVT_POWER_SUSPENDED", "wxEVT_POWER_SUSPENDED", "wxPowerEvent", "PowerSuspended", "System is about to suspend: normally the application should quickly (i.e. without user intervention) close all the open files and network connections here, possibly remembering them to reopen them later when the system is resumed. Linux and macOS only send it while PowerResource.Acquire(PowerResourceKind.System, reason, PowerBlockKind.Delay) holds the system. See wxPowerEvent.")
+			.AddEvent("EVT_POWER_RESUME", "wxEVT_POWER_RESUME", "wxPowerEvent", "PowerResumed", "System resumed from suspend: normally the application should restore the state in which it had been before the suspension. Linux and macOS only send it while PowerResource.Acquire(PowerResourceKind.System, reason, PowerBlockKind.Delay) holds the system. See wxPowerEvent.")
+			.AddEvent("EVT_DISPLAY_CHANGED", "wxEVT_DISPLAY_CHANGED", "wxDisplayChangedEvent", "DisplayChanged", "Process a wxEVT_DISPLAY_CHANGED event (the display resolution has changed). Only Windows sends it. See wxDisplayChangedEvent.")
+			.AddEvent("EVT_SIZING", "wxEVT_SIZING", "wxSizeEvent", "SizeChanging", "Process a wxEVT_SIZING event (the user is resizing the window). The event's Rect is the window's new bounds, in screen coordinates, and a handler can set it to other bounds. Only Windows sends it. See wxSizeEvent."));
 		// What's at a point in a window, named so the enum isn't hidden by Window.HitTest inside a control.
 		tweaks.Enum("wxHitTest", "HitTestResult");
 		// The flags these take, which wxWidgets declares as constants rather than a named enum.
