@@ -1815,6 +1815,11 @@ WXK_FUNCTION(void) wxk_PickerBase_SetPickerCtrlGrowable(wxk_Window* self, uint8_
 WXK_FUNCTION(uint8_t) wxk_PickerBase_IsTextCtrlGrowable(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_PickerBase_SetTextCtrlGrowable(wxk_Window* self, uint8_t grow) WXK_NOEXCEPT;
 
+// wxPowerResource
+
+WXK_FUNCTION(uint8_t) wxk_PowerResource_Acquire(int32_t kind, const char16_t* reason, size_t reasonLength, int32_t blockKind) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_PowerResource_Release(int32_t kind) WXK_NOEXCEPT;
+
 // wxPrintData
 
 WXK_FUNCTION(wxk_Object*) wxk_PrintData_new(void) WXK_NOEXCEPT;
@@ -2189,6 +2194,7 @@ WXK_FUNCTION(void) wxk_SingleInstanceChecker_delete(wxk_SingleInstanceChecker* s
 
 WXK_FUNCTION(wxk_Size) wxk_SizeEvent_GetSize(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Rect) wxk_SizeEvent_GetRect(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_SizeEvent_SetRect(wxk_Event* self, wxk_Rect rect) WXK_NOEXCEPT;
 
 // wxSizer
 
@@ -3146,6 +3152,10 @@ WXK_FUNCTION(uint8_t) wxk_StyledTextEvent_GetShift(wxk_Event* self) WXK_NOEXCEPT
 WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetToken(wxk_Event* self) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_StyledTextEvent_GetUpdated(wxk_Event* self) WXK_NOEXCEPT;
 
+// wxSysMetricChangedEvent
+
+WXK_FUNCTION(int32_t) wxk_SysMetricChangedEvent_GetMetric(wxk_Event* self) WXK_NOEXCEPT;
+
 // wxSystemSettings
 
 WXK_FUNCTION(wxk_Colour) wxk_SystemSettings_GetColour(int32_t index) WXK_NOEXCEPT;
@@ -4007,6 +4017,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_DataViewItemValueChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_DataViewSelectionChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_DateChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_DirPickerChanged(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_DisplayChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_DpiChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_DropFiles(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_EndSession(void) WXK_NOEXCEPT;
@@ -4088,6 +4099,8 @@ WXK_FUNCTION(int32_t) wxk_EventType_NotificationMessageAction(void) WXK_NOEXCEPT
 WXK_FUNCTION(int32_t) wxk_EventType_NotificationMessageClick(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_NotificationMessageDismissed(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_Paint(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_PowerResume(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_PowerSuspended(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_QueryEndSession(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_RadioBox(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_RadioButton(void) WXK_NOEXCEPT;
@@ -4118,6 +4131,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_Search(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_SearchCancel(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_Show(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_Size(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_Sizing(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_Slider(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_Spin(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_SpinCtrl(void) WXK_NOEXCEPT;
@@ -4164,6 +4178,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_StyledTextUpdateUI(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_StyledTextUserListSelection(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_StyledTextZoom(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_SysColorChanged(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_SysMetricChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_TaskBarClick(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_TaskBarLeftDoubleClick(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_TaskBarLeftDown(void) WXK_NOEXCEPT;

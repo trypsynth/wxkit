@@ -1926,6 +1926,22 @@ public enum PenStyle {
 	VerticalHatch = 116,
 }
 
+/// <summary>Wraps wxPowerBlockKind.</summary>
+public enum PowerBlockKind {
+	/// <summary>Prevent the resource from disappearing. Wraps wxPOWER_PREVENT.</summary>
+	Prevent = 0,
+	/// <summary>Delay suspend until the application handles the corresponding event. Wraps wxPOWER_DELAY.</summary>
+	Delay = 1,
+}
+
+/// <summary>Wraps wxPowerResourceKind.</summary>
+public enum PowerResourceKind {
+	/// <summary>Use to prevent automatic display power off. Wraps wxPOWER_RESOURCE_SCREEN.</summary>
+	Screen = 0,
+	/// <summary>Use to prevent automatic system suspend. Wraps wxPOWER_RESOURCE_SYSTEM.</summary>
+	System = 1,
+}
+
 /// <summary>Wraps wxPrintBin.</summary>
 public enum PrintBin {
 	/// <summary>Wraps wxPRINTBIN_DEFAULT.</summary>
@@ -3525,6 +3541,14 @@ public enum StyledTextWrapVisualLocation {
 	EndByText = 1,
 	/// <summary>Wraps wxSTC_WRAPVISUALFLAGLOC_START_BY_TEXT.</summary>
 	StartByText = 2,
+}
+
+/// <summary>Wraps wxSysMetric.</summary>
+public enum SysMetric {
+	/// <summary>Undetermined or unknown system metric has changed. Wraps Other.</summary>
+	Other = 0,
+	/// <summary>The default system cursor size has changed. Wraps CursorSize.</summary>
+	CursorSize = 1,
 }
 
 /// <summary>Wraps wxSystemColour.</summary>

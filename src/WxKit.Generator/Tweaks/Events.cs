@@ -75,10 +75,15 @@ internal static class Events {
 			"wxSysColourChangedEvent", "wxDPIChangedEvent", "wxInitDialogEvent", "wxMenuEvent",
 			"wxFullScreenEvent", "wxNavigationKeyEvent", "wxTimerEvent", "wxScrollWinEvent", "wxEraseEvent",
 			"wxSpinEvent", "wxSpinDoubleEvent", "wxScrollEvent", "wxHyperlinkEvent", "wxBookCtrlEvent",
-			"wxSplitterEvent", "wxCollapsiblePaneEvent",
+			"wxSplitterEvent", "wxCollapsiblePaneEvent", "wxDisplayChangedEvent", "wxSysMetricChangedEvent",
 		]) {
 			tweaks.Class(eventClass);
 		}
+		// A suspend is vetoed only from wxEVT_POWER_SUSPENDING, which no system WxKit runs on sends,
+		// as none sends wxEVT_POWER_SUSPEND_CANCEL.
+		tweaks.Class("wxPowerEvent", e => e.Ignore("Veto", "IsVetoed").IgnoreEvent("EVT_POWER_SUSPENDING", "EVT_POWER_SUSPEND_CANCEL"));
+		// A handler of wxEVT_SIZING sets the bounds the window is resized to.
+		tweaks.Class("wxSizeEvent").HandlerSets("SetRect");
 		// Files dropped on a window that accepts them. Files is written by hand, since GetFiles gives a C array.
 		tweaks.Class("wxDropFilesEvent", e => e.Ignore("GetFiles"));
 		// Bound by hand-written classes: menu items' clicks and timers' ticks.

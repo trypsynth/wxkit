@@ -425,6 +425,13 @@ public static unsafe partial class EventType {
 		public static readonly EventType<FileDirPickerEvent> Value = new(WxKitNative.EventTypeDirPickerChanged, static native => new FileDirPickerEvent((WxkEvent*)native));
 	}
 
+	/// <summary>Wraps wxEVT_DISPLAY_CHANGED.</summary>
+	public static EventType<DisplayChangedEvent> DisplayChanged => DisplayChangedType.Value;
+
+	private static class DisplayChangedType {
+		public static readonly EventType<DisplayChangedEvent> Value = new(WxKitNative.EventTypeDisplayChanged, static native => new DisplayChangedEvent((WxkEvent*)native));
+	}
+
 	/// <summary>Wraps wxEVT_DPI_CHANGED.</summary>
 	public static EventType<DpiChangedEvent> DpiChanged => DpiChangedType.Value;
 
@@ -992,6 +999,20 @@ public static unsafe partial class EventType {
 		public static readonly EventType<PaintEvent> Value = new(WxKitNative.EventTypePaint, static native => new PaintEvent((WxkEvent*)native));
 	}
 
+	/// <summary>Wraps wxEVT_POWER_RESUME.</summary>
+	public static EventType<PowerEvent> PowerResume => PowerResumeType.Value;
+
+	private static class PowerResumeType {
+		public static readonly EventType<PowerEvent> Value = new(WxKitNative.EventTypePowerResume, static native => new PowerEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_POWER_SUSPENDED.</summary>
+	public static EventType<PowerEvent> PowerSuspended => PowerSuspendedType.Value;
+
+	private static class PowerSuspendedType {
+		public static readonly EventType<PowerEvent> Value = new(WxKitNative.EventTypePowerSuspended, static native => new PowerEvent((WxkEvent*)native));
+	}
+
 	/// <summary>Wraps wxEVT_QUERY_END_SESSION.</summary>
 	public static EventType<CloseEvent> QueryEndSession => QueryEndSessionType.Value;
 
@@ -1200,6 +1221,13 @@ public static unsafe partial class EventType {
 
 	private static class SizeType {
 		public static readonly EventType<SizeEvent> Value = new(WxKitNative.EventTypeSize, static native => new SizeEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_SIZING.</summary>
+	public static EventType<SizeEvent> Sizing => SizingType.Value;
+
+	private static class SizingType {
+		public static readonly EventType<SizeEvent> Value = new(WxKitNative.EventTypeSizing, static native => new SizeEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_SLIDER.</summary>
@@ -1522,6 +1550,13 @@ public static unsafe partial class EventType {
 
 	private static class SysColorChangedType {
 		public static readonly EventType<SysColorChangedEvent> Value = new(WxKitNative.EventTypeSysColorChanged, static native => new SysColorChangedEvent((WxkEvent*)native));
+	}
+
+	/// <summary>Wraps wxEVT_SYS_METRIC_CHANGED.</summary>
+	public static EventType<SysMetricChangedEvent> SysMetricChanged => SysMetricChangedType.Value;
+
+	private static class SysMetricChangedType {
+		public static readonly EventType<SysMetricChangedEvent> Value = new(WxKitNative.EventTypeSysMetricChanged, static native => new SysMetricChangedEvent((WxkEvent*)native));
 	}
 
 	/// <summary>Wraps wxEVT_TASKBAR_CLICK.</summary>

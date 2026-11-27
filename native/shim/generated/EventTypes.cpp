@@ -109,6 +109,10 @@ WXK_FUNCTION(int32_t) wxk_EventType_CursorRequested(void) noexcept {
 	return wxEVT_SET_CURSOR;
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_DisplayChanged(void) noexcept {
+	return wxEVT_DISPLAY_CHANGED;
+}
+
 WXK_FUNCTION(int32_t) wxk_EventType_DpiChanged(void) noexcept {
 	return wxEVT_DPI_CHANGED;
 }
@@ -378,6 +382,10 @@ WXK_FUNCTION(int32_t) wxk_EventType_Size(void) noexcept {
 	return wxEVT_SIZE;
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_Sizing(void) noexcept {
+	return wxEVT_SIZING;
+}
+
 WXK_FUNCTION(int32_t) wxk_EventType_Slider(void) noexcept {
 	return wxEVT_SLIDER;
 }
@@ -396,6 +404,10 @@ WXK_FUNCTION(int32_t) wxk_EventType_SpinUp(void) noexcept {
 
 WXK_FUNCTION(int32_t) wxk_EventType_SysColorChanged(void) noexcept {
 	return wxEVT_SYS_COLOUR_CHANGED;
+}
+
+WXK_FUNCTION(int32_t) wxk_EventType_SysMetricChanged(void) noexcept {
+	return wxEVT_SYS_METRIC_CHANGED;
 }
 
 WXK_FUNCTION(int32_t) wxk_EventType_TextCopy(void) noexcept {

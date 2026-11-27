@@ -34,6 +34,9 @@ internal static class Desktop {
 			.Event("EVT_TASKBAR_RIGHT_DCLICK", "RightDoubleClick")
 			.Event("EVT_TASKBAR_CLICK", "Click"));
 		tweaks.Class("wxTaskBarIconEvent");
+		// Keeps the screen on, or the system awake, while the application holds it. Linux and macOS
+		// only send a top-level window the power events while it holds the system with PowerBlockKind.Delay.
+		tweaks.Class("wxPowerResource").StaticOnly();
 		// Free functions that the hand-written Desktop, Keyboard, Mouse, and BusyCursor call.
 		tweaks.Functions("Desktop", "wx/utils.h", "wxBell", "wxLaunchDefaultBrowser", "wxLaunchDefaultApplication", "wxGetKeyState", "wxGetMousePosition");
 		tweaks.Functions("BusyCursor", "wx/utils.h", "wxBeginBusyCursor", "wxEndBusyCursor", "wxIsBusy");

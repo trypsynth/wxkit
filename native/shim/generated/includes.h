@@ -72,6 +72,7 @@
 #include <wx/panel.h>
 #include <wx/pen.h>
 #include <wx/pickerbase.h>
+#include <wx/power.h>
 #include <wx/print.h>
 #include <wx/printdlg.h>
 #include <wx/progdlg.h>
