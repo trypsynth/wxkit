@@ -7126,6 +7126,22 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void SliderSetValue(WxkWindow* self, int value);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Sound_Play")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte SoundPlay(WxkObject* self, int flags);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Sound_Stop")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void SoundStop();
+
+	[LibraryImport(Library, EntryPoint = "wxk_Sound_IsOk")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte SoundIsOk(WxkObject* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Sound_IsPlaying")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte SoundIsPlaying();
+
 	[LibraryImport(Library, EntryPoint = "wxk_SpinButton_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* SpinButtonNew(WxkWindow* parent, int id, Point position, Size size, long style);

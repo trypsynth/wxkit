@@ -34,6 +34,15 @@ internal static class Desktop {
 			.Event("EVT_TASKBAR_RIGHT_DCLICK", "RightDoubleClick")
 			.Event("EVT_TASKBAR_CLICK", "Click"));
 		tweaks.Class("wxTaskBarIconEvent");
+		// Sounds, which the application frees with Dispose. The hand-written FromFile and FromStream
+		// load one, and give null rather than a sound that isn't usable, without the error dialog
+		// wxWidgets would show. The static Play loads a file as the constructor does, so it is left out.
+		tweaks.ConstantEnum("SoundFlags", "wxSOUND_", isFlags: true);
+		tweaks.Class("wxSound", sound => sound
+			.Owned()
+			.Ignore("wxSound", "Create")
+			.IgnoreOverload("Play", "filename", "const wxString &")
+			.ParameterEnum("Play", "flags", "SoundFlags"));
 		// Free functions that the hand-written Desktop, Keyboard, Mouse, and BusyCursor call.
 		tweaks.Functions("Desktop", "wx/utils.h", "wxBell", "wxLaunchDefaultBrowser", "wxLaunchDefaultApplication", "wxGetKeyState", "wxGetMousePosition");
 		tweaks.Functions("BusyCursor", "wx/utils.h", "wxBeginBusyCursor", "wxEndBusyCursor", "wxIsBusy");

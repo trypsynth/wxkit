@@ -16,6 +16,13 @@ internal static partial class Win32 {
 	// WM_KEYDOWN, with the virtual key code, which for letters is the upper-case letter.
 	public static void PressKey(Window window, char key) => SendMessage(window.NativeHandle, 0x0100, key, 0);
 
+	// Whether Windows has a device to play sounds on, which a machine without speakers or a sound
+	// card, such as a CI runner, may not.
+	public static bool HasAudioOutput => WaveOutGetNumDevs() > 0;
+
 	[LibraryImport("user32.dll", EntryPoint = "SendMessageW")]
 	private static partial nint SendMessage(nint window, uint message, nint wParam, nint lParam);
+
+	[LibraryImport("winmm.dll", EntryPoint = "waveOutGetNumDevs")]
+	private static partial uint WaveOutGetNumDevs();
 }

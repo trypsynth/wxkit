@@ -214,6 +214,7 @@ It builds on `SingleInstanceChecker`, which wraps `wxSingleInstanceChecker` and 
 A few of wxWidgets' utilities, where .NET has no way to ask the system:
 
 - `Desktop.Bell` plays the alert sound, `Desktop.OpenUrl` opens a link in the default browser, and `Desktop.Open` opens a file in the application the system opens its kind of file with.
+- `Sound.FromFile` and `Sound.FromStream` load a short WAV sound, and return null when they can't, and `Play` plays it, by default without waiting for it to end, with `SoundFlags.Sync` before it returns, and with `SoundFlags.Async | SoundFlags.Loop` until `Sound.Stop`. A new sound stops the one playing, and a sound goes on playing once it's disposed. Windows only reads a sound as it plays it, so there what isn't WAV is found out when `Play` returns false. On Linux, a sound plays only through OSS, which few systems have, since SDL is left out.
 - `Keyboard.IsKeyDown`, `IsCapsLockOn`, and `IsNumLockOn` ask about the keyboard outside a key event, and `Mouse.Position` says where the pointer is on the screen.
 - `BusyCursor` and `WindowDisabler` last until they are disposed, as in `using (new BusyCursor()) { ... }`: the busy cursor, which nests, and every top-level window disabled but one, such as a progress window that doesn't block.
 - `Display.All`, `Primary`, `FromWindow`, and `FromPoint` describe the displays, like WinForms' `Screen`, with each one's `Bounds`, `WorkArea`, and `ScaleFactor`.

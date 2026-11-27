@@ -468,6 +468,12 @@ WXK_FUNCTION(void) wxk_ManagedTaskBarIcon_SetMenu(wxk_EvtHandler* icon, wxk_Menu
 // Removes the icon and deletes it once the event loop is idle. Call it only once.
 WXK_FUNCTION(void) wxk_ManagedTaskBarIcon_Destroy(wxk_EvtHandler* icon) WXK_NOEXCEPT;
 
+// Loads a sound from a WAV file, or from the bytes of one, which are copied, and returns null when
+// it could not, such as for a file that isn't there, which is not logged. The caller deletes it with
+// wxk_Object_Free. Windows only reads a sound as it plays it, so there Play finds out what isn't WAV.
+WXK_FUNCTION(wxk_Object*) wxk_Sound_FromFile(const char16_t* path, size_t pathLength) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_Object*) wxk_Sound_FromData(const uint8_t* data, size_t length) WXK_NOEXCEPT;
+
 // Web views
 
 // Whether the system has the browser engine a web view needs, such as Edge's WebView2 runtime.

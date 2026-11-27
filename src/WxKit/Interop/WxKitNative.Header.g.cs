@@ -504,6 +504,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void ManagedTaskBarIconDestroy(WxkEvtHandler* icon);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Sound_FromFile")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* SoundFromFile(char* path, nuint pathLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Sound_FromData")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* SoundFromData(byte* data, nuint length);
+
 	// Web views
 
 	[LibraryImport(Library, EntryPoint = "wxk_WebView_IsAvailable")]

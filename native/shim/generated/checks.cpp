@@ -1095,6 +1095,9 @@ static_assert(static_cast<long>(wxSL_SELRANGE) == static_cast<long>(2048LL), "wx
 static_assert(static_cast<long>(wxSL_TOP) == static_cast<long>(128LL), "wxSL_TOP is not 128");
 static_assert(static_cast<long>(wxSL_VALUE_LABEL) == static_cast<long>(16384LL), "wxSL_VALUE_LABEL is not 16384");
 static_assert(static_cast<long>(wxSL_VERTICAL) == static_cast<long>(8LL), "wxSL_VERTICAL is not 8");
+static_assert(static_cast<int32_t>(wxSOUND_ASYNC) == static_cast<int32_t>(1LL), "wxSOUND_ASYNC is not 1");
+static_assert(static_cast<int32_t>(wxSOUND_LOOP) == static_cast<int32_t>(2LL), "wxSOUND_LOOP is not 2");
+static_assert(static_cast<int32_t>(wxSOUND_SYNC) == static_cast<int32_t>(0LL), "wxSOUND_SYNC is not 0");
 static_assert(static_cast<int32_t>(wxSPLIT_HORIZONTAL) == static_cast<int32_t>(1LL), "wxSPLIT_HORIZONTAL is not 1");
 static_assert(static_cast<int32_t>(wxSPLIT_VERTICAL) == static_cast<int32_t>(2LL), "wxSPLIT_VERTICAL is not 2");
 static_assert(static_cast<long>(wxSP_3D) == static_cast<long>(768LL), "wxSP_3D is not 768");
