@@ -43,13 +43,16 @@ internal static class Gui {
 	// The body runs on the GUI thread, and so do its continuations. An exception that escapes an
 	// event handler while it runs fails the test, since nothing else would see it, and so does a
 	// failed wxWidgets assertion, which means the test, or WxKit, called wxWidgets wrongly.
-	public static Task<T> Run<T>(Func<Task<T>> body) {
+	public static Task<T> Run<T>(Func<Task<T>> body) => Run(body, Timeout);
+
+	// For a test that waits for something slower than the GUI, such as a browser engine starting.
+	public static Task<T> Run<T>(Func<Task<T>> body, TimeSpan timeout) {
 		TaskCompletionSource<T> completion = new(TaskCreationOptions.RunContinuationsAsynchronously);
 		Application.Post(async () => {
 			TakeUnhandled();
 			TakeAssertions();
 			try {
-				T result = await body().WaitAsync(Timeout);
+				T result = await body().WaitAsync(timeout);
 				Exception[] unhandled = TakeUnhandled();
 				if (unhandled.Length > 0) throw new AggregateException("An event handler threw.", unhandled);
 				AssertFailedEventArgs[] assertions = TakeAssertions();
@@ -63,14 +66,18 @@ internal static class Gui {
 	}
 
 	/// <summary>Runs <paramref name="body"/> with a new frame, which is destroyed afterwards if the body did not destroy it.</summary>
-	public static Task WithFrame(Func<Frame, Task> body) => Run(async () => {
+	public static Task WithFrame(Func<Frame, Task> body) => WithFrame(body, Timeout);
+
+	/// <summary>Runs <paramref name="body"/> with a new frame, for at most <paramref name="timeout"/>, for a test that waits for something slower than the GUI.</summary>
+	public static Task WithFrame(Func<Frame, Task> body, TimeSpan timeout) => Run(async () => {
 		Frame frame = new(null, "Test frame");
 		try {
 			await body(frame);
 		} finally {
 			if (!frame.IsDisposed) frame.Destroy();
 		}
-	});
+		return true;
+	}, timeout);
 
 	public static Task WithFrame(Action<Frame> body) => WithFrame(frame => {
 		body(frame);
