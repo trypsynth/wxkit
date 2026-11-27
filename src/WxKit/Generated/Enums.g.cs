@@ -3913,7 +3913,7 @@ public enum WebViewFindFlags {
 	Wrap = 1,
 	/// <summary>Matches an entire word when searching. Wraps wxWEBVIEW_FIND_ENTIRE_WORD.</summary>
 	EntireWord = 2,
-	/// <summary>Match case, i.e. Wraps wxWEBVIEW_FIND_MATCH_CASE.</summary>
+	/// <summary>Match case, i.e. case sensitive searching. Wraps wxWEBVIEW_FIND_MATCH_CASE.</summary>
 	MatchCase = 4,
 	/// <summary>Highlights the search results. Wraps wxWEBVIEW_FIND_HIGHLIGHT_RESULT.</summary>
 	HighlightResult = 8,

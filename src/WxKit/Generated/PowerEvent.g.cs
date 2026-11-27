@@ -4,7 +4,7 @@ using WxKit.Interop;
 
 namespace WxKit;
 
-/// <summary>The power events are generated when the system power state changes, e.g. Wraps wxPowerEvent.</summary>
+/// <summary>The power events are generated when the system power state changes, e.g. the system is suspended, hibernated, plugged into or unplugged from the wall socket and so on. Wraps wxPowerEvent.</summary>
 public unsafe partial class PowerEvent : Event {
 	internal PowerEvent(WxkEvent* native) : base(native) {
 	}

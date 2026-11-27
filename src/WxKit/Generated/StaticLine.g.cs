@@ -13,7 +13,7 @@ public unsafe partial class StaticLine : Control {
 	internal StaticLine(WxkWindow* native) : base(native) {
 	}
 
-	/// <summary>This static function returns the size which will be given to the smaller dimension of the static line, i.e.</summary>
+	/// <summary>This static function returns the size which will be given to the smaller dimension of the static line, i.e. its height for a horizontal line or its width for a vertical one.</summary>
 	public static int DefaultSize {
 		get {
 			Application.VerifyAccess();

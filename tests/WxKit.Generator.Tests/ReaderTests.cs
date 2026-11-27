@@ -98,6 +98,30 @@ public class ReaderTests {
 			});
 	}
 
+	// Doxygen ends a brief at the first full stop before a space, so "e.g." and "i.e." cut it short,
+	// and the rest of the sentence starts the detailed description, as for wxButton::SetDefault.
+	[Theory]
+	[InlineData("This sets the button to be the default item in its top-level window (e.g. ", "<para>the panel or the dialog box containing it).</para><para>As normal, pressing return presses it.</para>", "This sets the button to be the default item in its top-level window (e.g. the panel or the dialog box containing it).")]
+	[InlineData("Match case, i.e. ", "<para>case sensitive searching </para>", "Match case, i.e. case sensitive searching")]
+	[InlineData("Reparents the window, i.e. the window will be removed from its current parent window (e.g. ", "<para>a non-standard toolbar in a wxFrame, i.e. a frame) and then re-inserted into another. Notice that it needs Show().</para>", "Reparents the window, i.e. the window will be removed from its current parent window (e.g. a non-standard toolbar in a wxFrame, i.e. a frame) and then re-inserted into another.")]
+	[InlineData("Call this in OnEvent(), OnButtonClick() etc. ", "<para>if you need to change the value. Then return true.<simplesect kind=\"remark\"><para>A remark.</para></simplesect></para>", "Call this in OnEvent(), OnButtonClick() etc. if you need to change the value.")]
+	[InlineData("Adjusts the borders, etc. ", "<para>Call it once.</para>", "Adjusts the borders, etc.")]
+	[InlineData("Returns the size.", "<para>the rest.</para>", "Returns the size.")]
+	[InlineData("Sets the icons (e.g. ", "", "Sets the icons (e.g.")]
+	public void TakesBackTheRestOfABriefCutShortAtAnAbbreviation(string brief, string details, string expected) {
+		XElement member = XElement.Parse($"<memberdef><briefdescription><para>{brief}</para></briefdescription><detaileddescription>{details}</detaileddescription></memberdef>");
+		Assert.Equal(expected, DoxygenReader.Brief(member));
+	}
+
+	[Theory]
+	[InlineData("One. Two.", "One.")]
+	[InlineData("Uses a frame, e.g. a dialog. Then more.", "Uses a frame, e.g. a dialog.")]
+	[InlineData("Pens, brushes, etc. and fonts. Then more.", "Pens, brushes, etc. and fonts.")]
+	[InlineData("Pens, brushes, etc. Then more.", "Pens, brushes, etc.")]
+	[InlineData("Calls wxWindow::Show() or wx.Foo first. Then more.", "Calls wxWindow::Show() or wx.Foo first.")]
+	[InlineData("No full stop", "No full stop")]
+	public void EndsASentenceWhereItEnds(string text, string expected) => Assert.Equal(expected, DoxygenReader.FirstSentence(text));
+
 	[Theory]
 	[InlineData("const wxString &", "wxString", true, 0, true)]
 	[InlineData("wxWindow *", "wxWindow", false, 1, false)]
