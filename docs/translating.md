@@ -119,12 +119,15 @@ A window's text is translated when the window is made. To change the language wh
 
 ## Right-to-left languages
 
-Hebrew, Arabic, and Persian are written from right to left, and windows in them lay out from the right. Windows follow the user's locale, so an application whose language is a setting of its own sets the direction itself. Set `Application.LayoutDirection` after `Translations.Use`, before you make any windows:
+Hebrew, Arabic, and Persian are written from right to left, and windows in them lay out from the right. Windows follow the user's locale, so an application whose language is a setting of its own sets the direction itself, from the language its text is in. Set `Application.LayoutDirection` after `Translations.Use`, before you make any windows:
 
 ```csharp
-string language = Translations.Current?.GetBestTranslation("MyApp") ?? "en";
-Application.LayoutDirection = LanguageInfo.Find(language)?.LayoutDirection ?? LayoutDirection.Default;
+Translations translations = Translations.Use("MyApp", language);
+string current = translations.GetBestTranslation("MyApp") ?? "en";
+Application.LayoutDirection = LanguageInfo.Find(current)?.LayoutDirection ?? LayoutDirection.Default;
 ```
+
+`GetBestTranslation` names the language the text is in, which is `en` when it stays in English, even when there's a catalog for a language the user prefers after English. It's null when there's no catalog for the language, or for any the user prefers, and the text stays in English then too. Don't take the direction from the user's preferred languages, or from the `language` you passed, which may have no catalog.
 
 New windows with no parent, and message boxes, are laid out in that direction, and a window with a parent takes its parent's. Windows that are already open keep theirs. To change the language while the application runs, set `Application.LayoutDirection` again, and set each open top-level window's `LayoutDirection` before you make its contents again. On macOS, Cocoa takes the direction from the languages the application is localized in, not from WxKit.
 
