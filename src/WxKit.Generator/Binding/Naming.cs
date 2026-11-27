@@ -681,6 +681,7 @@ internal static class Naming {
 		{ "RCLICKED", "RIGHT_CLICKED" },
 		{ "RDRAG", "RIGHT_DRAG" },
 		{ "MOUSEWHEEL", "MOUSE_WHEEL" },
+		{ "HOTKEY", "HOT_KEY" },
 		{ "CLOSEUP", "CLOSE_UP" },
 		{ "DROPDOWN", "DROP_DOWN" },
 		{ "MAXLEN", "MAX_LENGTH" },

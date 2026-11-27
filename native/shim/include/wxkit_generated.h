@@ -4026,6 +4026,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_GenericDirCtrlFileActivated(void) WXK_NOEXCE
 WXK_FUNCTION(int32_t) wxk_EventType_GenericDirCtrlSelectionChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_GotFocus(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_Help(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_HotKey(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_Hyperlink(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_Iconize(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_Idle(void) WXK_NOEXCEPT;

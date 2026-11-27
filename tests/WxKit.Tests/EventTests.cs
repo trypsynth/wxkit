@@ -125,6 +125,28 @@ public class EventTests {
 		Assert.Equal((KeyCode)'A', keyCode);
 	});
 
+	// The combination is one nothing else is likely to have registered, and the test sends the
+	// message Windows would, rather than pressing the keys.
+	[Fact]
+	public Task RaisesHotKeyPressedWithTheHotKeysId() => Gui.WithFrame(frame => {
+		Assert.SkipUnless(OperatingSystem.IsWindows(), "Hot keys are sent as Windows messages.");
+		const int id = 0x2A17;
+		Assert.True(frame.RegisterHotKey(id, KeyModifiers.Control | KeyModifiers.Alt | KeyModifiers.Shift, (int)KeyCode.F23));
+		try {
+			List<(object? Sender, int Id, KeyCode KeyCode, KeyModifiers Modifiers)> presses = [];
+			frame.HotKeyPressed += (sender, e) => presses.Add((sender, e.Id, e.KeyCode, e.Modifiers));
+			// MOD_ALT, MOD_CONTROL, and MOD_SHIFT, and VK_F23.
+			Win32.PressHotKey(frame, id, 0x0001 | 0x0002 | 0x0004, 0x86);
+			var press = Assert.Single(presses);
+			Assert.Same(frame, press.Sender);
+			Assert.Equal(id, press.Id);
+			Assert.Equal(KeyCode.F23, press.KeyCode);
+			Assert.Equal(KeyModifiers.Control | KeyModifiers.Alt | KeyModifiers.Shift, press.Modifiers);
+		} finally {
+			Assert.True(frame.UnregisterHotKey(id));
+		}
+	});
+
 	[Fact]
 	public Task GivesSizeEventsTheNewSize() => Gui.WithFrame(frame => {
 		Size? reported = null;

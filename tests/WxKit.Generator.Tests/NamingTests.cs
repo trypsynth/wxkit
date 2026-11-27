@@ -55,6 +55,7 @@ public class NamingTests {
 	[InlineData("wxEVT_STC_SAVEPOINTREACHED", "StyledTextSavePointReached")]
 	[InlineData("wxEVT_WEBVIEW_NEWWINDOW", "WebViewNewWindow")]
 	[InlineData("wxEVT_KILL_FOCUS", "LostFocus")]
+	[InlineData("wxEVT_HOTKEY", "HotKey")]
 	public void NamesEventTypes(string constant, string name) => Assert.Equal(name, Naming.EventType(constant));
 
 	[Theory]

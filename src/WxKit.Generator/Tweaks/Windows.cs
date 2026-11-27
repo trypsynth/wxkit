@@ -45,12 +45,15 @@ internal static class Windows {
 			.ParameterEnum("HasExtraStyle", "exFlag", "WindowExtraStyle")
 			// Char would hide System.Char inside a control.
 			.Event("EVT_CHAR", "CharTyped")
-			// wxGTK has no system-wide hot keys.
+			// wxGTK has no system-wide hot keys. Their event, whose id is the one RegisterHotKey was
+			// given, is documented only as an event type.
 			.Guard("wxUSE_HOTKEY", "RegisterHotKey", "UnregisterHotKey")
+			.AddEvent("EVT_HOTKEY", "wxEVT_HOTKEY", "wxKeyEvent", "HotKeyPressed", "Process a wxEVT_HOTKEY event (a hot key RegisterHotKey registered has been pressed, anywhere on the system). The event's Id is the hot key's id. See wxKeyEvent.")
 			// Abbreviations .NET spells out, as its naming guidelines ask.
 			.Rename("GetScrollPos", "GetScrollPosition")
 			.Rename("SetScrollPos", "SetScrollPosition")
 			.Property("UsesBackgroundColor", "UseBgCol"));
+		tweaks.GuardEventType("wxUSE_HOTKEY", "wxEVT_HOTKEY");
 		// Null clears the default item.
 		tweaks.Class("wxTopLevelWindow", window => window
 			.NoConstructors()

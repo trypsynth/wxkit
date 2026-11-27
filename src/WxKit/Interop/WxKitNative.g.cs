@@ -13742,6 +13742,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeHelp();
 
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_HotKey")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeHotKey();
+
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_Hyperlink")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeHyperlink();

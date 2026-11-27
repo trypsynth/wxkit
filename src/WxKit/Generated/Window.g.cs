@@ -380,6 +380,12 @@ public unsafe partial class Window : EvtHandler {
 		remove => RemoveHandler(EventType.Help, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_HOTKEY event (a hot key RegisterHotKey registered has been pressed, anywhere on the system). The event's Id is the hot key's id. See wxKeyEvent.</summary>
+	public event EventHandler<KeyEvent>? HotKeyPressed {
+		add => AddHandler(EventType.HotKey, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.HotKey, StandardId.Any, StandardId.Any, value);
+	}
+
 	/// <summary>Process a wxEVT_IDLE event. See wxIdleEvent.</summary>
 	public event EventHandler<IdleEvent>? Idle {
 		add => AddHandler(EventType.Idle, StandardId.Any, StandardId.Any, value, this);
