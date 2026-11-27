@@ -12876,7 +12876,7 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_Window_RegisterHotKey")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte WindowRegisterHotKey(WxkWindow* self, int hotkeyId, int modifiers, int virtualKeyCode);
+	public static partial byte WindowRegisterHotKey(WxkWindow* self, int hotkeyId, int modifiers, int key);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Window_UnregisterHotKey")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

@@ -769,7 +769,7 @@ public unsafe partial class Window : EvtHandler {
 	public void RefreshRect(Rect rect, bool eraseBackground = true) => WxKitNative.WindowRefreshRect(Native, rect, eraseBackground ? (byte)1 : (byte)0);
 
 	/// <summary>Registers a system wide hotkey.</summary>
-	public bool RegisterHotKey(int hotkeyId, KeyModifiers modifiers, int virtualKeyCode) => WxKitNative.WindowRegisterHotKey(Native, hotkeyId, (int)modifiers, virtualKeyCode) != 0;
+	public bool RegisterHotKey(int hotkeyId, KeyModifiers modifiers, KeyCode key) => WxKitNative.WindowRegisterHotKey(Native, hotkeyId, (int)modifiers, (int)key) != 0;
 
 	/// <summary>Releases mouse input captured with CaptureMouse().</summary>
 	public void ReleaseMouse() => WxKitNative.WindowReleaseMouse(Native);

@@ -9366,7 +9366,7 @@ class WxKit.Window : EvtHandler
     bool PageDown()
     bool PageUp()
     bool PopupMenu(Menu menu, Point? position = null)
-    bool RegisterHotKey(int hotkeyId, KeyModifiers modifiers, int virtualKeyCode)
+    bool RegisterHotKey(int hotkeyId, KeyModifiers modifiers, KeyCode key)
     bool Reparent(Window newParent)
     bool ScrollLines(int lines)
     bool ScrollPages(int pages)

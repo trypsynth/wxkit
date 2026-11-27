@@ -131,7 +131,7 @@ public class EventTests {
 	public Task RaisesHotKeyPressedWithTheHotKeysId() => Gui.WithFrame(frame => {
 		Assert.SkipUnless(OperatingSystem.IsWindows(), "Hot keys are sent as Windows messages.");
 		const int id = 0x2A17;
-		Assert.True(frame.RegisterHotKey(id, KeyModifiers.Control | KeyModifiers.Alt | KeyModifiers.Shift, (int)KeyCode.F23));
+		Assert.True(frame.RegisterHotKey(id, KeyModifiers.Control | KeyModifiers.Alt | KeyModifiers.Shift, KeyCode.F23));
 		try {
 			List<(object? Sender, int Id, KeyCode KeyCode, KeyModifiers Modifiers)> presses = [];
 			frame.HotKeyPressed += (sender, e) => presses.Add((sender, e.Id, e.KeyCode, e.Modifiers));

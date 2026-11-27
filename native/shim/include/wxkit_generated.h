@@ -3783,7 +3783,7 @@ WXK_FUNCTION(void) wxk_Window_ReleaseMouse(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_EnableTouchEvents(wxk_Window* self, int32_t eventsMask) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_Window_HitTest(wxk_Window* self, wxk_Point point) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_InitDialog(wxk_Window* self) WXK_NOEXCEPT;
-WXK_FUNCTION(uint8_t) wxk_Window_RegisterHotKey(wxk_Window* self, int32_t hotkeyId, int32_t modifiers, int32_t virtualKeyCode) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Window_RegisterHotKey(wxk_Window* self, int32_t hotkeyId, int32_t modifiers, int32_t key) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_Window_UnregisterHotKey(wxk_Window* self, int32_t hotkeyId) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Window_UpdateWindowUI(wxk_Window* self, int64_t flags) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_Window_FindFocus(void) WXK_NOEXCEPT;
