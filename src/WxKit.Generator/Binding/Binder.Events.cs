@@ -8,7 +8,7 @@ namespace WxKit.Generator.Binding;
 internal sealed partial class Binder {
 	private void BindEvents(BoundClass bound) {
 		ClassTweak tweak = bound.Tweak;
-		List<DoxygenEvent> events = [.. bound.Source.Events, .. tweak.AddedEvents.Select(static added => new DoxygenEvent(added.Macro, added.Constant, added.EventClass, string.Empty))];
+		List<DoxygenEvent> events = [.. bound.Source.Events, .. tweak.AddedEvents.Select(static added => new DoxygenEvent(added.Macro, added.Constant, added.EventClass, added.Description))];
 		HashSet<string> macros = [.. events.Select(static found => found.Macro)];
 		foreach (string named in tweak.EventNames.Keys.Concat(tweak.IgnoredEvents)) {
 			if (!macros.Contains(named)) throw new InvalidOperationException($"A tweak names the event {named} of {bound.CppName}, which its event table does not list.");
@@ -67,7 +67,7 @@ internal sealed partial class Binder {
 		// An event class WxKit does not bind is delivered as its nearest bound ancestor.
 		BoundClass wrapper = Ancestors(eventClass).Select(name => _classes.GetValueOrDefault(name)).FirstOrDefault(static candidate => candidate?.Handle == HandleKind.Event)
 			?? throw new InvalidOperationException($"No bound event class can carry {constant}, a {eventClass}.");
-		BoundEventType type = new(constant, Naming.EventType(constant), wrapper, api.EventTypes.GetValueOrDefault(constant));
+		BoundEventType type = new(constant, Naming.EventType(constant), wrapper, api.EventTypes.GetValueOrDefault(constant), tweaks.EventTypeGuards.GetValueOrDefault(constant));
 		_eventTypes[constant] = type;
 		return type;
 	}

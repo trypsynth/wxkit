@@ -93,6 +93,9 @@ internal sealed partial class Binder(DoxygenApi api, Tweaks tweaks) {
 			BindEvents(bound);
 		}
 		foreach ((string constant, string eventClass) in tweaks.ExtraEventTypes) EventTypeFor(constant, eventClass);
+		foreach (string constant in tweaks.EventTypeGuards.Keys) {
+			if (!_eventTypes.ContainsKey(constant)) throw new InvalidOperationException($"A tweak guards the event type {constant}, which no bound event sends.");
+		}
 		return new BindingResult(
 			[.. _classes.Values.OrderBy(static bound => bound.CppName, StringComparer.Ordinal)],
 			[.. _eventTypes.Values.OrderBy(static type => type.Name, StringComparer.Ordinal)],

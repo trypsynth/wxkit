@@ -152,6 +152,22 @@ public class BinderTests {
 		Assert.Same(Bound(result, "wxCommandEvent"), click.Type.EventClass);
 	}
 
+	// An event a tweak adds keeps the description it's given, and an event type the headers declare
+	// only under a condition is a type of the shim's own where the condition doesn't hold.
+	[Fact]
+	public void BindsAddedEventsAndGuardedEventTypes() {
+		BindingResult result = Bind(static tweaks => {
+			tweaks.Class("wxWindow").AddEvent("EVT_BUTTON", "wxEVT_BUTTON", "wxCommandEvent", "Pressed", "Process a press.");
+			tweaks.GuardEventType("wxUSE_BUTTON", "wxEVT_BUTTON");
+		});
+		BoundEvent pressed = Assert.Single(Bound(result, "wxWindow").Events);
+		Assert.Equal("Process a press.", pressed.Description);
+		Assert.Equal("wxUSE_BUTTON", pressed.Type.Guard);
+		string shim = Emitting.ShimEmitter.Files(result).Single(static file => file.Text.Contains("wxk_EventType_Button(void) noexcept", StringComparison.Ordinal)).Text;
+		Assert.Contains("#if wxUSE_BUTTON\n\treturn wxEVT_BUTTON;\n\t#else\n\tstatic const wxEventType unused = wxNewEventType();", shim, StringComparison.Ordinal);
+		Assert.Throws<InvalidOperationException>(() => Bind(static tweaks => tweaks.GuardEventType("wxUSE_NOTHING", "wxEVT_NOTHING")));
+	}
+
 	[Fact]
 	public void RefusesTweaksThatNameNothing() {
 		Assert.Throws<InvalidOperationException>(() => Bind(static tweaks => tweaks.Class("wxNoSuchClass")));
