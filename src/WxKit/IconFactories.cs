@@ -18,7 +18,7 @@ public unsafe partial class Icon {
 		Application.VerifyAccess();
 		Size size = desiredSize ?? new Size(-1, -1);
 		Icon icon;
-		fixed (char* characters = fileName) icon = new(WxKitNative.IconNewStringBitmapTypeIntInt(characters, (nuint)fileName.Length, (int)(type ?? default), (byte)(type is null ? 0 : 1), size.Width, size.Height));
+		using (QuietLog.Start()) fixed (char* characters = fileName) icon = new(WxKitNative.IconNewStringBitmapTypeIntInt(characters, (nuint)fileName.Length, (int)(type ?? default), (byte)(type is null ? 0 : 1), size.Width, size.Height));
 		if (icon.IsOk) return icon;
 		icon.Dispose();
 		return null;
@@ -46,7 +46,7 @@ public unsafe partial class Cursor {
 		ArgumentNullException.ThrowIfNull(fileName);
 		Application.VerifyAccess();
 		Cursor cursor;
-		fixed (char* characters = fileName) cursor = new(WxKitNative.CursorNewStringBitmapTypeIntInt(characters, (nuint)fileName.Length, (int)(type ?? default), (byte)(type is null ? 0 : 1), hotSpot.X, hotSpot.Y));
+		using (QuietLog.Start()) fixed (char* characters = fileName) cursor = new(WxKitNative.CursorNewStringBitmapTypeIntInt(characters, (nuint)fileName.Length, (int)(type ?? default), (byte)(type is null ? 0 : 1), hotSpot.X, hotSpot.Y));
 		if (cursor.IsOk) return cursor;
 		cursor.Dispose();
 		return null;

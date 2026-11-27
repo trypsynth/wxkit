@@ -30,3 +30,10 @@ WXK_FUNCTION(uint8_t*) wxk_Image_SaveData(wxk_Object* image, int32_t type, size_
 		return copy;
 	});
 }
+
+// Turns wxWidgets' logging on or off, for loading a file the caller is told the failure of, and
+// returns whether it was on. A failure wxWidgets logs shows the user an error dialog, on Linux and
+// macOS when the event loop is next idle, or as the application exits.
+WXK_FUNCTION(uint8_t) wxk_Log_Enable(uint8_t enable) noexcept {
+	return wxk::Guard<uint8_t>(1, [&]() -> uint8_t { return wxLog::EnableLogging(enable != 0) ? 1 : 0; });
+}
