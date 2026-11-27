@@ -247,8 +247,16 @@ public static class StringExtractor {
 		Lexer lexer = new Lexer(source, language);
 		List<Token> tokens = lexer.Tokens();
 		problems.AddRange(lexer.Problems);
+		Extract(tokens, lexer, language, reference, template, problems);
+		return problems;
+	}
+
+	// The calls in a run of tokens, and in the holes of its interpolated strings, as they come.
+	private static void Extract(List<Token> tokens, Lexer lexer, SourceLanguage language, string reference, StringTemplate template, List<ExtractionProblem> problems) {
 		for (int index = 0; index < tokens.Count; index++) {
 			Token token = tokens[index];
+			// A hole is code, so a call in it, as in $"{_("Text files")} (*.txt)", is one like any other.
+			foreach (List<Token> hole in token.Holes) Extract(hole, lexer, language, reference, template, problems);
 			if (token.Kind != TokenKind.Identifier) continue;
 			// An application's own shortcut passes its arguments on, so neither it nor its body has strings.
 			if (IsDeclaration(tokens, index, language)) {
@@ -291,7 +299,6 @@ public static class StringExtractor {
 			string? conflict = template.Add(context, id, plural, $"{reference}:{token.Line}", lexer.CommentBefore(token), arguments.Count > keyword.Arguments || IsFormatted(tokens, index));
 			if (conflict is not null) problems.Add(new ExtractionProblem(token.Line, token.Column, "WXKIT2003", $"\"{id}\" {conflict}, and a string has one set of forms in a catalog."));
 		}
-		return problems;
 	}
 
 	// Whether the call is String.Format's first argument, as F# formats a translation, in
@@ -499,6 +506,9 @@ public sealed class Token {
 
 	public int Column { get; }
 
+	// An interpolated string's holes, each the tokens of its code.
+	public List<List<Token>> Holes { get; set; } = new List<List<Token>>();
+
 	public bool Is(char punctuation) => Kind == TokenKind.Punctuation && Text.Length == 1 && Text[0] == punctuation;
 
 	public override string ToString() => $"{Kind} {Text}";
@@ -509,6 +519,8 @@ public sealed class Lexer {
 	private readonly SourceLanguage _language;
 	private readonly List<(int Start, int End, int Column, string Text)> _comments = new List<(int, int, int, string)>();
 	private int _index;
+	// The holes of the interpolated string being read, which its token takes.
+	private List<List<Token>> _holes = new List<List<Token>>();
 	private int _line = 1;
 	private int _lineStart;
 
@@ -689,6 +701,16 @@ public sealed class Lexer {
 	}
 
 	private Token CSharpString(int line, int column) {
+		List<List<Token>> outer = _holes;
+		_holes = new List<List<Token>>();
+		try {
+			return CSharpStringIn(line, column);
+		} finally {
+			_holes = outer;
+		}
+	}
+
+	private Token CSharpStringIn(int line, int column) {
 		int dollars = 0;
 		bool verbatim = false;
 		while (Current == '$' || Current == '@') {
@@ -712,7 +734,7 @@ public sealed class Lexer {
 			AdvanceTo(_index + 2);
 			return new Token(TokenKind.Other, string.Empty, line, column);
 		}
-		return dollars > 0 ? new Token(TokenKind.Interpolated, string.Empty, line, column) : new Token(TokenKind.String, text ?? string.Empty, line, column);
+		return dollars > 0 ? new Token(TokenKind.Interpolated, string.Empty, line, column) { Holes = _holes } : new Token(TokenKind.String, text ?? string.Empty, line, column);
 	}
 
 	// A string with backslash escapes, as C# and F# have, which holes interrupt when it is interpolated.
@@ -899,8 +921,11 @@ public sealed class Lexer {
 	}
 
 	// An interpolated string's hole, from its opening braces to its closing ones, read as code, so
-	// that a string or brace in it does not end the string.
+	// that a string or brace in it does not end the string, and kept, for the calls in it.
 	private void SkipHole(int braces) {
+		List<List<Token>> holes = _holes;
+		List<Token> hole = new List<Token>();
+		holes.Add(hole);
 		AdvanceTo(_index + braces);
 		int depth = 0;
 		while (_index < _source.Length) {
@@ -913,12 +938,21 @@ public sealed class Lexer {
 				Advance();
 				continue;
 			}
+			// A format, as in {count:N0}, is text up to the closing brace, not code. A colon in the
+			// code is inside brackets, as a conditional has to be, or two, as in global::.
+			if (character == ':' && depth == 0 && Peek(1) != ':' && (hole.Count == 0 || !hole[hole.Count - 1].Is(':'))) {
+				while (_index < _source.Length && Current != '}' && Current != '\n') Advance();
+				continue;
+			}
 			Token? token = Next();
 			if (token is null) continue;
+			hole.Add(token);
 			if (token.Is('{') || token.Is('(') || token.Is('[')) depth++;
 			if (token.Is(')') || token.Is(']')) depth--;
 			if (token.Is('}')) depth--;
 		}
+		// A hole that never closes took the rest of the file, whose calls aren't in it.
+		hole.Clear();
 	}
 
 	// F#: 'a' and '\n' are chars, but 'T is a type variable and x' an identifier, so a quote only
@@ -940,6 +974,16 @@ public sealed class Lexer {
 	}
 
 	private Token FSharpString(int line, int column) {
+		List<List<Token>> outer = _holes;
+		_holes = new List<List<Token>>();
+		try {
+			return FSharpStringIn(line, column);
+		} finally {
+			_holes = outer;
+		}
+	}
+
+	private Token FSharpStringIn(int line, int column) {
 		int dollars = 0;
 		bool verbatim = false;
 		while (Current == '$' || Current == '@') {
@@ -960,7 +1004,7 @@ public sealed class Lexer {
 			Advance();
 			return new Token(TokenKind.Other, string.Empty, line, column);
 		}
-		return dollars > 0 ? new Token(TokenKind.Interpolated, string.Empty, line, column) : new Token(TokenKind.String, text, line, column);
+		return dollars > 0 ? new Token(TokenKind.Interpolated, string.Empty, line, column) { Holes = _holes } : new Token(TokenKind.String, text, line, column);
 	}
 
 	// F#'s triple-quoted strings have no escapes, and end at the first three quotes. In an

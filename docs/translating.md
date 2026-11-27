@@ -31,7 +31,7 @@ string state = _p("state", "Open");
 
 Arguments after the string format the translation with them, as `string.Format` does, in the current culture. `_n` takes the count first, and then the arguments, which usually include the count again.
 
-Pass string literals. The extractor reads your source code and doesn't run it, so it can't see a string in a variable, or translate an interpolated string such as `$"Hello, {name}"`. Use a placeholder instead, as in `_("Hello, {0}", name)`, so that a translator can move it. The extractor joins literals that you join with `+`.
+Pass string literals. The extractor reads your source code and doesn't run it, so it can't see a string in a variable, or translate an interpolated string such as `$"Hello, {name}"`. Use a placeholder instead, as in `_("Hello, {0}", name)`, so that a translator can move it. The extractor joins literals that you join with `+`, and finds a call in an interpolated string's hole, as in `$"{_("Text files")} (*.txt)|*.txt"`, as it does any other.
 
 To give translators context, put a comment that starts with `TRANSLATORS:` just above the call:
 
