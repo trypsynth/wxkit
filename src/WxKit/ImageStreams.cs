@@ -17,6 +17,7 @@ public unsafe partial class Image {
 	public static Image? FromFile(string fileName, BitmapType type = BitmapType.Any, int index = -1) {
 		ArgumentNullException.ThrowIfNull(fileName);
 		Application.VerifyAccess();
+		using QuietLog quiet = QuietLog.Start();
 		fixed (char* characters = fileName) return Loaded(new Image(WxKitNative.ImageNewStringBitmapTypeInt(characters, (nuint)fileName.Length, (int)type, index)));
 	}
 
@@ -28,6 +29,7 @@ public unsafe partial class Image {
 		ArgumentNullException.ThrowIfNull(fileName);
 		ArgumentNullException.ThrowIfNull(mimeType);
 		Application.VerifyAccess();
+		using QuietLog quiet = QuietLog.Start();
 		fixed (char* characters = fileName, mime = mimeType) return Loaded(new Image(WxKitNative.ImageNewStringStringInt(characters, (nuint)fileName.Length, mime, (nuint)mimeType.Length, index)));
 	}
 
