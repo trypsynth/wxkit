@@ -81,7 +81,7 @@ public unsafe partial class FileCtrl : Control {
 		remove => RemoveHandler(EventType.FileCtrlFileActivated, StandardId.Any, StandardId.Any, value);
 	}
 
-	/// <summary>The current file filter of the file control has been changed. 2.9.1.</summary>
+	/// <summary>The current file filter of the file control has been changed.</summary>
 	public event EventHandler<FileCtrlEvent>? FilterChanged {
 		add => AddHandler(EventType.FileCtrlFilterChanged, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.FileCtrlFilterChanged, StandardId.Any, StandardId.Any, value);

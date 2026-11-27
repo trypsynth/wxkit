@@ -91,7 +91,7 @@ internal static class Libraries {
 			.Event("EVT_WEBVIEW_FULLSCREEN_CHANGED", "FullScreenChanged")
 			.Event("EVT_WEBVIEW_SCRIPT_MESSAGE_RECEIVED", "ScriptMessageReceived")
 			.Event("EVT_WEBVIEW_SCRIPT_RESULT", "ScriptResult")
-			.AddEvent("EVT_WEBVIEW_BROWSING_DATA_CLEARED", "wxEVT_WEBVIEW_BROWSING_DATA_CLEARED", "wxWebViewEvent", "BrowsingDataCleared")
+			.AddEvent("EVT_WEBVIEW_BROWSING_DATA_CLEARED", "wxEVT_WEBVIEW_BROWSING_DATA_CLEARED", "wxWebViewEvent", "BrowsingDataCleared", "Process a wxEVT_WEBVIEW_BROWSING_DATA_CLEARED event, generated when a ClearBrowsingData() operation completes. Use wxWebViewEvent::IsError() to check whether it succeeded.")
 			.Event("EVT_WEBVIEW_PDF_SAVED", "PdfSaved"));
 		tweaks.Class("wxWebViewEvent", e => e.Ignore("GetTargetWindowFeatures").Rename("GetURL", "Url"));
 	}

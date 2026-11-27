@@ -8,7 +8,9 @@ namespace WxKit.Generator.Binding;
 internal sealed partial class Binder {
 	private void BindEvents(BoundClass bound) {
 		ClassTweak tweak = bound.Tweak;
-		List<DoxygenEvent> events = [.. bound.Source.Events, .. tweak.AddedEvents.Select(static added => new DoxygenEvent(added.Macro, added.Constant, added.EventClass, added.Description))];
+		// An added event is documented as its event class's own table documents it, as wxMouseEvent's
+		// documents the mouse events, unless the tweak describes it.
+		List<DoxygenEvent> events = [.. bound.Source.Events, .. tweak.AddedEvents.Select(added => new DoxygenEvent(added.Macro, added.Constant, added.EventClass, added.Description.Length > 0 ? added.Description : EventClassDescription(added.EventClass, added.Macro)))];
 		HashSet<string> macros = [.. events.Select(static found => found.Macro)];
 		foreach (string named in tweak.EventNames.Keys.Concat(tweak.IgnoredEvents)) {
 			if (!macros.Contains(named)) throw new InvalidOperationException($"A tweak names the event {named} of {bound.CppName}, which its event table does not list.");
@@ -46,6 +48,9 @@ internal sealed partial class Binder {
 			bound.Events.Add(new BoundEvent(name, type, found.Description));
 		}
 	}
+
+	private string EventClassDescription(string eventClass, string macro) =>
+		api.Classes.GetValueOrDefault(eventClass)?.Events.FirstOrDefault(found => found.Macro == macro)?.Description ?? string.Empty;
 
 	private static bool HasEvent(BoundClass? bound, string name) {
 		for (BoundClass? current = bound; current is not null; current = current.Base) {

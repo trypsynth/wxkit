@@ -104,6 +104,7 @@ public unsafe partial class WebView : Control {
 		set => WxKitNative.WebViewSetZoomType(Native, (int)value);
 	}
 
+	/// <summary>Process a wxEVT_WEBVIEW_BROWSING_DATA_CLEARED event, generated when a ClearBrowsingData() operation completes. Use wxWebViewEvent::IsError() to check whether it succeeded.</summary>
 	public event EventHandler<WebViewEvent>? BrowsingDataCleared {
 		add => AddHandler(EventType.WebViewBrowsingDataCleared, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.WebViewBrowsingDataCleared, StandardId.Any, StandardId.Any, value);

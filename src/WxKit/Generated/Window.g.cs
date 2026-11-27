@@ -404,16 +404,19 @@ public unsafe partial class Window : EvtHandler {
 		remove => RemoveHandler(EventType.KeyUp, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_LEFT_DCLICK event.</summary>
 	public event EventHandler<MouseEvent>? LeftDoubleClick {
 		add => AddHandler(EventType.LeftDoubleClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.LeftDoubleClick, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_LEFT_DOWN event. The handler of this event should normally call event.Skip() to allow the default processing to take place as otherwise the window under mouse wouldn't get the focus.</summary>
 	public event EventHandler<MouseEvent>? LeftDown {
 		add => AddHandler(EventType.LeftDown, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.LeftDown, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_LEFT_UP event.</summary>
 	public event EventHandler<MouseEvent>? LeftUp {
 		add => AddHandler(EventType.LeftUp, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.LeftUp, StandardId.Any, StandardId.Any, value);
@@ -425,11 +428,13 @@ public unsafe partial class Window : EvtHandler {
 		remove => RemoveHandler(EventType.LostFocus, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_MIDDLE_DOWN event.</summary>
 	public event EventHandler<MouseEvent>? MiddleDown {
 		add => AddHandler(EventType.MiddleDown, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.MiddleDown, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_MIDDLE_UP event.</summary>
 	public event EventHandler<MouseEvent>? MiddleUp {
 		add => AddHandler(EventType.MiddleUp, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.MiddleUp, StandardId.Any, StandardId.Any, value);
@@ -447,21 +452,25 @@ public unsafe partial class Window : EvtHandler {
 		remove => RemoveHandler(EventType.MouseCaptureLost, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_ENTER_WINDOW event.</summary>
 	public event EventHandler<MouseEvent>? MouseEntered {
 		add => AddHandler(EventType.EnterWindow, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.EnterWindow, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_LEAVE_WINDOW event.</summary>
 	public event EventHandler<MouseEvent>? MouseLeft {
 		add => AddHandler(EventType.LeaveWindow, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.LeaveWindow, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_MOTION event.</summary>
 	public event EventHandler<MouseEvent>? MouseMoved {
 		add => AddHandler(EventType.Motion, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.Motion, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_MOUSEWHEEL event.</summary>
 	public event EventHandler<MouseEvent>? MouseWheel {
 		add => AddHandler(EventType.MouseWheel, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.MouseWheel, StandardId.Any, StandardId.Any, value);
@@ -473,16 +482,19 @@ public unsafe partial class Window : EvtHandler {
 		remove => RemoveHandler(EventType.Paint, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_RIGHT_DCLICK event.</summary>
 	public event EventHandler<MouseEvent>? RightDoubleClick {
 		add => AddHandler(EventType.RightDoubleClick, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.RightDoubleClick, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_RIGHT_DOWN event.</summary>
 	public event EventHandler<MouseEvent>? RightDown {
 		add => AddHandler(EventType.RightDown, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.RightDown, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_RIGHT_UP event.</summary>
 	public event EventHandler<MouseEvent>? RightUp {
 		add => AddHandler(EventType.RightUp, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.RightUp, StandardId.Any, StandardId.Any, value);

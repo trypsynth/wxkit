@@ -14,26 +14,31 @@ public unsafe partial class FindReplaceDialog : Dialog {
 	internal FindReplaceDialog(WxkWindow* native) : base(native) {
 	}
 
+	/// <summary>The dialog is being destroyed, any pointers to it cannot be used any longer.</summary>
 	public event EventHandler<FindDialogEvent>? FindClosed {
 		add => AddHandler(EventType.FindClosed, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.FindClosed, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Find next button was pressed in the dialog.</summary>
 	public event EventHandler<FindDialogEvent>? FindNextRequested {
 		add => AddHandler(EventType.FindNextRequested, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.FindNextRequested, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Find button was pressed in the dialog.</summary>
 	public event EventHandler<FindDialogEvent>? FindRequested {
 		add => AddHandler(EventType.FindRequested, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.FindRequested, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Replace all button was pressed in the dialog.</summary>
 	public event EventHandler<FindDialogEvent>? ReplaceAllRequested {
 		add => AddHandler(EventType.ReplaceAllRequested, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ReplaceAllRequested, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Replace button was pressed in the dialog.</summary>
 	public event EventHandler<FindDialogEvent>? ReplaceRequested {
 		add => AddHandler(EventType.ReplaceRequested, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.ReplaceRequested, StandardId.Any, StandardId.Any, value);

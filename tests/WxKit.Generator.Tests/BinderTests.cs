@@ -40,7 +40,7 @@ public class BinderTests {
 				[new DoxygenStyle("wxBU_LEFT", "Left-justifies the label."), new DoxygenStyle("wxBU_TOP", "Aligns the label to the top.")],
 				[new DoxygenEvent("EVT_BUTTON", "wxEVT_BUTTON", "wxCommandEvent", "Clicked.")]),
 			Class("wxEvent", "wxObject"),
-			Class("wxCommandEvent", "wxEvent", [Function("GetString", "wxString")]),
+			Class("wxCommandEvent", "wxEvent", [Function("GetString", "wxString")], events: [new DoxygenEvent("EVT_BUTTON", "wxEVT_BUTTON", "wxCommandEvent", "Process a wxEVT_BUTTON event.")]),
 		];
 		Dictionary<string, string> constants = new() { ["wxBU_LEFT"] = "0x0040", ["wxBU_TOP"] = "0x0080", ["wxBOTH"] = "0x000C", ["wxACC_STATE_SYSTEM_FOCUSED"] = "0x1000", ["wxACC_STATE_SYSTEM_BUSY"] = "0x0010" };
 		return new DoxygenApi(classes.ToDictionary(static found => found.Name), constants, new Dictionary<string, string> { ["wxEVT_BUTTON"] = "wx/button.h" }, new Dictionary<string, DoxygenEnum>()) {
@@ -166,6 +166,13 @@ public class BinderTests {
 		string shim = Emitting.ShimEmitter.Files(result).Single(static file => file.Text.Contains("wxk_EventType_Button(void) noexcept", StringComparison.Ordinal)).Text;
 		Assert.Contains("#if wxUSE_BUTTON\n\treturn wxEVT_BUTTON;\n\t#else\n\tstatic const wxEventType unused = wxNewEventType();", shim, StringComparison.Ordinal);
 		Assert.Throws<InvalidOperationException>(() => Bind(static tweaks => tweaks.GuardEventType("wxUSE_NOTHING", "wxEVT_NOTHING")));
+	}
+
+	// An event a tweak adds without a description has the one its event class's own table gives it.
+	[Fact]
+	public void DocumentsAddedEventsAsTheirEventClassDoes() {
+		BoundEvent pressed = Assert.Single(Bound(Bind(static tweaks => tweaks.Class("wxWindow").AddEvent("EVT_BUTTON", "wxEVT_BUTTON", "wxCommandEvent", "Pressed")), "wxWindow").Events);
+		Assert.Equal("Process a wxEVT_BUTTON event.", pressed.Description);
 	}
 
 	[Fact]

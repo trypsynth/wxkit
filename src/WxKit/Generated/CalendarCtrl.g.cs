@@ -25,6 +25,7 @@ public unsafe partial class CalendarCtrl : Control {
 		set => WxKitNative.WindowSetWindowStyleFlag((WxkWindow*)Native, (long)value);
 	}
 
+	/// <summary>A day was double clicked in the calendar, or chosen by pressing Return.</summary>
 	public event EventHandler<CalendarEvent>? DateActivated {
 		add => AddHandler(EventType.CalendarDateActivated, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.CalendarDateActivated, StandardId.Any, StandardId.Any, value);

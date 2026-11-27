@@ -52,6 +52,7 @@ public unsafe partial class Dialog : TopLevelWindow {
 		remove => RemoveHandler(EventType.InitDialog, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_WINDOW_MODAL_DIALOG_CLOSED event (a dialog ShowWindowModal() showed has been closed). See wxWindowModalDialogEvent.</summary>
 	public event EventHandler<WindowModalDialogEvent>? WindowModalClosed {
 		add => AddHandler(EventType.WindowModalDialogClosed, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.WindowModalDialogClosed, StandardId.Any, StandardId.Any, value);
