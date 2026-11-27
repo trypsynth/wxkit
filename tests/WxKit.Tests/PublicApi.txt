@@ -3021,6 +3021,9 @@ enum WxKit.ListColumnFormat : int
     Center = 2
     Left = 0
     Right = 1
+static class WxKit.ListColumnWidth
+    const int AutoSize = -1
+    const int AutoSizeUseHeader = -2
 class WxKit.ListCtrl : Control
     Color? AlternateRowColor { get; set; }
     Color? GetItemBackgroundColor(int item)
