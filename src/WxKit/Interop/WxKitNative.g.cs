@@ -3562,6 +3562,18 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* GenericDirCtrlGetTreeCtrl(WxkWindow* self);
 
+	[LibraryImport(Library, EntryPoint = "wxk_GestureEvent_GetPosition")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial Point GestureEventGetPosition(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GestureEvent_IsGestureStart")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte GestureEventIsGestureStart(WxkEvent* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_GestureEvent_IsGestureEnd")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte GestureEventIsGestureEnd(WxkEvent* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_GridBagSizer_Add_WindowGridPositionGridSpanIntInt")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void GridBagSizerAddWindowGridPositionGridSpanIntInt(WxkSizer* self, WxkWindow* window, GridPosition position, GridSpan span, int flag, int border);
@@ -5666,6 +5678,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* PaintDCNew(WxkWindow* window);
 
+	[LibraryImport(Library, EntryPoint = "wxk_PanGestureEvent_GetDelta")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial Point PanGestureEventGetDelta(WxkEvent* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Panel_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkWindow* PanelNew(WxkWindow* parent, int id, Point position, Size size, long style);
@@ -6537,6 +6553,10 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_RichMessageDialog_GetEffectiveIcon")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial long RichMessageDialogGetEffectiveIcon(WxkWindow* self);
+
+	[LibraryImport(Library, EntryPoint = "wxk_RotateGestureEvent_GetRotationAngle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial double RotateGestureEventGetRotationAngle(WxkEvent* self);
 
 	[LibraryImport(Library, EntryPoint = "wxk_ScreenDC_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -13422,6 +13442,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkSizer* WrapSizerNew(int orientation, int flags);
 
+	[LibraryImport(Library, EntryPoint = "wxk_ZoomGestureEvent_GetZoomFactor")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial double ZoomGestureEventGetZoomFactor(WxkEvent* self);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Directors_SetOnFree")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void DirectorsSetOnFree(delegate* unmanaged[Cdecl]<void*, void> onFree);
@@ -13734,6 +13758,18 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeGenericDirCtrlSelectionChanged();
 
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_GesturePan")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeGesturePan();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_GestureRotate")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeGestureRotate();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_GestureZoom")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeGestureZoom();
+
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_GotFocus")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeGotFocus();
@@ -13890,6 +13926,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeListbookPageChanging();
 
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_LongPress")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeLongPress();
+
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_LostFocus")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeLostFocus();
@@ -13989,6 +14029,10 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_Paint")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypePaint();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_PressAndTap")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypePressAndTap();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_QueryEndSession")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -14517,6 +14561,10 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_TreebookPageChanging")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int EventTypeTreebookPageChanging();
+
+	[LibraryImport(Library, EntryPoint = "wxk_EventType_TwoFingerTap")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial int EventTypeTwoFingerTap();
 
 	[LibraryImport(Library, EntryPoint = "wxk_EventType_UpdateUI")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

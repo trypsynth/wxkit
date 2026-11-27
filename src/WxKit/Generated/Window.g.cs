@@ -368,6 +368,24 @@ public unsafe partial class Window : EvtHandler {
 		remove => RemoveHandler(EventType.EraseBackground, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_GESTURE_PAN event (the user moves a finger on the surface; wxGTK also sends it as the mouse is dragged with its left button, and macOS needs the primary mouse button pressed). Sent once EnableTouchEvents asks for it. See wxPanGestureEvent.</summary>
+	public event EventHandler<PanGestureEvent>? GesturePan {
+		add => AddHandler(EventType.GesturePan, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.GesturePan, StandardId.Any, StandardId.Any, value);
+	}
+
+	/// <summary>Process a wxEVT_GESTURE_ROTATE event (two fingers move in opposite directions on the surface). Sent once EnableTouchEvents asks for it. See wxRotateGestureEvent.</summary>
+	public event EventHandler<RotateGestureEvent>? GestureRotate {
+		add => AddHandler(EventType.GestureRotate, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.GestureRotate, StandardId.Any, StandardId.Any, value);
+	}
+
+	/// <summary>Process a wxEVT_GESTURE_ZOOM event (two fingers pinch the surface to zoom in or out). Sent once EnableTouchEvents asks for it. See wxZoomGestureEvent.</summary>
+	public event EventHandler<ZoomGestureEvent>? GestureZoom {
+		add => AddHandler(EventType.GestureZoom, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.GestureZoom, StandardId.Any, StandardId.Any, value);
+	}
+
 	/// <summary>Process a wxEVT_SET_FOCUS event. See wxFocusEvent.</summary>
 	public event EventHandler<FocusEvent>? GotFocus {
 		add => AddHandler(EventType.GotFocus, StandardId.Any, StandardId.Any, value, this);
@@ -420,6 +438,12 @@ public unsafe partial class Window : EvtHandler {
 	public event EventHandler<MouseEvent>? LeftUp {
 		add => AddHandler(EventType.LeftUp, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.LeftUp, StandardId.Any, StandardId.Any, value);
+	}
+
+	/// <summary>Process a wxEVT_LONG_PRESS event (one finger touches the surface and stays still; wxGTK also sends it when the left mouse button is held down). Only Linux and macOS send it, once EnableTouchEvents asks for it. See wxLongPressEvent.</summary>
+	public event EventHandler<LongPressEvent>? LongPress {
+		add => AddHandler(EventType.LongPress, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.LongPress, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Process a wxEVT_KILL_FOCUS event. See wxFocusEvent.</summary>
@@ -482,6 +506,12 @@ public unsafe partial class Window : EvtHandler {
 		remove => RemoveHandler(EventType.Paint, StandardId.Any, StandardId.Any, value);
 	}
 
+	/// <summary>Process a wxEVT_PRESS_AND_TAP event (the user presses the surface with one finger and taps with another, and then as the pressed finger moves). Sent once EnableTouchEvents asks for it. See wxPressAndTapEvent.</summary>
+	public event EventHandler<PressAndTapEvent>? PressAndTap {
+		add => AddHandler(EventType.PressAndTap, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.PressAndTap, StandardId.Any, StandardId.Any, value);
+	}
+
 	/// <summary>Process a wxEVT_RIGHT_DCLICK event.</summary>
 	public event EventHandler<MouseEvent>? RightDoubleClick {
 		add => AddHandler(EventType.RightDoubleClick, StandardId.Any, StandardId.Any, value, this);
@@ -510,6 +540,12 @@ public unsafe partial class Window : EvtHandler {
 	public event EventHandler<SysColorChangedEvent>? SystemColorsChanged {
 		add => AddHandler(EventType.SysColorChanged, StandardId.Any, StandardId.Any, value, this);
 		remove => RemoveHandler(EventType.SysColorChanged, StandardId.Any, StandardId.Any, value);
+	}
+
+	/// <summary>Process a wxEVT_TWO_FINGER_TAP event (two fingers touch the surface at the same time). Sent once EnableTouchEvents asks for it. See wxTwoFingerTapEvent.</summary>
+	public event EventHandler<TwoFingerTapEvent>? TwoFingerTap {
+		add => AddHandler(EventType.TwoFingerTap, StandardId.Any, StandardId.Any, value, this);
+		remove => RemoveHandler(EventType.TwoFingerTap, StandardId.Any, StandardId.Any, value);
 	}
 
 	/// <summary>Call this function to force one or both scrollbars to be always shown, even if the window is big enough to show its entire contents without scrolling.</summary>

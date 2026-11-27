@@ -76,6 +76,9 @@ internal static class Events {
 			"wxFullScreenEvent", "wxNavigationKeyEvent", "wxTimerEvent", "wxScrollWinEvent", "wxEraseEvent",
 			"wxSpinEvent", "wxSpinDoubleEvent", "wxScrollEvent", "wxHyperlinkEvent", "wxBookCtrlEvent",
 			"wxSplitterEvent", "wxCollapsiblePaneEvent",
+			// Touch gestures, which a window sends once EnableTouchEvents asks for them.
+			"wxGestureEvent", "wxPanGestureEvent", "wxZoomGestureEvent", "wxRotateGestureEvent",
+			"wxTwoFingerTapEvent", "wxLongPressEvent", "wxPressAndTapEvent",
 		]) {
 			tweaks.Class(eventClass);
 		}

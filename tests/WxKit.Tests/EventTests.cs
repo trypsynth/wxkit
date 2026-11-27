@@ -147,6 +147,37 @@ public class EventTests {
 		}
 	});
 
+	// No test can send a gesture: Windows sends WM_GESTURE with a handle only the system makes, which
+	// wxWidgets reads it through. This checks that a window asks for every gesture, which Windows
+	// always lets it, and takes and lets go of a handler for each, which raise nothing by themselves.
+	[Fact]
+	public Task TakesAHandlerForEachGesture() => Gui.WithFrame(frame => {
+		Panel panel = new(frame);
+		int gestures = 0;
+		EventHandler<PanGestureEvent> pan = (_, e) => gestures += e.Delta.X;
+		EventHandler<ZoomGestureEvent> zoom = (_, e) => gestures += (int)e.ZoomFactor;
+		EventHandler<RotateGestureEvent> rotate = (_, e) => gestures += (int)e.RotationAngle;
+		EventHandler<TwoFingerTapEvent> twoFingerTap = (_, e) => gestures += e.Position.X;
+		EventHandler<LongPressEvent> longPress = (_, e) => gestures += e.IsGestureStart ? 1 : 0;
+		EventHandler<PressAndTapEvent> pressAndTap = (_, e) => gestures += e.IsGestureEnd ? 1 : 0;
+		panel.GesturePan += pan;
+		panel.GestureZoom += zoom;
+		panel.GestureRotate += rotate;
+		panel.TwoFingerTap += twoFingerTap;
+		panel.LongPress += longPress;
+		panel.PressAndTap += pressAndTap;
+		bool enabled = panel.EnableTouchEvents(TouchEvents.AllGestures);
+		if (OperatingSystem.IsWindows()) Assert.True(enabled);
+		panel.GesturePan -= pan;
+		panel.GestureZoom -= zoom;
+		panel.GestureRotate -= rotate;
+		panel.TwoFingerTap -= twoFingerTap;
+		panel.LongPress -= longPress;
+		panel.PressAndTap -= pressAndTap;
+		Assert.True(panel.EnableTouchEvents(TouchEvents.None) || !OperatingSystem.IsWindows());
+		Assert.Equal(0, gestures);
+	});
+
 	[Fact]
 	public Task GivesSizeEventsTheNewSize() => Gui.WithFrame(frame => {
 		Size? reported = null;

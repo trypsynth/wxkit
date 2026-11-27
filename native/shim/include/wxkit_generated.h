@@ -1135,6 +1135,12 @@ WXK_FUNCTION(wxk_StringArray*) wxk_GenericDirCtrl_GetPaths(wxk_Window* self) WXK
 WXK_FUNCTION(void*) wxk_GenericDirCtrl_GetRootId(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_Window*) wxk_GenericDirCtrl_GetTreeCtrl(wxk_Window* self) WXK_NOEXCEPT;
 
+// wxGestureEvent
+
+WXK_FUNCTION(wxk_Point) wxk_GestureEvent_GetPosition(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_GestureEvent_IsGestureStart(wxk_Event* self) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_GestureEvent_IsGestureEnd(wxk_Event* self) WXK_NOEXCEPT;
+
 // wxGridBagSizer
 
 WXK_FUNCTION(void) wxk_GridBagSizer_Add_WindowGridPositionGridSpanIntInt(wxk_Sizer* self, wxk_Window* window, wxk_GridPosition position, wxk_GridSpan span, int32_t flag, int32_t border) WXK_NOEXCEPT;
@@ -1766,6 +1772,10 @@ WXK_FUNCTION(uint8_t) wxk_PageSetupDialogData_IsOk(wxk_Object* self) WXK_NOEXCEP
 
 WXK_FUNCTION(wxk_Object*) wxk_PaintDC_new(wxk_Window* window) WXK_NOEXCEPT;
 
+// wxPanGestureEvent
+
+WXK_FUNCTION(wxk_Point) wxk_PanGestureEvent_GetDelta(wxk_Event* self) WXK_NOEXCEPT;
+
 // wxPanel
 
 WXK_FUNCTION(wxk_Window*) wxk_Panel_new(wxk_Window* parent, int32_t id, wxk_Point position, wxk_Size size, int64_t style) WXK_NOEXCEPT;
@@ -2034,6 +2044,10 @@ WXK_FUNCTION(wxk_String*) wxk_RichMessageDialog_GetCancelLabel(wxk_Window* self)
 WXK_FUNCTION(wxk_String*) wxk_RichMessageDialog_GetHelpLabel(wxk_Window* self) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_RichMessageDialog_SetHelpLabel(wxk_Window* self, const char16_t* help, size_t helpLength) WXK_NOEXCEPT;
 WXK_FUNCTION(int64_t) wxk_RichMessageDialog_GetEffectiveIcon(wxk_Window* self) WXK_NOEXCEPT;
+
+// wxRotateGestureEvent
+
+WXK_FUNCTION(double) wxk_RotateGestureEvent_GetRotationAngle(wxk_Event* self) WXK_NOEXCEPT;
 
 // wxScreenDC
 
@@ -3945,6 +3959,10 @@ WXK_FUNCTION(void) wxk_WizardPageSimple_Chain(wxk_Window* first, wxk_Window* sec
 
 WXK_FUNCTION(wxk_Sizer*) wxk_WrapSizer_new(int32_t orientation, int32_t flags) WXK_NOEXCEPT;
 
+// wxZoomGestureEvent
+
+WXK_FUNCTION(double) wxk_ZoomGestureEvent_GetZoomFactor(wxk_Event* self) WXK_NOEXCEPT;
+
 // Event types
 
 WXK_FUNCTION(int32_t) wxk_EventType_Activate(void) WXK_NOEXCEPT;
@@ -4024,6 +4042,9 @@ WXK_FUNCTION(int32_t) wxk_EventType_FontPickerChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_FullScreen(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_GenericDirCtrlFileActivated(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_GenericDirCtrlSelectionChanged(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_GesturePan(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_GestureRotate(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_GestureZoom(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_GotFocus(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_Help(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_HotKey(void) WXK_NOEXCEPT;
@@ -4063,6 +4084,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_ListItemUnchecked(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_ListKeyDown(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_ListbookPageChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_ListbookPageChanging(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_LongPress(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_LostFocus(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_Magnify(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_Maximize(void) WXK_NOEXCEPT;
@@ -4088,6 +4110,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_NotificationMessageAction(void) WXK_NOEXCEPT
 WXK_FUNCTION(int32_t) wxk_EventType_NotificationMessageClick(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_NotificationMessageDismissed(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_Paint(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_PressAndTap(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_QueryEndSession(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_RadioBox(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_RadioButton(void) WXK_NOEXCEPT;
@@ -4220,6 +4243,7 @@ WXK_FUNCTION(int32_t) wxk_EventType_TreebookNodeCollapsed(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_TreebookNodeExpanded(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_TreebookPageChanged(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_TreebookPageChanging(void) WXK_NOEXCEPT;
+WXK_FUNCTION(int32_t) wxk_EventType_TwoFingerTap(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_UpdateUI(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_WebViewBrowsingDataCleared(void) WXK_NOEXCEPT;
 WXK_FUNCTION(int32_t) wxk_EventType_WebViewCreated(void) WXK_NOEXCEPT;
