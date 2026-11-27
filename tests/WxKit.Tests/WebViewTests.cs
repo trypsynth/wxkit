@@ -4,6 +4,10 @@ namespace WxKit.Tests;
 public class WebViewTests {
 	private static readonly TimeSpan PageWait = TimeSpan.FromSeconds(30);
 
+	// A test waits for the engine more than once, and the first to make a web view on a runner also
+	// waits for the engine to start, which can take longer than Gui.Timeout.
+	private static readonly TimeSpan TestWait = TimeSpan.FromMinutes(1);
+
 	[Fact]
 	public Task ShowsAPageAndRunsItsScripts() => Gui.WithFrame(async frame => {
 		Assert.SkipUnless(WebView.IsAvailable, "This system has no browser engine for a web view.");
@@ -17,7 +21,7 @@ public class WebViewTests {
 		Assert.Equal("3", await view.ExecuteScriptAsync("1 + 2").WaitAsync(PageWait, TestContext.Current.CancellationToken));
 		Assert.Equal("Hello", (await view.ExecuteScriptAsync("document.querySelector('h1').textContent").WaitAsync(PageWait, TestContext.Current.CancellationToken)).Trim('"'));
 		await Assert.ThrowsAsync<InvalidOperationException>(() => view.ExecuteScriptAsync("throw new Error('no')").WaitAsync(PageWait, TestContext.Current.CancellationToken));
-	});
+	}, TestWait);
 
 	[Fact]
 	public Task HearsTheScriptsOfThePage() => Gui.WithFrame(async frame => {
@@ -33,7 +37,7 @@ public class WebViewTests {
 		await loaded.Task.WaitAsync(PageWait, TestContext.Current.CancellationToken);
 		await view.ExecuteScriptAsync("window.wxkit.postMessage('from the page')").WaitAsync(PageWait, TestContext.Current.CancellationToken);
 		Assert.Equal("from the page", await message.Task.WaitAsync(PageWait, TestContext.Current.CancellationToken));
-	});
+	}, TestWait);
 
 	[Fact]
 	public Task LetsANavigationBeCancelled() => Gui.WithFrame(async frame => {
@@ -55,7 +59,7 @@ public class WebViewTests {
 		Assert.Contains("refused", await refused.Task.WaitAsync(PageWait, TestContext.Current.CancellationToken));
 		await Task.Delay(200, TestContext.Current.CancellationToken);
 		Assert.Equal(before, view.Source);
-	});
+	}, TestWait);
 
 	[Fact]
 	public Task NeedsTheProjectToAskForIt() => Gui.WithFrame(frame => {
@@ -77,7 +81,7 @@ public class WebViewTests {
 		Task<string> early = view.ExecuteScriptAsync("1 + 1");
 		frame.Show();
 		Assert.Equal("2", await early.WaitAsync(PageWait, TestContext.Current.CancellationToken));
-	});
+	}, TestWait);
 
 	[Fact]
 	public Task CancelsItsScriptsWhenDestroyed() => Gui.WithFrame(async frame => {
@@ -86,5 +90,5 @@ public class WebViewTests {
 		Task<string> pending = view.ExecuteScriptAsync("new Promise(() => {})");
 		view.Destroy();
 		await Assert.ThrowsAnyAsync<OperationCanceledException>(() => pending.WaitAsync(PageWait, TestContext.Current.CancellationToken));
-	});
+	}, TestWait);
 }
