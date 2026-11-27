@@ -34,7 +34,7 @@ The generator loads the XML into a model, drops what WxKit does not bind, shapes
 
 Each managed type and member gets an XML documentation comment from its wxWidgets brief description. A type's comment ends by naming the class it wraps, as in "Wraps wxButton." Detailed descriptions are left to the wxWidgets reference.
 
-Today 168 classes bind 3303 functions and 260 event types. The report lists about 480 entries, mostly members whose types have no conversion yet, such as C arrays and classes not bound yet, like tool tips and drop targets, and event macros whose event type the headers do not declare. Classes that need more than the generator can express are written by hand beside it, such as `EvtHandler`, `Sizer`, `Menu`, `AboutBox`, `Clipboard`, `Accessible`, and the data view models. [Managed API](managed-api.md) describes them.
+Today 194 classes bind 3341 functions and 295 event types. The report lists about 620 entries, mostly members whose types have no conversion yet, such as C arrays and classes not bound yet, like tool tips and drop targets, and event macros whose event type the headers do not declare. Classes that need more than the generator can express are written by hand beside it, such as `EvtHandler`, `Sizer`, `Menu`, `AboutBox`, `Clipboard`, `Accessible`, and the data view models. [Managed API](managed-api.md) describes them.
 
 ## Rules for classes
 
