@@ -148,7 +148,7 @@ internal static class Controls {
 			.Event("EVT_CALENDAR_PAGE_CHANGED", "PageChanged")
 			.Event("EVT_CALENDAR_WEEK_CLICKED", "WeekClicked")
 			.Event("EVT_CALENDAR_WEEKDAY_CLICKED", "WeekDayClicked")
-			.AddEvent("EVT_CALENDAR", "wxEVT_CALENDAR_DOUBLECLICKED", "wxCalendarEvent", "DateActivated")
+			.AddEvent("EVT_CALENDAR", "wxEVT_CALENDAR_DOUBLECLICKED", "wxCalendarEvent", "DateActivated", "A day was double clicked in the calendar, or chosen by pressing Return.")
 			.Rename("ResetAttr", "ResetAttributes"));
 		tweaks.Class("wxDateEvent", e => e.Ignore("SetDate"));
 		// wxWidgets numbers the days of the week as .NET does, from Sunday, so the day is .NET's.

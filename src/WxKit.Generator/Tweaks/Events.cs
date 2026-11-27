@@ -64,6 +64,9 @@ internal static class Events {
 			foreach (string member in (string[])["CanScroll", "HasScrollbar", "IsScrollbarAlwaysShown"]) window.ParameterEnum(member, "orient", "Orientation");
 			foreach (string member in (string[])["GetScrollPos", "GetScrollRange", "GetScrollThumb", "SetScrollPos", "SetScrollbar"]) window.ParameterEnum(member, "orientation", "Orientation");
 			window.ParameterEnum("RegisterHotKey", "modifiers", "wxKeyModifier");
+			// wxWidgets takes its own key codes, or a letter's or digit's character, as a key event
+			// gives them, and converts them to the Windows virtual key codes the parameter is named for.
+			window.ParameterEnum("RegisterHotKey", "virtualKeyCode", "wxKeyCode").ParameterName("RegisterHotKey", "virtualKeyCode", "key");
 		});
 		foreach (string eventClass in (string[])[
 			"wxNotifyEvent", "wxKeyEvent", "wxSizeEvent", "wxMoveEvent", "wxFocusEvent",

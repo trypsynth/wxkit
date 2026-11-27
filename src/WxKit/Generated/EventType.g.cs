@@ -558,6 +558,13 @@ public static unsafe partial class EventType {
 		public static readonly EventType<HelpEvent> Value = new(WxKitNative.EventTypeHelp, static native => new HelpEvent((WxkEvent*)native));
 	}
 
+	/// <summary>Wraps wxEVT_HOTKEY.</summary>
+	public static EventType<KeyEvent> HotKey => HotKeyType.Value;
+
+	private static class HotKeyType {
+		public static readonly EventType<KeyEvent> Value = new(WxKitNative.EventTypeHotKey, static native => new KeyEvent((WxkEvent*)native));
+	}
+
 	/// <summary>Wraps wxEVT_HYPERLINK.</summary>
 	public static EventType<HyperlinkEvent> Hyperlink => HyperlinkType.Value;
 

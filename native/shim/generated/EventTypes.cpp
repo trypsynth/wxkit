@@ -141,6 +141,15 @@ WXK_FUNCTION(int32_t) wxk_EventType_Help(void) noexcept {
 	return wxEVT_HELP;
 }
 
+WXK_FUNCTION(int32_t) wxk_EventType_HotKey(void) noexcept {
+	#if wxUSE_HOTKEY
+	return wxEVT_HOTKEY;
+	#else
+	static const wxEventType unused = wxNewEventType();
+	return unused;
+	#endif
+}
+
 WXK_FUNCTION(int32_t) wxk_EventType_Iconize(void) noexcept {
 	return wxEVT_ICONIZE;
 }

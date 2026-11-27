@@ -193,7 +193,7 @@ internal sealed record BoundProperty(string Name, BoundFunction Getter, BoundFun
 internal sealed record BoundEvent(string Name, BoundEventType Type, string Description);
 
 /// <param name="Header">The header that declares the constant, such as wx/textctrl.h.</param>
-internal sealed record BoundEventType(string Constant, string Name, BoundClass EventClass, string? Header);
+internal sealed record BoundEventType(string Constant, string Name, BoundClass EventClass, string? Header, string? Guard = null);
 
 internal sealed record BoundStyles(string Name, IReadOnlyList<BoundStyle> Members);
 

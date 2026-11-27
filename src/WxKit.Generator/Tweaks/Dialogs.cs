@@ -7,7 +7,7 @@ internal static class Dialogs {
 		// ShowWindowModal returns at once on macOS, so the dialog says when it closes, and with what.
 		tweaks.Class("wxDialog", dialog => dialog
 			.Ignore("GetToolBar")
-			.AddEvent("EVT_WINDOW_MODAL_DIALOG_CLOSED", "wxEVT_WINDOW_MODAL_DIALOG_CLOSED", "wxWindowModalDialogEvent", "WindowModalClosed"));
+			.AddEvent("EVT_WINDOW_MODAL_DIALOG_CLOSED", "wxEVT_WINDOW_MODAL_DIALOG_CLOSED", "wxWindowModalDialogEvent", "WindowModalClosed", "Process a wxEVT_WINDOW_MODAL_DIALOG_CLOSED event (a dialog ShowWindowModal() showed has been closed). See wxWindowModalDialogEvent."));
 		tweaks.Class("wxWindowModalDialogEvent");
 		tweaks.Class("wxMessageDialog");
 		foreach (string dialog in (string[])["wxTextEntryDialog", "wxPasswordEntryDialog", "wxFileDialog", "wxDirDialog", "wxProgressDialog", "wxSingleChoiceDialog", "wxMultiChoiceDialog", "wxNumberEntryDialog", "wxRichMessageDialog", "wxCredentialEntryDialog", "wxPropertySheetDialog", "wxWizard", "wxWizardPage", "wxWizardPageSimple"]) {

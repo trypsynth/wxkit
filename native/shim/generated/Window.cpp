@@ -449,14 +449,14 @@ WXK_FUNCTION(void) wxk_Window_InitDialog(wxk_Window* self) noexcept {
 	wxk::Guard([&] { static_cast<wxWindow*>(wxk::Unwrap(self))->InitDialog(); });
 }
 
-WXK_FUNCTION(uint8_t) wxk_Window_RegisterHotKey(wxk_Window* self, int32_t hotkeyId, int32_t modifiers, int32_t virtualKeyCode) noexcept {
+WXK_FUNCTION(uint8_t) wxk_Window_RegisterHotKey(wxk_Window* self, int32_t hotkeyId, int32_t modifiers, int32_t key) noexcept {
 	#if wxUSE_HOTKEY
-	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->RegisterHotKey(static_cast<int>(hotkeyId), static_cast<int>(modifiers), static_cast<int>(virtualKeyCode))) ? 1 : 0; });
+	return wxk::Guard<uint8_t>(0, [&]() -> uint8_t { return (static_cast<wxWindow*>(wxk::Unwrap(self))->RegisterHotKey(static_cast<int>(hotkeyId), static_cast<int>(modifiers), static_cast<int>(key))) ? 1 : 0; });
 	#else
 	(void)self;
 	(void)hotkeyId;
 	(void)modifiers;
-	(void)virtualKeyCode;
+	(void)key;
 	return 0;
 	#endif
 }
