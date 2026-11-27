@@ -26,6 +26,7 @@ public class BinderTests {
 				Function("Enable", "bool", Parameter("bool", "enable", "true")),
 				Function("Centre", "void", Parameter("int", "direction", "wxBOTH")),
 				Function("GetValidator", "wxValidator *"),
+				Function("SetMetric", "void", Parameter("wxSysMetric", "metric", "CursorSize")),
 			]),
 			Class("wxButton", "wxWindow",
 				[
@@ -40,10 +41,12 @@ public class BinderTests {
 				[new DoxygenStyle("wxBU_LEFT", "Left-justifies the label."), new DoxygenStyle("wxBU_TOP", "Aligns the label to the top.")],
 				[new DoxygenEvent("EVT_BUTTON", "wxEVT_BUTTON", "wxCommandEvent", "Clicked.")]),
 			Class("wxEvent", "wxObject"),
-			Class("wxCommandEvent", "wxEvent", [Function("GetString", "wxString")], events: [new DoxygenEvent("EVT_BUTTON", "wxEVT_BUTTON", "wxCommandEvent", "Process a wxEVT_BUTTON event.")]),
+			Class("wxCommandEvent", "wxEvent", [Function("GetString", "wxString"), Function("GetMetric", "wxSysMetric")], events: [new DoxygenEvent("EVT_BUTTON", "wxEVT_BUTTON", "wxCommandEvent", "Process a wxEVT_BUTTON event.")]),
 		];
-		Dictionary<string, string> constants = new() { ["wxBU_LEFT"] = "0x0040", ["wxBU_TOP"] = "0x0080", ["wxBOTH"] = "0x000C", ["wxACC_STATE_SYSTEM_FOCUSED"] = "0x1000", ["wxACC_STATE_SYSTEM_BUSY"] = "0x0010" };
-		return new DoxygenApi(classes.ToDictionary(static found => found.Name), constants, new Dictionary<string, string> { ["wxEVT_BUTTON"] = "wx/button.h" }, new Dictionary<string, DoxygenEnum>()) {
+		Dictionary<string, string> constants = new() { ["wxBU_LEFT"] = "0x0040", ["wxBU_TOP"] = "0x0080", ["wxBOTH"] = "0x000C", ["wxACC_STATE_SYSTEM_FOCUSED"] = "0x1000", ["wxACC_STATE_SYSTEM_BUSY"] = "0x0010", ["Other"] = "(-1) + 1", ["CursorSize"] = "(Other) + 1" };
+		// An enum class, whose values C++ names as wxSysMetric::Other.
+		Dictionary<string, DoxygenEnum> enums = new() { ["wxSysMetric"] = new DoxygenEnum("wxSysMetric", [new DoxygenEnumValue("Other", "Something else changed."), new DoxygenEnumValue("CursorSize", string.Empty)]) { Scope = "wxSysMetric" } };
+		return new DoxygenApi(classes.ToDictionary(static found => found.Name), constants, new Dictionary<string, string> { ["wxEVT_BUTTON"] = "wx/button.h" }, enums) {
 			Functions = new Dictionary<string, IReadOnlyList<DoxygenMember>> {
 				["wxBell"] = [Function("wxBell")],
 				["wxLaunchDefaultBrowser"] = [Function("wxLaunchDefaultBrowser", "bool", Parameter("const wxString &", "url"), Parameter("int", "flags", "0"))],
@@ -241,6 +244,23 @@ public class BinderTests {
 
 	[Fact]
 	public void RefusesToOverrideWhatADirectorCannotConvert() => Assert.Throws<InvalidOperationException>(() => Bind(tweaks => tweaks.Class("wxButton").Director("OnGetNamed")));
+
+	// What a value of an enum class wraps is its name in C++, which says what it is, and which the
+	// shim checks its value as.
+	[Fact]
+	public void NamesTheValuesOfAnEnumClassInItsScope() {
+		BindingResult result = Bind();
+		BoundEnum metric = result.Enums.Single(static bound => bound.CppName == "wxSysMetric");
+		Assert.Equal(["wxSysMetric::Other", "wxSysMetric::CursorSize"], metric.Members.Select(static member => member.Constant));
+		Assert.Equal([0L, 1L], metric.Members.Select(static member => member.Value));
+		string enums = Emitting.ManagedEmitter.Files(result).Single(static file => file.FileName == "Enums.g.cs").Text;
+		Assert.Contains("/// <summary>Something else changed. Wraps wxSysMetric::Other.</summary>", enums, StringComparison.Ordinal);
+		Assert.Contains("/// <summary>Wraps wxSysMetric::CursorSize.</summary>", enums, StringComparison.Ordinal);
+		string checks = Emitting.ShimEmitter.Files(result).Single(static file => file.FileName == "checks.cpp").Text;
+		Assert.Contains("static_assert(static_cast<int32_t>(wxSysMetric::Other) == static_cast<int32_t>(0LL)", checks, StringComparison.Ordinal);
+		BoundFunction setter = Bound(result, "wxWindow").Functions.Single(static function => function.Source.Name == "SetMetric");
+		Assert.Equal("SysMetric.CursorSize", setter.Parameters.Single().Default);
+	}
 
 	[Fact]
 	public void BindsDefinedConstantsAsOneEnum() {

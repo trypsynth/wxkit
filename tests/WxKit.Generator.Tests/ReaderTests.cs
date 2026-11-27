@@ -122,6 +122,36 @@ public class ReaderTests {
 	[InlineData("No full stop", "No full stop")]
 	public void EndsASentenceWhereItEnds(string text, string expected) => Assert.Equal(expected, DoxygenReader.FirstSentence(text));
 
+	// An enum class's values, and those of an enum declared in a class, are named in their scope.
+	[Fact]
+	public void ReadsWhatAnEnumsValuesAreNamedIn() {
+		XElement definition = XElement.Parse("""
+			<compounddef kind="class">
+				<compoundname>wxNavigationKeyEvent</compoundname>
+				<sectiondef kind="public-type">
+					<memberdef kind="enum" strong="no"><name>wxNavigationKeyEventFlags</name><enumvalue><name>IsBackward</name><initializer>= 0x0000</initializer></enumvalue></memberdef>
+					<memberdef kind="enum" strong="yes"><name>Direction</name><enumvalue><name>Up</name></enumvalue></memberdef>
+				</sectiondef>
+			</compounddef>
+			""");
+		XElement file = XElement.Parse("""
+			<compounddef kind="file">
+				<sectiondef kind="enum">
+					<memberdef kind="enum" strong="yes"><name>wxSysMetric</name><enumvalue><name>Other</name></enumvalue></memberdef>
+					<memberdef kind="enum" strong="no"><name>wxAlignment</name><enumvalue><name>wxALIGN_LEFT</name><initializer>= 0</initializer></enumvalue></memberdef>
+				</sectiondef>
+			</compounddef>
+			""");
+		Dictionary<string, string> constants = [];
+		Dictionary<string, DoxygenEnum> enums = [];
+		DoxygenReader.ReadConstants(definition, constants, enums, "wxNavigationKeyEvent");
+		DoxygenReader.ReadConstants(file, constants, enums, owner: null);
+		Assert.Equal("wxNavigationKeyEvent", enums["wxNavigationKeyEvent::wxNavigationKeyEventFlags"].Scope);
+		Assert.Equal("wxNavigationKeyEvent::Direction", enums["wxNavigationKeyEvent::Direction"].Scope);
+		Assert.Equal("wxSysMetric", enums["wxSysMetric"].Scope);
+		Assert.Null(enums["wxAlignment"].Scope);
+	}
+
 	[Theory]
 	[InlineData("const wxString &", "wxString", true, 0, true)]
 	[InlineData("wxWindow *", "wxWindow", false, 1, false)]

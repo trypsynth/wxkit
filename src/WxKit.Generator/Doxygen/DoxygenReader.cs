@@ -152,7 +152,7 @@ internal static partial class DoxygenReader {
 		return (text[..colon].Trim(), text[(colon + 1)..].Trim());
 	}
 
-	private static void ReadConstants(XElement definition, Dictionary<string, string> constants, Dictionary<string, DoxygenEnum> enums, string? owner) {
+	internal static void ReadConstants(XElement definition, Dictionary<string, string> constants, Dictionary<string, DoxygenEnum> enums, string? owner) {
 		foreach (XElement member in definition.Descendants("memberdef")) {
 			string? kind = (string?)member.Attribute("kind");
 			if (kind == "define" && member.Element("initializer") is XElement initializer) {
@@ -161,9 +161,12 @@ internal static partial class DoxygenReader {
 				string enumName = (string)member.Element("name")!;
 				// An anonymous enum only holds constants, which the loop below still reads.
 				if (enumName.Length > 0 && !enumName.StartsWith('@')) {
-					DoxygenEnum read = new(enumName, [.. member.Elements("enumvalue").Select(static value => new DoxygenEnumValue((string)value.Element("name")!, Brief(value)))]);
+					string qualified = owner is null ? enumName : $"{owner}::{enumName}";
+					DoxygenEnum read = new(enumName, [.. member.Elements("enumvalue").Select(static value => new DoxygenEnumValue((string)value.Element("name")!, Brief(value)))]) {
+						Scope = (string?)member.Attribute("strong") == "yes" ? qualified : owner,
+					};
 					enums.TryAdd(enumName, read);
-					if (owner is not null) enums.TryAdd($"{owner}::{enumName}", read);
+					if (owner is not null) enums.TryAdd(qualified, read);
 				}
 				// Values without an initializer follow the one before, as in C.
 				string previous = "-1";

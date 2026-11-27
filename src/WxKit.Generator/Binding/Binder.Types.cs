@@ -204,7 +204,7 @@ internal sealed partial class Binder {
 		int shared = enumeration.CppType is string cppEnum && api.Enums.TryGetValue(cppEnum, out DoxygenEnum? source) ? SharedWords(source) : 0;
 		foreach (string part in parts) {
 			string? member = styles is not null
-				? styles.Members.FirstOrDefault(style => style.Constant == part || part.EndsWith("::" + style.Constant, StringComparison.Ordinal))?.Name
+				? styles.Members.FirstOrDefault(style => Unqualified(style.Constant) == Unqualified(part))?.Name
 				: ConstantPattern().IsMatch(part) ? MemberName(part, shared) : null;
 			if (member is null) {
 				members.Clear();
@@ -217,6 +217,10 @@ internal sealed partial class Binder {
 		if (styles?.Members.FirstOrDefault(style => style.Value == number) is BoundStyle exact) return $"{enumeration.EnumName}.{exact.Name}";
 		return number == 0 ? "0" : $"({enumeration.EnumName})0x{number:X}";
 	}
+
+	// A constant without the class or enum class it is named in, which a default may leave out, as
+	// a member of the class does, or give, as wxNavigationKeyEvent::IsForward.
+	private static string Unqualified(string constant) => constant[(constant.LastIndexOf("::", StringComparison.Ordinal) is int colons and >= 0 ? colons + 2 : 0)..];
 
 	// Known string constants used as defaults, and their values.
 	private static readonly Dictionary<string, string> StringDefaults = new(StringComparer.Ordinal) {
