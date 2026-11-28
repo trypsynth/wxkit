@@ -456,6 +456,12 @@ WXK_FUNCTION(uint8_t*) wxk_Image_SaveData(wxk_Object* image, int32_t type, size_
 // Turns wxWidgets' logging on or off, and returns whether it was on, so that a file whose failure
 // to load the caller is told of doesn't show the user an error dialog.
 WXK_FUNCTION(uint8_t) wxk_Log_Enable(uint8_t enable) WXK_NOEXCEPT;
+// A bitmap's own handle: an HBITMAP on Windows, the CGContextRef its pixels are in on macOS, and a
+// GdkPixbuf* on Linux, or null when the bitmap has none. The bitmap keeps it.
+WXK_FUNCTION(void*) wxk_Bitmap_GetHandle(wxk_Object* bitmap) WXK_NOEXCEPT;
+// An icon's own handle: an HICON on Windows, and elsewhere, where an icon is a bitmap, what
+// wxk_Bitmap_GetHandle gives. The icon keeps it.
+WXK_FUNCTION(void*) wxk_Icon_GetHandle(wxk_Object* icon) WXK_NOEXCEPT;
 
 // The desktop. Its free functions, such as wxBell, are generated, as wxk_Desktop_Bell, and so
 // are wxDisplay's and the other classes' that aren't wxObjects, each a handle of its own type.
