@@ -472,6 +472,26 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void ImageAddAllHandlers();
 
+	[LibraryImport(Library, EntryPoint = "wxk_Image_NewData")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial WxkObject* ImageNewData(int width, int height, byte* rgb, byte* alpha);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_GetData")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte* ImageGetData(WxkObject* image);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_SetData")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void ImageSetData(WxkObject* image, byte* rgb);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_GetAlphaData")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte* ImageGetAlphaData(WxkObject* image);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_SetAlphaData")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void ImageSetAlphaData(WxkObject* image, byte* alpha);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Image_LoadData")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ImageLoadData(WxkObject* image, byte* data, nuint length, int type, int index);
