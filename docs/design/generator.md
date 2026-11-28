@@ -8,7 +8,7 @@ The generator reads the Doxygen XML of the wxWidgets interface headers, the copy
 
 The generator also reads a few things from the real headers in `native/wxWidgets/include/wx`, which are what the shim compiles against: enum values, which the interface headers sometimes leave out or Doxygen cuts short, the deprecated GUI constants in `wx/defs.h`, such as `wxDEFAULT`, and the art provider's ids in `wx/artprov.h`.
 
-The generated files are checked in, so a normal build needs neither Doxygen nor the generator. `scripts/generate.ps1` downloads the pinned Doxygen, 1.15.0, runs it on the interface headers, and runs the generator, which rewrites every generated file. `-XmlOnly` stops after the XML. The script only fetches Doxygen on Windows so far. The CI job for `win-x64` runs it and fails when the checked-in files differ.
+The generated files are checked in, so a normal build needs neither Doxygen nor the generator. `scripts/generate.ps1` downloads the pinned Doxygen, 1.15.0, runs it on the interface headers, and runs the generator, which rewrites every generated file. `-XmlOnly` stops after the XML. The script fetches Doxygen on Windows and macOS, where Apple silicon runs Doxygen's x64 build with Rosetta. The CI job for `win-x64` runs it and fails when the checked-in files differ.
 
 ## Binding tweaks
 

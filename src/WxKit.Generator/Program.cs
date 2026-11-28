@@ -41,8 +41,9 @@ string[] handwritten = Directory.GetFiles(Path.Combine(shim, "src"), "*.cpp", Se
 files.Add((Path.Combine(root, "src", "WxKit", "Interop", "WxKitNative.Header.g.cs"), HeaderInteropEmitter.Source(Path.Combine(shim, "include", "wxkit.h"), handwritten)));
 foreach ((string fileName, string text) in ManagedEmitter.Files(result)) files.Add((Path.Combine(managed, fileName), text));
 foreach ((string path, string text) in files) Write(path, text);
-// A file for a class no longer bound must not linger, in the shim or in the managed code.
-HashSet<string> written = new(files.Select(static file => Path.GetFullPath(file.Path)), OperatingSystem.IsWindows() ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
+// A file for a class no longer bound must not linger, in the shim or in the managed code. Windows'
+// and macOS's file systems ignore case, so a file written over one named with other case is the same.
+HashSet<string> written = new(files.Select(static file => Path.GetFullPath(file.Path)), OperatingSystem.IsWindows() || OperatingSystem.IsMacOS() ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
 foreach (string stale in Directory.GetFiles(generated).Concat(Directory.GetFiles(managed, "*.g.cs")).Where(file => !written.Contains(Path.GetFullPath(file)))) File.Delete(stale);
 int functions = result.Classes.Sum(static bound => bound.Functions.Count());
 Console.WriteLine($"Bound {result.Classes.Count(static bound => !bound.Tweak.IsHandwritten)} classes, {functions} functions, and {result.EventTypes.Count} event types.");

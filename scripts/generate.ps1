@@ -15,13 +15,15 @@ $output = Join-Path $root "artifacts/doxygen"
 $doxygenVersion = "1.15.0"
 $doxygenArchives = @{
 	"windows" = @{ Name = "doxygen-$doxygenVersion.windows.x64.bin.zip"; Sha256 = "44658b9cc5c91749e6e3cc426ba63e2550b4a4a7619065acd77029aa234719c6" }
+	# An x64 build, which Apple silicon runs with Rosetta.
+	"macos" = @{ Name = "Doxygen-$doxygenVersion.dmg"; Sha256 = "b7630eaa0d97bb50b0333929ef5dc1c18f9e38faf1e22dca3166189a9718faf0" }
 }
 
 function Get-Doxygen {
-	if (-not $IsWindows) { throw "This script only fetches Doxygen for Windows so far." }
-	$archive = $doxygenArchives["windows"]
+	if (-not ($IsWindows -or $IsMacOS)) { throw "This script only fetches Doxygen for Windows and macOS so far." }
+	$archive = $doxygenArchives[$IsWindows ? "windows" : "macos"]
 	$directory = Join-Path $tools "doxygen-$doxygenVersion"
-	$executable = Join-Path $directory "doxygen.exe"
+	$executable = Join-Path $directory ($IsWindows ? "doxygen.exe" : "doxygen")
 	if (Test-Path $executable) { return $executable }
 	New-Item -ItemType Directory -Force $tools | Out-Null
 	$download = Join-Path $tools $archive.Name
@@ -29,7 +31,20 @@ function Get-Doxygen {
 	Invoke-WebRequest "https://github.com/doxygen/doxygen/releases/download/$tag/$($archive.Name)" -OutFile $download
 	$hash = (Get-FileHash $download -Algorithm SHA256).Hash.ToLowerInvariant()
 	if ($hash -ne $archive.Sha256) { throw "$($archive.Name) has SHA-256 $hash, not the expected $($archive.Sha256)." }
-	Expand-Archive $download -DestinationPath $directory -Force
+	if ($IsWindows) {
+		Expand-Archive $download -DestinationPath $directory -Force
+	} else {
+		# The disk image holds an app, whose executable needs nothing else in it.
+		$mount = Join-Path $tools "doxygen-mount"
+		hdiutil attach -nobrowse -readonly -mountpoint $mount $download | Out-Null
+		if ($LASTEXITCODE -ne 0) { throw "hdiutil couldn't open $($archive.Name)." }
+		try {
+			New-Item -ItemType Directory -Force $directory | Out-Null
+			Copy-Item (Join-Path $mount "Doxygen.app/Contents/Resources/doxygen") $executable
+		} finally {
+			hdiutil detach $mount | Out-Null
+		}
+	}
 	Remove-Item $download
 	return $executable
 }
