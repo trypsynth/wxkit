@@ -47,7 +47,10 @@ if ($LASTEXITCODE -ne 0) { throw "Building the tests failed." }
 # .NET isn't built with the sanitizers, so their runtime is loaded first. CoreCLR handles SIGSEGV
 # itself, for null references, and allocates with malloc and frees with delete in places, which
 # AddressSanitizer would otherwise report as WxKit's.
-$env:LD_PRELOAD = (gcc -print-file-name=libasan.so)
+# The runtime is the one the library was linked with, as ldd finds it.
+$runtime = ldd (Join-Path $shared "libwxkitnative.so") | Select-String "libasan\S*\s+=>\s+(\S+)" | ForEach-Object { $_.Matches[0].Groups[1].Value } | Select-Object -First 1
+if (-not $runtime) { throw "The sanitized library doesn't link AddressSanitizer's runtime." }
+$env:LD_PRELOAD = $runtime
 $env:ASAN_OPTIONS = "detect_leaks=0:alloc_dealloc_mismatch=0:handle_segv=0:handle_sigbus=0:handle_sigfpe=0:allow_user_segv_handler=1:verify_asan_link_order=0"
 $env:UBSAN_OPTIONS = "print_stacktrace=1"
 try {
