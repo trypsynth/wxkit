@@ -142,8 +142,9 @@ public class SingleInstanceTests {
 		} catch (TimeoutException) {
 			string stacks = NativeStacks(process.Id);
 			process.Kill(entireProcessTree: true);
-			await process.WaitForExitAsync();
-			throw new TimeoutException($"The other copy didn't exit.\nIts output: {await output}\nIts errors: {await errors}\nIts threads:\n{stacks}");
+			string written = await output.WaitAsync(Gui.Timeout).ContinueWith(static read => read.IsCompletedSuccessfully ? read.Result : "(unread)");
+			string errorsWritten = await errors.WaitAsync(Gui.Timeout).ContinueWith(static read => read.IsCompletedSuccessfully ? read.Result : "(unread)");
+			throw new TimeoutException($"The other copy didn't exit.\nIts output: {written}\nIts errors: {errorsWritten}\nIts threads:\n{stacks}");
 		}
 		Assert.True(process.ExitCode != Failed, await errors);
 		return (process.ExitCode, await output);
@@ -153,8 +154,9 @@ public class SingleInstanceTests {
 	private static string NativeStacks(int id) {
 		if (!OperatingSystem.IsLinux()) return "(only read on Linux)";
 		try {
-			ProcessStartInfo start = new("sudo", ["-n", "gdb", "-p", id.ToString(System.Globalization.CultureInfo.InvariantCulture), "-batch", "-ex", "thread apply all bt"]) { RedirectStandardOutput = true, RedirectStandardError = true };
+			ProcessStartInfo start = new("sudo", ["-n", "timeout", "-k", "5", "30", "gdb", "-nx", "-p", id.ToString(System.Globalization.CultureInfo.InvariantCulture), "-batch", "-ex", "thread apply all bt"]) { RedirectStandardInput = true, RedirectStandardOutput = true, RedirectStandardError = true };
 			using Process gdb = Process.Start(start)!;
+			gdb.StandardInput.Close();
 			Task<string> errors = gdb.StandardError.ReadToEndAsync();
 			string stacks = gdb.StandardOutput.ReadToEnd();
 			gdb.WaitForExit();
