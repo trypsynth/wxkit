@@ -37,6 +37,7 @@ public sealed unsafe class Translations : IDisposable {
 	private static bool _callbacksSet;
 	private WxkTranslations* _native;
 	private string? _language;
+	private string? _domain;
 
 	/// <summary>Makes translations whose catalogs come from those embedded in the application, or from files.</summary>
 	public Translations() : this(new EmbeddedTranslationsLoader()) { }
@@ -94,6 +95,23 @@ public sealed unsafe class Translations : IDisposable {
 		}
 	}
 
+	/// <summary>
+	/// The domain the application's strings are looked up in, as <see cref="Gettext"/>'s shortcuts
+	/// and <see cref="Translate"/> do, which <see cref="Use"/> sets to the application's, or null to
+	/// look in every catalog, wxWidgets' too. With a domain, a string the application's catalog
+	/// leaves untranslated stays in English, rather than taking wxWidgets' translation of the same
+	/// text, which has wxWidgets' accelerator. wxWidgets' own text, such as stock button labels,
+	/// still comes from its catalog.
+	/// </summary>
+	public string? Domain {
+		get => _domain;
+		set {
+			if (value is not null) ArgumentException.ThrowIfNullOrEmpty(value);
+			Application.VerifyAccessOrNotRunning();
+			lock (Gate) _domain = value;
+		}
+	}
+
 	private WxkTranslations* Native => _native is not null ? _native : throw new ObjectDisposedException(nameof(Translations));
 
 	/// <summary>
@@ -110,6 +128,7 @@ public sealed unsafe class Translations : IDisposable {
 			translations.Language = language;
 			translations.AddStdCatalog();
 			translations.AddCatalog(domain);
+			translations.Domain = domain;
 		} catch {
 			translations.Dispose();
 			throw;
@@ -187,7 +206,10 @@ public sealed unsafe class Translations : IDisposable {
 		fixed (char* text = folder) WxKitNative.TranslationsAddCatalogLookupPathPrefix(text, NativeString.Length(folder));
 	}
 
-	/// <summary>The translation of text in the current translations, or the text itself when there is none.</summary>
+	/// <summary>
+	/// The translation of text in the current translations, from their <see cref="Domain"/>'s
+	/// catalog when they have one, or the text itself when there is none.
+	/// </summary>
 	public static string Translate(string text) => Lookup(text, null);
 
 	/// <summary>
@@ -227,8 +249,10 @@ public sealed unsafe class Translations : IDisposable {
 		ArgumentNullException.ThrowIfNull(text);
 		WxkString* translated;
 		lock (Gate) {
+			string? domain = _current?._domain;
 			fixed (char* textData = text)
-			fixed (char* contextData = context) translated = WxKitNative.TranslationsGetString(textData, NativeString.Length(text), contextData, context is null ? 0 : NativeString.Length(context));
+			fixed (char* contextData = context)
+			fixed (char* domainData = domain) translated = WxKitNative.TranslationsGetString(textData, NativeString.Length(text), contextData, context is null ? 0 : NativeString.Length(context), domainData, domain is null ? 0 : NativeString.Length(domain));
 		}
 		return translated is null ? text : NativeString.Take(translated);
 	}
@@ -239,8 +263,10 @@ public sealed unsafe class Translations : IDisposable {
 		uint count = PluralCount(n);
 		WxkString* translated;
 		lock (Gate) {
+			string? domain = _current?._domain;
 			fixed (char* singularData = singular)
-			fixed (char* contextData = context) translated = WxKitNative.TranslationsGetPluralString(singularData, NativeString.Length(singular), count, contextData, context is null ? 0 : NativeString.Length(context));
+			fixed (char* contextData = context)
+			fixed (char* domainData = domain) translated = WxKitNative.TranslationsGetPluralString(singularData, NativeString.Length(singular), count, contextData, context is null ? 0 : NativeString.Length(context), domainData, domain is null ? 0 : NativeString.Length(domain));
 		}
 		if (translated is not null) return NativeString.Take(translated);
 		return count == 1 ? singular : plural;

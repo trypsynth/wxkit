@@ -52,6 +52,38 @@ public class TranslationsTests {
 		Assert.Equal("pl", translations.GetHeaderValue("Language", "test"));
 	});
 
+	// The application's strings are looked up in its own catalog, so one it leaves untranslated
+	// doesn't take another catalog's translation, such as wxWidgets', with that catalog's accelerator.
+	[Fact]
+	public Task LooksUpInTheDomainItIsGiven() => Gui.Run(() => {
+		Translations translations = new(new MemoryLoader()) { Language = "pl" };
+		try {
+			Assert.Null(translations.Domain);
+			Assert.True(translations.AddCatalog("other"));
+			Assert.True(translations.AddCatalog("test"));
+			Translations.Current = translations;
+			// Without a domain, every catalog is looked in, as before.
+			Assert.Equal("&Zamknij", _("&Close"));
+			Assert.Equal("Otwórz", _("Open"));
+			translations.Domain = "test";
+			Assert.Equal("test", translations.Domain);
+			Assert.Equal("&Close", _("&Close"));
+			Assert.Equal("&Close", Translations.Translate("&Close"));
+			Assert.Equal("Otwórz", _("Open"));
+			Assert.Equal("Otwarty", _p("state", "Open"));
+			Assert.Equal("3 pliki", _n("{0} file", "{0} files", 3, 3));
+			Assert.Equal("{0} closed files", _n("{0} closed file", "{0} closed files", 3));
+			translations.Domain = "other";
+			Assert.Equal("Open", _("Open"));
+			Assert.Equal("3 zamknięte", _n("{0} closed file", "{0} closed files", 3, 3));
+			translations.Domain = null;
+			Assert.Equal("&Zamknij", _("&Close"));
+			Assert.Throws<ArgumentException>(() => translations.Domain = "");
+		} finally {
+			translations.Dispose();
+		}
+	});
+
 	[Fact]
 	public Task DisposesTheTranslationsItReplaces() => Gui.Run(() => {
 		Translations first = new(new MemoryLoader());
@@ -87,15 +119,20 @@ public class TranslationsTests {
 		Assert.Contains("de", embedded.GetAvailableTranslations("wxstd"));
 		Translations translations = Translations.Use("WxKit.Tests", "de");
 		try {
+			Assert.Equal("WxKit.Tests", translations.Domain);
 			Assert.Equal("Hallo aus dem Testkatalog", _("Hello from the test catalog"));
 			Assert.Equal("Hallo, Welt", _("Hello, {0}", "Welt"));
 			Assert.Equal("Geöffnet", _p("state", "Open"));
 			Assert.Equal("1 Datei", _n("{0} file", "{0} files", 1, 1));
 			Assert.Equal("4 Dateien", _n("{0} file", "{0} files", 4, 4));
 			Assert.Equal("Not reviewed yet", _("Not reviewed yet"));
-			Assert.Equal("Ab&brechen", _("&Cancel"));
+			// The test catalog has no "&Cancel", so it stays in English, though wxWidgets' catalog
+			// has it, and a stock button still takes wxWidgets' label.
+			Assert.Equal("&Cancel", _("&Cancel"));
 			Button cancel = new(frame, id: StandardId.Cancel);
 			Assert.Equal("Abbrechen", cancel.LabelText);
+			translations.Domain = null;
+			Assert.Equal("Ab&brechen", _("&Cancel"));
 		} finally {
 			translations.Dispose();
 		}
@@ -131,20 +168,30 @@ public class TranslationsTests {
 	});
 
 	private sealed class MemoryLoader : TranslationsLoader {
-		public override byte[]? LoadCatalog(string domain, string language) => domain == "test" && language == "pl" ? Catalog() : null;
+		public override byte[]? LoadCatalog(string domain, string language) => language != "pl" ? null : domain == "test" ? Catalog() : domain == "other" ? OtherCatalog() : null;
 
-		public override IEnumerable<string> GetAvailableTranslations(string domain) => domain == "test" ? ["pl"] : [];
+		public override IEnumerable<string> GetAvailableTranslations(string domain) => domain is "test" or "other" ? ["pl"] : [];
 	}
+
+	private static byte[] Catalog() => Catalog([
+		("Open", "Otwórz"),
+		("state\u0004Open", "Otwarty"),
+		("Hello, {0}", "Witaj, {0}"),
+		("{0} file\0{0} files", "{0} plik\0{0} pliki\0{0} plików"),
+	]);
+
+	// Another domain's catalog, as wxWidgets' own is beside an application's.
+	private static byte[] OtherCatalog() => Catalog([
+		("&Close", "&Zamknij"),
+		("{0} closed file\0{0} closed files", "{0} zamknięty\0{0} zamknięte\0{0} zamkniętych"),
+	]);
 
 	// A .mo file: its header, then a table of where each original is, and one of where each
 	// translation is, with a context before \u0004, and plural forms after \0.
-	private static byte[] Catalog() {
+	private static byte[] Catalog((string Original, string Translation)[] translated) {
 		(string Original, string Translation)[] entries = [
 			("", $"Content-Type: text/plain; charset=UTF-8\nLanguage: pl\nPlural-Forms: {PolishPlurals}\n"),
-			("Open", "Otwórz"),
-			("state\u0004Open", "Otwarty"),
-			("Hello, {0}", "Witaj, {0}"),
-			("{0} file\0{0} files", "{0} plik\0{0} pliki\0{0} plików"),
+			.. translated,
 		];
 		Array.Sort(entries, static (left, right) => string.CompareOrdinal(left.Original, right.Original));
 		byte[][] originals = [.. entries.Select(static entry => Encoding.UTF8.GetBytes(entry.Original))];

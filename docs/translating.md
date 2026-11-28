@@ -55,6 +55,8 @@ return Application.Run(() => {
 
 The first argument is the domain, the name of the application's catalogs, which is the assembly's name unless you set `WxKitTranslationDomain`. To use a language other than the user's, pass it second, as in `Translations.Use("MyApp", "de")`.
 
+`_` and the other shortcuts look the application's strings up in that domain's catalog only. A string the catalog doesn't translate stays in English, rather than taking wxWidgets' translation of the same text, such as "&Size:", whose accelerator would be wxWidgets' choice. wxWidgets' own text, such as stock button labels, still comes from its catalog.
+
 `UILocale.UseDefault` makes the numbers and dates in wxWidgets' controls follow the user's locale. It doesn't change the language of the text.
 
 ## Extract the strings
@@ -154,10 +156,12 @@ Set these MSBuild properties and items in the project file:
 The build embeds each catalog, compiled, as the resource `locale/<language>/<domain>.mo`, and wxWidgets' as `locale/<language>/wxstd.mo`. An `EmbeddedTranslationsLoader` reads them, and for a catalog that isn't embedded, wxWidgets looks for the same path next to the application. To load catalogs from somewhere else, derive from `TranslationsLoader`, and pass it to a `Translations` you set up yourself:
 
 ```csharp
-Translations translations = new(new MyLoader()) { Language = "de" };
+Translations translations = new(new MyLoader()) { Language = "de", Domain = "MyApp" };
 translations.AddStdCatalog();
 translations.AddCatalog("MyApp");
 Translations.Current = translations;
 ```
+
+`Domain` is the catalog the shortcuts look in. Left null, they look in every catalog, wxWidgets' too.
 
 Looking strings up, as `_` does, works from any thread. Everything else is for the GUI thread.

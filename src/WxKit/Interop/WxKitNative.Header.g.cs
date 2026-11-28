@@ -602,11 +602,11 @@ internal static unsafe partial class WxKitNative {
 
 	[LibraryImport(Library, EntryPoint = "wxk_Translations_GetString")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkString* TranslationsGetString(char* text, nuint textLength, char* context, nuint contextLength);
+	public static partial WxkString* TranslationsGetString(char* text, nuint textLength, char* context, nuint contextLength, char* domain, nuint domainLength);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Translations_GetPluralString")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial WxkString* TranslationsGetPluralString(char* singular, nuint singularLength, uint n, char* context, nuint contextLength);
+	public static partial WxkString* TranslationsGetPluralString(char* singular, nuint singularLength, uint n, char* context, nuint contextLength, char* domain, nuint domainLength);
 
 	[LibraryImport(Library, EntryPoint = "wxk_UILocale_UseDefault")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
