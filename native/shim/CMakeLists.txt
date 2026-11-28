@@ -111,6 +111,7 @@ set(WXK_SOURCES
 	src/numbers.cpp
 	src/printing.cpp
 	src/imagedata.cpp
+	src/imagepixels.cpp
 	src/liveregion.cpp
 	src/translations.cpp
 	src/handlers/png.cpp

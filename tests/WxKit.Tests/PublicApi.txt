@@ -2618,6 +2618,7 @@ class WxKit.Image : NativeObject
     BitmapType Type { get; set; }
     Color GetRgb(Point pixel)
     Color? MaskColor { get; set; }
+    Image(Size size, ReadOnlySpan<byte> rgb, ReadOnlySpan<byte> alpha = null)
     Image(Size size, bool clear = true)
     Image(int width, int height, bool clear = true)
     Image? Blur(int blurRadius)
@@ -2651,6 +2652,8 @@ class WxKit.Image : NativeObject
     bool SaveFile(string fileName, string mimeType)
     bool SetMaskFromImage(Image mask, Color color)
     byte GetAlpha(Point pixel)
+    byte[] GetRgbData()
+    byte[]? GetAlphaData()
     int GetOptionInt(string name)
     int Height { get; }
     int Width { get; }
@@ -2686,10 +2689,12 @@ class WxKit.Image : NativeObject
     void Resize(Size size, Point position, Color? border = null)
     void RotateHue(double angle)
     void SetAlpha(Point pixel, byte alpha)
+    void SetAlphaData(ReadOnlySpan<byte> alpha)
     void SetOption(string name, int value)
     void SetOption(string name, string value)
     void SetRgb(Point pixel, Color color)
     void SetRgb(Rect rect, Color color)
+    void SetRgbData(ReadOnlySpan<byte> rgb)
 enum WxKit.ImageAlphaBlendMode : int
     Compose = 1
     Over = 0

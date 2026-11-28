@@ -444,6 +444,15 @@ WXK_FUNCTION(void) wxk_Image_AddXpmHandler(void) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_AddIconHandler(void) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Image_AddAllHandlers(void) WXK_NOEXCEPT;
 
+// An image's pixels as bytes: three for each pixel's color, red, green, and blue, and one for its
+// alpha, row by row from the top left. The image copies what it is given, and the bytes it gives
+// are its own, for as long as it is not changed.
+WXK_FUNCTION(wxk_Object*) wxk_Image_NewData(int32_t width, int32_t height, const uint8_t* rgb, const uint8_t* alpha) WXK_NOEXCEPT;
+WXK_FUNCTION(const uint8_t*) wxk_Image_GetData(wxk_Object* image) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Image_SetData(wxk_Object* image, const uint8_t* rgb) WXK_NOEXCEPT;
+WXK_FUNCTION(const uint8_t*) wxk_Image_GetAlphaData(wxk_Object* image) WXK_NOEXCEPT;
+WXK_FUNCTION(void) wxk_Image_SetAlphaData(wxk_Object* image, const uint8_t* alpha) WXK_NOEXCEPT;
+
 // Loads an image from the bytes of a file in a format whose handler was added, and returns whether
 // it could. A failure is not logged.
 WXK_FUNCTION(uint8_t) wxk_Image_LoadData(wxk_Object* image, const uint8_t* data, size_t length, int32_t type, int32_t index) WXK_NOEXCEPT;
