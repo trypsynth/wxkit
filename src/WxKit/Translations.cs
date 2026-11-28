@@ -13,8 +13,8 @@ namespace WxKit;
 /// <remarks>
 /// <para>
 /// Set translations up in <see cref="Application.Run(Action)"/>'s start-up action, before making any
-/// windows, because a window's text is translated when it is made. <see cref="Use"/> does it in one
-/// call. To set them up step by step, make a <see cref="Translations"/>, set its
+/// windows, because a window's text is translated when it is made. <see cref="Use(string, string)"/>
+/// does it in one call. To set them up step by step, make a <see cref="Translations"/>, set its
 /// <see cref="Language"/>, add its catalogs, and make it <see cref="Current"/>. To change the
 /// language later, do the same again, and make the windows again.
 /// </para>
@@ -98,14 +98,38 @@ public sealed unsafe class Translations : IDisposable {
 
 	/// <summary>
 	/// Sets up translations from the system's language, or another, and makes them current: wxWidgets'
-	/// own catalog, and the application's, whose domain is the name of its catalogs.
+	/// own catalog, and the application's, whose domain is the name of its catalogs. The catalogs are
+	/// the ones embedded in the application, its entry assembly.
 	/// </summary>
 	/// <param name="domain">The name of the application's catalogs, as in myapp.mo.</param>
 	/// <param name="language">The language, or null for the best one the user prefers that there are catalogs for.</param>
 	/// <returns>The translations, which are now <see cref="Current"/>.</returns>
 	public static Translations Use(string domain, string? language = null) {
 		ArgumentException.ThrowIfNullOrEmpty(domain);
-		Translations translations = new();
+		return Use(new EmbeddedTranslationsLoader(), domain, language);
+	}
+
+	/// <summary>
+	/// Sets up translations as <see cref="Use(string, string)"/> does, from the catalogs embedded in
+	/// an assembly other than the entry one, such as a library that embeds its own, or an
+	/// application whose tests run in a test host. The entry assembly's catalogs are read after
+	/// that assembly's, since the build embeds wxWidgets' own, which translate stock labels such as
+	/// Cancel, only in an application.
+	/// </summary>
+	/// <param name="assembly">The assembly the catalogs are embedded in.</param>
+	/// <param name="domain">The name of the catalogs, as in myapp.mo.</param>
+	/// <param name="language">The language, or null for the best one the user prefers that there are catalogs for.</param>
+	/// <returns>The translations, which are now <see cref="Current"/>.</returns>
+	public static Translations Use(Assembly assembly, string domain, string? language = null) {
+		ArgumentNullException.ThrowIfNull(assembly);
+		ArgumentException.ThrowIfNullOrEmpty(domain);
+		Assembly? entry = Assembly.GetEntryAssembly();
+		EmbeddedTranslationsLoader loader = entry is null || entry == assembly ? new(assembly) : new(assembly, entry);
+		return Use(loader, domain, language);
+	}
+
+	private static Translations Use(TranslationsLoader loader, string domain, string? language) {
+		Translations translations = new(loader);
 		try {
 			translations.Language = language;
 			translations.AddStdCatalog();
@@ -153,6 +177,11 @@ public sealed unsafe class Translations : IDisposable {
 	/// <summary>
 	/// The language a domain's catalog is loaded in, or would be: <see cref="Language"/> when it is
 	/// set, or else the best one the user prefers that there is a catalog for, or null when there is none.
+	/// English, which the strings are in, counts as a language there is a catalog for, as
+	/// <see cref="AddCatalog"/> counts it, so for a user who prefers English to the languages there
+	/// are catalogs for, this is "en", whatever English they prefer, such as en-US, and the strings
+	/// are left as they are. An English with a region, such as "en_GB", is named only when there is
+	/// a catalog for it.
 	/// </summary>
 	public string? GetBestTranslation(string domain) {
 		ArgumentException.ThrowIfNullOrEmpty(domain);

@@ -52,6 +52,68 @@ public class TranslationsTests {
 		Assert.Equal("pl", translations.GetHeaderValue("Language", "test"));
 	});
 
+	// English, which the strings are in, has no catalog, but is the language the text is in.
+	[Fact]
+	public Task NamesEnglishAsTheBestTranslationOfTheStringsAsTheyAre() => Gui.Run(() => {
+		using Translations english = new(new MemoryLoader()) { Language = "en" };
+		Assert.True(english.AddCatalog("test"));
+		Assert.False(english.IsLoaded("test"));
+		Assert.Equal("en", english.GetBestTranslation("test"));
+		using Translations american = new(new MemoryLoader()) { Language = "en_US" };
+		Assert.Equal("en", american.GetBestTranslation("test"));
+		using Translations british = new(new MemoryLoader()) { Language = "en_GB" };
+		Assert.Equal("en", british.GetBestTranslation("test"));
+		using Translations german = new(new MemoryLoader()) { Language = "de" };
+		Assert.False(german.AddCatalog("test"));
+		Assert.Null(german.GetBestTranslation("test"));
+	});
+
+	// wxWidgets takes the user's preferred languages from WXLANGUAGE when it's set, as GNU gettext
+	// does from LANGUAGE, so another copy of the tests is given its own.
+	[Theory]
+	[InlineData("en:de", "en", "Hello from the test catalog")]
+	[InlineData("en_US:de", "en", "Hello from the test catalog")]
+	[InlineData("de:en", "de", "Hallo aus dem Testkatalog")]
+	[InlineData("fr:en:de", "en", "Hello from the test catalog")]
+	public Task PicksTheLanguageTheUserPrefersEnglishIncluded(string preferred, string best, string translation) => Gui.Run(async () => {
+		Assert.SkipWhen(!new EmbeddedTranslationsLoader().GetAvailableTranslations("WxKit.Tests").Any() && Environment.GetEnvironmentVariable("CI") is null, "The catalogs are not compiled without GNU gettext's msgfmt.");
+		(int _, string output) = await SingleInstanceTests.RunAnotherProcess(new Dictionary<string, string?> { ["WXLANGUAGE"] = preferred }, "best", "Hello from the test catalog");
+		Assert.Equal($"{best}\n{translation}", output);
+	});
+
+	[Fact]
+	public Task UsesTheCatalogsOfTheAssemblyItIsGiven() => Gui.Run(() => {
+		Assert.SkipWhen(!new EmbeddedTranslationsLoader().GetAvailableTranslations("WxKit.Tests").Any() && Environment.GetEnvironmentVariable("CI") is null, "The catalogs are not compiled without GNU gettext's msgfmt.");
+		Assert.Throws<ArgumentNullException>(() => Translations.Use((System.Reflection.Assembly)null!, "WxKit.Tests"));
+		Assert.Throws<ArgumentException>(() => Translations.Use(typeof(TranslationsTests).Assembly, ""));
+		Translations tests = Translations.Use(typeof(TranslationsTests).Assembly, "WxKit.Tests", "de");
+		try {
+			Assert.Same(tests, Translations.Current);
+			Assert.True(tests.IsLoaded("WxKit.Tests"));
+			Assert.Equal("Hallo aus dem Testkatalog", _("Hello from the test catalog"));
+		} finally {
+			tests.Dispose();
+		}
+	});
+
+	// A library's catalogs are embedded in the library, and wxWidgets' only in the application, so
+	// stock labels are translated from the entry assembly's. WxKit itself embeds no catalogs, so
+	// the tests' are found in the entry assembly too.
+	[Fact]
+	public Task TranslatesStockLabelsFromTheEntryAssemblyAfterTheOneItIsGiven() => Gui.WithFrame(frame => {
+		Assert.SkipWhen(!new EmbeddedTranslationsLoader().GetAvailableTranslations("WxKit.Tests").Any() && Environment.GetEnvironmentVariable("CI") is null, "The catalogs are not compiled without GNU gettext's msgfmt.");
+		Translations library = Translations.Use(typeof(Translations).Assembly, "WxKit.Tests", "de");
+		try {
+			Assert.Contains("de", library.GetAvailableTranslations("wxstd"));
+			Button cancel = new(frame, id: StandardId.Cancel);
+			Assert.Equal("Abbrechen", cancel.LabelText);
+			Assert.True(library.IsLoaded("WxKit.Tests"));
+			Assert.Equal("Hallo aus dem Testkatalog", _("Hello from the test catalog"));
+		} finally {
+			library.Dispose();
+		}
+	});
+
 	[Fact]
 	public Task DisposesTheTranslationsItReplaces() => Gui.Run(() => {
 		Translations first = new(new MemoryLoader());

@@ -8883,6 +8883,7 @@ sealed class WxKit.Translations : IDisposable
     bool AddCatalog(string domain)
     bool AddStdCatalog()
     bool IsLoaded(string domain)
+    static Translations Use(Assembly assembly, string domain, string? language = null)
     static Translations Use(string domain, string? language = null)
     static Translations? Current { get; set; }
     static string Translate(string text)

@@ -117,7 +117,10 @@ WXK_FUNCTION(wxk_StringArray*) wxk_Translations_GetAvailableTranslations(wxk_Tra
 
 WXK_FUNCTION(wxk_String*) wxk_Translations_GetBestTranslation(wxk_Translations* translations, const char16_t* domain, size_t domainLength) noexcept {
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* {
-		wxString best = Unwrap(translations)->GetBestAvailableTranslation(wxk::FromUtf16(domain, domainLength));
+		// GetBestAvailableTranslation leaves out English, which the strings are in and so has no
+		// catalog, and names the next language the user prefers when English comes first, though
+		// AddCatalog then loads none. GetBestTranslation counts English, as AddCatalog does.
+		wxString best = Unwrap(translations)->GetBestTranslation(wxk::FromUtf16(domain, domainLength));
 		return best.empty() ? nullptr : wxk::ToUtf16(best);
 	});
 }

@@ -102,12 +102,18 @@ public class SingleInstanceTests {
 	}
 
 	// The other copy: check name folder, or claim name message..., which exits with what it found,
-	// or translate language text, which writes the translation.
+	// or translate language text, which writes the translation, or best text, which writes the
+	// language the user's preferred languages pick and the translation in it, on two lines.
 	internal static int RunAsAnotherCopy(string[] args) {
 		try {
 			if (args is ["translate", string language, string text]) {
 				using Translations translations = Translations.Use("WxKit.Tests", language);
 				Console.Out.Write(Translations.Translate(text));
+				return Delivered;
+			}
+			if (args is ["best", string original]) {
+				using Translations translations = Translations.Use("WxKit.Tests");
+				Console.Out.Write($"{translations.GetBestTranslation("WxKit.Tests")}\n{Translations.Translate(original)}");
 				return Delivered;
 			}
 			if (args is ["check", string name, string folder]) {
@@ -126,9 +132,14 @@ public class SingleInstanceTests {
 
 	private static async Task<int> RunAnotherCopy(params string[] args) => (await RunAnotherProcess(args)).ExitCode;
 
-	internal static async Task<(int ExitCode, string Output)> RunAnotherProcess(params string[] args) {
+	internal static Task<(int ExitCode, string Output)> RunAnotherProcess(params string[] args) => RunAnotherProcess(new Dictionary<string, string?>(), args);
+
+	// The environment variables are set in the other process only, since on Linux and macOS
+	// Environment.SetEnvironmentVariable doesn't change the variables native code reads.
+	internal static async Task<(int ExitCode, string Output)> RunAnotherProcess(IReadOnlyDictionary<string, string?> environment, params string[] args) {
 		string path = Environment.ProcessPath!;
 		ProcessStartInfo start = new(path) { RedirectStandardError = true, RedirectStandardOutput = true, StandardOutputEncoding = System.Text.Encoding.UTF8 };
+		foreach ((string name, string? value) in environment) start.Environment[name] = value;
 		// Run as dotnet WxKit.Tests.dll, the other copy needs the assembly too.
 		if (Path.GetFileNameWithoutExtension(path) == "dotnet") start.ArgumentList.Add(typeof(SingleInstanceTests).Assembly.Location);
 		start.ArgumentList.Add(AnotherCopy);
