@@ -12,8 +12,7 @@ public unsafe partial class DC {
 
 	/// <summary>
 	/// The platform's own handle for the drawing context, for calling native APIs: an HDC on
-	/// Windows, a CGContextRef on macOS, and on Linux the cairo context or GDK object wxGTK draws
-	/// with, or 0 when the context has none. It is only valid until the context is disposed, or a
+	/// Windows, a CGContextRef on macOS, and a cairo_t* on Linux, or 0 when the context has none. It is only valid until the context is disposed, or a
 	/// memory DC's bitmap is changed. Wraps GetHandle.
 	/// </summary>
 	public nint NativeHandle => (nint)WxKitNative.DCGetHandle(Native);

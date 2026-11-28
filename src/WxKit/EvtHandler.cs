@@ -38,7 +38,8 @@ public abstract unsafe class EvtHandler {
 	/// A handler is for letting go of what the application kept for the object, such as a
 	/// subscription to an event elsewhere, or a file it had open. It runs while wxWidgets is still
 	/// destroying the windows around it, children before their parent, so it shouldn't use other
-	/// windows. Objects still there when the application ends aren't destroyed by wxWidgets, and
+	/// windows. Top-level windows still open when the application ends are destroyed as it ends,
+	/// and raise it then. Other objects wxWidgets never destroyed, such as a menu on no menu bar,
 	/// don't raise it.
 	/// </remarks>
 	public event EventHandler? Disposed;
@@ -108,8 +109,9 @@ public abstract unsafe class EvtHandler {
 		if (_slots is not null && _slots.TryGetValue((type.Value, id, lastId), out EventSlot? slot)) ((EventSlot<TEvent>)slot).Handlers -= handler;
 	}
 
-	// As the application ends, the objects wxWidgets never destroyed are only marked, without
-	// raising Disposed, since what its handlers would let go of goes with the application.
+	// As the application ends, the objects wxWidgets never destroyed, which its own clean-up of the
+	// top-level windows left, are only marked, without raising Disposed, since what its handlers
+	// would let go of goes with the application.
 	internal void OnNativeDestroyed(bool raise = true) {
 		_native = null;
 		_slots = null;

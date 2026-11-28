@@ -220,7 +220,10 @@ internal sealed partial class Binder {
 
 	// A constant without the class or enum class it is named in, which a default may leave out, as
 	// a member of the class does, or give, as wxNavigationKeyEvent::IsForward.
-	private static string Unqualified(string constant) => constant[(constant.LastIndexOf("::", StringComparison.Ordinal) is int colons and >= 0 ? colons + 2 : 0)..];
+	private static string Unqualified(string constant) {
+		int colons = constant.LastIndexOf("::", StringComparison.Ordinal);
+		return colons < 0 ? constant : constant[(colons + 2)..];
+	}
 
 	// Known string constants used as defaults, and their values.
 	private static readonly Dictionary<string, string> StringDefaults = new(StringComparer.Ordinal) {

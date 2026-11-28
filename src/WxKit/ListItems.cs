@@ -45,9 +45,10 @@ public unsafe partial class ListCtrl {
 public static class ListColumnWidth {
 	/// <summary>
 	/// Sizes a column to its longest item, as <see cref="ListCtrl.SetColumnWidth"/>'s width. Wraps
-	/// wxLIST_AUTOSIZE. It is the default of <see cref="ListCtrl.AppendColumn"/> and
-	/// <see cref="ListCtrl.InsertColumn(int, string, ListColumnFormat, int)"/>, which give the column
-	/// a fixed width of 80 pixels for it instead, since the column has no items yet.
+	/// wxLIST_AUTOSIZE. <see cref="ListCtrl.AppendColumn"/> and
+	/// <see cref="ListCtrl.InsertColumn(int, string, ListColumnFormat, int)"/> take the same value,
+	/// -1, as their default, but there it means a fixed width of 80 pixels, since the column has no
+	/// items yet.
 	/// </summary>
 	public const int AutoSize = -1;
 

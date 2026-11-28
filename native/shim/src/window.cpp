@@ -1,7 +1,12 @@
 #include "shim.h"
 
+#include <wx/listbase.h>
+
 using wxk::Guard;
 using wxk::Unwrap;
+
+// The widths ListColumnWidth names.
+static_assert(wxLIST_AUTOSIZE == -1 && wxLIST_AUTOSIZE_USEHEADER == -2);
 
 // Can't throw: it reads a member.
 WXK_FUNCTION(void*) wxk_Window_GetHandle(wxk_Window* window) noexcept {

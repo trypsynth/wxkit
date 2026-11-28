@@ -7,8 +7,6 @@ public class ListTests {
 	[Fact]
 	public Task SizesColumnsToWhatTheyShow() => Gui.WithFrame(frame => {
 		ListView list = new(frame, size: new Size(400, 200));
-		Assert.Equal(-1, ListColumnWidth.AutoSize);
-		Assert.Equal(-2, ListColumnWidth.AutoSizeUseHeader);
 		list.AppendColumn("Name");
 		Assert.Equal(80, list.GetColumnWidth(0));
 		list.AppendColumn("A rather long heading for a column", width: ListColumnWidth.AutoSizeUseHeader);

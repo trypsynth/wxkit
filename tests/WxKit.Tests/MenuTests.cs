@@ -83,6 +83,23 @@ public class MenuTests {
 		Assert.False(file.IsDisposed);
 	});
 
+	// A menu on a menu bar is destroyed with it, as its frame is, and raises Disposed once then.
+	[Fact]
+	public Task RaisesDisposedForAMenuDestroyedWithItsMenuBar() => Gui.Run(async () => {
+		Frame frame = new(null, "Menus");
+		Menu file = new();
+		file.Append(StandardId.Exit);
+		MenuBar bar = new();
+		bar.Append(file, "&File");
+		frame.MenuBar = bar;
+		int disposed = 0;
+		file.Disposed += (_, _) => disposed++;
+		frame.Destroy();
+		await Gui.WaitUntil(() => frame.IsDisposed);
+		Assert.True(file.IsDisposed);
+		Assert.Equal(1, disposed);
+	});
+
 	[Fact]
 	public Task ReachesItemsInASubmenu() => Gui.WithFrame(frame => {
 		Menu presets = new();

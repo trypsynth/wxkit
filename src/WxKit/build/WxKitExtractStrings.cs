@@ -256,7 +256,7 @@ public static class StringExtractor {
 		for (int index = 0; index < tokens.Count; index++) {
 			Token token = tokens[index];
 			// A hole is code, so a call in it, as in $"{_("Text files")} (*.txt)", is one like any other.
-			foreach (List<Token> hole in token.Holes) Extract(hole, lexer, language, reference, template, problems);
+			if (token.Holes is not null) foreach (List<Token> hole in token.Holes) Extract(hole, lexer, language, reference, template, problems);
 			if (token.Kind != TokenKind.Identifier) continue;
 			// An application's own shortcut passes its arguments on, so neither it nor its body has strings.
 			if (IsDeclaration(tokens, index, language)) {
@@ -507,7 +507,7 @@ public sealed class Token {
 	public int Column { get; }
 
 	// An interpolated string's holes, each the tokens of its code.
-	public List<List<Token>> Holes { get; set; } = new List<List<Token>>();
+	public List<List<Token>>? Holes { get; set; }
 
 	public bool Is(char punctuation) => Kind == TokenKind.Punctuation && Text.Length == 1 && Text[0] == punctuation;
 
@@ -939,8 +939,9 @@ public sealed class Lexer {
 				continue;
 			}
 			// A format, as in {count:N0}, is text up to the closing brace, not code. A colon in the
-			// code is inside brackets, as a conditional has to be, or two, as in global::.
-			if (character == ':' && depth == 0 && Peek(1) != ':' && (hole.Count == 0 || !hole[hole.Count - 1].Is(':'))) {
+			// code is inside brackets, as a conditional has to be, or two, as in global::, or starts
+			// F#'s casts, :> and :?>.
+			if (character == ':' && depth == 0 && Peek(1) != ':' && (hole.Count == 0 || !hole[hole.Count - 1].Is(':')) && !IsFSharpCast()) {
 				while (_index < _source.Length && Current != '}' && Current != '\n') Advance();
 				continue;
 			}
@@ -1041,6 +1042,8 @@ public sealed class Lexer {
 	private void Unterminated(int line, int column, string what) {
 		if (Problems.Count == 0) Problems.Add(new ExtractionProblem(line, column, "WXKIT2004", $"This {what} never ends, so no string after it in the file is extracted."));
 	}
+
+	private bool IsFSharpCast() => _language == SourceLanguage.FSharp && (Peek(1) == '>' || (Peek(1) == '?' && Peek(2) == '>'));
 
 	private char Peek(int offset) => _index + offset < _source.Length ? _source[_index + offset] : '\0';
 

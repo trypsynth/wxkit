@@ -84,8 +84,10 @@ public class ExtractorTests {
 		StringTemplate template = Extract(""""
 			let filter = $"{tr "Text files"} (*.txt)|*.txt"
 			let triple = $"""{trp "menu" "Open"} "quoted" """
+			let upcast = $"{value :> obj |> fun _ -> tr "After an upcast"}"
+			let downcast = $"{value :?> string |> fun _ -> tr "After a downcast"}"
 			"""", SourceLanguage.FSharp);
-		Assert.Equal(["Text files", "Open"], template.Strings.Select(found => found.Id));
+		Assert.Equal(["Text files", "Open", "After an upcast", "After a downcast"], template.Strings.Select(found => found.Id));
 	}
 
 	[Fact]

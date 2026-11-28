@@ -5,13 +5,13 @@ public class DrawingTests {
 	[Fact]
 	public Task GivesTheNativeHandleOfADrawingContext() => Gui.Run(() => {
 		using Bitmap bitmap = new(4, 4, 24);
-		MemoryDC dc = new(bitmap);
+		using MemoryDC dc = new(bitmap);
 		using (Brush white = new(new Color(255, 255, 255))) {
 			dc.Background = white;
 			dc.Clear();
 		}
 		nint handle = dc.NativeHandle;
-		if (OperatingSystem.IsWindows() || OperatingSystem.IsMacOS()) Assert.NotEqual(0, handle);
+		Assert.NotEqual(0, handle);
 		if (OperatingSystem.IsWindows()) {
 			Assert.Equal(0x00FFFFFFu, Win32.PixelOf(handle, 1, 1));
 			Win32.SetPixelOf(handle, 1, 1, 0x000000FF);
