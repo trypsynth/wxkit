@@ -37,3 +37,37 @@ WXK_FUNCTION(uint8_t*) wxk_Image_SaveData(wxk_Object* image, int32_t type, size_
 WXK_FUNCTION(uint8_t) wxk_Log_Enable(uint8_t enable) noexcept {
 	return wxk::Guard<uint8_t>(1, [&]() -> uint8_t { return wxLog::EnableLogging(enable != 0) ? 1 : 0; });
 }
+
+namespace {
+
+// wxWidgets has no one call for a bitmap's handle: wxMSW's is GetHBITMAP, wxOSX's is too, which
+// gives the CGContextRef the pixels are in, and wxGTK's is GetPixbuf. An empty bitmap has none,
+// and wxOSX and wxGTK assert on one.
+void* BitmapHandle(const wxBitmap& bitmap) {
+	if (!bitmap.IsOk()) return nullptr;
+#if defined(__WXMSW__) || defined(__WXOSX__)
+	return bitmap.GetHBITMAP();
+#elif defined(__WXGTK__)
+	return bitmap.GetPixbuf();
+#else
+	return nullptr;
+#endif
+}
+
+}
+
+WXK_FUNCTION(void*) wxk_Bitmap_GetHandle(wxk_Object* bitmap) noexcept {
+	return wxk::Guard<void*>(nullptr, [&] { return BitmapHandle(*static_cast<wxBitmap*>(wxk::Unwrap(bitmap))); });
+}
+
+// wxMSW's wxIcon is a GDI object of its own, and every other port's is a wxBitmap.
+WXK_FUNCTION(void*) wxk_Icon_GetHandle(wxk_Object* icon) noexcept {
+	return wxk::Guard<void*>(nullptr, [&]() -> void* {
+		const wxIcon& value = *static_cast<wxIcon*>(wxk::Unwrap(icon));
+#ifdef __WXMSW__
+		return value.IsOk() ? value.GetHICON() : nullptr;
+#else
+		return BitmapHandle(value);
+#endif
+	});
+}
