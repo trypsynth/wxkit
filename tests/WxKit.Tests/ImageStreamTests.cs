@@ -31,6 +31,36 @@ public class ImageStreamTests {
 		Assert.Null(Image.FromStream(saved, BitmapType.Png));
 	});
 
+	// No test adds the TGA handler, so saving as TGA has none. wxWidgets would open the file first,
+	// leaving it empty, and then log a warning, which shows the user a dialog.
+	[Fact]
+	public Task SavesNothingInAFormatWithoutAHandler() => Gui.Run(() => {
+		string folder = Directory.CreateTempSubdirectory("wxkit-save-").FullName;
+		try {
+			string kept = Path.Combine(folder, "kept.tga");
+			File.WriteAllBytes(kept, [1, 2, 3]);
+			string missing = Path.Combine(folder, "missing.tga");
+			using Image image = Pattern();
+			Assert.False(image.SaveFile(kept, BitmapType.Tga));
+			Assert.False(image.SaveFile(kept, "image/tga"));
+			Assert.False(image.SaveFile(missing, BitmapType.Tga));
+			Assert.False(image.SaveFile(missing, "image/tga"));
+			Assert.False(image.SaveFile(missing));
+			Assert.False(image.SaveFile(Path.Combine(folder, "unknown.extension")));
+			using Bitmap bitmap = new(image);
+			Assert.False(bitmap.SaveFile(kept, BitmapType.Tga));
+			Assert.False(bitmap.SaveFile(missing, BitmapType.Tga));
+			Assert.Equal([1, 2, 3], File.ReadAllBytes(kept));
+			Assert.False(File.Exists(missing));
+			string bmp = Path.Combine(folder, "saved.bmp");
+			Assert.True(bitmap.SaveFile(bmp, BitmapType.Bmp));
+			Assert.True(image.SaveFile(Path.Combine(folder, "by-extension.bmp")));
+			Assert.Equal("BM"u8.ToArray(), File.ReadAllBytes(bmp)[..2]);
+		} finally {
+			Directory.Delete(folder, recursive: true);
+		}
+	});
+
 	[Fact]
 	public Task SavesABmpWithoutAHandler() => Gui.Run(() => {
 		using Image original = Pattern();

@@ -456,6 +456,8 @@ WXK_FUNCTION(uint8_t*) wxk_Image_SaveData(wxk_Object* image, int32_t type, size_
 // Turns wxWidgets' logging on or off, and returns whether it was on, so that a file whose failure
 // to load the caller is told of doesn't show the user an error dialog.
 WXK_FUNCTION(uint8_t) wxk_Log_Enable(uint8_t enable) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Image_CanSave(int32_t type, const char16_t* mimeType, size_t mimeTypeLength) WXK_NOEXCEPT;
+WXK_FUNCTION(uint8_t) wxk_Bitmap_CanSave(int32_t type) WXK_NOEXCEPT;
 
 // The desktop. Its free functions, such as wxBell, are generated, as wxk_Desktop_Bell, and so
 // are wxDisplay's and the other classes' that aren't wxObjects, each a handle of its own type.

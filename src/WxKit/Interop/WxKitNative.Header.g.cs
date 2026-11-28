@@ -488,6 +488,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte LogEnable(byte enable);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Image_CanSave")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ImageCanSave(int type, char* mimeType, nuint mimeTypeLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_CanSave")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte BitmapCanSave(int type);
+
 	[LibraryImport(Library, EntryPoint = "wxk_App_SetAppearance")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial int AppSetAppearance(int appearance);

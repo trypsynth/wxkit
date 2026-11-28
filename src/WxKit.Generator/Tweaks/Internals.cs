@@ -274,8 +274,9 @@ internal static class Internals {
 		tweaks.Class("wxImage").Internal("Paste");
 		// An empty bitmap or image was only good for LoadFile, and one made from a file that could
 		// not be read was an object that was not usable. FromFile and FromStream give null instead.
-		tweaks.Class("wxBitmap").InternalEmptyConstructor().InternalOverload("wxBitmap", "name", "const wxString &").Internal("LoadFile");
-		tweaks.Class("wxImage").InternalEmptyConstructor().InternalOverload("wxImage", "name", "const wxString &").Internal("LoadFile");
+		// SaveFile is written by hand, so that a format without a handler leaves the file alone.
+		tweaks.Class("wxBitmap").InternalEmptyConstructor().InternalOverload("wxBitmap", "name", "const wxString &").Internal("LoadFile", "SaveFile");
+		tweaks.Class("wxImage").InternalEmptyConstructor().InternalOverload("wxImage", "name", "const wxString &").Internal("LoadFile", "SaveFile");
 		tweaks.Class("wxIcon").InternalEmptyConstructor().InternalOverload("wxIcon", "name", "const wxString &").Internal("LoadFile", "CopyFromBitmap");
 		// A cursor from a bitmap takes its hot spot as a Point, so the overload with two numbers goes too.
 		tweaks.Class("wxCursor").InternalEmptyConstructor().InternalOverload("wxCursor", "hotSpotX", "int").InternalOverload("wxCursor", "name", "const wxString &");

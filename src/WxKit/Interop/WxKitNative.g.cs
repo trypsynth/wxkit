@@ -242,6 +242,10 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte BitmapLoadFile(WxkObject* self, char* name, nuint nameLength, int type, byte typeGiven);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_SaveFile")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte BitmapSaveFile(WxkObject* self, char* fileName, nuint fileNameLength, int type);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_ConvertToDisabled")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* BitmapConvertToDisabled(WxkObject* self, byte brightness);
@@ -261,10 +265,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_ResetAlpha")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void BitmapResetAlpha(WxkObject* self);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_SaveFile")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte BitmapSaveFile(WxkObject* self, char* fileName, nuint fileNameLength, int type);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_Rescale")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -3894,6 +3894,18 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ImageLoadFileStringStringInt(WxkObject* self, char* name, nuint nameLength, char* mimeType, nuint mimeTypeLength, int index);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Image_SaveFile_StringBitmapType")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ImageSaveFileStringBitmapType(WxkObject* self, char* fileName, nuint fileNameLength, int type);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_SaveFile_StringString")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ImageSaveFileStringString(WxkObject* self, char* fileName, nuint fileNameLength, char* mimeType, nuint mimeTypeLength);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Image_SaveFile_String")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial byte ImageSaveFileString(WxkObject* self, char* fileName, nuint fileNameLength);
+
 	[LibraryImport(Library, EntryPoint = "wxk_Image_SetAlpha")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void ImageSetAlpha(WxkObject* self, int x, int y, byte alpha);
@@ -4029,18 +4041,6 @@ internal static unsafe partial class WxKitNative {
 	[LibraryImport(Library, EntryPoint = "wxk_Image_HasOption")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial byte ImageHasOption(WxkObject* self, char* name, nuint nameLength);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_SaveFile_StringBitmapType")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ImageSaveFileStringBitmapType(WxkObject* self, char* fileName, nuint fileNameLength, int type);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_SaveFile_StringString")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ImageSaveFileStringString(WxkObject* self, char* fileName, nuint fileNameLength, char* mimeType, nuint mimeTypeLength);
-
-	[LibraryImport(Library, EntryPoint = "wxk_Image_SaveFile_String")]
-	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-	public static partial byte ImageSaveFileString(WxkObject* self, char* fileName, nuint fileNameLength);
 
 	[LibraryImport(Library, EntryPoint = "wxk_Image_ClearAlpha")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
