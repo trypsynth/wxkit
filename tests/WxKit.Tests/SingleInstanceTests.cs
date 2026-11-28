@@ -104,6 +104,7 @@ public class SingleInstanceTests {
 	// The other copy: check name folder, or claim name message..., which exits with what it found,
 	// or translate language text, which writes the translation.
 	internal static int RunAsAnotherCopy(string[] args) {
+		Console.Error.WriteLine("started");
 		try {
 			if (args is ["translate", string language, string text]) {
 				using Translations translations = Translations.Use("WxKit.Tests", language);
@@ -136,9 +137,33 @@ public class SingleInstanceTests {
 		using Process process = Process.Start(start)!;
 		Task<string> errors = process.StandardError.ReadToEndAsync();
 		Task<string> output = process.StandardOutput.ReadToEndAsync();
-		await process.WaitForExitAsync().WaitAsync(Gui.Timeout);
+		try {
+			await process.WaitForExitAsync().WaitAsync(Gui.Timeout);
+		} catch (TimeoutException) {
+			string stacks = NativeStacks(process.Id);
+			process.Kill(entireProcessTree: true);
+			string written = await output.WaitAsync(Gui.Timeout).ContinueWith(static read => read.IsCompletedSuccessfully ? read.Result : "(unread)");
+			string errorsWritten = await errors.WaitAsync(Gui.Timeout).ContinueWith(static read => read.IsCompletedSuccessfully ? read.Result : "(unread)");
+			throw new TimeoutException($"The other copy didn't exit.\nIts output: {written}\nIts errors: {errorsWritten}\nIts threads:\n{stacks}");
+		}
 		Assert.True(process.ExitCode != Failed, await errors);
 		return (process.ExitCode, await output);
+	}
+
+	// A hung process's threads, from gdb, which only root can attach with on Ubuntu.
+	private static string NativeStacks(int id) {
+		if (!OperatingSystem.IsLinux()) return "(only read on Linux)";
+		try {
+			ProcessStartInfo start = new("sudo", ["-n", "timeout", "-k", "5", "30", "gdb", "-nx", "-p", id.ToString(System.Globalization.CultureInfo.InvariantCulture), "-batch", "-ex", "thread apply all bt"]) { RedirectStandardInput = true, RedirectStandardOutput = true, RedirectStandardError = true };
+			using Process gdb = Process.Start(start)!;
+			gdb.StandardInput.Close();
+			Task<string> errors = gdb.StandardError.ReadToEndAsync();
+			string stacks = gdb.StandardOutput.ReadToEnd();
+			gdb.WaitForExit();
+			return stacks + errors.Result;
+		} catch (Exception error) {
+			return error.Message;
+		}
 	}
 
 	private static string UniqueName() => $"wxkit-test-{Guid.NewGuid():N}";
