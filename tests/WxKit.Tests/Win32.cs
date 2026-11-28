@@ -52,6 +52,17 @@ internal static partial class Win32 {
 	[LibraryImport("user32.dll", EntryPoint = "SendMessageW")]
 	private static partial nint SendMessage(nint window, uint message, nint wParam, nint lParam);
 
+	// A pixel's color in a device context, as 0x00BBGGRR.
+	public static uint PixelOf(nint dc, int x, int y) => GetPixel(dc, x, y);
+
+	public static void SetPixelOf(nint dc, int x, int y, uint color) => SetPixel(dc, x, y, color);
+
+	[LibraryImport("gdi32.dll", EntryPoint = "GetPixel")]
+	private static partial uint GetPixel(nint dc, int x, int y);
+
+	[LibraryImport("gdi32.dll", EntryPoint = "SetPixel")]
+	private static partial uint SetPixel(nint dc, int x, int y, uint color);
+
 	[LibraryImport("winmm.dll", EntryPoint = "waveOutGetNumDevs")]
 	private static partial uint WaveOutGetNumDevs();
 
