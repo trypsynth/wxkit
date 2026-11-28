@@ -4,7 +4,7 @@ using WxKit.Interop;
 
 namespace WxKit;
 
-/// <summary>A grid sizer is a sizer which lays out its children in a two-dimensional table with all table fields having the same size, i.e. Wraps wxGridSizer.</summary>
+/// <summary>A grid sizer is a sizer which lays out its children in a two-dimensional table with all table fields having the same size, i.e. the width of each field is the width of the widest child, the height of each field is the height of the tallest child. Wraps wxGridSizer.</summary>
 public unsafe partial class GridSizer : Sizer {
 	internal GridSizer(WxkSizer* native) : base(native) {
 	}

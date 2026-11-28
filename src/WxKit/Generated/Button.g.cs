@@ -37,7 +37,7 @@ public unsafe partial class Button : AnyButton {
 		return WxKitNative.ButtonGetDefaultSize(window is null ? null : (WxkWindow*)window.Native);
 	}
 
-	/// <summary>This sets the button to be the default item in its top-level window (e.g.</summary>
+	/// <summary>This sets the button to be the default item in its top-level window (e.g. the panel or the dialog box containing it).</summary>
 	public Window? SetDefault() => ObjectRegistry.Wrap<Window>(WxKitNative.ButtonSetDefault(Native));
 
 	private static WxkWindow* CreateNative(Window parent, string label, int id, Point? position, Size? size, ButtonStyle style) {

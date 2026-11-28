@@ -792,7 +792,7 @@ public unsafe partial class Window : EvtHandler {
 	/// <summary>Releases mouse input captured with CaptureMouse().</summary>
 	public void ReleaseMouse() => WxKitNative.WindowReleaseMouse(Native);
 
-	/// <summary>Reparents the window, i.e. the window will be removed from its current parent window (e.g.</summary>
+	/// <summary>Reparents the window, i.e. the window will be removed from its current parent window (e.g. a non-standard toolbar in a wxFrame) and then re-inserted into another.</summary>
 	public bool Reparent(Window newParent) {
 		ArgumentNullException.ThrowIfNull(newParent);
 		return WxKitNative.WindowReparent(Native, (WxkWindow*)newParent.Native) != 0;

@@ -83,7 +83,10 @@ internal sealed partial class Binder {
 			}
 			string name = tweaks.EnumMemberNames.TryGetValue(value.Name, out string? given) || StyledTextWords.Commands.TryGetValue(value.Name, out given) ? given : memberPrefix is not null && value.Name.StartsWith(memberPrefix, StringComparison.Ordinal) ? Naming.Words(value.Name[memberPrefix.Length..]) : MemberName(value.Name, shared);
 			if (char.IsDigit(name[0])) name = "Value" + name;
-			if (members.All(existing => existing.Name != name)) members.Add(new BoundStyle(name, value.Name, number, value.Brief));
+			// A value of an enum class, or of an enum in a class, is named with its scope, as in
+			// wxSysMetric::Other, which says what it wraps, and is what the shim checks its value as.
+			string constant = source.Scope is string scope ? $"{scope}::{value.Name}" : value.Name;
+			if (members.All(existing => existing.Name != name)) members.Add(new BoundStyle(name, constant, number, value.Brief));
 		}
 		return members;
 	}

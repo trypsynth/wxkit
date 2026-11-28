@@ -163,7 +163,7 @@ public unsafe partial class TopLevelWindow : Window {
 	/// <summary>Restore a previously iconized or maximized window to its normal state.</summary>
 	public void Restore() => WxKitNative.TopLevelWindowRestore(Native);
 
-	/// <summary>Sets several icons of different sizes for this window: this allows using different icons for different situations (e.g.</summary>
+	/// <summary>Sets several icons of different sizes for this window: this allows using different icons for different situations (e.g. task switching bar, taskbar, window title bar) instead of scaling, with possibly bad looking results, the only icon set by SetIcon().</summary>
 	public void SetIcons(Icon icons) {
 		ArgumentNullException.ThrowIfNull(icons);
 		WxKitNative.TopLevelWindowSetIcons(Native, icons.Native);

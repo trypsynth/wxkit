@@ -465,7 +465,7 @@ public unsafe partial class ListCtrl : Control {
 		}
 	}
 
-	/// <summary>Returns the rectangle representing the size and position, in physical coordinates, of the given subitem, i.e.</summary>
+	/// <summary>Returns the rectangle representing the size and position, in physical coordinates, of the given subitem, i.e. the part of the row item in the column subItem.</summary>
 	public bool TryGetSubItemRect(int item, int subItem, out Rect rect, ListRect code = ListRect.Bounds) {
 		rect = default;
 		fixed (Rect* rectPointer = &rect) {

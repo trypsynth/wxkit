@@ -22,7 +22,14 @@ internal sealed record DoxygenApi(IReadOnlyDictionary<string, DoxygenClass> Clas
 	public IReadOnlySet<string> PlatformConstants { get; init; } = new HashSet<string>();
 }
 
-internal sealed record DoxygenEnum(string Name, IReadOnlyList<DoxygenEnumValue> Values);
+internal sealed record DoxygenEnum(string Name, IReadOnlyList<DoxygenEnumValue> Values) {
+	/// <summary>
+	/// What C++ names its values in, as wxSysMetric::Other or wxNavigationKeyEvent::IsForward are:
+	/// the enum itself for an enum class, and the class an enum is declared in, or null for an
+	/// enum whose values are named on their own, as wxALIGN_LEFT is.
+	/// </summary>
+	public string? Scope { get; init; }
+}
 
 internal sealed record DoxygenEnumValue(string Name, string Brief);
 
