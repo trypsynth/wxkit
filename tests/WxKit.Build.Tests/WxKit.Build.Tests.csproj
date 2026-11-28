@@ -3,7 +3,7 @@
 	<!-- The build tasks MSBuild compiles from WxKit's build folder, compiled here to test what they read and write. -->
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net10.0</TargetFramework>
+		<TargetFramework>net11.0</TargetFramework>
 		<IsPackable>false</IsPackable>
 		<IsTestProject>true</IsTestProject>
 		<!-- System.Threading.Tasks' Task would clash with MSBuild's, which the tasks derive from, as MSBuild compiles them without implicit usings. -->

@@ -43,7 +43,7 @@ On Windows:
 
 On macOS:
 
-- wxOSX is built for Cocoa with CMake, Ninja, and Xcode's clang, with macOS 12 as the deployment target. Building needs Xcode, CMake, Ninja, PowerShell 7, and the .NET 10 SDK. An Apple Silicon Mac builds both runtimes, and runs `osx-x64` under Rosetta.
+- wxOSX is built for Cocoa with CMake, Ninja, and Xcode's clang, with macOS 12 as the deployment target. Building needs Xcode, CMake, Ninja, PowerShell 7, and the .NET 11 SDK. An Apple Silicon Mac builds both runtimes, and runs `osx-x64` under Rosetta.
 - The link targets list the frameworks and libraries that `otool -L` reads from the shared library, each as one clang argument, such as `-Wl,-framework,AppKit`.
 - Cocoa only runs a user interface on the main thread, so `Application.Run` throws on any other.
 

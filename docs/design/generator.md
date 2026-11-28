@@ -78,4 +78,4 @@ Each C++ type that crosses the boundary has a conversion in `src/WxKit.Generator
 
 Generated files start with a comment naming `scripts/generate.ps1`, follow `.editorconfig`, and pass `dotnet format`. Managed classes are partial, so a hand-written file can add members, or replace a generated one that a tweak ignores. Output is stable: everything is sorted by a fixed key, there are no timestamps or absolute paths, and overload suffixes depend only on each overload's own parameter types, so a new wxWidgets method shows as one new method in the diff.
 
-The generator is a `net10.0` console application in `src/WxKit.Generator`. Its tests, in `tests/WxKit.Generator.Tests`, run on small hand-written XML samples, so they need neither wxWidgets nor Doxygen.
+The generator is a `net11.0` console application in `src/WxKit.Generator`. Its tests, in `tests/WxKit.Generator.Tests`, run on small hand-written XML samples, so they need neither wxWidgets nor Doxygen.

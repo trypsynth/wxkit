@@ -50,7 +50,9 @@ jobs:
 
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 10.0.x
+          dotnet-version: |
+            10.0.x
+            11.0.x
 
       # wxGTK builds against GTK 3, and its web view against WebKitGTK, and the tests and the smoke
       # test need a display, which Xvfb gives. gettext's msgfmt compiles wxWidgets' catalogs, on
@@ -197,7 +199,9 @@ jobs:
 
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 10.0.x
+          dotnet-version: |
+            10.0.x
+            11.0.x
 
       # gettext's msgfmt compiles the tests' own catalogs, which the translation tests read.
       - name: Install GTK 3, WebKitGTK, Xvfb, gettext, and clang-tidy
@@ -262,7 +266,9 @@ jobs:
 
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 10.0.x
+          dotnet-version: |
+            10.0.x
+            11.0.x
 
       - name: Download the win-x64 build
         uses: actions/download-artifact@v4
@@ -351,7 +357,9 @@ jobs:
 
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 10.0.x
+          dotnet-version: |
+            10.0.x
+            11.0.x
 
       # An application needs GTK itself, but not its development files, and Native AOT needs clang
       # and zlib's, as on any Linux.
@@ -395,7 +403,9 @@ jobs:
 
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 10.0.x
+          dotnet-version: |
+            10.0.x
+            11.0.x
 
       - name: Download the packages
         uses: actions/download-artifact@v4

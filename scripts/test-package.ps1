@@ -75,7 +75,7 @@ function Test-Executable([string]$Path, [string]$What) {
 dotnet build $project -c Release -nologo
 if ($LASTEXITCODE -ne 0) { throw "Building the package test failed." }
 # The template's project builds for the machine's own runtime, so its output has the runtime in its path.
-$built = Get-ChildItem (Join-Path $project "bin/Release/net10.0") -Recurse -Filter "PackageTest$($IsWindows ? '.exe' : '')" | Where-Object { $_.Directory.Name -ne "publish" } | Select-Object -First 1
+$built = Get-ChildItem (Join-Path $project "bin/Release/net11.0") -Recurse -Filter "PackageTest$($IsWindows ? '.exe' : '')" | Where-Object { $_.Directory.Name -ne "publish" } | Select-Object -First 1
 if (-not $built) { throw "The package test's build has no executable." }
 Test-Executable $built.FullName "The package test, run as it is,"
 

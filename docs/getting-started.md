@@ -4,7 +4,7 @@ This guide builds a small to-do list application with WxKit: a text box, a list,
 
 ## Before you begin
 
-You need the .NET 10 SDK. To run an application, Linux needs GTK 3, which desktop distributions include, and macOS needs version 12 or later. Windows needs nothing more.
+You need the .NET 10 SDK or later. WxKit targets .NET 10, so an application can stay on its long-term support release, and the template targets .NET 11 unless you give it `--framework net10.0`. To run an application, Linux needs GTK 3, which desktop distributions include, and macOS needs version 12 or later. Windows needs nothing more.
 
 Publishing with Native AOT needs a native toolchain, as any Native AOT publish does:
 
@@ -198,7 +198,7 @@ Then publish for a runtime: `win-x64`, `win-arm64`, `linux-x64`, `linux-arm64`, 
 dotnet publish -r win-x64
 ```
 
-The executable is in `bin/Release/net10.0/win-x64/publish`, and is a few megabytes. Native AOT only compiles for the system it runs on, so publish for Linux on Linux, and for macOS on a Mac. Windows can publish for both of its architectures.
+The executable is in `bin/Release/net11.0/win-x64/publish`, or under `net10.0` for .NET 10, and is a few megabytes. Native AOT only compiles for the system it runs on, so publish for Linux on Linux, and for macOS on a Mac. Windows can publish for both of its architectures.
 
 On macOS, publishing also makes an app bundle, `Todo.app`, named after `ApplicationTitle` and known to macOS by `ApplicationId`. It's signed ad hoc, which runs on your own Mac. To give it to others, sign and notarize it, as [macOS app bundles](design/building-and-packaging.md#macos-app-bundles) describes.
 

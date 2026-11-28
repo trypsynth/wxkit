@@ -24,7 +24,7 @@ The samples build with WxKit's own source and the native libraries `./scripts/bu
 
 On Windows, you need the following:
 
-- The .NET 10 SDK.
+- The .NET 11 SDK.
 - Visual Studio 2022 or newer, or its Build Tools, with the C++ tools. Building for ARM64 also needs their ARM64 build tools, which the Visual Studio Installer lists as "MSVC ARM64/ARM64EC build tools".
 - CMake. Without one on `PATH`, the build script uses the one Visual Studio installs with its C++ CMake tools.
 - PowerShell 7.
@@ -39,9 +39,9 @@ dotnet test --project tests/WxKit.Tests
 ./scripts/test-aot.ps1
 ```
 
-On Linux, you need CMake, Ninja, PowerShell 7, the .NET 10 SDK, the development files of GTK 3 and WebKitGTK 4.1, such as Ubuntu's `libgtk-3-dev` and `libwebkit2gtk-4.1-dev`, and, for Native AOT, `clang` and zlib's development files, such as `zlib1g-dev`. The same commands build and test, and the build script defaults to the machine's own runtime, such as `linux-x64`.
+On Linux, you need CMake, Ninja, PowerShell 7, the .NET 11 SDK, the development files of GTK 3 and WebKitGTK 4.1, such as Ubuntu's `libgtk-3-dev` and `libwebkit2gtk-4.1-dev`, and, for Native AOT, `clang` and zlib's development files, such as `zlib1g-dev`. The same commands build and test, and the build script defaults to the machine's own runtime, such as `linux-x64`.
 
-On macOS, you need Xcode, the .NET 10 SDK, PowerShell 7, and CMake and Ninja, such as from Homebrew. A Mac with Apple Silicon builds both `osx-arm64` and `osx-x64`, and runs the latter through Rosetta.
+On macOS, you need Xcode, the .NET 11 SDK, PowerShell 7, and CMake and Ninja, such as from Homebrew. A Mac with Apple Silicon builds both `osx-arm64` and `osx-x64`, and runs the latter through Rosetta.
 
 The tests create real windows, so they need a desktop session. On Linux without one, run them under `xvfb-run`. `test-aot.ps1` publishes the samples with Native AOT and checks that each starts and exits cleanly.
 
