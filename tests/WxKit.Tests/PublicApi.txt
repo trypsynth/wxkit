@@ -1955,6 +1955,7 @@ sealed class WxKit.EventType`1<TEvent>
     int Value { get; }
 abstract class WxKit.EvtHandler
     bool IsDisposed { get; }
+    event EventHandler? Disposed
     void Bind<TEvent>(EventType<TEvent> type, EventHandler<TEvent> handler)
     void Bind<TEvent>(EventType<TEvent> type, int id, EventHandler<TEvent> handler)
     void Bind<TEvent>(EventType<TEvent> type, int id, int lastId, EventHandler<TEvent> handler)

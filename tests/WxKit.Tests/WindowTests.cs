@@ -82,6 +82,44 @@ public class WindowTests {
 		Assert.True(text.IsDisposed);
 	});
 
+	// Disposed is for letting go of what an application kept for a window, so it's raised once,
+	// for each window destroyed with its parent too, when the object can no longer be used.
+	[Fact]
+	public Task RaisesDisposedOnceForEachWindowDestroyed() => Gui.Run(async () => {
+		Frame frame = new(null, "Disposed");
+		Panel panel = new(frame);
+		Button button = new(panel, "&Go");
+		List<(object? Sender, bool IsDisposed)> raised = [];
+		frame.Disposed += (sender, _) => raised.Add((sender, frame.IsDisposed));
+		button.Disposed += (sender, _) => raised.Add((sender, button.IsDisposed));
+		EventHandler removed = (_, _) => raised.Add((null, false));
+		panel.Disposed += removed;
+		panel.Disposed -= removed;
+		frame.Destroy();
+		await Gui.WaitUntil(() => frame.IsDisposed);
+		Assert.Equal([(button, true), (frame, true)], raised);
+		Frame other = new(null, "Another");
+		Button child = new(other, "&Stop");
+		int count = 0;
+		child.Disposed += (_, _) => count++;
+		Assert.True(child.Destroy());
+		Assert.Equal(1, count);
+		other.Destroy();
+		await Gui.WaitUntil(() => other.IsDisposed);
+		Assert.Equal(1, count);
+	});
+
+	[Fact]
+	public Task ReportsAnExceptionFromADisposedHandler() => Gui.Run(() => {
+		Gui.TakeUnhandled();
+		Frame frame = new(null, "Throws");
+		Button button = new(frame, "&Go");
+		button.Disposed += (_, _) => throw new InvalidOperationException("from Disposed");
+		Assert.True(button.Destroy());
+		Assert.Contains(Gui.TakeUnhandled(), static error => error.Message == "from Disposed");
+		frame.Destroy();
+	});
+
 	[Fact]
 	public Task ThrowsObjectDisposedExceptionOnceDestroyed() => Gui.Run(async () => {
 		Frame frame = new(null, "Destroyed");

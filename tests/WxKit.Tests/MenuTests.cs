@@ -65,8 +65,11 @@ public class MenuTests {
 	public Task FreesAMenuNothingOwns() => Gui.WithFrame(frame => {
 		Menu popup = new();
 		popup.Append(StandardId.Copy);
+		int disposed = 0;
+		popup.Disposed += (_, _) => disposed++;
 		popup.Dispose();
 		Assert.True(popup.IsDisposed);
+		Assert.Equal(1, disposed);
 		popup.Dispose();
 		Menu inner = new();
 		Menu file = new();

@@ -37,7 +37,7 @@ internal static unsafe partial class ObjectRegistry {
 
 	// wxWidgets has destroyed every object still here, or never will, so none of them is usable.
 	internal static void Clear() {
-		foreach (EvtHandler handler in Handlers.Values.ToArray()) handler.OnNativeDestroyed();
+		foreach (EvtHandler handler in Handlers.Values.ToArray()) handler.OnNativeDestroyed(raise: false);
 		Handlers.Clear();
 	}
 

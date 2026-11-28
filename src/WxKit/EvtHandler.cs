@@ -29,6 +29,20 @@ public abstract unsafe class EvtHandler {
 	/// <summary>Whether wxWidgets has destroyed the object, after which nothing else on it can be used.</summary>
 	public bool IsDisposed => _native is null;
 
+	/// <summary>
+	/// Raised once, as wxWidgets destroys the object: a window when it or its parent is destroyed,
+	/// as a frame is when it closes, and a menu with its menu bar, or when it is disposed.
+	/// <see cref="IsDisposed"/> is true by then, so the object can't be used any more.
+	/// </summary>
+	/// <remarks>
+	/// A handler is for letting go of what the application kept for the object, such as a
+	/// subscription to an event elsewhere, or a file it had open. It runs while wxWidgets is still
+	/// destroying the windows around it, children before their parent, so it shouldn't use other
+	/// windows. Objects still there when the application ends aren't destroyed by wxWidgets, and
+	/// don't raise it.
+	/// </remarks>
+	public event EventHandler? Disposed;
+
 	// The same handle, for code that passes another object's to the shim, which Handle cannot give.
 	internal WxkEvtHandler* NativeHandler => Handle;
 
@@ -94,10 +108,15 @@ public abstract unsafe class EvtHandler {
 		if (_slots is not null && _slots.TryGetValue((type.Value, id, lastId), out EventSlot? slot)) ((EventSlot<TEvent>)slot).Handlers -= handler;
 	}
 
-	internal void OnNativeDestroyed() {
+	// As the application ends, the objects wxWidgets never destroyed are only marked, without
+	// raising Disposed, since what its handlers would let go of goes with the application.
+	internal void OnNativeDestroyed(bool raise = true) {
 		_native = null;
 		_slots = null;
 		OnDestroyed();
+		EventHandler? disposed = Disposed;
+		Disposed = null;
+		if (raise) disposed?.Invoke(this, EventArgs.Empty);
 	}
 
 	/// <summary>Runs once wxWidgets has destroyed the object, so derived classes can mark what it owned as gone too.</summary>
