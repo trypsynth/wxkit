@@ -10,6 +10,14 @@ public unsafe partial class DC {
 	// Disposing it, when the call returns, only stops it being used.
 	internal static DC Lend(WxkObject* native) => new(native, owns: false);
 
+	/// <summary>
+	/// The platform's own handle for the drawing context, for calling native APIs: an HDC on
+	/// Windows, a CGContextRef on macOS, and on Linux the cairo context or GDK object wxGTK draws
+	/// with, or 0 when the context has none. It is only valid until the context is disposed, or a
+	/// memory DC's bitmap is changed. Wraps GetHandle.
+	/// </summary>
+	public nint NativeHandle => (nint)WxKitNative.DCGetHandle(Native);
+
 	/// <summary>Where the device's origin is, in device units, which is its top left corner to begin with.</summary>
 	public Point DeviceOrigin {
 		get => WxKitNative.DCGetDeviceOrigin(Native);

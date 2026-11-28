@@ -8,6 +8,10 @@ WXK_FUNCTION(void*) wxk_Window_GetHandle(wxk_Window* window) noexcept {
 	return reinterpret_cast<void*>(Unwrap(window)->GetHandle());
 }
 
+WXK_FUNCTION(void*) wxk_DC_GetHandle(wxk_Object* dc) noexcept {
+	return Guard<void*>(nullptr, [&] { return static_cast<wxDC*>(Unwrap(dc))->GetHandle(); });
+}
+
 // Can't throw: a vector's size.
 WXK_FUNCTION(size_t) wxk_WindowList_GetCount(const wxk_WindowList* list) noexcept {
 	return reinterpret_cast<const wxk::WindowList*>(list)->windows.size();

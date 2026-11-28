@@ -254,6 +254,9 @@ WXK_FUNCTION(void) wxk_VariantList_Free(wxk_VariantList* list) WXK_NOEXCEPT;
 
 // The platform's own handle: an HWND on Windows, an NSView* on macOS, and a GtkWidget* on Linux.
 WXK_FUNCTION(void*) wxk_Window_GetHandle(wxk_Window* window) WXK_NOEXCEPT;
+// A drawing context's own handle: an HDC on Windows, a CGContextRef on macOS, and what wxGTK draws
+// with on Linux, or null when the context has none.
+WXK_FUNCTION(void*) wxk_DC_GetHandle(wxk_Object* dc) WXK_NOEXCEPT;
 
 // A validator whose checks call back into .NET. retain and release are called as windows take
 // and drop copies of it, and onFree once the last copy is gone.

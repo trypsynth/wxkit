@@ -1087,6 +1087,7 @@ class WxKit.DC : NativeObject
     int LogicalToDeviceYRel(int y)
     int ToDip(int d)
     int[] GetPartialTextExtents(string text)
+    nint NativeHandle { get; }
     void CalcBoundingBox(Point point)
     void Clear()
     void CopyAttributes(DC dc)

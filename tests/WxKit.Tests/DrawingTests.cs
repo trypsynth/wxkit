@@ -1,6 +1,30 @@
 namespace WxKit.Tests;
 
 public class DrawingTests {
+	// A memory DC's handle is the platform's own context, so a native API can draw into the bitmap.
+	[Fact]
+	public Task GivesTheNativeHandleOfADrawingContext() => Gui.Run(() => {
+		using Bitmap bitmap = new(4, 4, 24);
+		MemoryDC dc = new(bitmap);
+		using (Brush white = new(new Color(255, 255, 255))) {
+			dc.Background = white;
+			dc.Clear();
+		}
+		nint handle = dc.NativeHandle;
+		if (OperatingSystem.IsWindows() || OperatingSystem.IsMacOS()) Assert.NotEqual(0, handle);
+		if (OperatingSystem.IsWindows()) {
+			Assert.Equal(0x00FFFFFFu, Win32.PixelOf(handle, 1, 1));
+			Win32.SetPixelOf(handle, 1, 1, 0x000000FF);
+		}
+		dc.Dispose();
+		Assert.Throws<ObjectDisposedException>(() => dc.NativeHandle);
+		if (OperatingSystem.IsWindows()) {
+			using Image? image = bitmap.ConvertToImage();
+			Assert.NotNull(image);
+			Assert.Equal(new Color(255, 0, 0), image.GetRgb(new Point(1, 1)));
+		}
+	});
+
 	[Fact]
 	public Task DrawsIntoABitmap() => Gui.Run(() => {
 		using Bitmap bitmap = new(20, 20);
