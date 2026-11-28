@@ -60,6 +60,34 @@ public class ExtractorTests {
 		Assert.Equal(("WXKIT2002", 4), (problem.Code, problem.Line));
 	}
 
+	// A hole is code, so a call in it takes a literal like any other, as a file dialog's filter does.
+	[Fact]
+	public void FindsCallsInTheHolesOfInterpolatedStrings() {
+		List<ExtractionProblem> problems = Extract("""""
+			var filter = $"{_("Text files")} (*.txt)|*.txt";
+			var raw = $$"""{{_p("menu", "Open")}} {literal}""";
+			var verbatim = $@"{_("In a verbatim one")}\{name}";
+			var count = $"{_n("{0} file", "{0} files", n, n)}, {(ready ? _("ready") : _("waiting"))}";
+			var nested = $"{$"{_("Nested")}"}";
+			var outer = _($"Hello, {_("World")}");
+			var formatted = $"{when:d'} {global::System.Environment.NewLine}{_("After a format")}";
+			""""", out StringTemplate template);
+		Assert.Equal(["Text files", "Open", "In a verbatim one", "{0} file", "ready", "waiting", "Nested", "World", "After a format"], template.Strings.Select(found => found.Id));
+		Assert.Equal("menu", template.Strings[1].Context);
+		Assert.Equal("{0} files", template.Strings[3].Plural);
+		ExtractionProblem problem = Assert.Single(problems);
+		Assert.Equal(("WXKIT2002", 6), (problem.Code, problem.Line));
+	}
+
+	[Fact]
+	public void FindsCallsInTheHolesOfInterpolatedStringsInFSharp() {
+		StringTemplate template = Extract(""""
+			let filter = $"{tr "Text files"} (*.txt)|*.txt"
+			let triple = $"""{trp "menu" "Open"} "quoted" """
+			"""", SourceLanguage.FSharp);
+		Assert.Equal(["Text files", "Open"], template.Strings.Select(found => found.Id));
+	}
+
 	[Fact]
 	public void WarnsAboutStringsItCannotRead() {
 		List<ExtractionProblem> problems = Extract("""
@@ -259,7 +287,7 @@ public class ExtractorTests {
 	// A string or comment that never ends takes the rest of the file with it, which is said once,
 	// where it starts.
 	[Theory]
-	[InlineData(SourceLanguage.CSharp, "var a = _(\"first\");\nvar b = $\"{t:d'}\";\nvar c = _(\"lost\");\n", 2)]
+	[InlineData(SourceLanguage.CSharp, "var a = _(\"first\");\nvar b = $\"{t\nvar c = _(\"lost\");\n", 2)]
 	[InlineData(SourceLanguage.CSharp, "var a = _(\"first\");\n/* never closed\nvar c = _(\"lost\");\n", 2)]
 	[InlineData(SourceLanguage.FSharp, "let a = tr \"first\"\nlet b = \"\"\"never closed\nlet c = tr \"lost\"\n", 2)]
 	public void WarnsAboutWhatNeverEnds(SourceLanguage language, string source, int line) {
