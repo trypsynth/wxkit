@@ -25,6 +25,36 @@ public class DrawingTests {
 		}
 	});
 
+	// A bitmap's and an icon's handles are the platform's own, so a native API can take them, such
+	// as one that shows an icon in the notification area, which needs an HICON on Windows.
+	[Fact]
+	public Task GivesTheNativeHandlesOfABitmapAndAnIcon() => Gui.Run(() => {
+		using Bitmap red = new(4, 3, 24);
+		using (MemoryDC dc = new(red)) {
+			using Brush brush = new(new Color(255, 0, 0));
+			dc.Background = brush;
+			dc.Clear();
+		}
+		using Icon icon = Icon.FromBitmap(red);
+		Assert.NotEqual(0, red.NativeHandle);
+		Assert.NotEqual(0, icon.NativeHandle);
+		if (OperatingSystem.IsWindows()) {
+			Assert.Equal(new Size(4, 3), Win32.BitmapSizeOf(red.NativeHandle));
+			// The HICON draws the icon, red, over white.
+			using Bitmap white = new(4, 3, 24);
+			using MemoryDC dc = new(white);
+			using Brush brush = new(new Color(255, 255, 255));
+			dc.Background = brush;
+			dc.Clear();
+			Assert.True(Win32.DrawIconOn(dc.NativeHandle, 0, 0, icon.NativeHandle));
+			Assert.Equal(0x000000FFu, Win32.PixelOf(dc.NativeHandle, 1, 1));
+		}
+		red.Dispose();
+		icon.Dispose();
+		Assert.Throws<ObjectDisposedException>(() => red.NativeHandle);
+		Assert.Throws<ObjectDisposedException>(() => icon.NativeHandle);
+	});
+
 	[Fact]
 	public Task DrawsIntoABitmap() => Gui.Run(() => {
 		using Bitmap bitmap = new(20, 20);

@@ -257,6 +257,12 @@ WXK_FUNCTION(void*) wxk_Window_GetHandle(wxk_Window* window) WXK_NOEXCEPT;
 // A drawing context's own handle: an HDC on Windows, a CGContextRef on macOS, and a cairo_t* on
 // Linux, or null when the context has none.
 WXK_FUNCTION(void*) wxk_DC_GetHandle(wxk_Object* dc) WXK_NOEXCEPT;
+// A bitmap's own handle: an HBITMAP on Windows, the CGContextRef its pixels are in on macOS, and a
+// GdkPixbuf* on Linux, or null when the bitmap has none. The bitmap keeps it.
+WXK_FUNCTION(void*) wxk_Bitmap_GetHandle(wxk_Object* bitmap) WXK_NOEXCEPT;
+// An icon's own handle: an HICON on Windows, and elsewhere, where an icon is a bitmap, what
+// wxk_Bitmap_GetHandle gives. The icon keeps it.
+WXK_FUNCTION(void*) wxk_Icon_GetHandle(wxk_Object* icon) WXK_NOEXCEPT;
 
 // A validator whose checks call back into .NET. retain and release are called as windows take
 // and drop copies of it, and onFree once the last copy is gone.

@@ -212,6 +212,14 @@ internal static unsafe partial class WxKitNative {
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial void* DCGetHandle(WxkObject* dc);
 
+	[LibraryImport(Library, EntryPoint = "wxk_Bitmap_GetHandle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void* BitmapGetHandle(WxkObject* bitmap);
+
+	[LibraryImport(Library, EntryPoint = "wxk_Icon_GetHandle")]
+	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+	public static partial void* IconGetHandle(WxkObject* icon);
+
 	[LibraryImport(Library, EntryPoint = "wxk_ManagedValidator_new")]
 	[UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
 	public static partial WxkObject* ManagedValidatorNew(delegate* unmanaged[Cdecl]<void*, WxkWindow*, WxkWindow*, byte> validate, delegate* unmanaged[Cdecl]<void*, WxkWindow*, byte> toWindow, delegate* unmanaged[Cdecl]<void*, WxkWindow*, byte> fromWindow, delegate* unmanaged[Cdecl]<void*, void> retain, delegate* unmanaged[Cdecl]<void*, void> release, delegate* unmanaged[Cdecl]<void*, void> onFree, void* userdata);

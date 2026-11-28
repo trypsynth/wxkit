@@ -418,6 +418,7 @@ class WxKit.Bitmap : NativeObject
     int Depth { get; }
     int Height { get; }
     int Width { get; }
+    nint NativeHandle { get; }
     static Bitmap FromDipSize(Size size, double scale, int depth = -1)
     static Bitmap FromLogicalSize(Size size, double scale, int depth = -1)
     static Bitmap? FromFile(string fileName, BitmapType? type = null)
@@ -2605,6 +2606,7 @@ class WxKit.Icon : NativeObject
     int Depth { get; }
     int Height { get; }
     int Width { get; }
+    nint NativeHandle { get; }
     static Icon FromBitmap(Bitmap bitmap)
     static Icon? FromFile(string fileName, BitmapType? type = null, Size? desiredSize = null)
 class WxKit.IconizeEvent : Event

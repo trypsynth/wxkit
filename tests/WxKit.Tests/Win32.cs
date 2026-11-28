@@ -63,6 +63,25 @@ internal static partial class Win32 {
 	[LibraryImport("gdi32.dll", EntryPoint = "SetPixel")]
 	private static partial uint SetPixel(nint dc, int x, int y, uint color);
 
+	// A GDI bitmap's size, from its BITMAP.
+	public static Size BitmapSizeOf(nint bitmap) {
+		NativeBitmap value = default;
+		return GetObject(bitmap, Marshal.SizeOf<NativeBitmap>(), ref value) != 0 ? new Size(value.Width, value.Height) : default;
+	}
+
+	// Draws an icon at its own size, with DI_NORMAL, and says whether it could.
+	public static bool DrawIconOn(nint dc, int x, int y, nint icon) => DrawIconEx(dc, x, y, icon, 0, 0, 0, 0, 3) != 0;
+
+	// Windows's BITMAP.
+	[StructLayout(LayoutKind.Sequential)]
+	private record struct NativeBitmap(int Type, int Width, int Height, int WidthBytes, ushort Planes, ushort BitsPixel, nint Bits);
+
+	[LibraryImport("gdi32.dll", EntryPoint = "GetObjectW")]
+	private static partial int GetObject(nint handle, int size, ref NativeBitmap value);
+
+	[LibraryImport("user32.dll", EntryPoint = "DrawIconEx")]
+	private static partial int DrawIconEx(nint dc, int x, int y, nint icon, int width, int height, uint step, nint brush, uint flags);
+
 	[LibraryImport("winmm.dll", EntryPoint = "waveOutGetNumDevs")]
 	private static partial uint WaveOutGetNumDevs();
 
