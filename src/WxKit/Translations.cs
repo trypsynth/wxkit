@@ -112,7 +112,9 @@ public sealed unsafe class Translations : IDisposable {
 	/// <summary>
 	/// Sets up translations as <see cref="Use(string, string)"/> does, from the catalogs embedded in
 	/// an assembly other than the entry one, such as a library that embeds its own, or an
-	/// application whose tests run in a test host.
+	/// application whose tests run in a test host. The entry assembly's catalogs are read after
+	/// that assembly's, since the build embeds wxWidgets' own, which translate stock labels such as
+	/// Cancel, only in an application.
 	/// </summary>
 	/// <param name="assembly">The assembly the catalogs are embedded in.</param>
 	/// <param name="domain">The name of the catalogs, as in myapp.mo.</param>
@@ -121,7 +123,9 @@ public sealed unsafe class Translations : IDisposable {
 	public static Translations Use(Assembly assembly, string domain, string? language = null) {
 		ArgumentNullException.ThrowIfNull(assembly);
 		ArgumentException.ThrowIfNullOrEmpty(domain);
-		return Use(new EmbeddedTranslationsLoader(assembly), domain, language);
+		Assembly? entry = Assembly.GetEntryAssembly();
+		EmbeddedTranslationsLoader loader = entry is null || entry == assembly ? new(assembly) : new(assembly, entry);
+		return Use(loader, domain, language);
 	}
 
 	private static Translations Use(TranslationsLoader loader, string domain, string? language) {
@@ -175,7 +179,9 @@ public sealed unsafe class Translations : IDisposable {
 	/// set, or else the best one the user prefers that there is a catalog for, or null when there is none.
 	/// English, which the strings are in, counts as a language there is a catalog for, as
 	/// <see cref="AddCatalog"/> counts it, so for a user who prefers English to the languages there
-	/// are catalogs for, this is "en", and the strings are left as they are.
+	/// are catalogs for, this is "en", whatever English they prefer, such as en-US, and the strings
+	/// are left as they are. An English with a region, such as "en_GB", is named only when there is
+	/// a catalog for it.
 	/// </summary>
 	public string? GetBestTranslation(string domain) {
 		ArgumentException.ThrowIfNullOrEmpty(domain);

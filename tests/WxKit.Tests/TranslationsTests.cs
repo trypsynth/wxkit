@@ -59,6 +59,8 @@ public class TranslationsTests {
 		Assert.True(english.AddCatalog("test"));
 		Assert.False(english.IsLoaded("test"));
 		Assert.Equal("en", english.GetBestTranslation("test"));
+		using Translations american = new(new MemoryLoader()) { Language = "en_US" };
+		Assert.Equal("en", american.GetBestTranslation("test"));
 		using Translations british = new(new MemoryLoader()) { Language = "en_GB" };
 		Assert.Equal("en", british.GetBestTranslation("test"));
 		using Translations german = new(new MemoryLoader()) { Language = "de" };
@@ -70,6 +72,7 @@ public class TranslationsTests {
 	// does from LANGUAGE, so another copy of the tests is given its own.
 	[Theory]
 	[InlineData("en:de", "en", "Hello from the test catalog")]
+	[InlineData("en_US:de", "en", "Hello from the test catalog")]
 	[InlineData("de:en", "de", "Hallo aus dem Testkatalog")]
 	[InlineData("fr:en:de", "en", "Hello from the test catalog")]
 	public Task PicksTheLanguageTheUserPrefersEnglishIncluded(string preferred, string best, string translation) => Gui.Run(async () => {
@@ -91,12 +94,21 @@ public class TranslationsTests {
 		} finally {
 			tests.Dispose();
 		}
-		// WxKit itself embeds no catalogs, so the tests' aren't found in it, though they are
-		// embedded in the entry assembly.
+	});
+
+	// A library's catalogs are embedded in the library, and wxWidgets' only in the application, so
+	// stock labels are translated from the entry assembly's. WxKit itself embeds no catalogs, so
+	// the tests' are found in the entry assembly too.
+	[Fact]
+	public Task TranslatesStockLabelsFromTheEntryAssemblyAfterTheOneItIsGiven() => Gui.WithFrame(frame => {
+		Assert.SkipWhen(!new EmbeddedTranslationsLoader().GetAvailableTranslations("WxKit.Tests").Any() && Environment.GetEnvironmentVariable("CI") is null, "The catalogs are not compiled without GNU gettext's msgfmt.");
 		Translations library = Translations.Use(typeof(Translations).Assembly, "WxKit.Tests", "de");
 		try {
-			Assert.False(library.IsLoaded("WxKit.Tests"));
-			Assert.Equal("Hello from the test catalog", _("Hello from the test catalog"));
+			Assert.Contains("de", library.GetAvailableTranslations("wxstd"));
+			Button cancel = new(frame, id: StandardId.Cancel);
+			Assert.Equal("Abbrechen", cancel.LabelText);
+			Assert.True(library.IsLoaded("WxKit.Tests"));
+			Assert.Equal("Hallo aus dem Testkatalog", _("Hello from the test catalog"));
 		} finally {
 			library.Dispose();
 		}

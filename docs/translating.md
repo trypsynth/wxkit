@@ -55,7 +55,7 @@ return Application.Run(() => {
 
 The first argument is the domain, the name of the application's catalogs, which is the assembly's name unless you set `WxKitTranslationDomain`. To use a language other than the user's, pass it second, as in `Translations.Use("MyApp", "de")`.
 
-`Translations.Use` reads the catalogs embedded in the entry assembly, the application's executable. When they're embedded in another assembly, such as a library with catalogs of its own, or an application whose tests run in a test host, pass that assembly first, as in `Translations.Use(typeof(MainFrame).Assembly, "MyApp", "de")`.
+`Translations.Use` reads the catalogs embedded in the entry assembly, the application's executable. When they're embedded in another assembly, such as a library with catalogs of its own, or an application whose tests run in a test host, pass that assembly first, as in `Translations.Use(typeof(MainFrame).Assembly, "MyApp", "de")`. The entry assembly's catalogs are read after it, since the build embeds wxWidgets' own, which translate stock labels such as Cancel, only in an application.
 
 `UILocale.UseDefault` makes the numbers and dates in wxWidgets' controls follow the user's locale. It doesn't change the language of the text.
 
@@ -122,12 +122,13 @@ A window's text is translated when the window is made. To change the language wh
 Hebrew, Arabic, and Persian are written from right to left, and windows in them lay out from the right. Windows follow the user's locale, so an application whose language is a setting of its own sets the direction itself, from the language its text is in. Set `Application.LayoutDirection` after `Translations.Use`, before you make any windows:
 
 ```csharp
+string? language = null; // or the language the user picked in the application, such as "he"
 Translations translations = Translations.Use("MyApp", language);
 string current = translations.GetBestTranslation("MyApp") ?? "en";
 Application.LayoutDirection = LanguageInfo.Find(current)?.LayoutDirection ?? LayoutDirection.Default;
 ```
 
-`GetBestTranslation` names the language the text is in, which is `en` when it stays in English, even when there's a catalog for a language the user prefers after English. It's null when there's no catalog for the language, or for any the user prefers, and the text stays in English then too. Don't take the direction from the user's preferred languages, or from the `language` you passed, which may have no catalog.
+`GetBestTranslation` names the language the text is in, which is `en` when it stays in English, whatever English the user prefers, such as en-US, and even when there's a catalog for a language the user prefers after English. It names an English with a region, such as `en_GB`, only when there's a catalog for it. It's null when there's no catalog for the language, or for any the user prefers, and the text stays in English then too. Don't take the direction from the user's preferred languages, or from the `language` you passed, which may have no catalog.
 
 New windows with no parent, and message boxes, are laid out in that direction, and a window with a parent takes its parent's. Windows that are already open keep theirs. To change the language while the application runs, set `Application.LayoutDirection` again, and set each open top-level window's `LayoutDirection` before you make its contents again. On macOS, Cocoa takes the direction from the languages the application is localized in, not from WxKit.
 
