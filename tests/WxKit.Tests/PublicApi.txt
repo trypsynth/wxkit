@@ -8885,6 +8885,7 @@ sealed class WxKit.Translations : IDisposable
     static string TranslatePlural(string singular, string plural, long n)
     static string TranslatePluralInContext(string context, string singular, string plural, long n)
     static void AddCatalogLookupPathPrefix(string folder)
+    string? Domain { get; set; }
     string? GetBestTranslation(string domain)
     string? GetHeaderValue(string header, string domain = "")
     string? Language { get; set; }

@@ -53,12 +53,13 @@ private:
 	wxFileTranslationsLoader _files;
 };
 
-const wxString* Translated(const char16_t* text, size_t textLength, const char16_t* context, size_t contextLength, const unsigned* n) {
+const wxString* Translated(const char16_t* text, size_t textLength, const char16_t* context, size_t contextLength, const char16_t* domain, size_t domainLength, const unsigned* n) {
 	wxTranslations* translations = wxTranslations::Get();
 	if (translations == nullptr) return nullptr;
 	wxString original = wxk::FromUtf16(text, textLength);
 	wxString inContext = wxk::FromUtf16(context, contextLength);
-	return n != nullptr ? translations->GetTranslatedString(original, *n, wxString(), inContext) : translations->GetTranslatedString(original, wxString(), inContext);
+	wxString inDomain = wxk::FromUtf16(domain, domainLength);
+	return n != nullptr ? translations->GetTranslatedString(original, *n, inDomain, inContext) : translations->GetTranslatedString(original, inDomain, inContext);
 }
 
 } // namespace
@@ -133,17 +134,17 @@ WXK_FUNCTION(void) wxk_Translations_AddCatalogLookupPathPrefix(const char16_t* p
 	wxk::Guard([&] { wxFileTranslationsLoader::AddCatalogLookupPathPrefix(wxk::FromUtf16(prefix, prefixLength)); });
 }
 
-WXK_FUNCTION(wxk_String*) wxk_Translations_GetString(const char16_t* text, size_t textLength, const char16_t* context, size_t contextLength) noexcept {
+WXK_FUNCTION(wxk_String*) wxk_Translations_GetString(const char16_t* text, size_t textLength, const char16_t* context, size_t contextLength, const char16_t* domain, size_t domainLength) noexcept {
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* {
-		const wxString* translated = Translated(text, textLength, context, contextLength, nullptr);
+		const wxString* translated = Translated(text, textLength, context, contextLength, domain, domainLength, nullptr);
 		return translated != nullptr ? wxk::ToUtf16(*translated) : nullptr;
 	});
 }
 
-WXK_FUNCTION(wxk_String*) wxk_Translations_GetPluralString(const char16_t* singular, size_t singularLength, uint32_t n, const char16_t* context, size_t contextLength) noexcept {
+WXK_FUNCTION(wxk_String*) wxk_Translations_GetPluralString(const char16_t* singular, size_t singularLength, uint32_t n, const char16_t* context, size_t contextLength, const char16_t* domain, size_t domainLength) noexcept {
 	return wxk::Guard<wxk_String*>(nullptr, [&]() -> wxk_String* {
 		unsigned count = n;
-		const wxString* translated = Translated(singular, singularLength, context, contextLength, &count);
+		const wxString* translated = Translated(singular, singularLength, context, contextLength, domain, domainLength, &count);
 		return translated != nullptr ? wxk::ToUtf16(*translated) : nullptr;
 	});
 }

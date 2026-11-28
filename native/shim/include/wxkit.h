@@ -538,11 +538,11 @@ WXK_FUNCTION(wxk_StringArray*) wxk_Translations_GetAvailableTranslations(wxk_Tra
 WXK_FUNCTION(wxk_String*) wxk_Translations_GetBestTranslation(wxk_Translations* translations, const char16_t* domain, size_t domainLength) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_Translations_GetHeaderValue(wxk_Translations* translations, const char16_t* header, size_t headerLength, const char16_t* domain, size_t domainLength) WXK_NOEXCEPT;
 WXK_FUNCTION(void) wxk_Translations_AddCatalogLookupPathPrefix(const char16_t* prefix, size_t prefixLength) WXK_NOEXCEPT;
-// The global translations' translation of text, in context when it is not empty, from any catalog,
-// or null when there is none.
-WXK_FUNCTION(wxk_String*) wxk_Translations_GetString(const char16_t* text, size_t textLength, const char16_t* context, size_t contextLength) WXK_NOEXCEPT;
+// The global translations' translation of text, in context when it is not empty, from the domain's
+// catalog, or from any catalog when the domain is empty, or null when there is none.
+WXK_FUNCTION(wxk_String*) wxk_Translations_GetString(const char16_t* text, size_t textLength, const char16_t* context, size_t contextLength, const char16_t* domain, size_t domainLength) WXK_NOEXCEPT;
 // The same for the plural form for n of the string whose singular is singular.
-WXK_FUNCTION(wxk_String*) wxk_Translations_GetPluralString(const char16_t* singular, size_t singularLength, uint32_t n, const char16_t* context, size_t contextLength) WXK_NOEXCEPT;
+WXK_FUNCTION(wxk_String*) wxk_Translations_GetPluralString(const char16_t* singular, size_t singularLength, uint32_t n, const char16_t* context, size_t contextLength, const char16_t* domain, size_t domainLength) WXK_NOEXCEPT;
 WXK_FUNCTION(uint8_t) wxk_UILocale_UseDefault(void) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_String*) wxk_UILocale_GetCurrentName(void) WXK_NOEXCEPT;
 WXK_FUNCTION(wxk_StringArray*) wxk_UILocale_GetPreferredUILanguages(void) WXK_NOEXCEPT;
