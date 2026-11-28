@@ -36,3 +36,25 @@ public unsafe partial class ListCtrl {
 
 	private const ListItemMask Everything = ListItemMask.State | ListItemMask.Text | ListItemMask.Image | ListItemMask.Data | ListItemMask.Width | ListItemMask.Format;
 }
+
+/// <summary>
+/// The widths <see cref="ListCtrl.AppendColumn"/>, <see cref="ListCtrl.InsertColumn(int, string, ListColumnFormat, int)"/>,
+/// and <see cref="ListCtrl.SetColumnWidth"/> take besides a number of pixels, which size a column
+/// to what it shows.
+/// </summary>
+public static class ListColumnWidth {
+	/// <summary>
+	/// Sizes a column to its longest item, as <see cref="ListCtrl.SetColumnWidth"/>'s width. Wraps
+	/// wxLIST_AUTOSIZE. It is the default of <see cref="ListCtrl.AppendColumn"/> and
+	/// <see cref="ListCtrl.InsertColumn(int, string, ListColumnFormat, int)"/>, which give the column
+	/// a fixed width of 80 pixels for it instead, since the column has no items yet.
+	/// </summary>
+	public const int AutoSize = -1;
+
+	/// <summary>
+	/// Sizes a column to its heading, and to its longest item when that is wider. Wraps
+	/// wxLIST_AUTOSIZE_USEHEADER. On Windows, the last column is widened to fill the rest of the
+	/// list's width too, whether it was added with this width or set to it.
+	/// </summary>
+	public const int AutoSizeUseHeader = -2;
+}

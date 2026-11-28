@@ -2,6 +2,24 @@ namespace WxKit.Tests;
 
 // List and tree controls, which most applications show their data in.
 public class ListTests {
+	// A column added without a width gets a fixed one, since it has no items yet, and one sized to
+	// its heading fits it, or on Windows, as the last column, fills the rest of the list.
+	[Fact]
+	public Task SizesColumnsToWhatTheyShow() => Gui.WithFrame(frame => {
+		ListView list = new(frame, size: new Size(400, 200));
+		Assert.Equal(-1, ListColumnWidth.AutoSize);
+		Assert.Equal(-2, ListColumnWidth.AutoSizeUseHeader);
+		list.AppendColumn("Name");
+		Assert.Equal(80, list.GetColumnWidth(0));
+		list.AppendColumn("A rather long heading for a column", width: ListColumnWidth.AutoSizeUseHeader);
+		int fitted = list.GetColumnWidth(1);
+		Assert.True(fitted > 80, $"The heading's column is {fitted} pixels wide.");
+		list.InsertItem(0, "an item rather longer than eighty pixels");
+		Assert.True(list.SetColumnWidth(0, ListColumnWidth.AutoSize));
+		Assert.True(list.GetColumnWidth(0) > 80, $"The item's column is {list.GetColumnWidth(0)} pixels wide.");
+		if (OperatingSystem.IsWindows()) Assert.True(list.GetColumnWidth(0) + list.GetColumnWidth(1) >= list.ClientSize.Width - 1, $"The columns are {list.GetColumnWidth(0)} and {list.GetColumnWidth(1)} pixels wide in {list.ClientSize.Width}.");
+	});
+
 	[Fact]
 	public Task FillsAReportListView() => Gui.WithFrame(frame => {
 		ListView list = new(frame);
